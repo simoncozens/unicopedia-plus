@@ -4,16 +4,6 @@
 
 This app works on Mac OS X, Linux and Windows operating systems.
 
-## Features
-
-- The app window is resizable; its title displays the currently selected utility name next to the app name.
-
-- The visibility of the navigation sidebar, as well as the use of categories, can be toggled on and off from the `View` menu.
-
-- It is possible to quickly scroll to the top or to the bottom of the utility from the `View` menu.
-
-- A utility can be displayed either by clicking its name in the navigation sidebar, or by selecting its name from the `Utilities` menu.
-
 ## Utilities
 
 The following utilities are currently available:
@@ -24,6 +14,10 @@ The following utilities are currently available:
 * [Unicode Data Finder](#unicode-data-finder)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
+
+In addition, one useful developer utility is available, but only when the app is *unpackaged* and run with `npm start` from a Terminal; it lets you execute JavaScript code, and comes with several sample scripts related to Unicode and emoji:
+
+* [JavaScript Runner](#javascript-runner)
 
 ## Emoji Data Finder
 
@@ -69,6 +63,12 @@ Code point information of Unicode characters:
 List of reference links to Unicode-related web pages:
 
 <img src="screenshots/unicode-references.png" width="1080px" alt="Unicode References screenshot">
+
+## JavaScript Runner
+
+JavaScript code runner, useful for quick testing/prototyping or data processing:
+
+<img src="screenshots/javascript-runner.png" width="1080px" alt="JavaScript Runner screenshot">
 
 ## Building
 

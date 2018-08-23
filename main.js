@@ -223,7 +223,7 @@ else
     {
         menuTemplate.push ({ label: settings.unitsName.replace (/&/g, "&&"), submenu: [ ] });
     }
-    if (settings.developerMenu)
+    if ((!isPackaged) || settings.developerMenu)
     {
         menuTemplate.push (developerMenu);
     }
@@ -326,7 +326,7 @@ else
             }
         );
         //
-        mainWindow.loadURL (url.format ({ protocol: 'file', slashes: true, pathname: path.join (__dirname, '.', 'renderer', 'index.html') }));
+        mainWindow.loadURL (url.format ({ protocol: 'file', slashes: true, pathname: path.join (__dirname, 'renderer', 'index.html') }));
         //
         mainWindow.webContents.on ('will-navigate', (event) => { event.preventDefault (); }); // Inhibit drag-and-drop of URL on window
         //

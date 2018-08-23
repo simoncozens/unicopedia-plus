@@ -9,6 +9,8 @@ const url = require ('url');
 const appName = app.getName ();
 const appVersion = app.getVersion ();
 //
+const isPackaged = !remote.process.defaultApp;
+//
 const settings = getGlobal ('settings');
 //
 if (!settings.smartZoom)
@@ -77,9 +79,9 @@ for (let unitFilename of unitFilenames)
     {
         category = settings.noCategoryName,
         description = "",
-        disabled = false
+        developer = false
     } = getConfig (path.join (unitDirname, 'config.json'));
-    if (!disabled)
+    if (!(isPackaged && developer))
     {
         let htmlFilename = path.join (unitDirname, 'import.html');
         if (fs.existsSync (htmlFilename))

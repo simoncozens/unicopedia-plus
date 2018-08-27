@@ -16,10 +16,6 @@ const outputCodePointsData = unit.querySelector ('.output-code-points-data');
 //
 module.exports.start = function (context)
 {
-    const { remote } = require ('electron');
-    const { getCurrentWebContents } = remote;
-    const webContents = getCurrentWebContents ();
-    //
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus');
     const unicode = require ('../../lib/unicode/unicode.js');
@@ -36,9 +32,8 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            inputCharacters.focus ();
-            webContents.selectAll ();
-            webContents.delete ();
+            inputCharacters.value = "";
+            inputCharacters.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -49,9 +44,8 @@ module.exports.start = function (context)
         samples,
         (sample) =>
         {
-            inputCharacters.focus ();
-            webContents.selectAll ();
-            webContents.replace (sample.string);
+            inputCharacters.value = sample.string;
+            inputCharacters.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -184,16 +178,16 @@ module.exports.start = function (context)
             displayDataList (Array.from (event.target.value), outputCharactersData);
         }
     );
-    inputCharacters.value = prefs.inputCharacters; inputCharacters.dispatchEvent (new Event ('input'));
+    inputCharacters.value = prefs.inputCharacters;
+    inputCharacters.dispatchEvent (new Event ('input'));
     //
     codePointsClear.addEventListener
     (
         'click',
         (event) =>
         {
-            inputCodePoints.focus ();
-            webContents.selectAll ();
-            webContents.delete ();
+            inputCodePoints.value = "";
+            inputCodePoints.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -202,9 +196,8 @@ module.exports.start = function (context)
         samples,
         (sample) =>
         {
-            inputCodePoints.focus ();
-            webContents.selectAll ();
-            webContents.replace (unicode.charactersToCodePoints (sample.string));
+            inputCodePoints.value = unicode.charactersToCodePoints (sample.string);
+            inputCodePoints.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -222,9 +215,8 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            inputCodePoints.focus ();
-            webContents.selectAll ();
-            webContents.replace (unicode.charactersToCodePoints (outputCharacters.textContent));
+            inputCodePoints.value = unicode.charactersToCodePoints (outputCharacters.textContent);
+            inputCodePoints.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -238,7 +230,8 @@ module.exports.start = function (context)
             displayDataList (Array.from (characters), outputCodePointsData);
         }
     );
-    inputCodePoints.value = prefs.inputCodePoints; inputCodePoints.dispatchEvent (new Event ('input'));
+    inputCodePoints.value = prefs.inputCodePoints;
+    inputCodePoints.dispatchEvent (new Event ('input'));
 };
 //
 module.exports.stop = function (context)

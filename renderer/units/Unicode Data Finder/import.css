@@ -142,6 +142,7 @@
 
 #unicode-data-finder-unit .search-by-name-data .data-table
 {
+    user-select: auto;
     margin: 0.75em 0;
 }
 
@@ -156,7 +157,6 @@
 
 #unicode-data-finder-unit .search-by-name-data .row
 {
-    user-select: auto;
     background-color: white;
 }
 

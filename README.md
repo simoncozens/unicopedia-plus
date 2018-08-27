@@ -11,13 +11,14 @@ The following utilities are currently available:
 * [Emoji Data Finder](#emoji-data-finder)
 * [Emoji Picture Book](#emoji-picture-book)
 * [Emoji References](#emoji-references)
+* [JavaScript Runner](#javascript-runner)
 * [Unicode Data Finder](#unicode-data-finder)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
 
-In addition, one useful developer utility is available, but only when the app is *unpackaged* and run with `npm start` from a Terminal; it lets you execute JavaScript code, and comes with several sample scripts related to Unicode and emoji:
+## Note
 
-* [JavaScript Runner](#javascript-runner)
+The **JavaScript Runner** developer utility is no more restricted to the *unpackaged* app configuration; it lets you execute JavaScript code, and comes with several sample scripts related to Unicode and emoji.
 
 ## Emoji Data Finder
 
@@ -46,6 +47,12 @@ List of reference links to emoji-related web pages:
 
 <img src="screenshots/emoji-references.png" width="1080px" alt="Emoji References screenshot">
 
+## JavaScript Runner
+
+JavaScript code runner, useful for quick testing/prototyping or data processing:
+
+<img src="screenshots/javascript-runner.png" width="1080px" alt="JavaScript Runner screenshot">
+
 ## Unicode Data Finder
 
 Basic data of Unicode characters found by name:
@@ -63,12 +70,6 @@ Code point information of Unicode characters:
 List of reference links to Unicode-related web pages:
 
 <img src="screenshots/unicode-references.png" width="1080px" alt="Unicode References screenshot">
-
-## JavaScript Runner
-
-JavaScript code runner, useful for quick testing/prototyping or data processing:
-
-<img src="screenshots/javascript-runner.png" width="1080px" alt="JavaScript Runner screenshot">
 
 ## Building
 

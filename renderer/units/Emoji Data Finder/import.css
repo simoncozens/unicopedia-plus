@@ -95,31 +95,30 @@
     color: gray;
 }
 
-#emoji-data-finder-unit .emoji-data
+#emoji-data-finder-unit .emoji-table
 {
     user-select: auto;
     background-color: white;
     margin: 1em 0 0.5em 0;
 }
 
-#emoji-data-finder-unit .emoji-data .non-fully-qualified
+#emoji-data-finder-unit .emoji-table .emoji-data
 {
-    color: gray;
-}
-
-#emoji-data-finder-unit .emoji-data .emoji
-{
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-    font-size: 72px;
     height: 1em;
     min-width: 1em;
     text-align: center;
     vertical-align: middle;
+}
+
+#emoji-data-finder-unit .emoji-table .emoji
+{
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 72px;
     line-height: 1em;
     padding: 0.2em;
 }
 
-#emoji-data-finder-unit .emoji-data .names
+#emoji-data-finder-unit .emoji-table .names-data
 {
     text-align: left;
     vertical-align: middle;
@@ -127,7 +126,7 @@
     padding: 0.25em 0.5em;
 }
 
-#emoji-data-finder-unit .emoji-data .short-name
+#emoji-data-finder-unit .emoji-table .short-name
 {
     vertical-align: middle;
     font-size: 1.2em;
@@ -135,7 +134,7 @@
     margin: 0.25em 0;
 }
 
-#emoji-data-finder-unit .emoji-data .keywords
+#emoji-data-finder-unit .emoji-table .keywords
 {
     vertical-align: middle;
     font-size: 1em;
@@ -144,13 +143,28 @@
     font-style: italic;
 }
 
-#emoji-data-finder-unit .emoji-data .codes
+#emoji-data-finder-unit .emoji-table .codes-data
+{
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+}
+
+#emoji-data-finder-unit .emoji-table .codes
 {
     font-family: Monaco, "Noto Mono", monospace;
     text-align: left;
     vertical-align: middle;
-    width: 100%;
     font-size: 1em;
     padding: 0.3em 0.6em;
 }
 
+#emoji-data-finder-unit .emoji-table .emoji.non-fully-qualified
+{
+    opacity: 0.75;
+}
+
+#emoji-data-finder-unit .emoji-table .non-fully-qualified
+{
+    opacity: 0.5;
+}

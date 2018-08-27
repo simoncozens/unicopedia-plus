@@ -14,10 +14,6 @@ const emojiDataList = unit.querySelector ('.emoji-data-list');
 //
 module.exports.start = function (context)
 {
-    const { remote } = require ('electron');
-    const { getCurrentWebContents } = remote;
-    const webContents = getCurrentWebContents ();
-    //
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus');
     //
@@ -73,9 +69,7 @@ module.exports.start = function (context)
         return emojiByName;
     }
     //
-    const emojiPatterns = require ('emoji-patterns');
-    // Exclude the 12 keycap bases and the 26 singleton Regional Indicator characters
-    const emojiPattern = emojiPatterns["Emoji_All"].replace (/\\u\{23\}\\u\{2A\}\\u\{30\}-\\u\{39\}|\\u\{1F1E6\}-\\u\{1F1FF\}/gi, "");
+    const emojiPattern = require ('emoji-test-patterns')["Emoji_Test_All"];
     const emojiRegex = new RegExp (emojiPattern, 'gu');
     //
     function getEmojiDataList (string)
@@ -88,9 +82,8 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            inputString.focus ();
-            webContents.selectAll ();
-            webContents.delete ();
+            inputString.value = "";
+            inputString.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -101,9 +94,8 @@ module.exports.start = function (context)
         samples,
         (sample) =>
         {
-            inputString.focus ();
-            webContents.selectAll ();
-            webContents.replace (sample.string);
+            inputString.value = sample.string;
+            inputString.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -217,9 +209,8 @@ module.exports.start = function (context)
                         if (regex)
                         {
                             let emojiByName = findEmojiByName (regex);
-                            inputString.focus ();
-                            webContents.selectAll ();
-                            webContents.replace (emojiByName.join (''));
+                            inputString.value = emojiByName.join ('');
+                            inputString.dispatchEvent (new Event ('input'));
                         }
                     }
                 }
@@ -227,82 +218,83 @@ module.exports.start = function (context)
         }
     );
     //
-    inputString.value = prefs.inputString;
-    //
     filterButton.addEventListener
     (
         'click',
         (event) =>
         {
-            inputString.focus ();
-            webContents.selectAll ();
-            webContents.replace (getEmojiDataList (inputString.value).join (""));
+            inputString.value = getEmojiDataList (inputString.value).join ("");
+            // inputString.dispatchEvent (new Event ('input'));
         }
     );
     //
-    function emptyDataList ()
+    function displayDataList (string)
     {
         while (emojiDataList.firstChild)
         {
            emojiDataList.firstChild.remove ();
         }
-    }
-    //
-    function displayDataList (string)
-    {
         let characters = getEmojiDataList (string);
         hitCount.textContent = `${characters.length}\xA0/\xA0${emojiKeys.length}`;
         for (let character of characters)
         {
-            let emojiData = document.createElement ('table');
-            emojiData.className = 'emoji-data';
+            let emojiTable = document.createElement ('table');
+            emojiTable.className = 'emoji-table';
             let firstRow = document.createElement ('tr');
-            let emoji = document.createElement ('td');
-            emoji.rowSpan = 2;
+            let emojiData = document.createElement ('td');
+            emojiData.className = 'emoji-data';
+            emojiData.rowSpan = 2;
+            let emoji = document.createElement ('div');
             emoji.className = 'emoji';
             emoji.textContent = character;
-            firstRow.appendChild (emoji);
-            let names = document.createElement ('td');
-            names.className = 'names';
+            emojiData.appendChild (emoji);
+            firstRow.appendChild (emojiData);
+            let namesData = document.createElement ('td');
+            namesData.className = 'names-data';
             let shortName = document.createElement ('div');
             shortName.className = 'short-name';
             shortName.textContent = getEmojiShortName (character);
-            names.appendChild (shortName);
+            namesData.appendChild (shortName);
             let keywords = document.createElement ('div');
             keywords.className = 'keywords';
             keywords.textContent = getEmojiKeywords (character).join (", ");
-            names.appendChild (keywords);
-            emojiData.appendChild (firstRow);
-            firstRow.appendChild (names);
+            namesData.appendChild (keywords);
+            emojiTable.appendChild (firstRow);
+            firstRow.appendChild (namesData);
             let secondRow = document.createElement ('tr');
-            let codes = document.createElement ('td');
+            let codesData = document.createElement ('td');
+            codesData.className = 'codes-data';
+            let codes = document.createElement ('div');
             codes.className = 'codes';
             let code = emojiList[character].code.split (" ").map (source => { return `U+${source}`; }).join (" ");
             // let code = emojiList[character].code;
             codes.textContent = code;
+            codesData.appendChild (codes);
             let toolTip = "STATUS: " + (emojiList[character].toFullyQualified ? "DISPLAY/PROCESS": "KEYBOARD/PALETTE");
-            emojiData.title = toolTip;
+            emojiTable.title = toolTip;
             if (emojiList[character].toFullyQualified)
             {
-                names.classList.add ('non-fully-qualified');
+                emoji.classList.add ('non-fully-qualified');
+                shortName.classList.add ('non-fully-qualified');
+                keywords.classList.add ('non-fully-qualified');
                 codes.classList.add ('non-fully-qualified');
             }
-            secondRow.appendChild (codes);
-            emojiData.appendChild (secondRow);
-            emojiDataList.appendChild (emojiData);
+            secondRow.appendChild (codesData);
+            emojiTable.appendChild (secondRow);
+            emojiDataList.appendChild (emojiTable);
         }
     }
     //
-    displayDataList (inputString.value);
     inputString.addEventListener
     (
         'input',
         (event) =>
         {
-            emptyDataList ();
             displayDataList (event.target.value);
         }
     );
+    inputString.value = prefs.inputString;
+    inputString.dispatchEvent (new Event ('input'));
 };
 //
 module.exports.stop = function (context)

@@ -1,4 +1,4 @@
-// Count Emoji.js
+// Count Emoji
 let emojiList = require ('emoji-test-list');
 let keyboardCount = 0;
 let count = 0;

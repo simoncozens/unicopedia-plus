@@ -1,7 +1,7 @@
 {
     "name": "unicode-plus",
     "productName": "Unicode Plus",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "Set of Unicode & emoji utilities.",
     "main": "main.js",
     "scripts": {
@@ -30,10 +30,10 @@
     "license": "MIT",
     "private": false,
     "dependencies": {
-        "emoji-patterns": "^11.2.1",
+        "emoji-patterns": "^11.2.2",
         "emoji-test-groups": "^11.0.0",
         "emoji-test-list": "^11.0.0",
-        "emoji-test-patterns": "^11.0.0",
+        "emoji-test-patterns": "^11.0.1",
         "regexgen": "^1.3.0",
         "regexpu-core": "^4.2.0"
     },

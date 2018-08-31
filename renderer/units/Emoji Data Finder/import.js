@@ -74,7 +74,7 @@ module.exports.start = function (context)
     //
     function getEmojiDataList (string)
     {
-        return [...new Set (string.match (emojiRegex))];
+        return string.match (emojiRegex);
     }
     //
     clearButton.addEventListener
@@ -224,7 +224,7 @@ module.exports.start = function (context)
         (event) =>
         {
             inputString.value = getEmojiDataList (inputString.value).join ("");
-            // inputString.dispatchEvent (new Event ('input'));
+            inputString.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -234,7 +234,7 @@ module.exports.start = function (context)
         {
            emojiDataList.firstChild.remove ();
         }
-        let characters = getEmojiDataList (string);
+        let characters = [...new Set (getEmojiDataList (string))];
         hitCount.textContent = `${characters.length}\xA0/\xA0${emojiKeys.length}`;
         for (let character of characters)
         {

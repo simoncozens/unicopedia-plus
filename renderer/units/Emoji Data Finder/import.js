@@ -30,7 +30,15 @@ module.exports.start = function (context)
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
+    const emojiList = require ('emoji-test-list');
+    const emojiKeys = Object.keys (emojiList).sort ().reverse ();
+    //
     const cldrAnnotations = require ('../../lib/unicode/get-cldr-annotations.js') ("en.xml");
+    //
+    function getEmojiCodePoints (emoji)
+    {
+        return emojiList[emoji].code.split (" ").map (source => { return `U+${source}`; }).join (" ");
+    }
     //
     function getEmojiShortName (emoji)
     {
@@ -42,17 +50,18 @@ module.exports.start = function (context)
         return cldrAnnotations[emoji.replace (/\uFE0F/g, "")].keywords;
     }
     //
-    const emojiList = require ('emoji-test-list');
-    const emojiKeys = Object.keys (emojiList).sort ().reverse ();
-    //
-    function findEmojiByName (regex)
+    function findEmojiByNameOrSymbol (regex)
     {
-        let emojiByName = [ ];
+        let emojiByNameOrSymbol = [ ];
         for (let emoji in emojiList)
         {
-            if (getEmojiShortName (emoji).match (regex))
+            if (regex.test (emoji))
             {
-                emojiByName.push (emoji);
+                emojiByNameOrSymbol.push (emoji);
+            }
+            else if (getEmojiShortName (emoji).match (regex))
+            {
+                emojiByNameOrSymbol.push (emoji);
             }
             else
             {
@@ -60,21 +69,21 @@ module.exports.start = function (context)
                 {
                     if (keyword.match (regex))
                     {
-                        emojiByName.push (emoji);
+                        emojiByNameOrSymbol.push (emoji);
                         break;
                     }
                 }
             }
         }
-        return emojiByName;
+        return emojiByNameOrSymbol;
     }
     //
     const emojiPattern = require ('emoji-test-patterns')["Emoji_Test_All"];
     const emojiRegex = new RegExp (emojiPattern, 'gu');
     //
-    function getEmojiDataList (string)
+    function getEmojiList (string)
     {
-        return string.match (emojiRegex);
+        return string.match (emojiRegex) || [ ];
     }
     //
     clearButton.addEventListener
@@ -111,7 +120,7 @@ module.exports.start = function (context)
     wholeWord.checked = prefs.wholeWord;
     useRegex.checked = prefs.useRegex;
     //
-    searchString.placeholder = "Name or keyword...";
+    searchString.placeholder = "Name, keyword or symbol...";
     searchString.addEventListener
     (
         'keypress',
@@ -208,8 +217,8 @@ module.exports.start = function (context)
                         }
                         if (regex)
                         {
-                            let emojiByName = findEmojiByName (regex);
-                            inputString.value = emojiByName.join ('');
+                            let emojiByNameOrSymbol = findEmojiByNameOrSymbol (regex);
+                            inputString.value = emojiByNameOrSymbol.join ('');
                             inputString.dispatchEvent (new Event ('input'));
                         }
                     }
@@ -223,7 +232,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            inputString.value = getEmojiDataList (inputString.value).join ("");
+            inputString.value = getEmojiList (inputString.value).join ("");
             inputString.dispatchEvent (new Event ('input'));
         }
     );
@@ -234,7 +243,7 @@ module.exports.start = function (context)
         {
            emojiDataList.firstChild.remove ();
         }
-        let characters = [...new Set (getEmojiDataList (string))];
+        let characters = [...new Set (getEmojiList (string))];
         hitCount.textContent = `${characters.length}\xA0/\xA0${emojiKeys.length}`;
         for (let character of characters)
         {
@@ -266,8 +275,7 @@ module.exports.start = function (context)
             codesData.className = 'codes-data';
             let codes = document.createElement ('div');
             codes.className = 'codes';
-            let code = emojiList[character].code.split (" ").map (source => { return `U+${source}`; }).join (" ");
-            // let code = emojiList[character].code;
+            let code = getEmojiCodePoints (character);
             codes.textContent = code;
             codesData.appendChild (codes);
             let toolTip = "STATUS: " + (emojiList[character].toFullyQualified ? "DISPLAY/PROCESS": "KEYBOARD/PALETTE");

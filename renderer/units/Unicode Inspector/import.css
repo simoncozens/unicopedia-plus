@@ -134,3 +134,37 @@
 {
     margin: 0 0 1em 0;
 }
+
+#unicode-inspector-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unicode-inspector-unit .instructions li
+{
+    margin: 0.25em 0;
+}
+
+#unicode-inspector-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#unicode-inspector-unit .instructions code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unicode-inspector-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

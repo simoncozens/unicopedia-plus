@@ -59,6 +59,24 @@
     ],
     [
         {
+            "href": "https://www.npmjs.com/package/emoji-patterns",
+            "name": "emoji-patterns - npm"
+        },
+        {
+            "href": "https://www.npmjs.com/package/emoji-test-list",
+            "name": "emoji-test-list - npm"
+        },
+        {
+            "href": "https://www.npmjs.com/package/emoji-test-groups",
+            "name": "emoji-test-groups - npm"
+        },
+        {
+            "href": "https://www.npmjs.com/package/emoji-test-patterns",
+            "name": "emoji-test-patterns - npm"
+        }
+    ],
+    [
+        {
              "href": "http://cldr.unicode.org/translation",
              "name": "Translation Guidelines - CLDR - Unicode Common Locale Data Repository"
         },

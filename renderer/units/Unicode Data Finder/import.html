@@ -4,7 +4,7 @@
             <h2>Search by Name</h2>
             <div class="actions">
                 <span class="action-group search-group">
-                    <span class="action">
+                    <span class="action search-wrap">
                         <input class="search-string" type="search">
                     </span>
                     <span class="action">
@@ -56,5 +56,27 @@
             </div>
             <div class="search-by-name-data"></div>
        </div>
+        <div class="accent-panel">
+            <details class="instructions">
+                <summary>Instructions</summary>
+                <ul>
+                    <li>The <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.</li>
+                    <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
+                    <li>It is possible to choose how many results are shown one page at a time.</li>
+                    <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
+                    <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                </ul>
+            </details>
+            <details class="regex-examples">
+                <summary>Regex Examples</summary>
+                <ul>
+                    <li><code>^(cjk|kangxi) radical</code><br>Characters whose name starts with either "cjk radical" or "kangxi radical"</li>
+                    <li><code>(?=.*hiragana)(?=.*katakana)</code><br>Characters whose name contains both "hiragana" and "katakana"</li>
+                    <li><code>(?=.*katakana)(?=.*\ba\b)</code><br>Characters whose name contains both "katakana" and whole-word "a"</li>
+                    <li><code>^(?!.*radical).*turtle</code><br>Characters whose name contains "turtle" but not "radical"</li>
+                    <li><code>\b\w+boat\b</code><br>Characters whose name contains words ending with "boat", but are not "boat"</li>
+                </ul>
+            </details>
+        </div>
     </section>
 </template>

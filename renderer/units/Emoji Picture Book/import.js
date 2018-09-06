@@ -6,6 +6,7 @@ const unit = document.getElementById (unitId);
 const selectGroup = unit.querySelector ('.select-group');
 const sizeRange = unit.querySelector ('.size-range');
 const groupContainer = unit.querySelector ('.group-container');
+const instructions = unit.querySelector ('.instructions');
 //
 const titleDebugMode = unit.querySelector ('h1');
 //
@@ -20,7 +21,8 @@ module.exports.start = function (context)
     const defaultPrefs =
     {
         selectGroup: "",
-        fontSize: defaultFontSize
+        fontSize: defaultFontSize,
+        instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -263,6 +265,8 @@ module.exports.start = function (context)
             }
         );
     }
+    //
+    instructions.open = prefs.instructions;
 };
 //
 module.exports.stop = function (context)
@@ -270,7 +274,8 @@ module.exports.stop = function (context)
     let prefs =
     {
         selectGroup: selectGroup.value,
-        fontSize: Math.pow (2, sizeRange.value)
+        fontSize: Math.pow (2, sizeRange.value),
+        instructions: instructions.open
     };
     context.setPrefs (prefs);
 };

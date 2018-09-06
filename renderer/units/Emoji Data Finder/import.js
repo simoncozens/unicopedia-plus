@@ -11,6 +11,8 @@ const inputString = unit.querySelector ('.input-string');
 const hitCount = unit.querySelector ('.hit-count');
 const filterButton = unit.querySelector ('.filter-button');
 const emojiDataList = unit.querySelector ('.emoji-data-list');
+const instructions = unit.querySelector ('.instructions');
+const regexExamples = unit.querySelector ('.regex-examples');
 //
 module.exports.start = function (context)
 {
@@ -26,7 +28,9 @@ module.exports.start = function (context)
         searchString: "",
         wholeWord: false,
         useRegex: false,
-        inputString: ""
+        inputString: "",
+        instructions: true,
+        regexExamples: false
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -93,6 +97,7 @@ module.exports.start = function (context)
         {
             inputString.value = "";
             inputString.dispatchEvent (new Event ('input'));
+            inputString.focus ();
         }
     );
     //
@@ -174,7 +179,8 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            clearButton.click ();
+            inputString.value = "";
+            inputString.dispatchEvent (new Event ('input'));
             setTimeout
             (
                 () =>
@@ -244,7 +250,7 @@ module.exports.start = function (context)
            emojiDataList.firstChild.remove ();
         }
         let characters = [...new Set (getEmojiList (string))];
-        hitCount.textContent = `${characters.length}\xA0/\xA0${emojiKeys.length}`;
+        hitCount.innerHTML = `<strong>${characters.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
         for (let character of characters)
         {
             let emojiTable = document.createElement ('table');
@@ -303,6 +309,9 @@ module.exports.start = function (context)
     );
     inputString.value = prefs.inputString;
     inputString.dispatchEvent (new Event ('input'));
+    //
+    instructions.open = prefs.instructions;
+    regexExamples.open = prefs.regexExamples;
 };
 //
 module.exports.stop = function (context)
@@ -312,7 +321,9 @@ module.exports.stop = function (context)
         searchString: searchString.value,
         wholeWord: wholeWord.checked,
         useRegex: useRegex.checked,
-        inputString: inputString.value
+        inputString: inputString.value,
+        instructions: instructions.open,
+        regexExamples: regexExamples.open
     };
     context.setPrefs (prefs);
 };

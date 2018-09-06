@@ -24,9 +24,20 @@
     margin: 0;
 }
 
+#unicode-data-finder-unit .search-group
+{
+    flex-grow: 1;
+    margin-right: -0.5em;
+}
+
+#unicode-data-finder-unit .search-wrap
+{
+    width: 100%;
+}
+
 #unicode-data-finder-unit .search-string
 {
-    width: 20em;
+    width: 100%;
     font-size: 1em;
     background: white;
     border: 1px solid var(--color-border);
@@ -216,4 +227,48 @@
 #unicode-data-finder-unit .search-by-name-data .names .correction::after
 {
     content: "\A0*";
+}
+
+#unicode-data-finder-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unicode-data-finder-unit .instructions li
+{
+    margin: 0.25em 0;
+}
+
+#unicode-data-finder-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#unicode-data-finder-unit .regex-examples ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unicode-data-finder-unit .regex-examples li
+{
+    margin: 0.5em 0;
+}
+
+#unicode-data-finder-unit .regex-examples code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unicode-data-finder-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
 }

@@ -14,6 +14,8 @@ const inputCodePoints = unit.querySelector ('.input-code-points');
 const outputCharacters = unit.querySelector ('.output-characters');
 const outputCodePointsData = unit.querySelector ('.output-code-points-data');
 //
+const instructions = unit.querySelector ('.instructions');
+//
 module.exports.start = function (context)
 {
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
@@ -23,7 +25,8 @@ module.exports.start = function (context)
     const defaultPrefs =
     {
         inputCharacters: "",
-        inputCodePoints: ""
+        inputCodePoints: "",
+        instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -34,6 +37,7 @@ module.exports.start = function (context)
         {
             inputCharacters.value = "";
             inputCharacters.dispatchEvent (new Event ('input'));
+            inputCharacters.focus ();
         }
     );
     //
@@ -188,6 +192,7 @@ module.exports.start = function (context)
         {
             inputCodePoints.value = "";
             inputCodePoints.dispatchEvent (new Event ('input'));
+            inputCodePoints.focus ();
         }
     );
     //
@@ -232,6 +237,8 @@ module.exports.start = function (context)
     );
     inputCodePoints.value = prefs.inputCodePoints;
     inputCodePoints.dispatchEvent (new Event ('input'));
+    //
+    instructions.open = prefs.instructions;
 };
 //
 module.exports.stop = function (context)
@@ -239,7 +246,8 @@ module.exports.stop = function (context)
     let prefs =
     {
         inputCharacters: inputCharacters.value,
-        inputCodePoints: inputCodePoints.value
+        inputCodePoints: inputCodePoints.value,
+        instructions: instructions.open
     };
     context.setPrefs (prefs);
 };

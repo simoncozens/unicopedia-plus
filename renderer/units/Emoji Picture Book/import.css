@@ -58,3 +58,29 @@
     white-space: nowrap;
 }
 
+#emoji-picture-book-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#emoji-picture-book-unit .instructions li
+{
+    margin: 0.25em 0;
+}
+
+#emoji-picture-book-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#emoji-picture-book-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

@@ -15,6 +15,8 @@ const lastPageButton = unit.querySelector ('.last-page-button');
 const pageInfo = unit.querySelector ('.page-info');
 const pageSizeSelect = unit.querySelector ('.page-size-select');
 const searchByNameData = unit.querySelector ('.search-by-name-data');
+const instructions = unit.querySelector ('.instructions');
+const regexExamples = unit.querySelector ('.regex-examples');
 //
 module.exports.start = function (context)
 {
@@ -29,7 +31,9 @@ module.exports.start = function (context)
         searchString: "",
         wholeWord: false,
         useRegex: false,
-        pageSize: 1024
+        pageSize: 1024,
+        instructions: true,
+        regexExamples: false
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -413,6 +417,9 @@ module.exports.start = function (context)
             );
         }
     );
+    //
+    instructions.open = prefs.instructions;
+    regexExamples.open = prefs.regexExamples;
 };
 //
 module.exports.stop = function (context)
@@ -422,7 +429,9 @@ module.exports.stop = function (context)
         searchString: searchString.value,
         wholeWord: wholeWord.checked,
         useRegex: useRegex.checked,
-        pageSize: pageSizeSelect.value
+        pageSize: pageSizeSelect.value,
+        instructions: instructions.open,
+        regexExamples: regexExamples.open
     };
     context.setPrefs (prefs);
 };

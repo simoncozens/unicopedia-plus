@@ -8,7 +8,7 @@ let lines;
 //
 let versions = [ ];
 //
-// Copy of https://unicode.org/Public/UNIDATA/DerivedAge.txt
+// Copy of https://www.unicode.org/Public/UNIDATA/DerivedAge.txt
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedAge.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {

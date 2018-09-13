@@ -373,7 +373,7 @@ function codePointsToCharacters (codePoints)
     let hex;
     while ((hex = regex.exec (codePoints)))
     {
-        let num = parseInt (hex[1] || hex[2] || hex[3] || hex[4], 16);
+        let num = parseInt (hex[1] || hex[2] || hex[3], 16);
         if (num <= 0x10FFFF)
         {
             characters += String.fromCodePoint (num);

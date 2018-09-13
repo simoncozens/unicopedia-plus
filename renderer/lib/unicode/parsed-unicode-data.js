@@ -41,7 +41,7 @@ for (let line of lines)
                 if (rangeName === "Hangul Syllable")
                 {
                     // "Hangul" in "UTR #15: Unicode Normalization Forms"
-                    // https://unicode.org/reports/tr15/tr15-33.html#Hangul
+                    // https://www.unicode.org/reports/tr15/tr15-33.html#Hangul
                     // "Conjoining Jamo Behavior" in "The Unicode Standard, Version 10.0 - ch03.pdf" p. 143
                     // https://www.unicode.org/versions/Unicode10.0.0/ch03.pdf
                     let jamoInitials =

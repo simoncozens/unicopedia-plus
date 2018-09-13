@@ -45,17 +45,19 @@
                     <li>It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
                     <li>Alternatively, it is possible to search the entire list of emoji by name, keyword or symbol, including through regular expressions. After entering a query, clicking the <kbd>Search</kbd> button will copy all relevant matches, if any, into the input field.</li>
                     <li>As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.</li>
-                    <li>This utility deals with the 3570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
+                    <li>This utility deals with the 3570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
                 </ul>
             </details>
             <details class="regex-examples">
                 <summary>Regex Examples</summary>
                 <ul>
+                    <li><code>\u{1F48B}</code> or <code>💋</code><br>Emoji containing a kiss mark</li>
                     <li><code>\u2764\uFE0F</code> or <code>❤️</code><br>Emoji containing a red heart</li>
                     <li><code>^\u{1F3F3}\uFE0F</code> or <code>^🏳️</code><br>Emoji starting with a white flag</li>
                     <li><code>^\u{1F3F4}</code> or <code>^🏴</code><br>Emoji starting with a black flag</li>
                     <li><code>\u{1F5E8}\uFE0F$</code> or <code>🗨️$</code><br>Emoji ending with a left speech bubble</li>
-                    <li><code>^[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^[🇦-🇿][🇦-🇿]$</code><br>Emoji for country flags</li>
+                    <li><code>^[0-9]\uFE0F\u20E3$</code> or <code>^[0-9]\uFE0F⃣$</code><br>Emoji of keycap digits 0 to 9</li>
+                    <li><code>^[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags</li>
                     <li><code>^\p{Emoji_Modifier_Base}\u{1F3FB}</code> or <code>^\p{Emoji_Modifier_Base}🏻</code><br>Emoji with a light skin tone</li>
                     <li><code>^\p{Emoji_Modifier_Base}\p{Emoji_Modifier}</code> or <code>^\p{Emoji_Modifier_Base}[🏻-🏿]</code><br>Emoji with a skin tone variant</li>
                     <li><code>^[👍👎]\p{Emoji_Modifier}$</code> or <code>^[👍👎][🏻-🏿]$</code> or <code>^[👍👎].$</code><br>Emoji of thumbs (up and down) with a skin tone variant</li>

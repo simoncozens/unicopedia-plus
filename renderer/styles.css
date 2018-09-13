@@ -165,11 +165,6 @@ svg.app-color-icon
     fill: var(--color-accent);
 }
 
-svg.app-color-icon use:hover
-{
-    /* fill: var(--color-hover); */
-}
-
 code,
 kbd
 {

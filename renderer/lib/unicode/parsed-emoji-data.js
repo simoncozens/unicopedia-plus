@@ -2,11 +2,11 @@
 const fs = require ('fs');
 const path = require ('path');
 //
-// https://unicode.org/Public/emoji/
+// https://www.unicode.org/Public/emoji/
 //
 let lines;
 //
-// http://unicode.org/reports/tr51#Major_Sources
+// https://www.unicode.org/reports/tr51#Major_Sources
 //
 const emojiSources =
 {
@@ -19,7 +19,7 @@ const emojiSources =
 //
 let emojiData_1_0 = { };
 //
-// Copy of https://unicode.org/Public/emoji/1.0/emoji-data.txt
+// Copy of https://www.unicode.org/Public/emoji/1.0/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '1.0', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -55,7 +55,7 @@ for (let line of lines)
 //
 let emojiData_2_0 = { };
 //
-// Copy of https://unicode.org/Public/emoji/2.0/emoji-data.txt
+// Copy of https://www.unicode.org/Public/emoji/2.0/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '2.0', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -105,7 +105,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/2.0/emoji-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/2.0/emoji-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '2.0', 'emoji-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -134,7 +134,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/2.0/emoji-zwj-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/2.0/emoji-zwj-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '2.0', 'emoji-zwj-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -165,7 +165,7 @@ for (let line of lines)
 //
 let emojiData_3_0 = { };
 //
-// Copy of https://unicode.org/Public/emoji/3.0/emoji-data.txt
+// Copy of https://www.unicode.org/Public/emoji/3.0/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '3.0', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -217,7 +217,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/3.0/emoji-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/3.0/emoji-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '3.0', 'emoji-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -261,7 +261,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/3.0/emoji-zwj-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/3.0/emoji-zwj-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '3.0', 'emoji-zwj-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -299,7 +299,7 @@ for (let line of lines)
 //
 let emojiData_4_0 = { };
 //
-// Copy of https://unicode.org/Public/emoji/4.0/emoji-data.txt
+// Copy of https://www.unicode.org/Public/emoji/4.0/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '4.0', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -351,7 +351,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/4.0/emoji-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/4.0/emoji-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '4.0', 'emoji-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -401,7 +401,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/4.0/emoji-zwj-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/4.0/emoji-zwj-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '4.0', 'emoji-zwj-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -440,7 +440,7 @@ for (let line of lines)
 //
 let emojiData_5_0 = { };
 //
-// Copy of https://unicode.org/Public/emoji/5.0/emoji-data.txt
+// Copy of https://www.unicode.org/Public/emoji/5.0/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '5.0', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -496,7 +496,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/5.0/emoji-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/5.0/emoji-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '5.0', 'emoji-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -545,7 +545,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/5.0/emoji-variation-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/5.0/emoji-variation-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '5.0', 'emoji-variation-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -576,7 +576,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/5.0/emoji-zwj-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/5.0/emoji-zwj-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '5.0', 'emoji-zwj-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -615,7 +615,7 @@ for (let line of lines)
 //
 let emojiData_11_0 = { };
 //
-// Copy of https://unicode.org/Public/emoji/11.0/emoji-data.txt
+// Copy of https://www.unicode.org/Public/emoji/11.0/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '11.0', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -675,7 +675,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/11.0/emoji-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/11.0/emoji-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '11.0', 'emoji-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -724,7 +724,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/11.0/emoji-variation-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/11.0/emoji-variation-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '11.0', 'emoji-variation-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
@@ -755,7 +755,7 @@ for (let line of lines)
     }
 }
 //
-// Copy of https://unicode.org/Public/emoji/11.0/emoji-zwj-sequences.txt
+// Copy of https://www.unicode.org/Public/emoji/11.0/emoji-zwj-sequences.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', '11.0', 'emoji-zwj-sequences.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {

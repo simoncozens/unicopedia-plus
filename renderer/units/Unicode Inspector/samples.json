@@ -142,6 +142,20 @@
         ]
     },
     {
+        "label": "Hiragana & Katakana",
+        "items":
+        [
+            {
+                "label": "Rare Kana",
+                "string": "ゐゑゔヰヱヴヷヸヹヺ"
+            },
+            {
+                "label": "Typographic Marks",
+                "string": "゛゜ゝゞ゠・ーヽヾ･ｰ"
+            }
+        ]
+    },
+    {
         "label": "Name Corrections",
         "items":
         [

@@ -89,6 +89,7 @@
 {
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
     font-size: 36px;
+    letter-spacing: 0.1em;
     padding: 0 0.2em;
     width: 100%;
     tab-size : 4;

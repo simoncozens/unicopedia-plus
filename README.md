@@ -24,7 +24,7 @@ The following utilities are currently available:
 - It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - Alternatively, it is possible to search the entire list of emoji by name, keyword or symbol, including through regular expressions. After entering a query, clicking the <kbd>Search</kbd> button will copy all relevant matches, if any, into the input field.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
-- This utility deals with the 3570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- This utility deals with the 3570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 
 <img src="screenshots/emoji-data-finder.png" width="1080px" alt="Emoji Data Finder screenshot">
 
@@ -33,7 +33,7 @@ The following utilities are currently available:
 - The **Emoji Picture Book** utility displays lists of Unicode emoji characters in a picture book fashion.
 - Any group of pictures can be displayed by selecting its name in the category pop-up menu, among:<br>"Smileys & People", "Animals & Nature", "Food & Drink", "Travel & Places", "Activities", "Objects", "Symbols", "Flags".
 - The size of all emoji pictures (from 32 to 128&nbsp;pixels) can be adjusted by moving the dedicated slider left and right.
-- The groups and subgroups of emoji are those defined in the **Emoji 11.0** version of the [emoji-test.txt](https://unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- The groups and subgroups of emoji are those defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 - Only the 2789 *fully-qualified* (keyboard/palette) encodings of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
 - Emoji failing to be represented as proper pictures are purely and simply discarded.
 

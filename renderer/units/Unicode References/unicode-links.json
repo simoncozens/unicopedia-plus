@@ -89,8 +89,14 @@
             "name": "FAQ - Normalization"
         },
         {
-            "href": "http://unicode.org/faq/char_combmark.html",
+            "href": "https://www.unicode.org/faq/char_combmark.html",
             "name": "FAQ - Characters and Combining Marks"
+        }
+    ],
+    [
+        {
+            "href": "https://www.unicode.org/notes/tn27/tn27-4.html",
+            "name": "UTN #27: Known anomalies in Unicode Character Names"
         }
     ],
     [
@@ -155,6 +161,16 @@
         {
             "href": "https://mathiasbynens.be/notes/es-regexp-proposals",
             "name": "ECMAScript regular expressions are getting better! · Mathias Bynens"
+        }
+    ],
+    [
+        {
+            "href": "https://www.unicode.org/reports/tr18/",
+            "name": "UTS #18: Unicode Regular Expressions"
+        },
+        {
+            "href": "https://www.unicode.org/reports/tr24/",
+            "name": "UAX #24: Unicode Script Property"
         }
     ],
     [

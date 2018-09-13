@@ -2,8 +2,8 @@
 const fs = require ('fs');
 const path = require ('path');
 //
-// Copy of https://unicode.org/repos/cldr/tags/latest/common/annotations/en.xml
-// Copy of https://unicode.org/repos/cldr/tags/latest/common/annotationsDerived/en.xml
+// Copy of https://www.unicode.org/repos/cldr/tags/latest/common/annotations/en.xml
+// Copy of https://www.unicode.org/repos/cldr/tags/latest/common/annotationsDerived/en.xml
 //
 function getAnnotations (dirname, filename)
 {

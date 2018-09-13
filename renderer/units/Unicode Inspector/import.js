@@ -1,6 +1,9 @@
 //
 const unit = document.getElementById ('unicode-inspector-unit');
 //
+const tabs = unit.querySelectorAll ('.tab-bar .tab-radio');
+const tabPanes = unit.querySelectorAll ('.tab-panes .tab-pane');
+//
 const charactersClear = unit.querySelector ('.characters-clear');
 const charactersSamples = unit.querySelector ('.characters-samples');
 const inputCharacters = unit.querySelector ('.input-characters');
@@ -24,11 +27,38 @@ module.exports.start = function (context)
     //
     const defaultPrefs =
     {
+        tabName: "",
         inputCharacters: "",
         inputCodePoints: "",
         instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    function setCurrentTabName (tabName)
+    {
+        tabs[0].checked = true; // Fallback
+        for (let tab of tabs)
+        {
+            if (tab.parentElement.textContent === tabName)
+            {
+                tab.checked = true;
+                break;
+            }
+        }
+    }
+    //
+    function updateTabPane ()
+    {
+        tabs.forEach ((tab, index) => { tabPanes[index].hidden = !tab.checked; })
+    }
+    //
+    setCurrentTabName (prefs.tabName);
+    updateTabPane ();
+    //
+    for (let tab of tabs)
+    {
+        tab.addEventListener ('click', () => { updateTabPane (); });
+    }
     //
     charactersClear.addEventListener
     (
@@ -243,8 +273,22 @@ module.exports.start = function (context)
 //
 module.exports.stop = function (context)
 {
+    function getCurrentTabName ()
+    {
+        let currentTabName = "";
+        for (let tab of tabs)
+        {
+            if (tab.checked)
+            {
+                currentTabName = tab.parentElement.textContent;
+            }
+        }
+        return currentTabName;
+    }
+    //
     let prefs =
     {
+        tabName: getCurrentTabName (),
         inputCharacters: inputCharacters.value,
         inputCodePoints: inputCodePoints.value,
         instructions: instructions.open

@@ -382,7 +382,7 @@ function codePointsToCharacters (codePoints)
     return characters;
 }
 //
-function findCharactersByName (regex)
+function findCharactersByData (regex, bySymbol)
 {
     let characterList = [ ];
     let codePoints = unicodeData;
@@ -390,9 +390,20 @@ function findCharactersByName (regex)
     {
         if (codePoints.hasOwnProperty (codePoint))
         {
-            if (codePoints[codePoint].name.match (regex) || codePoints[codePoint].alias.match (regex) || (codePoints[codePoint].correction && codePoints[codePoint].correction.match (regex)))
+            if (bySymbol)
             {
-                characterList.push (String.fromCodePoint (parseInt (codePoints[codePoint].code, 16)));
+                let character = String.fromCodePoint (parseInt (codePoints[codePoint].code, 16));
+                if (regex.test (character))
+                {
+                    characterList.push (character);
+                }
+            }
+            else
+            {
+                if (codePoints[codePoint].name.match (regex) || codePoints[codePoint].alias.match (regex) || (codePoints[codePoint].correction && codePoints[codePoint].correction.match (regex)))
+                {
+                    characterList.push (String.fromCodePoint (parseInt (codePoints[codePoint].code, 16)));
+                }
             }
         }
     }
@@ -450,7 +461,7 @@ module.exports =
     getCharactersData,
     charactersToCodePoints,
     codePointsToCharacters,
-    findCharactersByName,
+    findCharactersByData,
     getCharacterBasicData,
     getEmojiData
 };

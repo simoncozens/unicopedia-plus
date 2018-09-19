@@ -19,8 +19,6 @@ module.exports.start = function (context)
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus');
     //
-    const useES6Regex = true;
-    //
     const rewritePattern = require ('regexpu-core');
     //
     const defaultPrefs =
@@ -125,7 +123,6 @@ module.exports.start = function (context)
     wholeWord.checked = prefs.wholeWord;
     useRegex.checked = prefs.useRegex;
     //
-    searchString.placeholder = "Name, keyword or symbol...";
     searchString.addEventListener
     (
         'keypress',
@@ -151,10 +148,7 @@ module.exports.start = function (context)
                 {
                     const flags = 'ui';
                     let pattern = event.target.value;
-                    if (useES6Regex)
-                    {
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                    }
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -201,21 +195,12 @@ module.exports.start = function (context)
                             let pattern = (useRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                             if (wholeWord.checked)
                             {
-                                const beforeWordBoundary =
-                                (useES6Regex) ?
-                                    '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])' :
-                                    '(?:^|[^\\w])';
-                                const afterWordBoundary =
-                                (useES6Regex) ?
-                                    '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])' :
-                                    '(?:$|[^\\w])';
+                                const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                                const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                                 pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                             }
                             const flags = 'ui';
-                            if (useES6Regex)
-                            {
-                                pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                            }
+                            pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
                             regex = new RegExp (pattern, flags);
                         }
                         catch (e)

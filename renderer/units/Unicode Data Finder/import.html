@@ -1,82 +1,115 @@
 <template>
     <section id="unicode-data-finder-unit">
         <div class="plain-panel">
-            <h2>Search by Name</h2>
-            <div class="actions">
-                <span class="action-group search-group">
-                    <span class="action search-wrap">
-                        <input class="search-string" type="search">
-                    </span>
-                    <span class="action">
-                        <label title="Whole Word"><input type="checkbox" class="whole-word"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
-                    </span>
-                    <span class="action">
-                        <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
-                    </span>
-                    <span class="action">
-                        <button type="button" class="search-button">Search</button>
-                    </span>
-                </span>
+            <div class="tab-bar">
+                <label class="tab-label"><input type="radio" class="tab-radio"><span>Find by Name</span></label>
+                <label class="tab-label"><input type="radio" class="tab-radio"><span>Match Symbol</span></label>
             </div>
-            <div class="search-info"></div>
-            <div class="pagination-bar" hidden>
-                <div class="pagination-group">
-                    <button type="button" class="page-nav-button first-page-button">
-                        <svg class="page-nav-icon"><use href="/images/navigation.svg#first-page"></use></svg>
-                    </button>
-                    <button class="page-nav-button prev-page-button">
-                        <svg class="page-nav-icon"><use href="/images/navigation.svg#prev-page"></use></svg>
-                    </button>
-                    <input type="number" class="page-select">
-                    <button type="button" class="page-nav-button next-page-button">
-                        <svg class="page-nav-icon"><use href="/images/navigation.svg#next-page"></use></svg>
-                    </button>
-                    <button class="page-nav-button last-page-button">
-                        <svg class="page-nav-icon"><use href="/images/navigation.svg#last-page"></use></svg>
-                    </button>
-                </div>
-                <div class="pagination-group">
-                    <div class="page-info">
+            <div class="tab-panes">
+                <div class="tab-pane find-by-name">
+                    <div class="actions">
+                        <span class="action-group search-group">
+                            <span class="action search-wrap">
+                                <input class="search-string" type="search" placeholder="Name or alias...">
+                            </span>
+                           <span class="action">
+                                <label title="Case Sensitive (disabled)"><input type="checkbox" class="case-sensitive" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                            </span>
+                           <span class="action">
+                                <label title="Whole Word"><input type="checkbox" class="whole-word"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <button type="button" class="search-button">Search</button>
+                            </span>
+                        </span>
                     </div>
+                    <div class="search-info"></div>
+                    <div class="search-data"></div>
                 </div>
-                <div class="pagination-group">
-                    <label><select class="page-size-select">
-                        <option>8</option>
-                        <option>16</option>
-                        <option>32</option>
-                        <option>64</option>
-                        <option>128</option>
-                        <option>256</option>
-                        <option>512</option>
-                        <option>1024</option>
-                        <option>2048</option>
-                        <option>4096</option>
-                    </select>&nbsp;&nbsp;results per page</label>
+                <div class="tab-pane match-symbol">
+                    <div class="actions">
+                        <span class="action-group search-group">
+                            <span class="action search-wrap">
+                                <input class="search-string" type="search" placeholder="Symbol or properties...">
+                            </span>
+                            <span class="action">
+                                <label title="Case Sensitive"><input type="checkbox" class="case-sensitive"><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                            </span>
+                           <span class="action">
+                                <label title="Whole Word (disabled)"><input type="checkbox" class="whole-word" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <button type="button" class="search-button">Search</button>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="search-info"></div>
+                    <div class="search-data"></div>
                 </div>
             </div>
-            <div class="search-by-name-data"></div>
        </div>
-        <div class="accent-panel">
-            <details class="instructions">
-                <summary>Instructions</summary>
-                <ul>
-                    <li>The <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.</li>
-                    <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
-                    <li>It is possible to choose how many results are shown one page at a time.</li>
-                    <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
-                    <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
-                </ul>
-            </details>
-            <details class="regex-examples">
-                <summary>Regex Examples</summary>
-                <ul>
-                    <li><code>^(cjk|kangxi) radical</code><br>Characters whose name starts with either "cjk radical" or "kangxi radical"</li>
-                    <li><code>(?=.*hiragana)(?=.*katakana)</code><br>Characters whose name contains both "hiragana" and "katakana"</li>
-                    <li><code>(?=.*katakana)(?=.*\ba\b)</code><br>Characters whose name contains both "katakana" and whole-word "a"</li>
-                    <li><code>^(?!.*radical).*turtle</code><br>Characters whose name contains "turtle" but not "radical"</li>
-                    <li><code>\b\w+boat\b</code><br>Characters whose name contains words ending with "boat", but are not "boat"</li>
-                </ul>
-            </details>
+        <div class="tab-infos">
+            <div class="tab-info find-by-name">
+                <div class="accent-panel">
+                    <details class="instructions">
+                        <summary>Instructions</summary>
+                        <ul>
+                            <li>The <strong>Find by Name</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.</li>
+                            <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
+                            <li>It is possible to choose how many results are shown one page at a time.</li>
+                            <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
+                            <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                        </ul>
+                    </details>
+                    <details class="regex-examples">
+                        <summary>Regex Examples</summary>
+                        <ul>
+                            <li><code>^(cjk|kangxi) radical</code><br>Characters whose name starts with either "cjk radical" or "kangxi radical"</li>
+                            <li><code>^(?=.*hiragana)(?=.*katakana)</code><br>Characters whose name contains both "hiragana" and "katakana"</li>
+                            <li><code>^(?=.*katakana)(?=.*\ba\b)</code><br>Characters whose name contains both "katakana" and whole-word "a"</li>
+                            <li><code>^(?=.*turtle)(?!.*radical)</code><br>Characters whose name contains "turtle" but not "radical"</li>
+                            <li><code>\b\w+boat\b</code><br>Characters whose name contains words ending with "boat", but are not "boat"</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+            <div class="tab-info match-symbol">
+                <div class="accent-panel">
+                    <details class="instructions">
+                        <summary>Instructions</summary>
+                        <ul>
+                            <li>The <strong>Match Symbol</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name) of Unicode characters matching a symbol or a regular expression using Unicode properties.</li>
+                            <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
+                            <li>It is possible to choose how many results are shown one page at a time.</li>
+                            <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
+                            <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                        </ul>
+                    </details>
+                    <details class="regex-examples">
+                        <summary>Regex Examples</summary>
+                        <ul>
+                            <li><code>(?!.)[^]</code><br>Characters considered line terminators in Unicode</li>
+                            <li><code>\p{Private_Use}</code><br>Characters with the 'General_Category' property equal to 'Private_Use'</li>
+                            <li><code>\P{Private_Use}</code> or <code>[^\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Private_Use'</li>
+                            <li><code>[\p{Open_Punctuation}\p{Close_Punctuation}]</code> or <code>\p{Open_Punctuation}|\p{Close_Punctuation}</code><br>Characters with the 'General_Category' property equal to 'Open_Punctuation' or 'Close_Punctuation'</li>
+                            <li><code>\p{Radical}</code><br>Characters with the 'Radical' binary property</li>
+                            <li><code>\p{Hex_Digit}</code><br>Characters with the 'Hex_Digit' binary property</li>
+                            <li><code>\p{Regional_Indicator}</code><br>Characters with the 'Regional_Indicator' binary property</li>
+                            <li><code>\p{Emoji_Modifier}</code><br>Characters with the 'Emoji_Modifier' binary property</li>
+                            <li><code>\p{Script=Hiragana}</code><br>Characters with the 'Script' property equal to 'Hiragana'</li>
+                            <li><code>(?=\p{Script=Latin})(?=\p{Number})</code><br>Characters with the 'Script' property equal to 'Latin' and the 'General_Category' property equal to 'Number'</li>
+                            <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
+                            <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
         </div>
     </section>
 </template>

@@ -3,6 +3,61 @@
 #unicode-data-finder-unit .plain-panel
 {
     padding-bottom: 1em;
+    overflow-x: visible;
+}
+
+#unicode-data-finder-unit .tab-bar
+{
+    display: flex;
+    justify-content: center;
+    /* text-align: center; */
+    white-space: nowrap;
+    margin: -2em 0 1.5em 0;
+}
+
+#unicode-data-finder-unit .tab-bar .tab-label .tab-radio
+{
+    display: none;
+}
+
+#unicode-data-finder-unit .tab-bar .tab-label span
+{
+    padding: 0.2em 1em;
+    font-size: 1em;
+    font-weight: 600;
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    background-color: white;
+    color: var(--color-accent);
+    margin: 0 -2px;
+    vertical-align: middle;
+}
+
+#unicode-data-finder-unit .tab-bar .tab-label:first-of-type span
+{
+    border-top-left-radius : 0.5em;
+    border-bottom-left-radius : 0.5em;
+    margin-right: -3px;
+}
+
+#unicode-data-finder-unit .tab-bar .tab-label:last-of-type span
+{
+    border-top-right-radius : 0.5em;
+    border-bottom-right-radius : 0.5em;
+    margin-left: -3px;
+}
+
+#unicode-data-finder-unit .tab-bar .tab-label .tab-radio:checked + span
+{
+    background-color: var(--color-accent);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+#unicode-data-finder-unit .tab-bar .tab-label .tab-radio:not(:checked) + span:hover
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.75), hsla(0, 0%, 100%, 0.75));
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 #unicode-data-finder-unit .action-group
@@ -50,6 +105,13 @@
     color: var(--color-error);
 }
 
+#unicode-data-finder-unit select[size]
+{
+    border: 1px solid hsl(0, 0%, 60%);
+    border-radius: 0;
+    padding: 0 0.2em;
+}
+
 #unicode-data-finder-unit input[type=checkbox]
 {
     display: none;
@@ -66,7 +128,7 @@
     vertical-align: middle;
     background: white;
     border: 1px solid var(--color-accent);
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
     color: var(--color-accent);
     fill: var(--color-accent);
 }
@@ -74,9 +136,19 @@
 #unicode-data-finder-unit input[type=checkbox]:checked + svg
 {
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0.15));
-    box-shadow: inset 1px 1px 1px rgba(0,0,0,0.5);
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
     color: white;
     fill: white;
+}
+
+#unicode-data-finder-unit input[type=checkbox]:disabled + svg
+{
+    color: gray;
+    fill: gray;
+    border: gray 1px solid;
+    background-color: white;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
 }
 
 #unicode-data-finder-unit .search-group .action
@@ -90,6 +162,7 @@
     font-size: small;
     /* color: gray; */
     margin: -0.25em 0 0.5em 0;
+    user-select: text;
 }
 
 #unicode-data-finder-unit .pagination-bar
@@ -98,12 +171,7 @@
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
-    margin: 1em 0 -0.25em 0;
-}
-
-#unicode-data-finder-unit .pagination-bar[hidden]
-{
-    display: none;
+    margin: 1em 0 0 0;
 }
 
 #unicode-data-finder-unit .pagination-bar .pagination-group
@@ -151,32 +219,32 @@
     margin: 0 1em 0 0.5em;
 }
 
-#unicode-data-finder-unit .search-by-name-data .data-table
+#unicode-data-finder-unit .search-data .data-table
 {
     user-select: auto;
     margin: 0.75em 0;
 }
 
-#unicode-data-finder-unit .search-by-name-data .symbol-header,
-#unicode-data-finder-unit .search-by-name-data .code-point-header,
-#unicode-data-finder-unit .search-by-name-data .name-header
+#unicode-data-finder-unit .search-data .symbol-header,
+#unicode-data-finder-unit .search-data .code-point-header,
+#unicode-data-finder-unit .search-data .name-header
 {
     text-align: left;
     line-height: 1em;
     padding: 0.5em;
 }
 
-#unicode-data-finder-unit .search-by-name-data .row
+#unicode-data-finder-unit .search-data .row
 {
     background-color: white;
 }
 
-#unicode-data-finder-unit .search-by-name-data .symbol-header
+#unicode-data-finder-unit .search-data .symbol-header
 {
     text-align: center;
 }
 
-#unicode-data-finder-unit .search-by-name-data .symbol
+#unicode-data-finder-unit .search-data .symbol
 {
     font-family: sans-serif;
     text-align: center;
@@ -187,7 +255,7 @@
     padding: 0.2em;
 }
 
-#unicode-data-finder-unit .search-by-name-data .code-point
+#unicode-data-finder-unit .search-data .code-point
 {
     font-family: Monaco, "Noto Mono", monospace;
     text-align: left;
@@ -196,7 +264,7 @@
     padding: 0.5em;
 }
 
-#unicode-data-finder-unit .search-by-name-data .names
+#unicode-data-finder-unit .search-data .names
 {
     text-align: left;
     vertical-align: middle;
@@ -204,27 +272,27 @@
     width: 100%;
 }
 
-#unicode-data-finder-unit .search-by-name-data .names .name,
-#unicode-data-finder-unit .search-by-name-data .names .alias,
-#unicode-data-finder-unit .search-by-name-data .names .correction
+#unicode-data-finder-unit .search-data .names .name,
+#unicode-data-finder-unit .search-data .names .alias,
+#unicode-data-finder-unit .search-data .names .correction
 {
-    margin: 0.25em 0;
+    margin: 0.2em 0;
 }
 
-#unicode-data-finder-unit .search-by-name-data .names .name
+#unicode-data-finder-unit .search-data .names .name
 {
     line-height: 1em;
 }
 
-#unicode-data-finder-unit .search-by-name-data .names .alias,
-#unicode-data-finder-unit .search-by-name-data .names .correction
+#unicode-data-finder-unit .search-data .names .alias,
+#unicode-data-finder-unit .search-data .names .correction
 {
     font-size: 0.85em;
     font-style: italic;
     line-height: 1em;
 }
 
-#unicode-data-finder-unit .search-by-name-data .names .correction::after
+#unicode-data-finder-unit .search-data .names .correction::after
 {
     content: "\A0*";
 }
@@ -250,12 +318,24 @@
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
 }
 
+#unicode-data-finder-unit .instructions code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
 #unicode-data-finder-unit .regex-examples ul
 {
     margin: -0.5em 0 1em 0;
 }
 
 #unicode-data-finder-unit .regex-examples li
+{
+    margin: 0.5em 0;
+}
+
+#unicode-data-finder-unit .regex-examples li > ul
 {
     margin: 0.5em 0;
 }

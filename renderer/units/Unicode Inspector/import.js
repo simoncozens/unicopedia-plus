@@ -34,30 +34,34 @@ module.exports.start = function (context)
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
-    function setCurrentTabName (tabName)
+    function updateTab (tabName)
     {
-        tabs[0].checked = true; // Fallback
-        for (let tab of tabs)
-        {
-            if (tab.parentElement.textContent === tabName)
+        let foundIndex = 0;
+        tabs.forEach
+        (
+            (tab, index) =>
             {
-                tab.checked = true;
-                break;
+                let match = (tab.parentElement.textContent === tabName);
+                if (match)
+                {
+                    foundIndex = index;
+                }
+                else
+                {
+                    tab.checked = false;
+                    tabPanes[index].hidden = true;
+                }
             }
-        }
+        );
+        tabs[foundIndex].checked = true;
+        tabPanes[foundIndex].hidden = false;
     }
     //
-    function updateTabPane ()
-    {
-        tabs.forEach ((tab, index) => { tabPanes[index].hidden = !tab.checked; })
-    }
-    //
-    setCurrentTabName (prefs.tabName);
-    updateTabPane ();
+    updateTab (prefs.tabName);
     //
     for (let tab of tabs)
     {
-        tab.addEventListener ('click', () => { updateTabPane (); });
+        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
     }
     //
     charactersClear.addEventListener

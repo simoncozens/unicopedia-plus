@@ -61,18 +61,24 @@
         {
             "href": "https://www.unicode.org/roadmaps/",
             "name": "Roadmaps to Unicode"
-        },
-        {
+        }
+    ],
+    [
+         {
             "href": "https://www.unicode.org/reports/tr44/",
             "name": "UAX #44: Unicode Character Database"
+        },
+        {
+            "href": "https://www.unicode.org/Public/UNIDATA/UnicodeData.txt",
+            "name": "UnicodeData.txt"
         },
         {
             "href": "https://www.unicode.org/Public/UNIDATA/Blocks.txt",
             "name": "Blocks.txt"
         },
         {
-            "href": "https://www.unicode.org/Public/UNIDATA/UnicodeData.txt",
-            "name": "UnicodeData.txt"
+            "href": "https://www.unicode.org/faq/blocks_ranges.html",
+            "name": "FAQ - Blocks and Ranges"
         }
     ],
     [

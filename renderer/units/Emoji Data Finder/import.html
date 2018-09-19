@@ -12,7 +12,7 @@
                 </span>
                 <span class="action-group search-group">
                     <span class="action search-wrap">
-                        <input class="search-string" type="search">
+                        <input class="search-string" type="search" placeholder="Name, keyword or symbol...">
                     </span>
                     <span class="action">
                         <label title="Whole Word"><input type="checkbox" class="whole-word icon-checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
@@ -58,11 +58,13 @@
                     <li><code>\u{1F5E8}\uFE0F$</code> or <code>🗨️$</code><br>Emoji ending with a left speech bubble</li>
                     <li><code>^[0-9]\uFE0F\u20E3$</code> or <code>^[0-9]\uFE0F⃣$</code><br>Emoji of keycap digits 0 to 9</li>
                     <li><code>^[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags</li>
+                    <li><code>^(?!\u{1F1FA}\u{1F1F3})[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^(?!🇺🇳)[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags, excluding 🇺🇳</li>
                     <li><code>^\p{Emoji_Modifier_Base}\u{1F3FB}</code> or <code>^\p{Emoji_Modifier_Base}🏻</code><br>Emoji with a light skin tone</li>
                     <li><code>^\p{Emoji_Modifier_Base}\p{Emoji_Modifier}</code> or <code>^\p{Emoji_Modifier_Base}[🏻-🏿]</code><br>Emoji with a skin tone variant</li>
                     <li><code>^[👍👎]\p{Emoji_Modifier}$</code> or <code>^[👍👎][🏻-🏿]$</code> or <code>^[👍👎].$</code><br>Emoji of thumbs (up and down) with a skin tone variant</li>
+                    <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (non-fully-qualified)</li>
                     <li><code>\p{Ideographic}</code><br>Emoji whose keywords contain one character with the 'Ideographic' binary property</li>
-                    <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property equal to 'Katakana'</li>
+                    <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property value equal to 'Katakana'</li>
                     <li><code>(?=.*flag)(?=.*island)</code><br>Emoji whose name contains both "flag" and "island"</li>
                 </ul>
             </details>

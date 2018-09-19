@@ -1,273 +1,93 @@
 //
 const unit = document.getElementById ('unicode-data-finder-unit');
 //
-const searchString = unit.querySelector ('.search-string');
-const wholeWord = unit.querySelector ('.whole-word');
-const useRegex = unit.querySelector ('.use-regex');
-const searchButton = unit.querySelector ('.search-button');
-const searchInfo = unit.querySelector ('.search-info');
-const paginationBar = unit.querySelector ('.pagination-bar');
-const firstPageButton = unit.querySelector ('.first-page-button');
-const prevPageButton = unit.querySelector ('.prev-page-button');
-const pageSelect = unit.querySelector ('.page-select');
-const nextPageButton = unit.querySelector ('.next-page-button');
-const lastPageButton = unit.querySelector ('.last-page-button');
-const pageInfo = unit.querySelector ('.page-info');
-const pageSizeSelect = unit.querySelector ('.page-size-select');
-const searchByNameData = unit.querySelector ('.search-by-name-data');
-const instructions = unit.querySelector ('.instructions');
-const regexExamples = unit.querySelector ('.regex-examples');
+const tabs = unit.querySelectorAll ('.tab-bar .tab-radio');
+const tabPanes = unit.querySelectorAll ('.tab-panes .tab-pane');
+const tabInfos = unit.querySelectorAll ('.tab-infos .tab-info');
+//
+const nameSearchString = unit.querySelector ('.find-by-name .search-string');
+const nameWholeWord = unit.querySelector ('.find-by-name .whole-word');
+const nameUseRegex = unit.querySelector ('.find-by-name .use-regex');
+const nameSearchButton = unit.querySelector ('.find-by-name .search-button');
+const nameSearchInfo = unit.querySelector ('.find-by-name .search-info');
+const nameSearchData = unit.querySelector ('.find-by-name .search-data');
+const nameInstructions = unit.querySelector ('.find-by-name .instructions');
+const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
+//
+const symbolSearchString = unit.querySelector ('.match-symbol .search-string');
+const symbolCaseSensitive = unit.querySelector ('.match-symbol .case-sensitive');
+const symbolUseRegex = unit.querySelector ('.match-symbol .use-regex');
+const symbolSearchButton = unit.querySelector ('.match-symbol .search-button');
+const symbolSearchInfo = unit.querySelector ('.match-symbol .search-info');
+const symbolSearchData = unit.querySelector ('.match-symbol .search-data');
+const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
+const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
+//
+const nameParams = { };
+const symbolParams = { };
 //
 module.exports.start = function (context)
 {
     const unicode = require ('../../lib/unicode/unicode.js');
     //
-    const useES6Regex = true;
+    const dataTable = require ('./data-table.js');
     //
     const rewritePattern = require ('regexpu-core');
     //
     const defaultPrefs =
     {
-        searchString: "",
-        wholeWord: false,
-        useRegex: false,
-        pageSize: 1024,
-        instructions: true,
-        regexExamples: false
+        tabName: "",
+        nameSearchString: "",
+        nameWholeWord: false,
+        nameUseRegex: false,
+        namePageSize: 1024,
+        nameInstructions: true,
+        nameRegexExamples: false,
+        symbolSearchString: "",
+        symbolCaseSensitive: false,
+        symbolUseRegex: false,
+        symbolPageSize: 1024,
+        symbolInstructions: true,
+        symbolRegexExamples: false
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
-    const deferredSymbols = true;
-    //
-    let characters;
-    let charactersPages;
-    let charactersPageIndex;
-    //
-    firstPageButton.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            if (charactersPageIndex > 0)
+    function updateTab (tabName)
+    {
+        let foundIndex = 0;
+        tabs.forEach
+        (
+            (tab, index) =>
             {
-                charactersPageIndex = 0;
-                displayDataPage (charactersPages[charactersPageIndex]);
-            }
-        }
-    );
-    //
-    prevPageButton.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            if (charactersPageIndex > 0)
-            {
-                charactersPageIndex = charactersPageIndex - 1;
-                displayDataPage (charactersPages[charactersPageIndex]);
-            }
-        }
-    );
-    //
-    pageSelect.addEventListener
-    (
-        'input',
-        (event) =>
-        {
-            if (event.target.value !== "")
-            {
-                if (event.target.value < 1)
+                let match = (tab.parentElement.textContent === tabName);
+                if (match)
                 {
-                    event.target.value = 1;
+                    foundIndex = index;
                 }
-                else if (event.target.value > charactersPages.length)
+                else
                 {
-                    event.target.value = charactersPages.length;
+                    tab.checked = false;
+                    tabPanes[index].hidden = true;
+                    tabInfos[index].hidden = true;
                 }
-                charactersPageIndex = event.target.value - 1;
-                displayDataPage (charactersPages[charactersPageIndex]);
             }
-        }
-    );
-    //
-    pageSelect.addEventListener
-    (
-        'blur',
-        (event) =>
-        {
-            if (event.target.value === "")
-            {
-                event.target.value = charactersPageIndex + 1;
-            }
-        }
-    );
-    //
-    pageSelect.addEventListener
-    (
-        'keydown',
-        (event) =>
-        {
-            if (event.key === "ArrowLeft")
-            {
-                event.preventDefault ();
-                prevPageButton.click ();
-            }
-            else if (event.key === "ArrowRight")
-            {
-                event.preventDefault ();
-                nextPageButton.click ();
-            }
-        }
-    );
-    //
-    nextPageButton.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            if (charactersPageIndex < (charactersPages.length - 1))
-            {
-                charactersPageIndex = charactersPageIndex + 1;
-                displayDataPage (charactersPages[charactersPageIndex]);
-            }
-        }
-    );
-    //
-    lastPageButton.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            if (charactersPageIndex < (charactersPages.length - 1))
-            {
-                charactersPageIndex = charactersPages.length - 1;
-                displayDataPage (charactersPages[charactersPageIndex]);
-            }
-        }
-    );
-    //
-    function updatePaginationBar ()
-    {
-        firstPageButton.disabled = (charactersPageIndex === 0);
-        prevPageButton.disabled = (charactersPageIndex === 0);
-        if (pageSelect.value !== (charactersPageIndex + 1))
-        {
-            pageSelect.value = charactersPageIndex + 1;
-        }
-        pageSelect.disabled = (charactersPages.length === 1);
-        nextPageButton.disabled = (charactersPageIndex === (charactersPages.length - 1));
-        lastPageButton.disabled = (charactersPageIndex === (charactersPages.length - 1));
+        );
+        tabs[foundIndex].checked = true;
+        tabPanes[foundIndex].hidden = false;
+        tabInfos[foundIndex].hidden = false;
     }
     //
-    function removeDataPage ()
+    updateTab (prefs.tabName);
+    //
+    for (let tab of tabs)
     {
-        if (searchByNameData.firstChild)
-        {
-            searchByNameData.firstChild.remove ();
-        }
+        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
     }
     //
-    function displayDataPage (characters)
-    {
-        updatePaginationBar ();
-        removeDataPage ();
-        let observer;
-        if (deferredSymbols)
-        {
-            observer = new IntersectionObserver
-            (
-                (entries, observer) =>
-                {
-                    entries.forEach
-                    (
-                        entry =>
-                        {
-                            if (entry.isIntersecting)
-                            {
-                                let symbol = entry.target;
-                                if (symbol.textContent !== symbol.dataset.character)
-                                {
-                                    symbol.textContent = symbol.dataset.character;
-                                    observer.unobserve (symbol);
-                                }
-                            }
-                        }
-                    );
-                },
-                { root: unit, rootMargin: '50% 0%' }
-            );
-        }
-        let table = document.createElement ('table');
-        table.className = 'data-table';
-        let header = document.createElement ('tr');
-        header.className = 'header';
-        let symbolHeader = document.createElement ('th');
-        symbolHeader.className = 'symbol-header';
-        symbolHeader.textContent = "Symbol";
-        header.appendChild (symbolHeader);
-        let codePointHeader = document.createElement ('th');
-        codePointHeader.className = 'code-point-header';
-        codePointHeader.textContent = "Code\xA0Point";
-        header.appendChild (codePointHeader);
-        let nameHeader = document.createElement ('th');
-        nameHeader.className = 'name-header';
-        nameHeader.textContent = "Name";
-        header.appendChild (nameHeader);
-        table.appendChild (header);
-        for (let character of characters)
-        {
-            let data = unicode.getCharacterBasicData (character);
-            let row = document.createElement ('tr');
-            row.className = 'row';
-            let symbol = document.createElement ('td');
-            symbol.className = 'symbol';
-            if (deferredSymbols)
-            {
-                symbol.textContent = "\xA0";
-                symbol.dataset.character = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
-                observer.observe (symbol);
-            }
-            else
-            {
-                symbol.textContent = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
-            }
-            row.appendChild (symbol);
-            let codePoint = document.createElement ('td');
-            codePoint.className = 'code-point';
-            codePoint.textContent = data.codePoint;
-            row.appendChild (codePoint);
-            let names = document.createElement ('td');
-            names.className = 'names';
-            let name = document.createElement ('div');
-            name.className = 'name';
-            name.textContent = data.name;
-            names.appendChild (name);
-            if (data.alias)
-            {
-                let alias = document.createElement ('div');
-                alias.className = 'alias';
-                alias.textContent = data.alias;
-                names.appendChild (alias);
-            }
-            if (data.correction)
-            {
-                let alias = document.createElement ('div');
-                alias.className = 'correction';
-                alias.textContent = data.correction;
-                alias.title = "CORRECTION";
-                names.appendChild (alias);
-            }
-            row.appendChild (names);
-            table.appendChild (row);
-        }
-        searchByNameData.appendChild (table);
-    }
+    nameWholeWord.checked = prefs.nameWholeWord;
+    nameUseRegex.checked = prefs.nameUseRegex;
     //
-    wholeWord.checked = prefs.wholeWord;
-    useRegex.checked = prefs.useRegex;
-    //
-    searchString.placeholder = "Name or alias...";
-    searchString.addEventListener
+    nameSearchString.addEventListener
     (
         'keypress',
         (event) =>
@@ -275,27 +95,24 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                searchButton.click ();
+                nameSearchButton.click ();
             }
         }
     );
-    searchString.addEventListener
+    nameSearchString.addEventListener
     (
         'input',
         (event) =>
         {
             event.target.classList.remove ('error');
             event.target.title = "";
-            if (useRegex.checked)
+            if (nameUseRegex.checked)
             {
                 try
                 {
                     const flags = 'ui';
                     let pattern = event.target.value;
-                    if (useES6Regex)
-                    {
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                    }
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -306,66 +123,28 @@ module.exports.start = function (context)
             }
         }
     );
-    searchString.value = prefs.searchString;
-    searchString.dispatchEvent (new Event ('input'));
+    nameSearchString.value = prefs.nameSearchString;
+    nameSearchString.dispatchEvent (new Event ('input'));
     //
-    useRegex.addEventListener
+    nameUseRegex.addEventListener
     (
         'change',
-        (event) => searchString.dispatchEvent (new Event ('input'))
+        (event) => nameSearchString.dispatchEvent (new Event ('input'))
     );
     //
-    pageSizeSelect.value = prefs.pageSize;
-    if (pageSizeSelect.selectedIndex < 0) // -1: no element is selected
-    {
-        pageSizeSelect.selectedIndex = 0;
-    }
-    //
-    function paginate (pageSize)
-    {
-        charactersPages = [ ];
-        for (let startIndex = 0; startIndex < characters.length; startIndex += pageSize)
-        {
-            charactersPages.push (characters.slice (startIndex, startIndex + pageSize));
-        }
-        charactersPageIndex = 0;
-        let pageCount = charactersPages.length;
-        firstPageButton.title = `First page`;
-        prevPageButton.title = `Previous page`;
-        pageSelect.min = 1;
-        pageSelect.max = pageCount;
-        pageSelect.value = charactersPageIndex + 1;
-        pageSelect.title = `Current page`;
-        nextPageButton.title = `Next page`;
-        lastPageButton.title = `Last page`;
-        pageInfo.innerHTML = (pageCount > 1) ? `<strong>${pageCount}</strong>&nbsp;pages` : "";
-        paginationBar.hidden = false;
-        displayDataPage (charactersPages[charactersPageIndex]);
-    }
-    //
-    pageSizeSelect.addEventListener
-    (
-        'input',
-        (event) =>
-        {
-            paginate (parseInt (event.target.value));
-        }
-    );
-    //
-    searchButton.addEventListener
+    nameSearchButton.addEventListener
     (
         'click',
         (event) =>
         {
-            searchInfo.textContent = "";
-            paginationBar.hidden = true;
-            removeDataPage ();
+            nameSearchInfo.textContent = "";
+            while (nameSearchData.firstChild) { nameSearchData.firstChild.remove (); };
             setTimeout
             (
                 () =>
                 {
-                    let name = searchString.value;
-                    if (name)
+                    let searchString = nameSearchString.value;
+                    if (searchString)
                     {
                         let regex = null;
                         try
@@ -377,24 +156,15 @@ module.exports.start = function (context)
                                 return `\\u{${hex}}`;
                             }
                             //
-                            let pattern = (useRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                            if (wholeWord.checked)
+                            let pattern = (nameUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                            if (nameWholeWord.checked)
                             {
-                                const beforeWordBoundary =
-                                (useES6Regex) ?
-                                    '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])' :
-                                    '(?:^|[^\\w])';
-                                const afterWordBoundary =
-                                (useES6Regex) ?
-                                    '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])' :
-                                    '(?:$|[^\\w])';
+                                const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                                const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                                 pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                             }
                             const flags = 'ui';
-                            if (useES6Regex)
-                            {
-                                pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                            }
+                            pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
                             regex = new RegExp (pattern, flags);
                         }
                         catch (e)
@@ -403,13 +173,13 @@ module.exports.start = function (context)
                         if (regex)
                         {
                             let start = window.performance.now ();
-                            characters = unicode.findCharactersByName (regex);
+                            characters = unicode.findCharactersByData (regex, false);
                             let stop = window.performance.now ();
                             let seconds = ((stop - start) / 1000).toFixed (2);
-                            searchInfo.innerHTML = `Results: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                            nameSearchInfo.innerHTML = `Results: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
                             if (characters.length > 0)
                             {
-                                paginate (parseInt (pageSizeSelect.value));
+                                dataTable.create (nameSearchData, characters, nameParams);
                             }
                         }
                     }
@@ -418,20 +188,145 @@ module.exports.start = function (context)
         }
     );
     //
-    instructions.open = prefs.instructions;
-    regexExamples.open = prefs.regexExamples;
-};
+    nameParams.pageSize = prefs.namePageSize;
+    //
+    nameInstructions.open = prefs.nameInstructions;
+    nameRegexExamples.open = prefs.nameRegexExamples;
+    //
+    symbolCaseSensitive.checked = prefs.symbolCaseSensitive;
+    symbolUseRegex.checked = prefs.symbolUseRegex;
+    //
+    symbolSearchString.addEventListener
+    (
+        'keypress',
+        (event) =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault (); // ??
+                symbolSearchButton.click ();
+            }
+        }
+    );
+    symbolSearchString.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            event.target.classList.remove ('error');
+            event.target.title = "";
+            if (symbolUseRegex.checked)
+            {
+                try
+                {
+                    const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
+                    let pattern = event.target.value;
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    let regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                    event.target.classList.add ('error');
+                    event.target.title = e;
+                }
+            }
+        }
+    );
+    symbolSearchString.value = prefs.symbolSearchString;
+    symbolSearchString.dispatchEvent (new Event ('input'));
+    //
+    symbolUseRegex.addEventListener
+    (
+        'change',
+        (event) => symbolSearchString.dispatchEvent (new Event ('input'))
+    );
+    //
+    symbolSearchButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            symbolSearchInfo.textContent = "";
+            while (symbolSearchData.firstChild) { symbolSearchData.firstChild.remove (); };
+            setTimeout
+            (
+                () =>
+                {
+                    let searchString = symbolSearchString.value;
+                    if (searchString)
+                    {
+                        let regex = null;
+                        try
+                        {
+                            function characterToEcmaScriptEscape (character)
+                            {
+                                let num = character.codePointAt (0);
+                                let hex = num.toString (16).toUpperCase ();
+                                return `\\u{${hex}}`;
+                            }
+                            //
+                            let pattern = (symbolUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                            const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
+                            pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                            regex = new RegExp (pattern, flags);
+                        }
+                        catch (e)
+                        {
+                        }
+                        if (regex)
+                        {
+                            let start = window.performance.now ();
+                            characters = unicode.findCharactersByData (regex, true);
+                            let stop = window.performance.now ();
+                            let seconds = ((stop - start) / 1000).toFixed (2);
+                            symbolSearchInfo.innerHTML = `Results: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                            if (characters.length > 0)
+                            {
+                                dataTable.create (symbolSearchData, characters, symbolParams);
+                            }
+                        }
+                    }
+                }
+            );
+        }
+    );
+    //
+    symbolParams.pageSize = prefs.symbolPageSize;
+    //
+    symbolInstructions.open = prefs.symbolInstructions;
+    symbolRegexExamples.open = prefs.symbolRegexExamples;
+}
 //
 module.exports.stop = function (context)
 {
+    function getCurrentTabName ()
+    {
+        let currentTabName = "";
+        for (let tab of tabs)
+        {
+            if (tab.checked)
+            {
+                currentTabName = tab.parentElement.textContent;
+            }
+        }
+        return currentTabName;
+    }
+    //
     let prefs =
     {
-        searchString: searchString.value,
-        wholeWord: wholeWord.checked,
-        useRegex: useRegex.checked,
-        pageSize: pageSizeSelect.value,
-        instructions: instructions.open,
-        regexExamples: regexExamples.open
+        tabName: getCurrentTabName (),
+        nameSearchString: nameSearchString.value,
+        nameWholeWord: nameWholeWord.checked,
+        nameUseRegex: nameUseRegex.checked,
+        namePageSize: nameParams.pageSize,
+        nameInstructions: nameInstructions.open,
+        nameRegexExamples: nameRegexExamples.open,
+        symbolSearchString: symbolSearchString.value,
+        symbolCaseSensitive: symbolCaseSensitive.checked,
+        symbolUseRegex: symbolUseRegex.checked,
+        symbolPageSize: symbolParams.pageSize,
+        symbolInstructions: symbolInstructions.open,
+        symbolRegexExamples: symbolRegexExamples.open
     };
     context.setPrefs (prefs);
 };

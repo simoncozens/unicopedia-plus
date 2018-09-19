@@ -25,6 +25,7 @@ The following utilities are currently available:
 - Alternatively, it is possible to search the entire list of emoji by name, keyword or symbol, including through regular expressions. After entering a query, clicking the <kbd>Search</kbd> button will copy all relevant matches, if any, into the input field.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
 - This utility deals with the 3570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- Various examples of regular expressions are provided for copy-and-paste.
 
 <img src="screenshots/emoji-data-finder.png" width="1080px" alt="Emoji Data Finder screenshot">
 
@@ -53,13 +54,23 @@ The following utilities are currently available:
 
 ## Unicode Data Finder
 
-- The **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.
+- The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many results are shown one page at a time.
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.
 - The search is performed on the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- Various examples of regular expressions are provided for copy-and-paste.
 
-<img src="screenshots/unicode-data-finder.png" width="1080px" alt="Unicode Data Finder screenshot">
+<img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
+
+- The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name) of Unicode characters matching a symbol or a regular expression using Unicode properties.
+- After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
+- It is possible to choose how many results are shown one page at a time.
+- When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.
+- The search is performed on the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- Various examples of regular expressions are provided for copy-and-paste.
+
+<img src="screenshots/unicode-data-finder-match-symbol.png" width="1080px" alt="Unicode Data Finder - Match Symbol screenshot">
 
 ## Unicode Inspector
 

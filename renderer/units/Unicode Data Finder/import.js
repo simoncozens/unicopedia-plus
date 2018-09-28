@@ -23,8 +23,15 @@ const symbolSearchData = unit.querySelector ('.match-symbol .search-data');
 const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
 const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
 //
+const blockSelectBlockRange = unit.querySelector ('.list-by-block .select-block-range');
+const blockSelectBlockName = unit.querySelector ('.list-by-block .select-block-name');
+const blockSearchInfo = unit.querySelector ('.list-by-block .search-info');
+const blockSearchData = unit.querySelector ('.list-by-block .search-data');
+const blockInstructions = unit.querySelector ('.list-by-block .instructions');
+//
 const nameParams = { };
 const symbolParams = { };
+const blockParams = { };
 //
 module.exports.start = function (context)
 {
@@ -34,21 +41,29 @@ module.exports.start = function (context)
     //
     const rewritePattern = require ('regexpu-core');
     //
+    const extraData = require ('../../lib/unicode/parsed-extra-data.js');
+    //
     const defaultPrefs =
     {
         tabName: "",
+        //
         nameSearchString: "",
         nameWholeWord: false,
         nameUseRegex: false,
         namePageSize: 1024,
         nameInstructions: true,
         nameRegexExamples: false,
+        //
         symbolSearchString: "",
         symbolCaseSensitive: false,
         symbolUseRegex: false,
         symbolPageSize: 1024,
         symbolInstructions: true,
-        symbolRegexExamples: false
+        symbolRegexExamples: false,
+        //
+        blockSelectBlockRange: "",
+        blockPageSize: 8,
+        blockInstructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -138,7 +153,10 @@ module.exports.start = function (context)
         (event) =>
         {
             nameSearchInfo.textContent = "";
-            while (nameSearchData.firstChild) { nameSearchData.firstChild.remove (); };
+            while (nameSearchData.firstChild)
+            {
+                nameSearchData.firstChild.remove ();
+            }
             setTimeout
             (
                 () =>
@@ -176,10 +194,10 @@ module.exports.start = function (context)
                             characters = unicode.findCharactersByData (regex, false);
                             let stop = window.performance.now ();
                             let seconds = ((stop - start) / 1000).toFixed (2);
-                            nameSearchInfo.innerHTML = `Results: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                            nameSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
                             if (characters.length > 0)
                             {
-                                dataTable.create (nameSearchData, characters, nameParams);
+                                nameSearchData.appendChild (dataTable.create (characters, nameParams));
                             }
                         }
                     }
@@ -189,6 +207,7 @@ module.exports.start = function (context)
     );
     //
     nameParams.pageSize = prefs.namePageSize;
+    nameParams.observer = null;
     //
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
@@ -247,7 +266,10 @@ module.exports.start = function (context)
         (event) =>
         {
             symbolSearchInfo.textContent = "";
-            while (symbolSearchData.firstChild) { symbolSearchData.firstChild.remove (); };
+            while (symbolSearchData.firstChild)
+            {
+                symbolSearchData.firstChild.remove ();
+            }
             setTimeout
             (
                 () =>
@@ -265,7 +287,9 @@ module.exports.start = function (context)
                                 return `\\u{${hex}}`;
                             }
                             //
-                            let pattern = (symbolUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                            let pattern = (symbolUseRegex.checked) ?
+                                searchString :
+                                Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                             const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
                             pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
                             regex = new RegExp (pattern, flags);
@@ -279,10 +303,10 @@ module.exports.start = function (context)
                             characters = unicode.findCharactersByData (regex, true);
                             let stop = window.performance.now ();
                             let seconds = ((stop - start) / 1000).toFixed (2);
-                            symbolSearchInfo.innerHTML = `Results: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                            symbolSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
                             if (characters.length > 0)
                             {
-                                dataTable.create (symbolSearchData, characters, symbolParams);
+                                symbolSearchData.appendChild (dataTable.create (characters, symbolParams));
                             }
                         }
                     }
@@ -292,9 +316,98 @@ module.exports.start = function (context)
     );
     //
     symbolParams.pageSize = prefs.symbolPageSize;
+    symbolParams.observer = null;
     //
     symbolInstructions.open = prefs.symbolInstructions;
     symbolRegexExamples.open = prefs.symbolRegexExamples;
+    //
+    blockParams.pageSize = prefs.blockPageSize;
+    blockParams.observer = null;
+    //
+    function displayRangeTable (blockKey)
+    {
+        let blockRange = blockKey.split ('-');
+        blockSearchInfo.textContent = "";
+        while (blockSearchData.firstChild)
+        {
+            blockSearchData.firstChild.remove ();
+        }
+        let characters = [ ];
+        for (let index = parseInt (blockRange[0], 16); index <= parseInt (blockRange[1], 16); index++)
+        {
+            characters.push (String.fromCodePoint (index));
+        }
+        let blockSize = characters.length;
+        let flags = 'u';
+        let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+        let regex = new RegExp (pattern, flags);
+        characters = characters.filter (character => regex.test (character));
+        blockSearchInfo.innerHTML = `Assigned characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;Block size: <strong>${blockSize}</strong>`;
+        if (characters.length > 0)
+        {
+            blockSearchData.appendChild (dataTable.create (characters, blockParams));
+        }
+    }
+    //
+    let blocks = { };
+    let blockNames = [ ];
+    extraData.blocks.forEach
+    (
+        (block) =>
+        {
+            let key = `${block.first}-${block.last}`;
+            blocks[block.name] = key;
+            blockNames.push (block.name);
+            //
+            let option = document.createElement ('option');
+            option.value = key;
+            option.textContent = `U+${block.first}..U+${block.last}`;
+            option.title = block.name;
+            blockSelectBlockRange.appendChild (option);
+        }
+    );
+    blockNames.sort ((a, b) => a.localeCompare (b));
+    blockNames.forEach
+    (
+        blockName =>
+        {
+            let option = document.createElement ('option');
+            option.value = blocks[blockName];
+            option.textContent = blockName;
+            blockSelectBlockName.appendChild (option);
+        }
+    );
+    //
+    blockSelectBlockRange.value = prefs.blockSelectBlockRange;
+    if (blockSelectBlockRange.selectedIndex < 0) // -1: no element is selected
+    {
+        blockSelectBlockRange.selectedIndex = 0;
+    }
+    //
+    blockSelectBlockName.value = blockSelectBlockRange.value;
+    displayRangeTable (blockSelectBlockName.value);
+    //
+    blockSelectBlockRange.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            blockSelectBlockName.value = event.target.value;
+            displayRangeTable (event.target.value);
+        }
+    );
+    //
+    blockSelectBlockName.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            blockSelectBlockRange.value = event.target.value;
+            displayRangeTable (event.target.value);
+        }
+    );
+    //
+    blockInstructions.open = prefs.blockInstructions;
 }
 //
 module.exports.stop = function (context)
@@ -315,18 +428,24 @@ module.exports.stop = function (context)
     let prefs =
     {
         tabName: getCurrentTabName (),
+        //
         nameSearchString: nameSearchString.value,
         nameWholeWord: nameWholeWord.checked,
         nameUseRegex: nameUseRegex.checked,
         namePageSize: nameParams.pageSize,
         nameInstructions: nameInstructions.open,
         nameRegexExamples: nameRegexExamples.open,
+        //
         symbolSearchString: symbolSearchString.value,
         symbolCaseSensitive: symbolCaseSensitive.checked,
         symbolUseRegex: symbolUseRegex.checked,
         symbolPageSize: symbolParams.pageSize,
         symbolInstructions: symbolInstructions.open,
-        symbolRegexExamples: symbolRegexExamples.open
+        symbolRegexExamples: symbolRegexExamples.open,
+        //
+        blockSelectBlockRange: blockSelectBlockRange.value,
+        blockPageSize: blockParams.pageSize,
+        blockInstructions: blockInstructions.open
     };
     context.setPrefs (prefs);
 };

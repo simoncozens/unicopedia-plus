@@ -12,6 +12,7 @@ The following utilities are currently available:
 * [Emoji Picture Book](#emoji-picture-book)
 * [Emoji References](#emoji-references)
 * [JavaScript Runner](#javascript-runner)
+* [Regex Properties](#regex-properties)
 * [Unicode Data Finder](#unicode-data-finder)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
@@ -25,7 +26,7 @@ The following utilities are currently available:
 - Alternatively, it is possible to search the entire list of emoji by name, keyword or symbol, including through regular expressions. After entering a query, clicking the <kbd>Search</kbd> button will copy all relevant matches, if any, into the input field.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
 - This utility deals with the 3570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
-- Various examples of regular expressions are provided for copy-and-paste.
+- Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/emoji-data-finder.png" width="1080px" alt="Emoji Data Finder screenshot">
 
@@ -52,25 +53,49 @@ The following utilities are currently available:
 
 <img src="screenshots/javascript-runner.png" width="1080px" alt="JavaScript Runner screenshot">
 
+## Regex Properties
+
+- The **Regex Properties** utility displays a list of all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder** and **Unicode Data Finder** utilities.
+- These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
+- Unicode properties fall into four categories:
+    - **General Category** properties
+    - **Script** properties
+    - **Script Extensions** properties
+    - **Binary** properties
+- For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional.
+- Notes:
+    - `\P{…}` is the negated form of `\p{…}`
+    - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`</li>
+    - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`</li>
+    - `\p{Assigned}` is equivalent to `\P{Unassigned}`</li>
+- Information pertaining to this list has been gathered from several sources (see References below), and slightly refined through trial and error.
+
+<img src="screenshots/regex-properties.png" width="1080px" alt="Regex Properties screenshot">
+
 ## Unicode Data Finder
 
-- The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.
+- The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
-- It is possible to choose how many results are shown one page at a time.
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.
+- It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Various examples of regular expressions are provided for copy-and-paste.
+- Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
 
-- The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name) of Unicode characters matching a symbol or a regular expression using Unicode properties.
+- The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
-- It is possible to choose how many results are shown one page at a time.
-- When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.
+- It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Various examples of regular expressions are provided for copy-and-paste.
+- Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-match-symbol.png" width="1080px" alt="Unicode Data Finder - Match Symbol screenshot">
+
+- The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.
+- It is possible to choose how many characters are shown one page at a time.
+- A block can be selected either by range or by name, as defined in the **Unicode 11.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
+
+<img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 
 ## Unicode Inspector
 
@@ -81,9 +106,18 @@ The following utilities are currently available:
 - In output, the standard Unicode code point format `U+0041` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
 - In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` and `\u{1F49C}`. Clicking on the <kbd>Filter</kbd> button converts all valid codes to standard Unicode code point format.
 - Information is provided for the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Extra information is also obtained from the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt), [DerivedAge.txt](https://www.unicode.org/Public/UNIDATA/DerivedAge.txt), [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt), [PropList.txt](https://www.unicode.org/Public/UNIDATA/PropList.txt) data files.
+- Extra information is also obtained from the following data files:
+    - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)
+    - [DerivedAge.txt](https://www.unicode.org/Public/UNIDATA/DerivedAge.txt)
+    - [DerivedCoreProperties.txt](https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt)
+    - [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt)
+    - [PropList.txt](https://www.unicode.org/Public/UNIDATA/PropList.txt)
+    - [Scripts.txt](https://www.unicode.org/Public/UNIDATA/Scripts.txt)
+    - [ScriptExtensions.txt](https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt)
 
-<img src="screenshots/unicode-inspector.png" width="1080px" alt="Unicode Inspector screenshot">
+<img src="screenshots/unicode-inspector-characters.png" width="1080px" alt="Unicode Inspector - Characters screenshot">
+
+<img src="screenshots/unicode-inspector-code-points.png" width="1080px" alt="Unicode Inspector - Code Points screenshot">
 
 ## Unicode References
 

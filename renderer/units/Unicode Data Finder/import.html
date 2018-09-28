@@ -4,6 +4,7 @@
             <div class="tab-bar">
                 <label class="tab-label"><input type="radio" class="tab-radio"><span>Find by Name</span></label>
                 <label class="tab-label"><input type="radio" class="tab-radio"><span>Match Symbol</span></label>
+                <label class="tab-label"><input type="radio" class="tab-radio"><span>List by Block</span></label>
             </div>
             <div class="tab-panes">
                 <div class="tab-pane find-by-name">
@@ -52,6 +53,21 @@
                     <div class="search-info"></div>
                     <div class="search-data"></div>
                 </div>
+                <div class="tab-pane list-by-block">
+                    <div class="actions-no-flex">
+                        <span class="action-group-no-flex search-group">
+                            <span class="action-no-flex">
+                                <select class="select-block-range"></select>
+                            </span>
+                            <br>
+                            <span class="action-no-flex">
+                                <select class="select-block-name"></select>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="search-info"></div>
+                    <div class="search-data"></div>
+                </div>
             </div>
        </div>
         <div class="tab-infos">
@@ -60,11 +76,12 @@
                     <details class="instructions">
                         <summary>Instructions</summary>
                         <ul>
-                            <li>The <strong>Find by Name</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name) of matching Unicode characters searched by name (or alias name), including through regular expressions.</li>
+                            <li>The <strong>Find by Name</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.</li>
                             <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>It is possible to choose how many results are shown one page at a time.</li>
                             <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
+                            <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
                     <details class="regex-examples">
@@ -73,7 +90,7 @@
                             <li><code>^(cjk|kangxi) radical</code><br>Characters whose name starts with either "cjk radical" or "kangxi radical"</li>
                             <li><code>^(?=.*hiragana)(?=.*katakana)</code><br>Characters whose name contains both "hiragana" and "katakana"</li>
                             <li><code>^(?=.*katakana)(?=.*\ba\b)</code><br>Characters whose name contains both "katakana" and whole-word "a"</li>
-                            <li><code>^(?=.*turtle)(?!.*radical)</code><br>Characters whose name contains "turtle" but not "radical"</li>
+                            <li><code>^(?=.*bamboo)(?!.*radical)</code><br>Characters whose name contains "bamboo" but not "radical"</li>
                             <li><code>\b\w+boat\b</code><br>Characters whose name contains words ending with "boat", but are not "boat"</li>
                         </ul>
                     </details>
@@ -84,20 +101,22 @@
                     <details class="instructions">
                         <summary>Instructions</summary>
                         <ul>
-                            <li>The <strong>Match Symbol</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name) of Unicode characters matching a symbol or a regular expression using Unicode properties.</li>
+                            <li>The <strong>Match Symbol</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.</li>
                             <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>It is possible to choose how many results are shown one page at a time.</li>
-                            <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
+                            <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
                     <details class="regex-examples">
                         <summary>Regex Examples</summary>
                         <ul>
-                            <li><code>(?!.)[^]</code><br>Characters considered line terminators in Unicode</li>
+                            <li><code>\s</code><br>Characters considered white space in Unicode by the regular expression engine</li>
+                            <li><code>(?!.)[^]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
                             <li><code>\p{Private_Use}</code><br>Characters with the 'General_Category' property equal to 'Private_Use'</li>
                             <li><code>\P{Private_Use}</code> or <code>[^\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Private_Use'</li>
                             <li><code>[\p{Open_Punctuation}\p{Close_Punctuation}]</code> or <code>\p{Open_Punctuation}|\p{Close_Punctuation}</code><br>Characters with the 'General_Category' property equal to 'Open_Punctuation' or 'Close_Punctuation'</li>
+                            <li><code>\p{White_Space}</code><br>Characters with the 'White_Space' binary property</li>
                             <li><code>\p{Radical}</code><br>Characters with the 'Radical' binary property</li>
                             <li><code>\p{Hex_Digit}</code><br>Characters with the 'Hex_Digit' binary property</li>
                             <li><code>\p{Regional_Indicator}</code><br>Characters with the 'Regional_Indicator' binary property</li>
@@ -106,6 +125,18 @@
                             <li><code>(?=\p{Script=Latin})(?=\p{Number})</code><br>Characters with the 'Script' property equal to 'Latin' and the 'General_Category' property equal to 'Number'</li>
                             <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
                             <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+            <div class="tab-info list-by-block">
+                <div class="accent-panel">
+                    <details class="instructions">
+                        <summary>Instructions</summary>
+                        <ul>
+                            <li>The <strong>List by Block</strong> feature of the <strong>Unicode Data Finder</strong> utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.</li>
+                            <li>It is possible to choose how many characters are shown one page at a time.</li>
+                            <li>A block can be selected either by range or by name, as defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
                         </ul>
                     </details>
                 </div>

@@ -98,7 +98,7 @@ module.exports.start = function (context)
     //
     function displayDataList (characters, outputData)
     {
-        if (outputData.firstChild)
+        while (outputData.firstChild)
         {
            outputData.firstChild.remove ();
         }
@@ -175,7 +175,9 @@ module.exports.start = function (context)
                     { label: "Unicode\xA0Version", value: data.age, toolTip: data.ageDate },
                     { label: "Plane", value: data.planeName, toolTip: data.planeRange },
                     { label: "Block", value: data.blockName, toolTip: data.blockRange },
-                    { label: "Category", value: data.category },
+                    { label: "Script", value: data.script },
+                    { label: "Script\xA0Extensions", value: data.scriptExtensions },
+                    { label: "General\xA0Category", value: data.category },
                     { label: "Combining", value: data.combining },
                     { label: "Bidirectional", value: data.bidirectional },
                     { label: "Decomposition", value: data.decomposition },
@@ -184,7 +186,8 @@ module.exports.start = function (context)
                     { label: "Uppercase", value: data.uppercase },
                     { label: "Lowercase", value: data.lowercase },
                     { label: "Titlecase", value: data.titlecase },
-                    { label: "Binary\xA0Properties", value: data.binaryProperties }
+                    { label: "Binary\xA0Properties", value: data.binaryProperties },
+                    { label: "Core\xA0Properties", value: data.coreProperties }
                 ];
                 for (let property of properties)
                 {

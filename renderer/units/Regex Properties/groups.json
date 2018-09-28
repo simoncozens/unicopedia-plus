@@ -1,0 +1,1589 @@
+[
+    {
+        "category": "General Category",
+        "canonic": "General_Category",
+        "alias": "gc",
+        "optional": true,
+        "items":
+        [
+            {
+                "canonic": "Uppercase_Letter",
+                "alias": "Lu"
+            },
+            {
+                "canonic": "Lowercase_Letter",
+                "alias": "Ll"
+            },
+            {
+                "canonic": "Titlecase_Letter",
+                "alias": "Lt"
+            },
+            {
+                "canonic": "Cased_Letter",
+                "alias": "LC",
+                "grouping": "Lu | Ll | Lt"
+            },
+            {
+                "canonic": "Modifier_Letter",
+                "alias": "Lm"
+            },
+            {
+                "canonic": "Other_Letter",
+                "alias": "Lo"
+            },
+            {
+                "canonic": "Letter",
+                "alias": "L",
+                "grouping": "Lu | Ll | Lt | Lm | Lo"
+            },
+            {
+                "canonic": "Nonspacing_Mark",
+                "alias": "Mn"
+            },
+            {
+                "canonic": "Spacing_Mark",
+                "alias": "Mc"
+            },
+            {
+                "canonic": "Enclosing_Mark",
+                "alias": "Me"
+            },
+            {
+                "canonic": "Mark",
+                "alias": "M",
+                "grouping": "Mn | Mc | Me"
+            },
+            {
+                "canonic": "Decimal_Number",
+                "alias": "Nd"
+            },
+            {
+                "canonic": "Letter_Number",
+                "alias": "Nl"
+            },
+            {
+                "canonic": "Other_Number",
+                "alias": "No"
+            },
+            {
+                "canonic": "Number",
+                "alias": "N",
+                "grouping": "Nd | Nl | No"
+            },
+            {
+                "canonic": "Connector_Punctuation",
+                "alias": "Pc"
+            },
+            {
+                "canonic": "Dash_Punctuation",
+                "alias": "Pd"
+            },
+            {
+                "canonic": "Open_Punctuation",
+                "alias": "Ps"
+            },
+            {
+                "canonic": "Close_Punctuation",
+                "alias": "Pe"
+            },
+            {
+                "canonic": "Initial_Punctuation",
+                "alias": "Pi"
+            },
+            {
+                "canonic": "Final_Punctuation",
+                "alias": "Pf"
+            },
+            {
+                "canonic": "Other_Punctuation",
+                "alias": "Po"
+            },
+            {
+                "canonic": "Punctuation",
+                "alias": "P",
+                "grouping": "Pc | Pd | Ps | Pe | Pi | Pf | Po"
+            },
+            {
+                "canonic": "Math_Symbol",
+                "alias": "Sm"
+            },
+            {
+                "canonic": "Currency_Symbol",
+                "alias": "Sc"
+            },
+            {
+                "canonic": "Modifier_Symbol",
+                "alias": "Sk"
+            },
+            {
+                "canonic": "Other_Symbol",
+                "alias": "So"
+            },
+            {
+                "canonic": "Symbol",
+                "alias": "S",
+                "grouping": "Sm | Sc | Sk | So"
+            },
+            {
+                "canonic": "Space_Separator",
+                "alias": "Zs"
+            },
+            {
+                "canonic": "Line_Separator",
+                "alias": "Zl"
+            },
+            {
+                "canonic": "Paragraph_Separator",
+                "alias": "Zp"
+            },
+            {
+                "canonic": "Separator",
+                "alias": "Z",
+                "grouping": "Zs | Zl | Zp"
+            },
+            {
+                "canonic": "Control",
+                "alias": "Cc"
+            },
+            {
+                "canonic": "Format",
+                "alias": "Cf"
+            },
+            {
+                "canonic": "Surrogate",
+                "alias": "Cs"
+            },
+            {
+                "canonic": "Private_Use",
+                "alias": "Co"
+            },
+            {
+                "canonic": "Unassigned",
+                "alias": "Cn"
+            },
+            {
+                "canonic": "Other",
+                "alias": "C",
+                "grouping": "Cc | Cf | Cs | Co | Cn"
+            }
+        ]
+    },
+    {
+        "category": "Script",
+        "canonic": "Script",
+        "alias": "sc",
+        "items":
+        [
+            {
+                "canonic": "Adlam",
+                "alias": "Adlm"
+            },
+            {
+                "canonic": "Ahom",
+                "alias": "Ahom"
+            },
+            {
+                "canonic": "Anatolian_Hieroglyphs",
+                "alias": "Hluw"
+            },
+            {
+                "canonic": "Arabic",
+                "alias": "Arab"
+            },
+            {
+                "canonic": "Armenian",
+                "alias": "Armn"
+            },
+            {
+                "canonic": "Avestan",
+                "alias": "Avst"
+            },
+            {
+                "canonic": "Balinese",
+                "alias": "Bali"
+            },
+            {
+                "canonic": "Bamum",
+                "alias": "Bamu"
+            },
+            {
+                "canonic": "Bassa_Vah",
+                "alias": "Bass"
+            },
+            {
+                "canonic": "Batak",
+                "alias": "Batk"
+            },
+            {
+                "canonic": "Bengali",
+                "alias": "Beng"
+            },
+            {
+                "canonic": "Bhaiksuki",
+                "alias": "Bhks"
+            },
+            {
+                "canonic": "Bopomofo",
+                "alias": "Bopo"
+            },
+            {
+                "canonic": "Brahmi",
+                "alias": "Brah"
+            },
+            {
+                "canonic": "Braille",
+                "alias": "Brai"
+            },
+            {
+                "canonic": "Buginese",
+                "alias": "Bugi"
+            },
+            {
+                "canonic": "Buhid",
+                "alias": "Buhd"
+            },
+            {
+                "canonic": "Canadian_Aboriginal",
+                "alias": "Cans"
+            },
+            {
+                "canonic": "Carian",
+                "alias": "Cari"
+            },
+            {
+                "canonic": "Caucasian_Albanian",
+                "alias": "Aghb"
+            },
+            {
+                "canonic": "Chakma",
+                "alias": "Cakm"
+            },
+            {
+                "canonic": "Cham",
+                "alias": "Cham"
+            },
+            {
+                "canonic": "Cherokee",
+                "alias": "Cher"
+            },
+            {
+                "canonic": "Common",
+                "alias": "Zyyy"
+            },
+            {
+                "canonic": "Coptic",
+                "alias": "Copt"
+            },
+            {
+                "canonic": "Cuneiform",
+                "alias": "Xsux"
+            },
+            {
+                "canonic": "Cypriot",
+                "alias": "Cprt"
+            },
+            {
+                "canonic": "Cyrillic",
+                "alias": "Cyrl"
+            },
+            {
+                "canonic": "Deseret",
+                "alias": "Dsrt"
+            },
+            {
+                "canonic": "Devanagari",
+                "alias": "Deva"
+            },
+            {
+                "canonic": "Dogra",
+                "alias": "Dogr"
+            },
+            {
+                "canonic": "Duployan",
+                "alias": "Dupl"
+            },
+            {
+                "canonic": "Egyptian_Hieroglyphs",
+                "alias": "Egyp"
+            },
+            {
+                "canonic": "Elbasan",
+                "alias": "Elba"
+            },
+            {
+                "canonic": "Ethiopic",
+                "alias": "Ethi"
+            },
+            {
+                "canonic": "Georgian",
+                "alias": "Geor"
+            },
+            {
+                "canonic": "Glagolitic",
+                "alias": "Glag"
+            },
+            {
+                "canonic": "Gothic",
+                "alias": "Goth"
+            },
+            {
+                "canonic": "Grantha",
+                "alias": "Gran"
+            },
+            {
+                "canonic": "Greek",
+                "alias": "Grek"
+            },
+            {
+                "canonic": "Gujarati",
+                "alias": "Gujr"
+            },
+            {
+                "canonic": "Gunjala_Gondi",
+                "alias": "Gong"
+            },
+            {
+                "canonic": "Gurmukhi",
+                "alias": "Guru"
+            },
+            {
+                "canonic": "Han",
+                "alias": "Hani"
+            },
+            {
+                "canonic": "Hangul",
+                "alias": "Hang"
+            },
+            {
+                "canonic": "Hanifi_Rohingya",
+                "alias": "Rohg"
+            },
+            {
+                "canonic": "Hanunoo",
+                "alias": "Hano"
+            },
+            {
+                "canonic": "Hatran",
+                "alias": "Hatr"
+            },
+            {
+                "canonic": "Hebrew",
+                "alias": "Hebr"
+            },
+            {
+                "canonic": "Hiragana",
+                "alias": "Hira"
+            },
+            {
+                "canonic": "Imperial_Aramaic",
+                "alias": "Armi"
+            },
+            {
+                "canonic": "Inherited",
+                "alias": "Zinh"
+            },
+            {
+                "canonic": "Inscriptional_Pahlavi",
+                "alias": "Phli"
+            },
+            {
+                "canonic": "Inscriptional_Parthian",
+                "alias": "Prti"
+            },
+            {
+                "canonic": "Javanese",
+                "alias": "Java"
+            },
+            {
+                "canonic": "Kaithi",
+                "alias": "Kthi"
+            },
+            {
+                "canonic": "Kannada",
+                "alias": "Knda"
+            },
+            {
+                "canonic": "Katakana",
+                "alias": "Kana"
+            },
+            {
+                "canonic": "Kayah_Li",
+                "alias": "Kali"
+            },
+            {
+                "canonic": "Kharoshthi",
+                "alias": "Khar"
+            },
+            {
+                "canonic": "Khmer",
+                "alias": "Khmr"
+            },
+            {
+                "canonic": "Khojki",
+                "alias": "Khoj"
+            },
+            {
+                "canonic": "Khudawadi",
+                "alias": "Sind"
+            },
+            {
+                "canonic": "Lao",
+                "alias": "Laoo"
+            },
+            {
+                "canonic": "Latin",
+                "alias": "Latn"
+            },
+            {
+                "canonic": "Lepcha",
+                "alias": "Lepc"
+            },
+            {
+                "canonic": "Limbu",
+                "alias": "Limb"
+            },
+            {
+                "canonic": "Linear_A",
+                "alias": "Lina"
+            },
+            {
+                "canonic": "Linear_B",
+                "alias": "Linb"
+            },
+            {
+                "canonic": "Lisu",
+                "alias": "Lisu"
+            },
+            {
+                "canonic": "Lycian",
+                "alias": "Lyci"
+            },
+            {
+                "canonic": "Lydian",
+                "alias": "Lydi"
+            },
+            {
+                "canonic": "Mahajani",
+                "alias": "Mahj"
+            },
+            {
+                "canonic": "Makasar",
+                "alias": "Maka"
+            },
+            {
+                "canonic": "Malayalam",
+                "alias": "Mlym"
+            },
+            {
+                "canonic": "Mandaic",
+                "alias": "Mand"
+            },
+            {
+                "canonic": "Manichaean",
+                "alias": "Mani"
+            },
+            {
+                "canonic": "Marchen",
+                "alias": "Marc"
+            },
+            {
+                "canonic": "Masaram_Gondi",
+                "alias": "Gonm"
+            },
+            {
+                "canonic": "Medefaidrin",
+                "alias": "Medf"
+            },
+            {
+                "canonic": "Meetei_Mayek",
+                "alias": "Mtei"
+            },
+            {
+                "canonic": "Mende_Kikakui",
+                "alias": "Mend"
+            },
+            {
+                "canonic": "Meroitic_Cursive",
+                "alias": "Merc"
+            },
+            {
+                "canonic": "Meroitic_Hieroglyphs",
+                "alias": "Mero"
+            },
+            {
+                "canonic": "Miao",
+                "alias": "Plrd"
+            },
+            {
+                "canonic": "Modi",
+                "alias": "Modi"
+            },
+            {
+                "canonic": "Mongolian",
+                "alias": "Mong"
+            },
+            {
+                "canonic": "Mro",
+                "alias": "Mroo"
+            },
+            {
+                "canonic": "Multani",
+                "alias": "Mult"
+            },
+            {
+                "canonic": "Myanmar",
+                "alias": "Mymr"
+            },
+            {
+                "canonic": "Nabataean",
+                "alias": "Nbat"
+            },
+            {
+                "canonic": "New_Tai_Lue",
+                "alias": "Talu"
+            },
+            {
+                "canonic": "Newa",
+                "alias": "Newa"
+            },
+            {
+                "canonic": "Nko",
+                "alias": "Nkoo"
+            },
+            {
+                "canonic": "Nushu",
+                "alias": "Nshu"
+            },
+            {
+                "canonic": "Ogham",
+                "alias": "Ogam"
+            },
+            {
+                "canonic": "Ol_Chiki",
+                "alias": "Olck"
+            },
+            {
+                "canonic": "Old_Hungarian",
+                "alias": "Hung"
+            },
+            {
+                "canonic": "Old_Italic",
+                "alias": "Ital"
+            },
+            {
+                "canonic": "Old_North_Arabian",
+                "alias": "Narb"
+            },
+            {
+                "canonic": "Old_Permic",
+                "alias": "Perm"
+            },
+            {
+                "canonic": "Old_Persian",
+                "alias": "Xpeo"
+            },
+            {
+                "canonic": "Old_Sogdian",
+                "alias": "Sogo"
+            },
+            {
+                "canonic": "Old_South_Arabian",
+                "alias": "Sarb"
+            },
+            {
+                "canonic": "Old_Turkic",
+                "alias": "Orkh"
+            },
+            {
+                "canonic": "Oriya",
+                "alias": "Orya"
+            },
+            {
+                "canonic": "Osage",
+                "alias": "Osge"
+            },
+            {
+                "canonic": "Osmanya",
+                "alias": "Osma"
+            },
+            {
+                "canonic": "Pahawh_Hmong",
+                "alias": "Hmng"
+            },
+            {
+                "canonic": "Palmyrene",
+                "alias": "Palm"
+            },
+            {
+                "canonic": "Pau_Cin_Hau",
+                "alias": "Pauc"
+            },
+            {
+                "canonic": "Phags_Pa",
+                "alias": "Phag"
+            },
+            {
+                "canonic": "Phoenician",
+                "alias": "Phnx"
+            },
+            {
+                "canonic": "Psalter_Pahlavi",
+                "alias": "Phlp"
+            },
+            {
+                "canonic": "Rejang",
+                "alias": "Rjng"
+            },
+            {
+                "canonic": "Runic",
+                "alias": "Runr"
+            },
+            {
+                "canonic": "Samaritan",
+                "alias": "Samr"
+            },
+            {
+                "canonic": "Saurashtra",
+                "alias": "Saur"
+            },
+            {
+                "canonic": "Sharada",
+                "alias": "Shrd"
+            },
+            {
+                "canonic": "Shavian",
+                "alias": "Shaw"
+            },
+            {
+                "canonic": "Siddham",
+                "alias": "Sidd"
+            },
+            {
+                "canonic": "SignWriting",
+                "alias": "Sgnw"
+            },
+            {
+                "canonic": "Sinhala",
+                "alias": "Sinh"
+            },
+            {
+                "canonic": "Sogdian",
+                "alias": "Sogd"
+            },
+            {
+                "canonic": "Sora_Sompeng",
+                "alias": "Sora"
+            },
+            {
+                "canonic": "Soyombo",
+                "alias": "Soyo"
+            },
+            {
+                "canonic": "Sundanese",
+                "alias": "Sund"
+            },
+            {
+                "canonic": "Syloti_Nagri",
+                "alias": "Sylo"
+            },
+            {
+                "canonic": "Syriac",
+                "alias": "Syrc"
+            },
+            {
+                "canonic": "Tagalog",
+                "alias": "Tglg"
+            },
+            {
+                "canonic": "Tagbanwa",
+                "alias": "Tagb"
+            },
+            {
+                "canonic": "Tai_Le",
+                "alias": "Tale"
+            },
+            {
+                "canonic": "Tai_Tham",
+                "alias": "Lana"
+            },
+            {
+                "canonic": "Tai_Viet",
+                "alias": "Tavt"
+            },
+            {
+                "canonic": "Takri",
+                "alias": "Takr"
+            },
+            {
+                "canonic": "Tamil",
+                "alias": "Taml"
+            },
+            {
+                "canonic": "Tangut",
+                "alias": "Tang"
+            },
+            {
+                "canonic": "Telugu",
+                "alias": "Telu"
+            },
+            {
+                "canonic": "Thaana",
+                "alias": "Thaa"
+            },
+            {
+                "canonic": "Thai",
+                "alias": "Thai"
+            },
+            {
+                "canonic": "Tibetan",
+                "alias": "Tibt"
+            },
+            {
+                "canonic": "Tifinagh",
+                "alias": "Tfng"
+            },
+            {
+                "canonic": "Tirhuta",
+                "alias": "Tirh"
+            },
+            {
+                "canonic": "Ugaritic",
+                "alias": "Ugar"
+            },
+            {
+                "canonic": "Vai",
+                "alias": "Vaii"
+            },
+            {
+                "canonic": "Warang_Citi",
+                "alias": "Wara"
+            },
+            {
+                "canonic": "Yi",
+                "alias": "Yiii"
+            },
+            {
+                "canonic": "Zanabazar_Square",
+                "alias": "Zanb"
+            }
+        ]
+    },
+    {
+        "category": "Script Extensions",
+        "canonic": "Script_Extensions",
+        "alias": "scx",
+        "items":
+        [
+            {
+                "canonic": "Adlam",
+                "alias": "Adlm"
+            },
+            {
+                "canonic": "Ahom",
+                "alias": "Ahom"
+            },
+            {
+                "canonic": "Anatolian_Hieroglyphs",
+                "alias": "Hluw"
+            },
+            {
+                "canonic": "Arabic",
+                "alias": "Arab"
+            },
+            {
+                "canonic": "Armenian",
+                "alias": "Armn"
+            },
+            {
+                "canonic": "Avestan",
+                "alias": "Avst"
+            },
+            {
+                "canonic": "Balinese",
+                "alias": "Bali"
+            },
+            {
+                "canonic": "Bamum",
+                "alias": "Bamu"
+            },
+            {
+                "canonic": "Bassa_Vah",
+                "alias": "Bass"
+            },
+            {
+                "canonic": "Batak",
+                "alias": "Batk"
+            },
+            {
+                "canonic": "Bengali",
+                "alias": "Beng"
+            },
+            {
+                "canonic": "Bhaiksuki",
+                "alias": "Bhks"
+            },
+            {
+                "canonic": "Bopomofo",
+                "alias": "Bopo"
+            },
+            {
+                "canonic": "Brahmi",
+                "alias": "Brah"
+            },
+            {
+                "canonic": "Braille",
+                "alias": "Brai"
+            },
+            {
+                "canonic": "Buginese",
+                "alias": "Bugi"
+            },
+            {
+                "canonic": "Buhid",
+                "alias": "Buhd"
+            },
+            {
+                "canonic": "Canadian_Aboriginal",
+                "alias": "Cans"
+            },
+            {
+                "canonic": "Carian",
+                "alias": "Cari"
+            },
+            {
+                "canonic": "Caucasian_Albanian",
+                "alias": "Aghb"
+            },
+            {
+                "canonic": "Chakma",
+                "alias": "Cakm"
+            },
+            {
+                "canonic": "Cham",
+                "alias": "Cham"
+            },
+            {
+                "canonic": "Cherokee",
+                "alias": "Cher"
+            },
+            {
+                "canonic": "Common",
+                "alias": "Zyyy"
+            },
+            {
+                "canonic": "Coptic",
+                "alias": "Copt"
+            },
+            {
+                "canonic": "Cuneiform",
+                "alias": "Xsux"
+            },
+            {
+                "canonic": "Cypriot",
+                "alias": "Cprt"
+            },
+            {
+                "canonic": "Cyrillic",
+                "alias": "Cyrl"
+            },
+            {
+                "canonic": "Deseret",
+                "alias": "Dsrt"
+            },
+            {
+                "canonic": "Devanagari",
+                "alias": "Deva"
+            },
+            {
+                "canonic": "Dogra",
+                "alias": "Dogr"
+            },
+            {
+                "canonic": "Duployan",
+                "alias": "Dupl"
+            },
+            {
+                "canonic": "Egyptian_Hieroglyphs",
+                "alias": "Egyp"
+            },
+            {
+                "canonic": "Elbasan",
+                "alias": "Elba"
+            },
+            {
+                "canonic": "Ethiopic",
+                "alias": "Ethi"
+            },
+            {
+                "canonic": "Georgian",
+                "alias": "Geor"
+            },
+            {
+                "canonic": "Glagolitic",
+                "alias": "Glag"
+            },
+            {
+                "canonic": "Gothic",
+                "alias": "Goth"
+            },
+            {
+                "canonic": "Grantha",
+                "alias": "Gran"
+            },
+            {
+                "canonic": "Greek",
+                "alias": "Grek"
+            },
+            {
+                "canonic": "Gujarati",
+                "alias": "Gujr"
+            },
+            {
+                "canonic": "Gunjala_Gondi",
+                "alias": "Gong"
+            },
+            {
+                "canonic": "Gurmukhi",
+                "alias": "Guru"
+            },
+            {
+                "canonic": "Han",
+                "alias": "Hani"
+            },
+            {
+                "canonic": "Hangul",
+                "alias": "Hang"
+            },
+            {
+                "canonic": "Hanifi_Rohingya",
+                "alias": "Rohg"
+            },
+            {
+                "canonic": "Hanunoo",
+                "alias": "Hano"
+            },
+            {
+                "canonic": "Hatran",
+                "alias": "Hatr"
+            },
+            {
+                "canonic": "Hebrew",
+                "alias": "Hebr"
+            },
+            {
+                "canonic": "Hiragana",
+                "alias": "Hira"
+            },
+            {
+                "canonic": "Imperial_Aramaic",
+                "alias": "Armi"
+            },
+            {
+                "canonic": "Inherited",
+                "alias": "Zinh"
+            },
+            {
+                "canonic": "Inscriptional_Pahlavi",
+                "alias": "Phli"
+            },
+            {
+                "canonic": "Inscriptional_Parthian",
+                "alias": "Prti"
+            },
+            {
+                "canonic": "Javanese",
+                "alias": "Java"
+            },
+            {
+                "canonic": "Kaithi",
+                "alias": "Kthi"
+            },
+            {
+                "canonic": "Kannada",
+                "alias": "Knda"
+            },
+            {
+                "canonic": "Katakana",
+                "alias": "Kana"
+            },
+            {
+                "canonic": "Kayah_Li",
+                "alias": "Kali"
+            },
+            {
+                "canonic": "Kharoshthi",
+                "alias": "Khar"
+            },
+            {
+                "canonic": "Khmer",
+                "alias": "Khmr"
+            },
+            {
+                "canonic": "Khojki",
+                "alias": "Khoj"
+            },
+            {
+                "canonic": "Khudawadi",
+                "alias": "Sind"
+            },
+            {
+                "canonic": "Lao",
+                "alias": "Laoo"
+            },
+            {
+                "canonic": "Latin",
+                "alias": "Latn"
+            },
+            {
+                "canonic": "Lepcha",
+                "alias": "Lepc"
+            },
+            {
+                "canonic": "Limbu",
+                "alias": "Limb"
+            },
+            {
+                "canonic": "Linear_A",
+                "alias": "Lina"
+            },
+            {
+                "canonic": "Linear_B",
+                "alias": "Linb"
+            },
+            {
+                "canonic": "Lisu",
+                "alias": "Lisu"
+            },
+            {
+                "canonic": "Lycian",
+                "alias": "Lyci"
+            },
+            {
+                "canonic": "Lydian",
+                "alias": "Lydi"
+            },
+            {
+                "canonic": "Mahajani",
+                "alias": "Mahj"
+            },
+            {
+                "canonic": "Makasar",
+                "alias": "Maka"
+            },
+            {
+                "canonic": "Malayalam",
+                "alias": "Mlym"
+            },
+            {
+                "canonic": "Mandaic",
+                "alias": "Mand"
+            },
+            {
+                "canonic": "Manichaean",
+                "alias": "Mani"
+            },
+            {
+                "canonic": "Marchen",
+                "alias": "Marc"
+            },
+            {
+                "canonic": "Masaram_Gondi",
+                "alias": "Gonm"
+            },
+            {
+                "canonic": "Medefaidrin",
+                "alias": "Medf"
+            },
+            {
+                "canonic": "Meetei_Mayek",
+                "alias": "Mtei"
+            },
+            {
+                "canonic": "Mende_Kikakui",
+                "alias": "Mend"
+            },
+            {
+                "canonic": "Meroitic_Cursive",
+                "alias": "Merc"
+            },
+            {
+                "canonic": "Meroitic_Hieroglyphs",
+                "alias": "Mero"
+            },
+            {
+                "canonic": "Miao",
+                "alias": "Plrd"
+            },
+            {
+                "canonic": "Modi",
+                "alias": "Modi"
+            },
+            {
+                "canonic": "Mongolian",
+                "alias": "Mong"
+            },
+            {
+                "canonic": "Mro",
+                "alias": "Mroo"
+            },
+            {
+                "canonic": "Multani",
+                "alias": "Mult"
+            },
+            {
+                "canonic": "Myanmar",
+                "alias": "Mymr"
+            },
+            {
+                "canonic": "Nabataean",
+                "alias": "Nbat"
+            },
+            {
+                "canonic": "New_Tai_Lue",
+                "alias": "Talu"
+            },
+            {
+                "canonic": "Newa",
+                "alias": "Newa"
+            },
+            {
+                "canonic": "Nko",
+                "alias": "Nkoo"
+            },
+            {
+                "canonic": "Nushu",
+                "alias": "Nshu"
+            },
+            {
+                "canonic": "Ogham",
+                "alias": "Ogam"
+            },
+            {
+                "canonic": "Ol_Chiki",
+                "alias": "Olck"
+            },
+            {
+                "canonic": "Old_Hungarian",
+                "alias": "Hung"
+            },
+            {
+                "canonic": "Old_Italic",
+                "alias": "Ital"
+            },
+            {
+                "canonic": "Old_North_Arabian",
+                "alias": "Narb"
+            },
+            {
+                "canonic": "Old_Permic",
+                "alias": "Perm"
+            },
+            {
+                "canonic": "Old_Persian",
+                "alias": "Xpeo"
+            },
+            {
+                "canonic": "Old_Sogdian",
+                "alias": "Sogo"
+            },
+            {
+                "canonic": "Old_South_Arabian",
+                "alias": "Sarb"
+            },
+            {
+                "canonic": "Old_Turkic",
+                "alias": "Orkh"
+            },
+            {
+                "canonic": "Oriya",
+                "alias": "Orya"
+            },
+            {
+                "canonic": "Osage",
+                "alias": "Osge"
+            },
+            {
+                "canonic": "Osmanya",
+                "alias": "Osma"
+            },
+            {
+                "canonic": "Pahawh_Hmong",
+                "alias": "Hmng"
+            },
+            {
+                "canonic": "Palmyrene",
+                "alias": "Palm"
+            },
+            {
+                "canonic": "Pau_Cin_Hau",
+                "alias": "Pauc"
+            },
+            {
+                "canonic": "Phags_Pa",
+                "alias": "Phag"
+            },
+            {
+                "canonic": "Phoenician",
+                "alias": "Phnx"
+            },
+            {
+                "canonic": "Psalter_Pahlavi",
+                "alias": "Phlp"
+            },
+            {
+                "canonic": "Rejang",
+                "alias": "Rjng"
+            },
+            {
+                "canonic": "Runic",
+                "alias": "Runr"
+            },
+            {
+                "canonic": "Samaritan",
+                "alias": "Samr"
+            },
+            {
+                "canonic": "Saurashtra",
+                "alias": "Saur"
+            },
+            {
+                "canonic": "Sharada",
+                "alias": "Shrd"
+            },
+            {
+                "canonic": "Shavian",
+                "alias": "Shaw"
+            },
+            {
+                "canonic": "Siddham",
+                "alias": "Sidd"
+            },
+            {
+                "canonic": "SignWriting",
+                "alias": "Sgnw"
+            },
+            {
+                "canonic": "Sinhala",
+                "alias": "Sinh"
+            },
+            {
+                "canonic": "Sogdian",
+                "alias": "Sogd"
+            },
+            {
+                "canonic": "Sora_Sompeng",
+                "alias": "Sora"
+            },
+            {
+                "canonic": "Soyombo",
+                "alias": "Soyo"
+            },
+            {
+                "canonic": "Sundanese",
+                "alias": "Sund"
+            },
+            {
+                "canonic": "Syloti_Nagri",
+                "alias": "Sylo"
+            },
+            {
+                "canonic": "Syriac",
+                "alias": "Syrc"
+            },
+            {
+                "canonic": "Tagalog",
+                "alias": "Tglg"
+            },
+            {
+                "canonic": "Tagbanwa",
+                "alias": "Tagb"
+            },
+            {
+                "canonic": "Tai_Le",
+                "alias": "Tale"
+            },
+            {
+                "canonic": "Tai_Tham",
+                "alias": "Lana"
+            },
+            {
+                "canonic": "Tai_Viet",
+                "alias": "Tavt"
+            },
+            {
+                "canonic": "Takri",
+                "alias": "Takr"
+            },
+            {
+                "canonic": "Tamil",
+                "alias": "Taml"
+            },
+            {
+                "canonic": "Tangut",
+                "alias": "Tang"
+            },
+            {
+                "canonic": "Telugu",
+                "alias": "Telu"
+            },
+            {
+                "canonic": "Thaana",
+                "alias": "Thaa"
+            },
+            {
+                "canonic": "Thai",
+                "alias": "Thai"
+            },
+            {
+                "canonic": "Tibetan",
+                "alias": "Tibt"
+            },
+            {
+                "canonic": "Tifinagh",
+                "alias": "Tfng"
+            },
+            {
+                "canonic": "Tirhuta",
+                "alias": "Tirh"
+            },
+            {
+                "canonic": "Ugaritic",
+                "alias": "Ugar"
+            },
+            {
+                "canonic": "Vai",
+                "alias": "Vaii"
+            },
+            {
+                "canonic": "Warang_Citi",
+                "alias": "Wara"
+            },
+            {
+                "canonic": "Yi",
+                "alias": "Yiii"
+            },
+            {
+                "canonic": "Zanabazar_Square",
+                "alias": "Zanb"
+            }
+        ]
+    },
+    {
+        "category": "Binary",
+        "items":
+        [
+            {
+                "canonic": "Alphabetic",
+                "alias": "Alpha"
+            },
+            {
+                "canonic": "Any",
+                "alias": ""
+            },
+            {
+                "canonic": "ASCII",
+                "alias": ""
+            },
+            {
+                "canonic": "ASCII_Hex_Digit",
+                "alias": "AHex"
+            },
+            {
+                "canonic": "Assigned",
+                "alias": ""
+            },
+            {
+                "canonic": "Bidi_Control",
+                "alias": "Bidi_C"
+            },
+            {
+                "canonic": "Bidi_Mirrored",
+                "alias": "Bidi_M"
+            },
+            {
+                "canonic": "Case_Ignorable",
+                "alias": "CI"
+            },
+            {
+                "canonic": "Cased",
+                "alias": "Cased"
+            },
+            {
+                "canonic": "Changes_When_Casefolded",
+                "alias": "CWCF"
+            },
+            {
+                "canonic": "Changes_When_Casemapped",
+                "alias": "CWCM"
+            },
+            {
+                "canonic": "Changes_When_Lowercased",
+                "alias": "CWL"
+            },
+            {
+                "canonic": "Changes_When_NFKC_Casefolded",
+                "alias": "CWKCF"
+            },
+            {
+                "canonic": "Changes_When_Titlecased",
+                "alias": "CWT"
+            },
+            {
+                "canonic": "Changes_When_Uppercased",
+                "alias": "CWU"
+            },
+            {
+                "canonic": "Dash",
+                "alias": "Dash"
+            },
+            {
+                "canonic": "Default_Ignorable_Code_Point",
+                "alias": "DI"
+            },
+            {
+                "canonic": "Deprecated",
+                "alias": "Dep"
+            },
+            {
+                "canonic": "Diacritic",
+                "alias": "Dia"
+            },
+            {
+                "canonic": "Emoji",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Component",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Modifier",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Modifier_Base",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Presentation",
+                "alias": ""
+            },
+            {
+                "canonic": "Extended_Pictographic",
+                "alias": ""
+            },
+            {
+                "canonic": "Extender",
+                "alias": "Ext"
+            },
+            {
+                "canonic": "Grapheme_Base",
+                "alias": "Gr_Base"
+            },
+            {
+                "canonic": "Grapheme_Extend",
+                "alias": "Gr_Ext"
+            },
+            {
+                "canonic": "Hex_Digit",
+                "alias": "Hex"
+            },
+            {
+                "canonic": "IDS_Binary_Operator",
+                "alias": "IDSB"
+            },
+            {
+                "canonic": "IDS_Trinary_Operator",
+                "alias": "IDST"
+            },
+            {
+                "canonic": "ID_Continue",
+                "alias": "IDC"
+            },
+            {
+                "canonic": "ID_Start",
+                "alias": "IDS"
+            },
+            {
+                "canonic": "Ideographic",
+                "alias": "Ideo"
+            },
+            {
+                "canonic": "Join_Control",
+                "alias": "Join_C"
+            },
+            {
+                "canonic": "Logical_Order_Exception",
+                "alias": "LOE"
+            },
+            {
+                "canonic": "Lowercase",
+                "alias": "Lower"
+            },
+            {
+                "canonic": "Math",
+                "alias": "Math"
+            },
+            {
+                "canonic": "Noncharacter_Code_Point",
+                "alias": "NChar"
+            },
+            {
+                "canonic": "Pattern_Syntax",
+                "alias": "Pat_Syn"
+            },
+            {
+                "canonic": "Pattern_White_Space",
+                "alias": "Pat_WS"
+            },
+            {
+                "canonic": "Quotation_Mark",
+                "alias": "QMark"
+            },
+            {
+                "canonic": "Radical",
+                "alias": "Radical"
+            },
+            {
+                "canonic": "Regional_Indicator",
+                "alias": "RI"
+            },
+            {
+                "canonic": "Sentence_Terminal",
+                "alias": "STerm"
+            },
+            {
+                "canonic": "Soft_Dotted",
+                "alias": "SD"
+            },
+            {
+                "canonic": "Terminal_Punctuation",
+                "alias": "Term"
+            },
+            {
+                "canonic": "Unified_Ideograph",
+                "alias": "UIdeo"
+            },
+            {
+                "canonic": "Uppercase",
+                "alias": "Upper"
+            },
+            {
+                "canonic": "Variation_Selector",
+                "alias": "VS"
+            },
+            {
+                "canonic": "White_Space",
+                "alias": "WSpace"
+            },
+            {
+                "canonic": "XID_Continue",
+                "alias": "XIDC"
+            },
+            {
+                "canonic": "XID_Start",
+                "alias": "XIDS"
+            }
+        ]
+    }
+]

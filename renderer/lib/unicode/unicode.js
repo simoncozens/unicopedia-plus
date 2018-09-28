@@ -24,14 +24,21 @@ const categories =
     "Lu": "Uppercase Letter",           // an uppercase letter
     "Ll": "Lowercase Letter",           // a lowercase letter
     "Lt": "Titlecase Letter",           // a digraphic character, with first part uppercase
+    "LC": "Cased Letter",               // Lu | Ll | Lt
     "Lm": "Modifier Letter",            // a modifier letter
     "Lo": "Other Letter",               // other letters, including syllables and ideographs
+    "L": "Letter",                      // Lu | Ll | Lt | Lm | Lo
+    //
     "Mn": "Non-Spacing Mark",           // a nonspacing combining mark (zero advance width)
     "Mc": "Spacing Mark",               // a spacing combining mark (positive advance width)
     "Me": "Enclosing Mark",             // an enclosing combining mark
+    "M": "Mark",                        // Mn | Mc | Me
+    //
     "Nd": "Decimal Number",             // a decimal digit
     "Nl": "Letter Number",              // a letterlike numeric character
     "No": "Other Number",               // a numeric character of other type
+    "N": "Number",                      // Nd | Nl | No
+    //
     "Pc": "Connector Punctuation",      // a connecting punctuation mark, like a tie
     "Pd": "Dash Punctuation",           // a dash or hyphen punctuation mark
     "Ps": "Open Punctuation",           // an opening punctuation mark (of a pair)
@@ -39,26 +46,24 @@ const categories =
     "Pi": "Initial Punctuation",        // an initial quotation mark
     "Pf": "Final Punctuation",          // a final quotation mark
     "Po": "Other Punctuation",          // a punctuation mark of other type
+    "P": "Punctuation",                 // Pc | Pd | Ps | Pe | Pi | Pf | Po
+    //
     "Sm": "Math Symbol",                // a symbol of mathematical use
     "Sc": "Currency Symbol",            // a currency sign
     "Sk": "Modifier Symbol",            // a non-letterlike modifier symbol
     "So": "Other Symbol",               // a symbol of other type
+    "S": "Symbol",                      // Sm | Sc | Sk | So
+    //
     "Zs": "Space Separator",            // a space character (of various non-zero widths)
     "Zl": "Line Separator",             // U+2028 LINE SEPARATOR only
     "Zp": "Paragraph Separator",        // U+2029 PARAGRAPH SEPARATOR only
+    "Z": "Separator",                   // Zs | Zl | Zp
+    //
     "Cc": "Control",                    // a C0 or C1 control code
     "Cf": "Format",                     // a format control character
     "Cs": "Surrogate",                  // a surrogate code point
     "Co": "Private Use",                // a private-use character
     "Cn": "Unassigned",                 // a reserved unassigned code point or a noncharacter (no characters in the file have this property)
-    //
-    "LC": "Cased Letter",               // Lu | Ll | Lt
-    "L": "Letter",                      // Lu | Ll | Lt | Lm | Lo
-    "M": "Mark",                        // Mn | Mc | Me
-    "N": "Number",                      // Nd | Nl | No
-    "P": "Punctuation",                 // Pc | Pd | Ps | Pe | Pi | Pf | Po
-    "S": "Symbol",                      // Sm | Sc | Sk | So
-    "Z": "Separator",                   // Zs | Zl | Zp
     "C": "Other"                        // Cc | Cf | Cs | Co | Cn
 };
 //
@@ -162,6 +167,158 @@ const mirrored =
     "N": "",    // Skip field if "No"...
     "Y": "Yes"
 }
+//
+const scripts =
+{
+    "Adlm": "Adlam",
+    "Ahom": "Ahom",
+    "Hluw": "Anatolian_Hieroglyphs",
+    "Arab": "Arabic",
+    "Armn": "Armenian",
+    "Avst": "Avestan",
+    "Bali": "Balinese",
+    "Bamu": "Bamum",
+    "Bass": "Bassa_Vah",
+    "Batk": "Batak",
+    "Beng": "Bengali",
+    "Bhks": "Bhaiksuki",
+    "Bopo": "Bopomofo",
+    "Brah": "Brahmi",
+    "Brai": "Braille",
+    "Bugi": "Buginese",
+    "Buhd": "Buhid",
+    "Cans": "Canadian_Aboriginal",
+    "Cari": "Carian",
+    "Aghb": "Caucasian_Albanian",
+    "Cakm": "Chakma",
+    "Cham": "Cham",
+    "Cher": "Cherokee",
+    "Zyyy": "Common",
+    "Copt": "Coptic",
+    "Xsux": "Cuneiform",
+    "Cprt": "Cypriot",
+    "Cyrl": "Cyrillic",
+    "Dsrt": "Deseret",
+    "Deva": "Devanagari",
+    "Dogr": "Dogra",
+    "Dupl": "Duployan",
+    "Egyp": "Egyptian_Hieroglyphs",
+    "Elba": "Elbasan",
+    "Ethi": "Ethiopic",
+    "Geor": "Georgian",
+    "Glag": "Glagolitic",
+    "Goth": "Gothic",
+    "Gran": "Grantha",
+    "Grek": "Greek",
+    "Gujr": "Gujarati",
+    "Gong": "Gunjala_Gondi",
+    "Guru": "Gurmukhi",
+    "Hani": "Han",
+    "Hang": "Hangul",
+    "Rohg": "Hanifi_Rohingya",
+    "Hano": "Hanunoo",
+    "Hatr": "Hatran",
+    "Hebr": "Hebrew",
+    "Hira": "Hiragana",
+    "Armi": "Imperial_Aramaic",
+    "Zinh": "Inherited",
+    "Phli": "Inscriptional_Pahlavi",
+    "Prti": "Inscriptional_Parthian",
+    "Java": "Javanese",
+    "Kthi": "Kaithi",
+    "Knda": "Kannada",
+    "Kana": "Katakana",
+    "Kali": "Kayah_Li",
+    "Khar": "Kharoshthi",
+    "Khmr": "Khmer",
+    "Khoj": "Khojki",
+    "Sind": "Khudawadi",
+    "Laoo": "Lao",
+    "Latn": "Latin",
+    "Lepc": "Lepcha",
+    "Limb": "Limbu",
+    "Lina": "Linear_A",
+    "Linb": "Linear_B",
+    "Lisu": "Lisu",
+    "Lyci": "Lycian",
+    "Lydi": "Lydian",
+    "Mahj": "Mahajani",
+    "Maka": "Makasar",
+    "Mlym": "Malayalam",
+    "Mand": "Mandaic",
+    "Mani": "Manichaean",
+    "Marc": "Marchen",
+    "Gonm": "Masaram_Gondi",
+    "Medf": "Medefaidrin",
+    "Mtei": "Meetei_Mayek",
+    "Mend": "Mende_Kikakui",
+    "Merc": "Meroitic_Cursive",
+    "Mero": "Meroitic_Hieroglyphs",
+    "Plrd": "Miao",
+    "Modi": "Modi",
+    "Mong": "Mongolian",
+    "Mroo": "Mro",
+    "Mult": "Multani",
+    "Mymr": "Myanmar",
+    "Nbat": "Nabataean",
+    "Talu": "New_Tai_Lue",
+    "Newa": "Newa",
+    "Nkoo": "Nko",
+    "Nshu": "Nushu",
+    "Ogam": "Ogham",
+    "Olck": "Ol_Chiki",
+    "Hung": "Old_Hungarian",
+    "Ital": "Old_Italic",
+    "Narb": "Old_North_Arabian",
+    "Perm": "Old_Permic",
+    "Xpeo": "Old_Persian",
+    "Sogo": "Old_Sogdian",
+    "Sarb": "Old_South_Arabian",
+    "Orkh": "Old_Turkic",
+    "Orya": "Oriya",
+    "Osge": "Osage",
+    "Osma": "Osmanya",
+    "Hmng": "Pahawh_Hmong",
+    "Palm": "Palmyrene",
+    "Pauc": "Pau_Cin_Hau",
+    "Phag": "Phags_Pa",
+    "Phnx": "Phoenician",
+    "Phlp": "Psalter_Pahlavi",
+    "Rjng": "Rejang",
+    "Runr": "Runic",
+    "Samr": "Samaritan",
+    "Saur": "Saurashtra",
+    "Shrd": "Sharada",
+    "Shaw": "Shavian",
+    "Sidd": "Siddham",
+    "Sgnw": "SignWriting",
+    "Sinh": "Sinhala",
+    "Sogd": "Sogdian",
+    "Sora": "Sora_Sompeng",
+    "Soyo": "Soyombo",
+    "Sund": "Sundanese",
+    "Sylo": "Syloti_Nagri",
+    "Syrc": "Syriac",
+    "Tglg": "Tagalog",
+    "Tagb": "Tagbanwa",
+    "Tale": "Tai_Le",
+    "Lana": "Tai_Tham",
+    "Tavt": "Tai_Viet",
+    "Takr": "Takri",
+    "Taml": "Tamil",
+    "Tang": "Tangut",
+    "Telu": "Telugu",
+    "Thaa": "Thaana",
+    "Thai": "Thai",
+    "Tibt": "Tibetan",
+    "Tfng": "Tifinagh",
+    "Tirh": "Tirhuta",
+    "Ugar": "Ugaritic",
+    "Vaii": "Vai",
+    "Wara": "Warang_Citi",
+    "Yiii": "Yi",
+    "Zanb": "Zanabazar_Square"
+};
 //
 function uniHexify (string)
 {
@@ -282,7 +439,7 @@ function getCharacterData (character)
         if ((parseInt (plane.first, 16) <= num) && (num <= parseInt (plane.last, 16)))
         {
             characterData.planeName = plane.name;
-            characterData.planeRange = uniHexify (plane.first + " - " + plane.last);
+            characterData.planeRange = uniHexify (plane.first + ".." + plane.last);
             break;
         }
     }
@@ -291,7 +448,7 @@ function getCharacterData (character)
         if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
         {
             characterData.blockName = block.name;
-            characterData.blockRange = uniHexify (block.first + " - " + block.last);
+            characterData.blockRange = uniHexify (block.first + ".." + block.last);
             break;
         }
     }
@@ -301,6 +458,23 @@ function getCharacterData (character)
         {
             characterData.age = version.age;
             characterData.ageDate = versionDate[version.age];
+            break;
+        }
+    }
+    for (let script of extraData.scripts)
+    {
+        if ((parseInt (script.first, 16) <= num) && (num <= parseInt (script.last, 16)))
+        {
+            characterData.script = script.name.replace (/_/g, " ").replace ("Phags Pa", "Phags-pa");
+            break;
+        }
+    }
+    for (let scriptExtension of extraData.scriptExtensions)
+    {
+        if ((parseInt (scriptExtension.first, 16) <= num) && (num <= parseInt (scriptExtension.last, 16)))
+        {
+            let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias].replace (/_/g, " ").replace ("Phags Pa", "Phags-pa"));
+            characterData.scriptExtensions = names.join (", ");
             break;
         }
     }
@@ -315,6 +489,18 @@ function getCharacterData (character)
     if (binaryProperties.length > 0)
     {
         characterData.binaryProperties = binaryProperties.join (", ");
+    }
+    let coreProperties = [ ];
+    for (let coreProperty of extraData.coreProperties)
+    {
+        if ((parseInt (coreProperty.first, 16) <= num) && (num <= parseInt (coreProperty.last, 16)))
+        {
+            coreProperties.push (coreProperty.name.replace (/_/g, " "));
+        }
+    }
+    if (coreProperties.length > 0)
+    {
+        characterData.coreProperties = coreProperties.join (", ");
     }
     let codePoints = unicodeData;
     if (codePoint in codePoints)
@@ -429,6 +615,15 @@ function getCharacterBasicData (character)
         characterBasicData.name = data.name;
         characterBasicData.alias = data.alias;
         characterBasicData.correction = data.correction;
+    }
+    for (let block of extraData.blocks)
+    {
+        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+        {
+            characterBasicData.blockName = block.name;
+            characterBasicData.blockRange = uniHexify (block.first + ".." + block.last);
+            break;
+        }
     }
     return characterBasicData;
 }

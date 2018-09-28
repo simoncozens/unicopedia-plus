@@ -4,26 +4,29 @@ const { app, BrowserWindow, dialog, globalShortcut, ipcMain, Menu, shell } = ele
 //
 let mainWindow = null;
 //
-const isAlreadyRunning = app.makeSingleInstance
-(
-    () =>
-    {
-        if (mainWindow)
-        {
-            if (mainWindow.isMinimized ())
-            {
-                mainWindow.restore ();
-            }
-            mainWindow.show ();
-        }
-    }
-);
-if (isAlreadyRunning)
+const gotTheLock = app.requestSingleInstanceLock ();
+if (!gotTheLock)
 {
     app.quit ();
 }
 else
 {
+    app.on
+    (
+        'second-instance',
+        (event, commandLine, workingDirectory) =>
+        {
+            if (mainWindow)
+            {
+                if (mainWindow.isMinimized ())
+                {
+                    mainWindow.restore ();
+                }
+                mainWindow.focus ();
+            }
+        }
+    );
+    //
     // Share settings with the renderer process
     global.settings = require ('./settings.json');
     //

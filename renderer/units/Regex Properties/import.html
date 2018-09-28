@@ -1,0 +1,48 @@
+<template>
+    <section id="regex-properties-unit">
+        <div class="plain-panel">
+            <div class="container"></div>
+        </div>
+        <div class="accent-panel">
+            <details class="instructions">
+                <summary>Instructions</summary>
+                <ul>
+                    <li>
+                        The <strong>Regex Properties</strong> utility displays a list of all the Unicode properties available in this app for 
+                        regular expressions, used in particular by the <strong>Emoji Data Finder</strong> and 
+                        <strong>Unicode Data Finder</strong> utilities.
+                    </li>
+                    <li>
+                        These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
+                    </li>
+                    <li>
+                        Unicode properties fall into four categories:
+                        <ul>
+                            <li><strong>General Category</strong> properties</li>
+                            <li><strong>Script</strong> properties</li>
+                            <li><strong>Script Extensions</strong> properties</li>
+                            <li><strong>Binary</strong> properties</li>
+                        </ul>
+                    </li>
+                    <li>For <strong>General Category</strong> properties, prefixing with <code>General_Category=</code> (Canonical) or <code>gc=</code> (Alias) is optional.</li>
+                    <li>
+                        Notes:
+                        <ul class="notes">
+                            <li><code>\P{…}</code> is the negated form of <code>\p{…}</code></li>
+                            <li><code>\p{Any}</code> is equivalent to <code>[\u{0}-\u{10FFFF}]</code></li>
+                            <li><code>\p{ASCII}</code> is equivalent to <code>[\u{0}-\u{7F}]</code></li>
+                            <li><code>\p{Assigned}</code> is equivalent to <code>\P{Unassigned}</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Information pertaining to this list has been gathered from several sources (see References below), and slightly refined through trial and error.
+                    </li>
+                </ul>
+            </details>
+            <details class="references">
+                <summary>References</summary>
+                <div class="links"></div>
+            </details>
+        </div>
+    </section>
+</template>

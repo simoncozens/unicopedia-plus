@@ -16,7 +16,7 @@ module.exports.start = function (context)
     //
     const minFontSize = 32;
     const maxFontSize = 128;
-    const defaultFontSize = 100;
+    const defaultFontSize = 96;
     //
     const defaultPrefs =
     {
@@ -51,6 +51,38 @@ module.exports.start = function (context)
         }
     );
     //
+    let style = document.createElement ('style');
+    document.head.appendChild (style);
+    //
+    function setFontSize (fontSize)
+    {
+        style.textContent = `#${unitId} .plain-panel .sheet { font-size: ${fontSize}px; }`;
+    }
+    //
+    sizeRange.min = Math.log2 (minFontSize);
+    sizeRange.max = Math.log2 (maxFontSize);
+    sizeRange.value = Math.log2 (prefs.fontSize);
+    //
+    setFontSize (Math.pow (2, sizeRange.value));
+    sizeRange.addEventListener ('input', (event) => { setFontSize (Math.pow (2, event.target.value)); });
+    if (wheelSupport)
+    {
+        sizeRange.addEventListener
+        (
+            'wheel',
+            (event) =>
+            {
+                event.preventDefault ();
+                let fontSize = Math.round (Math.pow (2, event.target.value) + Math.sign (event.deltaX));
+                if ((fontSize >= minFontSize) && (fontSize <= maxFontSize))
+                {
+                    event.target.value = Math.log2 (fontSize);
+                    setFontSize (fontSize);
+                }
+            }
+        );
+    }
+    //
     const emojiList = require ('emoji-test-list');
     //
     const emojiGroups = require ('emoji-test-groups');
@@ -70,7 +102,7 @@ module.exports.start = function (context)
     //
     function canvasCharacterWidth (character)
     {
-        const size = 100;
+        const size = defaultFontSize;
         let canvas = document.createElement ('canvas');
         canvas.width = size;
         canvas.height = size;
@@ -182,7 +214,7 @@ module.exports.start = function (context)
                     let removedSpans = [ ];
                     for (let span of spans)
                     {
-                        if (!isSupportedCharacter (span.textContent) || ((span.scrollWidth - 1) > span.clientWidth))
+                        if (!isSupportedCharacter (span.textContent) || (span.scrollWidth > (1 + span.clientWidth + 1)))
                         {
                             let saveCharacter = span.textContent;
                             let removeSpan = true;
@@ -192,7 +224,7 @@ module.exports.start = function (context)
                                 for (let altCharacter of altCharacters)
                                 {
                                     span.textContent = altCharacter;
-                                    if (isSupportedCharacter (span.textContent) && (!((span.scrollWidth - 1) > span.clientWidth)))
+                                    if (isSupportedCharacter (span.textContent) && (!(span.scrollWidth > (1 + span.clientWidth + 1))))
                                     {
                                         span.title = getEmojiToolTip (altCharacter);
                                         removeSpan = false;
@@ -233,38 +265,6 @@ module.exports.start = function (context)
     }
     updateGroup (selectGroup.value);
     selectGroup.addEventListener ('input', (event) => { updateGroup (event.target.value); });
-    //
-    let style = document.createElement ('style');
-    document.head.appendChild (style);
-    //
-    function setFontSize (fontSize)
-    {
-        style.textContent = `#${unitId} .plain-panel .sheet { font-size: ${fontSize}px; }`;
-    }
-    //
-    sizeRange.min = Math.log2 (minFontSize);
-    sizeRange.max = Math.log2 (maxFontSize);
-    sizeRange.value = Math.log2 (prefs.fontSize);
-    //
-    setFontSize (Math.pow (2, sizeRange.value));
-    sizeRange.addEventListener ('input', (event) => { setFontSize (Math.pow (2, event.target.value)); });
-    if (wheelSupport)
-    {
-        sizeRange.addEventListener
-        (
-            'wheel',
-            (event) =>
-            {
-                event.preventDefault ();
-                let fontSize = Math.round (Math.pow (2, event.target.value) + Math.sign (event.deltaX));
-                if ((fontSize >= minFontSize) && (fontSize <= maxFontSize))
-                {
-                    event.target.value = Math.log2 (fontSize);
-                    setFontSize (fontSize);
-                }
-            }
-        );
-    }
     //
     instructions.open = prefs.instructions;
 };

@@ -1,9 +1,9 @@
 //
-const deferredSymbols = true;
-//
 const unicode = require ('../../lib/unicode/unicode.js');
 //
-module.exports.create = function (node, characters, params)
+const deferredSymbols = true;
+//
+module.exports.create = function (characters, params)
 {
     function updateDataPage (dataPage)
     {
@@ -24,11 +24,13 @@ module.exports.create = function (node, characters, params)
         lastPageButton.title = `Last page: ${charactersPages.length}`;
         //
         let characters = charactersPages[charactersPageIndex];
-        while (dataPage.firstChild) { dataPage.firstChild.remove (); };
-        let observer;
+        while (dataPage.firstChild)
+        {
+            dataPage.firstChild.remove ();
+        }
         if (deferredSymbols)
         {
-            observer = new IntersectionObserver
+            params.observer = new IntersectionObserver
             (
                 (entries, observer) =>
                 {
@@ -67,6 +69,10 @@ module.exports.create = function (node, characters, params)
         nameHeader.className = 'name-header';
         nameHeader.textContent = "Name";
         header.appendChild (nameHeader);
+        let blockNameHeader = document.createElement ('th');
+        blockNameHeader.className = 'block-name-header';
+        blockNameHeader.textContent = "Block";
+        header.appendChild (blockNameHeader);
         table.appendChild (header);
         for (let character of characters)
         {
@@ -79,7 +85,7 @@ module.exports.create = function (node, characters, params)
             {
                 symbol.textContent = "\xA0";
                 symbol.dataset.character = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
-                observer.observe (symbol);
+                params.observer.observe (symbol);
             }
             else
             {
@@ -112,6 +118,11 @@ module.exports.create = function (node, characters, params)
                 names.appendChild (alias);
             }
             row.appendChild (names);
+            let blockName = document.createElement ('td');
+            blockName.className = 'block-name';
+            blockName.title = data.blockRange;
+            blockName.innerHTML = data.blockName.replace (/(\b\w*-\w*\b)/g, '<span class="no-wrap">$1</span>');
+            row.appendChild (blockName);
             table.appendChild (row);
         }
         dataPage.appendChild (table);
@@ -119,6 +130,8 @@ module.exports.create = function (node, characters, params)
     //
     let charactersPages;
     let charactersPageIndex;
+    //
+    let dataTable = document.createElement ('div');
     //
     let paginationBar = document.createElement ('div');
     paginationBar.className = 'pagination-bar';
@@ -288,7 +301,7 @@ module.exports.create = function (node, characters, params)
     //
     paginationBar.appendChild (pageInfoGroup);
     //
-    const pageSizes = [ 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 ];
+    const pageSizes = [ 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 ];
     //
     let pageSizeGroup = document.createElement ('div');
     pageSizeGroup.className = 'pagination-group';
@@ -307,7 +320,7 @@ module.exports.create = function (node, characters, params)
     );
     //
     pageSizeLabel.appendChild (pageSizeSelect);
-    let pageSizeText = document.createTextNode ("\xA0\xA0results per page");
+    let pageSizeText = document.createTextNode ("\xA0\xA0per page");
     pageSizeLabel.appendChild (pageSizeText);
     pageSizeGroup.appendChild (pageSizeLabel);
     //
@@ -341,10 +354,12 @@ module.exports.create = function (node, characters, params)
     //
     paginationBar.appendChild (pageSizeGroup);
     //
-    node.appendChild (paginationBar);
+    dataTable.appendChild (paginationBar);
     let dataPage = document.createElement ('div');
-    node.appendChild (dataPage);
+    dataTable.appendChild (dataPage);
     //
     pageSizeSelect.dispatchEvent (new Event ('input'));
+    //
+    return dataTable;
 }
 //

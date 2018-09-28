@@ -33,7 +33,7 @@
 
 #emoji-picture-book-unit .plain-panel h2
 {
-    user-select: auto;
+    user-select: text;
 }
 
 #emoji-picture-book-unit .plain-panel .sheet
@@ -43,11 +43,11 @@
     border-radius: inherit;
     margin: 0;
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-    /* font-size: 96px; */
+    font-size: 96px;
     line-height: 1.4em;
     padding: 0.2em;
     width: 100%;
-    user-select: auto;
+    user-select: text;
 }
 
 #emoji-picture-book-unit .plain-panel .sheet .emoji

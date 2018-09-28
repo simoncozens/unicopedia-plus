@@ -108,7 +108,7 @@
 
 #emoji-data-finder-unit .emoji-table
 {
-    user-select: auto;
+    user-select: text;
     background-color: white;
     margin: 1em 0 0.5em 0;
 }

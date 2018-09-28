@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+#regex-properties-unit h2
+{
+    text-align: center;
+}
+
+#regex-properties-unit .property-list
+{
+    margin: 1em 0;
+}
+
+#regex-properties-unit .property-list .canonic
+{
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#regex-properties-unit .property-list .alias
+{
+    width: 25%;
+}
+
+#regex-properties-unit .property-list th
+{
+    background-color: var(--color-border);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#regex-properties-unit .property-list tr:nth-child(even)
+{
+    background-color: white;
+}
+
+#regex-properties-unit .property-list tr:nth-child(odd)
+{
+    background-color: var(--color-bg);
+}
+
+#regex-properties-unit .property-list th,
+#regex-properties-unit .property-list td
+{
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.5em;
+    padding: 0.25em 1em;
+}
+
+#regex-properties-unit .property-list th
+{
+    line-height: 1.333em;
+}
+
+#regex-properties-unit .property-list td
+{
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 13px;
+    user-select: text;
+}
+
+#regex-properties-unit .instructions p
+{
+    margin: 0.5em 0;
+    line-height: 1.5em;
+}
+
+#regex-properties-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#regex-properties-unit .instructions li
+{
+    margin: 0.125em 0;
+}
+
+#regex-properties-unit .instructions li > ul
+{
+    margin: 0 0 0.25em 0;
+}
+
+#regex-properties-unit .instructions .notes li
+{
+    margin: 0.25em 0 0.5em 0;
+}
+
+#regex-properties-unit .instructions code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#regex-properties-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

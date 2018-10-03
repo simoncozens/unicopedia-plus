@@ -1,4 +1,4 @@
 {
     "category": "Emoji",
-    "description": "Data (short name, keywords, code) of Unicode emoji characters extracted from a string"
+    "description": "Basic data of Unicode emoji searched by name or symbol, or extracted from a text string"
 }

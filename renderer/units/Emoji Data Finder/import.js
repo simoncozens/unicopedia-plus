@@ -1,18 +1,35 @@
 //
 const unit = document.getElementById ('emoji-data-finder-unit');
 //
-const clearButton = unit.querySelector ('.clear-button');
-const emojiSamples = unit.querySelector ('.emoji-samples');
-const searchString = unit.querySelector ('.search-string');
-const wholeWord = unit.querySelector ('.whole-word');
-const useRegex = unit.querySelector ('.use-regex');
-const searchButton = unit.querySelector ('.search-button');
-const inputString = unit.querySelector ('.input-string');
-const hitCount = unit.querySelector ('.hit-count');
-const filterButton = unit.querySelector ('.filter-button');
-const emojiDataList = unit.querySelector ('.emoji-data-list');
-const instructions = unit.querySelector ('.instructions');
-const regexExamples = unit.querySelector ('.regex-examples');
+const tabs = unit.querySelectorAll ('.tab-bar .tab-radio');
+const tabPanes = unit.querySelectorAll ('.tab-panes .tab-pane');
+const tabInfos = unit.querySelectorAll ('.tab-infos .tab-info');
+//
+const nameSearchString = unit.querySelector ('.find-by-name .search-string');
+const nameWholeWord = unit.querySelector ('.find-by-name .whole-word');
+const nameUseRegex = unit.querySelector ('.find-by-name .use-regex');
+const nameSearchButton = unit.querySelector ('.find-by-name .search-button');
+const nameHitCount = unit.querySelector ('.find-by-name .hit-count');
+const nameEmojiDataList = unit.querySelector ('.find-by-name .emoji-data-list');
+const nameInstructions = unit.querySelector ('.find-by-name .instructions');
+const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
+//
+const symbolSearchString = unit.querySelector ('.match-symbol .search-string');
+const symbolWholeWord = unit.querySelector ('.match-symbol .whole-word');
+const symbolUseRegex = unit.querySelector ('.match-symbol .use-regex');
+const symbolSearchButton = unit.querySelector ('.match-symbol .search-button');
+const symbolHitCount = unit.querySelector ('.match-symbol .hit-count');
+const symbolEmojiDataList = unit.querySelector ('.match-symbol .emoji-data-list');
+const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
+const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
+//
+const textClearButton = unit.querySelector ('.filter-text .clear-button');
+const textEmojiSamples = unit.querySelector ('.filter-text .emoji-samples');
+const textInputString = unit.querySelector ('.filter-text .input-string');
+const textHitCount = unit.querySelector ('.filter-text .hit-count');
+const textFilterButton = unit.querySelector ('.filter-text .filter-button');
+const textEmojiDataList = unit.querySelector ('.filter-text .emoji-data-list');
+const textInstructions = unit.querySelector ('.filter-text .instructions');
 //
 module.exports.start = function (context)
 {
@@ -23,14 +40,56 @@ module.exports.start = function (context)
     //
     const defaultPrefs =
     {
-        searchString: "",
-        wholeWord: false,
-        useRegex: false,
-        inputString: "",
-        instructions: true,
-        regexExamples: false
+        tabName: "",
+        //
+        nameSearchString: "",
+        nameWholeWord: false,
+        nameUseRegex: false,
+        nameInstructions: true,
+        nameRegexExamples: false,
+        //
+        symbolSearchString: "",
+        symbolWholeWord: false,
+        symbolUseRegex: false,
+        symbolInstructions: true,
+        symbolRegexExamples: false,
+        //
+        textInputString: "",
+        textInstructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    function updateTab (tabName)
+    {
+        let foundIndex = 0;
+        tabs.forEach
+        (
+            (tab, index) =>
+            {
+                let match = (tab.parentElement.textContent === tabName);
+                if (match)
+                {
+                    foundIndex = index;
+                }
+                else
+                {
+                    tab.checked = false;
+                    tabPanes[index].hidden = true;
+                    tabInfos[index].hidden = true;
+                }
+            }
+        );
+        tabs[foundIndex].checked = true;
+        tabPanes[foundIndex].hidden = false;
+        tabInfos[foundIndex].hidden = false;
+    }
+    //
+    updateTab (prefs.tabName);
+    //
+    for (let tab of tabs)
+    {
+        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
+    }
     //
     const emojiList = require ('emoji-test-list');
     const emojiKeys = Object.keys (emojiList).sort ().reverse ();
@@ -52,18 +111,14 @@ module.exports.start = function (context)
         return cldrAnnotations[emoji.replace (/\uFE0F/g, "")].keywords;
     }
     //
-    function findEmojiByNameOrSymbol (regex)
+    function findEmojiByName (regex)
     {
-        let emojiByNameOrSymbol = [ ];
+        let emojiByName = [ ];
         for (let emoji in emojiList)
         {
-            if (regex.test (emoji))
+            if (getEmojiShortName (emoji).match (regex))
             {
-                emojiByNameOrSymbol.push (emoji);
-            }
-            else if (getEmojiShortName (emoji).match (regex))
-            {
-                emojiByNameOrSymbol.push (emoji);
+                emojiByName.push (emoji);
             }
             else
             {
@@ -71,13 +126,26 @@ module.exports.start = function (context)
                 {
                     if (keyword.match (regex))
                     {
-                        emojiByNameOrSymbol.push (emoji);
+                        emojiByName.push (emoji);
                         break;
                     }
                 }
             }
         }
-        return emojiByNameOrSymbol;
+        return emojiByName;
+    }
+    //
+    function findEmojiBySymbol (regex)
+    {
+        let emojiBySymbol = [ ];
+        for (let emoji in emojiList)
+        {
+            if (regex.test (emoji))
+            {
+                emojiBySymbol.push (emoji);
+            }
+        }
+        return emojiBySymbol;
     }
     //
     const emojiPattern = require ('emoji-test-patterns')["Emoji_Test_All"];
@@ -87,148 +155,17 @@ module.exports.start = function (context)
     {
         return string.match (emojiRegex) || [ ];
     }
-    //
-    clearButton.addEventListener
-    (
-        'click',
-        (event) =>
+     //
+    function clearDataList (emojiDataList, hitCount)
+    {
+        hitCount.textContent = "";
+        while (emojiDataList.firstChild)
         {
-            inputString.value = "";
-            inputString.dispatchEvent (new Event ('input'));
-            inputString.focus ();
+            emojiDataList.firstChild.remove ();
         }
-    );
-    //
-    const samples = require ('./samples.json');
-    //
-    let emojiMenu = sampleMenus.makeMenu
-    (
-        samples,
-        (sample) =>
-        {
-            inputString.value = sample.string;
-            inputString.dispatchEvent (new Event ('input'));
-        }
-    );
-    //
-    emojiSamples.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            pullDownMenus.popup (event.target.getBoundingClientRect (), emojiMenu);
-        }
-    );
-    //
-    wholeWord.checked = prefs.wholeWord;
-    useRegex.checked = prefs.useRegex;
-    //
-    searchString.addEventListener
-    (
-        'keypress',
-        (event) =>
-        {
-            if (event.key === "Enter")
-            {
-                event.preventDefault ();    // ??
-                searchButton.click ();
-            }
-        }
-    );
-    searchString.addEventListener
-    (
-        'input',
-        (event) =>
-        {
-            event.target.classList.remove ('error');
-            event.target.title = "";
-            if (useRegex.checked)
-            {
-                try
-                {
-                    const flags = 'ui';
-                    let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
-                }
-                catch (e)
-                {
-                    event.target.classList.add ('error');
-                    event.target.title = e;
-                }
-            }
-        }
-    );
-    searchString.value = prefs.searchString;
-    searchString.dispatchEvent (new Event ('input'));
-    //
-    useRegex.addEventListener
-    (
-        'change',
-        (event) => searchString.dispatchEvent (new Event ('input'))
-    );
-    //
-    searchButton.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            inputString.value = "";
-            inputString.dispatchEvent (new Event ('input'));
-            setTimeout
-            (
-                () =>
-                {
-                    let name = searchString.value;
-                    if (name)
-                    {
-                        let regex = null;
-                        try
-                        {
-                            function characterToEcmaScriptEscape (character)
-                            {
-                                let num = character.codePointAt (0);
-                                let hex = num.toString (16).toUpperCase ();
-                                return `\\u{${hex}}`;
-                            }
-                            //
-                            let pattern = (useRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                            if (wholeWord.checked)
-                            {
-                                const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                                const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                                pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
-                            }
-                            const flags = 'ui';
-                            pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                            regex = new RegExp (pattern, flags);
-                        }
-                        catch (e)
-                        {
-                        }
-                        if (regex)
-                        {
-                            let emojiByNameOrSymbol = findEmojiByNameOrSymbol (regex);
-                            inputString.value = emojiByNameOrSymbol.join ('');
-                            inputString.dispatchEvent (new Event ('input'));
-                        }
-                    }
-                }
-            );
-        }
-    );
-    //
-    filterButton.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            inputString.value = getEmojiList (inputString.value).join ("");
-            inputString.dispatchEvent (new Event ('input'));
-        }
-    );
-    //
-    function displayDataList (string)
+    }
+   //
+    function displayDataList (string, emojiDataList, hitCount)
     {
         while (emojiDataList.firstChild)
         {
@@ -284,31 +221,281 @@ module.exports.start = function (context)
         }
     }
     //
-    inputString.addEventListener
+    nameWholeWord.checked = prefs.nameWholeWord;
+    nameUseRegex.checked = prefs.nameUseRegex;
+    //
+    nameSearchString.addEventListener
+    (
+        'keypress',
+        (event) =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault ();    // ??
+                nameSearchButton.click ();
+            }
+        }
+    );
+    nameSearchString.addEventListener
     (
         'input',
         (event) =>
         {
-            displayDataList (event.target.value);
+            event.target.classList.remove ('error');
+            event.target.title = "";
+            if (nameUseRegex.checked)
+            {
+                try
+                {
+                    const flags = 'ui';
+                    let pattern = event.target.value;
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    let regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                    event.target.classList.add ('error');
+                    event.target.title = e;
+                }
+            }
         }
     );
-    inputString.value = prefs.inputString;
-    inputString.dispatchEvent (new Event ('input'));
+    nameSearchString.value = prefs.nameSearchString;
+    nameSearchString.dispatchEvent (new Event ('input'));
     //
-    instructions.open = prefs.instructions;
-    regexExamples.open = prefs.regexExamples;
+    nameUseRegex.addEventListener
+    (
+        'change',
+        (event) => nameSearchString.dispatchEvent (new Event ('input'))
+    );
+    //
+    nameSearchButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            clearDataList (nameEmojiDataList, nameHitCount);
+            let name = nameSearchString.value;
+            if (name)
+            {
+                let regex = null;
+                try
+                {
+                    function characterToEcmaScriptEscape (character)
+                    {
+                        let num = character.codePointAt (0);
+                        let hex = num.toString (16).toUpperCase ();
+                        return `\\u{${hex}}`;
+                    }
+                    //
+                    let pattern = (nameUseRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                    if (nameWholeWord.checked)
+                    {
+                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
+                    }
+                    const flags = 'ui';
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                }
+                if (regex)
+                {
+                    let emojiByName = findEmojiByName (regex);
+                    displayDataList (emojiByName.join (''), nameEmojiDataList, nameHitCount);
+                }
+            }
+        }
+    );
+    //
+    nameInstructions.open = prefs.nameInstructions;
+    nameRegexExamples.open = prefs.nameRegexExamples;
+    //
+    symbolWholeWord.checked = prefs.symbolWholeWord;
+    symbolUseRegex.checked = prefs.symbolUseRegex;
+    //
+    symbolSearchString.addEventListener
+    (
+        'keypress',
+        (event) =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault ();    // ??
+                symbolSearchButton.click ();
+            }
+        }
+    );
+    symbolSearchString.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            event.target.classList.remove ('error');
+            event.target.title = "";
+            if (symbolUseRegex.checked)
+            {
+                try
+                {
+                    const flags = 'ui';
+                    let pattern = event.target.value;
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    let regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                    event.target.classList.add ('error');
+                    event.target.title = e;
+                }
+            }
+        }
+    );
+    symbolSearchString.value = prefs.symbolSearchString;
+    symbolSearchString.dispatchEvent (new Event ('input'));
+    //
+    symbolUseRegex.addEventListener
+    (
+        'change',
+        (event) => symbolSearchString.dispatchEvent (new Event ('input'))
+    );
+    //
+    symbolSearchButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            clearDataList (symbolEmojiDataList, symbolHitCount);
+            let symbol = symbolSearchString.value;
+            if (symbol)
+            {
+                let regex = null;
+                try
+                {
+                    function characterToEcmaScriptEscape (character)
+                    {
+                        let num = character.codePointAt (0);
+                        let hex = num.toString (16).toUpperCase ();
+                        return `\\u{${hex}}`;
+                    }
+                    //
+                    let pattern = (symbolUseRegex.checked) ? symbol : Array.from (symbol).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                    if (symbolWholeWord.checked)
+                    {
+                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
+                    }
+                    const flags = 'ui';
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                }
+                if (regex)
+                {
+                    let emojiBySymbol = findEmojiBySymbol (regex);
+                    displayDataList (emojiBySymbol.join (''), symbolEmojiDataList, symbolHitCount);
+                }
+            }
+        }
+    );
+    //
+    symbolInstructions.open = prefs.symbolInstructions;
+    symbolRegexExamples.open = prefs.symbolRegexExamples;
+    //
+    textInputString.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            displayDataList (event.target.value, textEmojiDataList, textHitCount);
+        }
+    );
+    textInputString.value = prefs.textInputString;
+    textInputString.dispatchEvent (new Event ('input'));
+    //
+    textClearButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            textInputString.value = "";
+            textInputString.dispatchEvent (new Event ('input'));
+            textInputString.focus ();
+        }
+    );
+    //
+    const samples = require ('./samples.json');
+    //
+    let emojiMenu = sampleMenus.makeMenu
+    (
+        samples,
+        (sample) =>
+        {
+            textInputString.value = sample.string;
+            textInputString.dispatchEvent (new Event ('input'));
+        }
+    );
+    //
+    textEmojiSamples.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.target.getBoundingClientRect (), emojiMenu);
+        }
+    );
+    //
+    textFilterButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            textInputString.value = getEmojiList (textInputString.value).join ("");
+            textInputString.dispatchEvent (new Event ('input'));
+        }
+    );
+    //
+    textInstructions.open = prefs.textInstructions;
 };
 //
 module.exports.stop = function (context)
 {
+    function getCurrentTabName ()
+    {
+        let currentTabName = "";
+        for (let tab of tabs)
+        {
+            if (tab.checked)
+            {
+                currentTabName = tab.parentElement.textContent;
+            }
+        }
+        return currentTabName;
+    }
+    //
     let prefs =
     {
-        searchString: searchString.value,
-        wholeWord: wholeWord.checked,
-        useRegex: useRegex.checked,
-        inputString: inputString.value,
-        instructions: instructions.open,
-        regexExamples: regexExamples.open
+        tabName: getCurrentTabName (),
+        //
+        nameSearchString: nameSearchString.value,
+        nameWholeWord: nameWholeWord.checked,
+        nameUseRegex: nameUseRegex.checked,
+        nameInstructions: nameInstructions.open,
+        nameRegexExamples: nameRegexExamples.open,
+        //
+        symbolSearchString: symbolSearchString.value,
+        symbolWholeWord: symbolWholeWord.checked,
+        symbolUseRegex: symbolUseRegex.checked,
+        symbolInstructions: symbolInstructions.open,
+        symbolRegexExamples: symbolRegexExamples.open,
+        //
+        textInputString: textInputString.value,
+        textInstructions: textInstructions.open
     };
     context.setPrefs (prefs);
 };

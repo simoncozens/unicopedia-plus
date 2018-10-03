@@ -301,7 +301,7 @@ module.exports.create = function (characters, params)
     //
     paginationBar.appendChild (pageInfoGroup);
     //
-    const pageSizes = [ 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 ];
+    const pageSizes = [ 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 ];
     //
     let pageSizeGroup = document.createElement ('div');
     pageSizeGroup.className = 'pagination-group';

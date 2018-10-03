@@ -21,7 +21,7 @@
             {
                 "canonic": "Cased_Letter",
                 "alias": "LC",
-                "grouping": "Lu | Ll | Lt"
+                "grouping": [ "Lu", "Ll", "Lt" ]
             },
             {
                 "canonic": "Modifier_Letter",
@@ -34,7 +34,7 @@
             {
                 "canonic": "Letter",
                 "alias": "L",
-                "grouping": "Lu | Ll | Lt | Lm | Lo"
+                "grouping": [ "Lu", "Ll", "Lt", "Lm", "Lo" ]
             },
             {
                 "canonic": "Nonspacing_Mark",
@@ -51,7 +51,7 @@
             {
                 "canonic": "Mark",
                 "alias": "M",
-                "grouping": "Mn | Mc | Me"
+                "grouping": [ "Mn", "Mc", "Me" ]
             },
             {
                 "canonic": "Decimal_Number",
@@ -68,7 +68,7 @@
             {
                 "canonic": "Number",
                 "alias": "N",
-                "grouping": "Nd | Nl | No"
+                "grouping": [ "Nd", "Nl", "No" ]
             },
             {
                 "canonic": "Connector_Punctuation",
@@ -101,7 +101,7 @@
             {
                 "canonic": "Punctuation",
                 "alias": "P",
-                "grouping": "Pc | Pd | Ps | Pe | Pi | Pf | Po"
+                "grouping": [ "Pc", "Pd", "Ps", "Pe", "Pi", "Pf", "Po" ]
             },
             {
                 "canonic": "Math_Symbol",
@@ -122,7 +122,7 @@
             {
                 "canonic": "Symbol",
                 "alias": "S",
-                "grouping": "Sm | Sc | Sk | So"
+                "grouping": [ "Sm", "Sc", "Sk", "So" ]
             },
             {
                 "canonic": "Space_Separator",
@@ -139,7 +139,7 @@
             {
                 "canonic": "Separator",
                 "alias": "Z",
-                "grouping": "Zs | Zl | Zp"
+                "grouping": [ "Zs", "Zl", "Zp" ]
             },
             {
                 "canonic": "Control",
@@ -164,7 +164,7 @@
             {
                 "canonic": "Other",
                 "alias": "C",
-                "grouping": "Cc | Cf | Cs | Co | Cn"
+                "grouping": [ "Cc", "Cf", "Cs", "Co", "Cn" ]
             }
         ]
     },

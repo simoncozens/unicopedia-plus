@@ -19,6 +19,8 @@ const planes =
     { name: "Supplementary Private Use Area-B", first: "100000", last: "10FFFF" }
 ];
 //
+//　https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
+// https://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt
 const categories =
 {
     "Lu": "Uppercase Letter",           // an uppercase letter
@@ -29,7 +31,7 @@ const categories =
     "Lo": "Other Letter",               // other letters, including syllables and ideographs
     "L": "Letter",                      // Lu | Ll | Lt | Lm | Lo
     //
-    "Mn": "Non-Spacing Mark",           // a nonspacing combining mark (zero advance width)
+    "Mn": "Nonspacing Mark",           // a nonspacing combining mark (zero advance width)
     "Mc": "Spacing Mark",               // a spacing combining mark (positive advance width)
     "Me": "Enclosing Mark",             // an enclosing combining mark
     "M": "Mark",                        // Mn | Mc | Me
@@ -67,7 +69,6 @@ const categories =
     "C": "Other"                        // Cc | Cf | Cs | Co | Cn
 };
 //
-// Fixed position classes:
 // https://www.unicode.org/Public/UNIDATA/extracted/DerivedCombiningClass.txt
 const combiningClasses =
 {
@@ -134,27 +135,28 @@ const combiningClasses =
     "240": "Iota Subscript"         // Greek iota subscript only
 };
 //
+// https://www.unicode.org/Public/UNIDATA/extracted/DerivedBidiClass.txt
 const bidirectionalClasses =
 {
     "L": "Left-to-Right",               // any strong left-to-right character
     "LRE": "Left-to-Right Embedding",   // U+202A: the LR embedding control
     "LRO": "Left-to-Right Override",    // U+202D: the LR override control
     "R": "Right-to-Left",               // any strong right-to-left (non-Arabic-type) character
-    "AL": "Right-to-Left Arabic",       // any strong right-to-left (Arabic-type) character
+    "AL": "Arabic Letter",              // any strong right-to-left (Arabic-type) character
     "RLE": "Right-to-Left Embedding",   // U+202B: the RL embedding control
     "RLO": "Right-to-Left Override",    // U+202E: the RL override control
     "PDF": "Pop Directional Format",    // U+202C: terminates an embedding or override control
     "EN": "European Number",            // any ASCII digit or Eastern Arabic-Indic digit
-    "ES": "European Number Separator",  // plus and minus signs
-    "ET": "European Number Terminator", // a terminator in a numeric format context, includes currency signs
+    "ES": "European Separator",         // plus and minus signs
+    "ET": "European Terminator",        // a terminator in a numeric format context, includes currency signs
     "AN": "Arabic Number",              // any Arabic-Indic digit
-    "CS": "Common Number Separator",    // commas, colons, and slashes
-    "NSM": "Non-Spacing Mark",          // any nonspacing mark
+    "CS": "Common Separator",           // commas, colons, and slashes
+    "NSM": "Nonspacing Mark",           // any nonspacing mark
     "BN": "Boundary Neutral",           // most format characters, control codes, or noncharacters
     "B": "Paragraph Separator",         // various newline characters
     "S": "Segment Separator",           // various segment-related control codes
-    "WS": "Whitespace",                 // spaces
-    "ON": "Other Neutrals",             // most other symbols and punctuation marks
+    "WS": "White Space",                // spaces
+    "ON": "Other Neutral",              // most other symbols and punctuation marks
     //
     "LRI": "Left-to-Right Isolate",     // U+2066: the LR isolate control
     "RLI": "Right-to-Left Isolate",     // U+2067: the RL isolate control
@@ -168,17 +170,18 @@ const mirrored =
     "Y": "Yes"
 }
 //
+// https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
 const scripts =
 {
     "Adlm": "Adlam",
     "Ahom": "Ahom",
-    "Hluw": "Anatolian_Hieroglyphs",
+    "Hluw": "Anatolian Hieroglyphs",
     "Arab": "Arabic",
     "Armn": "Armenian",
     "Avst": "Avestan",
     "Bali": "Balinese",
     "Bamu": "Bamum",
-    "Bass": "Bassa_Vah",
+    "Bass": "Bassa Vah",
     "Batk": "Batak",
     "Beng": "Bengali",
     "Bhks": "Bhaiksuki",
@@ -187,14 +190,15 @@ const scripts =
     "Brai": "Braille",
     "Bugi": "Buginese",
     "Buhd": "Buhid",
-    "Cans": "Canadian_Aboriginal",
+    "Cans": "Canadian Aboriginal",
     "Cari": "Carian",
-    "Aghb": "Caucasian_Albanian",
+    "Aghb": "Caucasian Albanian",
     "Cakm": "Chakma",
     "Cham": "Cham",
     "Cher": "Cherokee",
     "Zyyy": "Common",
     "Copt": "Coptic",
+    "Qaac": "Coptic",   // alias?
     "Xsux": "Cuneiform",
     "Cprt": "Cypriot",
     "Cyrl": "Cyrillic",
@@ -202,7 +206,7 @@ const scripts =
     "Deva": "Devanagari",
     "Dogr": "Dogra",
     "Dupl": "Duployan",
-    "Egyp": "Egyptian_Hieroglyphs",
+    "Egyp": "Egyptian Hieroglyphs",
     "Elba": "Elbasan",
     "Ethi": "Ethiopic",
     "Geor": "Georgian",
@@ -211,24 +215,25 @@ const scripts =
     "Gran": "Grantha",
     "Grek": "Greek",
     "Gujr": "Gujarati",
-    "Gong": "Gunjala_Gondi",
+    "Gong": "Gunjala Gondi",
     "Guru": "Gurmukhi",
     "Hani": "Han",
     "Hang": "Hangul",
-    "Rohg": "Hanifi_Rohingya",
+    "Rohg": "Hanifi Rohingya",
     "Hano": "Hanunoo",
     "Hatr": "Hatran",
     "Hebr": "Hebrew",
     "Hira": "Hiragana",
-    "Armi": "Imperial_Aramaic",
+    "Armi": "Imperial Aramaic",
     "Zinh": "Inherited",
-    "Phli": "Inscriptional_Pahlavi",
-    "Prti": "Inscriptional_Parthian",
+    "Qaai": "Inherited",    // Alias?
+    "Phli": "Inscriptional Pahlavi",
+    "Prti": "Inscriptional Parthian",
     "Java": "Javanese",
     "Kthi": "Kaithi",
     "Knda": "Kannada",
     "Kana": "Katakana",
-    "Kali": "Kayah_Li",
+    "Kali": "Kayah Li",
     "Khar": "Kharoshthi",
     "Khmr": "Khmer",
     "Khoj": "Khojki",
@@ -237,8 +242,8 @@ const scripts =
     "Latn": "Latin",
     "Lepc": "Lepcha",
     "Limb": "Limbu",
-    "Lina": "Linear_A",
-    "Linb": "Linear_B",
+    "Lina": "Linear A",
+    "Linb": "Linear B",
     "Lisu": "Lisu",
     "Lyci": "Lycian",
     "Lydi": "Lydian",
@@ -248,12 +253,12 @@ const scripts =
     "Mand": "Mandaic",
     "Mani": "Manichaean",
     "Marc": "Marchen",
-    "Gonm": "Masaram_Gondi",
+    "Gonm": "Masaram Gondi",
     "Medf": "Medefaidrin",
-    "Mtei": "Meetei_Mayek",
-    "Mend": "Mende_Kikakui",
-    "Merc": "Meroitic_Cursive",
-    "Mero": "Meroitic_Hieroglyphs",
+    "Mtei": "Meetei Mayek",
+    "Mend": "Mende Kikakui",
+    "Merc": "Meroitic Cursive",
+    "Mero": "Meroitic Hieroglyphs",
     "Plrd": "Miao",
     "Modi": "Modi",
     "Mong": "Mongolian",
@@ -261,29 +266,29 @@ const scripts =
     "Mult": "Multani",
     "Mymr": "Myanmar",
     "Nbat": "Nabataean",
-    "Talu": "New_Tai_Lue",
+    "Talu": "New Tai Lue",
     "Newa": "Newa",
     "Nkoo": "Nko",
     "Nshu": "Nushu",
     "Ogam": "Ogham",
-    "Olck": "Ol_Chiki",
-    "Hung": "Old_Hungarian",
-    "Ital": "Old_Italic",
-    "Narb": "Old_North_Arabian",
-    "Perm": "Old_Permic",
-    "Xpeo": "Old_Persian",
-    "Sogo": "Old_Sogdian",
-    "Sarb": "Old_South_Arabian",
-    "Orkh": "Old_Turkic",
+    "Olck": "Ol Chiki",
+    "Hung": "Old Hungarian",
+    "Ital": "Old Italic",
+    "Narb": "Old North Arabian",
+    "Perm": "Old Permic",
+    "Xpeo": "Old Persian",
+    "Sogo": "Old Sogdian",
+    "Sarb": "Old South Arabian",
+    "Orkh": "Old Turkic",
     "Orya": "Oriya",
     "Osge": "Osage",
     "Osma": "Osmanya",
-    "Hmng": "Pahawh_Hmong",
+    "Hmng": "Pahawh Hmong",
     "Palm": "Palmyrene",
-    "Pauc": "Pau_Cin_Hau",
-    "Phag": "Phags_Pa",
+    "Pauc": "Pau Cin Hau",
+    "Phag": "Phags-pa",
     "Phnx": "Phoenician",
-    "Phlp": "Psalter_Pahlavi",
+    "Phlp": "Psalter Pahlavi",
     "Rjng": "Rejang",
     "Runr": "Runic",
     "Samr": "Samaritan",
@@ -294,16 +299,16 @@ const scripts =
     "Sgnw": "SignWriting",
     "Sinh": "Sinhala",
     "Sogd": "Sogdian",
-    "Sora": "Sora_Sompeng",
+    "Sora": "Sora Sompeng",
     "Soyo": "Soyombo",
     "Sund": "Sundanese",
-    "Sylo": "Syloti_Nagri",
+    "Sylo": "Syloti Nagri",
     "Syrc": "Syriac",
     "Tglg": "Tagalog",
     "Tagb": "Tagbanwa",
-    "Tale": "Tai_Le",
-    "Lana": "Tai_Tham",
-    "Tavt": "Tai_Viet",
+    "Tale": "Tai Le",
+    "Lana": "Tai Tham",
+    "Tavt": "Tai Viet",
     "Takr": "Takri",
     "Taml": "Tamil",
     "Tang": "Tangut",
@@ -315,9 +320,9 @@ const scripts =
     "Tirh": "Tirhuta",
     "Ugar": "Ugaritic",
     "Vaii": "Vai",
-    "Wara": "Warang_Citi",
+    "Wara": "Warang Citi",
     "Yiii": "Yi",
-    "Zanb": "Zanabazar_Square"
+    "Zanb": "Zanabazar Square"
 };
 //
 function uniHexify (string)
@@ -473,7 +478,7 @@ function getCharacterData (character)
     {
         if ((parseInt (scriptExtension.first, 16) <= num) && (num <= parseInt (scriptExtension.last, 16)))
         {
-            let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias].replace (/_/g, " ").replace ("Phags Pa", "Phags-pa"));
+            let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias]);
             characterData.scriptExtensions = names.join (", ");
             break;
         }

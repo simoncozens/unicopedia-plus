@@ -138,7 +138,7 @@ module.exports.start = function (context)
                     { label: "JavaScript", value: data.javaScript },
                     { label: "UTF-16", value: data.utf16 },
                     { label: "UTF-8", value: data.utf8 },
-                    { label: "Entity", value: data.entity }
+                    { label: "HTML\xA0Entity", value: data.entity }
                 ];
                 for (let code of codes)
                 {

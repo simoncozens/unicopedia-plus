@@ -69,19 +69,19 @@ The following utilities are currently available:
 
 ## Regex Properties
 
-- The **Regex Properties** utility displays a list of all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder** and **Unicode Data Finder** utilities.
+- The **Regex Properties** utility displays all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder** and **Unicode Data Finder** utilities.
 - These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
-- Unicode properties fall into four categories:
+- Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> pop-up menu:
     - **General Category** properties
+    - **Binary** properties
     - **Script** properties
     - **Script Extensions** properties
-    - **Binary** properties
-- For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional.
+- For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
+- `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
 - Notes:
-    - `\P{…}` is the negated form of `\p{…}`
-    - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`</li>
-    - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`</li>
-    - `\p{Assigned}` is equivalent to `\P{Unassigned}`</li>
+    - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`
+    - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`
+    - `\p{Assigned}` is equivalent to `\P{Unassigned}`
 - Information pertaining to this list has been gathered from several sources (see References), and slightly refined through trial and error.
 
 <img src="screenshots/regex-properties.png" width="1080px" alt="Regex Properties screenshot">

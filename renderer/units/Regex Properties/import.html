@@ -1,6 +1,19 @@
 <template>
     <section id="regex-properties-unit">
         <div class="plain-panel">
+            <div class="interface">
+                <span class="option">
+                    <select class="category-select"></select>
+                </span>
+                <span class="option-group">
+                    <span class="option">
+                        <label><input type="checkbox" class="negated-checkbox">&nbsp;Negated</label>
+                    </span>
+                    <span class="option">
+                        <label><input type="checkbox" class="optional-prefix-checkbox">&nbsp;Optional Prefix</label>
+                    </span>
+                </span>
+            </div>
             <div class="container"></div>
         </div>
         <div class="accent-panel">
@@ -8,7 +21,7 @@
                 <summary>Instructions</summary>
                 <ul>
                     <li>
-                        The <strong>Regex Properties</strong> utility displays a list of all the Unicode properties available in this app for 
+                        The <strong>Regex Properties</strong> utility displays all the Unicode properties available in this app for 
                         regular expressions, used in particular by the <strong>Emoji Data Finder</strong> and 
                         <strong>Unicode Data Finder</strong> utilities.
                     </li>
@@ -16,19 +29,25 @@
                         These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
                     </li>
                     <li>
-                        Unicode properties fall into four categories:
+                        Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> pop-up menu:
                         <ul>
                             <li><strong>General Category</strong> properties</li>
+                            <li><strong>Binary</strong> properties</li>
                             <li><strong>Script</strong> properties</li>
                             <li><strong>Script Extensions</strong> properties</li>
-                            <li><strong>Binary</strong> properties</li>
                         </ul>
                     </li>
-                    <li>For <strong>General Category</strong> properties, prefixing with <code>General_Category=</code> (Canonical) or <code>gc=</code> (Alias) is optional.</li>
+                    <li>
+                        For <strong>General Category</strong> properties, prefixing with <code>General_Category=</code> (Canonical) or <code>gc=</code> (Alias) is optional.
+                        Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
+                    </li>
+                    <li>
+                        <code>\P{…}</code> is the negated form of <code>\p{…}</code>.
+                        Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.       
+                    </li>
                     <li>
                         Notes:
                         <ul class="notes">
-                            <li><code>\P{…}</code> is the negated form of <code>\p{…}</code></li>
                             <li><code>\p{Any}</code> is equivalent to <code>[\u{0}-\u{10FFFF}]</code></li>
                             <li><code>\p{ASCII}</code> is equivalent to <code>[\u{0}-\u{7F}]</code></li>
                             <li><code>\p{Assigned}</code> is equivalent to <code>\P{Unassigned}</code></li>

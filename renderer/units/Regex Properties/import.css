@@ -1,8 +1,18 @@
 @charset "utf-8";
 
-#regex-properties-unit h2
+#regex-properties-unit .interface
 {
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em 0 1.5em;
+}
+
+#regex-properties-unit .interface .option-group .option
+{
+    white-space: nowrap;
+    margin-left: 1em;
 }
 
 #regex-properties-unit .property-list
@@ -73,7 +83,7 @@
 
 #regex-properties-unit .instructions li
 {
-    margin: 0.125em 0;
+    margin: 0.2em 0;
 }
 
 #regex-properties-unit .instructions li > ul
@@ -84,6 +94,17 @@
 #regex-properties-unit .instructions .notes li
 {
     margin: 0.25em 0 0.5em 0;
+}
+
+#regex-properties-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
 }
 
 #regex-properties-unit .instructions code

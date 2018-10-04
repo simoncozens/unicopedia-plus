@@ -25,9 +25,9 @@ const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples')
 //
 const textClearButton = unit.querySelector ('.filter-text .clear-button');
 const textEmojiSamples = unit.querySelector ('.filter-text .emoji-samples');
+const textFilterButton = unit.querySelector ('.filter-text .filter-button');
 const textInputString = unit.querySelector ('.filter-text .input-string');
 const textHitCount = unit.querySelector ('.filter-text .hit-count');
-const textFilterButton = unit.querySelector ('.filter-text .filter-button');
 const textEmojiDataList = unit.querySelector ('.filter-text .emoji-data-list');
 const textInstructions = unit.querySelector ('.filter-text .instructions');
 //
@@ -407,17 +407,6 @@ module.exports.start = function (context)
     symbolInstructions.open = prefs.symbolInstructions;
     symbolRegexExamples.open = prefs.symbolRegexExamples;
     //
-    textInputString.addEventListener
-    (
-        'input',
-        (event) =>
-        {
-            displayDataList (event.target.value, textEmojiDataList, textHitCount);
-        }
-    );
-    textInputString.value = prefs.textInputString;
-    textInputString.dispatchEvent (new Event ('input'));
-    //
     textClearButton.addEventListener
     (
         'click',
@@ -459,6 +448,17 @@ module.exports.start = function (context)
             textInputString.dispatchEvent (new Event ('input'));
         }
     );
+    //
+    textInputString.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            displayDataList (event.target.value, textEmojiDataList, textHitCount);
+        }
+    );
+    textInputString.value = prefs.textInputString;
+    textInputString.dispatchEvent (new Event ('input'));
     //
     textInstructions.open = prefs.textInstructions;
 };

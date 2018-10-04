@@ -14,6 +14,9 @@
                                 <input class="search-string" type="search" placeholder="Name or keyword...">
                             </span>
                             <span class="action">
+                                <label title="Case Sensitive (disabled)"><input type="checkbox" class="case-sensitive icon-checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
                                 <label title="Whole Word"><input type="checkbox" class="whole-word icon-checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
                             </span>
                             <span class="action">
@@ -35,6 +38,9 @@
                         <span class="action-group search-group">
                             <span class="action search-wrap">
                                 <input class="search-string" type="search" placeholder="Symbol or properties...">
+                            </span>
+                            <span class="action">
+                                <label title="Case Sensitive (disabled)"><input type="checkbox" class="case-sensitive icon-checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
                             </span>
                             <span class="action">
                                 <label title="Whole Word"><input type="checkbox" class="whole-word icon-checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
@@ -63,13 +69,15 @@
                                 <button type="button" class="pull-down-menu emoji-samples">Samples</button>
                             </span>
                         </span>
+                        <span class="action-group">
+                            <span class="action">
+                                <button type="button" class="filter-button" title="Strip out non-emoji characters.">Filter</button>
+                            </span>
+                        </span>
                     </div>
                     <textarea class="input-string"></textarea>
                     <div class="actions">
                         <span class="action hit-count">
-                        </span>
-                        <span class="action">
-                            <button type="button" class="filter-button" title="Strip out non-emoji characters.">Filter</button>
                         </span>
                     </div>
                     <div class="emoji-data-list"></div>

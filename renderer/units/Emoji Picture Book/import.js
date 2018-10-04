@@ -254,6 +254,7 @@ module.exports.start = function (context)
                         panel.remove ();
                     } 
                 }
+                break;
             }
         }
     }

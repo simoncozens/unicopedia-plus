@@ -169,6 +169,224 @@
         ]
     },
     {
+        "category": "Binary",
+        "items":
+        [
+            {
+                "canonic": "Alphabetic",
+                "alias": "Alpha"
+            },
+            {
+                "canonic": "Any",
+                "alias": ""
+            },
+            {
+                "canonic": "ASCII",
+                "alias": ""
+            },
+            {
+                "canonic": "ASCII_Hex_Digit",
+                "alias": "AHex"
+            },
+            {
+                "canonic": "Assigned",
+                "alias": ""
+            },
+            {
+                "canonic": "Bidi_Control",
+                "alias": "Bidi_C"
+            },
+            {
+                "canonic": "Bidi_Mirrored",
+                "alias": "Bidi_M"
+            },
+            {
+                "canonic": "Case_Ignorable",
+                "alias": "CI"
+            },
+            {
+                "canonic": "Cased",
+                "alias": "Cased"
+            },
+            {
+                "canonic": "Changes_When_Casefolded",
+                "alias": "CWCF"
+            },
+            {
+                "canonic": "Changes_When_Casemapped",
+                "alias": "CWCM"
+            },
+            {
+                "canonic": "Changes_When_Lowercased",
+                "alias": "CWL"
+            },
+            {
+                "canonic": "Changes_When_NFKC_Casefolded",
+                "alias": "CWKCF"
+            },
+            {
+                "canonic": "Changes_When_Titlecased",
+                "alias": "CWT"
+            },
+            {
+                "canonic": "Changes_When_Uppercased",
+                "alias": "CWU"
+            },
+            {
+                "canonic": "Dash",
+                "alias": "Dash"
+            },
+            {
+                "canonic": "Default_Ignorable_Code_Point",
+                "alias": "DI"
+            },
+            {
+                "canonic": "Deprecated",
+                "alias": "Dep"
+            },
+            {
+                "canonic": "Diacritic",
+                "alias": "Dia"
+            },
+            {
+                "canonic": "Emoji",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Component",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Modifier",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Modifier_Base",
+                "alias": ""
+            },
+            {
+                "canonic": "Emoji_Presentation",
+                "alias": ""
+            },
+            {
+                "canonic": "Extended_Pictographic",
+                "alias": ""
+            },
+            {
+                "canonic": "Extender",
+                "alias": "Ext"
+            },
+            {
+                "canonic": "Grapheme_Base",
+                "alias": "Gr_Base"
+            },
+            {
+                "canonic": "Grapheme_Extend",
+                "alias": "Gr_Ext"
+            },
+            {
+                "canonic": "Hex_Digit",
+                "alias": "Hex"
+            },
+            {
+                "canonic": "IDS_Binary_Operator",
+                "alias": "IDSB"
+            },
+            {
+                "canonic": "IDS_Trinary_Operator",
+                "alias": "IDST"
+            },
+            {
+                "canonic": "ID_Continue",
+                "alias": "IDC"
+            },
+            {
+                "canonic": "ID_Start",
+                "alias": "IDS"
+            },
+            {
+                "canonic": "Ideographic",
+                "alias": "Ideo"
+            },
+            {
+                "canonic": "Join_Control",
+                "alias": "Join_C"
+            },
+            {
+                "canonic": "Logical_Order_Exception",
+                "alias": "LOE"
+            },
+            {
+                "canonic": "Lowercase",
+                "alias": "Lower"
+            },
+            {
+                "canonic": "Math",
+                "alias": "Math"
+            },
+            {
+                "canonic": "Noncharacter_Code_Point",
+                "alias": "NChar"
+            },
+            {
+                "canonic": "Pattern_Syntax",
+                "alias": "Pat_Syn"
+            },
+            {
+                "canonic": "Pattern_White_Space",
+                "alias": "Pat_WS"
+            },
+            {
+                "canonic": "Quotation_Mark",
+                "alias": "QMark"
+            },
+            {
+                "canonic": "Radical",
+                "alias": "Radical"
+            },
+            {
+                "canonic": "Regional_Indicator",
+                "alias": "RI"
+            },
+            {
+                "canonic": "Sentence_Terminal",
+                "alias": "STerm"
+            },
+            {
+                "canonic": "Soft_Dotted",
+                "alias": "SD"
+            },
+            {
+                "canonic": "Terminal_Punctuation",
+                "alias": "Term"
+            },
+            {
+                "canonic": "Unified_Ideograph",
+                "alias": "UIdeo"
+            },
+            {
+                "canonic": "Uppercase",
+                "alias": "Upper"
+            },
+            {
+                "canonic": "Variation_Selector",
+                "alias": "VS"
+            },
+            {
+                "canonic": "White_Space",
+                "alias": "WSpace"
+            },
+            {
+                "canonic": "XID_Continue",
+                "alias": "XIDC"
+            },
+            {
+                "canonic": "XID_Start",
+                "alias": "XIDS"
+            }
+        ]
+    },
+    {
         "category": "Script",
         "canonic": "Script",
         "alias": "sc",
@@ -1365,224 +1583,6 @@
             {
                 "canonic": "Zanabazar_Square",
                 "alias": "Zanb"
-            }
-        ]
-    },
-    {
-        "category": "Binary",
-        "items":
-        [
-            {
-                "canonic": "Alphabetic",
-                "alias": "Alpha"
-            },
-            {
-                "canonic": "Any",
-                "alias": ""
-            },
-            {
-                "canonic": "ASCII",
-                "alias": ""
-            },
-            {
-                "canonic": "ASCII_Hex_Digit",
-                "alias": "AHex"
-            },
-            {
-                "canonic": "Assigned",
-                "alias": ""
-            },
-            {
-                "canonic": "Bidi_Control",
-                "alias": "Bidi_C"
-            },
-            {
-                "canonic": "Bidi_Mirrored",
-                "alias": "Bidi_M"
-            },
-            {
-                "canonic": "Case_Ignorable",
-                "alias": "CI"
-            },
-            {
-                "canonic": "Cased",
-                "alias": "Cased"
-            },
-            {
-                "canonic": "Changes_When_Casefolded",
-                "alias": "CWCF"
-            },
-            {
-                "canonic": "Changes_When_Casemapped",
-                "alias": "CWCM"
-            },
-            {
-                "canonic": "Changes_When_Lowercased",
-                "alias": "CWL"
-            },
-            {
-                "canonic": "Changes_When_NFKC_Casefolded",
-                "alias": "CWKCF"
-            },
-            {
-                "canonic": "Changes_When_Titlecased",
-                "alias": "CWT"
-            },
-            {
-                "canonic": "Changes_When_Uppercased",
-                "alias": "CWU"
-            },
-            {
-                "canonic": "Dash",
-                "alias": "Dash"
-            },
-            {
-                "canonic": "Default_Ignorable_Code_Point",
-                "alias": "DI"
-            },
-            {
-                "canonic": "Deprecated",
-                "alias": "Dep"
-            },
-            {
-                "canonic": "Diacritic",
-                "alias": "Dia"
-            },
-            {
-                "canonic": "Emoji",
-                "alias": ""
-            },
-            {
-                "canonic": "Emoji_Component",
-                "alias": ""
-            },
-            {
-                "canonic": "Emoji_Modifier",
-                "alias": ""
-            },
-            {
-                "canonic": "Emoji_Modifier_Base",
-                "alias": ""
-            },
-            {
-                "canonic": "Emoji_Presentation",
-                "alias": ""
-            },
-            {
-                "canonic": "Extended_Pictographic",
-                "alias": ""
-            },
-            {
-                "canonic": "Extender",
-                "alias": "Ext"
-            },
-            {
-                "canonic": "Grapheme_Base",
-                "alias": "Gr_Base"
-            },
-            {
-                "canonic": "Grapheme_Extend",
-                "alias": "Gr_Ext"
-            },
-            {
-                "canonic": "Hex_Digit",
-                "alias": "Hex"
-            },
-            {
-                "canonic": "IDS_Binary_Operator",
-                "alias": "IDSB"
-            },
-            {
-                "canonic": "IDS_Trinary_Operator",
-                "alias": "IDST"
-            },
-            {
-                "canonic": "ID_Continue",
-                "alias": "IDC"
-            },
-            {
-                "canonic": "ID_Start",
-                "alias": "IDS"
-            },
-            {
-                "canonic": "Ideographic",
-                "alias": "Ideo"
-            },
-            {
-                "canonic": "Join_Control",
-                "alias": "Join_C"
-            },
-            {
-                "canonic": "Logical_Order_Exception",
-                "alias": "LOE"
-            },
-            {
-                "canonic": "Lowercase",
-                "alias": "Lower"
-            },
-            {
-                "canonic": "Math",
-                "alias": "Math"
-            },
-            {
-                "canonic": "Noncharacter_Code_Point",
-                "alias": "NChar"
-            },
-            {
-                "canonic": "Pattern_Syntax",
-                "alias": "Pat_Syn"
-            },
-            {
-                "canonic": "Pattern_White_Space",
-                "alias": "Pat_WS"
-            },
-            {
-                "canonic": "Quotation_Mark",
-                "alias": "QMark"
-            },
-            {
-                "canonic": "Radical",
-                "alias": "Radical"
-            },
-            {
-                "canonic": "Regional_Indicator",
-                "alias": "RI"
-            },
-            {
-                "canonic": "Sentence_Terminal",
-                "alias": "STerm"
-            },
-            {
-                "canonic": "Soft_Dotted",
-                "alias": "SD"
-            },
-            {
-                "canonic": "Terminal_Punctuation",
-                "alias": "Term"
-            },
-            {
-                "canonic": "Unified_Ideograph",
-                "alias": "UIdeo"
-            },
-            {
-                "canonic": "Uppercase",
-                "alias": "Upper"
-            },
-            {
-                "canonic": "Variation_Selector",
-                "alias": "VS"
-            },
-            {
-                "canonic": "White_Space",
-                "alias": "WSpace"
-            },
-            {
-                "canonic": "XID_Continue",
-                "alias": "XIDC"
-            },
-            {
-                "canonic": "XID_Start",
-                "alias": "XIDS"
             }
         ]
     }

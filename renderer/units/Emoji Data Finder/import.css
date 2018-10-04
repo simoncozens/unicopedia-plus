@@ -145,6 +145,16 @@
     fill: white;
 }
 
+#emoji-data-finder-unit .icon-checkbox:disabled + svg
+{
+    color: gray;
+    fill: gray;
+    border: gray 1px solid;
+    background-color: white;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}
+
 #emoji-data-finder-unit .input-string
 {
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;

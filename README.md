@@ -9,15 +9,23 @@ This app works on Mac OS X, Linux and Windows operating systems.
 The following utilities are currently available:
 
 * [Emoji Data Finder](#emoji-data-finder)
+    * [Find by Name](#find-by-name)
+    * [Match Symbol](#match-symbol)
+    * [Filter Text](#filter-text)
 * [Emoji Picture Book](#emoji-picture-book)
 * [Emoji References](#emoji-references)
 * [JavaScript Runner](#javascript-runner)
 * [Regex Properties](#regex-properties)
 * [Unicode Data Finder](#unicode-data-finder)
+    * [Find by Name](#find-by-name-1)
+    * [Match Symbol](#match-symbol-1)
+    * [List by Block](#list-by-block)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
 
 ## Emoji Data Finder
+
+### Find by Name
 
 - The **Find by Name** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code) of matching Unicode emoji searched by name or keyword, including through regular expressions.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any.
@@ -27,6 +35,8 @@ The following utilities are currently available:
 
 <img src="screenshots/emoji-data-finder-find-by-name.png" width="1080px" alt="Emoji Data Finder - Find by Name screenshot">
 
+### Match Symbol
+
 - The **Match Symbol** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code) of Unicode emoji matching a symbol, or a regular expression using Unicode properties.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
@@ -34,6 +44,8 @@ The following utilities are currently available:
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/emoji-data-finder-match-symbol.png" width="1080px" alt="Emoji Data Finder - Match Symbol screenshot">
+
+### Filter Text
 
 - The **Filter Text** feature of the **Emoji Data Finder** utility displays in real time a list of basic data (symbol, short name, keywords, code) of all the Unicode emoji contained in a text string.
 - Text can by directly typed or pasted from the clipboard into the main input field. Clicking on the <kbd>Filter</kbd> button strips out all non-emoji characters.
@@ -88,6 +100,8 @@ The following utilities are currently available:
 
 ## Unicode Data Finder
 
+### Find by Name
+
 - The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.
@@ -97,6 +111,8 @@ The following utilities are currently available:
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
 
+### Match Symbol
+
 - The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
@@ -105,9 +121,12 @@ The following utilities are currently available:
 
 <img src="screenshots/unicode-data-finder-match-symbol.png" width="1080px" alt="Unicode Data Finder - Match Symbol screenshot">
 
+### List by Block
+
 - The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.
 - It is possible to choose how many characters are shown one page at a time.
 - A block can be selected either by range or by name, as defined in the **Unicode 11.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
+- It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point and scroll its basic data into view.
 
 <img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 

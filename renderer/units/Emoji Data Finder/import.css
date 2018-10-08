@@ -168,6 +168,7 @@
     resize: vertical;
     overflow-y: scroll;
     min-height: calc(1px + 48px + 48px + 1px);
+    overscroll-behavior: contain;
 }
 
 #emoji-data-finder-unit .hit-count

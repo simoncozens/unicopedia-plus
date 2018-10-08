@@ -329,6 +329,10 @@ else
             }
         );
         //
+        // Electron 3.0.0 bug fix for the time being, to avoid extra gap on the bottom and right of the maximized main window...
+        mainWindow.setPosition (windowBounds.x, windowBounds.y);
+        mainWindow.setSize (windowBounds.width, windowBounds.height);
+        //
         mainWindow.loadURL (url.format ({ protocol: 'file', slashes: true, pathname: path.join (__dirname, 'renderer', 'index.html') }));
         //
         mainWindow.webContents.on ('will-navigate', (event) => { event.preventDefault (); }); // Inhibit drag-and-drop of URL on window

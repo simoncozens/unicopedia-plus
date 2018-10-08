@@ -20,6 +20,10 @@
                 "string": "👩‍❤️‍👩😍👩‍❤️‍👨😻👨‍❤️‍👨"
             },
             {
+                "label": "Arabic Ligature",
+                "string": "﷽"
+            },
+            {
                 "label": "iOS Killer Character",
                 "string": "జ్ఞ‌ా"
             }
@@ -60,11 +64,11 @@
                 "string": "🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸"
             },
             {
-                "label": "Special Flags",
+                "label": "Macroregion Flags",
                 "string": "🇪🇺🇺🇳"
             },
             {
-                "label": "Sub-Division Flags",
+                "label": "Subdivision Flags",
                 "string": "🏴󠁧󠁢󠁥󠁮󠁧󠁿🏴󠁧󠁢󠁳󠁣󠁴󠁿🏴󠁧󠁢󠁷󠁬󠁳󠁿"
             }
         ]
@@ -125,7 +129,7 @@
         [
             {
                 "label": "CJK Graphical Variants 1",
-                "string": "冨富畐"
+                "string": "冨富"
             },
             {
                 "label": "CJK Graphical Variants 2",

@@ -330,6 +330,15 @@ function uniHexify (string)
     return string.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");
 }
 //
+function characterToUtf32Code (character)
+{
+    let utf32Code = "";
+    let num = character.codePointAt (0);
+    let hex = num.toString (16).toUpperCase ();
+    utf32Code = ("0000000" + hex).slice (-8);
+    return utf32Code;
+}
+//
 function characterToUtf16Code (character)
 {
     let utf16Code = "";
@@ -352,15 +361,25 @@ function characterToUtf16Code (character)
 }
 //
 // https://kev.inburke.com/kevin/node-js-string-encoding/
-function characterToUtf8Code (character)
+function characterToUtf8 (character)
 {
-    let utf8Code = [ ];
+    let utf8 = [ ];
     let buffer = Buffer.from (character, 'utf8');
     for (let byte of buffer)
     {
-        utf8Code.push (("00" + byte.toString (16).toUpperCase ()).slice (-2));
+        utf8.push (("00" + byte.toString (16).toUpperCase ()).slice (-2));
     }
-    return utf8Code.join ('\xA0');
+    return utf8;
+}
+//
+function characterToUtf8Code (character)
+{
+    return characterToUtf8 (character).join ('\xA0');
+}
+//
+function characterToUrlEncoding (character)
+{
+    return characterToUtf8 (character).map (hex => `%${hex}`).join ("");
 }
 //
 function characterToDecimalEntity (character)
@@ -425,8 +444,10 @@ const versionDate =
 function getCharacterData (character)
 {
     let characterData = { };
+    characterData.utf32 = characterToUtf32Code (character);
     characterData.utf16 = characterToUtf16Code (character);
     characterData.utf8 = characterToUtf8Code (character);
+    characterData.urlEncoding = characterToUrlEncoding (character);
     characterData.entity = characterToDecimalEntity (character)
     characterData.javaScript = characterToJavaScriptEscape (character);
     characterData.ecmaScript = characterToEcmaScriptEscape (character);

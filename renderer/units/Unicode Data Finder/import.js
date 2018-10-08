@@ -23,6 +23,8 @@ const symbolSearchData = unit.querySelector ('.match-symbol .search-data');
 const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
 const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
 //
+const blockSpecimen = unit.querySelector ('.list-by-block .specimen');
+const blockGoButton = unit.querySelector ('.list-by-block .go-button');
 const blockSelectBlockRange = unit.querySelector ('.list-by-block .select-block-range');
 const blockSelectBlockName = unit.querySelector ('.list-by-block .select-block-name');
 const blockSearchInfo = unit.querySelector ('.list-by-block .search-info');
@@ -62,6 +64,7 @@ module.exports.start = function (context)
         symbolRegexExamples: false,
         //
         blockSelectBlockRange: "",
+        blockSpecimen: "",
         blockPageSize: 8,
         blockInstructions: true
     };
@@ -324,7 +327,7 @@ module.exports.start = function (context)
     blockParams.pageSize = prefs.blockPageSize;
     blockParams.observer = null;
     //
-    function displayRangeTable (blockKey)
+    function displayRangeTable (blockKey, charKey)
     {
         let blockRange = blockKey.split ('-');
         blockSearchInfo.textContent = "";
@@ -337,15 +340,19 @@ module.exports.start = function (context)
         {
             characters.push (String.fromCodePoint (index));
         }
-        let blockSize = characters.length;
+        let hilightedCharacter;
+        if (charKey)
+        {
+            hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
+        }
         let flags = 'u';
         let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
         let regex = new RegExp (pattern, flags);
-        characters = characters.filter (character => regex.test (character));
-        blockSearchInfo.innerHTML = `Assigned characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;Block size: <strong>${blockSize}</strong>`;
+        let assignedCharacters = characters.filter (character => regex.test (character));
+        blockSearchInfo.innerHTML = `Assigned characters: <strong>${assignedCharacters.length}</strong>&nbsp;/&nbsp;Block size: <strong>${characters.length}</strong>`;
         if (characters.length > 0)
         {
-            blockSearchData.appendChild (dataTable.create (characters, blockParams));
+            blockSearchData.appendChild (dataTable.create (characters, blockParams, hilightedCharacter));
         }
     }
     //
@@ -375,6 +382,73 @@ module.exports.start = function (context)
             option.value = blocks[blockName];
             option.textContent = blockName;
             blockSelectBlockName.appendChild (option);
+        }
+    );
+    //
+    blockSpecimen.value = prefs.blockSpecimen;
+    //
+    const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
+    //
+    blockSpecimen.pattern = specimenRegex.source;
+    blockSpecimen.addEventListener
+    (
+        'keypress',
+        (event) =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault (); // ??
+                blockGoButton.click ();
+            }
+        }
+    );
+    //
+    blockGoButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            if (blockSpecimen.value)
+            {
+                let match = blockSpecimen.value.match (specimenRegex);
+                if (match)
+                {
+                    let num;
+                    if (match[1])
+                    {
+                        num = match[1].codePointAt (0);
+                    }
+                    else if (match[2])
+                    {
+                        num = parseInt (match[2], 16);
+                    }
+                    let hex = num.toString (16).toUpperCase ();
+                    if (hex.length < 5)
+                    {
+                        hex = ("000" + hex).slice (-4);
+                    }
+                    let blockRange = null;
+                    for (let block of extraData.blocks)
+                    {
+                        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+                        {
+                            blockRange = `${block.first}-${block.last}`;
+                            break;
+                        }
+                    }
+                    blockSpecimen.value = `U+${hex}`;
+                    if (blockRange)
+                    {
+                        blockSelectBlockRange.value = blockRange;
+                        blockSelectBlockName.value = blockRange;
+                        displayRangeTable (blockRange, hex);
+                    }
+                }
+            }
+            else
+            {
+                displayRangeTable (blockSelectBlockRange.value);
+            }
         }
     );
     //
@@ -444,6 +518,7 @@ module.exports.stop = function (context)
         symbolRegexExamples: symbolRegexExamples.open,
         //
         blockSelectBlockRange: blockSelectBlockRange.value,
+        blockSpecimen: blockSpecimen.value,
         blockPageSize: blockParams.pageSize,
         blockInstructions: blockInstructions.open
     };

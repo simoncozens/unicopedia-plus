@@ -34,7 +34,7 @@
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Symbol or properties...">
+                                <input class="search-string" type="search" placeholder="Symbol or regex properties...">
                             </span>
                             <span class="action">
                                 <label title="Case Sensitive"><input type="checkbox" class="case-sensitive"><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
@@ -55,9 +55,15 @@
                 </div>
                 <div class="tab-pane list-by-block">
                     <div class="actions-no-flex">
-                        <span class="action-group-no-flex search-group">
+                        <span class="action-group-no-flex">
                             <span class="action-no-flex">
                                 <select class="select-block-range"></select>
+                            </span>
+                            <span class="action-no-flex">
+                                <input type="search" class="specimen" title="Specimen (code point or character)" placeholder="Specimen...">
+                            </span>
+                            <span class="action">
+                                <button type="button" class="go-button">Go</button>
                             </span>
                             <br>
                             <span class="action-no-flex">
@@ -137,6 +143,7 @@
                             <li>The <strong>List by Block</strong> feature of the <strong>Unicode Data Finder</strong> utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>A block can be selected either by range or by name, as defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
+                            <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point and scroll its basic data into view.</li>
                         </ul>
                     </details>
                 </div>

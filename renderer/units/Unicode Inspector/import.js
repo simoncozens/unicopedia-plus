@@ -136,13 +136,21 @@ module.exports.start = function (context)
                     { label: "Code\xA0Point", value: data.codePoint },  // "Unicode"
                     { label: "ECMAScript", value: data.ecmaScript },
                     { label: "JavaScript", value: data.javaScript },
+                    { label: "HTML\xA0Entity", value: data.entity },
+                    { label: "URL\xA0Escape", value: data.urlEncoding },
+                    null,
+                    { label: "UTF-32", value: data.utf32 },
                     { label: "UTF-16", value: data.utf16 },
-                    { label: "UTF-8", value: data.utf8 },
-                    { label: "HTML\xA0Entity", value: data.entity }
+                    { label: "UTF-8", value: data.utf8 }
                 ];
                 for (let code of codes)
                 {
-                    if (code.value)
+                    if (!code)
+                    {
+                        let lineBreak = document.createElement ('br');
+                        cell.appendChild (lineBreak);
+                    }
+                    else if (code.value)
                     {
                         let field = document.createElement ('div');
                         field.className = 'field';
@@ -153,7 +161,7 @@ module.exports.start = function (context)
                 row.appendChild (cell);
                 cell = document.createElement ('td');
                 cell.className = 'properties';
-                let name = data.name || "UNASSIGNED CHARACTER"; // "UNASSIGNED CHARACTER", "<unassigned>"
+                let name = data.name || "<unassigned>"; // "UNASSIGNED CHARACTER"
                 let numericType = "";
                 if (data.numeric)
                 {

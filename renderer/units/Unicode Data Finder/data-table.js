@@ -1,9 +1,11 @@
 //
 const unicode = require ('../../lib/unicode/unicode.js');
 //
+const rewritePattern = require ('regexpu-core');
+//
 const deferredSymbols = true;
 //
-module.exports.create = function (characters, params)
+module.exports.create = function (characters, params, highlightedCharacter)
 {
     function updateDataPage (dataPage)
     {
@@ -74,33 +76,59 @@ module.exports.create = function (characters, params)
         blockNameHeader.textContent = "Block";
         header.appendChild (blockNameHeader);
         table.appendChild (header);
+        let flags = 'u';
+        let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+        let regex = new RegExp (pattern, flags);
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);
+            let isAssignedCharacter = regex.test (character);
             let row = document.createElement ('tr');
             row.className = 'row';
+            if (!isAssignedCharacter)
+            {
+                row.classList.add ('unassigned');
+            }
             let symbol = document.createElement ('td');
             symbol.className = 'symbol';
-            if (deferredSymbols)
+            if (isAssignedCharacter)
             {
-                symbol.textContent = "\xA0";
-                symbol.dataset.character = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
-                params.observer.observe (symbol);
+                if (deferredSymbols)
+                {
+                    symbol.textContent = "\xA0";
+                    symbol.dataset.character = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
+                    params.observer.observe (symbol);
+                }
+                else
+                {
+                    symbol.textContent = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
+                }
             }
             else
             {
-                symbol.textContent = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
+                symbol.textContent = "\xA0";
             }
             row.appendChild (symbol);
             let codePoint = document.createElement ('td');
             codePoint.className = 'code-point';
-            codePoint.textContent = data.codePoint;
+            if (character === highlightedCharacter)
+            {
+                let span =  document.createElement ('span');
+                span.className = 'highlighted';
+                span.textContent = data.codePoint;
+                codePoint.appendChild (span);
+                setTimeout (() => codePoint.scrollIntoView ({ behavior: 'auto', block: 'nearest', inline: 'nearest' }));
+            }
+            else
+            {
+                codePoint.textContent = data.codePoint;
+            }
             row.appendChild (codePoint);
             let names = document.createElement ('td');
             names.className = 'names';
             let name = document.createElement ('div');
             name.className = 'name';
-            name.textContent = data.name;
+            name.textContent = data.name || "<unassigned>";
             names.appendChild (name);
             if (data.alias)
             {
@@ -336,13 +364,14 @@ module.exports.create = function (characters, params)
         (event) =>
         {
             params.pageSize = parseInt (event.target.value);
+            //
             // Paginate
             charactersPages = [ ];
             for (let startIndex = 0; startIndex < characters.length; startIndex += params.pageSize)
             {
                 charactersPages.push (characters.slice (startIndex, startIndex + params.pageSize));
             }
-            charactersPageIndex = 0;
+            charactersPageIndex = (highlightedCharacter) ? Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize) : 0;
             let pageCount = charactersPages.length;
             pageSelect.min = 1;
             pageSelect.max = pageCount;

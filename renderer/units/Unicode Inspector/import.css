@@ -102,6 +102,7 @@
     font-size: 12px;
     padding: 0.25em 0.5em;
     font-weight: bold;
+    width: 128px;
 }
 
 #unicode-inspector-unit .data-list .data-header
@@ -117,11 +118,13 @@
     font-family: sans-serif;
     font-size: 72px;
     height: 1em;
-    min-width: 1em;
+    min-width: 2em;
+    max-width: 2em;
     text-align: center;
     vertical-align: middle;
     line-height: 1em;
-    padding: 0.2em;
+    padding: 0.2em 0.1em;
+    overflow-x: auto;
 }
 
 #unicode-inspector-unit .data-list .codes
@@ -157,6 +160,7 @@
     resize: vertical;
     overflow-y: scroll;
     min-height: calc(1px + 48px + 48px + 1px);
+    overscroll-behavior: contain;
 }
 
 #unicode-inspector-unit .output-code-points

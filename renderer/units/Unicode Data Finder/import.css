@@ -266,7 +266,7 @@
 
 #unicode-data-finder-unit .list-by-block  .search-data .row.unassigned
 {
-    background-image: url("crosshatch-1-1.svg");
+    background-image: url("crosshatch-1-1-h-flip.svg");
     background-size: 8px;
     background-position: center;
     color: gray;

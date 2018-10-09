@@ -37,6 +37,8 @@ const blockParams = { };
 //
 module.exports.start = function (context)
 {
+    const { remote } = require ('electron');
+    //
     const unicode = require ('../../lib/unicode/unicode.js');
     //
     const dataTable = require ('./data-table.js');
@@ -436,12 +438,17 @@ module.exports.start = function (context)
                             break;
                         }
                     }
-                    blockSpecimen.value = `U+${hex}`;
                     if (blockRange)
                     {
+                        blockSpecimen.value = `U+${hex}`;
                         blockSelectBlockRange.value = blockRange;
                         blockSelectBlockName.value = blockRange;
                         displayRangeTable (blockRange, hex);
+                    }
+                    else
+                    {
+                        remote.shell.beep ();
+                        // blockSpecimen.value = "";
                     }
                 }
             }

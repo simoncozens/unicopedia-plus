@@ -482,7 +482,7 @@ function getCharacterData (character)
     {
         if ((parseInt (version.first, 16) <= num) && (num <= parseInt (version.last, 16)))
         {
-            characterData.age = version.age;
+            characterData.age = `Unicode ${version.age}`;
             characterData.ageDate = versionDate[version.age];
             break;
         }

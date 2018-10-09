@@ -180,7 +180,7 @@ module.exports.start = function (context)
                     { label: "Name", value: name },
                     { label: "Alias", value: data.alias },
                     { label: "Correction", value: data.correction },
-                    { label: "Unicode\xA0Version", value: data.age, toolTip: data.ageDate },
+                    { label: "Age", value: data.age, toolTip: data.ageDate },
                     { label: "Plane", value: data.planeName, toolTip: data.planeRange },
                     { label: "Block", value: data.blockName, toolTip: data.blockRange },
                     { label: "Script", value: data.script },

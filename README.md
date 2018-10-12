@@ -22,6 +22,7 @@ The following utilities are currently available:
     * [List by Block](#list-by-block)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
+* [Unihan References](#unihan-references)
 
 ## Emoji Data Finder
 
@@ -183,6 +184,12 @@ The following utilities are currently available:
 - The **Unicode References** utility provides a list of reference links to Unicode-related web pages.
 
 <img src="screenshots/unicode-references.png" width="1080px" alt="Unicode References screenshot">
+
+## Unihan References
+
+- The **Unihan References** utility provides a list of reference links to Unihan-related web pages.
+
+<img src="screenshots/unihan-references.png" width="1080px" alt="Unihan References screenshot">
 
 ## Building
 

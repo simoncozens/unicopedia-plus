@@ -84,9 +84,9 @@
                         <ul>
                             <li>The <strong>Find by Name</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.</li>
                             <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.</li>
+                            <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark <code>※</code>.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                            <li>The search is performed on the 276955 assigned characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -110,7 +110,7 @@
                             <li>The <strong>Match Symbol</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.</li>
                             <li>After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>The search is performed on the 276955 characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                            <li>The search is performed on the 276955 assigned characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -130,6 +130,7 @@
                             <li><code>\p{Script=Hiragana}</code><br>Characters with the 'Script' property equal to 'Hiragana'</li>
                             <li><code>(?=\p{Script=Latin})(?=\p{Number})</code><br>Characters with the 'Script' property equal to 'Latin' and the 'General_Category' property equal to 'Number'</li>
                             <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
+                            <li><code>(?=\p{Ideographic})(?!\p{Unified_Ideograph})</code> or <code>(?=\p{Ideographic})(?=\P{Unified_Ideograph})</code><br>Characters with the 'Ideographic' binary property, but without the 'Unified_Ideograph' binary property</li>
                             <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
                         </ul>
                     </details>
@@ -142,8 +143,8 @@
                         <ul>
                             <li>The <strong>List by Block</strong> feature of the <strong>Unicode Data Finder</strong> utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>A block can be selected either by range or by name, as defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
-                            <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point and scroll its basic data into view.</li>
+                            <li>A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
+                            <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.</li>
                         </ul>
                     </details>
                 </div>

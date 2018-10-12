@@ -89,6 +89,32 @@ The following utilities are currently available:
     - **Script** properties
     - **Script Extensions** properties
 - For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
+- Grouping:<table>
+    <tr>
+        <th>Cased_Letter</th>
+        <th>Letter</th>
+        <th>Mark</th>
+        <th>Number</th>
+    </tr>
+    <tr>
+        <td>Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter</td>
+        <td>Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter<br>Modifier_Letter<br>Other_Letter</td>
+        <td>Nonspacing_Mark<br>Spacing_Mark<br>Enclosing_Mark</td>
+        <td>Decimal_Number<br>Letter_Number<br>Other_Number</td>
+    </tr>
+    <tr>
+        <th>Punctuation</th>
+        <th>Symbol</th>
+        <th>Separator</th>
+        <th>Other</th>
+    </tr>
+    <tr>
+        <td>Connector_Punctuation<br>Dash_Punctuation<br>Open_Punctuation<br>Close_Punctuation<br>Initial_Punctuation<br>Final_Punctuation<br>Other_Punctuation</td>
+        <td>Math_Symbol<br>Currency_Symbol<br>Modifier_Symbol<br>Other_Symbol</td>
+        <td>Space_Separator<br>Line_Separator<br>Paragraph_Separator</td>
+        <td>Control<br>Format<br>Surrogate<br>Private_Use<br>Unassigned</td>
+    </tr>
+</table>
 - `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
 - Notes:
     - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`
@@ -104,9 +130,9 @@ The following utilities are currently available:
 
 - The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
-- When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a trailing asterisk.
+- When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
-- The search is performed on the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- The search is performed on the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
@@ -116,7 +142,7 @@ The following utilities are currently available:
 - The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.
 - After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
-- The search is performed on the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- The search is performed on the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-match-symbol.png" width="1080px" alt="Unicode Data Finder - Match Symbol screenshot">
@@ -125,8 +151,8 @@ The following utilities are currently available:
 
 - The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.
 - It is possible to choose how many characters are shown one page at a time.
-- A block can be selected either by range or by name, as defined in the **Unicode 11.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
-- It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point and scroll its basic data into view.
+- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 11.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
+- It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.
 
 <img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 
@@ -138,7 +164,7 @@ The following utilities are currently available:
 - As a convenience, each input field can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+0041` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
 - In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` and `\u{1F49C}`. Clicking on the <kbd>Filter</kbd> button converts all valid codes to standard Unicode code point format.
-- Information is provided for the 276955 characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- Information is provided for the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Extra information is also obtained from the following data files:
     - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)
     - [DerivedAge.txt](https://www.unicode.org/Public/UNIDATA/DerivedAge.txt)

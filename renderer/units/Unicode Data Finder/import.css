@@ -332,9 +332,9 @@
     line-height: 1em;
 }
 
-#unicode-data-finder-unit .search-data .names .correction::after
+#unicode-data-finder-unit .search-data .names .correction::before
 {
-    content: "\A0*";
+    content: "※\A0";
 }
 
 #unicode-data-finder-unit .search-data .block-name

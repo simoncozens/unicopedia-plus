@@ -7,29 +7,49 @@
         "items":
         [
             {
-                "canonic": "Uppercase_Letter",
-                "alias": "Lu"
-            },
-            {
-                "canonic": "Lowercase_Letter",
-                "alias": "Ll"
-            },
-            {
-                "canonic": "Titlecase_Letter",
-                "alias": "Lt"
-            },
-            {
                 "canonic": "Cased_Letter",
                 "alias": "LC",
                 "grouping": [ "Lu", "Ll", "Lt" ]
             },
             {
-                "canonic": "Modifier_Letter",
-                "alias": "Lm"
+                "canonic": "Close_Punctuation",
+                "alias": "Pe"
             },
             {
-                "canonic": "Other_Letter",
-                "alias": "Lo"
+                "canonic": "Connector_Punctuation",
+                "alias": "Pc"
+            },
+            {
+                "canonic": "Control",
+                "alias": [ "Cc", "cntrl" ]
+            },
+            {
+                "canonic": "Currency_Symbol",
+                "alias": "Sc"
+            },
+            {
+                "canonic": "Dash_Punctuation",
+                "alias": "Pd"
+            },
+            {
+                "canonic": "Decimal_Number",
+                "alias": [ "Nd", "digit" ]
+            },
+            {
+                "canonic": "Enclosing_Mark",
+                "alias": "Me"
+            },
+            {
+                "canonic": "Final_Punctuation",
+                "alias": "Pf"
+            },
+            {
+                "canonic": "Format",
+                "alias": "Cf"
+            },
+            {
+                "canonic": "Initial_Punctuation",
+                "alias": "Pi"
             },
             {
                 "canonic": "Letter",
@@ -37,33 +57,37 @@
                 "grouping": [ "Lu", "Ll", "Lt", "Lm", "Lo" ]
             },
             {
-                "canonic": "Nonspacing_Mark",
-                "alias": "Mn"
-            },
-            {
-                "canonic": "Spacing_Mark",
-                "alias": "Mc"
-            },
-            {
-                "canonic": "Enclosing_Mark",
-                "alias": "Me"
-            },
-            {
-                "canonic": "Mark",
-                "alias": "M",
-                "grouping": [ "Mn", "Mc", "Me" ]
-            },
-            {
-                "canonic": "Decimal_Number",
-                "alias": "Nd"
-            },
-            {
                 "canonic": "Letter_Number",
                 "alias": "Nl"
             },
             {
-                "canonic": "Other_Number",
-                "alias": "No"
+                "canonic": "Line_Separator",
+                "alias": "Zl"
+            },
+            {
+                "canonic": "Lowercase_Letter",
+                "alias": "Ll"
+            },
+            {
+                "canonic": "Mark",
+                "alias": [ "M", "Combining_Mark" ],
+                "grouping": [ "Mn", "Mc", "Me" ]
+            },
+            {
+                "canonic": "Math_Symbol",
+                "alias": "Sm"
+            },
+            {
+                "canonic": "Modifier_Letter",
+                "alias": "Lm"
+            },
+            {
+                "canonic": "Modifier_Symbol",
+                "alias": "Sk"
+            },
+            {
+                "canonic": "Nonspacing_Mark",
+                "alias": "Mn"
             },
             {
                 "canonic": "Number",
@@ -71,70 +95,42 @@
                 "grouping": [ "Nd", "Nl", "No" ]
             },
             {
-                "canonic": "Connector_Punctuation",
-                "alias": "Pc"
-            },
-            {
-                "canonic": "Dash_Punctuation",
-                "alias": "Pd"
-            },
-            {
                 "canonic": "Open_Punctuation",
                 "alias": "Ps"
             },
             {
-                "canonic": "Close_Punctuation",
-                "alias": "Pe"
+                "canonic": "Other",
+                "alias": "C",
+                "grouping": [ "Cc", "Cf", "Cs", "Co", "Cn" ]
             },
             {
-                "canonic": "Initial_Punctuation",
-                "alias": "Pi"
+                "canonic": "Other_Letter",
+                "alias": "Lo"
             },
             {
-                "canonic": "Final_Punctuation",
-                "alias": "Pf"
+                "canonic": "Other_Number",
+                "alias": "No"
             },
             {
                 "canonic": "Other_Punctuation",
                 "alias": "Po"
             },
             {
-                "canonic": "Punctuation",
-                "alias": "P",
-                "grouping": [ "Pc", "Pd", "Ps", "Pe", "Pi", "Pf", "Po" ]
-            },
-            {
-                "canonic": "Math_Symbol",
-                "alias": "Sm"
-            },
-            {
-                "canonic": "Currency_Symbol",
-                "alias": "Sc"
-            },
-            {
-                "canonic": "Modifier_Symbol",
-                "alias": "Sk"
-            },
-            {
                 "canonic": "Other_Symbol",
                 "alias": "So"
             },
             {
-                "canonic": "Symbol",
-                "alias": "S",
-                "grouping": [ "Sm", "Sc", "Sk", "So" ]
-            },
-            {
-                "canonic": "Space_Separator",
-                "alias": "Zs"
-            },
-            {
-                "canonic": "Line_Separator",
-                "alias": "Zl"
-            },
-            {
                 "canonic": "Paragraph_Separator",
                 "alias": "Zp"
+            },
+            {
+                "canonic": "Private_Use",
+                "alias": "Co"
+            },
+            {
+                "canonic": "Punctuation",
+                "alias": [ "P", "punct" ],
+                "grouping": [ "Pc", "Pd", "Ps", "Pe", "Pi", "Pf", "Po" ]
             },
             {
                 "canonic": "Separator",
@@ -142,29 +138,33 @@
                 "grouping": [ "Zs", "Zl", "Zp" ]
             },
             {
-                "canonic": "Control",
-                "alias": "Cc"
+                "canonic": "Space_Separator",
+                "alias": "Zs"
             },
             {
-                "canonic": "Format",
-                "alias": "Cf"
+                "canonic": "Spacing_Mark",
+                "alias": "Mc"
             },
             {
                 "canonic": "Surrogate",
                 "alias": "Cs"
             },
             {
-                "canonic": "Private_Use",
-                "alias": "Co"
+                "canonic": "Symbol",
+                "alias": "S",
+                "grouping": [ "Sm", "Sc", "Sk", "So" ]
+            },
+            {
+                "canonic": "Titlecase_Letter",
+                "alias": "Lt"
             },
             {
                 "canonic": "Unassigned",
                 "alias": "Cn"
             },
             {
-                "canonic": "Other",
-                "alias": "C",
-                "grouping": [ "Cc", "Cf", "Cs", "Co", "Cn" ]
+                "canonic": "Uppercase_Letter",
+                "alias": "Lu"
             }
         ]
     },
@@ -374,7 +374,7 @@
             },
             {
                 "canonic": "White_Space",
-                "alias": "WSpace"
+                "alias": [ "WSpace", "space" ]
             },
             {
                 "canonic": "XID_Continue",
@@ -490,7 +490,7 @@
             },
             {
                 "canonic": "Coptic",
-                "alias": "Copt"
+                "alias": [ "Copt", "Qaac" ]
             },
             {
                 "canonic": "Cuneiform",
@@ -598,7 +598,7 @@
             },
             {
                 "canonic": "Inherited",
-                "alias": "Zinh"
+                "alias": [ "Zinh", "Qaai" ]
             },
             {
                 "canonic": "Inscriptional_Pahlavi",
@@ -1090,7 +1090,7 @@
             },
             {
                 "canonic": "Coptic",
-                "alias": "Copt"
+                "alias": [ "Copt", "Qaac" ]
             },
             {
                 "canonic": "Cuneiform",
@@ -1198,7 +1198,7 @@
             },
             {
                 "canonic": "Inherited",
-                "alias": "Zinh"
+                "alias": [ "Zinh", "Qaai" ]
             },
             {
                 "canonic": "Inscriptional_Pahlavi",

@@ -14,10 +14,10 @@ module.exports.start = function (context)
     //
     references.open = prefs.references;
     //
-    const emojiLinks = require ('./unicode-links.json');
+    const unicodeLinks = require ('./unicode-links.json');
     const linksList = require ('../../lib/links-list.js');
     //
-    linksList (links, emojiLinks);
+    linksList (links, unicodeLinks);
 };
 //
 module.exports.stop = function (context)

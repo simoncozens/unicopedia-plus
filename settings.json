@@ -5,6 +5,8 @@
     "unitsMenu": true,
     "developerFeatures": false,
     "smartZoom": false,
+    "minZoomLevel": -2,
+    "maxZoomLevel": 4,
     "window":
     {
         "largerDefaultWidth": 1280,
@@ -15,6 +17,7 @@
         "minHeight": 450,
         "backgroundColor": "#F5F5F5",
         "titleTemplate": "{unit} | {app}",
+        "zoomSuffixTemplate": " ({zoom}%)",
         "deferredShow": true
     },
     "shortAppName": "App",

@@ -52,6 +52,10 @@
             {
                 "label": "Small Roman Numerals",
                 "string": "ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅺⅻⅼⅽⅾⅿ"
+            },
+            {
+                "label": "Counting Rod Numerals",
+                "string": "𝍠𝍡𝍢𝍣𝍤𝍥𝍦𝍧𝍨𝍩𝍪𝍫𝍬𝍭𝍮𝍯𝍰𝍱"
             }
         ]
     },
@@ -129,7 +133,7 @@
         [
             {
                 "label": "CJK Graphical Variants 1",
-                "string": "冨富"
+                "string": "囯囶囻国圀國"
             },
             {
                 "label": "CJK Graphical Variants 2",

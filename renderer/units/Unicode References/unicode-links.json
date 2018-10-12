@@ -1,192 +1,208 @@
 [
     [
         {
-            "href": "https://en.wikipedia.org/wiki/Unicode",
-            "name": "Unicode - Wikipedia"
+            "name": "Unicode - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Unicode"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Plane_(Unicode)",
-            "name": "Plane (Unicode) - Wikipedia"
+            "name": "Plane (Unicode) - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Plane_(Unicode)"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Unicode_block",
-            "name": "Unicode block - Wikipedia"
+            "name": "Unicode block - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Unicode_block"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Unicode_input",
-            "name": "Unicode input - Wikipedia"
+            "name": "Unicode input - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Unicode_input"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Unicode_character_property",
-            "name": "Unicode character property - Wikipedia"
+            "name": "Unicode character property - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Unicode_character_property"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Combining_character",
-            "name": "Combining character - Wikipedia"
+            "name": "Combining character - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Combining_character"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Combining_Grapheme_Joiner",
-            "name": "Combining Grapheme Joiner - Wikipedia"
+            "name": "Combining Grapheme Joiner - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Combining_Grapheme_Joiner"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Zero-width_non-joiner",
-            "name": "Zero-width non-joiner - Wikipedia"
+            "name": "Zero-width non-joiner - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Zero-width_non-joiner"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Zero-width_joiner",
-            "name": "Zero-width joiner - Wikipedia"
+            "name": "Zero-width joiner - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Zero-width_joiner"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Regional_Indicator_Symbol",
-            "name": "Regional Indicator Symbol - Wikipedia"
+            "name": "Regional Indicator Symbol - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Regional_Indicator_Symbol"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Han_unification",
-            "name": "Han unification - Wikipedia"
+            "name": "Han unification - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Han_unification"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Variant_form_(Unicode)",
-            "name": "Variant form (Unicode) - Wikipedia"
+            "name": "Variant form (Unicode) - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Variant_form_(Unicode)"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/Universal_Character_Set_characters",
-            "name": "Universal Character Set characters - Wikipedia"
+            "name": "Universal Character Set characters - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Universal_Character_Set_characters"
         },
         {
-            "href": "https://en.wikipedia.org/wiki/List_of_Unicode_characters",
-            "name": "List of Unicode characters - Wikipedia"
+            "name": "List of Unicode characters - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/List_of_Unicode_characters"
         }
     ],
     [
         {
-            "href": "https://www.unicode.org/roadmaps/",
-            "name": "Roadmaps to Unicode"
+            "name": "Roadmaps to Unicode",
+            "href": "https://www.unicode.org/roadmaps/"
         }
     ],
     [
          {
-            "href": "https://www.unicode.org/reports/tr44/",
-            "name": "UAX #44: Unicode Character Database"
+            "name": "UAX #44: Unicode Character Database",
+            "href": "https://www.unicode.org/reports/tr44/"
         },
         {
-            "href": "https://www.unicode.org/Public/UNIDATA/UnicodeData.txt",
-            "name": "UnicodeData.txt"
+            "name": "UnicodeData.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/UnicodeData.txt"
         },
         {
-            "href": "https://www.unicode.org/Public/UNIDATA/Blocks.txt",
-            "name": "Blocks.txt"
-        },
-        {
-            "href": "https://www.unicode.org/faq/blocks_ranges.html",
-            "name": "FAQ - Blocks and Ranges"
+            "name": "Blocks.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/Blocks.txt"
         }
     ],
     [
         {
-            "href": "https://www.unicode.org/reports/tr15/",
-            "name": "UAX #15: Unicode Normalization Forms"
+            "name": "UAX #15: Unicode Normalization Forms",
+            "href": "https://www.unicode.org/reports/tr15/"
         },
         {
-            "href": "https://www.unicode.org/charts/normalization/",
-            "name": "Normalization Charts"
-        },
-        {
-            "href": "https://www.unicode.org/faq/normalization.html",
-            "name": "FAQ - Normalization"
-        },
-        {
-            "href": "https://www.unicode.org/faq/char_combmark.html",
-            "name": "FAQ - Characters and Combining Marks"
+            "name": "Normalization Charts",
+            "href": "https://www.unicode.org/charts/normalization/"
         }
     ],
     [
         {
-            "href": "https://www.unicode.org/notes/tn27/tn27-4.html",
-            "name": "UTN #27: Known anomalies in Unicode Character Names"
+            "name": "UTN #27: Known anomalies in Unicode Character Names",
+            "href": "https://www.unicode.org/notes/tn27/tn27-4.html"
         }
     ],
     [
         {
-            "href": "https://www.unicode.org/glossary/",
-            "name": "Glossary"
+            "name": "FAQ - Korean",
+            "href": "https://www.unicode.org/faq/korean.html"
+        },
+        {
+            "name": "FAQ - Normalization",
+            "href": "https://www.unicode.org/faq/normalization.html"
+        },
+        {
+            "name": "FAQ - Blocks and Ranges",
+            "href": "https://www.unicode.org/faq/blocks_ranges.html"
+        },
+        {
+            "name": "FAQ - Characters and Combining Marks",
+            "href": "https://www.unicode.org/faq/char_combmark.html"
+        },
+        {
+            "name": "FAQ - Character Properties, Case Mappings and Names",
+            "href": "https://www.unicode.org/faq/casemap_charprop.html"
         }
     ],
     [
         {
-            "href": "https://namakajiri.net/nikki/joyo-kanji-variants-the-curious-case-of-and-%e5%8f%b1/",
-            "name": "Jōyō kanji variants: The curious case of 叱 and [censored] | The Nanbanjin Nikki"
+            "name": "Glossary",
+            "href": "https://www.unicode.org/glossary/"
         }
     ],
     [
         {
-            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt",
-            "name": "String.prototype.charCodeAt() - JavaScript | MDN"
-        },
-        {
-            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode",
-            "name": "String.fromCharCode() - JavaScript | MDN"
+            "name": "Jōyō kanji variants: The curious case of 叱 and [censored] | The Nanbanjin Nikki",
+            "href": "https://namakajiri.net/nikki/joyo-kanji-variants-the-curious-case-of-and-%e5%8f%b1/"
         }
     ],
     [
         {
-            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt",
-            "name": "String.prototype.codePointAt() - JavaScript | MDN"
-        },
-        {
-            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint",
-            "name": "String.fromCodePoint() - JavaScript | MDN"
+            "name": "The Secret Life of Unicode",
+            "href": "https://www.btetrud.com/Lima/The%20Secret%20Life%20of%20Unicode.pdf"
         }
     ],
     [
         {
-            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize",
-            "name": "String.prototype.normalize() - JavaScript | MDN"
+            "name": "String.prototype.charCodeAt() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt"
+        },
+        {
+            "name": "String.fromCharCode() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"
         }
     ],
     [
         {
-            "href": "https://mathiasbynens.be/notes/javascript-escapes",
-            "name": "JavaScript character escape sequences · Mathias Bynens"
+            "name": "String.prototype.codePointAt() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt"
         },
         {
-            "href": "https://mathiasbynens.be/notes/javascript-encoding",
-            "name": "JavaScript’s internal character encoding: UCS-2 or UTF-16? · Mathias Bynens"
-        },
-        {
-            "href": "https://mathiasbynens.be/notes/javascript-unicode",
-            "name": "JavaScript has a Unicode problem · Mathias Bynens"
-        },
-        {
-            "href": "https://mathiasbynens.be/notes/es6-unicode-regex",
-            "name": "Unicode-aware regular expressions in ES2015 · Mathias Bynens"
-        },
-        {
-            "href": "https://mathiasbynens.be/notes/es-unicode-property-escapes",
-            "name": "Unicode property escapes in JavaScript regular expressions · Mathias Bynens"
-        },
-        {
-            "href": "https://mathiasbynens.be/notes/es-regexp-proposals",
-            "name": "ECMAScript regular expressions are getting better! · Mathias Bynens"
+            "name": "String.fromCodePoint() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint"
         }
     ],
     [
         {
-            "href": "https://www.unicode.org/reports/tr18/",
-            "name": "UTS #18: Unicode Regular Expressions"
-        },
-        {
-            "href": "https://www.unicode.org/reports/tr24/",
-            "name": "UAX #24: Unicode Script Property"
+            "name": "String.prototype.normalize() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize"
         }
     ],
     [
         {
-            "href": "https://github.com/mathiasbynens/regexpu-core",
-            "name": "GitHub - mathiasbynens/regexpu-core: regexpu’s core functionality"
+            "name": "JavaScript character escape sequences · Mathias Bynens",
+            "href": "https://mathiasbynens.be/notes/javascript-escapes"
         },
         {
-            "href": "https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md",
-            "name": "regexpu-core/property-escapes.md at master · mathiasbynens/regexpu-core · GitHub"
+            "name": "JavaScript’s internal character encoding: UCS-2 or UTF-16? · Mathias Bynens",
+            "href": "https://mathiasbynens.be/notes/javascript-encoding"
+        },
+        {
+            "name": "JavaScript has a Unicode problem · Mathias Bynens",
+            "href": "https://mathiasbynens.be/notes/javascript-unicode"
+        },
+        {
+            "name": "Unicode-aware regular expressions in ES2015 · Mathias Bynens",
+            "href": "https://mathiasbynens.be/notes/es6-unicode-regex"
+        },
+        {
+            "name": "Unicode property escapes in JavaScript regular expressions · Mathias Bynens",
+            "href": "https://mathiasbynens.be/notes/es-unicode-property-escapes"
+        },
+        {
+            "name": "ECMAScript regular expressions are getting better! · Mathias Bynens",
+            "href": "https://mathiasbynens.be/notes/es-regexp-proposals"
+        }
+    ],
+    [
+        {
+            "name": "UTS #18: Unicode Regular Expressions",
+            "href": "https://www.unicode.org/reports/tr18/"
+        },
+        {
+            "name": "UAX #24: Unicode Script Property",
+            "href": "https://www.unicode.org/reports/tr24/"
+        }
+    ],
+    [
+        {
+            "name": "GitHub - mathiasbynens/regexpu-core: regexpu’s core functionality",
+            "href": "https://github.com/mathiasbynens/regexpu-core"
+        },
+        {
+            "name": "regexpu-core/property-escapes.md at master · mathiasbynens/regexpu-core · GitHub",
+            "href": "https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md"
         }
     ]
 ]

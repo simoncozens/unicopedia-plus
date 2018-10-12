@@ -76,6 +76,22 @@
     line-height: 1.5em;
 }
 
+#regex-properties-unit .instructions table
+{
+    margin: 0.25em 0 0.75em 0;
+}
+
+#regex-properties-unit .instructions table th,
+#regex-properties-unit .instructions table td
+{
+    user-select: text;
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0.25em 0.5em;
+    text-align: left;
+}
+
 #regex-properties-unit .instructions ul
 {
     margin: -0.5em 0 1em 0;

@@ -136,7 +136,7 @@ const combiningClasses =
 };
 //
 // https://www.unicode.org/Public/UNIDATA/extracted/DerivedBidiClass.txt
-const bidirectionalClasses =
+const bidiClasses =
 {
     "L": "Left-to-Right",               // any strong left-to-right character
     "LRE": "Left-to-Right Embedding",   // U+202A: the LR embedding control
@@ -535,7 +535,7 @@ function getCharacterData (character)
         characterData.name = data.name;
         characterData.category = categories[data.category];
         characterData.combining = combiningClasses[data.combining];
-        characterData.bidirectional = bidirectionalClasses[data.bidirectional];
+        characterData.bidi = bidiClasses[data.bidi];
         characterData.decomposition = uniHexify (data.decomposition);
         characterData.decimal = data.decimal;
         characterData.digit = data.digit;

@@ -81,14 +81,39 @@ module.exports.start = function (context)
                             if (item.alias)
                             {
                                 let aliases = [ ];
-                                alias.textContent = `${property}{${item.alias || item.canonic}}`;
                                 if (group.alias && ((!group.optional) || optionalPrefixCheckbox.checked))
                                 {
-                                    aliases.push (`${property}{${group.alias}=${item.alias}}`);
+                                    if (Array.isArray (item.alias))
+                                    {
+                                        item.alias.forEach
+                                        (
+                                            element =>
+                                            {
+                                                 aliases.push (`${property}{${group.alias}=${element}}`);
+                                            }
+                                        );
+                                    }
+                                    else
+                                    {
+                                        aliases.push (`${property}{${group.alias}=${item.alias}}`);
+                                    }
                                 }
                                 else
                                 {
-                                    aliases.push (`${property}{${item.alias}}`);
+                                    if (Array.isArray (item.alias))
+                                    {
+                                        item.alias.forEach
+                                        (
+                                            element =>
+                                            {
+                                                aliases.push (`${property}{${element}}`);
+                                            }
+                                        );
+                                    }
+                                    else
+                                    {
+                                        aliases.push (`${property}{${item.alias}}`);
+                                    }
                                 }
                                 alias.innerHTML = aliases.join ('<br>');
                             }

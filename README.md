@@ -90,7 +90,16 @@ The following utilities are currently available:
     - **Script** properties
     - **Script Extensions** properties
 - For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
-- Grouping:<table> <tr> <th>Cased_Letter</th> <th>Letter</th> <th>Mark</th> <th>Number</th> </tr> <tr> <td>Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter</td> <td>Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter<br>Modifier_Letter<br>Other_Letter</td> <td>Nonspacing_Mark<br>Spacing_Mark<br>Enclosing_Mark</td> <td>Decimal_Number<br>Letter_Number<br>Other_Number</td> </tr> <tr> <th>Punctuation</th> <th>Symbol</th> <th>Separator</th> <th>Other</th> </tr> <tr> <td>Connector_Punctuation<br>Dash_Punctuation<br>Open_Punctuation<br>Close_Punctuation<br>Initial_Punctuation<br>Final_Punctuation<br>Other_Punctuation</td> <td>Math_Symbol<br>Currency_Symbol<br>Modifier_Symbol<br>Other_Symbol</td> <td>Space_Separator<br>Line_Separator<br>Paragraph_Separator</td> <td>Control<br>Format<br>Surrogate<br>Private_Use<br>Unassigned</td> </tr> </table>
+- Grouping:
+
+| Cased_Letter | Letter | Mark | Number |
+| ------------ | ------ | ---- | ------ |
+| Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter | Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter<br>Modifier_Letter<br>Other_Letter | Nonspacing_Mark<br>Spacing_Mark<br>Enclosing_Mark | Decimal_Number<br>Letter_Number<br>Other_Number |
+
+| Punctuation | Symbol | Separator | Other |
+| ----------- | ------ | --------- | ----- |
+| Connector_Punctuation<br>Dash_Punctuation<br>Open_Punctuation<br>Close_Punctuation<br>Initial_Punctuation<br>Final_Punctuation<br>Other_Punctuation | Math_Symbol<br>Currency_Symbol<br>Modifier_Symbol<br>Other_Symbol | Space_Separator<br>Line_Separator<br>Paragraph_Separator | Control<br>Format<br>Surrogate<br>Private_Use<br>Unassigned |
+
 - `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
 - Notes:
     - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`

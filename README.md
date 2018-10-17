@@ -90,15 +90,18 @@ The following utilities are currently available:
     - **Script** properties
     - **Script Extensions** properties
 - For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
-- Grouping:
+- Groupings:
 
-| Cased_Letter | Letter | Mark | Number |
-| ------------ | ------ | ---- | ------ |
-| Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter | Uppercase_Letter<br>Lowercase_Letter<br>Titlecase_Letter<br>Modifier_Letter<br>Other_Letter | Nonspacing_Mark<br>Spacing_Mark<br>Enclosing_Mark | Decimal_Number<br>Letter_Number<br>Other_Number |
-
-| Punctuation | Symbol | Separator | Other |
-| ----------- | ------ | --------- | ----- |
-| Connector_Punctuation<br>Dash_Punctuation<br>Open_Punctuation<br>Close_Punctuation<br>Initial_Punctuation<br>Final_Punctuation<br>Other_Punctuation | Math_Symbol<br>Currency_Symbol<br>Modifier_Symbol<br>Other_Symbol | Space_Separator<br>Line_Separator<br>Paragraph_Separator | Control<br>Format<br>Surrogate<br>Private_Use<br>Unassigned |
+    | Property | Description |
+    | -------- | ----------- |
+    | Cased_Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter |
+    | Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter \| Modifier_Letter \| Other_Letter |
+    | Mark | Nonspacing_Mark \| Spacing_Mark \| Enclosing_Mark |
+    | Number | Decimal_Number \| Letter_Number \| Other_Number |
+    | Punctuation | Connector_Punctuation \| Dash_Punctuation \| Open_Punctuation \| Close_Punctuation \| Initial_Punctuation \| Final_Punctuation \| Other_Punctuation |
+    | Symbol | Math_Symbol \| Currency_Symbol \| Modifier_Symbol \| Other_Symbol |
+    | Separator | Space_Separator \| Line_Separator \| Paragraph_Separator |
+    | Other | Control \| Format \| Surrogate \| Private_Use \| Unassigned |
 
 - `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
 - Notes:

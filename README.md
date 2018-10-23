@@ -1,6 +1,6 @@
 # <img src="icons/icon-256.png" width="64px" align="center" alt="Vade Mecum Shelf icon"> UNICODE PLUS
 
-**Unicode Plus** is a set of Unicode & emoji utilities wrapped into one single app, built with [Electron](https://electron.atom.io).
+**Unicode Plus** is a set of Unicode, Unihan & emoji utilities wrapped into one single app, built with [Electron](https://electronjs.org).
 
 This app works on Mac OS X, Linux and Windows operating systems.
 

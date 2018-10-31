@@ -60,6 +60,7 @@ The following utilities are currently available:
     - **Script Extensions** properties
 - For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
 - Groupings:
+
     | Property | Description |
     | -------- | ----------- |
     | Cased_Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter |
@@ -70,6 +71,7 @@ The following utilities are currently available:
     | Symbol | Math_Symbol \| Currency_Symbol \| Modifier_Symbol \| Other_Symbol |
     | Separator | Space_Separator \| Line_Separator \| Paragraph_Separator |
     | Other | Control \| Format \| Surrogate \| Private_Use \| Unassigned |
+
 - `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
 - Notes:
     - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`

@@ -64,6 +64,12 @@
         }
     ],
     [
+        {
+            "name": "Technical Reports",
+            "href": "https://www.unicode.org/reports/"
+        }
+    ],
+    [
          {
             "name": "UAX #44: Unicode Character Database",
             "href": "https://www.unicode.org/reports/tr44/"
@@ -89,11 +95,31 @@
     ],
     [
         {
-            "name": "UTN #27: Known anomalies in Unicode Character Names",
-            "href": "https://www.unicode.org/notes/tn27/tn27-4.html"
+            "name": "UTR#17: Unicode Character Encoding Model",
+            "href": "https://www.unicode.org/reports/tr17/"
         }
     ],
     [
+        {
+            "name": "UTN #27: Known anomalies in Unicode Character Names",
+            "href": "https://www.unicode.org/notes/tn27/"
+        }
+    ],
+    [
+        {
+            "name": "UCD: Unicode NamesList File Format",
+            "href": "https://www.unicode.org/Public/UNIDATA/NamesList.html"
+        },
+        {
+            "name": "NamesList.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/NamesList.txt"
+        }
+    ],
+    [
+        {
+            "name": "FAQ - Unicode Frequently Asked Questions",
+            "href": "https://www.unicode.org/faq/"
+        },
         {
             "name": "FAQ - Korean",
             "href": "https://www.unicode.org/faq/korean.html"
@@ -119,18 +145,6 @@
         {
             "name": "Glossary",
             "href": "https://www.unicode.org/glossary/"
-        }
-    ],
-    [
-        {
-            "name": "Jōyō kanji variants: The curious case of 叱 and [censored] | The Nanbanjin Nikki",
-            "href": "https://namakajiri.net/nikki/joyo-kanji-variants-the-curious-case-of-and-%e5%8f%b1/"
-        }
-    ],
-    [
-        {
-            "name": "The Secret Life of Unicode",
-            "href": "https://www.btetrud.com/Lima/The%20Secret%20Life%20of%20Unicode.pdf"
         }
     ],
     [

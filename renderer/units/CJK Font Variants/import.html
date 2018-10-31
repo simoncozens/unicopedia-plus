@@ -1,0 +1,80 @@
+<template>
+    <section id="cjk-font-variants-unit">
+        <div class="plain-panel">
+            <div class="actions">
+                <span class="action-group">
+                    <span class="action">
+                        <button type="button" class="clear-button">Clear</button>
+                    </span>
+                    <span class="action">
+                        <button type="button" class="pull-down-menu characters-samples">Samples</button>
+                    </span>
+                </span>
+                <span class="action-group">
+                    <span class="action">
+                        <button type="button" class="load-button">Load...</button>
+                    </span>
+                    <span class="action">
+                        <button type="button" class="save-button">Save...</button>
+                    </span>
+                </span>
+            </div>
+            <div class="input-group">
+                <input class="characters-input" type="text" placeholder="CJK characters...">
+                <input class="code-points-input" type="text" placeholder="CJK code points...">
+            </div>
+            <div class="actions right">
+                <span class="action-group">
+                    <span class="action">
+                        <label>East Asian Glyphs:
+                            <select class="east-asian-select">
+                                <option value="normal">Normal</option>
+                                <option value="jis78">JIS X 0208:1978</option>
+                                <option value="jis83">JIS X 0208:1983</option>
+                                <option value="jis90">JIS X 0208:1990</option>
+                                <option value="jis04">JIS X 0213:2004</option>
+                                <option value="simplified">Simplified Chinese</option>
+                                <option value="traditional">Traditional Chinese</option>
+                            </select>
+                        </label>
+                    </span>
+                </span>
+            </div>
+            <label>Chinese (Simplified):<input class="cjk-string" lang="zh-Hans" readonly disabled></label>
+            <label>Chinese (Traditional):<input class="cjk-string" lang="zh-Hant" readonly disabled></label>
+            <label>Japanese:<input class="cjk-string" lang="ja" readonly disabled></label>
+            <label>Korean:<input class="cjk-string" lang="ko" readonly disabled></label>
+       </div>
+        <div class="accent-panel">
+            <details class="instructions">
+                <summary>Instructions</summary>
+                <ul>
+                    <li>
+                        The <strong>CJK Font Variants</strong> utility displays simultaneously any string of Unihan characters in four different CJK (Chinese/Japanese/Korean) typefaces:
+                        <ul>
+                            <li>Chinese (Simplified)</li>
+                            <li>Chinese (Traditional)</li>
+                            <li>Japanese</li>
+                            <li>Korean</li>
+                        </ul>
+                    </li>
+                    <li>
+                        The typefaces belong to the open-source set of <a title="https://www.google.com/get/noto/help/cjk/" href="https://www.google.com/get/noto/help/cjk/">Google Noto CJK Fonts</a>:
+                        <ul>
+                            <li>Noto Sans CJK SC Regular</li>
+                            <li>Noto Sans CJK TC Regular</li>
+                            <li>Noto Sans CJK JP Regular</li>
+                            <li>Noto Sans CJK KR Regular</li>
+                        </ul>
+                    </li>
+                    <li>Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Glyphs</kbd> popup menu.</li>
+                    <li>Various samples are provided; some of them make use of the information found in the <a title="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt" href="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt">StandardizedVariants.txt</a> data file, or in the <a title="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt" href="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt">IVD_Sequences.txt</a> data file.</li>
+                </ul>
+            </details>
+            <details class="references">
+                <summary>References</summary>
+                <div class="links"></div>
+            </details>
+        </div>
+    </section>
+</template>

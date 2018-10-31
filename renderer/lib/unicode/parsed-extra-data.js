@@ -1,3 +1,4 @@
+//
 const fs = require ('fs');
 const path = require ('path');
 //
@@ -102,6 +103,22 @@ for (let line of lines)
     }
 }
 //
+let equivalentUnifiedIdeographs = [ ];
+//
+// Copy of https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EquivalentUnifiedIdeograph.txt'), { encoding: 'ascii' }).split ('\n');
+for (let line of lines)
+{
+    if ((line) && (line[0] !== '#'))
+    {
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+([0-9a-fA-F]{4,})\s+#/);
+        if (found)
+        {
+            equivalentUnifiedIdeographs.push ({ first: found[1], last: found[2] || found[1], equivalent: found[3] });
+        }
+    }
+}
+//
 module.exports =
 {
     versions,
@@ -109,6 +126,7 @@ module.exports =
     binaryProperties,
     coreProperties,
     scripts,
-    scriptExtensions
+    scriptExtensions,
+    equivalentUnifiedIdeographs
 };
 //

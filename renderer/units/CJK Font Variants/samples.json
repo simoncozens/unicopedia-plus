@@ -1,0 +1,138 @@
+[
+    {
+        "label": "Dragons & Turtles",
+        "items":
+        [
+            {
+                "label": "Dragons",
+                "string": "⻰⻯⿓🐲龙竜龍龍🐉龖龘"
+            },
+            {
+                "label": "Turtles",
+                "string": "⻳⻲⻱🐢龟亀龜龜龜龜"
+            }
+        ]
+    },
+    {
+        "label": "East Asian Glyphs",
+        "items":
+        [
+            {
+                "label": "East Asian Glyphs 1",
+                "string": "剝剥 塡填 頰頬 麴麹"
+            },
+            {
+                "label": "East Asian Glyphs 2",
+                "string": "匕𠤎 叱𠮟"
+            },
+            {
+                "label": "East Asian Glyphs 3",
+                "string": "兆謎遡餅餌輩邉"
+            }
+        ]
+    },
+    {
+        "label": "Ideographic Variation",
+        "items":
+        [
+            {
+                "label": "Dragon",
+                "string": "龍 龍󠄀 龍󠄁 龍󠄂"
+            },
+            {
+                "label": "Noble",
+                "string": "卿 卿󠄀 卿󠄁 卿󠄂"
+            }
+        ]
+    },
+    {
+        "label": "Kangxi Radicals",
+        "items":
+        [
+            {
+                "label": "Radical Grass",
+                "string": "⺾⺿⻀⾋ 艸芝花草荘荼華蘭"
+            },
+            {
+                "label": "Radical Walk",
+                "string": "⻌⻍⻎⾡ 辵辺遜遡邉邊"
+            }
+        ]
+    },
+    {
+        "label": "Miscellaneous",
+        "items":
+        [
+            {
+                "label": "Prefectures of Japan",
+                "string": "都道府県"
+            },
+            {
+                "label": "Swords & Knives",
+                "string": "剑剣剱劍劍󠄁劎劒劔釖釰釼"
+            },
+            {
+                "label": "Miscellaneous 1",
+                "string": "匯囶圀夜屝属彩曜海"
+            },
+            {
+                "label": "Miscellaneous 2",
+                "string": "滙爲画畵直線萬裏輩"
+            }
+        ]
+    },
+    {
+        "label": "Numerals",
+        "items":
+        [
+            {
+                "label": "Digits",
+                "string": "零一二三四五六七八九"
+            },
+            {
+                "label": "Numbers",
+                "string": "十百千万億兆"
+            }
+        ]
+    },
+    {
+        "label": "Standardized Variants",
+        "items":
+        [
+            {
+                "label": "Han",
+                "string": "漢 漢︀漢 漢︁漢"
+            },
+            {
+                "label": "Lord",
+                "string": "卿 卿︀卿 卿︁卿 卿︂卿"
+            }
+        ]
+    },
+    {
+        "label": "Wikipedia",
+        "items":
+        [
+            {
+                "label": "Han Unification 1",
+                "string": "今令免入全具刃化外情才抵"
+            },
+            {
+                "label": "Han Unification 2",
+                "string": "次海直真神空者草角道雇骨"
+            },
+            {
+                "label": "Variant Chinese Character 1",
+                "string": "刃令毒骨縣誤船述煙贈"
+            },
+            {
+                "label": "Variant Chinese Character 2",
+                "string": "雪及角條低詩函純賭難"
+            },
+            {
+                "label": "Variant Chinese Character 3",
+                "string": "海喝練灰起英次能窗化"
+            }
+        ]
+    }
+]

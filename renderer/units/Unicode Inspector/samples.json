@@ -1,31 +1,45 @@
 [
     {
-        "label": "Miscellaneous",
+        "label": "CJK Variants",
         "items":
         [
             {
-                "label": "Ascending Blocks",
-                "string": "AaĀā❤愛爱애💜"
+                "label": "CJK Graphical Variants 1",
+                "string": "囯囶囻国圀國"
             },
             {
-                "label": "Basic Hearts",
-                "string": "❣️❤️💔💙💚💛💜💟"
+                "label": "CJK Graphical Variants 2",
+                "string": "㵄汉漢漢漢"
             },
             {
-                "label": "Fancy Hearts",
-                "string": "💓💕💖💗💘💝💞"
+                "label": "CJK Graphical Variants 3",
+                "string": "剝剥叱𠮟塡填頰頬"
             },
             {
-                "label": "Inset Hearts",
-                "string": "👩‍❤️‍👩😍👩‍❤️‍👨😻👨‍❤️‍👨"
+                "label": "CJK Graphical Variants 4",
+                "string": "桜樱櫻"
             },
             {
-                "label": "Arabic Ligature",
-                "string": "﷽"
+                "label": "CJK Variation Selectors 1",
+                "string": "謎󠄀謎󠄁遡󠄀遡󠄁餅󠄀餅󠄁"
             },
             {
-                "label": "iOS Killer Character",
-                "string": "జ్ఞ‌ా"
+                "label": "CJK Variation Selectors 2",
+                "string": "卿卿󠄀卿󠄁"
+            }
+        ]
+    },
+    {
+        "label": "Combined Symbols",
+        "items":
+        [
+            {
+                "label": "Skin Tone Modifiers",
+                "string": "👳🏻👳🏼👳🏽👳🏾👳🏿"
+            },
+            {
+                "label": "Combinations",
+                "string": "#️⃣👁‍🗨"
             }
         ]
     },
@@ -78,6 +92,54 @@
         ]
     },
     {
+        "label": "Hiragana & Katakana",
+        "items":
+        [
+            {
+                "label": "Rare Kana",
+                "string": "ゐゑゔヰヱヴヷヸヹヺ"
+            },
+            {
+                "label": "Typographic Marks",
+                "string": "゛゜ゝゞ゠・ーヽヾ･ｰ"
+            }
+        ]
+    },
+    {
+        "label": "Miscellaneous",
+        "items":
+        [
+            {
+                "label": "Ascending Blocks",
+                "string": "AaĀā❤愛爱애💜"
+            },
+            {
+                "label": "Basic Hearts",
+                "string": "❣️❤️💔💙💚💛💜💟"
+            },
+            {
+                "label": "Fancy Hearts",
+                "string": "💓💕💖💗💘💝💞"
+            },
+            {
+                "label": "Inset Hearts",
+                "string": "👩‍❤️‍👩😍👩‍❤️‍👨😻👨‍❤️‍👨"
+            },
+            {
+                "label": "Chinese Dragons",
+                "string": "⿓龍龖龘"
+            },
+            {
+                "label": "Arabic Ligature",
+                "string": "﷽"
+            },
+            {
+                "label": "iOS Killer Character",
+                "string": "జ్ఞ‌ా"
+            }
+        ]
+    },
+    {
         "label": "Multi-Person Groupings",
         "items":
         [
@@ -96,16 +158,20 @@
         ]
     },
     {
-        "label": "Combined Symbols",
+        "label": "Name Corrections",
         "items":
         [
             {
-                "label": "Skin Tone Modifiers",
-                "string": "👳🏻👳🏼👳🏽👳🏾👳🏿"
+                "label": "Corrections 1",
+                "string": "Ƣƣ܉ೞຝຟຣລ࿐"
             },
             {
-                "label": "Combinations",
-                "string": "#️⃣👁‍🗨"
+                "label": "Corrections 2",
+                "string": "ᇬᇭᇮᇯ℘⑈⑉⭺⭼"
+            },
+            {
+                "label": "Corrections 3",
+                "string": "ꀕ︘𒋔𒋕𖹖𖹗𖹶𖹷𛀁𝃅"
             }
         ]
     },
@@ -124,60 +190,6 @@
             {
                 "label": "Variation Selectors 3",
                 "string": "⚠︎⚠️㊙︎㊙️🈷︎🈷️"
-            }
-        ]
-    },
-    {
-        "label": "CJK Graphical Variants",
-        "items":
-        [
-            {
-                "label": "CJK Graphical Variants 1",
-                "string": "囯囶囻国圀國"
-            },
-            {
-                "label": "CJK Graphical Variants 2",
-                "string": "㵄汉漢漢漢"
-            },
-            {
-                "label": "CJK Graphical Variants 3",
-                "string": "剝剥叱𠮟塡填頰頬"
-            },
-            {
-                "label": "CJK Variation Selectors",
-                "string": "謎󠄀謎󠄁遡󠄀遡󠄁餅󠄀餅󠄁"
-            }
-        ]
-    },
-    {
-        "label": "Hiragana & Katakana",
-        "items":
-        [
-            {
-                "label": "Rare Kana",
-                "string": "ゐゑゔヰヱヴヷヸヹヺ"
-            },
-            {
-                "label": "Typographic Marks",
-                "string": "゛゜ゝゞ゠・ーヽヾ･ｰ"
-            }
-        ]
-    },
-    {
-        "label": "Name Corrections",
-        "items":
-        [
-            {
-                "label": "Corrections 1",
-                "string": "Ƣƣ܉ೞຝຟຣລ࿐"
-            },
-            {
-                "label": "Corrections 2",
-                "string": "ᇬᇭᇮᇯ℘⑈⑉⭺⭼"
-            },
-            {
-                "label": "Corrections 3",
-                "string": "ꀕ︘𒋔𒋕𖹖𖹗𖹶𖹷𛀁𝃅"
             }
         ]
     }

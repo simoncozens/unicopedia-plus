@@ -85,11 +85,13 @@
 #regex-properties-unit .instructions table td
 {
     user-select: text;
-    max-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
     padding: 0.25em 0.5em;
     text-align: left;
+}
+
+#regex-properties-unit .instructions table th.description
+{
+    width: 100%;
 }
 
 #regex-properties-unit .instructions ul

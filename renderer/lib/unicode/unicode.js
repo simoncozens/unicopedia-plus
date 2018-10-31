@@ -408,15 +408,15 @@ function characterToJavaScriptEscape (character)
     return escape;
 }
 //
-function characterToEcmaScriptEscape (character)
+function characterToEcmaScript6Escape (character)
 {
     let num = character.codePointAt (0);
     let hex = num.toString (16).toUpperCase ();
     return `\\u{${hex}}`;
 }
 //
-// <https://en.wikibooks.org/wiki/Unicode/Versions>
-// <https://www.unicode.org/history/publicationdates.html>
+// https://en.wikibooks.org/wiki/Unicode/Versions
+// https://www.unicode.org/history/publicationdates.html
 const versionDate =
 {
     "1.1": "June 1993",
@@ -450,7 +450,7 @@ function getCharacterData (character)
     characterData.urlEncoding = characterToUrlEncoding (character);
     characterData.entity = characterToDecimalEntity (character)
     characterData.javaScript = characterToJavaScriptEscape (character);
-    characterData.ecmaScript = characterToEcmaScriptEscape (character);
+    characterData.ecmaScript6 = characterToEcmaScript6Escape (character);
     let num = character.codePointAt (0);
     let hex = num.toString (16).toUpperCase ();
     if (hex.length < 5)
@@ -527,6 +527,14 @@ function getCharacterData (character)
     if (coreProperties.length > 0)
     {
         characterData.coreProperties = coreProperties.join (", ");
+    }
+    for (let ideograph of extraData.equivalentUnifiedIdeographs)
+    {
+        if ((parseInt (ideograph.first, 16) <= num) && (num <= parseInt (ideograph.last, 16)))
+        {
+            characterData.equivalentUnifiedIdeograph = uniHexify (ideograph.equivalent);
+            break;
+        }
     }
     let codePoints = unicodeData;
     if (codePoint in codePoints)

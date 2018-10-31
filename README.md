@@ -8,21 +8,76 @@ This app works on Mac OS X, Linux and Windows operating systems.
 
 The following utilities are currently available:
 
+* [CJK Font Variants](#cjk-font-variants)
+* [JavaScript Runner](#javascript-runner)
+* [Regex Properties](#regex-properties)
 * [Emoji Data Finder](#emoji-data-finder)
     * [Find by Name](#find-by-name)
     * [Match Symbol](#match-symbol)
     * [Filter Text](#filter-text)
 * [Emoji Picture Book](#emoji-picture-book)
 * [Emoji References](#emoji-references)
-* [JavaScript Runner](#javascript-runner)
-* [Regex Properties](#regex-properties)
 * [Unicode Data Finder](#unicode-data-finder)
     * [Find by Name](#find-by-name-1)
     * [Match Symbol](#match-symbol-1)
     * [List by Block](#list-by-block)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
+* [Unihan Inspector](#unihan-inspector)
 * [Unihan References](#unihan-references)
+
+## CJK Font Variants
+
+- The **CJK Font Variants** utility displays simultaneously any string of Unihan characters in four different CJK (Chinese/Japanese/Korean) typefaces:
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Japanese
+    - Korean
+- The typefaces belong to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
+    - Noto Sans CJK SC Regular
+    - Noto Sans CJK TC Regular
+    - Noto Sans CJK JP Regular
+    - Noto Sans CJK KR Regular
+- Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Glyphs</kbd> popup menu.
+- Various samples are provided; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) data file, or in the [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data file.
+
+<img src="screenshots/cjk-font-variants.png" width="1080px" alt="CJK Font Variants screenshot">
+
+## JavaScript Runner
+
+- The **JavaScript Runner** utility lets you execute JavaScript code, and comes with several sample scripts related to Unicode, Unihan and emoji; it is useful for quick testing/prototyping or data processing.
+
+<img src="screenshots/javascript-runner.png" width="1080px" alt="JavaScript Runner screenshot">
+
+## Regex Properties
+
+- The **Regex Properties** utility displays all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder** and **Unicode Data Finder** utilities.
+- These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
+- Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> pop-up menu:
+    - **General Category** properties
+    - **Binary** properties
+    - **Script** properties
+    - **Script Extensions** properties
+- For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
+- Groupings:
+    | Property | Description |
+    | -------- | ----------- |
+    | Cased_Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter |
+    | Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter \| Modifier_Letter \| Other_Letter |
+    | Mark | Nonspacing_Mark \| Spacing_Mark \| Enclosing_Mark |
+    | Number | Decimal_Number \| Letter_Number \| Other_Number |
+    | Punctuation | Connector_Punctuation \| Dash_Punctuation \| Open_Punctuation \| Close_Punctuation \| Initial_Punctuation \| Final_Punctuation \| Other_Punctuation |
+    | Symbol | Math_Symbol \| Currency_Symbol \| Modifier_Symbol \| Other_Symbol |
+    | Separator | Space_Separator \| Line_Separator \| Paragraph_Separator |
+    | Other | Control \| Format \| Surrogate \| Private_Use \| Unassigned |
+- `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
+- Notes:
+    - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`
+    - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`
+    - `\p{Assigned}` is equivalent to `\P{Unassigned}`
+- Information pertaining to this list has been gathered from several sources (see References), and slightly refined through trial and error.
+
+<img src="screenshots/regex-properties.png" width="1080px" alt="Regex Properties screenshot">
 
 ## Emoji Data Finder
 
@@ -74,44 +129,6 @@ The following utilities are currently available:
 
 <img src="screenshots/emoji-references.png" width="1080px" alt="Emoji References screenshot">
 
-## JavaScript Runner
-
-- The **JavaScript Runner** utility lets you execute JavaScript code, and comes with several sample scripts related to Unicode and emoji; it is useful for quick testing/prototyping or data processing.
-
-<img src="screenshots/javascript-runner.png" width="1080px" alt="JavaScript Runner screenshot">
-
-## Regex Properties
-
-- The **Regex Properties** utility displays all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder** and **Unicode Data Finder** utilities.
-- These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
-- Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> pop-up menu:
-    - **General Category** properties
-    - **Binary** properties
-    - **Script** properties
-    - **Script Extensions** properties
-- For **General Category** properties, prefixing with `General_Category=` (Canonical) or `gc=` (Alias) is optional. Use the <kbd>Optional Prefix</kbd> checkbox to control whether the prefix is included or not.
-- Groupings:
-
-    | Property | Description |
-    | -------- | ----------- |
-    | Cased_Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter |
-    | Letter | Uppercase_Letter \| Lowercase_Letter \| Titlecase_Letter \| Modifier_Letter \| Other_Letter |
-    | Mark | Nonspacing_Mark \| Spacing_Mark \| Enclosing_Mark |
-    | Number | Decimal_Number \| Letter_Number \| Other_Number |
-    | Punctuation | Connector_Punctuation \| Dash_Punctuation \| Open_Punctuation \| Close_Punctuation \| Initial_Punctuation \| Final_Punctuation \| Other_Punctuation |
-    | Symbol | Math_Symbol \| Currency_Symbol \| Modifier_Symbol \| Other_Symbol |
-    | Separator | Space_Separator \| Line_Separator \| Paragraph_Separator |
-    | Other | Control \| Format \| Surrogate \| Private_Use \| Unassigned |
-
-- `\P{…}` is the negated form of `\p{…}`. Use the <kbd>Negated</kbd> checkbox to toggle between the two forms.
-- Notes:
-    - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`
-    - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`
-    - `\p{Assigned}` is equivalent to `\P{Unassigned}`
-- Information pertaining to this list has been gathered from several sources (see References), and slightly refined through trial and error.
-
-<img src="screenshots/regex-properties.png" width="1080px" alt="Regex Properties screenshot">
-
 ## Unicode Data Finder
 
 ### Find by Name
@@ -157,6 +174,7 @@ The following utilities are currently available:
     - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)
     - [DerivedAge.txt](https://www.unicode.org/Public/UNIDATA/DerivedAge.txt)
     - [DerivedCoreProperties.txt](https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt)
+    - [EquivalentUnifiedIdeograph.txt](https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt)
     - [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt)
     - [PropList.txt](https://www.unicode.org/Public/UNIDATA/PropList.txt)
     - [Scripts.txt](https://www.unicode.org/Public/UNIDATA/Scripts.txt)
@@ -171,6 +189,28 @@ The following utilities are currently available:
 - The **Unicode References** utility provides a list of reference links to Unicode-related web pages.
 
 <img src="screenshots/unicode-references.png" width="1080px" alt="Unicode References screenshot">
+
+## Unihan Inspector
+
+- The **Unihan Inspector** utility displays all available properties for each of the 88889 Unihan characters defined in  the set of data files contained in the [Unihan.zip](https://www.unicode.org/Public/UNIDATA/Unihan.zip) archive file:
+    - *Unihan_DictionaryIndices.txt*
+    - *Unihan_DictionaryLikeData.txt*
+    - *Unihan_IRGSources.txt*
+    - *Unihan_NumericValues.txt*
+    - *Unihan_OtherMappings.txt*
+    - *Unihan_RadicalStrokeCounts.txt*
+    - *Unihan_Readings.txt*
+    - *Unihan_Variants.txt*
+- Any Unihan character can be entered in the input field either as a code point or a character.
+- It is also possible to randomly enter a code point by clicking on the <kbd>Random</kbd> button.
+- The selected Unihan character will be displayed in a large font, followed by its code point; clicking on the gray button below it will step through four different CJK typefaces, among: `SC` (Simplified Chinese), `TC` (Traditional Chinese), `JP` (Japanese) and `KR` (Korean).
+- Use the <kbd>Categories</kbd> checkbox to toggle between: all properties ordered alphabetically, or grouped by categories.
+- In addition, the utility provides, for each Unihan character: basic Unicode information, as well as radical, number of strokes, definition, variant characters, when available.
+- Notes:
+    - The Kangxi Radical field uses extra information from the [CJKRadicals.txt](https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt) data file.
+    - The Yasuoka Variants information comes directly from the "Variants table for Unicode" data file [UniVariants.txt](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z) provided by Prof. [Kōichi Yasuoka](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/).
+
+<img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
 
 ## Unihan References
 

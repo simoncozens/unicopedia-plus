@@ -297,6 +297,12 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let lastPageButton = document.createElement ('button');
     lastPageButton.type = 'button';
     lastPageButton.className = 'page-nav-button last-page-button';
+    svg = document.createElementNS (xmlns, 'svg');
+    svg.setAttributeNS (null, 'class', 'page-nav-icon');
+    use = document.createElementNS (xmlns, 'use');
+    use.setAttributeNS (null, 'href', 'images/navigation.svg#last-page');
+    svg.appendChild (use);
+    lastPageButton.appendChild (svg);
     lastPageButton.addEventListener
     (
         'click',
@@ -309,12 +315,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
             }
         }
     );
-    svg = document.createElementNS (xmlns, 'svg');
-    svg.setAttributeNS (null, 'class', 'page-nav-icon');
-    use = document.createElementNS (xmlns, 'use');
-    use.setAttributeNS (null, 'href', 'images/navigation.svg#last-page');
-    svg.appendChild (use);
-    lastPageButton.appendChild (svg);
     navigationGroup.appendChild (lastPageButton);
     //
     paginationBar.appendChild (navigationGroup);

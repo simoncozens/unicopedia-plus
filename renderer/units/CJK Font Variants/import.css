@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+#cjk-font-variants-unit .actions
+{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em 0;
+}
+
+#cjk-font-variants-unit .actions.right
+{
+    justify-content: flex-end;
+    margin-bottom: -0.5em;
+}
+
+#cjk-font-variants-unit .action-group
+{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#cjk-font-variants-unit .action-group + .action-group,
+#cjk-font-variants-unit .action + .action
+{
+    margin-left: 0.75em;
+}
+
+#cjk-font-variants-unit .input-group
+{
+    margin-bottom: 0.5em;
+}
+
+#cjk-font-variants-unit .characters-input,
+#cjk-font-variants-unit .code-points-input
+{
+    line-height: 1.333em;
+    width: 100%;
+    margin: 0.2em 0;
+}
+
+#cjk-font-variants-unit .characters-input
+{
+    font-size: 16px;
+    padding: 2px 6px;
+}
+
+#cjk-font-variants-unit .code-points-input
+{
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 13px;
+    padding: 4px 6px;
+}
+
+#cjk-font-variants-unit .cjk-string
+{
+    font-size: 54px;
+    padding: 0 0.2em;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    background-color: white;
+    color: var(--color);
+    margin-bottom: 4px;
+}
+
+#cjk-font-variants-unit .cjk-string:lang(zh-Hans)
+{
+    font-family: "Noto Sans CJK SC", sans-serif;
+}
+
+#cjk-font-variants-unit .cjk-string:lang(zh-Hant)
+{
+    font-family: "Noto Sans CJK TC", sans-serif;
+}
+
+#cjk-font-variants-unit .cjk-string:lang(ja)
+{
+    font-family: "Noto Sans CJK JP", sans-serif;
+}
+
+#cjk-font-variants-unit .cjk-string:lang(ko)
+{
+    font-family: "Noto Sans CJK KR", sans-serif;
+}
+
+#cjk-font-variants-unit .plain-panel
+{
+    padding-bottom: 1.25em;
+}
+
+#cjk-font-variants-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#cjk-font-variants-unit .instructions li
+{
+    margin: 0.2em 0;
+}
+
+#cjk-font-variants-unit .instructions li > ul
+{
+    margin: 0 0 0.25em 0;
+}
+
+#cjk-font-variants-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#cjk-font-variants-unit .instructions code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#cjk-font-variants-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

@@ -1,0 +1,50 @@
+<template>
+    <section id="unihan-inspector-unit">
+        <div class="plain-panel">
+            <div class="interface">
+                <span class="option-group">
+                    <input type="search" class="unihan-input" placeholder="Unihan code point...">
+                    <button type="button" class="lookup-button">Lookup</button>
+                </span>
+                <span class="option-group">
+                    <button type="button" class="random-button">Random</button>
+                </span>
+            </div>
+            <div class="interface right">
+                <span class="option-group">
+                    <label><input type="checkbox" class="categories-checkbox">&nbsp;Categories</label>
+                </span>
+            </div>
+            <div class="properties-data"></div>
+        </div>
+        <div class="accent-panel">
+            <details class="instructions">
+                <summary>Instructions</summary>
+                <ul>
+                    <li>The <strong>Unihan Inspector</strong> utility displays all the available properties for each of the 88889 Unihan characters defined in the set of data files contained in the <a title="https://www.unicode.org/Public/UNIDATA/Unihan.zip" href="https://www.unicode.org/Public/UNIDATA/Unihan.zip">Unihan.zip</a> archive file:
+                        <br>
+                        <em>Unihan_DictionaryIndices.txt</em>,
+                        <em>Unihan_DictionaryLikeData.txt</em>,
+                        <em>Unihan_IRGSources.txt</em>,
+                        <em>Unihan_NumericValues.txt</em>,
+                        <em>Unihan_OtherMappings.txt</em>,
+                        <em>Unihan_RadicalStrokeCounts.txt</em>,
+                        <em>Unihan_Readings.txt</em>,
+                        <em>Unihan_Variants.txt</em>.
+                    </li>
+                    <li>Any Unihan character can be entered in the input field either as a code point or a character.</li>
+                    <li>It is also possible to randomly enter a code point by clicking on the <kbd>Random</kbd> button.</li>
+                    <li>The selected Unihan character will be displayed in a large font, followed by its code point; clicking on the gray button below it will step through four different CJK typefaces, among: <code>SC</code> (Simplified Chinese), <code>TC</code> (Traditional Chinese), <code>JP</code> (Japanese) and <code>KR</code> (Korean).</li>
+                    <li>Use the <kbd>Categories</kbd> checkbox to toggle between: all properties ordered alphabetically, or grouped by categories.</li>
+                    <li>In addition, the utility provides, for each Unihan character: basic Unicode information, as well as radical, number of strokes, definition, variant characters, when available.</li>
+                    <li>Notes:
+                        <ul>
+                            <li>The Kangxi (or Simplified) Radical field uses extra information from the <a title="https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt" href="https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt">CJKRadicals.txt</a> data file.</li>
+                            <li>The Yasuoka Variants information comes directly from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </details>
+        </div>
+    </section>
+</template>

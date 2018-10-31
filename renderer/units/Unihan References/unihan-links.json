@@ -13,6 +13,10 @@
             "href": "https://en.wikipedia.org/wiki/Chinese_family_of_scripts"
         },
         {
+            "name": "Variant Chinese character - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Variant_Chinese_character"
+        },
+        {
             "name": "CJK characters - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/CJK_characters"
         },
@@ -142,113 +146,163 @@
         }
     ],
     [
-         {
+        {
+            "name": "Chinese dictionary - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Chinese_dictionary"
+        },
+        {
+            "name": "Kangxi Dictionary - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Kangxi_Dictionary"
+        },
+        {
+            "name": "Japanese dictionary - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Japanese_dictionary"
+        },
+        {
+            "name": "Dai Kan-Wa Jiten - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Dai_Kan-Wa_Jiten"
+        }
+    ],
+    [
+        {
             "name": "The Unicode Standard, Version 11.0 - Chapter 18: East Asia",
             "href": "https://www.unicode.org/versions/Unicode11.0.0/ch18.pdf"
-         },
-         {
+        },
+        {
             "name": "FUTN #26: On the Encoding of Latin, Greek, Cyrillic, and Han",
             "href": "https://www.unicode.org/notes/tn26/"
-         },
-         {
+        },
+        {
             "name": "FAQ - Chinese and Japanese",
             "href": "https://www.unicode.org/faq/han_cjk.html"
-         },
-         {
+        },
+        {
             "name": "FAQ - Fonts and Keyboards",
             "href": "https://www.unicode.org/faq/font_keyboard.html"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "Guide to Han Radical-Stroke Index",
             "href": "https://www.unicode.org/charts/rs.pdf"
-         },
-         {
+        },
+        {
             "name": "IICore Radical-Stroke Index",
             "href": "https://www.unicode.org/versions/IICoreRSIndex.pdf"
-         },
-         {
+        },
+        {
             "name": "Full Han Radical-Stroke Index",
             "href": "https://www.unicode.org/Public/11.0.0/charts/RSIndex.pdf"
-         }
+        }
     ],
     [
-         {
+        {
+            "name": "UTS #37: Unicode Ideographic Variation Database",
+            "href": "https://www.unicode.org/reports/tr37/"
+        },
+        {
             "name": "UAX #38: Unicode Han Database (Unihan)",
             "href": "https://www.unicode.org/reports/tr38/"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "Unihan Database Lookup",
             "href": "https://www.unicode.org/charts/unihan.html"
-         },
-         {
+        },
+        {
             "name": "Unihan Database Search Page",
             "href": "https://www.unicode.org/charts/unihansearch.html"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "Unihan Radical-Stroke Index",
             "href": "https://www.unicode.org/charts/unihanrsindex.html"
-         },
-         {
+        },
+        {
             "name": "Unihan Grid Index",
             "href": "https://www.unicode.org/charts/unihangridindex.html"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "Unihan.zip",
             "href": "https://unicode.org/Public/UNIDATA/Unihan.zip"
-         }
+        }
     ],
     [
-         {
+        {
+            "name": "Unicode Version 11.0 CJK Unified Ideographs & CJK Compatibility Ideographs (Version 2018-06-05) - ideographs-unicode-11.pdf",
+            "href": "https://blogs.adobe.com/CCJKType/files/2018/06/ideographs-unicode-11.pdf"
+        }
+    ],
+    [
+        {
+            "name": "Character Tables by Koichi Yasuoka",
+            "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/CJK.html"
+        },
+        {
+            "name": "Variants table for Unicode",
+            "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z"
+        }
+    ],
+    [
+        {
+            "name": "Jōyō kanji variants: The curious case of 叱 and [censored] | The Nanbanjin Nikki",
+            "href": "https://namakajiri.net/nikki/joyo-kanji-variants-the-curious-case-of-and-%e5%8f%b1/"
+        }
+    ],
+    [
+        {
+            "name": "The Secret Life of Unicode",
+            "href": "https://www.btetrud.com/Lima/The%20Secret%20Life%20of%20Unicode.pdf"
+        }
+    ],
+    [
+        {
             "name": "Handwritten kanji search at sljfaq.org",
             "href": "https://kanji.sljfaq.org/"
-         },
-         {
+        },
+        {
             "name": "Four-corner kanji search at sljfaq.org",
             "href": "https://kanji.sljfaq.org/four.html"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "MDBG Chinese Dictionary",
             "href": "https://www.mdbg.net/chinese/dictionary?page=cedict"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "The EDICT Dictionary File",
             "href": "https://www.edrdg.org/jmdict/edict.html"
-         },
-         {
+        },
+        {
             "name": "RADKFILE/KRADFILE",
             "href": "http://nihongo.monash.edu/kradinf.html"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "WWWJDIC: Kanji Selection",
             "href": "https://www.edrdg.org/cgi-bin/wwwjdic/wwwjdic?1B"
-         },
-         {
+        },
+        {
             "name": "WWWJDIC: Multirad Kanji",
             "href": "https://www.edrdg.org/cgi-bin/wwwjdic/wwwjdic?1R"
-         }
+        }
     ],
     [
-         {
+        {
             "name": "Jisho.org: Japanese Dictionary",
             "href": "https://jisho.org/"
-         },
-         {
+        },
+        {
             "name": "Tangorin Japanese Dictionary",
             "href": "http://www.tangorin.com/"
-         }
+        }
     ]
 ]

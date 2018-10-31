@@ -3,7 +3,7 @@
     "hotKey": "CommandOrControl+Alt+U",
     "escapeExitsFullScreen": true,
     "unitsMenu": true,
-    "developerFeatures": false,
+    "developerFeatures": true,
     "smartZoom": false,
     "minZoomLevel": -2,
     "maxZoomLevel": 4,
@@ -23,7 +23,7 @@
     "shortAppName": "App",
     "unitsName": "Utilities",
     "noCategoryName": "Other",
-    "description": "Set of Unicode & emoji utilities.",
+    "description": "Set of Unicode, Unihan & emoji utilities.",
     "copyright": "© 2018 Michel MARIANI.",
     "repository":
     {

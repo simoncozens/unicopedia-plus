@@ -134,10 +134,10 @@ module.exports.start = function (context)
                 let codes =
                 [
                     { label: "Code\xA0Point", value: data.codePoint },  // "Unicode"
-                    { label: "ECMAScript", value: data.ecmaScript },
                     { label: "JavaScript", value: data.javaScript },
-                    { label: "HTML\xA0Entity", value: data.entity },
+                    { label: "ECMAScript\xA06", value: data.ecmaScript6 },
                     { label: "URL\xA0Escape", value: data.urlEncoding },
+                    { label: "HTML\xA0Entity", value: data.entity },
                     null,
                     { label: "UTF-32", value: data.utf32 },
                     { label: "UTF-16", value: data.utf16 },
@@ -195,7 +195,8 @@ module.exports.start = function (context)
                     { label: "Lowercase", value: data.lowercase },
                     { label: "Titlecase", value: data.titlecase },
                     { label: "Binary\xA0Properties", value: data.binaryProperties },
-                    { label: "Core\xA0Properties", value: data.coreProperties }
+                    { label: "Core\xA0Properties", value: data.coreProperties },
+                    { label: "Equivalent\xA0Unified\xA0Ideograph", value: data.equivalentUnifiedIdeograph }
                 ];
                 for (let property of properties)
                 {

@@ -362,14 +362,13 @@ module.exports.start = function (context)
     let blockNames = [ ];
     extraData.blocks.forEach
     (
-        (block) =>
+        block =>
         {
-            let key = `${block.first}-${block.last}`;
-            blocks[block.name] = key;
+            blocks[block.name] = { first: block.first, last: block.last };
             blockNames.push (block.name);
             //
             let option = document.createElement ('option');
-            option.value = key;
+            option.value = `${block.first}-${block.last}`;
             option.textContent = `U+${block.first}..U+${block.last}`;
             option.title = block.name;
             blockSelectBlockRange.appendChild (option);
@@ -381,8 +380,10 @@ module.exports.start = function (context)
         blockName =>
         {
             let option = document.createElement ('option');
-            option.value = blocks[blockName];
+            let block = blocks[blockName];
+            option.value = `${block.first}-${block.last}`;
             option.textContent = blockName;
+            option.title = `U+${block.first}..U+${block.last}`;
             blockSelectBlockName.appendChild (option);
         }
     );

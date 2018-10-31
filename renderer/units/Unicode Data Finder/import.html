@@ -128,6 +128,7 @@
                             <li><code>\p{Regional_Indicator}</code><br>Characters with the 'Regional_Indicator' binary property</li>
                             <li><code>\p{Emoji_Modifier}</code><br>Characters with the 'Emoji_Modifier' binary property</li>
                             <li><code>\p{Script=Hiragana}</code><br>Characters with the 'Script' property equal to 'Hiragana'</li>
+                            <li><code>(?=\p{Script=Han})(?=\p{Other_Letter})</code><br>Characters belonging to the Unihan set, i.e., with the 'Script' property equal to 'Han' and the 'General_Category' property equal to 'Other_Letter'</li>
                             <li><code>(?=\p{Script=Latin})(?=\p{Number})</code><br>Characters with the 'Script' property equal to 'Latin' and the 'General_Category' property equal to 'Number'</li>
                             <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
                             <li><code>(?=\p{Ideographic})(?!\p{Unified_Ideograph})</code> or <code>(?=\p{Ideographic})(?=\P{Unified_Ideograph})</code><br>Characters with the 'Ideographic' binary property, but without the 'Unified_Ideograph' binary property</li>

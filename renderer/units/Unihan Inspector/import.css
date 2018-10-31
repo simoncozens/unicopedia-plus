@@ -1,0 +1,272 @@
+@charset "utf-8";
+
+#unihan-inspector-unit .plain-panel
+{
+    padding-bottom: 0.75em;
+}
+
+#unihan-inspector-unit .interface
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0.5em 0 1em 0;
+}
+
+#unihan-inspector-unit .interface.right
+{
+    justify-content: flex-end;
+    margin-top: -0.25em;
+}
+
+#unihan-inspector-unit .option-group
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+#unihan-inspector-unit .option-group + .option-group
+{
+    margin-left: 1em;
+}
+
+#unihan-inspector-unit .unihan-input
+{
+    font-size: inherit;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25em;
+    padding: 0.2em 0.3em;
+    margin-right: 0.5em;
+}
+
+#unihan-inspector-unit .unihan-input:invalid
+{
+    color: var(--color-error);
+}
+
+#unihan-inspector-unit .unihan-character:lang(zh-Hans)
+{
+    font-family: "Noto Sans CJK SC", sans-serif;
+}
+
+#unihan-inspector-unit .unihan-character:lang(zh-Hant)
+{
+    font-family: "Noto Sans CJK TC", sans-serif;
+}
+
+#unihan-inspector-unit .unihan-character:lang(ja)
+{
+    font-family: "Noto Sans CJK JP", sans-serif;
+}
+
+#unihan-inspector-unit .unihan-character:lang(ko)
+{
+    font-family: "Noto Sans CJK KR", sans-serif;
+}
+
+#unihan-inspector-unit .info-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+#unihan-inspector-unit .unihan-card
+{
+    user-select: text;
+    background: white;
+    border: 1px solid var(--color-border);
+    text-align: center;
+    width: 108px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 0.5em 1em; */
+    /* justify-content: center; */
+}
+
+#unihan-inspector-unit .unihan-card .unihan-character
+{
+    display: inline-block;
+    font-size: 72px;
+    width: 1.5em;
+    margin-bottom: -0.25em;
+}
+
+#unihan-inspector-unit .unihan-card .unihan-code-point
+{
+    display: inline-block;
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 1.25em 0;
+    border: 1px solid var(--color-border);
+    /* border-radius: 5px; */
+    background-color: var(--color-bg);
+    padding: 0 5px;
+}
+
+#unihan-inspector-unit .unihan-card .filler
+{
+    margin-top: -0.5em;
+}
+
+#unihan-inspector-unit .unihan-card .unihan-language
+{
+    display: inline-block;
+    user-select: none;
+    background-color: gray;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    height: 20px;
+    width: 36px;
+    padding: 1px;
+    color: white;
+    border-radius: 3px;
+    margin-bottom: 1.25em;
+}
+
+#unihan-inspector-unit .unicode-info,
+#unihan-inspector-unit .unihan-info
+{
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 13px;
+    line-height: 1.25em;
+    user-select: text;
+    background: white;
+    border: 1px solid var(--color-border);
+    /* border-radius: 8px; */
+    text-align: left;
+    padding: 0.5em 1em;
+    margin-left: 0.9em;
+}
+
+#unihan-inspector-unit .unicode-info
+{
+    flex-basis: 100%;
+}
+
+#unihan-inspector-unit .unihan-info
+{
+    flex-basis: 100%;
+}
+
+#unihan-inspector-unit .unicode-info .unicode-field,
+#unihan-inspector-unit .unihan-info .unihan-field
+{
+    margin: 0.35em 0;
+}
+
+#unihan-inspector-unit .properties-data .data-list
+{
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 1em;
+    user-select: text;
+    margin: 0.75em 0;
+}
+
+#unihan-inspector-unit .properties-data .data-list .list
+{
+    margin: 0;
+    list-style-type: circle;
+}
+
+#unihan-inspector-unit .properties-data .data-list .list .item
+{
+    margin-left: -24px;
+}
+
+#unihan-inspector-unit .properties-data .data-list .list .item + .item
+{
+    margin-top: 0.25em;
+}
+
+#unihan-inspector-unit .properties-data .data-list .property-header,
+#unihan-inspector-unit .properties-data .data-list .value-header
+{
+    text-align: left;
+    font-family: system-ui, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1em;
+    padding: 0.5em 0.75em;
+}
+
+#unihan-inspector-unit .properties-data .data-list .category-row .category-name
+{
+    background-color: white;
+    color: var(--color-accent);
+    text-align: left;
+    font-family: system-ui, sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.25em;
+    padding: 0.5em 0.75em;
+}
+
+#unihan-inspector-unit .properties-data .data-list .category-row .category-name::before
+{
+    content: "◎\A0\A0";
+    font-size: 1.05em;
+}
+
+#unihan-inspector-unit .properties-data .data-list .property,
+#unihan-inspector-unit .properties-data .data-list .value
+{
+    font-size: 13px;
+    background-color: white;
+    text-align: left;
+    line-height: 1.2em;
+    padding: 0.4em 0.8em;
+}
+
+#unihan-inspector-unit .properties-data .data-list .property
+{
+    white-space: nowrap;
+    /* font-weight: 600; */
+}
+
+#unihan-inspector-unit .properties-data .data-list .value
+{
+    width: 100%;
+}
+
+#unihan-inspector-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unihan-inspector-unit .instructions li
+{
+    margin: 0.25em 0;
+}
+
+#unihan-inspector-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#unihan-inspector-unit .instructions code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unihan-inspector-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

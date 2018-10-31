@@ -209,7 +209,7 @@ The following utilities are currently available:
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all properties ordered alphabetically, or grouped by categories.
 - In addition, the utility provides, for each Unihan character: basic Unicode information, as well as radical, number of strokes, definition, variant characters, when available.
 - Notes:
-    - The Kangxi Radical field uses extra information from the [CJKRadicals.txt](https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt) data file.
+    - The Kangxi (or Simplified) Radical field uses extra information from the [CJKRadicals.txt](https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt) data file.
     - The Yasuoka Variants information comes directly from the "Variants table for Unicode" data file [UniVariants.txt](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z) provided by Prof. [Kōichi Yasuoka](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/).
 
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">

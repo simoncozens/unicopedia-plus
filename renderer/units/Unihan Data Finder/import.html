@@ -1,0 +1,85 @@
+<template>
+    <section id="unihan-data-finder-unit">
+        <div class="plain-panel">
+            <div class="tab-bar">
+                <label class="tab-label"><input type="radio" class="tab-radio"><span>Find by Tag Value</span></label>
+                <!-- <label class="tab-label"><input type="radio" class="tab-radio"><span>Radical/Strokes</span></label> -->
+            </div>
+            <div class="tab-panes">
+                <div class="tab-pane find-by-tag-value">
+                    <div class="actions">
+                        <div class="action-group tag-group">
+                            <span class="action">
+                                <select class="tag-select" title="Unihan tag"></select>
+                            </span>
+                            <span class="checkbox-group">
+                                <span class="action">
+                                    <label><input class="categories-checkbox" type="checkbox">&nbsp;Categories</label>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="action-group search-group">
+                            <span class="action search-wrap">
+                                <input class="search-string" type="search" placeholder="Tag value or regex...">
+                            </span>
+                            <span class="action">
+                                <label title="Case Sensitive (disabled)"><input type="checkbox" class="case-sensitive" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <label title="Whole Word"><input type="checkbox" class="whole-word"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                            </span>
+                            <span class="action">
+                                <button type="button" class="search-button">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="search-info"></div>
+                    <div class="search-data"></div>
+                </div>
+                <!-- <div class="tab-pane radical-strokes">
+                    <div style="text-align: center; font-size: 1.5em;">🚧 Work in Progress 🚧</div>
+                </div> -->
+            </div>
+       </div>
+        <div class="tab-infos">
+            <div class="tab-info find-by-tag-value">
+                <div class="accent-panel">
+                    <details class="instructions">
+                        <summary>Instructions</summary>
+                        <ul>
+                            <li>The <strong>Find by Tag Value</strong> feature of the <strong>Unihan Data Finder</strong> utility displays a list of basic data (symbol, code point, Unihan tag and value(s) of matching Unihan characters searched by tag value, including through regular expressions.</li>
+                            <li>Use the <kbd>Unihan Tag</kbd> drop-down menu to select the tag you wish to search value(s) by.</li>
+                            <li>Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories in the drop-down menu.</li>
+                            <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
+                            <li>It is possible to choose how many characters are shown one page at a time.</li>
+                            <li>The search is performed on the 88889 Unihan characters (or code points) defined in the set of data files contained in the <a title="https://www.unicode.org/Public/UNIDATA/Unihan.zip" href="https://www.unicode.org/Public/UNIDATA/Unihan.zip">Unihan.zip</a> archive file:
+                                <br>
+                                <em>Unihan_DictionaryIndices.txt</em>,
+                                <em>Unihan_DictionaryLikeData.txt</em>,
+                                <em>Unihan_IRGSources.txt</em>,
+                                <em>Unihan_NumericValues.txt</em>,
+                                <em>Unihan_OtherMappings.txt</em>,
+                                <em>Unihan_RadicalStrokeCounts.txt</em>,
+                                <em>Unihan_Readings.txt</em>,
+                                <em>Unihan_Variants.txt</em>.
+                            </li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+            <!-- <div class="tab-info radical-strokes">
+                <div class="accent-panel">
+                    <details class="instructions">
+                        <summary>Instructions</summary>
+                        <ul>
+                            <li>The <strong>Radical/Strokes</strong> feature of the <strong>Unihan Data Finder</strong> utility is a work in progress...</li>
+                        </ul>
+                    </details>
+                </div>
+            </div> -->
+        </div>
+    </section>
+</template>

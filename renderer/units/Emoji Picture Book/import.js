@@ -252,7 +252,7 @@ module.exports.start = function (context)
                     if (count === 0)
                     {
                         panel.remove ();
-                    } 
+                    }
                 }
                 break;
             }

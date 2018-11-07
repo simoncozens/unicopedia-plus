@@ -1,0 +1,352 @@
+@charset "utf-8";
+
+#unihan-data-finder-unit .plain-panel
+{
+    padding-bottom: 1.5em;
+    overflow-x: visible;
+}
+
+#unihan-data-finder-unit .tab-bar
+{
+    display: flex;
+    justify-content: center;
+    /* text-align: center; */
+    white-space: nowrap;
+    margin: -2em 0 1.5em 0;
+}
+
+#unihan-data-finder-unit .tab-bar .tab-label .tab-radio
+{
+    display: none;
+}
+
+#unihan-data-finder-unit .tab-bar .tab-label span
+{
+    padding: 0.2em 1em;
+    font-size: 1em;
+    font-weight: 600;
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    background-color: white;
+    color: var(--color-accent);
+    margin: 0 -2px;
+    vertical-align: middle;
+}
+
+#unihan-data-finder-unit .tab-bar .tab-label:first-of-type span
+{
+    border-top-left-radius : 0.5em;
+    border-bottom-left-radius : 0.5em;
+    margin-right: -3px;
+}
+
+#unihan-data-finder-unit .tab-bar .tab-label:last-of-type span
+{
+    border-top-right-radius : 0.5em;
+    border-bottom-right-radius : 0.5em;
+    margin-left: -3px;
+}
+
+#unihan-data-finder-unit .tab-bar .tab-label .tab-radio:checked + span
+{
+    background-color: var(--color-accent);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+#unihan-data-finder-unit .tab-bar .tab-label .tab-radio:not(:checked) + span:hover
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.75), hsla(0, 0%, 100%, 0.75));
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+#unihan-data-finder-unit .actions
+{
+    margin-bottom: 0.75em;
+}
+
+#unihan-data-finder-unit .action-group.tag-group
+{
+    margin: 0.6em 0;
+    align-items: baseline;
+    /* justify-content: space-between; */
+}
+
+#unihan-data-finder-unit .action-group.tag-group .checkbox-group
+{
+    margin-left: 1.5em;
+}
+
+#unihan-data-finder-unit .action-group.tag-group .action + .action
+{
+    margin-left: 1em;
+}
+
+#unihan-data-finder-unit .action-group
+{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+#unihan-data-finder-unit .tag-select
+{
+    width: 240px;
+}
+
+#unihan-data-finder-unit .search-group
+{
+    margin: 0.5em -0.5em 1.25em 0;
+}
+
+#unihan-data-finder-unit .search-wrap
+{
+    width: 100%;
+}
+
+#unihan-data-finder-unit .search-string
+{
+    width: 100%;
+    font-size: 1em;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+}
+
+#unihan-data-finder-unit .search-string.error
+{
+    color: var(--color-error);
+}
+
+#unihan-data-finder-unit .search-group input[type=checkbox]
+{
+    display: none;
+}
+
+#unihan-data-finder-unit .search-group input[type=checkbox] + svg
+{
+    font-size: 1.7em;
+    line-height: 1em;
+    text-align: center;
+    padding: 1px;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    background: white;
+    border: 1px solid var(--color-accent);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    color: var(--color-accent);
+    fill: var(--color-accent);
+}
+
+#unihan-data-finder-unit .search-group input[type=checkbox]:checked + svg
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0.15));
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
+    color: white;
+    fill: white;
+}
+
+#unihan-data-finder-unit .search-group input[type=checkbox]:disabled + svg
+{
+    color: gray;
+    fill: gray;
+    border: gray 1px solid;
+    background-color: white;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}
+
+#unihan-data-finder-unit .search-group .action
+{
+    margin-right: 0.5em;
+}
+
+#unihan-data-finder-unit .search-info
+{
+    text-align: left;
+    font-size: small;
+    /* color: gray; */
+    margin: -1em 0 0.5em 0;
+    user-select: text;
+}
+
+#unihan-data-finder-unit .pagination-bar
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin: 1em 0 0 0;
+}
+
+#unihan-data-finder-unit .pagination-bar .pagination-group
+{
+    white-space: nowrap;
+    display: flex;
+}
+
+#unihan-data-finder-unit .pagination-bar .page-select:disabled
+{
+    pointer-events: none;
+}
+
+#unihan-data-finder-unit .pagination-bar .page-select,
+#unihan-data-finder-unit .pagination-bar .page-nav-button
+{
+    margin-right: 1em;
+}
+
+#unihan-data-finder-unit .pagination-bar .page-select
+{
+    font-family: Monaco, "Noto Mono", monospace;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 0.2em 0.4em;
+    text-align: right;
+}
+
+#unihan-data-finder-unit .pagination-bar .page-nav-button
+{
+    width: 2.4em;
+    border-radius: 0;
+}
+
+#unihan-data-finder-unit .pagination-bar .page-nav-button svg.page-nav-icon
+{
+    width: 1em;
+    height: 1em;
+    vertical-align: bottom;
+    fill: currentColor;
+}
+
+#unihan-data-finder-unit .pagination-bar .page-info
+{
+    margin: 0 1em 0 0.5em;
+}
+
+#unihan-data-finder-unit .search-data .data-table
+{
+    user-select: text;
+    margin: 0.75em 0 0.25em 0;
+}
+
+#unihan-data-finder-unit .search-data .header-symbol,
+#unihan-data-finder-unit .search-data .header-code-point,
+#unihan-data-finder-unit .search-data .header-tag,
+#unihan-data-finder-unit .search-data .header-value
+{
+    text-align: left;
+    font-size: 13px;
+    line-height: 1em;
+    padding: 0.5em;
+}
+
+#unihan-data-finder-unit .search-data .data-table .header-symbol
+{
+    text-align: center;
+}
+
+#unihan-data-finder-unit .search-data .data-table .header-value
+{
+    width: 100%;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-row
+{
+    vertical-align: middle;
+    background-color: white;
+    font-family: Monaco, "Noto Mono", monospace;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-symbol
+{
+    text-align: center;
+    font-size: 36px;
+    padding: 0.5em 0;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-code-point
+{
+    text-align: left;
+    padding: 0.25em 0.5em;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-tag,
+#unihan-data-finder-unit .search-data .data-table .data-value
+{
+    text-align: left;
+    font-size: 13px;
+    padding: 0.25em 0.5em;
+    line-height: 1.2em;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-value .list
+{
+    margin: 0;
+    list-style-type: circle;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-value .item
+{
+    margin: 0.1em 0 0.1em -24px;
+}
+
+#unihan-data-finder-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unihan-data-finder-unit .instructions li
+{
+    margin: 0.25em 0;
+}
+
+#unihan-data-finder-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em 1px;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#unihan-data-finder-unit .instructions code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unihan-data-finder-unit .regex-examples ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unihan-data-finder-unit .regex-examples li
+{
+    margin: 0.5em 0;
+}
+
+#unihan-data-finder-unit .regex-examples li > ul
+{
+    margin: 0.5em 0;
+}
+
+#unihan-data-finder-unit .regex-examples code
+{
+    user-select: text;
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unihan-data-finder-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

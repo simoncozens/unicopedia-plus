@@ -26,7 +26,7 @@
             <div class="actions right">
                 <span class="action-group">
                     <span class="action">
-                        <label>East Asian Glyphs:
+                        <label>East Asian Variant:
                             <select class="east-asian-select">
                                 <option value="normal">Normal</option>
                                 <option value="jis78">JIS X 0208:1978</option>
@@ -40,35 +40,35 @@
                     </span>
                 </span>
             </div>
-            <label>Chinese (Simplified):<input class="cjk-string" lang="zh-Hans" readonly disabled></label>
-            <label>Chinese (Traditional):<input class="cjk-string" lang="zh-Hant" readonly disabled></label>
             <label>Japanese:<input class="cjk-string" lang="ja" readonly disabled></label>
             <label>Korean:<input class="cjk-string" lang="ko" readonly disabled></label>
+            <label>Simplified Chinese:<input class="cjk-string" lang="zh-Hans" readonly disabled></label>
+            <label>Traditional Chinese:<input class="cjk-string" lang="zh-Hant" readonly disabled></label>
        </div>
         <div class="accent-panel">
             <details class="instructions">
                 <summary>Instructions</summary>
                 <ul>
                     <li>
-                        The <strong>CJK Font Variants</strong> utility displays simultaneously any string of Unihan characters in four different CJK (Chinese/Japanese/Korean) typefaces:
+                        The <strong>CJK Font Variants</strong> utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in four different typefaces:
                         <ul>
-                            <li>Chinese (Simplified)</li>
-                            <li>Chinese (Traditional)</li>
-                            <li>Japanese</li>
-                            <li>Korean</li>
+                            <li>Japanese (JP)</li>
+                            <li>Korean (KR)</li>
+                            <li>Simplified Chinese (SC)</li>
+                            <li>Traditional Chinese (TC)</li>
                         </ul>
                     </li>
                     <li>
                         The typefaces belong to the open-source set of <a title="https://www.google.com/get/noto/help/cjk/" href="https://www.google.com/get/noto/help/cjk/">Google Noto CJK Fonts</a>:
                         <ul>
-                            <li>Noto Sans CJK SC Regular</li>
-                            <li>Noto Sans CJK TC Regular</li>
                             <li>Noto Sans CJK JP Regular</li>
                             <li>Noto Sans CJK KR Regular</li>
+                            <li>Noto Sans CJK SC Regular</li>
+                            <li>Noto Sans CJK TC Regular</li>
                         </ul>
                     </li>
-                    <li>Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Glyphs</kbd> popup menu.</li>
-                    <li>Various samples are provided; some of them make use of the information found in the <a title="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt" href="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt">StandardizedVariants.txt</a> data file, or in the <a title="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt" href="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt">IVD_Sequences.txt</a> data file.</li>
+                    <li>Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.</li>
+                    <li>Various samples are provided; some of them make use of the information found in the <a title="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt" href="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt">StandardizedVariants.txt</a> or <a title="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt" href="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt">IVD_Sequences.txt</a> data files.</li>
                 </ul>
             </details>
             <details class="references">

@@ -7,7 +7,7 @@ const variantProperties =
     "kTraditionalVariant",
     "kZVariant"
 ];
-const codePoints = require ('./lib/unicode/parsed-unihan-data.js');
+const { codePoints } = require ('./lib/unicode/parsed-unihan-data.js');
 let selfVariants = { };
 for (let codePoint in codePoints)
 {

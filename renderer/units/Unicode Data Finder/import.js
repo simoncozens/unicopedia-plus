@@ -54,14 +54,14 @@ module.exports.start = function (context)
         nameSearchString: "",
         nameWholeWord: false,
         nameUseRegex: false,
-        namePageSize: 1024,
+        namePageSize: 8,
         nameInstructions: true,
         nameRegexExamples: false,
         //
         symbolSearchString: "",
         symbolCaseSensitive: false,
         symbolUseRegex: false,
-        symbolPageSize: 1024,
+        symbolPageSize: 8,
         symbolInstructions: true,
         symbolRegexExamples: false,
         //
@@ -196,7 +196,7 @@ module.exports.start = function (context)
                         if (regex)
                         {
                             let start = window.performance.now ();
-                            characters = unicode.findCharactersByData (regex, false);
+                            let characters = unicode.findCharactersByData (regex, false);
                             let stop = window.performance.now ();
                             let seconds = ((stop - start) / 1000).toFixed (2);
                             nameSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
@@ -305,7 +305,7 @@ module.exports.start = function (context)
                         if (regex)
                         {
                             let start = window.performance.now ();
-                            characters = unicode.findCharactersByData (regex, true);
+                            let characters = unicode.findCharactersByData (regex, true);
                             let stop = window.performance.now ();
                             let seconds = ((stop - start) / 1000).toFixed (2);
                             symbolSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;

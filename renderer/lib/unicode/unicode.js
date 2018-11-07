@@ -608,22 +608,19 @@ function findCharactersByData (regex, bySymbol)
     let codePoints = unicodeData;
     for (let codePoint in codePoints)
     {
-        if (codePoints.hasOwnProperty (codePoint))
+        if (bySymbol)
         {
-            if (bySymbol)
+            let character = String.fromCodePoint (parseInt (codePoints[codePoint].code, 16));
+            if (regex.test (character))
             {
-                let character = String.fromCodePoint (parseInt (codePoints[codePoint].code, 16));
-                if (regex.test (character))
-                {
-                    characterList.push (character);
-                }
+                characterList.push (character);
             }
-            else
+        }
+        else
+        {
+            if (codePoints[codePoint].name.match (regex) || codePoints[codePoint].alias.match (regex) || (codePoints[codePoint].correction && codePoints[codePoint].correction.match (regex)))
             {
-                if (codePoints[codePoint].name.match (regex) || codePoints[codePoint].alias.match (regex) || (codePoints[codePoint].correction && codePoints[codePoint].correction.match (regex)))
-                {
-                    characterList.push (String.fromCodePoint (parseInt (codePoints[codePoint].code, 16)));
-                }
+                characterList.push (String.fromCodePoint (parseInt (codePoints[codePoint].code, 16)));
             }
         }
     }

@@ -23,23 +23,25 @@ The following utilities are currently available:
     * [List by Block](#list-by-block)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
+* [Unihan Data Finder](#unihan-data-finder)
+    * [Find by Tag Value](#find-by-tag-value)
 * [Unihan Inspector](#unihan-inspector)
 * [Unihan References](#unihan-references)
 
 ## CJK Font Variants
 
-- The **CJK Font Variants** utility displays simultaneously any string of Unihan characters in four different CJK (Chinese/Japanese/Korean) typefaces:
-    - Chinese (Simplified)
-    - Chinese (Traditional)
-    - Japanese
-    - Korean
+- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in four different typefaces:
+    - Japanese (JP)
+    - Korean (KR)
+    - Simplified Chinese (SC)
+    - Traditional Chinese (TC)
 - The typefaces belong to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
-    - Noto Sans CJK SC Regular
-    - Noto Sans CJK TC Regular
     - Noto Sans CJK JP Regular
     - Noto Sans CJK KR Regular
-- Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Glyphs</kbd> popup menu.
-- Various samples are provided; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) data file, or in the [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data file.
+    - Noto Sans CJK SC Regular
+    - Noto Sans CJK TC Regular
+- Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
+- Various samples are provided; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) or [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data files.
 
 <img src="screenshots/cjk-font-variants.png" width="1080px" alt="CJK Font Variants screenshot">
 
@@ -51,9 +53,9 @@ The following utilities are currently available:
 
 ## Regex Properties
 
-- The **Regex Properties** utility displays all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder** and **Unicode Data Finder** utilities.
+- The **Regex Properties** utility displays all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder**, **Unicode Data Finder** and **Unihan Data Finder** utilities.
 - These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
-- Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> pop-up menu:
+- Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> drop-down menu:
     - **General Category** properties
     - **Binary** properties
     - **Script** properties
@@ -86,7 +88,7 @@ The following utilities are currently available:
 ### Find by Name
 
 - The **Find by Name** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code) of matching Unicode emoji searched by name or keyword, including through regular expressions.
-- After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any.
+- After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 - Various examples of regular expressions are provided for quick copy-and-paste.
@@ -96,7 +98,7 @@ The following utilities are currently available:
 ### Match Symbol
 
 - The **Match Symbol** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code) of Unicode emoji matching a symbol, or a regular expression using Unicode properties.
-- After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any.
+- After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 - Various examples of regular expressions are provided for quick copy-and-paste.
@@ -106,7 +108,7 @@ The following utilities are currently available:
 ### Filter Text
 
 - The **Filter Text** feature of the **Emoji Data Finder** utility displays in real time a list of basic data (symbol, short name, keywords, code) of all the Unicode emoji contained in a text string.
-- Text can by directly typed or pasted from the clipboard into the main input field. Clicking on the <kbd>Filter</kbd> button strips out all non-emoji characters.
+- Text can by directly typed or pasted from the clipboard into the main input field. Click on the <kbd>Filter</kbd> button to strip out all non-emoji characters.
 - It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
@@ -117,7 +119,7 @@ The following utilities are currently available:
 ## Emoji Picture Book
 
 - The **Emoji Picture Book** utility displays lists of Unicode emoji in a picture book fashion.
-- Any group of pictures can be displayed by selecting its name in the category pop-up menu, among:<br>"Smileys & People", "Animals & Nature", "Food & Drink", "Travel & Places", "Activities", "Objects", "Symbols", "Flags".
+- Any group of pictures can be displayed by selecting its name in the <kbd>Category</kbd> drop-down menu, among:<br>"Smileys & People", "Animals & Nature", "Food & Drink", "Travel & Places", "Activities", "Objects", "Symbols", "Flags".
 - The size of all emoji pictures (from 32 to 128&nbsp;pixels) can be adjusted by moving the dedicated slider left and right.
 - The groups and subgroups of emoji are those defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 - Only the 2789 *fully-qualified* (keyboard/palette) encodings of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
@@ -136,7 +138,7 @@ The following utilities are currently available:
 ### Find by Name
 
 - The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.
-- After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
+- After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
@@ -147,7 +149,7 @@ The following utilities are currently available:
 ### Match Symbol
 
 - The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.
-- After entering a query, clicking the <kbd>Search</kbd> button will display a list of all relevant matches, if any, ordered by code point value.
+- After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Various examples of regular expressions are provided for quick copy-and-paste.
@@ -170,7 +172,7 @@ The following utilities are currently available:
 - It is also possible to input predefined sets of characters selected from each <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, each input field can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+0041` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
-- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` and `\u{1F49C}`. Clicking on the <kbd>Filter</kbd> button converts all valid codes to standard Unicode code point format.
+- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` and `\u{1F49C}`. Click on the <kbd>Filter</kbd> button to convert all valid codes to standard Unicode code point format.
 - Information is provided for the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Extra information is also obtained from the following data files:
     - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)
@@ -192,9 +194,16 @@ The following utilities are currently available:
 
 <img src="screenshots/unicode-references.png" width="1080px" alt="Unicode References screenshot">
 
-## Unihan Inspector
+## Unihan Data Finder
 
-- The **Unihan Inspector** utility displays all available properties for each of the 88889 Unihan characters defined in  the set of data files contained in the [Unihan.zip](https://www.unicode.org/Public/UNIDATA/Unihan.zip) archive file:
+### Find by Tag Value
+
+- The **Find by Tag Value** feature of the **Unihan Data Finder** utility displays a list of basic data (symbol, code point, Unihan tag and value(s) of matching Unihan characters searched by tag value, including through regular expressions.
+- Use the <kbd>Unihan Tag</kbd> drop-down menu to select the tag you wish to search value(s) by.
+- Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories in the drop-down menu.
+- After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
+- It is possible to choose how many characters are shown one page at a time.
+- The search is performed on the 88889 Unihan characters (or code points) defined in  the set of data files contained in the [Unihan.zip](https://www.unicode.org/Public/UNIDATA/Unihan.zip) archive file:
     - *Unihan_DictionaryIndices.txt*
     - *Unihan_DictionaryLikeData.txt*
     - *Unihan_IRGSources.txt*
@@ -203,16 +212,35 @@ The following utilities are currently available:
     - *Unihan_RadicalStrokeCounts.txt*
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
-- Any Unihan character can be entered in the input field either as a code point or a character.
-- It is also possible to randomly enter a code point by clicking on the <kbd>Random</kbd> button.
-- The selected Unihan character will be displayed in a large font, followed by its code point; clicking on the gray button below it will step through four different CJK typefaces, among: `SC` (Simplified Chinese), `TC` (Traditional Chinese), `JP` (Japanese) and `KR` (Korean).
-- Use the <kbd>Categories</kbd> checkbox to toggle between: all properties ordered alphabetically, or grouped by categories.
-- In addition, the utility provides, for each Unihan character: basic Unicode information, as well as radical, number of strokes, definition, variant characters, when available.
+
+<img src="screenshots/unihan-data-finder-find-by-tag-value.png" width="1080px" alt="Unihan Data Finder - Find by Tag Value screenshot">
+
+## Unihan Inspector
+
+- The **Unihan Inspector** utility displays all available Unihan tags for each of the 88889 Unihan characters defined in  the set of data files contained in the [Unihan.zip](https://www.unicode.org/Public/UNIDATA/Unihan.zip) archive file:
+    - *Unihan_DictionaryIndices.txt*
+    - *Unihan_DictionaryLikeData.txt*
+    - *Unihan_IRGSources.txt*
+    - *Unihan_NumericValues.txt*
+    - *Unihan_OtherMappings.txt*
+    - *Unihan_RadicalStrokeCounts.txt*
+    - *Unihan_Readings.txt*
+    - *Unihan_Variants.txt*
+- In addition, the utility provides, for each Unihan character:
+    - basic Unicode information: name, age, plane, block, script, general category, equivalent unified ideograph;
+    - basic Unihan information: radical(s), number of strokes, definition, variant characters.
+- Any Unihan character can be entered in the input field either as a code point or a character. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
+- It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button.
+- The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through four different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese).
+- Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
 - Notes:
     - The Kangxi (or Simplified) Radical field uses extra information from the [CJKRadicals.txt](https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt) data file.
-    - The Yasuoka Variants information comes directly from the "Variants table for Unicode" data file [UniVariants.txt](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z) provided by Prof. [Kōichi Yasuoka](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/).
+    - The Yasuoka Variants information is drawn from the "Variants table for Unicode" data file [UniVariants.txt](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z) provided by Prof. [Kōichi Yasuoka](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/).
+    - *IRG* stands for *Ideographic Rapporteur Group*, a committee advising the Unicode Consortium about Asian language characters.
 
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
+
+<img src="screenshots/unihan-inspector-radical.png" width="1080px" alt="Unihan Inspector - Radical screenshot">
 
 ## Unihan References
 

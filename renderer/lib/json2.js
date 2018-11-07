@@ -3,9 +3,9 @@
 //  - Used module.exports to allow Node.js require ().
 //  json2.stringify ():
 //  - Used Array.isArray () to test if the value is an array.
-//  - Improved indenting so that pairs of brackets { } and [ ] 
+//  - Improved indenting so that pairs of brackets { } and [ ]
 //    are always aligned on the same vertical position.
-//  - Inserted single spaces systematically for better 
+//  - Inserted single spaces systematically for better
 //    readability when indenting is off.
 //  - Removed all ranges from rx_escapable, except first one,
 //    to be consistent with JSON.stringify ().

@@ -2,11 +2,11 @@
 const fs = require ('fs');
 const path = require ('path');
 const { app } = require ('electron').remote;
-const unihanData = require ('./lib/unicode/parsed-unihan-data.js');
+const { codePoints } = require ('./lib/unicode/parsed-unihan-data.js');
 const properties = { };
-for (let codePoint in unihanData)
+for (let codePoint in codePoints)
 {
-    let dataProperties = unihanData[codePoint];
+    let dataProperties = codePoints[codePoint];
     for (let property in dataProperties)
     {
         if (!(property in properties))

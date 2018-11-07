@@ -73,7 +73,7 @@
     color: inherit;
     font-family: inherit;
     font-size: inherit;
-    padding: 0 0.333em;
+    padding: 0 0.333em 1px;
     border: 1px solid gray;
     border-radius: 0.2em;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));

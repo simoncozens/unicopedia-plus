@@ -11,13 +11,7 @@
     justify-content: space-between;
     align-items: center;
     vertical-align: middle;
-    margin: 0.5em 0 1em 0;
-}
-
-#unihan-inspector-unit .interface.right
-{
-    justify-content: flex-end;
-    margin-top: -0.25em;
+    margin: 0.5em 0 0.75em 0;
 }
 
 #unihan-inspector-unit .option-group
@@ -32,6 +26,11 @@
 #unihan-inspector-unit .option-group + .option-group
 {
     margin-left: 1em;
+}
+
+#unihan-inspector-unit .option + .option
+{
+    margin-left: 1.5em;
 }
 
 #unihan-inspector-unit .unihan-input
@@ -49,30 +48,31 @@
     color: var(--color-error);
 }
 
-#unihan-inspector-unit .unihan-character:lang(zh-Hans)
-{
-    font-family: "Noto Sans CJK SC", sans-serif;
-}
-
-#unihan-inspector-unit .unihan-character:lang(zh-Hant)
-{
-    font-family: "Noto Sans CJK TC", sans-serif;
-}
-
 #unihan-inspector-unit .unihan-character:lang(ja)
 {
-    font-family: "Noto Sans CJK JP", sans-serif;
+    font-family: "Noto Sans CJK JP", "Adobe NotDef";
 }
 
 #unihan-inspector-unit .unihan-character:lang(ko)
 {
-    font-family: "Noto Sans CJK KR", sans-serif;
+    font-family: "Noto Sans CJK KR", "Adobe NotDef";
 }
 
-#unihan-inspector-unit .info-container
+#unihan-inspector-unit .unihan-character:lang(zh-Hans)
+{
+    font-family: "Noto Sans CJK SC", "Adobe NotDef";
+}
+
+#unihan-inspector-unit .unihan-character:lang(zh-Hant)
+{
+    font-family: "Noto Sans CJK TC", "Adobe NotDef";
+}
+
+#unihan-inspector-unit .character-data
 {
     display: flex;
     flex-direction: row;
+    margin: 1.25em 0 0.75em 0;
 }
 
 #unihan-inspector-unit .unihan-card
@@ -90,12 +90,18 @@
     /* justify-content: center; */
 }
 
+#unihan-inspector-unit .unihan-wrapper
+{
+    margin: 1.2em 0;
+}
+
 #unihan-inspector-unit .unihan-card .unihan-character
 {
     display: inline-block;
     font-size: 72px;
+    line-height: 1em;
     width: 1.5em;
-    margin-bottom: -0.25em;
+    padding-bottom: 0.25em;
 }
 
 #unihan-inspector-unit .unihan-card .unihan-code-point
@@ -104,7 +110,7 @@
     font-family: Monaco, "Noto Mono", monospace;
     font-size: 13px;
     font-weight: bold;
-    margin: 1.25em 0;
+    margin-bottom: 1em;
     border: 1px solid var(--color-border);
     /* border-radius: 5px; */
     background-color: var(--color-bg);
@@ -116,20 +122,31 @@
     margin-top: -0.5em;
 }
 
-#unihan-inspector-unit .unihan-card .unihan-language
+#unihan-inspector-unit .unihan-card .unihan-language-widget
 {
-    display: inline-block;
+    display: inline-flex;
     user-select: none;
-    background-color: gray;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 600;
-    height: 20px;
-    width: 36px;
-    padding: 1px;
     color: white;
-    border-radius: 3px;
-    margin-bottom: 1.25em;
+    background-color: var(--color-accent);
+    /* background-color: gray; */
+    align-items: center;
+    font-size: 12px;
+    padding: 1px 2px;
+    border-radius: 4px;
+}
+
+#unihan-inspector-unit .unihan-card .unihan-language-previous,
+#unihan-inspector-unit .unihan-card .unihan-language-next
+{
+    padding: 1px 4px;
+}
+
+#unihan-inspector-unit .unihan-card .unihan-language-tag
+{
+    text-align: center;
+    font-weight: 600;
+    width: 24px;
+    padding: 1px 0;
 }
 
 #unihan-inspector-unit .unicode-info,
@@ -157,13 +174,51 @@
     flex-basis: 100%;
 }
 
+#unihan-inspector-unit .unihan-info .invalid-unihan
+{
+    /* color: var(--color-error); */
+    font-style: italic;
+    line-height: 1.333em;
+}
+
 #unihan-inspector-unit .unicode-info .unicode-field,
 #unihan-inspector-unit .unihan-info .unihan-field
 {
     margin: 0.35em 0;
 }
 
-#unihan-inspector-unit .properties-data .data-list
+#unihan-inspector-unit .unihan-info .unihan-field
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+#unihan-inspector-unit .unihan-info .unihan-field .list
+{
+    margin: 0 0 0 -24px;
+    list-style-type: circle;
+}
+
+#unihan-inspector-unit .unihan-info .unihan-field .list .item
+{
+    margin: 0.1em 0;
+    white-space: nowrap
+}
+
+#unihan-inspector-unit .unihan-info .unihan-field .value
+{
+    white-space: nowrap
+}
+
+#unihan-inspector-unit .tags-data
+{
+    margin: 1em 0 0.75em 0;
+}
+
+#unihan-inspector-unit .tags-data .tags-list
 {
     font-family: Monaco, "Noto Mono", monospace;
     font-size: 1em;
@@ -171,34 +226,34 @@
     margin: 0.75em 0;
 }
 
-#unihan-inspector-unit .properties-data .data-list .list
+#unihan-inspector-unit .tags-data .tags-list .list
 {
     margin: 0;
     list-style-type: circle;
 }
 
-#unihan-inspector-unit .properties-data .data-list .list .item
+#unihan-inspector-unit .tags-data .tags-list .list .item
 {
     margin-left: -24px;
 }
 
-#unihan-inspector-unit .properties-data .data-list .list .item + .item
+#unihan-inspector-unit .tags-data .tags-list .list .item + .item
 {
     margin-top: 0.25em;
 }
 
-#unihan-inspector-unit .properties-data .data-list .property-header,
-#unihan-inspector-unit .properties-data .data-list .value-header
+#unihan-inspector-unit .tags-data .tags-list .tag-header,
+#unihan-inspector-unit .tags-data .tags-list .value-header
 {
     text-align: left;
     font-family: system-ui, sans-serif;
-    font-size: 1em;
+    font-size: 13px;
     font-weight: bold;
     line-height: 1em;
     padding: 0.5em 0.75em;
 }
 
-#unihan-inspector-unit .properties-data .data-list .category-row .category-name
+#unihan-inspector-unit .tags-data .tags-list .category-row .category-name
 {
     background-color: white;
     color: var(--color-accent);
@@ -210,14 +265,14 @@
     padding: 0.5em 0.75em;
 }
 
-#unihan-inspector-unit .properties-data .data-list .category-row .category-name::before
+#unihan-inspector-unit .tags-data .tags-list .category-row .category-name::before
 {
     content: "◎\A0\A0";
     font-size: 1.05em;
 }
 
-#unihan-inspector-unit .properties-data .data-list .property,
-#unihan-inspector-unit .properties-data .data-list .value
+#unihan-inspector-unit .tags-data .tags-list .tag,
+#unihan-inspector-unit .tags-data .tags-list .value
 {
     font-size: 13px;
     background-color: white;
@@ -226,13 +281,13 @@
     padding: 0.4em 0.8em;
 }
 
-#unihan-inspector-unit .properties-data .data-list .property
+#unihan-inspector-unit .tags-data .tags-list .tag
 {
     white-space: nowrap;
     /* font-weight: 600; */
 }
 
-#unihan-inspector-unit .properties-data .data-list .value
+#unihan-inspector-unit .tags-data .tags-list .value
 {
     width: 100%;
 }
@@ -247,12 +302,17 @@
     margin: 0.25em 0;
 }
 
+#unihan-inspector-unit .instructions li > ul
+{
+    margin: 0 0 0.25em 0;
+}
+
 #unihan-inspector-unit .instructions kbd
 {
     color: inherit;
     font-family: inherit;
     font-size: inherit;
-    padding: 0 0.333em;
+    padding: 0 0.333em 1px;
     border: 1px solid gray;
     border-radius: 0.2em;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));

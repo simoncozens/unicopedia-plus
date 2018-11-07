@@ -1,11 +1,7 @@
 //
-const unicode = require ('../../lib/unicode/unicode.js');
-//
-const rewritePattern = require ('regexpu-core');
-//
 const deferredSymbols = true;
 //
-module.exports.create = function (characters, params, highlightedCharacter)
+module.exports.create = function (characterInfos, params)
 {
     function updateDataPage (dataPage)
     {
@@ -25,7 +21,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
         lastPageButton.disabled = (pageIndex === (pages.length - 1));
         lastPageButton.title = `Last page: ${pages.length}`;
         //
-        let characters = pages[pageIndex];
+        let characterInfos = pages[pageIndex];
         while (dataPage.firstChild)
         {
             dataPage.firstChild.remove ();
@@ -55,105 +51,77 @@ module.exports.create = function (characters, params, highlightedCharacter)
                 { root: dataPage.closest ('section'), rootMargin: '50% 0%' }
             );
         }
+        //
         let table = document.createElement ('table');
         table.className = 'data-table';
         //
-        let header = document.createElement ('tr');
-        header.className = 'header';
-        let symbolHeader = document.createElement ('th');
-        symbolHeader.className = 'symbol-header';
-        symbolHeader.textContent = "Symbol";
-        header.appendChild (symbolHeader);
-        let codePointHeader = document.createElement ('th');
-        codePointHeader.className = 'code-point-header';
-        codePointHeader.textContent = "Code\xA0Point";
-        header.appendChild (codePointHeader);
-        let nameHeader = document.createElement ('th');
-        nameHeader.className = 'name-header';
-        nameHeader.textContent = "Name";
-        header.appendChild (nameHeader);
-        let blockNameHeader = document.createElement ('th');
-        blockNameHeader.className = 'block-name-header';
-        blockNameHeader.textContent = "Block";
-        header.appendChild (blockNameHeader);
-        table.appendChild (header);
+        let headerRow = document.createElement ('tr');
+        headerRow.className = 'header-row';
+        let headerSymbol = document.createElement ('th');
+        headerSymbol.className = 'header-symbol';
+        headerSymbol.textContent = "Symbol";
+        headerRow.appendChild (headerSymbol);
+        let headerCodePoint = document.createElement ('th');
+        headerCodePoint.className = 'header-code-point';
+        headerCodePoint.textContent = "Code\xA0Point";
+        headerRow.appendChild (headerCodePoint);
+        let headerTag = document.createElement ('th');
+        headerTag.className = 'header-tag';
+        headerTag.textContent = "Unihan\xA0Tag";
+        headerRow.appendChild (headerTag);
+        let headerValue = document.createElement ('th');
+        headerValue.className = 'header-value';
+        headerValue.textContent = "Value";
+        headerRow.appendChild (headerValue);
+        table.appendChild (headerRow);
         //
-        let flags = 'u';
-        let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let regex = new RegExp (pattern, flags);
-        for (let character of characters)
+        for (let characterInfo of characterInfos)
         {
-            let data = unicode.getCharacterBasicData (character);
-            let isAssignedCharacter = regex.test (character);
-            let row = document.createElement ('tr');
-            row.className = 'row';
-            if (!isAssignedCharacter)
+            let dataRow = document.createElement ('tr');
+            dataRow.className = 'data-row';
+            let dataSymbol = document.createElement ('td');
+            dataSymbol.className = 'data-symbol';
+            if (deferredSymbols)
             {
-                row.classList.add ('unassigned');
-            }
-            let symbol = document.createElement ('td');
-            symbol.className = 'symbol';
-            if (isAssignedCharacter)
-            {
-                if (deferredSymbols)
-                {
-                    symbol.textContent = "\xA0";
-                    symbol.dataset.character = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
-                    params.observer.observe (symbol);
-                }
-                else
-                {
-                    symbol.textContent = ((data.name === "<control>") || (character === " ")) ? "\xA0" : data.character;
-                }
+                dataSymbol.textContent = "\u3000";  // Ideographic space
+                dataSymbol.dataset.character = characterInfo.character;
+                params.observer.observe (dataSymbol);
             }
             else
             {
-                symbol.textContent = "\xA0";
+                dataSymbol.textContent = characterInfo.character;
             }
-            row.appendChild (symbol);
-            let codePoint = document.createElement ('td');
-            codePoint.className = 'code-point';
-            if (character === highlightedCharacter)
+            dataRow.appendChild (dataSymbol);
+            let dataCodePoint = document.createElement ('td');
+            dataCodePoint.className = 'data-code-point';
+            dataCodePoint.textContent = characterInfo.codePoint;
+            dataRow.appendChild (dataCodePoint);
+            let dataTag = document.createElement ('td');
+            dataTag.className = 'data-tag';
+            dataTag.textContent = characterInfo.tag;
+            dataRow.appendChild (dataTag);
+            let dataValue = document.createElement ('td');
+            dataValue.className = 'data-value';
+            let value = characterInfo.value;
+            if (Array.isArray (value))
             {
-                let span =  document.createElement ('span');
-                span.className = 'highlighted';
-                span.textContent = data.codePoint;
-                codePoint.appendChild (span);
-                setTimeout (() => codePoint.scrollIntoView ({ behavior: 'auto', block: 'nearest', inline: 'nearest' }));
+                let list = document.createElement ('ul');
+                list.className = 'list';
+                for (let element of value)
+                {
+                    let item = document.createElement ('li');
+                    item.className = 'item';
+                    item.textContent = element;
+                    list.appendChild (item);
+                }
+                dataValue.appendChild (list);
             }
             else
             {
-                codePoint.textContent = data.codePoint;
+                dataValue.textContent = value;
             }
-            row.appendChild (codePoint);
-            let names = document.createElement ('td');
-            names.className = 'names';
-            let name = document.createElement ('div');
-            name.className = 'name';
-            name.textContent = data.name || "<unassigned>";
-            names.appendChild (name);
-            if (data.alias)
-            {
-                let alias = document.createElement ('div');
-                alias.className = 'alias';
-                alias.textContent = data.alias;
-                names.appendChild (alias);
-            }
-            if (data.correction)
-            {
-                let alias = document.createElement ('div');
-                alias.className = 'correction';
-                alias.textContent = data.correction;
-                alias.title = "CORRECTION";
-                names.appendChild (alias);
-            }
-            row.appendChild (names);
-            let blockName = document.createElement ('td');
-            blockName.className = 'block-name';
-            blockName.title = data.blockRange;
-            blockName.innerHTML = data.blockName.replace (/(\b\w*-\w*\b)/g, '<span class="no-wrap">$1</span>');
-            row.appendChild (blockName);
-            table.appendChild (row);
+            dataRow.appendChild (dataValue);
+            table.appendChild (dataRow);
         }
         //
         dataPage.appendChild (table);
@@ -370,11 +338,11 @@ module.exports.create = function (characters, params, highlightedCharacter)
             //
             // Paginate
             pages = [ ];
-            for (let startIndex = 0; startIndex < characters.length; startIndex += params.pageSize)
+            for (let startIndex = 0; startIndex < characterInfos.length; startIndex += params.pageSize)
             {
-                pages.push (characters.slice (startIndex, startIndex + params.pageSize));
+                pages.push (characterInfos.slice (startIndex, startIndex + params.pageSize));
             }
-            pageIndex = (highlightedCharacter) ? Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize) : 0;
+            pageIndex = 0;
             let pageCount = pages.length;
             pageSelect.min = 1;
             pageSelect.max = pageCount;

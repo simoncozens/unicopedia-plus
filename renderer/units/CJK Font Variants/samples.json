@@ -14,19 +14,19 @@
         ]
     },
     {
-        "label": "East Asian Glyphs",
+        "label": "East Asian Variants",
         "items":
         [
             {
-                "label": "East Asian Glyphs 1",
+                "label": "East Asian Variants 1",
                 "string": "剝剥 塡填 頰頬 麴麹"
             },
             {
-                "label": "East Asian Glyphs 2",
+                "label": "East Asian Variants 2",
                 "string": "匕𠤎 叱𠮟"
             },
             {
-                "label": "East Asian Glyphs 3",
+                "label": "East Asian Variants 3",
                 "string": "兆謎遡餅餌輩邉"
             }
         ]
@@ -55,7 +55,7 @@
             },
             {
                 "label": "Radical Walk",
-                "string": "⻌⻍⻎⾡ 辵辺遜遡邉邊"
+                "string": "⻌⻍⻎⾡ 辵辺遊遜遡邉邊"
             }
         ]
     },

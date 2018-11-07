@@ -99,7 +99,7 @@
 #unicode-inspector-unit .data-list .data-header-centered
 {
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     padding: 0.25em 0.5em;
     font-weight: bold;
     width: 128px;
@@ -108,7 +108,7 @@
 #unicode-inspector-unit .data-list .data-header
 {
     text-align: left;
-    font-size: 12px;
+    font-size: 13px;
     padding: 0.25em 0.5em;
     font-weight: bold;
 }
@@ -214,7 +214,7 @@
     color: inherit;
     font-family: inherit;
     font-size: inherit;
-    padding: 0 0.333em;
+    padding: 0 0.333em 1px;
     border: 1px solid gray;
     border-radius: 0.2em;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));

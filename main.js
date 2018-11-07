@@ -251,7 +251,7 @@ else
                             type: 'radio',
                             checked: (unitName === currentUnitName),
                             click: () => { mainWindow.webContents.send ('select-unit', unitName); },
-                        } 
+                        }
                     );
                 }
                 menu = Menu.buildFromTemplate (menuTemplate);

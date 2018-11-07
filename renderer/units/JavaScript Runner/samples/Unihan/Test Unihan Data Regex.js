@@ -1,6 +1,6 @@
 // Test Unihan Data Regex
-const unihanData = require ('./lib/unicode/parsed-unihan-data.js');
-let unihanCharacters = Object.keys (unihanData).map (codePoint => String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16))).sort ();
+const { codePoints } = require ('./lib/unicode/parsed-unihan-data.js');
+let unihanCharacters = Object.keys (codePoints).map (codePoint => String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16))).sort ();
 $.writeln (unihanCharacters.length);
 let pattern = '(?=\\p{Script=Han})(?=\\p{Other_Letter})';
 let flags = 'u';

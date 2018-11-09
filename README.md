@@ -172,7 +172,7 @@ The following utilities are currently available:
 - It is also possible to input predefined sets of characters selected from each <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, each input field can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+0041` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
-- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` and `\u{1F49C}`. Click on the <kbd>Filter</kbd> button to convert all valid codes to standard Unicode code point format.
+- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` or `\u{1F49C}`. Click on the <kbd>Filter</kbd> button to convert all valid codes to standard Unicode code point format.
 - Information is provided for the 276955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Extra information is also obtained from the following data files:
     - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)

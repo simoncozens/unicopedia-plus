@@ -1,49 +1,29 @@
 <template>
     <section id="unicode-inspector-unit">
         <div class="plain-panel">
-            <div class="tab-bar">
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>Characters</span></label>
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>Code Points</span></label>
+            <div class="actions">
+                <span class="action-group">
+                    <span class="action">
+                        <button type="button" class="characters-clear">Clear</button>
+                    </span>
+                    <span class="action">
+                        <button type="button" class="pull-down-menu characters-samples">Samples</button>
+                    </span>
+                </span>
+                <span class="action-group">
+                    <span class="action">
+                        <button type="button" class="load-button">Load...</button>
+                    </span>
+                    <span class="action">
+                        <button type="button" class="save-button">Save...</button>
+                    </span>
+                </span>
             </div>
-            <div class="tab-panes">
-                <div class="tab-pane">
-                    <div class="actions">
-                        <span class="action-group">
-                            <span class="action">
-                                <button type="button" class="characters-clear">Clear</button>
-                            </span>
-                            <span class="action">
-                                <button type="button" class="pull-down-menu characters-samples">Samples</button>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="characters-to-code-points">
-                        <textarea class="input-characters"></textarea>
-                        <input class="output-code-points" type="text" readonly>
-                    </div>
-                    <div class="output-characters-data"></div>
-                </div>
-                <div class="tab-pane">
-                    <div class="actions code-points-actions">
-                        <span class="action-group">
-                            <span class="action">
-                                <button type="button" class="code-points-clear">Clear</button>
-                            </span>
-                            <span class="action">
-                                <button type="button" class="pull-down-menu code-points-samples">Samples</button>
-                            </span>
-                        </span>
-                        <span class="action">
-                            <button type="button" class="code-points-filter" title="Keep only valid code sequences and convert them to standard U+ code point format.">Filter</button>
-                        </span>
-                    </div>
-                    <div class="code-points-to-characters">
-                        <input class="input-code-points" type="text">
-                        <textarea class="output-characters" readonly></textarea>
-                    </div>
-                    <div class="output-code-points-data"></div>
-                </div>
+            <div class="input-group">
+                <label>Characters:<br><textarea class="characters-input"></textarea></label>
+                <label>Code Points:<textarea class="code-points-input"></textarea></label>
             </div>
+            <div class="characters-data"></div>
         </div>
         <div class="accent-panel">
             <details class="instructions">
@@ -51,11 +31,11 @@
                 <ul>
                     <li>The <strong>Unicode Inspector</strong> utility displays code point information in real time for each Unicode character of a text string.</li>
                     <li>Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
-                    <li>It is also possible to input predefined sets of characters selected from each <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
-                    <li>As a convenience, each input field can be emptied using the <kbd>Clear</kbd> button.</li>
+                    <li>It is also possible to input predefined sets of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
+                    <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
                     <li>In output, the standard Unicode code point format <code>U+0041</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
-                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u611B</code> or <code>\u{1F49C}</code>. Click on the <kbd>Filter</kbd> button to convert all valid codes to standard Unicode code point format.</li>
-                    <li>Information is provided for the 276955 assigned characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u611B</code> or <code>\u{1F49C}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
+                    <li>Information is provided for the 276,955 assigned characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
                     <li>
                         Extra information is also obtained from the following data files:
                         <br>

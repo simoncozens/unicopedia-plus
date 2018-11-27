@@ -96,7 +96,13 @@
     width: 240px;
 }
 
-#unihan-data-finder-unit .search-group
+#unihan-data-finder-unit .radical-select,
+#unihan-data-finder-unit .strokes-select
+{
+    font-family: "Noto Sans CJK TC";
+}
+
+#unihan-data-finder-unit .find-by-tag-value .search-group
 {
     margin: 0.5em -0.5em 1.25em 0;
 }
@@ -121,12 +127,12 @@
     color: var(--color-error);
 }
 
-#unihan-data-finder-unit .search-group input[type=checkbox]
+#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox]
 {
     display: none;
 }
 
-#unihan-data-finder-unit .search-group input[type=checkbox] + svg
+#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox] + svg
 {
     font-size: 1.7em;
     line-height: 1em;
@@ -142,7 +148,7 @@
     fill: var(--color-accent);
 }
 
-#unihan-data-finder-unit .search-group input[type=checkbox]:checked + svg
+#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox]:checked + svg
 {
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0.15));
     box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -150,7 +156,7 @@
     fill: white;
 }
 
-#unihan-data-finder-unit .search-group input[type=checkbox]:disabled + svg
+#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox]:disabled + svg
 {
     color: gray;
     fill: gray;
@@ -160,9 +166,29 @@
     pointer-events: none;
 }
 
-#unihan-data-finder-unit .search-group .action
+#unihan-data-finder-unit .find-by-tag-value .search-group .action
 {
     margin-right: 0.5em;
+}
+
+#unihan-data-finder-unit .rs-group
+{
+    margin: 0.5em -0.5em 1.25em 0;
+}
+
+#unihan-data-finder-unit .rs-group .action
+{
+    margin-right: 1.25em;
+}
+
+#unihan-data-finder-unit .radical-strokes .rs-2-group
+{
+    margin: -0.25em -0.5em 0.5em 0;
+}
+
+#unihan-data-finder-unit .radical-strokes .rs-2-group .action
+{
+    margin-right: 1.25em;
 }
 
 #unihan-data-finder-unit .search-info
@@ -287,12 +313,100 @@
 #unihan-data-finder-unit .search-data .data-table .data-value .list
 {
     margin: 0;
-    list-style-type: circle;
+    list-style-type: square;
 }
 
 #unihan-data-finder-unit .search-data .data-table .data-value .item
 {
     margin: 0.1em 0 0.1em -24px;
+}
+
+#unihan-data-finder-unit .radical-strokes .rs-group label.disabled
+{
+    color: gray;
+}
+
+#unihan-data-finder-unit .rs-data-table
+{
+    margin: 1em 0 0.25em 0;
+    user-select: text;
+}
+
+#unihan-data-finder-unit .rs-data-table .title-header
+{
+    text-align: center;
+    font-family: "Noto Sans CJK TC";
+    font-size: 18px;
+    font-weight: normal;
+    padding: 0.4em;
+}
+
+#unihan-data-finder-unit .rs-data-table .strokes-data
+{
+    display: block;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: white;
+    color: var(--color-accent);
+    padding: 0.25em 0.75em;
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data
+{
+    background-color: white;
+    text-align: left;
+    padding: 1em;
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data
+{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Monaco, "Noto Mono", monospace;
+    margin: 8px 4px;
+    width: 48px;
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .symbol
+{
+    font-size: 36px;
+    width: 36px;
+    text-align: center;
+    line-height: 1em;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .symbol.deferred
+{
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data.extra-source .symbol
+{
+    color: gray;
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .code-point
+{
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1em;
+    padding: 3px 3px 2px 3px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    background-color: var(--color-bg);
+}
+
+#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data.extra-source .code-point
+{
+    color: gray;
+    background-color: white;
 }
 
 #unihan-data-finder-unit .instructions ul
@@ -305,7 +419,8 @@
     margin: 0.25em 0;
 }
 
-#unihan-data-finder-unit .instructions kbd
+#unihan-data-finder-unit .instructions kbd,
+#unihan-data-finder-unit .regex-examples kbd
 {
     color: inherit;
     font-family: inherit;
@@ -321,6 +436,11 @@
     user-select: text;
     color: inherit;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unihan-data-finder-unit .regex-examples p
+{
+    margin: -0.1em 0 1.5em 1.5em;
 }
 
 #unihan-data-finder-unit .regex-examples ul
@@ -343,6 +463,78 @@
     user-select: text;
     color: inherit;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unihan-data-finder-unit .radicals-table
+{
+    margin-bottom: 1.25em;
+    user-select: text;
+    width: unset;
+}
+
+#unihan-data-finder-unit .radicals-table th
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+    white-space: nowrap;
+    padding: 0.25em 0.5em;
+}
+
+#unihan-data-finder-unit .radicals-table tr.even
+{
+    background-color: white;
+}
+
+#unihan-data-finder-unit .radicals-table tr.odd
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#unihan-data-finder-unit .radicals-table td
+{
+    font-family: "Noto Sans CJK TC";
+    font-size: 14px;
+    padding: 0.25em 0.5em;
+}
+
+#unihan-data-finder-unit .radicals-table td.data-strokes
+{
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left;
+    font-weight: 600;
+    padding: 0.25em 1.75em;
+    color: var(--color-accent);
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
+}
+
+#unihan-data-finder-unit .radicals-table th.header-index,
+#unihan-data-finder-unit .radicals-table td.data-index
+{
+    text-align: right;
+}
+
+#unihan-data-finder-unit .radicals-table th.header-radical,
+#unihan-data-finder-unit .radicals-table td.data-kangxi
+{
+    text-align: center;
+}
+
+#unihan-data-finder-unit .radicals-table th.header-name,
+#unihan-data-finder-unit .radicals-table td.data-name
+{
+    text-align: left;
+}
+
+#unihan-data-finder-unit .radicals-table th.header-variants,
+#unihan-data-finder-unit .radicals-table td.data-variants
+{
+    text-align: center;
+}
+
+#unihan-data-finder-unit .radicals-table th.header-simplified,
+#unihan-data-finder-unit .radicals-table td.data-simplified
+{
+    text-align: center;
 }
 
 #unihan-data-finder-unit summary

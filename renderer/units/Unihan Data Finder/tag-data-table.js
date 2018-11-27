@@ -48,7 +48,7 @@ module.exports.create = function (characterInfos, params)
                         }
                     );
                 },
-                { root: dataPage.closest ('section'), rootMargin: '50% 0%' }
+                { root: params.root, rootMargin: '50% 0%' }
             );
         }
         //

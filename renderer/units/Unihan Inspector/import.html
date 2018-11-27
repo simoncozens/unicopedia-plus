@@ -16,7 +16,7 @@
             <details class="instructions">
                 <summary>Instructions</summary>
                 <ul>
-                    <li>The <strong>Unihan Inspector</strong> utility displays all the available Unihan tags for each of the 88889 Unihan characters defined in the set of data files contained in the <a title="https://www.unicode.org/Public/UNIDATA/Unihan.zip" href="https://www.unicode.org/Public/UNIDATA/Unihan.zip">Unihan.zip</a> archive file:
+                    <li>The <strong>Unihan Inspector</strong> utility displays all the available Unihan tags for each of the 88,889 Unihan characters defined in the set of data files contained in the <a title="https://www.unicode.org/Public/UNIDATA/Unihan.zip" href="https://www.unicode.org/Public/UNIDATA/Unihan.zip">Unihan.zip</a> archive file:
                         <br>
                         <em>Unihan_DictionaryIndices.txt</em>,
                         <em>Unihan_DictionaryLikeData.txt</em>,
@@ -30,18 +30,19 @@
                     <li>In addition, the utility provides, for each Unihan character:
                         <ul>
                             <li>basic Unicode information: name, age, plane, block, script, general category, equivalent unified ideograph;</li>
-                            <li>basic Unihan information: radical(s), number of strokes, definition, variant characters.</li>
+                            <li>basic Unihan information: radical/strokes, definition, variant characters, IICore set.</li>
                         </ul>
                     </li>
                     <li>Any Unihan character can be entered in the input field either as a code point or a character. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.</li>
-                    <li>It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button.</li>
+                    <li>It is also possible to lookup a randomly selected Unihan character belonging to the IICore set by clicking on the <kbd>Random</kbd> button.</li>
                     <li>The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through four different CJK typefaces, among: <code>JP</code> (Japanese), <code>KR</code> (Korean), <code>SC</code> (Simplified Chinese), <code>TC</code> (Traditional Chinese).</li>
                     <li>Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.</li>
                     <li>Notes:
                         <ul>
-                            <li>The Kangxi (or Simplified) Radical field uses extra information from the <a title="https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt" href="https://www.unicode.org/Public/UNIDATA/CJKRadicals.txt">CJKRadicals.txt</a> data file.</li>
+                            <li>The top Radical/Strokes fields are displaying data obtained from the only informative IRG source: <em>kRSUnicode</em>, while the bottom ones (in grayed-out style, if any) make use of the provisional sources: <em>kRSKangXi</em>, <em>kRSJapanese</em>, <em>kRSKanWa</em>, <em>kRSKorean</em> and <em>kRSAdobe_Japan1_6</em>.</li>
+                            <li>IICore (<em>International Ideographs Core</em>) represents a set of 9,810 important Unihan characters in everyday use throughout East Asia; it has been developed by the IRG.</li>
+                            <li>IRG stands for <em>Ideographic Rapporteur Group</em>, a committee advising the Unicode Consortium about Asian language characters.</li>
                             <li>The Yasuoka Variants information is drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>.</li>
-                            <li><em>IRG</em> stands for <em>Ideographic Rapporteur Group</em>, a committee advising the Unicode Consortium about Asian language characters.</li>
                         </ul>
                     </li>
                 </ul>

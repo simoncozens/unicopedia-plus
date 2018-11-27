@@ -871,7 +871,7 @@ const filenames =
     "Unihan_Variants.txt"
 ];
 //
-let codePoints = { };
+const codePoints = { };
 //
 for (let filename of filenames)
 {
@@ -893,10 +893,15 @@ for (let filename of filenames)
     }
 }
 //
+const fullSet = Object.keys (codePoints).sort ((a, b) => parseInt (a.replace ("U+", ""), 16) - parseInt (b.replace ("U+", ""), 16));
+const coreSet = fullSet.filter (key => ("kIICore" in codePoints[key]));
+//
 module.exports =
 {
     tags,
     categories,
-    codePoints
+    codePoints,
+    fullSet,
+    coreSet
 };
 //

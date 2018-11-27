@@ -47,6 +47,10 @@
             "href": "https://en.wikipedia.org/wiki/Ideographic_Rapporteur_Group"
         },
         {
+            "name": "International Ideographs Core - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/International_Ideographs_Core"
+        },
+        {
             "name": "CJK Unified Ideographs - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/CJK_Unified_Ideographs"
         },
@@ -239,6 +243,12 @@
     ],
     [
         {
+            "name": "UniHan Variation: Issues and Solutions - IUC23-a345.pdf",
+            "href": "http://linguistics.berkeley.edu/~rscook/pdf/IUC23-a345.pdf"
+        }
+    ],
+    [
+        {
             "name": "Character Tables by Koichi Yasuoka",
             "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/CJK.html"
         },
@@ -303,6 +313,12 @@
         {
             "name": "Tangorin Japanese Dictionary",
             "href": "http://www.tangorin.com/"
+        }
+    ],
+    [
+        {
+            "name": "Hanazono fonts",
+            "href": "http://fonts.jp/hanazono/"
         }
     ]
 ]

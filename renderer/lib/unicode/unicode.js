@@ -580,9 +580,9 @@ function charactersToCodePoints (characters)
         {
             hex = ("000" + hex).slice (-4);
         }
-        codePoints.push (`U+${hex}`);
+        codePoints.push (`U+${hex} `);
     }
-    return codePoints.join (' ');
+    return codePoints.join ('');
 }
 //
 function codePointsToCharacters (codePoints)

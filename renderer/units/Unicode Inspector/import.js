@@ -1,77 +1,47 @@
 //
 const unit = document.getElementById ('unicode-inspector-unit');
 //
-const tabs = unit.querySelectorAll ('.tab-bar .tab-radio');
-const tabPanes = unit.querySelectorAll ('.tab-panes .tab-pane');
-//
 const charactersClear = unit.querySelector ('.characters-clear');
 const charactersSamples = unit.querySelector ('.characters-samples');
-const inputCharacters = unit.querySelector ('.input-characters');
-const outputCodePoints = unit.querySelector ('.output-code-points');
-const outputCharactersData = unit.querySelector ('.output-characters-data');
-//
-const codePointsClear = unit.querySelector ('.code-points-clear');
-const codePointsSamples = unit.querySelector ('.code-points-samples');
-const codePointsFilter = unit.querySelector ('.code-points-filter');
-const inputCodePoints = unit.querySelector ('.input-code-points');
-const outputCharacters = unit.querySelector ('.output-characters');
-const outputCodePointsData = unit.querySelector ('.output-code-points-data');
+const loadButton = unit.querySelector ('.load-button');
+const saveButton = unit.querySelector ('.save-button');
+const charactersInput = unit.querySelector ('.characters-input');
+const codePointsInput = unit.querySelector ('.code-points-input');
+const charactersData = unit.querySelector ('.characters-data');
 //
 const instructions = unit.querySelector ('.instructions');
+//
+let defaultFolderPath;
 //
 module.exports.start = function (context)
 {
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus');
+    //
+    const { remote } = require ('electron');
+    const { app } = remote;
+    //
+    const path = require ('path');
+    //
+    const fileDialogs = require ('../../lib/file-dialogs.js');
+    //
     const unicode = require ('../../lib/unicode/unicode.js');
     //
     const defaultPrefs =
     {
-        tabName: "",
-        inputCharacters: "",
-        inputCodePoints: "",
-        instructions: true
+        charactersInput: "",
+        instructions: true,
+        defaultFolderPath: app.getPath ('documents')  // 'desktop'
     };
     let prefs = context.getPrefs (defaultPrefs);
-    //
-    function updateTab (tabName)
-    {
-        let foundIndex = 0;
-        tabs.forEach
-        (
-            (tab, index) =>
-            {
-                let match = (tab.parentElement.textContent === tabName);
-                if (match)
-                {
-                    foundIndex = index;
-                }
-                else
-                {
-                    tab.checked = false;
-                    tabPanes[index].hidden = true;
-                }
-            }
-        );
-        tabs[foundIndex].checked = true;
-        tabPanes[foundIndex].hidden = false;
-    }
-    //
-    updateTab (prefs.tabName);
-    //
-    for (let tab of tabs)
-    {
-        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
-    }
     //
     charactersClear.addEventListener
     (
         'click',
-        (event) =>
+        event =>
         {
-            inputCharacters.value = "";
-            inputCharacters.dispatchEvent (new Event ('input'));
-            inputCharacters.focus ();
+            charactersInput.value = "";
+            charactersInput.dispatchEvent (new Event ('input'));
         }
     );
     //
@@ -82,25 +52,67 @@ module.exports.start = function (context)
         samples,
         (sample) =>
         {
-            inputCharacters.value = sample.string;
-            inputCharacters.dispatchEvent (new Event ('input'));
+            charactersInput.value = sample.string;
+            charactersInput.dispatchEvent (new Event ('input'));
         }
     );
     //
     charactersSamples.addEventListener
     (
         'click',
-        (event) =>
+        event =>
         {
             pullDownMenus.popup (event.target.getBoundingClientRect (), charactersMenu);
         }
     );
     //
-    function displayDataList (characters, outputData)
-    {
-        while (outputData.firstChild)
+    defaultFolderPath = prefs.defaultFolderPath;
+    //
+    loadButton.addEventListener
+    (
+        'click',
+        event =>
         {
-           outputData.firstChild.remove ();
+            fileDialogs.loadTextFile
+            (
+                "Load text file:",
+                [ { name: "Text (*.txt)", extensions: [ 'txt' ] } ],
+                defaultFolderPath,
+                'utf8',
+                (text, filePath) =>
+                {
+                    charactersInput.value = text;
+                    charactersInput.dispatchEvent (new Event ('input'));
+                    defaultFolderPath = path.dirname (filePath);
+                }
+            );
+        }
+    );
+    //
+    saveButton.addEventListener
+    (
+        'click',
+        event =>
+        {
+            fileDialogs.saveTextFile
+            (
+                "Save text file:",
+                [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+                defaultFolderPath,
+                (filePath) =>
+                {
+                    defaultFolderPath = path.dirname (filePath);
+                    return charactersInput.value;
+                }
+            );
+        }
+    );
+    //
+    function displayDataList (characters, charactersDataList)
+    {
+        while (charactersDataList.firstChild)
+        {
+           charactersDataList.firstChild.remove ();
         }
         let dataList = unicode.getCharactersData (characters);
         if (dataList.length > 0)
@@ -215,99 +227,66 @@ module.exports.start = function (context)
                 row.appendChild (cell);
                 table.appendChild (row);
             }
-            outputData.appendChild (table);
+            charactersDataList.appendChild (table);
         }
     }
     //
-    inputCharacters.addEventListener
+    charactersInput.addEventListener
     (
         'input',
-        (event) =>
+        event =>
         {
-            outputCodePoints.value = unicode.charactersToCodePoints (event.target.value);
-            displayDataList (Array.from (event.target.value), outputCharactersData);
+            let characters = event.target.value;
+            codePointsInput.value = unicode.charactersToCodePoints (characters);
+            displayDataList (Array.from (characters), charactersData);
         }
     );
-    inputCharacters.value = prefs.inputCharacters;
-    inputCharacters.dispatchEvent (new Event ('input'));
+    charactersInput.value = prefs.charactersInput;
+    charactersInput.dispatchEvent (new Event ('input'));
     //
-    codePointsClear.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            inputCodePoints.value = "";
-            inputCodePoints.dispatchEvent (new Event ('input'));
-            inputCodePoints.focus ();
-        }
-    );
-    //
-    let codePointsMenu = sampleMenus.makeMenu
-    (
-        samples,
-        (sample) =>
-        {
-            inputCodePoints.value = unicode.charactersToCodePoints (sample.string);
-            inputCodePoints.dispatchEvent (new Event ('input'));
-        }
-    );
-    //
-    codePointsSamples.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            pullDownMenus.popup (event.target.getBoundingClientRect (), codePointsMenu);
-        }
-    );
-    //
-    codePointsFilter.addEventListener
-    (
-        'click',
-        (event) =>
-        {
-            inputCodePoints.value = unicode.charactersToCodePoints (outputCharacters.textContent);
-            inputCodePoints.dispatchEvent (new Event ('input'));
-        }
-    );
-    //
-    inputCodePoints.addEventListener
+    codePointsInput.addEventListener
     (
         'input',
-        (event) =>
+        event =>
         {
             let characters = unicode.codePointsToCharacters (event.target.value);
-            outputCharacters.textContent = characters;
-            displayDataList (Array.from (characters), outputCodePointsData);
+            charactersInput.value = characters;
+            displayDataList (Array.from (characters), charactersData);
         }
     );
-    inputCodePoints.value = prefs.inputCodePoints;
-    inputCodePoints.dispatchEvent (new Event ('input'));
+    //
+    codePointsInput.addEventListener
+    (
+        'blur',
+        event =>
+        {
+            event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+        }
+    );
+    //
+    codePointsInput.addEventListener
+    (
+        'keypress',
+        event =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault (); // ??
+                event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+            }
+        }
+    );
     //
     instructions.open = prefs.instructions;
 };
 //
 module.exports.stop = function (context)
 {
-    function getCurrentTabName ()
-    {
-        let currentTabName = "";
-        for (let tab of tabs)
-        {
-            if (tab.checked)
-            {
-                currentTabName = tab.parentElement.textContent;
-            }
-        }
-        return currentTabName;
-    }
-    //
     let prefs =
     {
-        tabName: getCurrentTabName (),
-        inputCharacters: inputCharacters.value,
-        inputCodePoints: inputCodePoints.value,
-        instructions: instructions.open
+        charactersInput: charactersInput.value,
+        instructions: instructions.open,
+        defaultFolderPath: defaultFolderPath
     };
     context.setPrefs (prefs);
 };

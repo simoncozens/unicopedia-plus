@@ -81,6 +81,16 @@
     margin: 0.25em 0 0.75em 0;
 }
 
+#regex-properties-unit .instructions table tr:nth-child(odd)
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.85), hsla(0, 0%, 100%, 0.85));
+}
+
+#regex-properties-unit .instructions table tr:nth-child(even)
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
 #regex-properties-unit .instructions table th,
 #regex-properties-unit .instructions table td
 {

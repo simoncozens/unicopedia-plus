@@ -101,7 +101,7 @@
     font-size: 72px;
     line-height: 1em;
     width: 1.5em;
-    padding-bottom: 0.25em;
+    height: 1.35em;
 }
 
 #unihan-inspector-unit .unihan-card .unihan-code-point
@@ -187,7 +187,7 @@
     margin: 0.35em 0;
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field
+#unihan-inspector-unit .unihan-info .unihan-field.line-clamp
 {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -196,21 +196,32 @@
     -webkit-box-orient: vertical;
 }
 
+#unihan-inspector-unit .unihan-info .unihan-field .value
+{
+    /* white-space: nowrap */
+}
+
 #unihan-inspector-unit .unihan-info .unihan-field .list
 {
     margin: 0 0 0 -24px;
-    list-style-type: circle;
+    list-style-type: square;
 }
 
 #unihan-inspector-unit .unihan-info .unihan-field .list .item
 {
     margin: 0.1em 0;
-    white-space: nowrap
+    /* white-space: nowrap */
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field .value
+#unihan-inspector-unit .unihan-info .unihan-field .list .item.irg-source
 {
-    white-space: nowrap
+    list-style-type: disc;
+}
+
+#unihan-inspector-unit .unihan-info .unihan-field .list .item.no-irg-source
+{
+    color: gray;
+    list-style-type: circle;
 }
 
 #unihan-inspector-unit .tags-data
@@ -229,7 +240,7 @@
 #unihan-inspector-unit .tags-data .tags-list .list
 {
     margin: 0;
-    list-style-type: circle;
+    list-style-type: square;
 }
 
 #unihan-inspector-unit .tags-data .tags-list .list .item
@@ -284,7 +295,6 @@
 #unihan-inspector-unit .tags-data .tags-list .tag
 {
     white-space: nowrap;
-    /* font-weight: 600; */
 }
 
 #unihan-inspector-unit .tags-data .tags-list .value

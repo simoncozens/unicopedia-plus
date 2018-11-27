@@ -162,57 +162,52 @@ module.exports.start = function (context)
             {
                 nameSearchData.firstChild.remove ();
             }
-            setTimeout
-            (
-                () =>
+            let searchString = nameSearchString.value;
+            if (searchString)
+            {
+                let regex = null;
+                try
                 {
-                    let searchString = nameSearchString.value;
-                    if (searchString)
+                    function characterToEcmaScriptEscape (character)
                     {
-                        let regex = null;
-                        try
-                        {
-                            function characterToEcmaScriptEscape (character)
-                            {
-                                let num = character.codePointAt (0);
-                                let hex = num.toString (16).toUpperCase ();
-                                return `\\u{${hex}}`;
-                            }
-                            //
-                            let pattern = (nameUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                            if (nameWholeWord.checked)
-                            {
-                                const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                                const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                                pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
-                            }
-                            const flags = 'ui';
-                            pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                            regex = new RegExp (pattern, flags);
-                        }
-                        catch (e)
-                        {
-                        }
-                        if (regex)
-                        {
-                            let start = window.performance.now ();
-                            let characters = unicode.findCharactersByData (regex, false);
-                            let stop = window.performance.now ();
-                            let seconds = ((stop - start) / 1000).toFixed (2);
-                            nameSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
-                            if (characters.length > 0)
-                            {
-                                nameSearchData.appendChild (dataTable.create (characters, nameParams));
-                            }
-                        }
+                        let num = character.codePointAt (0);
+                        let hex = num.toString (16).toUpperCase ();
+                        return `\\u{${hex}}`;
+                    }
+                    //
+                    let pattern = (nameUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                    if (nameWholeWord.checked)
+                    {
+                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
+                    }
+                    const flags = 'ui';
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                }
+                if (regex)
+                {
+                    let start = window.performance.now ();
+                    let characters = unicode.findCharactersByData (regex, false);
+                    let stop = window.performance.now ();
+                    let seconds = ((stop - start) / 1000).toFixed (2);
+                    nameSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                    if (characters.length > 0)
+                    {
+                        nameSearchData.appendChild (dataTable.create (characters, nameParams));
                     }
                 }
-            );
+            }
         }
     );
     //
     nameParams.pageSize = prefs.namePageSize;
     nameParams.observer = null;
+    nameParams.root = unit;
     //
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
@@ -275,59 +270,55 @@ module.exports.start = function (context)
             {
                 symbolSearchData.firstChild.remove ();
             }
-            setTimeout
-            (
-                () =>
+            let searchString = symbolSearchString.value;
+            if (searchString)
+            {
+                let regex = null;
+                try
                 {
-                    let searchString = symbolSearchString.value;
-                    if (searchString)
+                    function characterToEcmaScriptEscape (character)
                     {
-                        let regex = null;
-                        try
-                        {
-                            function characterToEcmaScriptEscape (character)
-                            {
-                                let num = character.codePointAt (0);
-                                let hex = num.toString (16).toUpperCase ();
-                                return `\\u{${hex}}`;
-                            }
-                            //
-                            let pattern = (symbolUseRegex.checked) ?
-                                searchString :
-                                Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                            const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
-                            pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                            regex = new RegExp (pattern, flags);
-                        }
-                        catch (e)
-                        {
-                        }
-                        if (regex)
-                        {
-                            let start = window.performance.now ();
-                            let characters = unicode.findCharactersByData (regex, true);
-                            let stop = window.performance.now ();
-                            let seconds = ((stop - start) / 1000).toFixed (2);
-                            symbolSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
-                            if (characters.length > 0)
-                            {
-                                symbolSearchData.appendChild (dataTable.create (characters, symbolParams));
-                            }
-                        }
+                        let num = character.codePointAt (0);
+                        let hex = num.toString (16).toUpperCase ();
+                        return `\\u{${hex}}`;
+                    }
+                    //
+                    let pattern = (symbolUseRegex.checked) ?
+                        searchString :
+                        Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                    const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    regex = new RegExp (pattern, flags);
+                }
+                catch (e)
+                {
+                }
+                if (regex)
+                {
+                    let start = window.performance.now ();
+                    let characters = unicode.findCharactersByData (regex, true);
+                    let stop = window.performance.now ();
+                    let seconds = ((stop - start) / 1000).toFixed (2);
+                    symbolSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                    if (characters.length > 0)
+                    {
+                        symbolSearchData.appendChild (dataTable.create (characters, symbolParams));
                     }
                 }
-            );
+            }
         }
     );
     //
     symbolParams.pageSize = prefs.symbolPageSize;
     symbolParams.observer = null;
+    symbolParams.root = unit;
     //
     symbolInstructions.open = prefs.symbolInstructions;
     symbolRegexExamples.open = prefs.symbolRegexExamples;
     //
     blockParams.pageSize = prefs.blockPageSize;
     blockParams.observer = null;
+    blockParams.root = unit;
     //
     function displayRangeTable (blockKey, charKey)
     {

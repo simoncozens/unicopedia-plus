@@ -16,8 +16,8 @@
         "minWidth": 720,
         "minHeight": 450,
         "backgroundColor": "#F5F5F5",
-        "titleTemplate": "{unit} | {app}",
-        "zoomSuffixTemplate": " ({zoom}%)",
+        "titleTemplate": "{{unit}} | {{app}}",
+        "zoomSuffixTemplate": " ({{zoom}}%)",
         "deferredShow": true
     },
     "shortAppName": "App",

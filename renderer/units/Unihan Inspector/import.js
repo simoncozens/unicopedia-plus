@@ -18,11 +18,9 @@ module.exports.start = function (context)
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     //
-    const radicalsData = require ('../../lib/unicode/parsed-cjk-radicals-data.js');
+    const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
     const variantsData = require ('./parsed-variants-data.js');
-    //
-    const coreUnihan = Object.keys (unihanData.codePoints).filter (key => ('kIICore' in unihanData.codePoints[key])); // Used for random access
     //
     function randomElement (elements)
     {
@@ -72,6 +70,7 @@ module.exports.start = function (context)
             unihanCharacter.textContent = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
             unihanCharacter.className = 'unihan-character';
             unihanWrapper.appendChild (unihanCharacter);
+            console.log (unihanCharacter.textContent);  // Temp!
             let filler = document.createElement ('div');
             filler.className = 'filler';
             unihanWrapper.appendChild (filler);
@@ -161,36 +160,66 @@ module.exports.start = function (context)
             unihanInfo.className = 'unihan-info';
             if (tags)
             {
-                let rsUnicode = tags["kRSUnicode"];
-                if (!Array.isArray (rsUnicode))
+                let rsValues = [ ];
+                let rsClasses = [ ];
+                let rsIRGCount = 0;
+                //
+                const rsTags =
+                [
+                    "kRSUnicode",   // Must be first
+                    "kRSKangXi",
+                    "kRSJapanese",
+                    "kRSKanWa",
+                    "kRSKorean",
+                    "kRSAdobe_Japan1_6"
+                ];
+                //
+                for (let rsTag of rsTags)
                 {
-                    rsUnicode = [ rsUnicode ];
-                }
-                let rsValues = rsUnicode.map
-                (
-                    rsValue =>
+                    let rsTagValues = tags[rsTag];
+                    if (rsTagValues)
                     {
-                        let [ radical, residual ] = rsValue.split ('.');
-                        let parsedRadical = radical.match (/^([1-9][0-9]{0,2})(\')?$/);
-                        let radicalType = parsedRadical[2] ? "CJK" : "Kangxi";  // "CJK" or "Simplified"
-                        let radicalCharacter = String.fromCodePoint (parseInt (radicalsData[radical].radicalCharacter, 16));
-                        let unifiedCharacter = String.fromCodePoint (parseInt (radicalsData[radical].unifiedCharacter, 16));
-                        return `${radicalType} ${parsedRadical[1]} ${radicalCharacter} [${unifiedCharacter}] + ${residual}`;
+                        if (!Array.isArray (rsTagValues))
+                        {
+                            rsTagValues = [ rsTagValues ];
+                        }
+                        if (rsTag === "kRSUnicode")
+                        {
+                            rsIRGCount = rsTagValues.length;
+                        }
+                        for (let rsTagValue of rsTagValues)
+                        {
+                            if (rsTag === "kRSAdobe_Japan1_6")
+                            {
+                                let parsed = rsTagValue.match (/^([CV])\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
+                                if (parsed[1] === 'C')
+                                {
+                                    let [ index, strokes, residual ] = parsed[2].split ('.');
+                                    rsValues.push ([ index, residual ].join ('.'));
+                                }
+                            }
+                            else
+                            {
+                                rsValues.push (rsTagValue);
+                            }
+                        }
                     }
-                );
-                let totalStrokesValue = tags["kTotalStrokes"];
-                if (Array.isArray (totalStrokesValue))
-                {
-                    totalStrokesValue = totalStrokesValue.join (', ');
                 }
+                //
+                // Remove duplicates
+                rsValues = [... new Set (rsValues)];
+                //
+                rsClasses = rsValues.map ((rsValue, index) => (index < rsIRGCount) ? 'irg-source' : 'no-irg-source');
+                //
+                rsValues = rsValues.map (rsValue => fromRSValue (rsValue).join (" +\xA0"));
+                //
                 let definitionValue = tags["kDefinition"];
                 let variants = variantsData[codePoint] || [ ];
                 let variantsValue = variants.map (variant => String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16))).join (" ");
                 let unihanFields =
                 [
-                    { label: "Radical/Strokes", value: rsValues },
-                    { label: "Total\xA0Strokes", value: totalStrokesValue },
-                    { label: "Definition", value: definitionValue },
+                    { label: "Radical/Strokes", value: rsValues, class: rsClasses },
+                    { label: "Definition", value: definitionValue, class: 'line-clamp' },
                     { label: "Yasuoka\xA0Variants", value: variantsValue }
                 ];
                 //
@@ -200,6 +229,10 @@ module.exports.start = function (context)
                     {
                         let field = document.createElement ('div');
                         field.className = 'unihan-field';
+                        if (typeof unihanField.class === 'string')
+                        {
+                            field.classList.add (unihanField.class);
+                        }
                         if (Array.isArray (unihanField.value))
                         {
                             let labelText = document.createElement ('span');
@@ -207,26 +240,27 @@ module.exports.start = function (context)
                             field.appendChild (labelText);
                             let lineBreak = document.createElement ('br');
                             field.appendChild (lineBreak);
-                            if (unihanField.value.length > 1)
-                            {
-                                let list = document.createElement ('ul');
-                                list.className = 'list';
-                                for (let element of unihanField.value)
+                            let list = document.createElement ('ul');
+                            list.className = 'list';
+                            unihanField.value.forEach
+                            (
+                                (element, index) =>
                                 {
                                     let item = document.createElement ('li');
                                     item.className = 'item';
+                                    if (Array.isArray (unihanField.class))
+                                    {
+                                        let itemClass = unihanField.class[index];
+                                        if (itemClass)
+                                        {
+                                            item.classList.add (itemClass);
+                                        }
+                                    }
                                     item.textContent = element;
                                     list.appendChild (item);
                                 }
-                                field.appendChild (list);
-                            }
-                            else
-                            {
-                                let valueText = document.createElement ('span');
-                                valueText.className = 'value';
-                                valueText.textContent = `${unihanField.value[0]}`;
-                                field.appendChild (valueText);
-                            }
+                            );
+                            field.appendChild (list);
                         }
                         else
                         {
@@ -234,6 +268,14 @@ module.exports.start = function (context)
                         }
                         unihanInfo.appendChild (field);
                     }
+                }
+                //
+                if ("kIICore" in tags)
+                {
+                    let coreField = document.createElement ('div');
+                    coreField.className = 'unihan-field';
+                    coreField.textContent = "Set: IICore";
+                    unihanInfo.appendChild (coreField);
                 }
             }
             else
@@ -463,6 +505,7 @@ module.exports.start = function (context)
                     }
                     currentCodePoint = `U+${hex}`;
                     unihanInput.value = currentCodePoint;
+                    unihanInput.dispatchEvent (new Event ('input'));
                     displayData (currentCodePoint);
                 }
             }
@@ -479,7 +522,8 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            unihanInput.value = randomElement (coreUnihan);
+            unihanInput.value = randomElement (unihanData.coreSet);
+            unihanInput.dispatchEvent (new Event ('input'));
             lookupButton.dispatchEvent (new Event ('click'));
         }
     );

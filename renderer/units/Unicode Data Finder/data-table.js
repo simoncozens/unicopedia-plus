@@ -52,7 +52,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
                         }
                     );
                 },
-                { root: dataPage.closest ('section'), rootMargin: '50% 0%' }
+                { root: params.root, rootMargin: '50% 0%' }
             );
         }
         let table = document.createElement ('table');

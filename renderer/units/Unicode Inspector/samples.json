@@ -127,7 +127,15 @@
             },
             {
                 "label": "Chinese Dragons",
-                "string": "⿓龍龖龘"
+                "string": "⿓龍龖龘𪚥"
+            },
+            {
+                "label": "Unusual CJK 1",
+                "string": "𢨋𠄔𨙨𨛜𧹂\n或予邑䣈贙"
+            },
+            {
+                "label": "Unusual CJK 2",
+                "string": "𠄷𠆭𠇇"
             },
             {
                 "label": "Arabic Ligature",

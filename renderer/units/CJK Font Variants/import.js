@@ -1,10 +1,10 @@
 //
 const unit = document.getElementById ('cjk-font-variants-unit');
 //
-const loadButton = unit.querySelector ('.load-button');
-const saveButton = unit.querySelector ('.save-button');
 const clearButton = unit.querySelector ('.clear-button');
 const charactersSamples = unit.querySelector ('.characters-samples');
+const loadButton = unit.querySelector ('.load-button');
+const saveButton = unit.querySelector ('.save-button');
 const charactersInput = unit.querySelector ('.characters-input');
 const codePointsInput = unit.querySelector ('.code-points-input');
 const eastAsianSelect = unit.querySelector ('.east-asian-select');
@@ -113,7 +113,6 @@ module.exports.start = function (context)
         }
     );
     //
-    charactersInput.value = prefs.charactersInput;
     charactersInput.addEventListener
     (
         'input',
@@ -127,6 +126,7 @@ module.exports.start = function (context)
             }
         }
     );
+    charactersInput.value = prefs.charactersInput;
     charactersInput.dispatchEvent (new Event ('input'));
     //
     codePointsInput.addEventListener

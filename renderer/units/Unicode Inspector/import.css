@@ -2,62 +2,7 @@
 
 #unicode-inspector-unit .plain-panel
 {
-    padding-bottom: 0.75em;
-    overflow-x: visible;
-}
-
-#unicode-inspector-unit .tab-bar
-{
-    display: flex;
-    justify-content: center;
-    /* text-align: center; */
-    white-space: nowrap;
-    margin: -2em 0 1em 0;
-}
-
-#unicode-inspector-unit .tab-bar .tab-label .tab-radio
-{
-    display: none;
-}
-
-#unicode-inspector-unit .tab-bar .tab-label span
-{
-    padding: 0.2em 1em;
-    font-size: 1em;
-    font-weight: 600;
-    border: 1px solid var(--color-accent);
-    border-radius: 0;
-    background-color: white;
-    color: var(--color-accent);
-    margin: 0 -2px;
-    vertical-align: middle;
-}
-
-#unicode-inspector-unit .tab-bar .tab-label:first-of-type span
-{
-    border-top-left-radius : 0.5em;
-    border-bottom-left-radius : 0.5em;
-    margin-right: -3px;
-}
-
-#unicode-inspector-unit .tab-bar .tab-label:last-of-type span
-{
-    border-top-right-radius : 0.5em;
-    border-bottom-right-radius : 0.5em;
-    margin-left: -3px;
-}
-
-#unicode-inspector-unit .tab-bar .tab-label .tab-radio:checked + span
-{
-    background-color: var(--color-accent);
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
-    color: white;
-}
-
-#unicode-inspector-unit .tab-bar .tab-label .tab-radio:not(:checked) + span:hover
-{
-    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.75), hsla(0, 0%, 100%, 0.75));
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
+    padding-bottom: 0.25em;
 }
 
 #unicode-inspector-unit .actions
@@ -65,35 +10,63 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0;
-}
-
-#unicode-inspector-unit .actions.code-points-actions
-{
     justify-content: space-between;
+    align-items: center;
+    margin: 0.5em 0;
 }
 
+#unicode-inspector-unit .action-group
+{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#unicode-inspector-unit .action-group + .action-group,
 #unicode-inspector-unit .action + .action
 {
     margin-left: 0.75em;
 }
 
-#unicode-inspector-unit .output-characters-data table
+ #unicode-inspector-unit .input-group
 {
-    margin: 1.25em 0 1em 0;
+    margin: 0.5em 0 1em 0;
 }
 
-#unicode-inspector-unit .output-code-points-data table
+#unicode-inspector-unit .characters-input
 {
-    margin: 1em 0 1em 0;
+    font-family: sans-serif;
+    font-size: 36px;
+    line-height: 48px;
+    resize: vertical;
+    overflow-y: scroll;
+    min-height: calc(1px + 48px + 48px + 1px);
+    overscroll-behavior: contain;
+    padding: 0 0.2em;
+    width: 100%;
+    tab-size : 4;
+}
+
+#unicode-inspector-unit .code-points-input
+{
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 14px;
+    line-height: 20px;
+    resize: vertical;
+    overflow-y: scroll;
+    min-height: calc(1px + 2px + 20px + 20px + 2px + 1px);
+    overscroll-behavior: contain;
+    padding: 2px 0.5em;
+    width: 100%;
+    tab-size : 4;
 }
 
 #unicode-inspector-unit .data-list
 {
     user-select: text;
     background-color: white;
+    margin: 0 0 1.25em 0;
 }
 
 #unicode-inspector-unit .data-list .data-header-centered
@@ -146,57 +119,6 @@
 #unicode-inspector-unit .data-list .field
 {
     margin: 0.25em 0;
-}
-
-#unicode-inspector-unit .input-characters,
-#unicode-inspector-unit .output-characters
-{
-    font-family: sans-serif;
-    font-size: 36px;
-    padding: 0 0.2em;
-    width: 100%;
-    tab-size : 4;
-    line-height: 48px;
-    resize: vertical;
-    overflow-y: scroll;
-    min-height: calc(1px + 48px + 48px + 1px);
-    overscroll-behavior: contain;
-}
-
-#unicode-inspector-unit .output-code-points
-{
-    margin-bottom: 0.125em;
-}
-
-#unicode-inspector-unit .input-code-points,
-#unicode-inspector-unit .output-code-points
-{
-    font-family: Monaco, "Noto Mono", monospace;
-    font-size: 1em;
-    line-height: 1.333em;
-    padding: 0.2em 0.4em;
-    width: 100%;
-    tab-size : 4;
-}
-
-#unicode-inspector-unit .characters-to-code-points
-{
-    margin: 1em 0;
-}
-
-#unicode-inspector-unit .input-characters
-{
-    margin: 0 0 0.25em 0;
-}
-
-#unicode-inspector-unit .code-points-to-characters
-{
-    margin: 1em 0 0.75em 0;
-}
-
-#unicode-inspector-unit .input-code-points
-{
-    margin: 0 0 1em 0;
 }
 
 #unicode-inspector-unit .instructions ul

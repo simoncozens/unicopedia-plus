@@ -26,10 +26,23 @@ function fromRadical (index, simplified)
     return `${index} ${radical} (${name})`;
 };
 //
-function fromRSValue (rsValue)
+function fromRSValue (rsValue, verbose)
 {
+    let result;
     let [ index, residual ] = rsValue.split ('.');
-    return [ `${fromRadical (parseInt (index), index.match (/'$/))}`, `${residual}` ];
+    if (verbose)
+    {
+        result =
+        [
+            `Radical ${fromRadical (parseInt (index), index.match (/'$/))}`,
+            `${residual} Stroke${residual > 1 ? 's': ''}`
+        ];
+    }
+    else
+    {
+        result = [ `${fromRadical (parseInt (index), index.match (/'$/))}`, `${residual}` ];
+    }
+    return result;
 };
 //
 module.exports =

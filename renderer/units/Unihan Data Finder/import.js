@@ -21,9 +21,8 @@ const tagParams = { };
 let tagCurrentTag;
 let tagShowCategories;
 //
-const rsExtraSourcesCheckbox = unit.querySelector ('.radical-strokes .extra-sources-checkbox');
 const rsFullSetCheckbox = unit.querySelector ('.radical-strokes .full-set-checkbox');
-const rsAllStrokesCheckbox = unit.querySelector ('.radical-strokes .all-strokes-checkbox');
+const rsExtraSourcesCheckbox = unit.querySelector ('.radical-strokes .extra-sources-checkbox');
 const rsRadicalSelect = unit.querySelector ('.radical-strokes .radical-select');
 const rsStrokesSelect = unit.querySelector ('.radical-strokes .strokes-select');
 const rsSearchButton = unit.querySelector ('.radical-strokes .search-button');
@@ -59,9 +58,8 @@ module.exports.start = function (context)
         tagInstructions: true,
         tagRegexExamples: false,
         //
-        rsExtraSourcesCheckbox: false,
         rsFullSetCheckbox: false,
-        rsAllStrokesCheckbox: false,
+        rsExtraSourcesCheckbox: false,
         rsRadicalSelect: "",
         rsStrokesSelect: "",
         rsInstructions: true,
@@ -308,33 +306,9 @@ module.exports.start = function (context)
     //
     const rsDataTable = require ('./rs-data-table.js');
     //
-    // rsExtraSourcesCheckbox.checked = prefs.rsExtraSourcesCheckbox;
-    rsExtraSourcesCheckbox.checked = defaultPrefs.rsExtraSourcesCheckbox;   // TEMP!
-    //
     rsFullSetCheckbox.checked = prefs.rsFullSetCheckbox;
     //
-    rsAllStrokesCheckbox.addEventListener
-    (
-        'input',
-        event =>
-        {
-            rsStrokesSelect.disabled = event.target.checked;
-            if (event.target.checked)
-            {
-                rsStrokesSelect.classList.add ('disabled');
-                rsStrokesSelect.parentElement.classList.add ('disabled');
-            }
-            else
-            {
-                rsStrokesSelect.classList.remove ('disabled');
-                rsStrokesSelect.parentElement.classList.remove ('disabled');
-            }
-        }
-    );
-    //
-    // rsAllStrokesCheckbox.checked = prefs.rsAllStrokesCheckbox;
-    rsAllStrokesCheckbox.checked = defaultPrefs.rsAllStrokesCheckbox;   // TEMP!
-    rsAllStrokesCheckbox.dispatchEvent (new Event ('input'));
+    rsExtraSourcesCheckbox.checked = prefs.rsExtraSourcesCheckbox;
     //
     rsCurrentRadical = prefs.rsRadicalSelect;
     rsCurrentStrokes = prefs.rsStrokesSelect;
@@ -372,8 +346,16 @@ module.exports.start = function (context)
     rsRadicalSelect.addEventListener ('input', event => { rsCurrentRadical = event.target.value; });
     //
     const minStrokes = 0;
-    const maxStrokes = 50;
+    const maxStrokes = 62;  // 𠔻 U+2053B kRSKangXi 12.62
     //
+    let allOption = document.createElement ('option');
+    allOption.textContent = "All";
+    allOption.value = '*';
+    rsStrokesSelect.appendChild (allOption);
+    let separatorOption = document.createElement ('option');
+    separatorOption.textContent = "\u2015";   // Horizontal bar
+    separatorOption.disabled = true;
+    rsStrokesSelect.appendChild (separatorOption);
     for (let strokesIndex = minStrokes; strokesIndex <= maxStrokes; strokesIndex++)
     {
         let option = document.createElement ('option');
@@ -392,26 +374,32 @@ module.exports.start = function (context)
     //
     const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
+    const rsTags =
+    [
+        "kRSUnicode",   // Must be first
+        "kRSKangXi",
+        "kRSJapanese",
+        "kRSKanWa",
+        "kRSKorean",
+        "kRSAdobe_Japan1_6"
+    ];
+    //
     function findCharactersByRadicalStrokes (options)
     {
-        function matchRadicalStrokes (tags, radical, strokes)
+        let items = [ ];
+        for (let strokes = options.minStrokes; strokes <= options.maxStrokes; strokes++)
         {
-            let found = false;
-            let extraSource = false;
-            let irgSourceValues = [ ];
-            //
-            const rsTags =
-            [
-                "kRSUnicode",   // Must be first
-                "kRSKangXi",
-                "kRSJapanese",
-                "kRSKanWa",
-                "kRSKorean",
-                "kRSAdobe_Japan1_6"
-            ];
+            items.push ({ strokes: strokes, characters: [ ] });
+        }
+        let codePoints = unihanData.codePoints;
+        let set = options.fullSet ? unihanData.fullSet : unihanData.coreSet;
+        for (let codePoint of set)
+        {
+            let rsValues = [ ];
+            let irgSourceValues = null;
             for (let rsTag of rsTags)
             {
-                let rsTagValues = tags[rsTag];
+                let rsTagValues = codePoints[codePoint][rsTag];
                 if (rsTagValues)
                 {
                     if (!Array.isArray (rsTagValues))
@@ -422,71 +410,57 @@ module.exports.start = function (context)
                     {
                         irgSourceValues = [...rsTagValues];
                     }
+                    else if (!options.extraSources)
+                    {
+                        break;
+                    }
                     for (let rsTagValue of rsTagValues)
                     {
-                        let rsValue;
                         if (rsTag === "kRSAdobe_Japan1_6")
                         {
                             let parsed = rsTagValue.match (/^([CV])\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
                             if (parsed[1] === 'C')
                             {
                                 let [ index, strokes, residual ] = parsed[2].split ('.');
-                                {
-                                    rsValue = [ index, residual ].join ('.');
-                                }
+                                rsValues.push ([ index, residual ].join ('.'));
                             }
                         }
                         else
                         {
-                            rsValue = rsTagValue;
+                            rsValues.push (rsTagValue);
                         }
-                        if (rsValue)
+                    }
+                }
+            }
+            // Remove duplicates
+            rsValues = [...new Set (rsValues.map (rsValue => rsValue.replace ("'", "").replace (/\.-\d+/, ".0")))];
+            irgSourceValues = [...new Set (irgSourceValues.map (rsValue => rsValue.replace ("'", "").replace (/\.-\d+/, ".0")))];
+            for (let rsValue of rsValues)
+            {
+                let [ tagRadical, tagResidual ] = rsValue.split ('.');
+                if (parseInt (tagRadical) === options.radical)
+                {
+                    let residualStrokes = parseInt (tagResidual);
+                    if ((options.minStrokes <= residualStrokes) && (residualStrokes <= options.maxStrokes))
+                    {
+                        let character =
                         {
-                            let [ tagRadical, tagResidual ] = rsValue.split ('.');
-                            if ((parseInt (tagRadical) === radical) && (Math.max (parseInt (tagResidual), 0) === strokes))
+                            symbol: String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16)),
+                            codePoint: codePoint
+                        };
+                        if (options.extraSources)
+                        {
+                            let extraSource = !irgSourceValues.includes (rsValue);
+                            if (extraSource)
                             {
-                                found = true;
-                                extraSource = (rsTag !== "kRSUnicode");
-                                break;
+                                character.extraSource = extraSource;
+                                character.toolTip = irgSourceValues.map (rsValue => fromRSValue (rsValue, true).join (" +\xA0")).join ("\n")
+
                             }
                         }
+                        items[residualStrokes - options.minStrokes].characters.push (character);
                     }
-                    if (found) break;
                 }
-            }
-            //
-            return [ found, extraSource, irgSourceValues ];
-        }
-        // 
-        let items = [ ];
-        for (let strokes = options.minStrokes; strokes <= options.maxStrokes; strokes++)
-        {
-            let item = { };
-            item.strokes = strokes;
-            item.characters = [ ];
-            let codePoints = unihanData.codePoints;
-            let set = options.fullSet ? unihanData.fullSet : unihanData.coreSet;
-            for (let codePoint of set)
-            {
-                let [ found, extraSource, irgSourceValues ] = matchRadicalStrokes (codePoints[codePoint], options.radical, strokes);
-                if (found && ((!extraSource) || options.extraSources))
-                {
-                    let character =
-                    {
-                        symbol: String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16)),
-                        codePoint: codePoint
-                    };
-                    if (extraSource)
-                    {
-                        character.extraSource = extraSource;
-                        character.toolTip = irgSourceValues.map (rsValue => fromRSValue (rsValue).join (" +\xA0")).join ("\n");
-                    }
-                    item.characters.push (character);
-                }
-            }
-            if (item.characters.length > 0)
-            {
-                items.push (item);
             }
         }
         return items;
@@ -504,11 +478,11 @@ module.exports.start = function (context)
             }
             let findOptions =
             {
-                extraSources: rsExtraSourcesCheckbox.checked,
                 fullSet: rsFullSetCheckbox.checked,
+                extraSources: rsExtraSourcesCheckbox.checked,
                 radical: parseInt (rsCurrentRadical),
-                minStrokes: rsAllStrokesCheckbox.checked ? minStrokes : parseInt (rsCurrentStrokes),
-                maxStrokes: rsAllStrokesCheckbox.checked ? maxStrokes : parseInt (rsCurrentStrokes)
+                minStrokes: (rsCurrentStrokes === '*') ? minStrokes : parseInt (rsCurrentStrokes),
+                maxStrokes: (rsCurrentStrokes === '*') ? maxStrokes : parseInt (rsCurrentStrokes)
             };
             let start = window.performance.now ();
             let items = findCharactersByRadicalStrokes (findOptions);
@@ -567,9 +541,8 @@ module.exports.stop = function (context)
         tagInstructions: tagInstructions.open,
         tagRegexExamples: tagRegexExamples.open,
         //
-        rsExtraSourcesCheckbox: rsExtraSourcesCheckbox.checked,
         rsFullSetCheckbox: rsFullSetCheckbox.checked,
-        rsAllStrokesCheckbox: rsAllStrokesCheckbox.checked,
+        rsExtraSourcesCheckbox: rsExtraSourcesCheckbox.checked,
         rsRadicalSelect: rsCurrentRadical,
         rsStrokesSelect: rsCurrentStrokes,
         rsInstructions: rsInstructions.open,

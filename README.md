@@ -222,7 +222,10 @@ The following utilities are currently available:
 ### Radical/Strokes
 
 - The **Radical/Strokes** feature of the **Unihan Data Finder** utility displays all the Unihan characters searched by KangXi radical and additional stroke count.
-- Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on either the full set of 88,889 Unihan characters, or the IICore set of 9,810 CJK unified ideographs in common usage.
+- Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.
+- Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.
+- Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
+- Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
 - A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.
 
 <img src="screenshots/unihan-data-finder-radical-strokes.png" width="1080px" alt="Unihan Data Finder - Radical/Strokes screenshot">

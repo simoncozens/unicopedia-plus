@@ -407,6 +407,7 @@
 {
     color: gray;
     background-color: white;
+    border: 1px dotted gray;
 }
 
 #unihan-data-finder-unit .instructions ul

@@ -47,41 +47,44 @@ module.exports.create = function (title, items, params)
     charactersData.className = 'characters-data';
     for (let item of items)
     {
-        let strokesData = document.createElement ('span');
-        strokesData.className = 'strokes-data';
-        strokesData.textContent = `${item.strokes} Stroke${item.strokes > 1 ? 's': ''}`;
-        charactersData.appendChild (strokesData);
-        for (let character of item.characters)
+        if (item.characters.length > 0)
         {
-            let characterData = document.createElement ('span');
-            characterData.className = 'character-data';
-            if (character.extraSource)
+            let strokesData = document.createElement ('span');
+            strokesData.className = 'strokes-data';
+            strokesData.textContent = `${item.strokes} Stroke${item.strokes > 1 ? 's': ''}`;
+            charactersData.appendChild (strokesData);
+            for (let character of item.characters)
             {
-                characterData.classList.add ('extra-source');
-                characterData.title = character.toolTip;
+                let characterData = document.createElement ('span');
+                characterData.className = 'character-data';
+                if (character.extraSource)
+                {
+                    characterData.classList.add ('extra-source');
+                    characterData.title = character.toolTip;
+                }
+                let symbol = document.createElement ('span');
+                symbol.className = 'symbol';
+                if (deferredSymbols)
+                {
+                    symbol.textContent = "\u3000";  // Ideographic space
+                    symbol.classList.add ('deferred');
+                    symbol.dataset.character = character.symbol;
+                    params.observer.observe (symbol);
+                }
+                else
+                {
+                    symbol.textContent = character.symbol;
+                }
+                characterData.appendChild (symbol);
+                let codePoint = document.createElement ('span');
+                codePoint.textContent = character.codePoint.replace ("U+", "");
+                codePoint.className = 'code-point';
+                characterData.appendChild (codePoint );
+                charactersData.appendChild (characterData);
             }
-            let symbol = document.createElement ('span');
-            symbol.className = 'symbol';
-            if (deferredSymbols)
-            {
-                symbol.textContent = "\u3000";  // Ideographic space
-                symbol.classList.add ('deferred');
-                symbol.dataset.character = character.symbol;
-                params.observer.observe (symbol);
-            }
-            else
-            {
-                symbol.textContent = character.symbol;
-            }
-            characterData.appendChild (symbol);
-            let codePoint = document.createElement ('span');
-            codePoint.textContent = character.codePoint.replace ("U+", "");
-            codePoint.className = 'code-point';
-            characterData.appendChild (codePoint );
-            charactersData.appendChild (characterData);
+            charactersRow.appendChild (charactersData);
+            rsDataTable.appendChild (charactersRow);
         }
-        charactersRow.appendChild (charactersData);
-        rsDataTable.appendChild (charactersRow);
     }
     //
     return rsDataTable;

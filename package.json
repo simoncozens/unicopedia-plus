@@ -1,7 +1,7 @@
 {
     "name": "unicode-plus",
     "productName": "Unicode Plus",
-    "version": "1.15.0",
+    "version": "1.16.0",
     "description": "Set of Unicode, Unihan & emoji utilities.",
     "main": "main.js",
     "scripts": {

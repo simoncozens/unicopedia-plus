@@ -461,7 +461,7 @@ module.exports.start = function (context)
         }
     }
     //
-    const unihanRegex = /^\s*(?:(.)|(?:[Uu]\+)?([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
+    const unihanRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     unihanInput.pattern = unihanRegex.source;
     //
     unihanInput.addEventListener

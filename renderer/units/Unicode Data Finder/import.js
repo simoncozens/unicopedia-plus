@@ -381,7 +381,7 @@ module.exports.start = function (context)
     //
     blockSpecimen.value = prefs.blockSpecimen;
     //
-    const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
+    const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     //
     blockSpecimen.pattern = specimenRegex.source;
     blockSpecimen.addEventListener

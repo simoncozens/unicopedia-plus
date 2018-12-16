@@ -130,14 +130,6 @@
                 "string": "⿓龍龖龘𪚥"
             },
             {
-                "label": "Unusual CJK 1",
-                "string": "𢨋𠄔𨙨𨛜𧹂\n或予邑䣈贙"
-            },
-            {
-                "label": "Unusual CJK 2",
-                "string": "㔔𠄷𠆭𠇇𭁇"
-            },
-            {
                 "label": "Arabic Ligature",
                 "string": "﷽"
             },
@@ -198,6 +190,28 @@
             {
                 "label": "Variation Selectors 3",
                 "string": "⚠︎⚠️㊙︎㊙️🈷︎🈷️"
+            }
+        ]
+    },
+    {
+        "label": "Unusual CJK",
+        "items":
+        [
+            {
+                "label": "Unusual 1",
+                "string": "𢨋𠄔𨙨𨛜𧹂\n或予邑䣈贙"
+            },
+            {
+                "label": "Unusual 2",
+                "string": "㔖㪲㫇\n㔔㪳㫈"
+            },
+            {
+                "label": "Unusual 3",
+                "string": "𠄷𠆭𠇇𡆢𭁇"
+            },
+            {
+                "label": "Unusual 4",
+                "string": "𠕲𠚖𠚜𠚡𠥓𠥧𠥩𠥪𠥫𠥬"
             }
         ]
     }

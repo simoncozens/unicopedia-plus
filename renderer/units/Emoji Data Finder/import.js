@@ -156,23 +156,20 @@ module.exports.start = function (context)
         return string.match (emojiRegex) || [ ];
     }
      //
-    function clearDataList (emojiDataList, hitCount)
+    function clearResults (hitCount, emojiDataList)
     {
-        hitCount.textContent = "";
+        while (hitCount.firstChild)
+        {
+            hitCount.firstChild.remove ();
+        }
         while (emojiDataList.firstChild)
         {
             emojiDataList.firstChild.remove ();
         }
     }
    //
-    function displayDataList (string, emojiDataList, hitCount)
+    function displayDataList (characters, emojiDataList)
     {
-        while (emojiDataList.firstChild)
-        {
-           emojiDataList.firstChild.remove ();
-        }
-        let characters = [...new Set (getEmojiList (string))];
-        hitCount.innerHTML = `<strong>${characters.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
         for (let character of characters)
         {
             let emojiTable = document.createElement ('table');
@@ -249,7 +246,7 @@ module.exports.start = function (context)
                 {
                     const flags = 'ui';
                     let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -274,7 +271,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            clearDataList (nameEmojiDataList, nameHitCount);
+            clearResults (nameHitCount, nameEmojiDataList);
             let name = nameSearchString.value;
             if (name)
             {
@@ -291,12 +288,12 @@ module.exports.start = function (context)
                     let pattern = (nameUseRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                     if (nameWholeWord.checked)
                     {
-                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                         pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
                     const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -305,7 +302,17 @@ module.exports.start = function (context)
                 if (regex)
                 {
                     let emojiByName = findEmojiByName (regex);
-                    displayDataList (emojiByName.join (''), nameEmojiDataList, nameHitCount);
+                    let closeButton = document.createElement ('button');
+                    closeButton.type = 'button';
+                    closeButton.className = 'close-button';
+                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                    closeButton.title = "Clear results";
+                    closeButton.addEventListener ('click', event => { clearResults (nameHitCount, nameEmojiDataList); });
+                    nameHitCount.appendChild (closeButton);
+                    let infoText = document.createElement ('span');
+                    infoText.innerHTML = `Emoji: <strong>${emojiByName.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
+                    nameHitCount.appendChild (infoText);
+                    displayDataList (emojiByName, nameEmojiDataList);
                 }
             }
         }
@@ -342,7 +349,7 @@ module.exports.start = function (context)
                 {
                     const flags = 'ui';
                     let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -367,7 +374,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            clearDataList (symbolEmojiDataList, symbolHitCount);
+            clearResults (symbolHitCount, symbolEmojiDataList);
             let symbol = symbolSearchString.value;
             if (symbol)
             {
@@ -384,12 +391,12 @@ module.exports.start = function (context)
                     let pattern = (symbolUseRegex.checked) ? symbol : Array.from (symbol).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                     if (symbolWholeWord.checked)
                     {
-                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                         pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
                     const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -398,7 +405,17 @@ module.exports.start = function (context)
                 if (regex)
                 {
                     let emojiBySymbol = findEmojiBySymbol (regex);
-                    displayDataList (emojiBySymbol.join (''), symbolEmojiDataList, symbolHitCount);
+                    let closeButton = document.createElement ('button');
+                    closeButton.type = 'button';
+                    closeButton.className = 'close-button';
+                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                    closeButton.title = "Clear results";
+                    closeButton.addEventListener ('click', event => { clearResults (symbolHitCount, symbolEmojiDataList); });
+                    symbolHitCount.appendChild (closeButton);
+                    let infoText = document.createElement ('span');
+                    infoText.innerHTML = `Emoji: <strong>${emojiBySymbol.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
+                    symbolHitCount.appendChild (infoText);
+                    displayDataList (emojiBySymbol, symbolEmojiDataList);
                 }
             }
         }
@@ -454,7 +471,10 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            displayDataList (event.target.value, textEmojiDataList, textHitCount);
+            clearResults (textHitCount, textEmojiDataList);
+            let characters = [...new Set (getEmojiList (event.target.value))];
+            textHitCount.innerHTML = `Emoji: <strong>${characters.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`
+            displayDataList (characters, textEmojiDataList);
         }
     );
     textInputString.value = prefs.textInputString;

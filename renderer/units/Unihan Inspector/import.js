@@ -136,6 +136,7 @@ module.exports.start = function (context)
                 { label: "Block", value: unicodeData.blockName, title: unicodeData.blockRange },
                 { label: "Script", value: unicodeData.script },
                 { label: "General\xA0Category", value: unicodeData.category },
+                { label: "Decomposition", value: unicodeData.decomposition },
                 { label: "Equivalent\xA0Unified\xA0Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
             ];
             //

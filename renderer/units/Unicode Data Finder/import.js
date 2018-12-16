@@ -104,6 +104,18 @@ module.exports.start = function (context)
         tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
     }
     //
+    function clearSearch (info, data)
+    {
+        while (info.firstChild)
+        {
+            info.firstChild.remove ();
+        }
+        while (data.firstChild)
+        {
+            data.firstChild.remove ();
+        }
+    }
+    //
     nameWholeWord.checked = prefs.nameWholeWord;
     nameUseRegex.checked = prefs.nameUseRegex;
     //
@@ -132,7 +144,7 @@ module.exports.start = function (context)
                 {
                     const flags = 'ui';
                     let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -157,11 +169,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            nameSearchInfo.textContent = "";
-            while (nameSearchData.firstChild)
-            {
-                nameSearchData.firstChild.remove ();
-            }
+            clearSearch (nameSearchInfo, nameSearchData);
             let searchString = nameSearchString.value;
             if (searchString)
             {
@@ -178,12 +186,12 @@ module.exports.start = function (context)
                     let pattern = (nameUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                     if (nameWholeWord.checked)
                     {
-                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                         pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
                     const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -195,7 +203,16 @@ module.exports.start = function (context)
                     let characters = unicode.findCharactersByData (regex, false);
                     let stop = window.performance.now ();
                     let seconds = ((stop - start) / 1000).toFixed (2);
-                    nameSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                    let closeButton = document.createElement ('button');
+                    closeButton.type = 'button';
+                    closeButton.className = 'close-button';
+                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                    closeButton.title = "Clear results";
+                    closeButton.addEventListener ('click', event => { clearSearch (nameSearchInfo, nameSearchData); });
+                    nameSearchInfo.appendChild (closeButton);
+                    let infoText = document.createElement ('span');
+                    infoText.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                    nameSearchInfo.appendChild (infoText);
                     if (characters.length > 0)
                     {
                         nameSearchData.appendChild (dataTable.create (characters, nameParams));
@@ -240,7 +257,7 @@ module.exports.start = function (context)
                 {
                     const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
                     let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -265,11 +282,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            symbolSearchInfo.textContent = "";
-            while (symbolSearchData.firstChild)
-            {
-                symbolSearchData.firstChild.remove ();
-            }
+            clearSearch (symbolSearchInfo, symbolSearchData);
             let searchString = symbolSearchString.value;
             if (searchString)
             {
@@ -287,7 +300,7 @@ module.exports.start = function (context)
                         searchString :
                         Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                     const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -299,7 +312,16 @@ module.exports.start = function (context)
                     let characters = unicode.findCharactersByData (regex, true);
                     let stop = window.performance.now ();
                     let seconds = ((stop - start) / 1000).toFixed (2);
-                    symbolSearchInfo.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                    let closeButton = document.createElement ('button');
+                    closeButton.type = 'button';
+                    closeButton.className = 'close-button';
+                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                    closeButton.title = "Clear results";
+                    closeButton.addEventListener ('click', event => { clearSearch (symbolSearchInfo, symbolSearchData); });
+                    symbolSearchInfo.appendChild (closeButton);
+                    let infoText = document.createElement ('span');
+                    infoText.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
+                    symbolSearchInfo.appendChild (infoText);
                     if (characters.length > 0)
                     {
                         symbolSearchData.appendChild (dataTable.create (characters, symbolParams));

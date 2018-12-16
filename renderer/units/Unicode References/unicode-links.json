@@ -59,6 +59,40 @@
     ],
     [
         {
+            "name": "Character (computing) - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Character_(computing)"
+        },
+        {
+            "name": "Letter (alphabet) - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Letter_(alphabet)"
+        },
+        {
+            "name": "Symbol - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Symbol"
+        },
+        {
+            "name": "Glyph - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Glyph"
+        },
+        {
+            "name": "Grapheme - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Grapheme"
+        },
+        {
+            "name": "Diacritic - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Diacritic"
+        },
+        {
+            "name": "Virama - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Virama"
+        },
+        {
+            "name": "Allography - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Allography"
+        }
+    ],
+    [
+        {
             "name": "Roadmaps to Unicode",
             "href": "https://www.unicode.org/roadmaps/"
         }
@@ -131,6 +165,10 @@
         {
             "name": "FAQ - Blocks and Ranges",
             "href": "https://www.unicode.org/faq/blocks_ranges.html"
+        },
+        {
+            "name": "FAQ - Variation Sequences",
+            "href": "https://unicode.org/faq/vs.html"
         },
         {
             "name": "FAQ - Characters and Combining Marks",

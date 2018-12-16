@@ -26,6 +26,7 @@ The following utilities are currently available:
 * [Unihan Data Finder](#unihan-data-finder)
     * [Find by Tag Value](#find-by-tag-value)
     * [Radical/Strokes](#radicalstrokes)
+    * [View by Grid](#view-by-grid)
 * [Unihan Inspector](#unihan-inspector)
 * [Unihan References](#unihan-references)
 
@@ -96,6 +97,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/emoji-data-finder-find-by-name.png" width="1080px" alt="Emoji Data Finder - Find by Name screenshot">
@@ -106,6 +108,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/emoji-data-finder-match-symbol.png" width="1080px" alt="Emoji Data Finder - Match Symbol screenshot">
@@ -147,6 +150,7 @@ The following utilities are currently available:
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276,955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
@@ -157,6 +161,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276,955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-match-symbol.png" width="1080px" alt="Unicode Data Finder - Match Symbol screenshot">
@@ -215,6 +220,7 @@ The following utilities are currently available:
     - *Unihan_RadicalStrokeCounts.txt*
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
+- Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unihan-data-finder-find-by-tag-value.png" width="1080px" alt="Unihan Data Finder - Find by Tag Value screenshot">
@@ -226,9 +232,20 @@ The following utilities are currently available:
 - Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.
 - Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
 - Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
+- Click on the <kbd>✕</kbd> button to clear all results.
 - A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.
 
 <img src="screenshots/unihan-data-finder-radical-strokes.png" width="1080px" alt="Unihan Data Finder - Radical/Strokes screenshot">
+
+### View by Grid
+
+- The **View by Grid** feature of the **Unihan Data Finder** utility displays in real time a grid view of the blocks containing the 88,889 Unihan characters.
+- It is possible to choose how many characters are shown one page at a time.
+- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>.
+- It is also possible to directly enter a Unihan character or code point in the <kbd>Unihan</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.
+- A list of all the Unihan blocks is available for quick reference.
+
+<img src="screenshots/unihan-data-finder-view-by-grid.png" width="1080px" alt="Unihan Data Finder - View by Grid screenshot">
 
 ## Unihan Inspector
 

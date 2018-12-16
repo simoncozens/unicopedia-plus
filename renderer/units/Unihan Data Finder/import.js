@@ -37,8 +37,21 @@ const rsParams = { };
 let rsCurrentRadical;
 let rsCurrentStrokes;
 //
+const gridParams = { };
+//
+const gridSpecimen = unit.querySelector ('.view-by-grid .specimen');
+const gridGoButton = unit.querySelector ('.view-by-grid .go-button');
+const gridSelectBlockRange = unit.querySelector ('.view-by-grid .select-block-range');
+const gridSelectBlockName = unit.querySelector ('.view-by-grid .select-block-name');
+const gridSearchInfo = unit.querySelector ('.view-by-grid .search-info');
+const gridSearchData = unit.querySelector ('.view-by-grid .search-data');
+const gridInstructions = unit.querySelector ('.view-by-grid .instructions');
+const gridBlocks = unit.querySelector ('.view-by-grid .blocks');
+//
 module.exports.start = function (context)
 {
+    const { remote } = require ('electron');
+    //
     const rewritePattern = require ('regexpu-core');
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
@@ -63,7 +76,13 @@ module.exports.start = function (context)
         rsRadicalSelect: "",
         rsStrokesSelect: "",
         rsInstructions: true,
-        rsRadicalList: false
+        rsRadicalList: false,
+        //
+        gridSelectBlockRange: "4E00-9FFF",  // CJK Unified Ideographs
+        gridSpecimen: "",
+        gridPageSize: 128,
+        gridInstructions: true,
+        gridBlocks: false
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -97,6 +116,18 @@ module.exports.start = function (context)
     for (let tab of tabs)
     {
         tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
+    }
+    //
+    function clearSearch (info, data)
+    {
+        while (info.firstChild)
+        {
+            info.firstChild.remove ();
+        }
+        while (data.firstChild)
+        {
+            data.firstChild.remove ();
+        }
     }
     //
     tagCurrentTag = prefs.tagSelect;
@@ -186,7 +217,7 @@ module.exports.start = function (context)
                 {
                     const flags = 'ui';
                     let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -249,11 +280,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            tagSearchInfo.textContent = "";
-            while (tagSearchData.firstChild)
-            {
-                tagSearchData.firstChild.remove ();
-            }
+            clearSearch (tagSearchInfo, tagSearchData);
             let searchString = tagSearchString.value;
             if (searchString)
             {
@@ -270,12 +297,12 @@ module.exports.start = function (context)
                     let pattern = (tagUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
                     if (tagWholeWord.checked)
                     {
-                        const beforeWordBoundary = '(?:^|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?:$|[^\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                         pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
                     const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     regex = new RegExp (pattern, flags);
                 }
                 catch (e)
@@ -287,7 +314,16 @@ module.exports.start = function (context)
                     let characterInfos = findCharactersByTag (regex, tagCurrentTag);
                     let stop = window.performance.now ();
                     let seconds = ((stop - start) / 1000).toFixed (2);
-                    tagSearchInfo.innerHTML = `Unihan characters: <strong>${characterInfos.length}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
+                    let closeButton = document.createElement ('button');
+                    closeButton.type = 'button';
+                    closeButton.className = 'close-button';
+                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                    closeButton.title = "Clear results";
+                    closeButton.addEventListener ('click', event => { clearSearch (tagSearchInfo, tagSearchData); });
+                    tagSearchInfo.appendChild (closeButton);
+                    let infoText = document.createElement ('span');
+                    infoText.innerHTML = `Unihan characters: <strong>${characterInfos.length}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
+                    tagSearchInfo.appendChild (infoText);
                     if (characterInfos.length > 0)
                     {
                         tagSearchData.appendChild (tagDataTable.create (characterInfos, tagParams));
@@ -326,7 +362,7 @@ module.exports.start = function (context)
                 rsRadicalSelect.appendChild (optionGroup);
             }
             optionGroup = document.createElement ('optgroup');
-            optionGroup.label = `${radical.strokes} Stroke${radical.strokes > 1 ? 's': ''}`;
+            optionGroup.label = `${radical.strokes}\u2002Stroke${radical.strokes > 1 ? 's': ''}`;
             lastStrokes = radical.strokes;
         }
         let option = document.createElement ('option');
@@ -471,11 +507,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            rsSearchInfo.textContent = "";
-            while (rsSearchData.firstChild)
-            {
-                rsSearchData.firstChild.remove ();
-            }
+            clearSearch (rsSearchInfo, rsSearchData);
             let findOptions =
             {
                 fullSet: rsFullSetCheckbox.checked,
@@ -493,7 +525,16 @@ module.exports.start = function (context)
             {
                 resultCount += item.characters.length;
             };
-            rsSearchInfo.innerHTML = `Unihan characters: <strong>${resultCount}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
+            let closeButton = document.createElement ('button');
+            closeButton.type = 'button';
+            closeButton.className = 'close-button';
+            closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+            closeButton.title = "Clear results";
+            closeButton.addEventListener ('click', event => { clearSearch (rsSearchInfo, rsSearchData); });
+            rsSearchInfo.appendChild (closeButton);
+            let infoText = document.createElement ('span');
+            infoText.innerHTML = `Unihan characters: <strong>${resultCount}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
+            rsSearchInfo.appendChild (infoText);
             if (resultCount > 0)
             {
                 let title = "Radical\u2002" + rsRadicalSelect[rsRadicalSelect.selectedIndex].textContent;
@@ -511,6 +552,228 @@ module.exports.start = function (context)
     let radicalsTable = require ('./radicals-table.js');
     //
     rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
+    //
+    const gridDataTable = require ('./grid-data-table.js');
+    //
+    const unihanBlocks =
+    [
+        {
+            name: "CJK Unified Ideographs Extension A",
+            first: "3400",
+            last: "4DBF"
+        },
+        {
+            name: "CJK Unified Ideographs",
+            first: "4E00",
+            last: "9FFF"
+        },
+        {
+            name: "CJK Compatibility Ideographs",
+            first: "F900",
+            last: "FAFF"
+        },
+        {
+            name: "CJK Unified Ideographs Extension B",
+            first: "20000",
+            last: "2A6DF"
+        },
+        {
+            name: "CJK Unified Ideographs Extension C",
+            first: "2A700",
+            last: "2B73F"
+        },
+        {
+            name: "CJK Unified Ideographs Extension D",
+            first: "2B740",
+            last: "2B81F"
+        },
+        {
+            name: "CJK Unified Ideographs Extension E",
+            first: "2B820",
+            last: "2CEAF"
+        },
+        {
+            name: "CJK Unified Ideographs Extension F",
+            first: "2CEB0",
+            last: "2EBEF"
+        },
+        {
+            name: "CJK Compatibility Ideographs Supplement",
+            first: "2F800",
+            last: "2FA1F"
+        }
+    ];
+    //
+    gridParams.pageSize = prefs.gridPageSize;
+    gridParams.observer = null;
+    gridParams.root = unit;
+    //
+    function displayRangeTable (blockKey, charKey)
+    {
+        let blockRange = blockKey.split ('-');
+        gridSearchInfo.textContent = "";
+        while (gridSearchData.firstChild)
+        {
+            gridSearchData.firstChild.remove ();
+        }
+        let characters = [ ];
+        for (let index = parseInt (blockRange[0], 16); index <= parseInt (blockRange[1], 16); index++)
+        {
+            characters.push (String.fromCodePoint (index));
+        }
+        let hilightedCharacter;
+        if (charKey)
+        {
+            hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
+        }
+        let flags = 'u';
+        let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+        let regex = new RegExp (pattern, flags);
+        let unihanCharacters = characters.filter (character => regex.test (character));
+        gridSearchInfo.innerHTML = `Unihan characters: <strong>${unihanCharacters.length}</strong>&nbsp;/&nbsp;Block size: <strong>${characters.length}</strong>`;
+        if (characters.length > 0)
+        {
+            gridSearchData.appendChild (gridDataTable.create (characters, gridParams, hilightedCharacter));
+        }
+    }
+    //
+    let blocks = { };
+    let blockNames = [ ];
+    unihanBlocks.forEach
+    (
+        block =>
+        {
+            blocks[block.name] = { first: block.first, last: block.last };
+            blockNames.push (block.name);
+            //
+            let option = document.createElement ('option');
+            option.value = `${block.first}-${block.last}`;
+            option.textContent = `U+${block.first}..U+${block.last}`;
+            option.title = block.name;
+            gridSelectBlockRange.appendChild (option);
+        }
+    );
+    blockNames.sort ((a, b) => a.localeCompare (b));
+    blockNames.forEach
+    (
+        blockName =>
+        {
+            let option = document.createElement ('option');
+            let block = blocks[blockName];
+            option.value = `${block.first}-${block.last}`;
+            option.textContent = blockName;
+            option.title = `U+${block.first}..U+${block.last}`;
+            gridSelectBlockName.appendChild (option);
+        }
+    );
+    //
+    gridSpecimen.value = prefs.gridSpecimen;
+    //
+    const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
+    //
+    gridSpecimen.pattern = specimenRegex.source;
+    gridSpecimen.addEventListener
+    (
+        'keypress',
+        (event) =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault (); // ??
+                gridGoButton.click ();
+            }
+        }
+    );
+    //
+    gridGoButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            if (gridSpecimen.value)
+            {
+                let match = gridSpecimen.value.match (specimenRegex);
+                if (match)
+                {
+                    let num;
+                    if (match[1])
+                    {
+                        num = match[1].codePointAt (0);
+                    }
+                    else if (match[2])
+                    {
+                        num = parseInt (match[2], 16);
+                    }
+                    let hex = num.toString (16).toUpperCase ();
+                    if (hex.length < 5)
+                    {
+                        hex = ("000" + hex).slice (-4);
+                    }
+                    let blockRange = null;
+                    for (let block of unihanBlocks)
+                    {
+                        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+                        {
+                            blockRange = `${block.first}-${block.last}`;
+                            break;
+                        }
+                    }
+                    let flags = 'u';
+                    let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+                    let regex = new RegExp (pattern, flags);
+                    let character = String.fromCodePoint (parseInt (hex, 16));
+                    if (blockRange && regex.test (character))
+                    {
+                        gridSpecimen.value = character;
+                        gridSelectBlockRange.value = blockRange;
+                        gridSelectBlockName.value = blockRange;
+                        displayRangeTable (blockRange, hex);
+                    }
+                    else
+                    {
+                        remote.shell.beep ();
+                        // gridSpecimen.value = "";
+                    }
+                }
+            }
+            else
+            {
+                displayRangeTable (gridSelectBlockRange.value);
+            }
+        }
+    );
+    //
+    gridSelectBlockRange.value = prefs.gridSelectBlockRange;
+    if (gridSelectBlockRange.selectedIndex < 0) // -1: no element is selected
+    {
+        gridSelectBlockRange.selectedIndex = 0;
+    }
+    //
+    gridSelectBlockName.value = gridSelectBlockRange.value;
+    displayRangeTable (gridSelectBlockName.value);
+    //
+    gridSelectBlockRange.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            gridSelectBlockName.value = event.target.value;
+            displayRangeTable (event.target.value);
+        }
+    );
+    //
+    gridSelectBlockName.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            gridSelectBlockRange.value = event.target.value;
+            displayRangeTable (event.target.value);
+        }
+    );
+    //
+    gridInstructions.open = prefs.gridInstructions;
+    gridBlocks.open = prefs.gridBlocks;
 }
 //
 module.exports.stop = function (context)
@@ -546,7 +809,13 @@ module.exports.stop = function (context)
         rsRadicalSelect: rsCurrentRadical,
         rsStrokesSelect: rsCurrentStrokes,
         rsInstructions: rsInstructions.open,
-        rsRadicalList: rsRadicalList.open
+        rsRadicalList: rsRadicalList.open,
+        //
+        gridSelectBlockRange: gridSelectBlockRange.value,
+        gridSpecimen: gridSpecimen.value,
+        gridPageSize: gridParams.pageSize,
+        gridInstructions: gridInstructions.open,
+        gridBlocks: gridBlocks.open
     };
     context.setPrefs (prefs);
 };

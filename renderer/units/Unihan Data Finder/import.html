@@ -4,6 +4,7 @@
             <div class="tab-bar">
                 <label class="tab-label"><input type="radio" class="tab-radio"><span>Find by Tag Value</span></label>
                 <label class="tab-label"><input type="radio" class="tab-radio"><span>Radical/Strokes</span></label>
+                <label class="tab-label"><input type="radio" class="tab-radio"><span>View by Grid</span></label>
             </div>
             <div class="tab-panes">
                 <div class="tab-pane find-by-tag-value">
@@ -62,6 +63,28 @@
                     <div class="search-info"></div>
                     <div class="search-data"></div>
                 </div>
+                <div class="tab-pane view-by-grid">
+                    <div class="actions">
+                        <span class="action-group">
+                            <span class="action">
+                                <select class="select-block-range"></select>
+                            </span>
+                            <span class="action">
+                                <input type="search" class="specimen" title="Unihan character or code point" placeholder="Unihan...">
+                            </span>
+                            <span class="action">
+                                <button type="button" class="go-button">Go</button>
+                            </span>
+                        </span>
+                        <span class="action-group">
+                            <span class="action">
+                                <select class="select-block-name"></select>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="search-info"></div>
+                    <div class="search-data"></div>
+                </div>
             </div>
        </div>
         <div class="tab-infos">
@@ -86,6 +109,7 @@
                                 <em>Unihan_Readings.txt</em>,
                                 <em>Unihan_Variants.txt</em>.
                             </li>
+                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -130,12 +154,98 @@
                             <li>Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.</li>
                             <li>Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.</li>
                             <li>Selecting <code>All</code> from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.</li>
+                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
                             <li>A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.</li>
                         </ul>
                     </details>
                     <details class="radical-list">
                         <summary>KangXi Radical List</summary>
                         <div class="radicals"></div>
+                    </details>
+                </div>
+            </div>
+            <div class="tab-info view-by-grid">
+                <div class="accent-panel">
+                    <details class="instructions">
+                        <summary>Instructions</summary>
+                        <ul>
+                            <li>The <strong>View by Grid</strong> feature of the <strong>Unihan Data Finder</strong> utility displays in real time a grid view of the blocks containing the 88,889 Unihan characters.</li>
+                            <li>It is possible to choose how many characters are shown one page at a time.</li>
+                            <li>A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>.</li>
+                            <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Unihan</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
+                            <li>A list of all the Unihan blocks is available for quick reference.</li>
+                        </ul>
+                    </details>
+                    <details class="blocks">
+                        <summary>Unihan Blocks</summary>
+                        <table class="unihan-blocks">
+                            <tr>
+                                <th class="name-header">Name</th>
+                                <th class="range-header">Range</th>
+                                <th class="size-header">Size</th>
+                                <th class="characters-header">Characters</th>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs</td>
+                                <td class="range">U+4E00..U+9FFF</td>
+                                <td class="size" title="1312 × 16">20992</td>
+                                <td class="characters">20,976</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs Extension A</td>
+                                <td class="range">U+3400..U+4DBF</td>
+                                <td class="size" title="412 × 16">6592</td>
+                                <td class="characters">6,582</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs Extension B</td>
+                                <td class="range">U+20000..U+2A6DF</td>
+                                <td class="size" title="2670 × 16">42720</td>
+                                <td class="characters">42,711</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs Extension C</td>
+                                <td class="range">U+2A700..U+2B73F</td>
+                                <td class="size" title="260 × 16">4160</td>
+                                <td class="characters">4,149</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs Extension D</td>
+                                <td class="range">U+2B740..U+2B81F</td>
+                                <td class="size" title="14 × 16">224</td>
+                                <td class="characters">222</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs Extension E</td>
+                                <td class="range">U+2B820..U+2CEAF</td>
+                                <td class="size" title="361 × 16">5776</td>
+                                <td class="characters">5,762</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Unified Ideographs Extension F</td>
+                                <td class="range">U+2CEB0..U+2EBEF</td>
+                                <td class="size" title="468 × 16">7488</td>
+                                <td class="characters">7,473</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Compatibility Ideographs</td>
+                                <td class="range">U+F900..U+FAFF</td>
+                                <td class="size" title="32 × 16">512</td>
+                                <td class="characters">472</td>
+                            </tr>
+                            <tr>
+                                <td class="name">CJK Compatibility Ideographs Supplement</td>
+                                <td class="range">U+2F800..U+2FA1F</td>
+                                <td class="size" title="34 × 16">544</td>
+                                <td class="characters">542</td>
+                            </tr>
+                            <!-- <tr class="odd">
+                                <th colspan="4" class="total-header">Total</th>
+                            </tr> -->
+                            <tr class="even">
+                                <td colspan="4" class="total">88,889</td>
+                            </tr>
+                        </table>
                     </details>
                 </div>
             </div>

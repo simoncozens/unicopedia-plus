@@ -216,8 +216,8 @@
 {
     font-family: Monaco, "Noto Mono", monospace;
     font-weight: bold;
-    font-size: 1em;
-    padding: 0.2em 0.4em;
+    font-size: 14px;
+    padding: 2px 4px;
     text-align: right;
 }
 

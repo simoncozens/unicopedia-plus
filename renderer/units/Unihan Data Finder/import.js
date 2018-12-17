@@ -554,11 +554,11 @@ module.exports.start = function (context)
     //
     rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
     //
-    const tables = require ('../../lib/tables.js');
-    //
     const gridDataTable = require ('./grid-data-table.js');
     //
     const unihanBlocks = require ('./unihan-blocks.json');
+    //
+    const tables = require ('../../lib/tables.js');
     //
     const nameIndex = tables.buildKeyIndex (unihanBlocks, "name", (a, b) => a.localeCompare (b));
     const firstIndex = tables.buildKeyIndex (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
@@ -582,8 +582,7 @@ module.exports.start = function (context)
             block.characters = [ ];
             for (let index = block.firstIndex; index <= block.lastIndex; index++)
             {
-                let character = String.fromCodePoint (index);
-                block.characters.push (character);
+                block.characters.push (String.fromCodePoint (index));
             }
             block.count = block.characters.filter (character => unihanRegex.test (character)).length;
         }

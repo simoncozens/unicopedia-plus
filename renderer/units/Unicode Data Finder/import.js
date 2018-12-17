@@ -45,8 +45,6 @@ module.exports.start = function (context)
     //
     const rewritePattern = require ('regexpu-core');
     //
-    const extraData = require ('../../lib/unicode/parsed-extra-data.js');
-    //
     const defaultPrefs =
     {
         tabName: "",
@@ -338,65 +336,81 @@ module.exports.start = function (context)
     symbolInstructions.open = prefs.symbolInstructions;
     symbolRegexExamples.open = prefs.symbolRegexExamples;
     //
+    const allBlocks = require ('../../lib/unicode/parsed-extra-data.js').blocks;
+    //
+    const tables = require ('../../lib/tables.js');
+    //
+    const nameIndex = tables.buildKeyIndex (allBlocks, "name", (a, b) => a.localeCompare (b));
+    const firstIndex = tables.buildKeyIndex (allBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
+    //
+    let flags = 'u';
+    let assignedPattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let assignedRegex = new RegExp (assignedPattern, flags);
+    //
+    let blocks = { };
+    //
+    allBlocks.forEach
+    (
+        block =>
+        {
+            block.key = `${block.first}-${block.last}`;
+            blocks[block.key] = block;
+            block.range = `U+${block.first}..U+${block.last}`;
+            block.firstIndex = parseInt (block.first, 16);
+            block.lastIndex = parseInt (block.last, 16);
+            block.size = block.lastIndex - block.firstIndex + 1;
+            block.characters = [ ];
+            for (let index = block.firstIndex; index <= block.lastIndex; index++)
+            {
+                block.characters.push (String.fromCodePoint (index));
+            }
+            block.count = block.characters.filter (character => assignedRegex.test (character)).length;
+        }
+    );
+    //
     blockParams.pageSize = prefs.blockPageSize;
     blockParams.observer = null;
     blockParams.root = unit;
     //
     function displayRangeTable (blockKey, charKey)
     {
-        let blockRange = blockKey.split ('-');
         blockSearchInfo.textContent = "";
         while (blockSearchData.firstChild)
         {
             blockSearchData.firstChild.remove ();
         }
-        let characters = [ ];
-        for (let index = parseInt (blockRange[0], 16); index <= parseInt (blockRange[1], 16); index++)
-        {
-            characters.push (String.fromCodePoint (index));
-        }
+        let block = blocks[blockKey];
         let hilightedCharacter;
         if (charKey)
         {
             hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
         }
-        let flags = 'u';
-        let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let regex = new RegExp (pattern, flags);
-        let assignedCharacters = characters.filter (character => regex.test (character));
-        blockSearchInfo.innerHTML = `Assigned characters: <strong>${assignedCharacters.length}</strong>&nbsp;/&nbsp;Block size: <strong>${characters.length}</strong>`;
-        if (characters.length > 0)
-        {
-            blockSearchData.appendChild (dataTable.create (characters, blockParams, hilightedCharacter));
-        }
+        blockSearchInfo.innerHTML = `Assigned characters: <strong>${block.count}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
+        blockSearchData.appendChild (dataTable.create (block.characters, blockParams, hilightedCharacter));
     }
     //
-    let blocks = { };
-    let blockNames = [ ];
-    extraData.blocks.forEach
+    firstIndex.forEach
     (
-        block =>
+        index =>
         {
-            blocks[block.name] = { first: block.first, last: block.last };
-            blockNames.push (block.name);
-            //
+            let block = allBlocks[index];
             let option = document.createElement ('option');
-            option.value = `${block.first}-${block.last}`;
-            option.textContent = `U+${block.first}..U+${block.last}`;
+            option.value = block.key;
+            option.textContent = block.range;
             option.title = block.name;
             blockSelectBlockRange.appendChild (option);
         }
     );
-    blockNames.sort ((a, b) => a.localeCompare (b));
-    blockNames.forEach
+    //
+    nameIndex.forEach
     (
-        blockName =>
+        index =>
         {
+            let block = allBlocks[index];
             let option = document.createElement ('option');
-            let block = blocks[blockName];
-            option.value = `${block.first}-${block.last}`;
-            option.textContent = blockName;
-            option.title = `U+${block.first}..U+${block.last}`;
+            option.value = block.key;
+            option.textContent = block.name;
+            option.title = block.range;
             blockSelectBlockName.appendChild (option);
         }
     );
@@ -443,21 +457,21 @@ module.exports.start = function (context)
                     {
                         hex = ("000" + hex).slice (-4);
                     }
-                    let blockRange = null;
-                    for (let block of extraData.blocks)
+                    let blockKey = null;
+                    for (let block of allBlocks)
                     {
-                        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+                        if ((block.firstIndex <= num) && (num <= block.lastIndex))
                         {
-                            blockRange = `${block.first}-${block.last}`;
+                            blockKey = block.key;
                             break;
                         }
                     }
-                    if (blockRange)
+                    if (blockKey)
                     {
                         blockSpecimen.value = `U+${hex}`;
-                        blockSelectBlockRange.value = blockRange;
-                        blockSelectBlockName.value = blockRange;
-                        displayRangeTable (blockRange, hex);
+                        blockSelectBlockRange.value = blockKey;
+                        blockSelectBlockName.value = blockKey;
+                        displayRangeTable (blockKey, hex);
                     }
                     else
                     {

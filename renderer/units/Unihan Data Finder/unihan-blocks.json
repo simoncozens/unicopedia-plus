@@ -1,0 +1,47 @@
+    [
+        {
+            "name": "CJK Unified Ideographs",
+            "first": "4E00",
+            "last": "9FFF"
+        },
+        {
+            "name": "CJK Unified Ideographs Extension A",
+            "first": "3400",
+            "last": "4DBF"
+        },
+        {
+            "name": "CJK Unified Ideographs Extension B",
+            "first": "20000",
+            "last": "2A6DF"
+        },
+        {
+            "name": "CJK Unified Ideographs Extension C",
+            "first": "2A700",
+            "last": "2B73F"
+        },
+        {
+            "name": "CJK Unified Ideographs Extension D",
+            "first": "2B740",
+            "last": "2B81F"
+        },
+        {
+            "name": "CJK Unified Ideographs Extension E",
+            "first": "2B820",
+            "last": "2CEAF"
+        },
+        {
+            "name": "CJK Unified Ideographs Extension F",
+            "first": "2CEB0",
+            "last": "2EBEF"
+        },
+        {
+            "name": "CJK Compatibility Ideographs",
+            "first": "F900",
+            "last": "FAFF"
+        },
+        {
+            "name": "CJK Compatibility Ideographs Supplement",
+            "first": "2F800",
+            "last": "2FA1F"
+        }
+    ]

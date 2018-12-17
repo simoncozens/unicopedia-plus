@@ -321,6 +321,12 @@
     ],
     [
         {
+            "name": "MainPage - GlyphWiki",
+            "href": "http://en.glyphwiki.org/wiki/GlyphWiki:MainPage"
+        }
+    ],
+    [
+        {
             "name": "Hanazono fonts",
             "href": "http://fonts.jp/hanazono/"
         }

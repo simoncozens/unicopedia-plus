@@ -1,7 +1,7 @@
 {
     "name": "unicode-plus",
     "productName": "Unicode Plus",
-    "version": "1.17.0",
+    "version": "1.17.1",
     "description": "Set of Unicode, Unihan & emoji utilities.",
     "main": "main.js",
     "scripts": {
@@ -37,7 +37,7 @@
         "regexpu-core": "^4.4.0"
     },
     "devDependencies": {
-        "electron": "^3.0.10",
-        "electron-packager": "^12.2.0"
+        "electron": "^3.0.12",
+        "electron-packager": "^13.0.1"
     }
 }

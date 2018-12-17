@@ -46,6 +46,7 @@ const gridSelectBlockName = unit.querySelector ('.view-by-grid .select-block-nam
 const gridSearchInfo = unit.querySelector ('.view-by-grid .search-info');
 const gridSearchData = unit.querySelector ('.view-by-grid .search-data');
 const gridInstructions = unit.querySelector ('.view-by-grid .instructions');
+const gridUnihanBlocks = unit.querySelector ('.view-by-grid .unihan-blocks');
 const gridBlocks = unit.querySelector ('.view-by-grid .blocks');
 //
 module.exports.start = function (context)
@@ -82,7 +83,7 @@ module.exports.start = function (context)
         gridSpecimen: "",
         gridPageSize: 128,
         gridInstructions: true,
-        gridBlocks: false
+        gridUnihanBlocks: false
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -553,56 +554,40 @@ module.exports.start = function (context)
     //
     rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
     //
+    const tables = require ('../../lib/tables.js');
+    //
     const gridDataTable = require ('./grid-data-table.js');
     //
-    const unihanBlocks =
-    [
+    const unihanBlocks = require ('./unihan-blocks.json');
+    //
+    const nameIndex = tables.buildKeyIndex (unihanBlocks, "name", (a, b) => a.localeCompare (b));
+    const firstIndex = tables.buildKeyIndex (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
+    //
+    let flags = 'u';
+    let unihanPattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let unihanRegex = new RegExp (unihanPattern, flags);
+    //
+    let blocks = { };
+    //
+    unihanBlocks.forEach
+    (
+        block =>
         {
-            name: "CJK Unified Ideographs Extension A",
-            first: "3400",
-            last: "4DBF"
-        },
-        {
-            name: "CJK Unified Ideographs",
-            first: "4E00",
-            last: "9FFF"
-        },
-        {
-            name: "CJK Compatibility Ideographs",
-            first: "F900",
-            last: "FAFF"
-        },
-        {
-            name: "CJK Unified Ideographs Extension B",
-            first: "20000",
-            last: "2A6DF"
-        },
-        {
-            name: "CJK Unified Ideographs Extension C",
-            first: "2A700",
-            last: "2B73F"
-        },
-        {
-            name: "CJK Unified Ideographs Extension D",
-            first: "2B740",
-            last: "2B81F"
-        },
-        {
-            name: "CJK Unified Ideographs Extension E",
-            first: "2B820",
-            last: "2CEAF"
-        },
-        {
-            name: "CJK Unified Ideographs Extension F",
-            first: "2CEB0",
-            last: "2EBEF"
-        },
-        {
-            name: "CJK Compatibility Ideographs Supplement",
-            first: "2F800",
-            last: "2FA1F"
+            block.key = `${block.first}-${block.last}`;
+            blocks[block.key] = block;
+            block.range = `U+${block.first}..U+${block.last}`;
+            block.firstIndex = parseInt (block.first, 16);
+            block.lastIndex = parseInt (block.last, 16);
+            block.size = block.lastIndex - block.firstIndex + 1;
+            block.characters = [ ];
+            for (let index = block.firstIndex; index <= block.lastIndex; index++)
+            {
+                let character = String.fromCodePoint (index);
+                block.characters.push (character);
+            }
+            block.count = block.characters.filter (character => unihanRegex.test (character)).length;
         }
-    ];
+    );
     //
     gridParams.pageSize = prefs.gridPageSize;
     gridParams.observer = null;
@@ -610,59 +595,43 @@ module.exports.start = function (context)
     //
     function displayRangeTable (blockKey, charKey)
     {
-        let blockRange = blockKey.split ('-');
         gridSearchInfo.textContent = "";
         while (gridSearchData.firstChild)
         {
             gridSearchData.firstChild.remove ();
         }
-        let characters = [ ];
-        for (let index = parseInt (blockRange[0], 16); index <= parseInt (blockRange[1], 16); index++)
-        {
-            characters.push (String.fromCodePoint (index));
-        }
+        let block = blocks[blockKey];
         let hilightedCharacter;
         if (charKey)
         {
             hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
         }
-        let flags = 'u';
-        let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let regex = new RegExp (pattern, flags);
-        let unihanCharacters = characters.filter (character => regex.test (character));
-        gridSearchInfo.innerHTML = `Unihan characters: <strong>${unihanCharacters.length}</strong>&nbsp;/&nbsp;Block size: <strong>${characters.length}</strong>`;
-        if (characters.length > 0)
-        {
-            gridSearchData.appendChild (gridDataTable.create (characters, gridParams, hilightedCharacter));
-        }
+        gridSearchInfo.innerHTML = `Unihan characters: <strong>${block.count}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
+        gridSearchData.appendChild (gridDataTable.create (block.characters, gridParams, hilightedCharacter));
     }
     //
-    let blocks = { };
-    let blockNames = [ ];
-    unihanBlocks.forEach
+    firstIndex.forEach
     (
-        block =>
+        index =>
         {
-            blocks[block.name] = { first: block.first, last: block.last };
-            blockNames.push (block.name);
-            //
+            let block = unihanBlocks[index];
             let option = document.createElement ('option');
-            option.value = `${block.first}-${block.last}`;
-            option.textContent = `U+${block.first}..U+${block.last}`;
+            option.value = block.key;
+            option.textContent = block.range;
             option.title = block.name;
             gridSelectBlockRange.appendChild (option);
         }
     );
-    blockNames.sort ((a, b) => a.localeCompare (b));
-    blockNames.forEach
+    //
+    nameIndex.forEach
     (
-        blockName =>
+        index =>
         {
+            let block = unihanBlocks[index];
             let option = document.createElement ('option');
-            let block = blocks[blockName];
-            option.value = `${block.first}-${block.last}`;
-            option.textContent = blockName;
-            option.title = `U+${block.first}..U+${block.last}`;
+            option.value = block.key;
+            option.textContent = block.name;
+            option.title = block.range;
             gridSelectBlockName.appendChild (option);
         }
     );
@@ -709,25 +678,22 @@ module.exports.start = function (context)
                     {
                         hex = ("000" + hex).slice (-4);
                     }
-                    let blockRange = null;
+                    let blockKey = null;
                     for (let block of unihanBlocks)
                     {
-                        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+                        if ((block.firstIndex <= num) && (num <= block.lastIndex))
                         {
-                            blockRange = `${block.first}-${block.last}`;
+                            blockKey = block.key;
                             break;
                         }
                     }
-                    let flags = 'u';
-                    let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
                     let character = String.fromCodePoint (parseInt (hex, 16));
-                    if (blockRange && regex.test (character))
+                    if (blockKey && unihanRegex.test (character))
                     {
                         gridSpecimen.value = character;
-                        gridSelectBlockRange.value = blockRange;
-                        gridSelectBlockName.value = blockRange;
-                        displayRangeTable (blockRange, hex);
+                        gridSelectBlockRange.value = blockKey;
+                        gridSelectBlockName.value = blockKey;
+                        displayRangeTable (blockKey, hex);
                     }
                     else
                     {
@@ -773,7 +739,11 @@ module.exports.start = function (context)
     );
     //
     gridInstructions.open = prefs.gridInstructions;
-    gridBlocks.open = prefs.gridBlocks;
+    gridUnihanBlocks.open = prefs.gridUnihanBlocks;
+    //
+    let blocksTable = require ('./blocks-table.js');
+    //
+    gridBlocks.appendChild (blocksTable.create (unihanBlocks));
 }
 //
 module.exports.stop = function (context)
@@ -815,7 +785,7 @@ module.exports.stop = function (context)
         gridSpecimen: gridSpecimen.value,
         gridPageSize: gridParams.pageSize,
         gridInstructions: gridInstructions.open,
-        gridBlocks: gridBlocks.open
+        gridUnihanBlocks: gridUnihanBlocks.open
     };
     context.setPrefs (prefs);
 };

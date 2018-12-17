@@ -178,12 +178,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let firstPageButton = document.createElement ('button');
     firstPageButton.type = 'button';
     firstPageButton.className = 'page-nav-button first-page-button';
-    svg = document.createElementNS (xmlns, 'svg');
-    svg.setAttributeNS (null, 'class', 'page-nav-icon');
-    use = document.createElementNS (xmlns, 'use');
-    use.setAttributeNS (null, 'href', 'images/navigation.svg#first-page');
-    svg.appendChild (use);
-    firstPageButton.appendChild (svg);
+    firstPageButton.innerHTML = '<svg class="page-nav-icon" viewBox="0 0 10 10"><polygon points="0,5 4,1 5,2 2,5 5,8 4,9" /><polygon points="4,5 8,1 9,2 6,5 9,8 8,9" /></svg>';
     firstPageButton.addEventListener
     (
         'click',
@@ -201,12 +196,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let prevPageButton = document.createElement ('button');
     prevPageButton.type = 'button';
     prevPageButton.className = 'page-nav-button prev-page-button';
-    svg = document.createElementNS (xmlns, 'svg');
-    svg.setAttributeNS (null, 'class', 'page-nav-icon');
-    use = document.createElementNS (xmlns, 'use');
-    use.setAttributeNS (null, 'href', 'images/navigation.svg#prev-page');
-    svg.appendChild (use);
-    prevPageButton.appendChild (svg);
+    prevPageButton.innerHTML = '<svg class="page-nav-icon" viewBox="0 0 10 10"><polygon points="2,5 6,1 7,2 4,5 7,8 6,9" /></svg>';
     prevPageButton.addEventListener
     (
         'click',
@@ -277,12 +267,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let nextPageButton = document.createElement ('button');
     nextPageButton.type = 'button';
     nextPageButton.className = 'page-nav-button next-page-button';
-    svg = document.createElementNS (xmlns, 'svg');
-    svg.setAttributeNS (null, 'class', 'page-nav-icon');
-    use = document.createElementNS (xmlns, 'use');
-    use.setAttributeNS (null, 'href', 'images/navigation.svg#next-page');
-    svg.appendChild (use);
-    nextPageButton.appendChild (svg);
+    nextPageButton.innerHTML = '<svg class="page-nav-icon" viewBox="0 0 10 10"><polygon points="6,5 3,2 4,1 8,5 4,9 3,8" /></svg>';
     nextPageButton.addEventListener
     (
         'click',
@@ -300,12 +285,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let lastPageButton = document.createElement ('button');
     lastPageButton.type = 'button';
     lastPageButton.className = 'page-nav-button last-page-button';
-    svg = document.createElementNS (xmlns, 'svg');
-    svg.setAttributeNS (null, 'class', 'page-nav-icon');
-    use = document.createElementNS (xmlns, 'use');
-    use.setAttributeNS (null, 'href', 'images/navigation.svg#last-page');
-    svg.appendChild (use);
-    lastPageButton.appendChild (svg);
+    lastPageButton.innerHTML = '<svg class="page-nav-icon" viewBox="0 0 10 10"><polygon points="4,5 1,2 2,1 6,5 2,9 1,8" /><polygon points="8,5 5,2 6,1 10,5 6,9 5,8" /></svg>';
     lastPageButton.addEventListener
     (
         'click',

@@ -451,6 +451,11 @@
     margin: -0.25em 0;
 }
 
+#unihan-data-finder-unit .view-by-grid .search-data table
+{
+    table-layout: fixed;
+}
+
 #unihan-data-finder-unit .view-by-grid .search-data th.empty-header,
 #unihan-data-finder-unit .view-by-grid .search-data th.digit-header,
 #unihan-data-finder-unit .view-by-grid .search-data th.row-header
@@ -462,11 +467,10 @@
     font-family: Monaco, "Noto Mono", monospace;
 }
 
-#unihan-data-finder-unit .view-by-grid .search-data th.empty-header
+#unihan-data-finder-unit .view-by-grid .search-data th.empty-header,
+#unihan-data-finder-unit .view-by-grid .search-data td.row-header
 {
     width: 72px;
-    min-width: 72px;
-    max-width: 72px;
 }
 
 #unihan-data-finder-unit .view-by-grid .search-data td.symbol-cell
@@ -481,6 +485,11 @@
     background-size: 8px;
     background-position: center;
     color: gray;
+}
+
+#unihan-data-finder-unit .view-by-grid .search-data td.symbol-cell.unassigned .symbol
+{
+    user-select: none;
 }
 
 #unihan-data-finder-unit .view-by-grid .search-data td.symbol-cell .symbol
@@ -627,7 +636,7 @@
     text-align: center;
 }
 
-#unihan-data-finder-unit .unihan-blocks
+#unihan-data-finder-unit .unihan-blocks table.blocks-table
 {
     margin-top: 0.25em;
     margin-bottom: 1.5em;

@@ -755,6 +755,7 @@ module.exports.stop = function (context)
             if (tab.checked)
             {
                 currentTabName = tab.parentElement.textContent;
+                break;
             }
         }
         return currentTabName;

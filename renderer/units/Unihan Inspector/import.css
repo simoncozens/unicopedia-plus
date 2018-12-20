@@ -68,6 +68,11 @@
     font-family: "Noto Sans CJK TC", "Adobe NotDef";
 }
 
+#unihan-inspector-unit .unihan-character:lang(zh-HK)
+{
+    font-family: "Noto Sans CJK HK", "Adobe NotDef";
+}
+
 #unihan-inspector-unit .character-data
 {
     display: flex;
@@ -122,31 +127,46 @@
     margin-top: -0.5em;
 }
 
-#unihan-inspector-unit .unihan-card .unihan-language-widget
+#unihan-inspector-unit .unihan-card .typeface-widget
 {
     display: inline-flex;
     user-select: none;
     color: white;
     background-color: var(--color-accent);
-    /* background-color: gray; */
     align-items: center;
     font-size: 12px;
     padding: 1px 2px;
     border-radius: 4px;
 }
 
-#unihan-inspector-unit .unihan-card .unihan-language-previous,
-#unihan-inspector-unit .unihan-card .unihan-language-next
+#unihan-inspector-unit .unihan-card .typeface-widget.default
+{
+    background-color: #999999;
+}
+
+#unihan-inspector-unit .unihan-card .typeface-previous,
+#unihan-inspector-unit .unihan-card .typeface-next
 {
     padding: 1px 4px;
 }
 
-#unihan-inspector-unit .unihan-card .unihan-language-tag
+#unihan-inspector-unit .unihan-card .default .typeface-previous,
+#unihan-inspector-unit .unihan-card .default .typeface-next
+{
+    visibility: hidden;
+}
+
+#unihan-inspector-unit .unihan-card .typeface-tag
 {
     text-align: center;
     font-weight: 600;
     width: 24px;
     padding: 1px 0;
+}
+
+#unihan-inspector-unit .full-set-label
+{
+    margin-left: 0.75em;
 }
 
 #unihan-inspector-unit .unicode-info,

@@ -32,6 +32,36 @@
         ]
     },
     {
+        "label": "Five Unique Glyphs",
+        "items":
+        [
+            {
+                "label": "Unique Glyphs 1",
+                "string": "傑僭割劘匾叟喝塌姿嬴幰"
+            },
+            {
+                "label": "Unique Glyphs 2",
+                "string": "廋扇扉摩溲潛瀛瘦瞎磨窖"
+            },
+            {
+                "label": "Unique Glyphs 3",
+                "string": "竇箭篠簉糙綢纛羸翁翦翩"
+            },
+            {
+                "label": "Unique Glyphs 4",
+                "string": "肓臝艘花裯褐謁譖豁贏轄"
+            },
+            {
+                "label": "Unique Glyphs 5",
+                "string": "返迷途造週遍遭選遼鄰釁"
+            },
+            {
+                "label": "Unique Glyphs 6",
+                "string": "閼雕靠靡颼飯驎鬣魔麗麟"
+            }
+        ]
+    },
+    {
         "label": "Ideographic Variation",
         "items":
         [
@@ -50,12 +80,12 @@
         "items":
         [
             {
-                "label": "Radical Grass",
-                "string": "⺾⺿⻀⾋ 艸芝花草荘荼華蘭"
+                "label": "Radical 140 Grass",
+                "string": "艸艹艹艹 芝荘荼華蘭"
             },
             {
-                "label": "Radical Walk",
-                "string": "⻌⻍⻎⾡ 辵辺遊遜遡邉邊"
+                "label": "Radical 162 Walk",
+                "string": "辵辶辶 辺遊遜邊"
             }
         ]
     },
@@ -73,11 +103,11 @@
             },
             {
                 "label": "Miscellaneous 1",
-                "string": "匯囶圀夜屝属彩曜海"
+                "string": "匯囶圀夜屝属彩曜"
             },
             {
                 "label": "Miscellaneous 2",
-                "string": "滙爲画畵直線萬裏輩"
+                "string": "滙爲画畵線萬裏"
             }
         ]
     },

@@ -1,7 +1,7 @@
 {
     "name": "unicode-plus",
     "productName": "Unicode Plus",
-    "version": "1.17.2",
+    "version": "1.18.0",
     "description": "Set of Unicode, Unihan & emoji utilities.",
     "main": "main.js",
     "scripts": {
@@ -15,11 +15,15 @@
     },
     "keywords": [
         "app",
+        "cjk",
         "desktop",
         "electron",
         "emoji",
+        "javascript",
         "modular",
+        "regex",
         "unicode",
+        "unihan",
         "utility"
     ],
     "author": {

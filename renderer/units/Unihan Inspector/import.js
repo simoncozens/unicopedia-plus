@@ -4,11 +4,13 @@ const unit = document.getElementById ('unihan-inspector-unit');
 const unihanInput = unit.querySelector ('.unihan-input');
 const lookupButton = unit.querySelector ('.lookup-button');
 const randomButton = unit.querySelector ('.random-button');
+const fullSetCheckbox = unit.querySelector ('.full-set-checkbox');
 const infoContainer = unit.querySelector ('.info-container');
 //
 const instructions = unit.querySelector ('.instructions');
 //
 let currentTypefaceLanguage;
+let currentTypefaceDefault;
 //
 let showCategories;
 //
@@ -31,10 +33,14 @@ module.exports.start = function (context)
     {
         unihanInput: "",
         typefaceLanguage: "",
+        typefaceDefault: false,
+        fullSetCheckbox: false,
         showCategories: false,
         instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    fullSetCheckbox.checked = prefs.fullSetCheckbox;
     //
     showCategories = prefs.showCategories;
     //
@@ -43,7 +49,8 @@ module.exports.start = function (context)
         "ja": { label: "JP", title: "Japanese typeface" },
         "ko":  { label: "KR", title: "Korean typeface" },
         "zh-Hans": { label: "SC", title: "Simplified Chinese typeface" },
-        "zh-Hant": { label: "TC", title: "Traditional Chinese typeface" }
+        "zh-Hant": { label: "TC", title: "Traditional Chinese typeface" },
+        "zh-HK": { label: "HK", title: "Hong Kong Chinese typeface" }
     };
     const languageKeys = Object.keys (languages);
     //
@@ -52,6 +59,8 @@ module.exports.start = function (context)
     {
         currentTypefaceLanguage = languageKeys[0];
     }
+    //
+    currentTypefaceDefault = prefs.typefaceDefault;
     //
     let currentCodePoint = null;
     //
@@ -79,26 +88,52 @@ module.exports.start = function (context)
             unihanCodePoint.className = 'unihan-code-point';
             unihanWrapper.appendChild (unihanCodePoint);
             unihanCard.appendChild (unihanWrapper);
-            let unihanLanguageWidget = document.createElement ('div');
-            unihanLanguageWidget.className = 'unihan-language-widget';
-            let unihanLanguagePrevious = document.createElement ('span');
-            unihanLanguagePrevious.className = 'unihan-language-previous';
-            unihanLanguagePrevious.textContent = "◀";
-            unihanLanguageWidget.appendChild (unihanLanguagePrevious);
-            let unihanLanguageTag = document.createElement ('span');
-            unihanLanguageTag.className = 'unihan-language-tag';
-            unihanLanguageWidget.appendChild (unihanLanguageTag);
-            let unihanLanguageNext = document.createElement ('span');
-            unihanLanguageNext.className = 'unihan-language-next';
-            unihanLanguageNext.textContent = "▶";
-            unihanLanguageWidget.appendChild (unihanLanguageNext);
-            unihanCharacter.lang = currentTypefaceLanguage;
-            let currentLanguage = languages[currentTypefaceLanguage];
-            unihanLanguageTag.textContent = currentLanguage.label;
-            unihanLanguageTag.title = currentLanguage.title;
-            unihanWrapper.appendChild (unihanLanguageWidget);
+            let typefaceWidget = document.createElement ('div');
+            typefaceWidget.className = 'typeface-widget';
+            let typefacePrevious = document.createElement ('span');
+            typefacePrevious.className = 'typeface-previous';
+            typefacePrevious.textContent = "◀";
+            typefaceWidget.appendChild (typefacePrevious);
+            let typefaceTag = document.createElement ('span');
+            typefaceTag.className = 'typeface-tag';
+            typefaceWidget.appendChild (typefaceTag);
+            let typefaceNext = document.createElement ('span');
+            typefaceNext.className = 'typeface-next';
+            typefaceNext.textContent = "▶";
+            typefaceWidget.appendChild (typefaceNext);
+            unihanWrapper.appendChild (typefaceWidget);
             //
-            function updateUnihanLanguage (reverse)
+            function updateTypefaceWidget ()
+            {
+                if (currentTypefaceDefault)
+                {
+                    typefaceWidget.classList.add ('default');
+                    unihanCharacter.lang = "";
+                    typefaceTag.textContent = "--";
+                    typefaceTag.title = "Default typeface";
+                }
+                else
+                {
+                    typefaceWidget.classList.remove ('default');
+                    unihanCharacter.lang = currentTypefaceLanguage;
+                    let currentLanguage = languages[currentTypefaceLanguage];
+                    typefaceTag.textContent = currentLanguage.label;
+                    typefaceTag.title = currentLanguage.title;
+                }
+            }
+            updateTypefaceWidget ();
+            //
+            typefaceTag.addEventListener
+            (
+                'dblclick',
+                 event =>
+                {
+                    currentTypefaceDefault = !currentTypefaceDefault;
+                    updateTypefaceWidget ();
+                }
+            );
+            //
+            function updateTypeface (reverse)
             {
                 let index = languageKeys.indexOf (unihanCharacter.lang);
                 if (reverse)
@@ -120,12 +155,12 @@ module.exports.start = function (context)
                 currentTypefaceLanguage = languageKeys[index];
                 unihanCharacter.lang = currentTypefaceLanguage;
                 let currentLanguage = languages[currentTypefaceLanguage];
-                unihanLanguageTag.textContent = currentLanguage.label;
-                unihanLanguageTag.title = currentLanguage.title;
+                typefaceTag.textContent = currentLanguage.label;
+                typefaceTag.title = currentLanguage.title;
             }
             //
-            unihanLanguagePrevious.addEventListener ('click', event => { updateUnihanLanguage (true); });
-            unihanLanguageNext.addEventListener ('click', event => { updateUnihanLanguage (false); });
+            typefacePrevious.addEventListener ('click', event => { updateTypeface (true); });
+            typefaceNext.addEventListener ('click', event => { updateTypeface (false); });
             //
             let unicodeData = unicode.getCharacterData (unihanCharacter.textContent);
             let unicodeFields =
@@ -523,7 +558,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            unihanInput.value = randomElement (unihanData.coreSet);
+            unihanInput.value = randomElement (fullSetCheckbox.checked ? unihanData.fullSet : unihanData.coreSet);
             unihanInput.dispatchEvent (new Event ('input'));
             lookupButton.dispatchEvent (new Event ('click'));
         }
@@ -538,6 +573,8 @@ module.exports.stop = function (context)
     {
         unihanInput: unihanInput.value,
         typefaceLanguage: currentTypefaceLanguage,
+        typefaceDefault: currentTypefaceDefault,
+        fullSetCheckbox: fullSetCheckbox.checked,
         showCategories: showCategories,
         instructions: instructions.open
     };

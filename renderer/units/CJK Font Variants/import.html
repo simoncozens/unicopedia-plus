@@ -44,18 +44,20 @@
             <label>Korean:<input class="cjk-string" lang="ko" readonly disabled></label>
             <label>Simplified Chinese:<input class="cjk-string" lang="zh-Hans" readonly disabled></label>
             <label>Traditional Chinese:<input class="cjk-string" lang="zh-Hant" readonly disabled></label>
+            <label>Hong Kong Chinese:<input class="cjk-string" lang="zh-HK" readonly disabled></label>
        </div>
         <div class="accent-panel">
             <details class="instructions">
                 <summary>Instructions</summary>
                 <ul>
                     <li>
-                        The <strong>CJK Font Variants</strong> utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in four different typefaces:
+                        The <strong>CJK Font Variants</strong> utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in several different typefaces:
                         <ul>
                             <li>Japanese (JP)</li>
                             <li>Korean (KR)</li>
                             <li>Simplified Chinese (SC)</li>
                             <li>Traditional Chinese (TC)</li>
+                            <li>Hong Kong Chinese (HK)</li>
                         </ul>
                     </li>
                     <li>
@@ -65,6 +67,7 @@
                             <li>Noto Sans CJK KR Regular</li>
                             <li>Noto Sans CJK SC Regular</li>
                             <li>Noto Sans CJK TC Regular</li>
+                            <li>Noto Sans CJK HK Regular</li>
                         </ul>
                     </li>
                     <li>Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.</li>
@@ -72,7 +75,7 @@
                     <li>It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the <a title="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt" href="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt">StandardizedVariants.txt</a> or <a title="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt" href="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt">IVD_Sequences.txt</a> data files.</li>
                     <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
                     <li>In output, the standard Unicode code point format <code>U+7ADC</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
-                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u9F8D</code> or <code>\u{2A6A5}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
+                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u9F8D</code> or <code>\u{20B9F}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
                 </ul>
             </details>
             <details class="references">

@@ -32,22 +32,24 @@ The following utilities are currently available:
 
 ## CJK Font Variants
 
-- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in four different typefaces:
+- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in several different typefaces:
     - Japanese (JP)
     - Korean (KR)
     - Simplified Chinese (SC)
     - Traditional Chinese (TC)
+    - Hong Kong Chinese (HK)
 - The typefaces belong to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
     - Noto Sans CJK JP Regular
     - Noto Sans CJK KR Regular
     - Noto Sans CJK SC Regular
     - Noto Sans CJK TC Regular
+    - Noto Sans CJK HK Regular
 - Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
 - CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
 - It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) or [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data files.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+7ADC` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
-- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u9F8D` or `\u{2A6A5}`. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
+- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u9F8D` or `\u{20B9F}`. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
 
 <img src="screenshots/cjk-font-variants.png" width="1080px" alt="CJK Font Variants screenshot">
 
@@ -259,11 +261,11 @@ The following utilities are currently available:
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
 - In addition, the utility provides, for each Unihan character:
-    - basic Unicode information: name, age, plane, block, script, general category, equivalent unified ideograph;
+    - basic Unicode information: name, age, plane, block, script, general category, decomposition, equivalent unified ideograph;
     - basic Unihan information: radical/strokes, definition, variant characters, IICore set.
 - Any Unihan character can be entered in the input field either as a code point or a character. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
-- It is also possible to lookup a randomly selected Unihan character belonging to the IICore set by clicking on the <kbd>Random</kbd> button.
-- The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through four different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese).
+- It is also possible to lookup a randomly selected Unihan character belonging to the IICore set by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
+- The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through several different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese), `HK` (Hong Kong Chinese). Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
 - Notes:
     - The top Radical/Strokes fields are displaying data obtained from the only informative IRG Source: *kRSUnicode*, while the bottom ones (in grayed-out style, if any) make use of the provisional sources: *kRSKangXi*, *kRSJapanese*, *kRSKanWa*, *kRSKorean* and *kRSAdobe_Japan1_6*.

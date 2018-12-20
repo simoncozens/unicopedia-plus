@@ -64,7 +64,7 @@
     border: 1px solid var(--color-border);
     background-color: white;
     color: var(--color);
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 #cjk-font-variants-unit .cjk-string:lang(ja)
@@ -85,6 +85,11 @@
 #cjk-font-variants-unit .cjk-string:lang(zh-Hant)
 {
     font-family: "Noto Sans CJK TC", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
+}
+
+#cjk-font-variants-unit .cjk-string:lang(zh-HK)
+{
+    font-family: "Noto Sans CJK HK", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
 }
 
 #cjk-font-variants-unit .plain-panel

@@ -26,6 +26,12 @@
 
 @font-face
 {
+    font-family: "Noto Sans CJK HK";
+    src: local("Noto Sans CJK HK"), url("cjk-fonts/NotoSansCJKhk-Regular.otf");
+}
+
+@font-face
+{
     font-family: "Adobe NotDef";
     src: local("Adobe NotDef"), url("not-def-font/AND-Regular.otf");
 }

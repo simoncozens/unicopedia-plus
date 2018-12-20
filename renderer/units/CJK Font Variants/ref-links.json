@@ -141,6 +141,12 @@
     ],
     [
         {
+            "name": "SourceHanSansReadMe.pdf",
+            "href": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/SourceHanSansReadMe.pdf"
+        }
+    ],
+    [
+        {
             "name": "font-variant-east-asian - CSS: Cascading Style Sheets | MDN",
             "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-east-asian"
         }

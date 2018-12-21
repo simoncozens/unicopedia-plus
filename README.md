@@ -243,7 +243,7 @@ The following utilities are currently available:
 
 - The **View by Grid** feature of the **Unihan Data Finder** utility displays in real time a grid view of the blocks containing the 88,889 Unihan characters.
 - It is possible to choose how many characters are shown one page at a time.
-- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>.
+- A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.
 - It is also possible to directly enter a Unihan character or code point in the <kbd>Unihan</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.
 - A list of all the Unihan blocks is available for quick reference.
 

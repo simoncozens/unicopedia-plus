@@ -264,7 +264,7 @@ The following utilities are currently available:
     - basic Unicode information: name, age, plane, block, script, general category, decomposition, equivalent unified ideograph;
     - basic Unihan information: radical/strokes, definition, variant characters, IICore set.
 - Any Unihan character can be entered in the input field either as a code point or a character. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
-- It is also possible to lookup a randomly selected Unihan character belonging to the IICore set by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
+- It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
 - The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through several different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese), `HK` (Hong Kong Chinese). Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
 - Notes:

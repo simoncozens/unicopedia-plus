@@ -1,5 +1,5 @@
 //
-const deferredSymbols = true;
+const deferredSymbols = (process.platform === 'darwin');
 //
 module.exports.create = function (title, items, params)
 {

@@ -3,7 +3,7 @@ const unicode = require ('../../lib/unicode/unicode.js');
 //
 const rewritePattern = require ('regexpu-core');
 //
-const deferredSymbols = true;
+const deferredSymbols = (process.platform === 'darwin');
 //
 module.exports.create = function (characters, params, highlightedCharacter)
 {
@@ -170,11 +170,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let navigationGroup = document.createElement ('div');
     navigationGroup.className = 'pagination-group';
     //
-    const xmlns= 'http://www.w3.org/2000/svg';
-    //
-    let svg;
-    let use;
-    //
     let firstPageButton = document.createElement ('button');
     firstPageButton.type = 'button';
     firstPageButton.className = 'page-nav-button first-page-button';
@@ -245,23 +240,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
             }
         }
     );
-    pageSelect.addEventListener
-    (
-        'keydown',
-        (event) =>
-        {
-            if (event.key === "ArrowLeft")
-            {
-                event.preventDefault ();
-                prevPageButton.click ();
-            }
-            else if (event.key === "ArrowRight")
-            {
-                event.preventDefault ();
-                nextPageButton.click ();
-            }
-        }
-    );
     navigationGroup.appendChild (pageSelect);
     //
     let nextPageButton = document.createElement ('button');
@@ -312,7 +290,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
     //
     paginationBar.appendChild (pageInfoGroup);
     //
-    const pageSizes = [ 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 ];
+    const pageSizes = [ 4, 8, 16, 32, 64, 128, 256, 512, 1024 ];
     //
     let pageSizeGroup = document.createElement ('div');
     pageSizeGroup.className = 'pagination-group';

@@ -114,6 +114,10 @@ module.exports.start = function (context)
         }
     }
     //
+    nameParams.pageSize = prefs.namePageSize;
+    nameParams.observer = null;
+    nameParams.root = unit;
+    //
     nameWholeWord.checked = prefs.nameWholeWord;
     nameUseRegex.checked = prefs.nameUseRegex;
     //
@@ -220,12 +224,12 @@ module.exports.start = function (context)
         }
     );
     //
-    nameParams.pageSize = prefs.namePageSize;
-    nameParams.observer = null;
-    nameParams.root = unit;
-    //
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
+    //
+    symbolParams.pageSize = prefs.symbolPageSize;
+    symbolParams.observer = null;
+    symbolParams.root = unit;
     //
     symbolCaseSensitive.checked = prefs.symbolCaseSensitive;
     symbolUseRegex.checked = prefs.symbolUseRegex;
@@ -329,48 +333,40 @@ module.exports.start = function (context)
         }
     );
     //
-    symbolParams.pageSize = prefs.symbolPageSize;
-    symbolParams.observer = null;
-    symbolParams.root = unit;
-    //
     symbolInstructions.open = prefs.symbolInstructions;
     symbolRegexExamples.open = prefs.symbolRegexExamples;
     //
-    const allBlocks = require ('../../lib/unicode/parsed-extra-data.js').blocks;
-    //
-    const tables = require ('../../lib/tables.js');
-    //
-    const nameIndex = tables.buildKeyIndex (allBlocks, "name", (a, b) => a.localeCompare (b));
-    const firstIndex = tables.buildKeyIndex (allBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
+    blockParams.pageSize = prefs.blockPageSize;
+    blockParams.observer = null;
+    blockParams.root = unit;
     //
     let flags = 'u';
     let assignedPattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
     let assignedRegex = new RegExp (assignedPattern, flags);
     //
-    let blocks = { };
+    const { blocks } = require ('../../lib/unicode/parsed-extra-data.js');
     //
-    allBlocks.forEach
+    let blockKeys = { };
+    let allBlocks = blocks.map
     (
         block =>
         {
-            block.key = `${block.first}-${block.last}`;
-            blocks[block.key] = block;
-            block.range = `U+${block.first}..U+${block.last}`;
-            block.firstIndex = parseInt (block.first, 16);
-            block.lastIndex = parseInt (block.last, 16);
-            block.size = block.lastIndex - block.firstIndex + 1;
-            block.characters = [ ];
-            for (let index = block.firstIndex; index <= block.lastIndex; index++)
-            {
-                block.characters.push (String.fromCodePoint (index));
-            }
-            block.count = block.characters.filter (character => assignedRegex.test (character)).length;
+            let blockData = { };
+            blockData.name = block.name;
+            blockData.key = `${block.first}-${block.last}`;
+            blockData.range = `U+${block.first}..U+${block.last}`;
+            blockData.firstIndex = parseInt (block.first, 16);
+            blockData.lastIndex = parseInt (block.last, 16);
+            blockData.size = blockData.lastIndex - blockData.firstIndex + 1;
+            blockKeys[blockData.key] = blockData;
+            return blockData;
         }
     );
     //
-    blockParams.pageSize = prefs.blockPageSize;
-    blockParams.observer = null;
-    blockParams.root = unit;
+    const tables = require ('../../lib/tables.js');
+    //
+    const firstIndex = tables.buildKeyIndex (allBlocks, "firstIndex", (a, b) => a - b);
+    const nameIndex = tables.buildKeyIndex (allBlocks, "name", (a, b) => a.localeCompare (b));
     //
     function displayRangeTable (blockKey, charKey)
     {
@@ -379,14 +375,20 @@ module.exports.start = function (context)
         {
             blockSearchData.firstChild.remove ();
         }
-        let block = blocks[blockKey];
+        let block = blockKeys[blockKey];
         let hilightedCharacter;
         if (charKey)
         {
             hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
         }
-        blockSearchInfo.innerHTML = `Assigned characters: <strong>${block.count}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
-        blockSearchData.appendChild (dataTable.create (block.characters, blockParams, hilightedCharacter));
+        let characters = [ ];
+        for (let index = block.firstIndex; index <= block.lastIndex; index++)
+        {
+            characters.push (String.fromCodePoint (index));
+        }
+        let assignedCount = characters.filter (character => assignedRegex.test (character)).length;
+        blockSearchInfo.innerHTML = `Assigned characters: <strong>${assignedCount}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
+        blockSearchData.appendChild (dataTable.create (characters, blockParams, hilightedCharacter));
     }
     //
     firstIndex.forEach

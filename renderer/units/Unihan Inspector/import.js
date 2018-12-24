@@ -321,7 +321,7 @@ module.exports.start = function (context)
                 // "Not a Unihan character"
                 // "Not a valid Unihan character"
                 // "No Unihan character information"
-                invalidUnihan.textContent = "No Unihan information available"; 
+                invalidUnihan.textContent = "No Unihan information available";
                 unihanInfo.appendChild (invalidUnihan);
             }
             //
@@ -459,7 +459,7 @@ module.exports.start = function (context)
                 categoriesCheckbox.addEventListener
                 (
                     'input',
-                    event => 
+                    event =>
                     {
                         showCategories = event.target.checked;
                         while (tagsWrapper.firstChild)

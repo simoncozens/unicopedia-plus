@@ -131,6 +131,10 @@ module.exports.start = function (context)
         }
     }
     //
+    tagParams.pageSize = prefs.tagPageSize;
+    tagParams.observer = null;
+    tagParams.root = unit;
+    //
     tagCurrentTag = prefs.tagSelect;
     tagShowCategories = prefs.tagShowCategories;
     //
@@ -180,7 +184,7 @@ module.exports.start = function (context)
     tagCategoriesCheckbox.addEventListener
     (
         'input',
-        event => 
+        event =>
         {
             tagShowCategories = event.target.checked;
             updateTagMenu ();
@@ -334,12 +338,11 @@ module.exports.start = function (context)
         }
     );
     //
-    tagParams.pageSize = prefs.tagPageSize;
-    tagParams.observer = null;
-    tagParams.root = unit;
-    //
     tagInstructions.open = prefs.tagInstructions;
     tagRegexExamples.open = prefs.tagRegexExamples;
+    //
+    rsParams.observer = null;
+    rsParams.root = unit;
     //
     const rsDataTable = require ('./rs-data-table.js');
     //
@@ -544,15 +547,17 @@ module.exports.start = function (context)
         }
     );
     //
-    rsParams.observer = null;
-    rsParams.root = unit;
-    //
     rsInstructions.open = prefs.rsInstructions;
     rsRadicalList.open = prefs.rsRadicalList;
     //
     let radicalsTable = require ('./radicals-table.js');
     //
     rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
+    //
+    gridParams.pageSize = prefs.gridPageSize;
+    gridParams.observer = null;
+    gridParams.root = unit;
+    //
     //
     const gridDataTable = require ('./grid-data-table.js');
     //
@@ -587,10 +592,6 @@ module.exports.start = function (context)
             block.count = block.characters.filter (character => unihanRegex.test (character)).length;
         }
     );
-    //
-    gridParams.pageSize = prefs.gridPageSize;
-    gridParams.observer = null;
-    gridParams.root = unit;
     //
     function displayRangeTable (blockKey, charKey)
     {

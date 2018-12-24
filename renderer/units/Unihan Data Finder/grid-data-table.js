@@ -102,7 +102,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
             let symbolCell = document.createElement ('td');
             symbolCell.className = 'symbol-cell';
             let symbol = document.createElement ('span');
-            symbol.className = 'symbol';                
+            symbol.className = 'symbol';
             if (isUnihanCharacter)
             {
                 if (deferredSymbols)
@@ -146,11 +146,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
     //
     let navigationGroup = document.createElement ('div');
     navigationGroup.className = 'pagination-group';
-    //
-    const xmlns= 'http://www.w3.org/2000/svg';
-    //
-    let svg;
-    let use;
     //
     let firstPageButton = document.createElement ('button');
     firstPageButton.type = 'button';
@@ -219,23 +214,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
             if (event.target.value === "")
             {
                 event.target.value = pageIndex + 1;
-            }
-        }
-    );
-    pageSelect.addEventListener
-    (
-        'keydown',
-        (event) =>
-        {
-            if (event.key === "ArrowLeft")
-            {
-                event.preventDefault ();
-                prevPageButton.click ();
-            }
-            else if (event.key === "ArrowRight")
-            {
-                event.preventDefault ();
-                nextPageButton.click ();
             }
         }
     );

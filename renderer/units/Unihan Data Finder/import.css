@@ -209,7 +209,8 @@
 #unihan-data-finder-unit .pagination-bar .page-select,
 #unihan-data-finder-unit .pagination-bar .page-nav-button
 {
-    margin-right: 1em;
+    margin-right: 0.75em;
+    height: 26px;
 }
 
 #unihan-data-finder-unit .pagination-bar .page-select
@@ -217,14 +218,15 @@
     font-family: Monaco, "Noto Mono", monospace;
     font-weight: bold;
     font-size: 14px;
-    padding: 2px 4px;
+    padding: 3px 2px 2px 6px;
     text-align: right;
 }
 
 #unihan-data-finder-unit .pagination-bar .page-nav-button
 {
     width: 2.4em;
-    border-radius: 0;
+    padding: 3px 6px;
+    /* border-radius: 0; */
 }
 
 #unihan-data-finder-unit .pagination-bar .page-nav-button svg.page-nav-icon
@@ -387,7 +389,6 @@
 #unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .symbol
 {
     font-size: 36px;
-    width: 36px;
     text-align: center;
     line-height: 1em;
     margin-bottom: 4px;
@@ -412,7 +413,6 @@
     font-weight: bold;
     line-height: 1em;
     padding: 3px 3px 2px 3px;
-    margin: 0 auto;
     border: 1px solid var(--color-border);
     border-radius: 2px;
     background-color: var(--color-bg);

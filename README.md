@@ -174,6 +174,7 @@ The following utilities are currently available:
 - It is possible to choose how many characters are shown one page at a time.
 - A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 11.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
 - It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.
+- You can quickly reuse a previously entered code point by using the Up Arrow <kbd>↑</kbd> and Down Arrow <kbd>↓</kbd> keys to navigate through the history stack in the <kbd>Specimen</kbd> field.
 
 <img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 
@@ -245,6 +246,7 @@ The following utilities are currently available:
 - It is possible to choose how many characters are shown one page at a time.
 - A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.
 - It is also possible to directly enter a Unihan character or code point in the <kbd>Unihan</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.
+- You can quickly reuse a previously entered Unihan character by using the Up Arrow <kbd>↑</kbd> and Down Arrow <kbd>↓</kbd> keys to navigate through the history stack in the <kbd>Unihan</kbd> field.
 - A list of all the Unihan blocks is available for quick reference.
 
 <img src="screenshots/unihan-data-finder-view-by-grid.png" width="1080px" alt="Unihan Data Finder - View by Grid screenshot">
@@ -261,9 +263,10 @@ The following utilities are currently available:
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
 - In addition, the utility provides, for each Unihan character:
-    - basic Unicode information: name, age, plane, block, script, general category, decomposition, equivalent unified ideograph;
+    - basic Unicode information: name, age, plane, block, script, script extensions, general category, decomposition, binary properties, equivalent unified ideograph;
     - basic Unihan information: radical/strokes, definition, variant characters, IICore set.
 - Any Unihan character can be entered in the input field either as a code point or a character. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
+- Previously looked up Unihan characters are kept in a history stack; use the Up Arrow <kbd>↑</kbd> and Down Arrow <kbd>↓</kbd> keys to navigate through them inside the input field.
 - It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
 - The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through several different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese), `HK` (Hong Kong Chinese). Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
@@ -274,8 +277,6 @@ The following utilities are currently available:
     - The Yasuoka Variants information is drawn from the "Variants table for Unicode" data file [UniVariants.txt](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z) provided by Prof. [Kōichi Yasuoka](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/).
 
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
-
-<img src="screenshots/unihan-inspector-radical.png" width="1080px" alt="Unihan Inspector - Radical screenshot">
 
 ## Unihan References
 
@@ -311,4 +312,4 @@ You can [download the latest release](https://github.com/tonton-pixel/unicode-pl
 
 The MIT License (MIT).
 
-Copyright © 2018 Michel MARIANI.
+Copyright © 2018-2019 Michel MARIANI.

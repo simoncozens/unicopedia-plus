@@ -229,6 +229,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault ();    // ??
+                event.target.blur ();
                 nameSearchButton.click ();
             }
         }
@@ -332,6 +333,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault ();    // ??
+                event.target.blur ();
                 symbolSearchButton.click ();
             }
         }

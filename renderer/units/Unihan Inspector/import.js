@@ -12,10 +12,22 @@ const instructions = unit.querySelector ('.instructions');
 let currentTypefaceLanguage;
 let currentTypefaceDefault;
 //
+const unihanHistorySize = 256;   // 0: unlimited
+//
+let unihanHistory = [ ];
+let unihanHistoryIndex = -1;
+let unihanHistorySave = null;
+//
+let currentUnihanCharacter;
+//
 let showCategories;
 //
 module.exports.start = function (context)
 {
+    const { remote } = require ('electron');
+    //
+    const rewritePattern = require ('regexpu-core');
+    //
     const unicode = require ('../../lib/unicode/unicode.js');
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
@@ -31,7 +43,8 @@ module.exports.start = function (context)
     //
     const defaultPrefs =
     {
-        unihanInput: "",
+        unihanHistory: [ ],
+        unihanCharacter: "",
         typefaceLanguage: "",
         typefaceDefault: false,
         fullSetCheckbox: false,
@@ -39,6 +52,8 @@ module.exports.start = function (context)
         instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    unihanHistory = prefs.unihanHistory;
     //
     fullSetCheckbox.checked = prefs.fullSetCheckbox;
     //
@@ -62,9 +77,7 @@ module.exports.start = function (context)
     //
     currentTypefaceDefault = prefs.typefaceDefault;
     //
-    let currentCodePoint = null;
-    //
-    function displayData (codePoint)
+    function displayData (character)
     {
         function displayCharacterData (codePoint, tags)
         {
@@ -79,7 +92,18 @@ module.exports.start = function (context)
             unihanCharacter.textContent = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
             unihanCharacter.className = 'unihan-character';
             unihanWrapper.appendChild (unihanCharacter);
-            console.log (unihanCharacter.textContent);  // Temp!
+            let indexOfUnihanCharacter = unihanHistory.indexOf (unihanCharacter.textContent);
+            if (indexOfUnihanCharacter !== -1)
+            {
+                unihanHistory.splice (indexOfUnihanCharacter, 1);
+            }
+            unihanHistory.unshift (unihanCharacter.textContent);
+            if ((unihanHistorySize > 0) && (unihanHistory.length > unihanHistorySize))
+            {
+                unihanHistory.pop ();
+            }
+            unihanHistoryIndex = -1;
+            unihanHistorySave = null;
             let filler = document.createElement ('div');
             filler.className = 'filler';
             unihanWrapper.appendChild (filler);
@@ -170,8 +194,10 @@ module.exports.start = function (context)
                 { label: "Plane", value: unicodeData.planeName, title: unicodeData.planeRange },
                 { label: "Block", value: unicodeData.blockName, title: unicodeData.blockRange },
                 { label: "Script", value: unicodeData.script },
+                { label: "Script\xA0Extensions", value: unicodeData.scriptExtensions },
                 { label: "General\xA0Category", value: unicodeData.category },
                 { label: "Decomposition", value: unicodeData.decomposition },
+                { label: "Binary\xA0Properties", value: unicodeData.binaryProperties },
                 { label: "Equivalent\xA0Unified\xA0Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
             ];
             //
@@ -489,8 +515,15 @@ module.exports.start = function (context)
         {
             infoContainer.firstChild.remove ();
         }
-        if (codePoint)
+        currentUnihanCharacter = character;
+        if (character)
         {
+            let hex = character.codePointAt (0).toString (16).toUpperCase ();
+            if (hex.length < 5)
+            {
+                hex = ("000" + hex).slice (-4);
+            }    
+            let codePoint = `U+${hex}`;
             let tags = unihanData.codePoints[codePoint];
             displayCharacterData (codePoint, tags);
             displayTags (codePoint, tags);
@@ -512,8 +545,64 @@ module.exports.start = function (context)
             }
         }
     );
-    unihanInput.value = prefs.unihanInput;
-    unihanInput.dispatchEvent (new Event ('input'));
+    //
+    unihanInput.addEventListener
+    (
+        'keydown',
+        (event) =>
+        {
+            if (event.key === "ArrowUp")
+            {
+                event.preventDefault ();
+                if (unihanHistoryIndex === -1)
+                {
+                    unihanHistorySave = event.target.value;
+                }
+                unihanHistoryIndex++;
+                if (unihanHistoryIndex > (unihanHistory.length - 1))
+                {
+                    unihanHistoryIndex = (unihanHistory.length - 1);
+                }
+                if (unihanHistoryIndex !== -1)
+                {
+                    event.target.value = unihanHistory[unihanHistoryIndex];
+                }
+            }
+            else if (event.key === "ArrowDown")
+            {
+                event.preventDefault ();
+                unihanHistoryIndex--;
+                if (unihanHistoryIndex < -1)
+                {
+                    unihanHistoryIndex = -1;
+                    unihanHistorySave = null;
+                }
+                if (unihanHistoryIndex === -1)
+                {
+                    if (unihanHistorySave !== null)
+                    {
+                        event.target.value = unihanHistorySave;
+                    }
+                }
+                else
+                {
+                    event.target.value = unihanHistory[unihanHistoryIndex];
+                }
+            }
+        }
+    );
+    //
+    function updateUnihanData (character)
+    {
+        unihanInput.value = "";
+        unihanInput.blur ();
+        displayData (character);
+    }
+    //
+    // Unihan character
+    let flags = 'u';
+    let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let regex = new RegExp (pattern, flags);
     //
     lookupButton.addEventListener
     (
@@ -525,42 +614,48 @@ module.exports.start = function (context)
                 let match = unihanInput.value.match (unihanRegex);
                 if (match)
                 {
-                    let num;
+                    let character;
                     if (match[1])
                     {
-                        num = match[1].codePointAt (0);
+                        character = match[1];
                     }
                     else if (match[2])
                     {
-                        num = parseInt (match[2], 16);
+                        character = String.fromCodePoint (parseInt (match[2], 16));
                     }
-                    let hex = num.toString (16).toUpperCase ();
-                    if (hex.length < 5)
+                    if (regex.test (character))
                     {
-                        hex = ("000" + hex).slice (-4);
+                        updateUnihanData (character);
                     }
-                    currentCodePoint = `U+${hex}`;
-                    unihanInput.value = currentCodePoint;
-                    unihanInput.dispatchEvent (new Event ('input'));
-                    displayData (currentCodePoint);
+                    else
+                    {
+                        remote.shell.beep ();
+                    }
+                }
+                else
+                {
+                    remote.shell.beep ();
                 }
             }
             else
             {
-                currentCodePoint = null;
-                displayData (currentCodePoint);
+                unihanHistoryIndex = -1;
+                unihanHistorySave = null;
+                updateUnihanData ("");
             }
         }
     );
+    //
+    currentUnihanCharacter = prefs.unihanCharacter;
+    updateUnihanData (currentUnihanCharacter);
     //
     randomButton.addEventListener
     (
         'click',
         (event) =>
         {
-            unihanInput.value = randomElement (fullSetCheckbox.checked ? unihanData.fullSet : unihanData.coreSet);
-            unihanInput.dispatchEvent (new Event ('input'));
-            lookupButton.dispatchEvent (new Event ('click'));
+            let codePoint = randomElement (fullSetCheckbox.checked ? unihanData.fullSet : unihanData.coreSet);
+            updateUnihanData (String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16)));
         }
     );
     //
@@ -571,7 +666,8 @@ module.exports.stop = function (context)
 {
     let prefs =
     {
-        unihanInput: unihanInput.value,
+        unihanHistory: unihanHistory,
+        unihanCharacter: currentUnihanCharacter,
         typefaceLanguage: currentTypefaceLanguage,
         typefaceDefault: currentTypefaceDefault,
         fullSetCheckbox: fullSetCheckbox.checked,

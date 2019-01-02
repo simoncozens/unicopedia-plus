@@ -2,9 +2,9 @@
     <section id="unicode-data-finder-unit">
         <div class="plain-panel">
             <div class="tab-bar">
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>Find by Name</span></label>
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>Match Symbol</span></label>
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>List by Block</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Symbol</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>List by Block</span></label>
             </div>
             <div class="tab-panes">
                 <div class="tab-pane find-by-name">
@@ -14,16 +14,16 @@
                                 <input class="search-string" type="search" placeholder="Name or alias...">
                             </span>
                             <span class="action">
-                                <label title="Case Sensitive (disabled)"><input type="checkbox" class="case-sensitive" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                                <label title="Case Sensitive (disabled)"><input class="case-sensitive" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Whole Word"><input type="checkbox" class="whole-word"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                                <label title="Whole Word"><input class="whole-word" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                                <label title="Regular Expression"><input class="use-regex" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <button type="button" class="search-button">Search</button>
+                                <button class="search-button" type="button">Search</button>
                             </span>
                         </span>
                     </div>
@@ -37,16 +37,16 @@
                                 <input class="search-string" type="search" placeholder="Symbol or regex properties...">
                             </span>
                             <span class="action">
-                                <label title="Case Sensitive"><input type="checkbox" class="case-sensitive"><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                                <label title="Case Sensitive"><input class="case-sensitive" type="checkbox"><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Whole Word (disabled)"><input type="checkbox" class="whole-word" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                                <label title="Whole Word (disabled)"><input class="whole-word" type="checkbox" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                                <label title="Regular Expression"><input class="use-regex" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <button type="button" class="search-button">Search</button>
+                                <button class="search-button" type="button">Search</button>
                             </span>
                         </span>
                     </div>
@@ -60,10 +60,10 @@
                                 <select class="select-block-range"></select>
                             </span>
                             <span class="action-no-flex">
-                                <input type="search" class="specimen" title="Specimen (code point or character)" placeholder="Specimen...">
+                                <input class="specimen" type="text" title="Specimen (code point or character)" placeholder="Specimen...">
                             </span>
                             <span class="action">
-                                <button type="button" class="go-button">Go</button>
+                                <button class="go-button" type="button">Go</button>
                             </span>
                             <br>
                             <span class="action-no-flex">
@@ -148,6 +148,7 @@
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
                             <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.</li>
+                            <li>You can quickly reuse a previously entered code point by using the Up Arrow <kbd>↑</kbd> and Down Arrow <kbd>↓</kbd> keys to navigate through the history stack in the <kbd>Specimen</kbd> field.</li>
                         </ul>
                     </details>
                 </div>

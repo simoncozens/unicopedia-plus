@@ -57,5 +57,6 @@ for (let codePoint in codePoints)
     }
 }
 $.writeln (`Max Strokes: ${maxStrokes}`);
+$.writeln (`Character: ${String.fromCodePoint (parseInt (maxCodePoint.replace ("U+", ""), 16))}`);
 $.writeln (`Code Point: ${maxCodePoint}`);
 $.writeln (`Tag Value: ${maxTagValue}`);

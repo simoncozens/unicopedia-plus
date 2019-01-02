@@ -14,6 +14,8 @@ const nameSearchData = unit.querySelector ('.find-by-name .search-data');
 const nameInstructions = unit.querySelector ('.find-by-name .instructions');
 const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
 //
+const nameParams = { };
+//
 const symbolSearchString = unit.querySelector ('.match-symbol .search-string');
 const symbolCaseSensitive = unit.querySelector ('.match-symbol .case-sensitive');
 const symbolUseRegex = unit.querySelector ('.match-symbol .use-regex');
@@ -23,6 +25,8 @@ const symbolSearchData = unit.querySelector ('.match-symbol .search-data');
 const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
 const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
 //
+const symbolParams = { };
+//
 const blockSpecimen = unit.querySelector ('.list-by-block .specimen');
 const blockGoButton = unit.querySelector ('.list-by-block .go-button');
 const blockSelectBlockRange = unit.querySelector ('.list-by-block .select-block-range');
@@ -31,9 +35,13 @@ const blockSearchInfo = unit.querySelector ('.list-by-block .search-info');
 const blockSearchData = unit.querySelector ('.list-by-block .search-data');
 const blockInstructions = unit.querySelector ('.list-by-block .instructions');
 //
-const nameParams = { };
-const symbolParams = { };
 const blockParams = { };
+//
+const blockSpecimenHistorySize = 256;   // 0: unlimited
+//
+let blockSpecimenHistory = [ ];
+let blockSpecimenHistoryIndex = -1;
+let blockSpecimenHistorySave = null;
 //
 module.exports.start = function (context)
 {
@@ -64,8 +72,9 @@ module.exports.start = function (context)
         symbolRegexExamples: false,
         //
         blockSelectBlockRange: "",
-        blockSpecimen: "",
+        blockSpecimenHistory: [ ],
         blockPageSize: 8,
+        blockPageIndex: 0,
         blockInstructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
@@ -129,6 +138,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
+                event.target.blur ();
                 nameSearchButton.click ();
             }
         }
@@ -217,6 +227,7 @@ module.exports.start = function (context)
                     nameSearchInfo.appendChild (infoText);
                     if (characters.length > 0)
                     {
+                        nameParams.pageIndex = 0;
                         nameSearchData.appendChild (dataTable.create (characters, nameParams));
                     }
                 }
@@ -242,6 +253,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
+                event.target.blur ();
                 symbolSearchButton.click ();
             }
         }
@@ -326,6 +338,7 @@ module.exports.start = function (context)
                     symbolSearchInfo.appendChild (infoText);
                     if (characters.length > 0)
                     {
+                        symbolParams.pageIndex = 0;
                         symbolSearchData.appendChild (dataTable.create (characters, symbolParams));
                     }
                 }
@@ -336,7 +349,10 @@ module.exports.start = function (context)
     symbolInstructions.open = prefs.symbolInstructions;
     symbolRegexExamples.open = prefs.symbolRegexExamples;
     //
+    blockSpecimenHistory = prefs.blockSpecimenHistory;
+    //
     blockParams.pageSize = prefs.blockPageSize;
+    blockParams.pageIndex = prefs.blockPageIndex;
     blockParams.observer = null;
     blockParams.root = unit;
     //
@@ -376,10 +392,10 @@ module.exports.start = function (context)
             blockSearchData.firstChild.remove ();
         }
         let block = blockKeys[blockKey];
-        let hilightedCharacter;
+        let highlightedCharacter;
         if (charKey)
         {
-            hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
+            highlightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
         }
         let characters = [ ];
         for (let index = block.firstIndex; index <= block.lastIndex; index++)
@@ -388,7 +404,7 @@ module.exports.start = function (context)
         }
         let assignedCount = characters.filter (character => assignedRegex.test (character)).length;
         blockSearchInfo.innerHTML = `Assigned characters: <strong>${assignedCount}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
-        blockSearchData.appendChild (dataTable.create (characters, blockParams, hilightedCharacter));
+        blockSearchData.appendChild (dataTable.create (characters, blockParams, highlightedCharacter));
     }
     //
     firstIndex.forEach
@@ -417,8 +433,6 @@ module.exports.start = function (context)
         }
     );
     //
-    blockSpecimen.value = prefs.blockSpecimen;
-    //
     const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     //
     blockSpecimen.pattern = specimenRegex.source;
@@ -430,7 +444,54 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
+                event.target.blur ();
                 blockGoButton.click ();
+            }
+        }
+    );
+    //
+    blockSpecimen.addEventListener
+    (
+        'keydown',
+        (event) =>
+        {
+            if (event.key === "ArrowUp")
+            {
+                event.preventDefault ();
+                if (blockSpecimenHistoryIndex === -1)
+                {
+                    blockSpecimenHistorySave = event.target.value;
+                }
+                blockSpecimenHistoryIndex++;
+                if (blockSpecimenHistoryIndex > (blockSpecimenHistory.length - 1))
+                {
+                    blockSpecimenHistoryIndex = (blockSpecimenHistory.length - 1);
+                }
+                if (blockSpecimenHistoryIndex !== -1)
+                {
+                    event.target.value = blockSpecimenHistory[blockSpecimenHistoryIndex];
+                }
+            }
+            else if (event.key === "ArrowDown")
+            {
+                event.preventDefault ();
+                blockSpecimenHistoryIndex--;
+                if (blockSpecimenHistoryIndex < -1)
+                {
+                    blockSpecimenHistoryIndex = -1;
+                    blockSpecimenHistorySave = null;
+                }
+                if (blockSpecimenHistoryIndex === -1)
+                {
+                    if (blockSpecimenHistorySave !== null)
+                    {
+                        event.target.value = blockSpecimenHistorySave;
+                    }
+                }
+                else
+                {
+                    event.target.value = blockSpecimenHistory[blockSpecimenHistoryIndex];
+                }
             }
         }
     );
@@ -470,7 +531,20 @@ module.exports.start = function (context)
                     }
                     if (blockKey)
                     {
-                        blockSpecimen.value = `U+${hex}`;
+                        let codePoint = `U+${hex}`;
+                        let indexOfUnihanCharacter = blockSpecimenHistory.indexOf (codePoint);
+                        if (indexOfUnihanCharacter !== -1)
+                        {
+                            blockSpecimenHistory.splice (indexOfUnihanCharacter, 1);
+                        }
+                        blockSpecimenHistory.unshift (codePoint);
+                        if ((blockSpecimenHistorySize > 0) && (blockSpecimenHistory.length > blockSpecimenHistorySize))
+                        {
+                            blockSpecimenHistory.pop ();
+                        }
+                        blockSpecimenHistoryIndex = -1;
+                        blockSpecimenHistorySave = null;
+                        blockSpecimen.value = "";
                         blockSelectBlockRange.value = blockKey;
                         blockSelectBlockName.value = blockKey;
                         displayRangeTable (blockKey, hex);
@@ -478,12 +552,13 @@ module.exports.start = function (context)
                     else
                     {
                         remote.shell.beep ();
-                        // blockSpecimen.value = "";
                     }
                 }
             }
             else
             {
+                blockSpecimenHistoryIndex = -1;
+                blockSpecimenHistorySave = null;
                 displayRangeTable (blockSelectBlockRange.value);
             }
         }
@@ -504,6 +579,7 @@ module.exports.start = function (context)
         (event) =>
         {
             blockSelectBlockName.value = event.target.value;
+            blockParams.pageIndex = 0;
             displayRangeTable (event.target.value);
         }
     );
@@ -514,6 +590,7 @@ module.exports.start = function (context)
         (event) =>
         {
             blockSelectBlockRange.value = event.target.value;
+            blockParams.pageIndex = 0;
             displayRangeTable (event.target.value);
         }
     );
@@ -556,8 +633,9 @@ module.exports.stop = function (context)
         symbolRegexExamples: symbolRegexExamples.open,
         //
         blockSelectBlockRange: blockSelectBlockRange.value,
-        blockSpecimen: blockSpecimen.value,
+        blockSpecimenHistory: blockSpecimenHistory,
         blockPageSize: blockParams.pageSize,
+        blockPageIndex: blockParams.pageIndex,
         blockInstructions: blockInstructions.open
     };
     context.setPrefs (prefs);

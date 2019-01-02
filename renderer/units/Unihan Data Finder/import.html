@@ -2,9 +2,9 @@
     <section id="unihan-data-finder-unit">
         <div class="plain-panel">
             <div class="tab-bar">
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>Find by Tag Value</span></label>
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>Radical/Strokes</span></label>
-                <label class="tab-label"><input type="radio" class="tab-radio"><span>View by Grid</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Tag Value</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>Radical/Strokes</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>View by Grid</span></label>
             </div>
             <div class="tab-panes">
                 <div class="tab-pane find-by-tag-value">
@@ -24,16 +24,16 @@
                                 <input class="search-string" type="search" placeholder="Tag value or regex...">
                             </span>
                             <span class="action">
-                                <label title="Case Sensitive (disabled)"><input type="checkbox" class="case-sensitive" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                                <label title="Case Sensitive (disabled)"><input class="case-sensitive" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Whole Word"><input type="checkbox" class="whole-word"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                                <label title="Whole Word"><input class="whole-word" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Regular Expression"><input type="checkbox" class="use-regex"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                                <label title="Regular Expression"><input class="use-regex" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <button type="button" class="search-button">Search</button>
+                                <button class="search-button" type="button">Search</button>
                             </span>
                         </div>
                     </div>
@@ -44,10 +44,10 @@
                     <div class="actions">
                         <div class="action-group rs-2-group">
                             <span class="action">
-                                <label title="If checked, the search is performed on the Unihan full set; if unchecked, it is limited to the IICore set of CJK unified ideographs in common usage"><input type="checkbox" class="full-set-checkbox">&nbsp;Unihan Full Set</label>
+                                <label title="If checked, the search is performed on the Unihan full set; if unchecked, it is limited to the IICore set of CJK unified ideographs in common usage"><input class="full-set-checkbox" type="checkbox">&nbsp;Unihan Full Set</label>
                             </span>
                             <span class="action">
-                                <label title="If checked, the search uses all radical/strokes source tags; if unchecked, it only uses the IRG-defined source tag common to all Unihan characters"><input type="checkbox" class="extra-sources-checkbox">&nbsp;Allow Extra Sources</label>
+                                <label title="If checked, the search uses all radical/strokes source tags; if unchecked, it only uses the IRG-defined source tag common to all Unihan characters"><input class="extra-sources-checkbox" type="checkbox">&nbsp;Allow Extra Sources</label>
                             </span>
                         </div>
                         <div class="action-group rs-group">
@@ -56,7 +56,7 @@
                                 <label>+&nbsp;Strokes:&nbsp;<select class="strokes-select" title="Additional stroke count"></select></label>
                             </span>
                             <span class="action">
-                                <button type="button" class="search-button">Search</button>
+                                <button class="search-button" type="button">Search</button>
                             </span>
                         </div>
                     </div>
@@ -75,10 +75,10 @@
                                 <select class="select-block-range"></select>
                             </span>
                             <span class="action">
-                                <input type="search" class="specimen" title="Unihan character or code point" placeholder="Unihan...">
+                                <input class="specimen" type="text" title="Unihan character or code point" placeholder="Unihan...">
                             </span>
                             <span class="action">
-                                <button type="button" class="go-button">Go</button>
+                                <button class="go-button" type="button">Go</button>
                             </span>
                         </span>
                     </div>
@@ -173,6 +173,7 @@
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.</li>
                             <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Unihan</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
+                            <li>You can quickly reuse a previously entered Unihan character by using the Up Arrow <kbd>↑</kbd> and Down Arrow <kbd>↓</kbd> keys to navigate through the history stack in the <kbd>Unihan</kbd> field.</li>
                             <li>A list of all the Unihan blocks is available for quick reference.</li>
                         </ul>
                     </details>

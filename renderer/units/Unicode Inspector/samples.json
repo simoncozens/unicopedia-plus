@@ -207,10 +207,14 @@
             },
             {
                 "label": "Unusual 3",
-                "string": "𠄷𤕈\n𠆭𠇇𡆢𦹗𭁇"
+                "string": "𠄷𤕈𮍌\n𡉡𢀓𭍻"
             },
             {
                 "label": "Unusual 4",
+                "string": "𠆭𠇇𠍋𠪳𡆢𡦹𡧑𦹗𭁇"
+            },
+            {
+                "label": "Unusual 5",
                 "string": "𠕲𠚖𠚜𠚡\n𠥓𠥧𠥩𠥪𠥫𠥬"
             }
         ]

@@ -49,6 +49,12 @@ const gridInstructions = unit.querySelector ('.view-by-grid .instructions');
 const gridUnihanBlocks = unit.querySelector ('.view-by-grid .unihan-blocks');
 const gridBlocks = unit.querySelector ('.view-by-grid .blocks');
 //
+const gridUnihanHistorySize = 256;   // 0: unlimited
+//
+let gridUnihanHistory = [ ];
+let gridUnihanHistoryIndex = -1;
+let gridUnihanHistorySave = null;
+//
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
@@ -80,8 +86,9 @@ module.exports.start = function (context)
         rsRadicalList: false,
         //
         gridSelectBlockRange: "4E00-9FFF",  // CJK Unified Ideographs
-        gridSpecimen: "",
+        gridUnihanHistory: [ ],
         gridPageSize: 128,
+        gridPageIndex: 0,
         gridInstructions: true,
         gridUnihanBlocks: false
     };
@@ -205,6 +212,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
+                event.target.blur ();
                 tagSearchButton.click ();
             }
         }
@@ -554,10 +562,12 @@ module.exports.start = function (context)
     //
     rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
     //
+    gridUnihanHistory = prefs.gridUnihanHistory;
+    //
     gridParams.pageSize = prefs.gridPageSize;
+    gridParams.pageIndex = prefs.gridPageIndex;
     gridParams.observer = null;
     gridParams.root = unit;
-    //
     //
     const gridDataTable = require ('./grid-data-table.js');
     //
@@ -593,7 +603,7 @@ module.exports.start = function (context)
         }
     );
     //
-    function displayRangeTable (blockKey, charKey)
+    function displayRangeTable (blockKey, highlightedCharacter)
     {
         gridSearchInfo.textContent = "";
         while (gridSearchData.firstChild)
@@ -601,13 +611,8 @@ module.exports.start = function (context)
             gridSearchData.firstChild.remove ();
         }
         let block = blocks[blockKey];
-        let hilightedCharacter;
-        if (charKey)
-        {
-            hilightedCharacter = String.fromCodePoint (parseInt (charKey, 16));
-        }
         gridSearchInfo.innerHTML = `Unihan characters: <strong>${block.count}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
-        gridSearchData.appendChild (gridDataTable.create (block.characters, gridParams, hilightedCharacter));
+        gridSearchData.appendChild (gridDataTable.create (block.characters, gridParams, highlightedCharacter));
     }
     //
     firstIndex.forEach
@@ -636,8 +641,6 @@ module.exports.start = function (context)
         }
     );
     //
-    gridSpecimen.value = prefs.gridSpecimen;
-    //
     const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     //
     gridSpecimen.pattern = specimenRegex.source;
@@ -649,7 +652,54 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
+                event.target.blur ();
                 gridGoButton.click ();
+            }
+        }
+    );
+    //
+    gridSpecimen.addEventListener
+    (
+        'keydown',
+        (event) =>
+        {
+            if (event.key === "ArrowUp")
+            {
+                event.preventDefault ();
+                if (gridUnihanHistoryIndex === -1)
+                {
+                    gridUnihanHistorySave = event.target.value;
+                }
+                gridUnihanHistoryIndex++;
+                if (gridUnihanHistoryIndex > (gridUnihanHistory.length - 1))
+                {
+                    gridUnihanHistoryIndex = (gridUnihanHistory.length - 1);
+                }
+                if (gridUnihanHistoryIndex !== -1)
+                {
+                    event.target.value = gridUnihanHistory[gridUnihanHistoryIndex];
+                }
+            }
+            else if (event.key === "ArrowDown")
+            {
+                event.preventDefault ();
+                gridUnihanHistoryIndex--;
+                if (gridUnihanHistoryIndex < -1)
+                {
+                    gridUnihanHistoryIndex = -1;
+                    gridUnihanHistorySave = null;
+                }
+                if (gridUnihanHistoryIndex === -1)
+                {
+                    if (gridUnihanHistorySave !== null)
+                    {
+                        event.target.value = gridUnihanHistorySave;
+                    }
+                }
+                else
+                {
+                    event.target.value = gridUnihanHistory[gridUnihanHistoryIndex];
+                }
             }
         }
     );
@@ -690,20 +740,33 @@ module.exports.start = function (context)
                     let character = String.fromCodePoint (parseInt (hex, 16));
                     if (blockKey && unihanRegex.test (character))
                     {
-                        gridSpecimen.value = character;
+                        let indexOfUnihanCharacter = gridUnihanHistory.indexOf (character);
+                        if (indexOfUnihanCharacter !== -1)
+                        {
+                            gridUnihanHistory.splice (indexOfUnihanCharacter, 1);
+                        }
+                        gridUnihanHistory.unshift (character);
+                        if ((gridUnihanHistorySize > 0) && (gridUnihanHistory.length > gridUnihanHistorySize))
+                        {
+                            gridUnihanHistory.pop ();
+                        }
+                        gridUnihanHistoryIndex = -1;
+                        gridUnihanHistorySave = null;
+                        gridSpecimen.value = "";
                         gridSelectBlockRange.value = blockKey;
                         gridSelectBlockName.value = blockKey;
-                        displayRangeTable (blockKey, hex);
+                        displayRangeTable (blockKey, character);
                     }
                     else
                     {
                         remote.shell.beep ();
-                        // gridSpecimen.value = "";
                     }
                 }
             }
             else
             {
+                gridUnihanHistoryIndex = -1;
+                gridUnihanHistorySave = null;
                 displayRangeTable (gridSelectBlockRange.value);
             }
         }
@@ -724,6 +787,7 @@ module.exports.start = function (context)
         (event) =>
         {
             gridSelectBlockName.value = event.target.value;
+            gridParams.pageIndex = 0;
             displayRangeTable (event.target.value);
         }
     );
@@ -734,6 +798,7 @@ module.exports.start = function (context)
         (event) =>
         {
             gridSelectBlockRange.value = event.target.value;
+            gridParams.pageIndex = 0;
             displayRangeTable (event.target.value);
         }
     );
@@ -783,8 +848,9 @@ module.exports.stop = function (context)
         rsRadicalList: rsRadicalList.open,
         //
         gridSelectBlockRange: gridSelectBlockRange.value,
-        gridSpecimen: gridSpecimen.value,
+        gridUnihanHistory: gridUnihanHistory,
         gridPageSize: gridParams.pageSize,
+        gridPageIndex: gridParams.pageIndex,
         gridInstructions: gridInstructions.open,
         gridUnihanBlocks: gridUnihanBlocks.open
     };

@@ -1,5 +1,19 @@
 [
     {
+        "label": "Chinese Zodiac",
+        "items":
+        [
+            {
+                "label": "Zodiac 1",
+                "string": "鼠牛虎兔龍蛇馬羊猴雞狗豬"
+            },
+            {
+                "label": "Zodiac 2",
+                "string": "子丑寅卯辰巳午未申酉戌亥"
+            }
+        ]
+    },
+    {
         "label": "Dragons & Turtles",
         "items":
         [

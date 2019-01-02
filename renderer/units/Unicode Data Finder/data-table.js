@@ -10,22 +10,22 @@ module.exports.create = function (characters, params, highlightedCharacter)
     function updateDataPage (dataPage)
     {
         // Update pagination bar
-        firstPageButton.disabled = (pageIndex === 0);
+        firstPageButton.disabled = (params.pageIndex === 0);
         firstPageButton.title = `First page: ${0 + 1}`;
-        prevPageButton.disabled = (pageIndex === 0);
-        prevPageButton.title = `Previous page: ${pageIndex - 1 + 1}`;
-        if (pageSelect.value !== (pageIndex + 1))
+        prevPageButton.disabled = (params.pageIndex === 0);
+        prevPageButton.title = `Previous page: ${params.pageIndex - 1 + 1}`;
+        if (pageSelect.value !== (params.pageIndex + 1))
         {
-            pageSelect.value = pageIndex + 1;
+            pageSelect.value = params.pageIndex + 1;
         }
         pageSelect.disabled = (pages.length === 1);
-        pageSelect.title = `Current page: ${pageIndex + 1}`;
-        nextPageButton.disabled = (pageIndex === (pages.length - 1));
-        nextPageButton.title = `Next page: ${pageIndex + 1 + 1}`;
-        lastPageButton.disabled = (pageIndex === (pages.length - 1));
+        pageSelect.title = `Current page: ${params.pageIndex + 1}`;
+        nextPageButton.disabled = (params.pageIndex === (pages.length - 1));
+        nextPageButton.title = `Next page: ${params.pageIndex + 1 + 1}`;
+        lastPageButton.disabled = (params.pageIndex === (pages.length - 1));
         lastPageButton.title = `Last page: ${pages.length}`;
         //
-        let characters = pages[pageIndex];
+        let characters = pages[params.pageIndex];
         while (dataPage.firstChild)
         {
             dataPage.firstChild.remove ();
@@ -160,7 +160,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
     }
     //
     let pages;
-    let pageIndex;
     //
     let dataTable = document.createElement ('div');
     //
@@ -179,9 +178,9 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'click',
         (event) =>
         {
-            if (pageIndex > 0)
+            if (params.pageIndex > 0)
             {
-                pageIndex = 0;
+                params.pageIndex = 0;
                 updateDataPage (dataPage);
             }
         }
@@ -197,9 +196,9 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'click',
         (event) =>
         {
-            if (pageIndex > 0)
+            if (params.pageIndex > 0)
             {
-                pageIndex = pageIndex - 1;
+                params.pageIndex = params.pageIndex - 1;
                 updateDataPage (dataPage);
             }
         }
@@ -224,7 +223,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
                 {
                     event.target.value = pages.length;
                 }
-                pageIndex = event.target.value - 1;
+                params.pageIndex = event.target.value - 1;
                 updateDataPage (dataPage);
             }
         }
@@ -236,7 +235,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
         {
             if (event.target.value === "")
             {
-                event.target.value = pageIndex + 1;
+                event.target.value = params.pageIndex + 1;
             }
         }
     );
@@ -251,9 +250,9 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'click',
         (event) =>
         {
-            if (pageIndex < (pages.length - 1))
+            if (params.pageIndex < (pages.length - 1))
             {
-                pageIndex = pageIndex + 1;
+                params.pageIndex = params.pageIndex + 1;
                 updateDataPage (dataPage);
             }
         }
@@ -269,9 +268,9 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'click',
         (event) =>
         {
-            if (pageIndex < (pages.length - 1))
+            if (params.pageIndex < (pages.length - 1))
             {
-                pageIndex = pages.length - 1;
+                params.pageIndex = pages.length - 1;
                 updateDataPage (dataPage);
             }
         }
@@ -319,26 +318,29 @@ module.exports.create = function (characters, params, highlightedCharacter)
         pageSizeSelect.selectedIndex = 0;
     }
     //
+    function paginate ()
+    {
+        pages = [ ];
+        for (let startIndex = 0; startIndex < characters.length; startIndex += params.pageSize)
+        {
+            pages.push (characters.slice (startIndex, startIndex + params.pageSize));
+        }
+        let pageCount = pages.length;
+        pageSelect.min = 1;
+        pageSelect.max = pageCount;
+        pageSelect.value = params.pageIndex + 1;
+        pageInfo.innerHTML = (pageCount > 1) ? `<strong>${pageCount}</strong>&nbsp;pages` : "";
+        updateDataPage (dataPage);
+    }
+    //
     pageSizeSelect.addEventListener
     (
         'input',
         (event) =>
         {
             params.pageSize = parseInt (event.target.value);
-            //
-            // Paginate
-            pages = [ ];
-            for (let startIndex = 0; startIndex < characters.length; startIndex += params.pageSize)
-            {
-                pages.push (characters.slice (startIndex, startIndex + params.pageSize));
-            }
-            pageIndex = (highlightedCharacter) ? Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize) : 0;
-            let pageCount = pages.length;
-            pageSelect.min = 1;
-            pageSelect.max = pageCount;
-            pageSelect.value = pageIndex + 1;
-            pageInfo.innerHTML = (pageCount > 1) ? `<strong>${pageCount}</strong>&nbsp;pages` : "";
-            updateDataPage (dataPage);
+            params.pageIndex = (highlightedCharacter) ? Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize) : 0;
+            paginate ();
         }
     );
     //
@@ -348,7 +350,11 @@ module.exports.create = function (characters, params, highlightedCharacter)
     let dataPage = document.createElement ('div');
     dataTable.appendChild (dataPage);
     //
-    pageSizeSelect.dispatchEvent (new Event ('input'));
+    if (highlightedCharacter)
+    {
+        params.pageIndex = Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize);
+    }
+    paginate ();
     //
     return dataTable;
 }

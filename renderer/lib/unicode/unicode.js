@@ -659,27 +659,6 @@ function getCharacterBasicData (character)
     return characterBasicData;
 }
 //
-const emojiData = require ('./parsed-emoji-data.js');
-//
-function getEmojiData (emoji, version)
-{
-    let data = null;
-    let emojiVersionData = emojiData[version];
-    if (emojiVersionData)
-    {
-        if (emojiVersionData[emoji])
-        {
-            data =
-            {
-                code: emojiVersionData[emoji].code,
-                name: emojiVersionData[emoji].name || getCharacterData (emoji).name,
-                age: emojiVersionData[emoji].age || getCharacterData (emoji).age,
-            };
-        }
-    }
-    return data;
-}
-//
 module.exports =
 {
     characterCount,
@@ -688,7 +667,6 @@ module.exports =
     charactersToCodePoints,
     codePointsToCharacters,
     findCharactersByData,
-    getCharacterBasicData,
-    getEmojiData
+    getCharacterBasicData
 };
 //

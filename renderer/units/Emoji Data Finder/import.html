@@ -12,6 +12,7 @@
                         <span class="action-group search-group">
                             <span class="action search-wrap">
                                 <input class="search-string" type="search" placeholder="Name or keyword...">
+                                <span class="search-message"></span>
                             </span>
                             <span class="action">
                                 <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
@@ -35,6 +36,7 @@
                         <span class="action-group search-group">
                             <span class="action search-wrap">
                                 <input class="search-string" type="search" placeholder="Symbol or regex properties...">
+                                <span class="search-message"></span>
                             </span>
                             <span class="action">
                                 <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
@@ -95,6 +97,7 @@
                             <li><code>\p{Ideographic}</code><br>Emoji whose keywords contain one character with the 'Ideographic' binary property</li>
                             <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property value equal to 'Katakana'</li>
                             <li><code>^pet$</code><br>Emoji whose keyword is "pet"</li>
+                            <li><code>(.)\1\1</code><br>Emoji whose keywords contain three identical characters in a row</li>
                             <li><code>(?=.*flag)(?=.*island$)</code><br>Emoji whose name contains "flag" and ends with "island"</li>
                             <li><code>^(dog|panda|rabbit|unicorn)$</code><br>Emoji whose name or keyword is "dog" or "panda" or "rabbit" or "unicorn"</li>
                         </ul>

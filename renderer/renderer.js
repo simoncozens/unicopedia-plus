@@ -444,7 +444,8 @@ function importUnit (template, unitImport)
                 name: unitImport.name,
                 baseURL: unitImport.URL,
                 getPrefs: unitImport.storage.get,
-                setPrefs: unitImport.storage.set
+                setPrefs: unitImport.storage.set,
+                defaultFolderPath: app.getPath (settings.defaultFolder)
             };
             if (typeof unitModule === 'function')
             {

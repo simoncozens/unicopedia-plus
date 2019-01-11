@@ -40,13 +40,14 @@
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
     padding: 0.2em 0.3em;
-    width: 6.4em;
+    width: 7.5em;
     margin-right: 0.5em;
 }
 
-#unihan-inspector-unit .unihan-input:invalid
+#unihan-inspector-unit .unihan-input.invalid
 {
     color: var(--color-error);
+    outline-color: var(--color-error);
 }
 
 #unihan-inspector-unit .unihan-character:lang(ja)
@@ -197,7 +198,6 @@
 
 #unihan-inspector-unit .unihan-info .invalid-unihan
 {
-    /* color: var(--color-error); */
     font-style: italic;
     line-height: 1.333em;
 }

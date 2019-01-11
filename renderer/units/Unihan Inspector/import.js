@@ -152,6 +152,7 @@ module.exports.start = function (context)
                 'dblclick',
                  event =>
                 {
+                    event.preventDefault ();
                     currentTypefaceDefault = !currentTypefaceDefault;
                     updateTypefaceWidget ();
                 }
@@ -530,9 +531,50 @@ module.exports.start = function (context)
         }
     }
     //
-    const unihanRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
-    unihanInput.pattern = unihanRegex.source;
+    const characterOrCodePointRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     //
+    // Unihan character
+    let flags = 'u';
+    let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let unihanRegex = new RegExp (pattern, flags);
+    //
+    function parseUnihanCharacter (inputString)
+    {
+        let character = "";
+        let match = inputString.match (characterOrCodePointRegex);
+        if (match)
+        {
+            if (match[1])
+            {
+                character = match[1];
+            }
+            else if (match[2])
+            {
+                character = String.fromCodePoint (parseInt (match[2], 16));
+            }
+            if (!unihanRegex.test (character))
+            {
+                character = "";
+            }
+        }
+        return character;
+    }
+    // 
+    unihanInput.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            event.target.classList.remove ('invalid');
+            if (event.target.value)
+            {
+                if (!parseUnihanCharacter (event.target.value))
+                {
+                    event.target.classList.add ('invalid');
+                }
+            }
+        }
+    );
     unihanInput.addEventListener
     (
         'keypress',
@@ -545,48 +587,53 @@ module.exports.start = function (context)
             }
         }
     );
-    //
     unihanInput.addEventListener
     (
         'keydown',
         (event) =>
         {
-            if (event.key === "ArrowUp")
+            if (event.altKey)
             {
-                event.preventDefault ();
-                if (unihanHistoryIndex === -1)
+                if (event.key === "ArrowUp")
                 {
-                    unihanHistorySave = event.target.value;
-                }
-                unihanHistoryIndex++;
-                if (unihanHistoryIndex > (unihanHistory.length - 1))
-                {
-                    unihanHistoryIndex = (unihanHistory.length - 1);
-                }
-                if (unihanHistoryIndex !== -1)
-                {
-                    event.target.value = unihanHistory[unihanHistoryIndex];
-                }
-            }
-            else if (event.key === "ArrowDown")
-            {
-                event.preventDefault ();
-                unihanHistoryIndex--;
-                if (unihanHistoryIndex < -1)
-                {
-                    unihanHistoryIndex = -1;
-                    unihanHistorySave = null;
-                }
-                if (unihanHistoryIndex === -1)
-                {
-                    if (unihanHistorySave !== null)
+                    event.preventDefault ();
+                    if (unihanHistoryIndex === -1)
                     {
-                        event.target.value = unihanHistorySave;
+                        unihanHistorySave = event.target.value;
+                    }
+                    unihanHistoryIndex++;
+                    if (unihanHistoryIndex > (unihanHistory.length - 1))
+                    {
+                        unihanHistoryIndex = (unihanHistory.length - 1);
+                    }
+                    if (unihanHistoryIndex !== -1)
+                    {
+                        event.target.value = unihanHistory[unihanHistoryIndex];
+                        event.target.dispatchEvent (new Event ('input'));
                     }
                 }
-                else
+                else if (event.key === "ArrowDown")
                 {
-                    event.target.value = unihanHistory[unihanHistoryIndex];
+                    event.preventDefault ();
+                    unihanHistoryIndex--;
+                    if (unihanHistoryIndex < -1)
+                    {
+                        unihanHistoryIndex = -1;
+                        unihanHistorySave = null;
+                    }
+                    if (unihanHistoryIndex === -1)
+                    {
+                        if (unihanHistorySave !== null)
+                        {
+                            event.target.value = unihanHistorySave;
+                            event.target.dispatchEvent (new Event ('input'));
+                        }
+                    }
+                    else
+                    {
+                        event.target.value = unihanHistory[unihanHistoryIndex];
+                        event.target.dispatchEvent (new Event ('input'));
+                    }
                 }
             }
         }
@@ -595,14 +642,9 @@ module.exports.start = function (context)
     function updateUnihanData (character)
     {
         unihanInput.value = "";
-        unihanInput.blur ();
+        unihanInput.dispatchEvent (new Event ('input'));
         displayData (character);
     }
-    //
-    // Unihan character
-    let flags = 'u';
-    let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-    let regex = new RegExp (pattern, flags);
     //
     lookupButton.addEventListener
     (
@@ -611,26 +653,10 @@ module.exports.start = function (context)
         {
             if (unihanInput.value)
             {
-                let match = unihanInput.value.match (unihanRegex);
-                if (match)
+                let character = parseUnihanCharacter (unihanInput.value);
+                if (character)
                 {
-                    let character;
-                    if (match[1])
-                    {
-                        character = match[1];
-                    }
-                    else if (match[2])
-                    {
-                        character = String.fromCodePoint (parseInt (match[2], 16));
-                    }
-                    if (regex.test (character))
-                    {
-                        updateUnihanData (character);
-                    }
-                    else
-                    {
-                        remote.shell.beep ();
-                    }
+                    updateUnihanData (character);
                 }
                 else
                 {

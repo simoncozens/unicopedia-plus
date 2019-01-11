@@ -114,6 +114,40 @@
 #emoji-data-finder-unit .search-string.error
 {
     color: var(--color-error);
+    outline-color: var(--color-error);
+}
+
+#emoji-data-finder-unit .search-message
+{
+    display: none;
+}
+
+#emoji-data-finder-unit .search-message.shown::before
+{
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    width: 20px;
+    height: 10px;
+    background-color: var(--color-error);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+#emoji-data-finder-unit .search-message.shown
+{
+    display: block;
+    position: absolute;
+    margin-top: 10px;
+    margin-right: 2rem;
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    padding: 0.375em 0.75em;
+    color: white;
+    background-color: var(--color-error);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px #aaaaaa;
 }
 
 #emoji-data-finder-unit .icon-checkbox

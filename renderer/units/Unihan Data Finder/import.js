@@ -8,6 +8,7 @@ const tabInfos = unit.querySelectorAll ('.tab-infos .tab-info');
 const tagSelect = unit.querySelector ('.find-by-tag-value .tag-select');
 const tagCategoriesCheckbox = unit.querySelector ('.find-by-tag-value .categories-checkbox');
 const tagSearchString = unit.querySelector ('.find-by-tag-value .search-string');
+const tagSearchMessage = unit.querySelector ('.find-by-tag-value .search-message');
 const tagWholeWord = unit.querySelector ('.find-by-tag-value .whole-word');
 const tagUseRegex = unit.querySelector ('.find-by-tag-value .use-regex');
 const tagSearchButton = unit.querySelector ('.find-by-tag-value .search-button');
@@ -49,11 +50,11 @@ const gridInstructions = unit.querySelector ('.view-by-grid .instructions');
 const gridUnihanBlocks = unit.querySelector ('.view-by-grid .unihan-blocks');
 const gridBlocks = unit.querySelector ('.view-by-grid .blocks');
 //
-const gridUnihanHistorySize = 256;   // 0: unlimited
+const gridSpecimenHistorySize = 256;   // 0: unlimited
 //
-let gridUnihanHistory = [ ];
-let gridUnihanHistoryIndex = -1;
-let gridUnihanHistorySave = null;
+let gridSpecimenHistory = [ ];
+let gridSpecimenHistoryIndex = -1;
+let gridSpecimenHistorySave = null;
 //
 module.exports.start = function (context)
 {
@@ -86,7 +87,7 @@ module.exports.start = function (context)
         rsRadicalList: false,
         //
         gridSelectBlockRange: "4E00-9FFF",  // CJK Unified Ideographs
-        gridUnihanHistory: [ ],
+        gridSpecimenHistory: [ ],
         gridPageSize: 128,
         gridPageIndex: 0,
         gridInstructions: true,
@@ -212,8 +213,29 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                event.target.blur ();
                 tagSearchButton.click ();
+            }
+        }
+    );
+    tagSearchString.addEventListener
+    (
+        'focusin',
+        (event) =>
+        {
+            if (event.target.classList.contains ('error'))
+            {
+                tagSearchMessage.classList.add ('shown');
+            }
+        }
+    );
+    tagSearchString.addEventListener
+    (
+        'focusout',
+        (event) =>
+        {
+            if (event.target.classList.contains ('error'))
+            {
+                tagSearchMessage.classList.remove ('shown');
             }
         }
     );
@@ -223,7 +245,8 @@ module.exports.start = function (context)
         (event) =>
         {
             event.target.classList.remove ('error');
-            event.target.title = "";
+            tagSearchMessage.textContent = "";
+            tagSearchMessage.classList.remove ('shown');
             if (tagUseRegex.checked)
             {
                 try
@@ -236,7 +259,11 @@ module.exports.start = function (context)
                 catch (e)
                 {
                     event.target.classList.add ('error');
-                    event.target.title = e;
+                    tagSearchMessage.textContent = e.message;
+                    if (event.target === document.activeElement)
+                    {
+                        tagSearchMessage.classList.add ('shown');
+                    }
                 }
             }
         }
@@ -293,53 +320,56 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            clearSearch (tagSearchInfo, tagSearchData);
-            let searchString = tagSearchString.value;
-            if (searchString)
+            if (!tagSearchString.classList.contains ('error'))
             {
-                let regex = null;
-                try
+                let searchString = tagSearchString.value;
+                if (searchString)
                 {
-                    function characterToEcmaScriptEscape (character)
+                    let regex = null;
+                    try
                     {
-                        let num = character.codePointAt (0);
-                        let hex = num.toString (16).toUpperCase ();
-                        return `\\u{${hex}}`;
+                        function characterToEcmaScriptEscape (character)
+                        {
+                            let num = character.codePointAt (0);
+                            let hex = num.toString (16).toUpperCase ();
+                            return `\\u{${hex}}`;
+                        }
+                        //
+                        let pattern = (tagUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                        if (tagWholeWord.checked)
+                        {
+                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
+                        }
+                        const flags = 'ui';
+                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
+                        regex = new RegExp (pattern, flags);
                     }
-                    //
-                    let pattern = (tagUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                    if (tagWholeWord.checked)
+                    catch (e)
                     {
-                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
-                    const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    regex = new RegExp (pattern, flags);
-                }
-                catch (e)
-                {
-                }
-                if (regex)
-                {
-                    let start = window.performance.now ();
-                    let characterInfos = findCharactersByTag (regex, tagCurrentTag);
-                    let stop = window.performance.now ();
-                    let seconds = ((stop - start) / 1000).toFixed (2);
-                    let closeButton = document.createElement ('button');
-                    closeButton.type = 'button';
-                    closeButton.className = 'close-button';
-                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                    closeButton.title = "Clear results";
-                    closeButton.addEventListener ('click', event => { clearSearch (tagSearchInfo, tagSearchData); });
-                    tagSearchInfo.appendChild (closeButton);
-                    let infoText = document.createElement ('span');
-                    infoText.innerHTML = `Unihan characters: <strong>${characterInfos.length}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
-                    tagSearchInfo.appendChild (infoText);
-                    if (characterInfos.length > 0)
+                    if (regex)
                     {
-                        tagSearchData.appendChild (tagDataTable.create (characterInfos, tagParams));
+                        clearSearch (tagSearchInfo, tagSearchData);
+                        let start = window.performance.now ();
+                        let characterInfos = findCharactersByTag (regex, tagCurrentTag);
+                        let stop = window.performance.now ();
+                        let seconds = ((stop - start) / 1000).toFixed (2);
+                        let closeButton = document.createElement ('button');
+                        closeButton.type = 'button';
+                        closeButton.className = 'close-button';
+                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                        closeButton.title = "Clear results";
+                        closeButton.addEventListener ('click', event => { clearSearch (tagSearchInfo, tagSearchData); });
+                        tagSearchInfo.appendChild (closeButton);
+                        let infoText = document.createElement ('span');
+                        infoText.innerHTML = `Unihan characters: <strong>${characterInfos.length}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
+                        tagSearchInfo.appendChild (infoText);
+                        if (characterInfos.length > 0)
+                        {
+                            tagSearchData.appendChild (tagDataTable.create (characterInfos, tagParams));
+                        }
                     }
                 }
             }
@@ -562,7 +592,7 @@ module.exports.start = function (context)
     //
     rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
     //
-    gridUnihanHistory = prefs.gridUnihanHistory;
+    gridSpecimenHistory = prefs.gridSpecimenHistory;
     //
     gridParams.pageSize = prefs.gridPageSize;
     gridParams.pageIndex = prefs.gridPageIndex;
@@ -578,6 +608,7 @@ module.exports.start = function (context)
     const nameIndex = tables.buildKeyIndex (unihanBlocks, "name", (a, b) => a.localeCompare (b));
     const firstIndex = tables.buildKeyIndex (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
     //
+    // Unihan character
     let flags = 'u';
     let unihanPattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
     let unihanRegex = new RegExp (unihanPattern, flags);
@@ -641,9 +672,45 @@ module.exports.start = function (context)
         }
     );
     //
-    const specimenRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
+    const characterOrCodePointRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     //
-    gridSpecimen.pattern = specimenRegex.source;
+    function parseUnihanCharacter (inputString)
+    {
+        let character = "";
+        let match = inputString.match (characterOrCodePointRegex);
+        if (match)
+        {
+            if (match[1])
+            {
+                character = match[1];
+            }
+            else if (match[2])
+            {
+                character = String.fromCodePoint (parseInt (match[2], 16));
+            }
+            if (!unihanRegex.test (character))
+            {
+                character = "";
+            }
+        }
+        return character;
+    }
+    // 
+    gridSpecimen.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            event.target.classList.remove ('invalid');
+            if (event.target.value)
+            {
+                if (!parseUnihanCharacter (event.target.value))
+                {
+                    event.target.classList.add ('invalid');
+                }
+            }
+        }
+    );
     gridSpecimen.addEventListener
     (
         'keypress',
@@ -652,53 +719,57 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                event.target.blur ();
                 gridGoButton.click ();
             }
         }
     );
-    //
     gridSpecimen.addEventListener
     (
         'keydown',
         (event) =>
         {
-            if (event.key === "ArrowUp")
+            if (event.altKey)
             {
-                event.preventDefault ();
-                if (gridUnihanHistoryIndex === -1)
+                if (event.key === "ArrowUp")
                 {
-                    gridUnihanHistorySave = event.target.value;
-                }
-                gridUnihanHistoryIndex++;
-                if (gridUnihanHistoryIndex > (gridUnihanHistory.length - 1))
-                {
-                    gridUnihanHistoryIndex = (gridUnihanHistory.length - 1);
-                }
-                if (gridUnihanHistoryIndex !== -1)
-                {
-                    event.target.value = gridUnihanHistory[gridUnihanHistoryIndex];
-                }
-            }
-            else if (event.key === "ArrowDown")
-            {
-                event.preventDefault ();
-                gridUnihanHistoryIndex--;
-                if (gridUnihanHistoryIndex < -1)
-                {
-                    gridUnihanHistoryIndex = -1;
-                    gridUnihanHistorySave = null;
-                }
-                if (gridUnihanHistoryIndex === -1)
-                {
-                    if (gridUnihanHistorySave !== null)
+                    event.preventDefault ();
+                    if (gridSpecimenHistoryIndex === -1)
                     {
-                        event.target.value = gridUnihanHistorySave;
+                        gridSpecimenHistorySave = event.target.value;
+                    }
+                    gridSpecimenHistoryIndex++;
+                    if (gridSpecimenHistoryIndex > (gridSpecimenHistory.length - 1))
+                    {
+                        gridSpecimenHistoryIndex = (gridSpecimenHistory.length - 1);
+                    }
+                    if (gridSpecimenHistoryIndex !== -1)
+                    {
+                        event.target.value = gridSpecimenHistory[gridSpecimenHistoryIndex];
+                        event.target.dispatchEvent (new Event ('input'));
                     }
                 }
-                else
+                else if (event.key === "ArrowDown")
                 {
-                    event.target.value = gridUnihanHistory[gridUnihanHistoryIndex];
+                    event.preventDefault ();
+                    gridSpecimenHistoryIndex--;
+                    if (gridSpecimenHistoryIndex < -1)
+                    {
+                        gridSpecimenHistoryIndex = -1;
+                        gridSpecimenHistorySave = null;
+                    }
+                    if (gridSpecimenHistoryIndex === -1)
+                    {
+                        if (gridSpecimenHistorySave !== null)
+                        {
+                            event.target.value = gridSpecimenHistorySave;
+                            event.target.dispatchEvent (new Event ('input'));
+                        }
+                    }
+                    else
+                    {
+                        event.target.value = gridSpecimenHistory[gridSpecimenHistoryIndex];
+                        event.target.dispatchEvent (new Event ('input'));
+                    }
                 }
             }
         }
@@ -711,23 +782,10 @@ module.exports.start = function (context)
         {
             if (gridSpecimen.value)
             {
-                let match = gridSpecimen.value.match (specimenRegex);
-                if (match)
+                let character = parseUnihanCharacter (gridSpecimen.value);
+                if (character)
                 {
-                    let num;
-                    if (match[1])
-                    {
-                        num = match[1].codePointAt (0);
-                    }
-                    else if (match[2])
-                    {
-                        num = parseInt (match[2], 16);
-                    }
-                    let hex = num.toString (16).toUpperCase ();
-                    if (hex.length < 5)
-                    {
-                        hex = ("000" + hex).slice (-4);
-                    }
+                    let num = character.codePointAt (0);
                     let blockKey = null;
                     for (let block of unihanBlocks)
                     {
@@ -737,36 +795,35 @@ module.exports.start = function (context)
                             break;
                         }
                     }
-                    let character = String.fromCodePoint (parseInt (hex, 16));
-                    if (blockKey && unihanRegex.test (character))
+                    if (blockKey)   // Better safe than sorry...
                     {
-                        let indexOfUnihanCharacter = gridUnihanHistory.indexOf (character);
+                        let indexOfUnihanCharacter = gridSpecimenHistory.indexOf (character);
                         if (indexOfUnihanCharacter !== -1)
                         {
-                            gridUnihanHistory.splice (indexOfUnihanCharacter, 1);
+                            gridSpecimenHistory.splice (indexOfUnihanCharacter, 1);
                         }
-                        gridUnihanHistory.unshift (character);
-                        if ((gridUnihanHistorySize > 0) && (gridUnihanHistory.length > gridUnihanHistorySize))
+                        gridSpecimenHistory.unshift (character);
+                        if ((gridSpecimenHistorySize > 0) && (gridSpecimenHistory.length > gridSpecimenHistorySize))
                         {
-                            gridUnihanHistory.pop ();
+                            gridSpecimenHistory.pop ();
                         }
-                        gridUnihanHistoryIndex = -1;
-                        gridUnihanHistorySave = null;
+                        gridSpecimenHistoryIndex = -1;
+                        gridSpecimenHistorySave = null;
                         gridSpecimen.value = "";
                         gridSelectBlockRange.value = blockKey;
                         gridSelectBlockName.value = blockKey;
                         displayRangeTable (blockKey, character);
                     }
-                    else
-                    {
-                        remote.shell.beep ();
-                    }
+                }
+                else
+                {
+                    remote.shell.beep ();
                 }
             }
             else
             {
-                gridUnihanHistoryIndex = -1;
-                gridUnihanHistorySave = null;
+                gridSpecimenHistoryIndex = -1;
+                gridSpecimenHistorySave = null;
                 displayRangeTable (gridSelectBlockRange.value);
             }
         }
@@ -848,7 +905,7 @@ module.exports.stop = function (context)
         rsRadicalList: rsRadicalList.open,
         //
         gridSelectBlockRange: gridSelectBlockRange.value,
-        gridUnihanHistory: gridUnihanHistory,
+        gridSpecimenHistory: gridSpecimenHistory,
         gridPageSize: gridParams.pageSize,
         gridPageIndex: gridParams.pageIndex,
         gridInstructions: gridInstructions.open,

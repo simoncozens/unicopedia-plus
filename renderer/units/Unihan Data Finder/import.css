@@ -120,14 +120,48 @@
 #unihan-data-finder-unit .search-string.error
 {
     color: var(--color-error);
+    outline-color: var(--color-error);
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox]
+#unihan-data-finder-unit .search-message
 {
     display: none;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox] + svg
+#unihan-data-finder-unit .search-message.shown::before
+{
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    width: 20px;
+    height: 10px;
+    background-color: var(--color-error);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+#unihan-data-finder-unit .search-message.shown
+{
+    display: block;
+    position: absolute;
+    margin-top: 10px;
+    margin-right: 2rem;
+    font-family: Monaco, "Noto Mono", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    padding: 0.375em 0.75em;
+    color: white;
+    background-color: var(--color-error);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px #aaaaaa;
+}
+
+#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox
+{
+    display: none;
+}
+
+#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox + svg
 {
     font-size: 1.7em;
     line-height: 1em;
@@ -143,7 +177,7 @@
     fill: var(--color-accent);
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox]:checked + svg
+#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox:checked + svg
 {
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0.15));
     box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -151,7 +185,7 @@
     fill: white;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group input[type=checkbox]:disabled + svg
+#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox:disabled + svg
 {
     color: gray;
     fill: gray;
@@ -437,13 +471,14 @@
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
     padding: 0.2em 0.3em;
-    width: 6.4em;
-    margin: 0 0.25em 0 1.25em;
+    width: 7.5em;
+    margin: 0 0.5em 0 1.25em;
 }
 
-#unihan-data-finder-unit .view-by-grid .specimen:invalid
+#unihan-data-finder-unit .view-by-grid .specimen.invalid
 {
     color: var(--color-error);
+    outline-color: var(--color-error);
 }
 
 #unihan-data-finder-unit .view-by-grid .search-info

@@ -34,5 +34,6 @@
     {
         "label": "Latest Releases",
         "URL": "https://github.com/tonton-pixel/unicode-plus/releases"
-    }
+    },
+    "defaultFolder": "documents"
 }

@@ -6,6 +6,7 @@ const tabPanes = unit.querySelectorAll ('.tab-panes .tab-pane');
 const tabInfos = unit.querySelectorAll ('.tab-infos .tab-info');
 //
 const nameSearchString = unit.querySelector ('.find-by-name .search-string');
+const nameSearchMessage = unit.querySelector ('.find-by-name .search-message');
 const nameWholeWord = unit.querySelector ('.find-by-name .whole-word');
 const nameUseRegex = unit.querySelector ('.find-by-name .use-regex');
 const nameSearchButton = unit.querySelector ('.find-by-name .search-button');
@@ -15,6 +16,7 @@ const nameInstructions = unit.querySelector ('.find-by-name .instructions');
 const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
 //
 const symbolSearchString = unit.querySelector ('.match-symbol .search-string');
+const symbolSearchMessage = unit.querySelector ('.match-symbol .search-message');
 const symbolWholeWord = unit.querySelector ('.match-symbol .whole-word');
 const symbolUseRegex = unit.querySelector ('.match-symbol .use-regex');
 const symbolSearchButton = unit.querySelector ('.match-symbol .search-button');
@@ -229,8 +231,29 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault ();    // ??
-                event.target.blur ();
                 nameSearchButton.click ();
+            }
+        }
+    );
+    nameSearchString.addEventListener
+    (
+        'focusin',
+        (event) =>
+        {
+            if (event.target.classList.contains ('error'))
+            {
+                nameSearchMessage.classList.add ('shown');
+            }
+        }
+    );
+    nameSearchString.addEventListener
+    (
+        'focusout',
+        (event) =>
+        {
+            if (event.target.classList.contains ('error'))
+            {
+                nameSearchMessage.classList.remove ('shown');
             }
         }
     );
@@ -240,7 +263,8 @@ module.exports.start = function (context)
         (event) =>
         {
             event.target.classList.remove ('error');
-            event.target.title = "";
+            nameSearchMessage.textContent = "";
+            nameSearchMessage.classList.remove ('shown');
             if (nameUseRegex.checked)
             {
                 try
@@ -253,7 +277,11 @@ module.exports.start = function (context)
                 catch (e)
                 {
                     event.target.classList.add ('error');
-                    event.target.title = e;
+                    nameSearchMessage.textContent = e.message;
+                    if (event.target === document.activeElement)
+                    {
+                        nameSearchMessage.classList.add ('shown');
+                    }
                 }
             }
         }
@@ -272,48 +300,51 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            clearResults (nameHitCount, nameEmojiDataList);
-            let name = nameSearchString.value;
-            if (name)
+            if (!nameSearchString.classList.contains ('error'))
             {
-                let regex = null;
-                try
+                let name = nameSearchString.value;
+                if (name)
                 {
-                    function characterToEcmaScriptEscape (character)
+                    let regex = null;
+                    try
                     {
-                        let num = character.codePointAt (0);
-                        let hex = num.toString (16).toUpperCase ();
-                        return `\\u{${hex}}`;
+                        function characterToEcmaScriptEscape (character)
+                        {
+                            let num = character.codePointAt (0);
+                            let hex = num.toString (16).toUpperCase ();
+                            return `\\u{${hex}}`;
+                        }
+                        //
+                        let pattern = (nameUseRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                        if (nameWholeWord.checked)
+                        {
+                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
+                        }
+                        const flags = 'ui';
+                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
+                        regex = new RegExp (pattern, flags);
                     }
-                    //
-                    let pattern = (nameUseRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                    if (nameWholeWord.checked)
+                    catch (e)
                     {
-                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
-                    const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    regex = new RegExp (pattern, flags);
-                }
-                catch (e)
-                {
-                }
-                if (regex)
-                {
-                    let emojiByName = findEmojiByName (regex);
-                    let closeButton = document.createElement ('button');
-                    closeButton.type = 'button';
-                    closeButton.className = 'close-button';
-                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                    closeButton.title = "Clear results";
-                    closeButton.addEventListener ('click', event => { clearResults (nameHitCount, nameEmojiDataList); });
-                    nameHitCount.appendChild (closeButton);
-                    let infoText = document.createElement ('span');
-                    infoText.innerHTML = `Emoji: <strong>${emojiByName.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
-                    nameHitCount.appendChild (infoText);
-                    displayDataList (emojiByName, nameEmojiDataList);
+                    if (regex)
+                    {
+                        clearResults (nameHitCount, nameEmojiDataList);
+                        let emojiByName = findEmojiByName (regex);
+                        let closeButton = document.createElement ('button');
+                        closeButton.type = 'button';
+                        closeButton.className = 'close-button';
+                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                        closeButton.title = "Clear results";
+                        closeButton.addEventListener ('click', event => { clearResults (nameHitCount, nameEmojiDataList); });
+                        nameHitCount.appendChild (closeButton);
+                        let infoText = document.createElement ('span');
+                        infoText.innerHTML = `Emoji: <strong>${emojiByName.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
+                        nameHitCount.appendChild (infoText);
+                        displayDataList (emojiByName, nameEmojiDataList);
+                    }
                 }
             }
         }
@@ -333,8 +364,29 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault ();    // ??
-                event.target.blur ();
                 symbolSearchButton.click ();
+            }
+        }
+    );
+    symbolSearchString.addEventListener
+    (
+        'focusin',
+        (event) =>
+        {
+            if (event.target.classList.contains ('error'))
+            {
+                symbolSearchMessage.classList.add ('shown');
+            }
+        }
+    );
+    symbolSearchString.addEventListener
+    (
+        'focusout',
+        (event) =>
+        {
+            if (event.target.classList.contains ('error'))
+            {
+                symbolSearchMessage.classList.remove ('shown');
             }
         }
     );
@@ -344,7 +396,8 @@ module.exports.start = function (context)
         (event) =>
         {
             event.target.classList.remove ('error');
-            event.target.title = "";
+            symbolSearchMessage.textContent = "";
+            symbolSearchMessage.classList.remove ('shown');
             if (symbolUseRegex.checked)
             {
                 try
@@ -357,7 +410,11 @@ module.exports.start = function (context)
                 catch (e)
                 {
                     event.target.classList.add ('error');
-                    event.target.title = e;
+                    symbolSearchMessage.textContent = e.message;
+                    if (event.target === document.activeElement)
+                    {
+                        symbolSearchMessage.classList.add ('shown');
+                    }
                 }
             }
         }
@@ -376,48 +433,51 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            clearResults (symbolHitCount, symbolEmojiDataList);
-            let symbol = symbolSearchString.value;
-            if (symbol)
+            if (!symbolSearchString.classList.contains ('error'))
             {
-                let regex = null;
-                try
+                let symbol = symbolSearchString.value;
+                if (symbol)
                 {
-                    function characterToEcmaScriptEscape (character)
+                    let regex = null;
+                    try
                     {
-                        let num = character.codePointAt (0);
-                        let hex = num.toString (16).toUpperCase ();
-                        return `\\u{${hex}}`;
+                        function characterToEcmaScriptEscape (character)
+                        {
+                            let num = character.codePointAt (0);
+                            let hex = num.toString (16).toUpperCase ();
+                            return `\\u{${hex}}`;
+                        }
+                        //
+                        let pattern = (symbolUseRegex.checked) ? symbol : Array.from (symbol).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                        if (symbolWholeWord.checked)
+                        {
+                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
+                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
+                        }
+                        const flags = 'ui';
+                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
+                        regex = new RegExp (pattern, flags);
                     }
-                    //
-                    let pattern = (symbolUseRegex.checked) ? symbol : Array.from (symbol).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                    if (symbolWholeWord.checked)
+                    catch (e)
                     {
-                        const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                        pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
                     }
-                    const flags = 'ui';
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    regex = new RegExp (pattern, flags);
-                }
-                catch (e)
-                {
-                }
-                if (regex)
-                {
-                    let emojiBySymbol = findEmojiBySymbol (regex);
-                    let closeButton = document.createElement ('button');
-                    closeButton.type = 'button';
-                    closeButton.className = 'close-button';
-                    closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                    closeButton.title = "Clear results";
-                    closeButton.addEventListener ('click', event => { clearResults (symbolHitCount, symbolEmojiDataList); });
-                    symbolHitCount.appendChild (closeButton);
-                    let infoText = document.createElement ('span');
-                    infoText.innerHTML = `Emoji: <strong>${emojiBySymbol.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
-                    symbolHitCount.appendChild (infoText);
-                    displayDataList (emojiBySymbol, symbolEmojiDataList);
+                    if (regex)
+                    {
+                        clearResults (symbolHitCount, symbolEmojiDataList);
+                        let emojiBySymbol = findEmojiBySymbol (regex);
+                        let closeButton = document.createElement ('button');
+                        closeButton.type = 'button';
+                        closeButton.className = 'close-button';
+                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
+                        closeButton.title = "Clear results";
+                        closeButton.addEventListener ('click', event => { clearResults (symbolHitCount, symbolEmojiDataList); });
+                        symbolHitCount.appendChild (closeButton);
+                        let infoText = document.createElement ('span');
+                        infoText.innerHTML = `Emoji: <strong>${emojiBySymbol.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
+                        symbolHitCount.appendChild (infoText);
+                        displayDataList (emojiBySymbol, symbolEmojiDataList);
+                    }
                 }
             }
         }

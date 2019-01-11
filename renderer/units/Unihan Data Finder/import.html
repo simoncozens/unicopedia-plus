@@ -22,15 +22,16 @@
                         <div class="action-group search-group">
                             <span class="action search-wrap">
                                 <input class="search-string" type="search" placeholder="Tag value or regex...">
+                                <span class="search-message"></span>
                             </span>
                             <span class="action">
-                                <label title="Case Sensitive (disabled)"><input class="case-sensitive" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                                <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Whole Word"><input class="whole-word" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                                <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
                             </span>
                             <span class="action">
-                                <label title="Regular Expression"><input class="use-regex" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                                <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
                             </span>
                             <span class="action">
                                 <button class="search-button" type="button">Search</button>
@@ -75,7 +76,7 @@
                                 <select class="select-block-range"></select>
                             </span>
                             <span class="action">
-                                <input class="specimen" type="text" title="Unihan character or code point" placeholder="Unihan...">
+                                <input class="specimen" type="search" title="Unihan specimen (character or code point)" placeholder="Specimen...">
                             </span>
                             <span class="action">
                                 <button class="go-button" type="button">Go</button>
@@ -172,8 +173,8 @@
                             <li>The <strong>View by Grid</strong> feature of the <strong>Unihan Data Finder</strong> utility displays in real time a grid view of the blocks containing the 88,889 Unihan characters.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.</li>
-                            <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Unihan</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
-                            <li>You can quickly reuse a previously entered Unihan character by using the Up Arrow <kbd>↑</kbd> and Down Arrow <kbd>↓</kbd> keys to navigate through the history stack in the <kbd>Unihan</kbd> field.</li>
+                            <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
+                            <li>You can quickly reuse a previously entered Unihan character by using the <kbd>Alt</kbd>+<kbd>⭡</kbd> and <kbd>Alt</kbd>+<kbd>⭣</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
                             <li>A list of all the Unihan blocks is available for quick reference.</li>
                         </ul>
                     </details>

@@ -21,9 +21,6 @@ module.exports.start = function (context)
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus');
     //
-    const { remote } = require ('electron');
-    const { app } = remote;
-    //
     const path = require ('path');
     //
     const fileDialogs = require ('../../lib/file-dialogs.js');
@@ -36,7 +33,7 @@ module.exports.start = function (context)
         eastAsianSelect: "",
         instructions: true,
         references: false,
-        defaultFolderPath: app.getPath ('documents')  // 'desktop'
+        defaultFolderPath: context.defaultFolderPath
     };
     let prefs = context.getPrefs (defaultPrefs);
     //
@@ -142,7 +139,6 @@ module.exports.start = function (context)
             }
         }
     );
-    //
     codePointsInput.addEventListener
     (
         'blur',
@@ -151,7 +147,6 @@ module.exports.start = function (context)
             event.target.value = unicode.charactersToCodePoints (charactersInput.value);
         }
     );
-    //
     codePointsInput.addEventListener
     (
         'keypress',

@@ -19,7 +19,7 @@ let defaultFolderPath;
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
-    const { app, getCurrentWebContents } = remote;
+    const { getCurrentWebContents } = remote;
     const webContents = getCurrentWebContents ();
     //
     const fs = require ('fs');
@@ -34,7 +34,7 @@ module.exports.start = function (context)
     const defaultPrefs =
     {
         codeString: "",
-        defaultFolderPath: app.getPath ('documents'),  // 'desktop'
+        defaultFolderPath: context.defaultFolderPath,
         builtInFunctions: true,
         references: false
     };

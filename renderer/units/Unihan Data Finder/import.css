@@ -156,6 +156,11 @@
     box-shadow: 0 1px 4px #aaaaaa;
 }
 
+#unihan-data-finder-unit .find-by-tag-value .search-group
+{
+    margin-right: -0.5em;
+}
+
 #unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox
 {
     display: none;

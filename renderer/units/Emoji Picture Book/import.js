@@ -18,6 +18,35 @@ module.exports.start = function (context)
     const maxFontSize = 128;
     const defaultFontSize = 96;
     //
+    const colorEmojiNotDefFont = `${defaultFontSize}px "Apple Color Emoji", "Segoe Color Emoji", "Noto Color Emoji", "NotDef"`;
+    const colorEmojiBlankFont = `${defaultFontSize}px "Apple Color Emoji", "Segoe Color Emoji", "Noto Color Emoji", "Blank"`;
+    const fallbackFonts = `${defaultFontSize}px "NotDef", "Blank"`;
+    //
+    let fallbackFontsLoaded = false;
+    //
+    let canvas = document.createElement ('canvas');
+    canvas.width = defaultFontSize * 1.25;
+    canvas.height = defaultFontSize * 1.25;
+    let ctx = canvas.getContext ('2d');
+    //
+    function getCharacterWidth (character, font)
+    {
+        ctx.font = font;
+        return Math.round (ctx.measureText (character).width);
+    }
+    //
+    function getCharacterDataString (character, font)
+    {
+        ctx.font = font;
+        ctx.clearRect (0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.fillText (character, 0, defaultFontSize);
+        let imageWidth = Math.round (ctx.measureText (character).width) || ctx.canvas.width;
+        let imageHeight = ctx.canvas.height;
+        return ctx.getImageData (0, 0, imageWidth, imageHeight).data.toString ();
+    }
+    //
+    let debugMode = false;
+    //
     const defaultPrefs =
     {
         selectGroup: "",
@@ -25,8 +54,6 @@ module.exports.start = function (context)
         instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
-    //
-    let debugMode = false;
     //
     titleDebugMode.addEventListener
     (
@@ -100,26 +127,13 @@ module.exports.start = function (context)
         selectGroup.appendChild (option);
     }
     //
-    function canvasCharacterWidth (character)
-    {
-        const size = defaultFontSize;
-        let canvas = document.createElement ('canvas');
-        canvas.width = size;
-        canvas.height = size;
-        let ctx = canvas.getContext ('2d', { alpha: false });
-        ctx.font = `${size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`
-        return ctx.measureText (character).width;
-    }
-    //
-    const unsupportedCharacterWidth = canvasCharacterWidth ("\uFFFE");
-    //
     function isSupportedCharacter (character)
     {
         let isSupported = true;
         let foundTagFlagCharacter = character.match (/^(🏴)[\u{E0030}-\u{E0039}\u{E0061}-\u{E007A}]+\u{E007F}$/u)
         if (foundTagFlagCharacter)
         {
-            if (canvasCharacterWidth (character) === canvasCharacterWidth (foundTagFlagCharacter[1]))
+            if (getCharacterDataString (character, colorEmojiBlankFont) === getCharacterDataString (foundTagFlagCharacter[1], colorEmojiBlankFont))
             {
                 isSupported = false;
             }
@@ -127,12 +141,17 @@ module.exports.start = function (context)
         else
         {
             character = character.replace (/^(.)[🏻-🏿].*/u, '$1');
-            if (canvasCharacterWidth (character) === unsupportedCharacterWidth)
+            if (getCharacterWidth (character, colorEmojiBlankFont) === 0)
             {
                 isSupported = false;
             }
         }
         return isSupported;
+    }
+    //
+    function isOverflowingCharacter (character)
+    {
+        return (getCharacterWidth (character, colorEmojiNotDefFont) > ctx.canvas.width);
     }
     //
     function uniHexify (string)
@@ -165,97 +184,111 @@ module.exports.start = function (context)
     //
     function updateGroup (groupName)
     {
-        while (groupContainer.firstChild)
+        function onFallbackFontsLoaded ()
         {
-           groupContainer.firstChild.remove ();
-        }
-        for (let group of emojiGroups)
-        {
-            if (group.name === groupName)
+            fallbackFontsLoaded = true;
+            while (groupContainer.firstChild)
             {
-                for (let subgroup of group.subgroups)
+                groupContainer.firstChild.remove ();
+            }
+            for (let group of emojiGroups)
+            {
+                if (group.name === groupName)
                 {
-                    let panel = document.createElement ('div');
-                    panel.className = 'plain-panel';
-                    let h2 = document.createElement ('h2');
-                    h2.textContent = subgroup.name;
-                    panel.appendChild (h2);
-                    let sheet = document.createElement ('div');
-                    sheet.className = 'sheet';
-                    let characters = subgroup.characters;
-                    for (let character of characters)
+                    for (let subgroup of group.subgroups)
                     {
-                        if (character)
+                        let panel = document.createElement ('div');
+                        panel.className = 'plain-panel';
+                        let h2 = document.createElement ('h2');
+                        h2.textContent = subgroup.name;
+                        panel.appendChild (h2);
+                        let sheet = document.createElement ('div');
+                        sheet.className = 'sheet';
+                        let characters = subgroup.characters;
+                        for (let character of characters)
                         {
-                            if (character in emojiList)
+                            if (character)
                             {
-                                if (emojiList[character].toFullyQualified)
+                                if (character in emojiList)
                                 {
-                                    character = emojiList[character].toFullyQualified;
-                                    console.log (character);
+                                    if (emojiList[character].toFullyQualified)
+                                    {
+                                        character = emojiList[character].toFullyQualified;
+                                        console.log (character);
+                                    }
+                                    let span =  document.createElement ('span');
+                                    span.className = 'emoji';
+                                    span.textContent = character;
+                                    span.title = getEmojiToolTip (character);
+                                    sheet.appendChild (span);
                                 }
-                                let span =  document.createElement ('span');
-                                span.className = 'emoji';
-                                span.textContent = character;
-                                span.title = getEmojiToolTip (character);
-                                sheet.appendChild (span);
+                            }
+                            else
+                            {
+                                let div = document.createElement ('div');
+                                sheet.appendChild (div);
                             }
                         }
-                        else
+                        panel.appendChild (sheet);
+                        groupContainer.appendChild (panel);
+                        //
+                        let spans = panel.getElementsByClassName ('emoji');
+                        let removedSpans = [ ];
+                        for (let span of spans)
                         {
-                            let div = document.createElement ('div');
-                            sheet.appendChild (div);
-                        }
-                    }
-                    panel.appendChild (sheet);
-                    groupContainer.appendChild (panel);
-                    //
-                    let spans = panel.getElementsByClassName ('emoji');
-                    let removedSpans = [ ];
-                    for (let span of spans)
-                    {
-                        if (!isSupportedCharacter (span.textContent) || (span.scrollWidth > (1 + span.clientWidth + 1)))
-                        {
-                            let saveCharacter = span.textContent;
-                            let removeSpan = true;
-                            let altCharacters = emojiList[saveCharacter].toNonFullyQualified;
-                            if (altCharacters)
+                            let character = span.textContent;
+                            if ((!isSupportedCharacter (character)) || isOverflowingCharacter (character))
                             {
-                                for (let altCharacter of altCharacters)
+                                let saveCharacter = character;
+                                let removeSpan = true;
+                                let altCharacters = emojiList[saveCharacter].toNonFullyQualified;
+                                if (altCharacters)
                                 {
-                                    span.textContent = altCharacter;
-                                    if (isSupportedCharacter (span.textContent) && (!(span.scrollWidth > (1 + span.clientWidth + 1))))
+                                    for (let altCharacter of altCharacters)
                                     {
-                                        span.title = getEmojiToolTip (altCharacter);
-                                        removeSpan = false;
-                                        break;
+                                        span.textContent = altCharacter;
+                                        if (isSupportedCharacter (altCharacter) && (!isOverflowingCharacter (altCharacter)))
+                                        {
+                                            span.title = getEmojiToolTip (altCharacter);
+                                            removeSpan = false;
+                                            break;
+                                        }
+                                    }
+                                    if (removeSpan)
+                                    {
+                                        span.textContent = saveCharacter;
+                                        span.title = getEmojiToolTip (saveCharacter);
                                     }
                                 }
                                 if (removeSpan)
                                 {
-                                    span.textContent = saveCharacter;
-                                    span.title = getEmojiToolTip (saveCharacter);
+                                    removedSpans.push (span);
                                 }
                             }
-                            if (removeSpan)
-                            {
-                                removedSpans.push (span);
-                            }
+                        }
+                        if (!debugMode)
+                        {
+                            removedSpans.forEach ((span) => { span.remove (); });
+                        }
+                        //
+                        let count = panel.getElementsByClassName ('emoji').length;
+                        if (count === 0)
+                        {
+                            panel.remove ();
                         }
                     }
-                    if (!debugMode)
-                    {
-                        removedSpans.forEach ((span) => { span.remove (); });
-                    }
-                    //
-                    let count = panel.getElementsByClassName ('emoji').length;
-                    if (count === 0)
-                    {
-                        panel.remove ();
-                    }
+                    break;
                 }
-                break;
             }
+        }
+        //
+        if (fallbackFontsLoaded)
+        {
+            onFallbackFontsLoaded ();
+        }
+        else
+        {
+            document.fonts.load (fallbackFonts).then (onFallbackFontsLoaded);
         }
     }
     //

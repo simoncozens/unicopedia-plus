@@ -128,12 +128,12 @@ The following utilities are currently available:
 
 ## Emoji Picture Book
 
-- The **Emoji Picture Book** utility displays lists of Unicode emoji in a picture book fashion.
+- The **Emoji Picture Book** utility displays lists of Unicode emoji in a color picture book fashion.
 - Any group of pictures can be displayed by selecting its name in the <kbd>Category</kbd> drop-down menu, among:<br>"Smileys & People", "Animals & Nature", "Food & Drink", "Travel & Places", "Activities", "Objects", "Symbols", "Flags".
 - The size of all emoji pictures (from 32 to 128&nbsp;pixels) can be adjusted by moving the dedicated slider left and right.
 - The groups and subgroups of emoji are those defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 - Only the 2789 *fully-qualified* (keyboard/palette) encodings of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
-- Emoji failing to be represented as proper pictures are purely and simply discarded.
+- Emoji failing to be represented as proper color pictures are purely and simply discarded.
 
 <img src="screenshots/emoji-picture-book.png" width="1080px" alt="Emoji Picture Book screenshot">
 
@@ -262,10 +262,10 @@ The following utilities are currently available:
     - *Unihan_RadicalStrokeCounts.txt*
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
+- Any Unihan character can be entered in the <kbd>Unihan</kbd> input field either as a character or a code point. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
 - In addition, the utility provides, for each Unihan character:
     - basic Unicode information: name, age, plane, block, script, script extensions, general category, decomposition, binary properties, equivalent unified ideograph;
     - basic Unihan information: radical/strokes, definition, variant characters, IICore set.
-- Any Unihan character can be entered in the <kbd>Unihan</kbd> input field either as a character or a code point. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
 - Previously looked up Unihan characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.
 - It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
 - The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through several different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese), `HK` (Hong Kong Chinese). Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.

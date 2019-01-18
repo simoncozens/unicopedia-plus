@@ -99,7 +99,7 @@
 #unihan-data-finder-unit .radical-select,
 #unihan-data-finder-unit .strokes-select
 {
-    font-family: "Noto Sans CJK TC";
+    font-family: "Sans CJK TC";
 }
 
 #unihan-data-finder-unit .search-wrap
@@ -389,7 +389,7 @@
 #unihan-data-finder-unit .rs-data-table .title-header
 {
     text-align: center;
-    font-family: "Noto Sans CJK TC";
+    font-family: "Sans CJK TC";
     font-size: 18px;
     font-weight: normal;
     padding: 0.4em;
@@ -632,7 +632,7 @@
 
 #unihan-data-finder-unit .radicals-table td
 {
-    font-family: "Noto Sans CJK TC";
+    font-family: "Sans CJK TC";
     font-size: 14px;
     padding: 0.25em 0.5em;
 }

@@ -52,27 +52,27 @@
 
 #unihan-inspector-unit .unihan-character:lang(ja)
 {
-    font-family: "Noto Sans CJK JP", "Adobe NotDef";
+    font-family: "Sans CJK JP", "NotDef";
 }
 
 #unihan-inspector-unit .unihan-character:lang(ko)
 {
-    font-family: "Noto Sans CJK KR", "Adobe NotDef";
+    font-family: "Sans CJK KR", "NotDef";
 }
 
 #unihan-inspector-unit .unihan-character:lang(zh-Hans)
 {
-    font-family: "Noto Sans CJK SC", "Adobe NotDef";
+    font-family: "Sans CJK SC", "NotDef";
 }
 
 #unihan-inspector-unit .unihan-character:lang(zh-Hant)
 {
-    font-family: "Noto Sans CJK TC", "Adobe NotDef";
+    font-family: "Sans CJK TC", "NotDef";
 }
 
 #unihan-inspector-unit .unihan-character:lang(zh-HK)
 {
-    font-family: "Noto Sans CJK HK", "Adobe NotDef";
+    font-family: "Sans CJK HK", "NotDef";
 }
 
 #unihan-inspector-unit .character-data

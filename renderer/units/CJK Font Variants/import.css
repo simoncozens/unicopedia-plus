@@ -69,27 +69,27 @@
 
 #cjk-font-variants-unit .cjk-string:lang(ja)
 {
-    font-family: "Noto Sans CJK JP", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
+    font-family: "Sans CJK JP", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "NotDef";
 }
 
 #cjk-font-variants-unit .cjk-string:lang(ko)
 {
-    font-family: "Noto Sans CJK KR", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
+    font-family: "Sans CJK KR", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "NotDef";
 }
 
 #cjk-font-variants-unit .cjk-string:lang(zh-Hans)
 {
-    font-family: "Noto Sans CJK SC", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
+    font-family: "Sans CJK SC", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "NotDef";
 }
 
 #cjk-font-variants-unit .cjk-string:lang(zh-Hant)
 {
-    font-family: "Noto Sans CJK TC", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
+    font-family: "Sans CJK TC", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "NotDef";
 }
 
 #cjk-font-variants-unit .cjk-string:lang(zh-HK)
 {
-    font-family: "Noto Sans CJK HK", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Adobe NotDef";
+    font-family: "Sans CJK HK", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "NotDef";
 }
 
 #cjk-font-variants-unit .plain-panel

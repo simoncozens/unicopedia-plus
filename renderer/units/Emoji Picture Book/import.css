@@ -42,7 +42,7 @@
     border: 1px solid var(--color-border);
     border-radius: inherit;
     margin: 0;
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-family: "Apple Color Emoji", "Segoe Color Emoji", "Noto Color Emoji", "NotDef";
     font-size: 96px;
     line-height: 1.4em;
     padding: 0.2em;

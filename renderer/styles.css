@@ -2,38 +2,44 @@
 
 @font-face
 {
-    font-family: "Noto Sans CJK JP";
-    src: local("Noto Sans CJK JP"), url("cjk-fonts/NotoSansCJKjp-Regular.otf");
+    font-family: "Sans CJK JP";
+    src: url("cjk-fonts/NotoSansCJKjp-Regular.otf") format("opentype");
 }
 
 @font-face
 {
-    font-family: "Noto Sans CJK KR";
-    src: local("Noto Sans CJK KR"), url("cjk-fonts/NotoSansCJKkr-Regular.otf");
+    font-family: "Sans CJK KR";
+    src: url("cjk-fonts/NotoSansCJKkr-Regular.otf") format("opentype");
 }
 
 @font-face
 {
-    font-family: "Noto Sans CJK SC";
-    src: local("Noto Sans CJK SC"), url("cjk-fonts/NotoSansCJKsc-Regular.otf");
+    font-family: "Sans CJK SC";
+    src: url("cjk-fonts/NotoSansCJKsc-Regular.otf") format("opentype");
 }
 
 @font-face
 {
-    font-family: "Noto Sans CJK TC";
-    src: local("Noto Sans CJK TC"), url("cjk-fonts/NotoSansCJKtc-Regular.otf");
+    font-family: "Sans CJK TC";
+    src: url("cjk-fonts/NotoSansCJKtc-Regular.otf") format("opentype");
 }
 
 @font-face
 {
-    font-family: "Noto Sans CJK HK";
-    src: local("Noto Sans CJK HK"), url("cjk-fonts/NotoSansCJKhk-Regular.otf");
+    font-family: "Sans CJK HK";
+    src: url("cjk-fonts/NotoSansCJKhk-Regular.otf") format("opentype");
 }
 
 @font-face
 {
-    font-family: "Adobe NotDef";
-    src: local("Adobe NotDef"), url("not-def-font/AND-Regular.otf");
+    font-family: "NotDef";
+    src: url("not-def-font/AND-Regular.otf") format("opentype");
+}
+
+@font-face
+{
+    font-family: "Blank";
+    src: url("blank-font/AdobeBlank2.otf") format("opentype");
 }
 
 :root

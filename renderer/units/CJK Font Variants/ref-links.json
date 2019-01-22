@@ -127,13 +127,21 @@
     ],
     [
         {
+            "name": "CJK Type Blog | CJK Fonts, Character Sets & Encodings. All CJK. #AllOfTheTime.",
+            "href": "https://blogs.adobe.com/CCJKType/"
+        }
+    ],
+    [
+        {
             "name": "Noto CJK – Google Noto Fonts",
             "href": "https://www.google.com/get/noto/help/cjk/"
         },
         {
             "name": "Guidelines for Using Noto – Google Noto Fonts",
             "href": "https://www.google.com/get/noto/help/guidelines/"
-        },
+        }
+    ],
+    [
         {
             "name": "GitHub - adobe-fonts/adobe-notdef: Adobe NotDef",
             "href": "https://github.com/adobe-fonts/adobe-notdef"

@@ -1,10 +1,5 @@
 @charset "utf-8";
 
-#emoji-picture-book-unit h1.debug
-{
-    text-decoration: underline overline;
-}
-
 #emoji-picture-book-unit .interface
 {
     display: flex;
@@ -43,8 +38,7 @@
     border-radius: inherit;
     margin: 0;
     font-family: "Apple Color Emoji", "Segoe Color Emoji", "Noto Color Emoji", "NotDef";
-    font-size: 96px;
-    line-height: 1.4em;
+    line-height: 1.333em;
     padding: 0.2em;
     width: 100%;
     user-select: text;

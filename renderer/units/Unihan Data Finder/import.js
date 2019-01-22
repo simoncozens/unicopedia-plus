@@ -672,7 +672,7 @@ module.exports.start = function (context)
         }
     );
     //
-    const characterOrCodePointRegex = /^\s*(?:(.)|(?:[Uu]\+)?\s*([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
+    const characterOrCodePointRegex = /^\s*(?:(.)|(?:[Uu]\+)?([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
     //
     function parseUnihanCharacter (inputString)
     {

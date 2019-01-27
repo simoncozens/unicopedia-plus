@@ -64,7 +64,7 @@ module.exports.start = function (context)
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     //
-    unihanCount = unihanData.fullSet.length;
+    let unihanCount = unihanData.fullSet.length;
     //
     const defaultPrefs =
     {
@@ -300,13 +300,28 @@ module.exports.start = function (context)
                 }
                 if (matchingValues.length > 0)
                 {
+                    let character = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
+                    let num = character.codePointAt (0);
+                    let blockName;
+                    let blockRange;
+                    for (let block of unihanBlocks)
+                    {
+                        if ((block.firstIndex <= num) && (num <= block.lastIndex))
+                        {
+                            blockName = block.name;
+                            blockRange = block.range;
+                            break;
+                        }
+                    }
                     characterInfoList.push
                     (
                         {
-                            character: String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16)),
+                            character: character,
                             codePoint: codePoint,
                             tag: tag,
-                            value: ((matchingValues.length > 1) ? matchingValues : matchingValues[0])
+                            value: ((matchingValues.length > 1) ? matchingValues : matchingValues[0]),
+                            blockName: blockName,
+                            blockRange: blockRange
                         }
                     );
                 }
@@ -626,13 +641,32 @@ module.exports.start = function (context)
             block.lastIndex = parseInt (block.last, 16);
             block.size = block.lastIndex - block.firstIndex + 1;
             block.characters = [ ];
+            block.coreCount = 0;
+            block.fullCount = 0;
             for (let index = block.firstIndex; index <= block.lastIndex; index++)
             {
-                block.characters.push (String.fromCodePoint (index));
+                let character = String.fromCodePoint (index);
+                if (unihanRegex.test (character))
+                {
+                    block.fullCount++;
+                }
+                block.characters.push (character);
             }
-            block.count = block.characters.filter (character => unihanRegex.test (character)).length;
         }
     );
+    //
+    for (let codePoint of unihanData.coreSet)
+    {
+        let num = parseInt (codePoint.replace ("U+", ""), 16);
+        for (let block of unihanBlocks)
+        {
+            if ((block.firstIndex <= num) && (num <= block.lastIndex))
+            {
+                block.coreCount++;
+                break;
+            }
+        }
+    }
     //
     function displayRangeTable (blockKey, highlightedCharacter)
     {
@@ -642,7 +676,7 @@ module.exports.start = function (context)
             gridSearchData.firstChild.remove ();
         }
         let block = blocks[blockKey];
-        gridSearchInfo.innerHTML = `Unihan characters: <strong>${block.count}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
+        gridSearchInfo.innerHTML = `Unihan characters: <strong>${block.fullCount}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
         gridSearchData.appendChild (gridDataTable.create (block.characters, gridParams, highlightedCharacter));
     }
     //

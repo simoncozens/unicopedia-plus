@@ -160,13 +160,10 @@ else
         submenu:
         [
             { role: 'reload' },
-            // { role: 'forcereload' },
             { role: 'toggledevtools' },
             { type: 'separator' },
-            // { label: "Open User Data Directory", click: () => { shell.openItem (app.getPath ('userData')); } },
-            { label: "Open User Data Directory", click: () => { shell.openExternal (url.format ({ protocol: 'file:', pathname: app.getPath ('userData') })); } },
-            // { label: "Open Temporary Directory", click: () => { shell.openItem (app.getPath ('temp')); } }
-            { label: "Open Temporary Directory", click: () => { shell.openExternal (url.format ({ protocol: 'file:', pathname: app.getPath ('temp') })); } },
+            { label: "Open User Data Directory", click: () => { shell.openItem (app.getPath ('userData')); } },
+            { label: "Open Temporary Directory", click: () => { shell.openItem (app.getPath ('temp')); } },
             { type: 'separator' },
             { label: "Show Executable File", click: () => { shell.showItemInFolder (app.getPath ('exe')); } }
         ]

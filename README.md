@@ -209,8 +209,8 @@ The following utilities are currently available:
 
 ### Find by Tag Value
 
-- The **Find by Tag Value** feature of the **Unihan Data Finder** utility displays a list of basic data (symbol, code point, Unihan tag and value(s) of matching Unihan characters searched by tag value, including through regular expressions.
-- Use the <kbd>Unihan Tag</kbd> drop-down menu to select the tag you wish to search value(s) by.
+- The **Find by Tag Value** feature of the **Unihan Data Finder** utility displays a list of basic data (symbol, code point, Unihan tag, value, block) of matching Unihan characters searched by tag value, including through regular expressions.
+- Use the <kbd>Unihan Tag</kbd> drop-down menu to select the tag you wish to search value by.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories in the drop-down menu.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.

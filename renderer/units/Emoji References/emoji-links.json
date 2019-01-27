@@ -59,6 +59,16 @@
     ],
     [
         {
+            "name": "emoji-ordering.txt",
+            "href": "https://unicode.org/emoji/charts/emoji-ordering.txt"
+        },
+        {
+            "name": "emoji-test.txt",
+            "href": "https://unicode.org/Public/emoji/11.0/emoji-test.txt"
+        }
+    ],
+    [
+        {
             "name": "emoji-patterns - npm",
             "href": "https://www.npmjs.com/package/emoji-patterns"
         },

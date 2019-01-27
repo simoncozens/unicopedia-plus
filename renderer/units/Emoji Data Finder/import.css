@@ -191,7 +191,7 @@
 
 #emoji-data-finder-unit .input-string
 {
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-family: "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
     font-size: 36px;
     letter-spacing: 0.1em;
     padding: 0 0.2em;
@@ -254,7 +254,7 @@
 
 #emoji-data-finder-unit .emoji-table .emoji
 {
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-family: "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
     font-size: 72px;
     line-height: 1em;
     padding: 0.2em;

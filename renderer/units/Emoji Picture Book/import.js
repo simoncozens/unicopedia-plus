@@ -17,8 +17,8 @@ module.exports.start = function (context)
     const defaultFontSize = 100; // 72, 80, 84, 96, 100
     const fontAdjustmentFactor = 1.25;  // Noto Color Emoji font is 25% larger
     //
-    const colorEmojiNotDefFont = `${defaultFontSize}px "Apple Color Emoji", "Segoe Color Emoji", "Noto Color Emoji", "NotDef"`;
-    const colorEmojiBlankFont = `${defaultFontSize}px "Apple Color Emoji", "Segoe Color Emoji", "Noto Color Emoji", "Blank"`;
+    const colorEmojiNotDefFont = `${defaultFontSize}px "Apple Color Emoji", "Noto Color Emoji", "Segoe Color Emoji", "NotDef"`;
+    const colorEmojiBlankFont = `${defaultFontSize}px "Apple Color Emoji", "Noto Color Emoji", "Segoe Color Emoji", "Blank"`;
     const fallbackFontFaces = `${defaultFontSize}px "NotDef", "Blank"`;
     //
     let canvas = document.createElement ('canvas');

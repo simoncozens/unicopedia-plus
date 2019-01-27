@@ -73,6 +73,10 @@ module.exports.create = function (characterInfos, params)
         headerValue.className = 'header-value';
         headerValue.textContent = "Value";
         headerRow.appendChild (headerValue);
+        let headerBlock = document.createElement ('th');
+        headerBlock.className = 'header-block';
+        headerBlock.textContent = "Block";
+        headerRow.appendChild (headerBlock);
         table.appendChild (headerRow);
         //
         for (let characterInfo of characterInfos)
@@ -121,6 +125,11 @@ module.exports.create = function (characterInfos, params)
                 dataValue.textContent = value;
             }
             dataRow.appendChild (dataValue);
+            let dataBlock = document.createElement ('td');
+            dataBlock.className = 'data-block';
+            dataBlock.title = characterInfo.blockRange;
+            dataBlock.textContent = characterInfo.blockName.replace (/ (.)$/, "\u00A0$1");
+            dataRow.appendChild (dataBlock);
             table.appendChild (dataRow);
         }
         //

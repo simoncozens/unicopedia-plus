@@ -310,14 +310,23 @@
     padding: 0.5em;
 }
 
+#unicode-data-finder-unit .search-data .symbol-header
+{
+    width: 90px;
+}
+
+#unicode-data-finder-unit .search-data .code-point-header
+{
+    width: 6em;
+}
+
 #unicode-data-finder-unit .search-data .name-header
 {
-    width: 75%;
 }
 
 #unicode-data-finder-unit .search-data .block-name-header
 {
-    width: 25%;
+    width: 14em;
 }
 
 #unicode-data-finder-unit .search-data .row

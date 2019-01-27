@@ -290,7 +290,8 @@
 #unihan-data-finder-unit .search-data .header-symbol,
 #unihan-data-finder-unit .search-data .header-code-point,
 #unihan-data-finder-unit .search-data .header-tag,
-#unihan-data-finder-unit .search-data .header-value
+#unihan-data-finder-unit .search-data .header-value,
+#unihan-data-finder-unit .search-data .header-block
 {
     text-align: left;
     font-size: 13px;
@@ -300,19 +301,32 @@
 
 #unihan-data-finder-unit .search-data .data-table .header-symbol
 {
+    width: 5em;
     text-align: center;
+}
+
+#unihan-data-finder-unit .search-data .header-code-point
+{
+    width: 6em;
+}
+#unihan-data-finder-unit .search-data .header-tag
+{
+    width: 6em;
 }
 
 #unihan-data-finder-unit .search-data .data-table .header-value
 {
-    width: 100%;
+}
+
+#unihan-data-finder-unit .search-data .data-table .header-block
+{
+    width: 13em;
 }
 
 #unihan-data-finder-unit .search-data .data-table .data-row
 {
     vertical-align: middle;
     background-color: white;
-    font-family: Monaco, "Noto Mono", monospace;
 }
 
 #unihan-data-finder-unit .search-data .data-table .data-symbol
@@ -322,18 +336,23 @@
     padding: 0.5em 0;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-code-point
+#unihan-data-finder-unit .search-data .data-table .data-code-point,
+#unihan-data-finder-unit .search-data .data-table .data-tag,
+#unihan-data-finder-unit .search-data .data-table .data-value
 {
+    font-family: Monaco, "Noto Mono", monospace;
     text-align: left;
+    font-size: 13px;
     padding: 0.25em 0.5em;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-tag
+{
 }
 
 #unihan-data-finder-unit .search-data .data-table .data-tag,
 #unihan-data-finder-unit .search-data .data-table .data-value
 {
-    text-align: left;
-    font-size: 13px;
-    padding: 0.25em 0.5em;
     line-height: 1.2em;
 }
 
@@ -346,6 +365,16 @@
 #unihan-data-finder-unit .search-data .data-table .data-value .item
 {
     margin: 0.1em 0 0.1em -24px;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-block
+{
+    text-align: left;
+    font-size: 13px;
+    line-height: 1em;
+    vertical-align: middle;
+    padding: 0.5em;
+    hyphens: none;
 }
 
 #unihan-data-finder-unit .radical-strokes .rs-group label.disabled
@@ -700,16 +729,20 @@
 #unihan-data-finder-unit .unihan-blocks td
 {
     text-align: left;
-    padding: 0.25em 0.75em;
+    padding: 0.25em 0.5em;
     white-space: nowrap;
 }
 
 #unihan-data-finder-unit .unihan-blocks th.size-header,
 #unihan-data-finder-unit .unihan-blocks td.size,
-#unihan-data-finder-unit .unihan-blocks th.characters-header,
-#unihan-data-finder-unit .unihan-blocks td.characters,
-#unihan-data-finder-unit .unihan-blocks th.total-header,
-#unihan-data-finder-unit .unihan-blocks td.total
+#unihan-data-finder-unit .unihan-blocks th.core-set-header,
+#unihan-data-finder-unit .unihan-blocks td.core-set,
+#unihan-data-finder-unit .unihan-blocks th.core-total-header,
+#unihan-data-finder-unit .unihan-blocks td.core-total,
+#unihan-data-finder-unit .unihan-blocks th.full-set-header,
+#unihan-data-finder-unit .unihan-blocks td.full-set,
+#unihan-data-finder-unit .unihan-blocks th.full-total-header,
+#unihan-data-finder-unit .unihan-blocks td.full-total
 {
     text-align: right;
 }
@@ -725,20 +758,24 @@
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
 }
 
-#unihan-data-finder-unit .unihan-blocks th.total-header
+#unihan-data-finder-unit .unihan-blocks th.core-total-header,
+#unihan-data-finder-unit .unihan-blocks th.full-total-header
 {
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
 }
 
 #unihan-data-finder-unit .unihan-blocks td.range,
 #unihan-data-finder-unit .unihan-blocks td.size,
-#unihan-data-finder-unit .unihan-blocks td.characters,
-#unihan-data-finder-unit .unihan-blocks td.total
+#unihan-data-finder-unit .unihan-blocks td.core-set,
+#unihan-data-finder-unit .unihan-blocks td.full-set,
+#unihan-data-finder-unit .unihan-blocks td.core-total,
+#unihan-data-finder-unit .unihan-blocks td.full-total
 {
     font-family: Monaco, "Noto Mono", monospace;
 }
 
-#unihan-data-finder-unit .unihan-blocks td.total
+#unihan-data-finder-unit .unihan-blocks td.core-total,
+#unihan-data-finder-unit .unihan-blocks td.full-total
 {
     font-weight: bold;
 }

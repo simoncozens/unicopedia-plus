@@ -28,12 +28,12 @@
     "repository":
     {
         "label": "Repository",
-        "URL": "https://github.com/tonton-pixel/unicode-plus"
+        "URL": "https://github.com/tonton-pixel/unicopedia-plus"
     },
     "releases":
     {
         "label": "Latest Releases",
-        "URL": "https://github.com/tonton-pixel/unicode-plus/releases"
+        "URL": "https://github.com/tonton-pixel/unicopedia-plus/releases"
     },
     "defaultFolder": "documents"
 }

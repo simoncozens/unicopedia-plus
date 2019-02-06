@@ -3,7 +3,7 @@
         <div class="plain-panel">
             <div class="tab-bar">
                 <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Symbol</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Sequence</span></label>
                 <label class="tab-label"><input class="tab-radio" type="radio"><span>Filter Text</span></label>
             </div>
             <div class="tab-panes">
@@ -11,7 +11,7 @@
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Name or keyword...">
+                                <input class="search-string" type="search" placeholder="Emoji name or keyword...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -31,11 +31,11 @@
                     <div class="hit-count"></div>
                     <div class="emoji-data-list"></div>
                 </div>
-                <div class="tab-pane match-symbol">
+                <div class="tab-pane match-sequence">
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Symbol or regex properties...">
+                                <input class="search-string" type="search" placeholder="Character sequence or regex properties...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -83,7 +83,7 @@
                     <details class="instructions">
                         <summary>Instructions</summary>
                         <ul>
-                            <li>The <strong>Find by Name</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code) of matching Unicode emoji searched by name or keyword, including through regular expressions.</li>
+                            <li>The <strong>Find by Name</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
                             <li><em>Fully-qualified</em> (keyboard/palette) emoji are presented in a standard way, while <em>non-fully-qualified</em> (display/process) emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>This feature deals with the 3,570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
@@ -104,12 +104,12 @@
                     </details>
                 </div>
             </div>
-            <div class="tab-info match-symbol">
+            <div class="tab-info match-sequence">
                 <div class="accent-panel">
                     <details class="instructions">
                         <summary>Instructions</summary>
                         <ul>
-                            <li>The <strong>Match Symbol</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code) of Unicode emoji matching a symbol, or a regular expression using Unicode properties.</li>
+                            <li>The <strong>Match Sequence</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, or a regular expression using Unicode properties.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
                             <li><em>Fully-qualified</em> (keyboard/palette) emoji are presented in a standard way, while <em>non-fully-qualified</em> (display/process) emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>This feature deals with the 3,570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
@@ -146,7 +146,7 @@
                     <details class="instructions">
                         <summary>Instructions</summary>
                         <ul>
-                            <li>The <strong>Filter Text</strong> feature of the <strong>Emoji Data Finder</strong> utility displays in real time a list of basic data (symbol, short name, keywords, code) of all the Unicode emoji contained in a text string.</li>
+                            <li>The <strong>Filter Text</strong> feature of the <strong>Emoji Data Finder</strong> utility displays in real time a list of basic data (symbol, short name, keywords, code points) of all the Unicode emoji contained in a text string.</li>
                             <li>Text can by directly typed or pasted from the clipboard into the main input field. Click on the <kbd>Filter</kbd> button to strip out all non-emoji characters.</li>
                             <li>It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
                             <li>As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.</li>

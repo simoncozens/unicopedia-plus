@@ -270,7 +270,7 @@ module.exports.start = function (context)
                 }
                 //
                 // Remove duplicates
-                rsValues = [... new Set (rsValues)];
+                rsValues = [...new Set (rsValues)];
                 //
                 rsClasses = rsValues.map ((rsValue, index) => (index < rsIRGCount) ? 'irg-source' : 'no-irg-source');
                 //

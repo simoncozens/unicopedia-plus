@@ -116,7 +116,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
                 {
                     symbol.textContent = data.character;
                 }
-                symbol.title = data.codePoint;
+                symbol.title = `Code Point: ${data.codePoint}\nAge: ${data.age} (${data.ageDate})`;
                 if (character === highlightedCharacter)
                 {
                     symbol.classList.add ('highlighted');

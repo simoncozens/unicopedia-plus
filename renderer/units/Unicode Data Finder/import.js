@@ -17,17 +17,17 @@ const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
 //
 const nameParams = { };
 //
-const symbolSearchString = unit.querySelector ('.match-symbol .search-string');
-const symbolSearchMessage = unit.querySelector ('.match-symbol .search-message');
-const symbolCaseSensitive = unit.querySelector ('.match-symbol .case-sensitive');
-const symbolUseRegex = unit.querySelector ('.match-symbol .use-regex');
-const symbolSearchButton = unit.querySelector ('.match-symbol .search-button');
-const symbolSearchInfo = unit.querySelector ('.match-symbol .search-info');
-const symbolSearchData = unit.querySelector ('.match-symbol .search-data');
-const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
-const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
+const characterSearchString = unit.querySelector ('.match-character .search-string');
+const characterSearchMessage = unit.querySelector ('.match-character .search-message');
+const characterCaseSensitive = unit.querySelector ('.match-character .case-sensitive');
+const characterUseRegex = unit.querySelector ('.match-character .use-regex');
+const characterSearchButton = unit.querySelector ('.match-character .search-button');
+const characterSearchInfo = unit.querySelector ('.match-character .search-info');
+const characterSearchData = unit.querySelector ('.match-character .search-data');
+const characterInstructions = unit.querySelector ('.match-character .instructions');
+const characterRegexExamples = unit.querySelector ('.match-character .regex-examples');
 //
-const symbolParams = { };
+const characterParams = { };
 //
 const blockSpecimen = unit.querySelector ('.list-by-block .specimen');
 const blockGoButton = unit.querySelector ('.list-by-block .go-button');
@@ -66,12 +66,12 @@ module.exports.start = function (context)
         nameInstructions: true,
         nameRegexExamples: false,
         //
-        symbolSearchString: "",
-        symbolCaseSensitive: false,
-        symbolUseRegex: false,
-        symbolPageSize: 8,
-        symbolInstructions: true,
-        symbolRegexExamples: false,
+        characterSearchString: "",
+        characterCaseSensitive: false,
+        characterUseRegex: false,
+        characterPageSize: 8,
+        characterInstructions: true,
+        characterRegexExamples: false,
         //
         blockSelectBlockRange: "",
         blockSpecimenHistory: [ ],
@@ -269,14 +269,14 @@ module.exports.start = function (context)
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
     //
-    symbolParams.pageSize = prefs.symbolPageSize;
-    symbolParams.observer = null;
-    symbolParams.root = unit;
+    characterParams.pageSize = prefs.characterPageSize;
+    characterParams.observer = null;
+    characterParams.root = unit;
     //
-    symbolCaseSensitive.checked = prefs.symbolCaseSensitive;
-    symbolUseRegex.checked = prefs.symbolUseRegex;
+    characterCaseSensitive.checked = prefs.characterCaseSensitive;
+    characterUseRegex.checked = prefs.characterUseRegex;
     //
-    symbolSearchString.addEventListener
+    characterSearchString.addEventListener
     (
         'keypress',
         (event) =>
@@ -284,45 +284,45 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                symbolSearchButton.click ();
+                characterSearchButton.click ();
             }
         }
     );
-    symbolSearchString.addEventListener
+    characterSearchString.addEventListener
     (
         'focusin',
         (event) =>
         {
             if (event.target.classList.contains ('error'))
             {
-                symbolSearchMessage.classList.add ('shown');
+                characterSearchMessage.classList.add ('shown');
             }
         }
     );
-    symbolSearchString.addEventListener
+    characterSearchString.addEventListener
     (
         'focusout',
         (event) =>
         {
             if (event.target.classList.contains ('error'))
             {
-                symbolSearchMessage.classList.remove ('shown');
+                characterSearchMessage.classList.remove ('shown');
             }
         }
     );
-    symbolSearchString.addEventListener
+    characterSearchString.addEventListener
     (
         'input',
         (event) =>
         {
             event.target.classList.remove ('error');
-            symbolSearchMessage.textContent = "";
-            symbolSearchMessage.classList.remove ('shown');
-            if (symbolUseRegex.checked)
+            characterSearchMessage.textContent = "";
+            characterSearchMessage.classList.remove ('shown');
+            if (characterUseRegex.checked)
             {
                 try
                 {
-                    const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
+                    const flags = characterCaseSensitive.checked ? 'u' : 'ui';
                     let pattern = event.target.value;
                     pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                     let regex = new RegExp (pattern, flags);
@@ -330,32 +330,32 @@ module.exports.start = function (context)
                 catch (e)
                 {
                     event.target.classList.add ('error');
-                    symbolSearchMessage.textContent = e.message;
+                    characterSearchMessage.textContent = e.message;
                     if (event.target === document.activeElement)
                     {
-                        symbolSearchMessage.classList.add ('shown');
+                        characterSearchMessage.classList.add ('shown');
                     }
                 }
             }
         }
     );
-    symbolSearchString.value = prefs.symbolSearchString;
-    symbolSearchString.dispatchEvent (new Event ('input'));
+    characterSearchString.value = prefs.characterSearchString;
+    characterSearchString.dispatchEvent (new Event ('input'));
     //
-    symbolUseRegex.addEventListener
+    characterUseRegex.addEventListener
     (
         'change',
-        (event) => symbolSearchString.dispatchEvent (new Event ('input'))
+        (event) => characterSearchString.dispatchEvent (new Event ('input'))
     );
     //
-    symbolSearchButton.addEventListener
+    characterSearchButton.addEventListener
     (
         'click',
         (event) =>
         {
-            if (!symbolSearchString.classList.contains ('error'))
+            if (!characterSearchString.classList.contains ('error'))
             {
-                let searchString = symbolSearchString.value;
+                let searchString = characterSearchString.value;
                 if (searchString)
                 {
                     let regex = null;
@@ -368,10 +368,10 @@ module.exports.start = function (context)
                             return `\\u{${hex}}`;
                         }
                         //
-                        let pattern = (symbolUseRegex.checked) ?
+                        let pattern = (characterUseRegex.checked) ?
                             searchString :
                             Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        const flags = symbolCaseSensitive.checked ? 'u' : 'ui';
+                        const flags = characterCaseSensitive.checked ? 'u' : 'ui';
                         pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                         regex = new RegExp (pattern, flags);
                     }
@@ -380,7 +380,7 @@ module.exports.start = function (context)
                     }
                     if (regex)
                     {
-                        clearSearch (symbolSearchInfo, symbolSearchData);
+                        clearSearch (characterSearchInfo, characterSearchData);
                         let start = window.performance.now ();
                         let characters = unicode.findCharactersByData (regex, true);
                         let stop = window.performance.now ();
@@ -390,15 +390,15 @@ module.exports.start = function (context)
                         closeButton.className = 'close-button';
                         closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
                         closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearSearch (symbolSearchInfo, symbolSearchData); });
-                        symbolSearchInfo.appendChild (closeButton);
+                        closeButton.addEventListener ('click', event => { clearSearch (characterSearchInfo, characterSearchData); });
+                        characterSearchInfo.appendChild (closeButton);
                         let infoText = document.createElement ('span');
                         infoText.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
-                        symbolSearchInfo.appendChild (infoText);
+                        characterSearchInfo.appendChild (infoText);
                         if (characters.length > 0)
                         {
-                            symbolParams.pageIndex = 0;
-                            symbolSearchData.appendChild (dataTable.create (characters, symbolParams));
+                            characterParams.pageIndex = 0;
+                            characterSearchData.appendChild (dataTable.create (characters, characterParams));
                         }
                     }
                 }
@@ -406,8 +406,8 @@ module.exports.start = function (context)
         }
     );
     //
-    symbolInstructions.open = prefs.symbolInstructions;
-    symbolRegexExamples.open = prefs.symbolRegexExamples;
+    characterInstructions.open = prefs.characterInstructions;
+    characterRegexExamples.open = prefs.characterRegexExamples;
     //
     blockSpecimenHistory = prefs.blockSpecimenHistory;
     //
@@ -714,12 +714,12 @@ module.exports.stop = function (context)
         nameInstructions: nameInstructions.open,
         nameRegexExamples: nameRegexExamples.open,
         //
-        symbolSearchString: symbolSearchString.value,
-        symbolCaseSensitive: symbolCaseSensitive.checked,
-        symbolUseRegex: symbolUseRegex.checked,
-        symbolPageSize: symbolParams.pageSize,
-        symbolInstructions: symbolInstructions.open,
-        symbolRegexExamples: symbolRegexExamples.open,
+        characterSearchString: characterSearchString.value,
+        characterCaseSensitive: characterCaseSensitive.checked,
+        characterUseRegex: characterUseRegex.checked,
+        characterPageSize: characterParams.pageSize,
+        characterInstructions: characterInstructions.open,
+        characterRegexExamples: characterRegexExamples.open,
         //
         blockSelectBlockRange: blockSelectBlockRange.value,
         blockSpecimenHistory: blockSpecimenHistory,

@@ -656,6 +656,15 @@ function getCharacterBasicData (character)
             break;
         }
     }
+    for (let version of extraData.versions)
+    {
+        if ((parseInt (version.first, 16) <= num) && (num <= parseInt (version.last, 16)))
+        {
+            characterBasicData.age = version.age;
+            characterBasicData.ageDate = versionDate[version.age];
+            break;
+        }
+    }
     return characterBasicData;
 }
 //

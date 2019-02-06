@@ -15,15 +15,15 @@ const nameEmojiDataList = unit.querySelector ('.find-by-name .emoji-data-list');
 const nameInstructions = unit.querySelector ('.find-by-name .instructions');
 const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
 //
-const symbolSearchString = unit.querySelector ('.match-symbol .search-string');
-const symbolSearchMessage = unit.querySelector ('.match-symbol .search-message');
-const symbolWholeWord = unit.querySelector ('.match-symbol .whole-word');
-const symbolUseRegex = unit.querySelector ('.match-symbol .use-regex');
-const symbolSearchButton = unit.querySelector ('.match-symbol .search-button');
-const symbolHitCount = unit.querySelector ('.match-symbol .hit-count');
-const symbolEmojiDataList = unit.querySelector ('.match-symbol .emoji-data-list');
-const symbolInstructions = unit.querySelector ('.match-symbol .instructions');
-const symbolRegexExamples = unit.querySelector ('.match-symbol .regex-examples');
+const sequenceSearchString = unit.querySelector ('.match-sequence .search-string');
+const sequenceSearchMessage = unit.querySelector ('.match-sequence .search-message');
+const sequenceWholeWord = unit.querySelector ('.match-sequence .whole-word');
+const sequenceUseRegex = unit.querySelector ('.match-sequence .use-regex');
+const sequenceSearchButton = unit.querySelector ('.match-sequence .search-button');
+const sequenceHitCount = unit.querySelector ('.match-sequence .hit-count');
+const sequenceEmojiDataList = unit.querySelector ('.match-sequence .emoji-data-list');
+const sequenceInstructions = unit.querySelector ('.match-sequence .instructions');
+const sequenceRegexExamples = unit.querySelector ('.match-sequence .regex-examples');
 //
 const textClearButton = unit.querySelector ('.filter-text .clear-button');
 const textEmojiSamples = unit.querySelector ('.filter-text .emoji-samples');
@@ -50,11 +50,11 @@ module.exports.start = function (context)
         nameInstructions: true,
         nameRegexExamples: false,
         //
-        symbolSearchString: "",
-        symbolWholeWord: false,
-        symbolUseRegex: false,
-        symbolInstructions: true,
-        symbolRegexExamples: false,
+        sequenceSearchString: "",
+        sequenceWholeWord: false,
+        sequenceUseRegex: false,
+        sequenceInstructions: true,
+        sequenceRegexExamples: false,
         //
         textInputString: "",
         textInstructions: true
@@ -137,17 +137,17 @@ module.exports.start = function (context)
         return emojiByName;
     }
     //
-    function findEmojiBySymbol (regex)
+    function findEmojiBySequence (regex)
     {
-        let emojiBySymbol = [ ];
+        let emojiBySequence = [ ];
         for (let emoji in emojiList)
         {
             if (regex.test (emoji))
             {
-                emojiBySymbol.push (emoji);
+                emojiBySequence.push (emoji);
             }
         }
-        return emojiBySymbol;
+        return emojiBySequence;
     }
     //
     const emojiPattern = require ('emoji-test-patterns')["Emoji_Test_All"];
@@ -353,10 +353,10 @@ module.exports.start = function (context)
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
     //
-    symbolWholeWord.checked = prefs.symbolWholeWord;
-    symbolUseRegex.checked = prefs.symbolUseRegex;
+    sequenceWholeWord.checked = prefs.sequenceWholeWord;
+    sequenceUseRegex.checked = prefs.sequenceUseRegex;
     //
-    symbolSearchString.addEventListener
+    sequenceSearchString.addEventListener
     (
         'keypress',
         (event) =>
@@ -364,41 +364,41 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault ();    // ??
-                symbolSearchButton.click ();
+                sequenceSearchButton.click ();
             }
         }
     );
-    symbolSearchString.addEventListener
+    sequenceSearchString.addEventListener
     (
         'focusin',
         (event) =>
         {
             if (event.target.classList.contains ('error'))
             {
-                symbolSearchMessage.classList.add ('shown');
+                sequenceSearchMessage.classList.add ('shown');
             }
         }
     );
-    symbolSearchString.addEventListener
+    sequenceSearchString.addEventListener
     (
         'focusout',
         (event) =>
         {
             if (event.target.classList.contains ('error'))
             {
-                symbolSearchMessage.classList.remove ('shown');
+                sequenceSearchMessage.classList.remove ('shown');
             }
         }
     );
-    symbolSearchString.addEventListener
+    sequenceSearchString.addEventListener
     (
         'input',
         (event) =>
         {
             event.target.classList.remove ('error');
-            symbolSearchMessage.textContent = "";
-            symbolSearchMessage.classList.remove ('shown');
-            if (symbolUseRegex.checked)
+            sequenceSearchMessage.textContent = "";
+            sequenceSearchMessage.classList.remove ('shown');
+            if (sequenceUseRegex.checked)
             {
                 try
                 {
@@ -410,33 +410,33 @@ module.exports.start = function (context)
                 catch (e)
                 {
                     event.target.classList.add ('error');
-                    symbolSearchMessage.textContent = e.message;
+                    sequenceSearchMessage.textContent = e.message;
                     if (event.target === document.activeElement)
                     {
-                        symbolSearchMessage.classList.add ('shown');
+                        sequenceSearchMessage.classList.add ('shown');
                     }
                 }
             }
         }
     );
-    symbolSearchString.value = prefs.symbolSearchString;
-    symbolSearchString.dispatchEvent (new Event ('input'));
+    sequenceSearchString.value = prefs.sequenceSearchString;
+    sequenceSearchString.dispatchEvent (new Event ('input'));
     //
-    symbolUseRegex.addEventListener
+    sequenceUseRegex.addEventListener
     (
         'change',
-        (event) => symbolSearchString.dispatchEvent (new Event ('input'))
+        (event) => sequenceSearchString.dispatchEvent (new Event ('input'))
     );
     //
-    symbolSearchButton.addEventListener
+    sequenceSearchButton.addEventListener
     (
         'click',
         (event) =>
         {
-            if (!symbolSearchString.classList.contains ('error'))
+            if (!sequenceSearchString.classList.contains ('error'))
             {
-                let symbol = symbolSearchString.value;
-                if (symbol)
+                let sequence = sequenceSearchString.value;
+                if (sequence)
                 {
                     let regex = null;
                     try
@@ -448,8 +448,8 @@ module.exports.start = function (context)
                             return `\\u{${hex}}`;
                         }
                         //
-                        let pattern = (symbolUseRegex.checked) ? symbol : Array.from (symbol).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        if (symbolWholeWord.checked)
+                        let pattern = (sequenceUseRegex.checked) ? sequence : Array.from (sequence).map ((char) => characterToEcmaScriptEscape (char)).join ('');
+                        if (sequenceWholeWord.checked)
                         {
                             const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
                             const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
@@ -464,27 +464,27 @@ module.exports.start = function (context)
                     }
                     if (regex)
                     {
-                        clearResults (symbolHitCount, symbolEmojiDataList);
-                        let emojiBySymbol = findEmojiBySymbol (regex);
+                        clearResults (sequenceHitCount, sequenceEmojiDataList);
+                        let emojiBySequence = findEmojiBySequence (regex);
                         let closeButton = document.createElement ('button');
                         closeButton.type = 'button';
                         closeButton.className = 'close-button';
                         closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
                         closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearResults (symbolHitCount, symbolEmojiDataList); });
-                        symbolHitCount.appendChild (closeButton);
+                        closeButton.addEventListener ('click', event => { clearResults (sequenceHitCount, sequenceEmojiDataList); });
+                        sequenceHitCount.appendChild (closeButton);
                         let infoText = document.createElement ('span');
-                        infoText.innerHTML = `Emoji: <strong>${emojiBySymbol.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
-                        symbolHitCount.appendChild (infoText);
-                        displayDataList (emojiBySymbol, symbolEmojiDataList);
+                        infoText.innerHTML = `Emoji: <strong>${emojiBySequence.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
+                        sequenceHitCount.appendChild (infoText);
+                        displayDataList (emojiBySequence, sequenceEmojiDataList);
                     }
                 }
             }
         }
     );
     //
-    symbolInstructions.open = prefs.symbolInstructions;
-    symbolRegexExamples.open = prefs.symbolRegexExamples;
+    sequenceInstructions.open = prefs.sequenceInstructions;
+    sequenceRegexExamples.open = prefs.sequenceRegexExamples;
     //
     textClearButton.addEventListener
     (
@@ -571,11 +571,11 @@ module.exports.stop = function (context)
         nameInstructions: nameInstructions.open,
         nameRegexExamples: nameRegexExamples.open,
         //
-        symbolSearchString: symbolSearchString.value,
-        symbolWholeWord: symbolWholeWord.checked,
-        symbolUseRegex: symbolUseRegex.checked,
-        symbolInstructions: symbolInstructions.open,
-        symbolRegexExamples: symbolRegexExamples.open,
+        sequenceSearchString: sequenceSearchString.value,
+        sequenceWholeWord: sequenceWholeWord.checked,
+        sequenceUseRegex: sequenceUseRegex.checked,
+        sequenceInstructions: sequenceInstructions.open,
+        sequenceRegexExamples: sequenceRegexExamples.open,
         //
         textInputString: textInputString.value,
         textInstructions: textInstructions.open

@@ -3,7 +3,7 @@
         <div class="plain-panel">
             <div class="tab-bar">
                 <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Symbol</span></label>
+                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Character</span></label>
                 <label class="tab-label"><input class="tab-radio" type="radio"><span>List by Block</span></label>
             </div>
             <div class="tab-panes">
@@ -11,7 +11,7 @@
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Name or alias...">
+                                <input class="search-string" type="search" placeholder="Character name or alias...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -31,11 +31,11 @@
                     <div class="search-info"></div>
                     <div class="search-data"></div>
                 </div>
-                <div class="tab-pane match-symbol">
+                <div class="tab-pane match-character">
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Symbol or regex properties...">
+                                <input class="search-string" type="search" placeholder="Character or regex properties...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -105,12 +105,12 @@
                     </details>
                 </div>
             </div>
-            <div class="tab-info match-symbol">
+            <div class="tab-info match-character">
                 <div class="accent-panel">
                     <details class="instructions">
                         <summary>Instructions</summary>
                         <ul>
-                            <li>The <strong>Match Symbol</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.</li>
+                            <li>The <strong>Match Character</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, or a regular expression using Unicode properties.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>The search is performed on the 276,955 assigned characters (or code points) defined in the <strong>Unicode 11.0</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>

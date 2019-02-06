@@ -1,6 +1,6 @@
-# <img src="icons/icon-256.png" width="64px" align="center" alt="Vade Mecum Shelf icon"> UNICODE PLUS
+# <img src="icons/icon-256.png" width="64px" align="center" alt="Unicopedia Plus icon"> UNICOPEDIA PLUS
 
-**Unicode Plus** is a set of Unicode, Unihan & emoji utilities wrapped into one single app, built with [Electron](https://electronjs.org).
+**Unicopedia Plus** is a set of Unicode, Unihan & emoji utilities wrapped into one single app, built with [Electron](https://electronjs.org).
 
 This app works on Mac OS X, Linux and Windows operating systems.
 
@@ -13,13 +13,13 @@ The following utilities are currently available:
 * [Regex Properties](#regex-properties)
 * [Emoji Data Finder](#emoji-data-finder)
     * [Find by Name](#find-by-name)
-    * [Match Symbol](#match-symbol)
+    * [Match Sequence](#match-sequence)
     * [Filter Text](#filter-text)
 * [Emoji Picture Book](#emoji-picture-book)
 * [Emoji References](#emoji-references)
 * [Unicode Data Finder](#unicode-data-finder)
     * [Find by Name](#find-by-name-1)
-    * [Match Symbol](#match-symbol-1)
+    * [Match Character](#match-character)
     * [List by Block](#list-by-block)
 * [Unicode Inspector](#unicode-inspector)
 * [Unicode References](#unicode-references)
@@ -95,7 +95,7 @@ The following utilities are currently available:
 
 ### Find by Name
 
-- The **Find by Name** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code) of matching Unicode emoji searched by name or keyword, including through regular expressions.
+- The **Find by Name** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
@@ -104,20 +104,20 @@ The following utilities are currently available:
 
 <img src="screenshots/emoji-data-finder-find-by-name.png" width="1080px" alt="Emoji Data Finder - Find by Name screenshot">
 
-### Match Symbol
+### Match Sequence
 
-- The **Match Symbol** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code) of Unicode emoji matching a symbol, or a regular expression using Unicode properties.
+- The **Match Sequence** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, or a regular expression using Unicode properties.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
 - Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
-<img src="screenshots/emoji-data-finder-match-symbol.png" width="1080px" alt="Emoji Data Finder - Match Symbol screenshot">
+<img src="screenshots/emoji-data-finder-match-sequence.png" width="1080px" alt="Emoji Data Finder - Match Sequence screenshot">
 
 ### Filter Text
 
-- The **Filter Text** feature of the **Emoji Data Finder** utility displays in real time a list of basic data (symbol, short name, keywords, code) of all the Unicode emoji contained in a text string.
+- The **Filter Text** feature of the **Emoji Data Finder** utility displays in real time a list of basic data (symbol, short name, keywords, code points) of all the Unicode emoji contained in a text string.
 - Text can by directly typed or pasted from the clipboard into the main input field. Click on the <kbd>Filter</kbd> button to strip out all non-emoji characters.
 - It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
@@ -157,16 +157,16 @@ The following utilities are currently available:
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
 
-### Match Symbol
+### Match Character
 
-- The **Match Symbol** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a symbol, or a regular expression using Unicode properties.
+- The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, or a regular expression using Unicode properties.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 276,955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
-<img src="screenshots/unicode-data-finder-match-symbol.png" width="1080px" alt="Unicode Data Finder - Match Symbol screenshot">
+<img src="screenshots/unicode-data-finder-match-character.png" width="1080px" alt="Unicode Data Finder - Match Character screenshot">
 
 ### List by Block
 
@@ -289,16 +289,16 @@ The following utilities are currently available:
 You'll need [Node.js](https://nodejs.org) installed on your computer in order to build this app.
 
 ```bash
-git clone https://github.com/tonton-pixel/unicode-plus
-cd unicode-plus
+git clone https://github.com/tonton-pixel/unicopedia-plus
+cd unicopedia-plus
 npm install
 npm start
 ```
 
-If you don't wish to clone, you can [download the source code](https://github.com/tonton-pixel/unicode-plus/archive/master.zip).
+If you don't wish to clone, you can [download the source code](https://github.com/tonton-pixel/unicopedia-plus/archive/master.zip).
 
 Several scripts are also defined in the `package.json` file to build OS-specific bundles of the app, using the simple yet powerful [Electron Packager](https://github.com/electron-userland/electron-packager) Node module.\
-For instance, running the following command will create a `Unicode Plus.app` version for Mac OS X:
+For instance, running the following command will create a `Unicopedia Plus.app` version for Mac OS X:
 
 ```bash
 npm run build-darwin
@@ -306,7 +306,7 @@ npm run build-darwin
 
 ## Using
 
-You can [download the latest release](https://github.com/tonton-pixel/unicode-plus/releases) for Mac OS X.
+You can [download the latest release](https://github.com/tonton-pixel/unicopedia-plus/releases) for Mac OS X.
 
 ## License
 

@@ -1,7 +1,7 @@
 {
-    "name": "unicode-plus",
-    "productName": "Unicode Plus",
-    "version": "2.0.4",
+    "name": "unicopedia-plus",
+    "productName": "Unicopedia Plus",
+    "version": "3.0.0",
     "description": "Set of Unicode, Unihan & emoji utilities.",
     "main": "main.js",
     "scripts": {
@@ -30,7 +30,7 @@
         "name": "Michel MARIANI",
         "url": "https://github.com/tonton-pixel"
     },
-    "homepage": "https://github.com/tonton-pixel/unicode-plus",
+    "homepage": "https://github.com/tonton-pixel/unicopedia-plus",
     "license": "MIT",
     "private": false,
     "dependencies": {
@@ -41,7 +41,7 @@
         "regexpu-core": "^4.4.0"
     },
     "devDependencies": {
-        "electron": "^3.1.2",
+        "electron": "^3.1.3",
         "electron-packager": "^13.0.1"
     }
 }

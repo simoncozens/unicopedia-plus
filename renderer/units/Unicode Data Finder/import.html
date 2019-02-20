@@ -122,7 +122,7 @@
                         <summary>Regex Examples</summary>
                         <ul>
                             <li><code>\s</code><br>Characters considered white space in Unicode by the regular expression engine</li>
-                            <li><code>(?!.)[^]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
+                            <li><code>(?!.)[^]</code> or <code>(?!.)[\s\S]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
                             <li><code>\p{Private_Use}</code><br>Characters with the 'General_Category' property equal to 'Private_Use'</li>
                             <li><code>\P{Private_Use}</code> or <code>[^\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Private_Use'</li>
                             <li><code>[\p{Open_Punctuation}\p{Close_Punctuation}]</code> or <code>\p{Open_Punctuation}|\p{Close_Punctuation}</code><br>Characters with the 'General_Category' property equal to 'Open_Punctuation' or 'Close_Punctuation'</li>

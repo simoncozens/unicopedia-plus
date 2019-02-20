@@ -1,7 +1,7 @@
 //
 const kangxiRadicals = require ('./kangxi-radicals.json');
 //
-function fromRadical (index, simplified)
+function fromRadical (index, simplified, verbose)
 {
     let kangxiRadical = kangxiRadicals[index - 1];
     let name;
@@ -23,31 +23,29 @@ function fromRadical (index, simplified)
         radical = kangxiRadical.radical;
         name = kangxiRadical.name;
     }
-    return `${index} ${radical} (${name})`;
+    return (verbose ? "Radical " : "") + `${index} ${radical} (${name})`;
+};
+//
+function fromStrokes (strokes, verbose)
+{
+    return `${strokes}`+ (verbose ? ' Stroke' + `${strokes > 1 ? 's': ''}` : ``);
 };
 //
 function fromRSValue (rsValue, verbose)
 {
-    let result;
     let [ index, residual ] = rsValue.split ('.');
-    if (verbose)
-    {
-        result =
-        [
-            `Radical ${fromRadical (parseInt (index), index.match (/'$/))}`,
-            `${residual} Stroke${residual > 1 ? 's': ''}`
-        ];
-    }
-    else
-    {
-        result = [ `${fromRadical (parseInt (index), index.match (/'$/))}`, `${residual}` ];
-    }
+    let result =
+    [
+        `${fromRadical (parseInt (index), index.match (/'$/), verbose)}`,
+        `${fromStrokes (parseInt (residual), verbose)}`
+    ];
     return result;
 };
 //
 module.exports =
 {
     fromRadical,
+    fromStrokes,
     fromRSValue
 };
 //

@@ -32,9 +32,14 @@ module.exports.start = function (context)
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     //
+    const variantsData = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
+    //
     const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
-    const variantsData = require ('./parsed-variants-data.js');
+    // Unihan character
+    let flags = 'u';
+    let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let unihanRegex = new RegExp (pattern, flags);
     //
     function randomElement (elements)
     {
@@ -79,7 +84,7 @@ module.exports.start = function (context)
     //
     function displayData (character)
     {
-        function displayCharacterData (codePoint, tags)
+        function displayCharacterData (character, codePoint, tags)
         {
             let characterData = document.createElement ('div');
             characterData.className = 'character-data';
@@ -89,7 +94,7 @@ module.exports.start = function (context)
             let unihanWrapper = document.createElement ('div');
             unihanWrapper.className = 'unihan-wrapper';
             let unihanCharacter = document.createElement ('div');
-            unihanCharacter.textContent = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
+            unihanCharacter.textContent = character;
             unihanCharacter.className = 'unihan-character';
             unihanWrapper.appendChild (unihanCharacter);
             let indexOfUnihanCharacter = unihanHistory.indexOf (unihanCharacter.textContent);
@@ -277,13 +282,13 @@ module.exports.start = function (context)
                 rsValues = rsValues.map (rsValue => fromRSValue (rsValue).join (" +\xA0"));
                 //
                 let definitionValue = tags["kDefinition"];
-                let variants = variantsData[codePoint] || [ ];
-                let variantsValue = variants.map (variant => String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16))).join (" ");
+                let variants = variantsData[character] || [ ];
+                variants = variants.filter (variant => unihanRegex.test (variant));
                 let unihanFields =
                 [
                     { label: "Radical/Strokes", value: rsValues, class: rsClasses },
                     { label: "Definition", value: definitionValue, class: 'line-clamp' },
-                    { label: "Yasuoka\xA0Variants", value: variantsValue }
+                    { label: "Yasuoka\xA0Variants", value: variants.join (" ") }
                 ];
                 //
                 for (let unihanField of unihanFields)
@@ -358,7 +363,7 @@ module.exports.start = function (context)
             infoContainer.appendChild (characterData);
         }
         //
-        function displayTags (codePoint, tags)
+        function displayTags (tags)
         {
             function createTagsList (showCategories)
             {
@@ -526,17 +531,12 @@ module.exports.start = function (context)
             }    
             let codePoint = `U+${hex}`;
             let tags = unihanData.codePoints[codePoint];
-            displayCharacterData (codePoint, tags);
-            displayTags (codePoint, tags);
+            displayCharacterData (character, codePoint, tags);
+            displayTags (tags);
         }
     }
     //
     const characterOrCodePointRegex = /^\s*(?:(.)|(?:[Uu]\+)?([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4}))\s*$/u;
-    //
-    // Unihan character
-    let flags = 'u';
-    let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-    let unihanRegex = new RegExp (pattern, flags);
     //
     function parseUnihanCharacter (inputString)
     {

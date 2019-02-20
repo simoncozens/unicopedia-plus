@@ -23,7 +23,7 @@ module.exports.create = function (unihanBlocks)
     headerRow.appendChild (coreSetHeader);
     let fullSetHeader = document.createElement ('th');
     fullSetHeader.className = 'full-set-header';
-    fullSetHeader.textContent = "Full Set";
+    fullSetHeader.textContent = "Full\xA0Set";
     headerRow.appendChild (fullSetHeader);
     blocksTable.appendChild (headerRow);
     let coreTotal = 0;

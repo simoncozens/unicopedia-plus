@@ -51,7 +51,7 @@ module.exports.create = function (title, items, params)
         {
             let strokesData = document.createElement ('span');
             strokesData.className = 'strokes-data';
-            strokesData.textContent = `${item.strokes} Stroke${item.strokes > 1 ? 's': ''}`;
+            strokesData.textContent = item.title;
             charactersData.appendChild (strokesData);
             for (let character of item.characters)
             {

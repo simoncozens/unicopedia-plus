@@ -290,7 +290,7 @@ div.querySelector ('use').addEventListener
         let isCommandOrControlDoubleClick = (process.platform === 'darwin') ? event.metaKey : event.ctrlKey;
         if (isCommandOrControlDoubleClick)
         {
-            shell.openExternal (settings.repository.URL);
+            shell.openExternal (settings.electronApp.URL);
         }
     }
 );

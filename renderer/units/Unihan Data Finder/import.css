@@ -91,6 +91,17 @@
     white-space: nowrap;
 }
 
+#unihan-data-finder-unit .has-popup
+{
+    user-select: none;
+    cursor: pointer;
+}
+
+#unihan-data-finder-unit .has-popup:hover
+{
+    color: var(--color-hover);
+}
+
 #unihan-data-finder-unit .tag-select
 {
     width: 240px;
@@ -419,7 +430,8 @@
 {
     text-align: center;
     font-family: "Sans CJK TC";
-    font-size: 18px;
+    font-size: 19px;
+    line-height: 1.2em;
     font-weight: normal;
     padding: 0.4em;
 }
@@ -672,7 +684,7 @@
     font-size: inherit;
     text-align: left;
     font-weight: 600;
-    padding: 0.25em 1.75em;
+    padding: 0.25em 3.25em;
     color: var(--color-accent);
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
 }

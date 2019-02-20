@@ -55,10 +55,6 @@
     ],
     [
         {
-            "name": "JavaScript character escape sequences · Mathias Bynens",
-            "href": "https://mathiasbynens.be/notes/javascript-escapes"
-        },
-        {
             "name": "Unicode-aware regular expressions in ES2015 · Mathias Bynens",
             "href": "https://mathiasbynens.be/notes/es6-unicode-regex"
         },

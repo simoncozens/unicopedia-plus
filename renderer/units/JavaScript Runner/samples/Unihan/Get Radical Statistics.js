@@ -58,5 +58,5 @@ radicals.sort ((a, b) => a.count - b.count).reverse ();
 $.writeln (`Unihan ${set === fullSet ? "full set" : "core set"}${extraSources ? " + Extra sources" : ""}:`);
 for (let index = 0; index < radicals.length; index++)
 {
-    $.writeln (`Radical ${fromRadical (radicals[index].index)}: ${radicals[index].count} characters`);
+    $.writeln (`${fromRadical (radicals[index].index, false, true)}: ${radicals[index].count} characters`);
 }

@@ -263,6 +263,10 @@ module.exports.start = function (context)
                     }
                 }
             }
+            else
+            {
+                remote.shell.beep ();
+            }
         }
     );
     //
@@ -402,6 +406,10 @@ module.exports.start = function (context)
                         }
                     }
                 }
+            }
+            else
+            {
+                remote.shell.beep ();
             }
         }
     );

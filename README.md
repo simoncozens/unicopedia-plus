@@ -8,27 +8,27 @@ This app works on Mac OS X, Linux and Windows operating systems.
 
 The following utilities are currently available:
 
-* [CJK Font Variants](#cjk-font-variants)
-* [JavaScript Runner](#javascript-runner)
-* [Regex Properties](#regex-properties)
-* [Emoji Data Finder](#emoji-data-finder)
-    * [Find by Name](#find-by-name)
-    * [Match Sequence](#match-sequence)
-    * [Filter Text](#filter-text)
-* [Emoji Picture Book](#emoji-picture-book)
-* [Emoji References](#emoji-references)
-* [Unicode Data Finder](#unicode-data-finder)
-    * [Find by Name](#find-by-name-1)
-    * [Match Character](#match-character)
-    * [List by Block](#list-by-block)
-* [Unicode Inspector](#unicode-inspector)
-* [Unicode References](#unicode-references)
-* [Unihan Data Finder](#unihan-data-finder)
-    * [Find by Tag Value](#find-by-tag-value)
-    * [Radical/Strokes](#radicalstrokes)
-    * [View by Grid](#view-by-grid)
-* [Unihan Inspector](#unihan-inspector)
-* [Unihan References](#unihan-references)
+- **CJK Font Variants**
+- **JavaScript Runner**
+- **Regex Properties**
+- **Emoji Data Finder**
+    - **Find by Name**
+    - **Match Sequence**
+    - **Filter Text**
+- **Emoji Picture Book**
+- **Emoji References**
+- **Unicode Data Finder**
+    - **Find by Name**
+    - **Match Character**
+    - **List by Block**
+- **Unicode Inspector**
+- **Unicode References**
+- **Unihan Data Finder**
+    - **Find by Tag Value**
+    - **Radical/Strokes**
+    - **View by Grid**
+- **Unihan Inspector**
+- **Unihan References**
 
 ## CJK Font Variants
 

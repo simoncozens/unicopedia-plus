@@ -35,6 +35,8 @@ const textInstructions = unit.querySelector ('.filter-text .instructions');
 //
 module.exports.start = function (context)
 {
+    const { remote } = require ('electron');
+    //
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus');
     //
@@ -347,6 +349,10 @@ module.exports.start = function (context)
                     }
                 }
             }
+            else
+            {
+                remote.shell.beep ();
+            }
         }
     );
     //
@@ -479,6 +485,10 @@ module.exports.start = function (context)
                         displayDataList (emojiBySequence, sequenceEmojiDataList);
                     }
                 }
+            }
+            else
+            {
+                remote.shell.beep ();
             }
         }
     );

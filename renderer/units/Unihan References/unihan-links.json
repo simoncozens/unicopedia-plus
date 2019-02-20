@@ -1,10 +1,6 @@
 [
     [
         {
-            "name": "Han unification - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Han_unification"
-        },
-        {
             "name": "Chinese characters - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Chinese_characters"
         },
@@ -21,28 +17,22 @@
             "href": "https://en.wikipedia.org/wiki/Z-variant"
         },
         {
-            "name": "CJK characters - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/CJK_characters"
-        },
-        {
             "name": "Chinese numerals - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Chinese_numerals"
         },
         {
-            "name": "Counting rods - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Counting_rods"
-        },
-        {
-            "name": "Unicode font - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Unicode_font"
-        },
-        {
-            "name": "List of CJK fonts - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/List_of_CJK_fonts"
-        },
-        {
             "name": "Four-Corner Method - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Four-Corner_Method"
+        }
+    ],
+    [
+        {
+            "name": "Han unification - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Han_unification"
+        },
+        {
+            "name": "Variant form (Unicode) - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Variant_form_(Unicode)"
         }
     ],
     [
@@ -53,7 +43,9 @@
         {
             "name": "International Ideographs Core - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/International_Ideographs_Core"
-        },
+        }
+    ],
+    [
         {
             "name": "CJK Unified Ideographs - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/CJK_Unified_Ideographs"
@@ -93,42 +85,6 @@
         {
             "name": "CJK Compatibility Ideographs Supplement - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/CJK_Compatibility_Ideographs_Supplement"
-        },
-        {
-            "name": "CJK Symbols and Punctuation - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation"
-        },
-        {
-            "name": "Enclosed CJK Letters and Months - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Enclosed_CJK_Letters_and_Months"
-        },
-        {
-            "name": "Enclosed Ideographic Supplement - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Enclosed_Ideographic_Supplement"
-        },
-        {
-            "name": "CJK Compatibility - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/CJK_Compatibility"
-        },
-        {
-            "name": "Counting Rod Numerals - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Counting_Rod_Numerals"
-        }
-    ],
-    [
-        {
-            "name": "Sawndip - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Sawndip"
-        }
-    ],
-    [
-        {
-            "name": "Stroke (CJK character) - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Stroke_(CJK_character)"
-        },
-        {
-            "name": "CJK Strokes (Unicode block) - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/CJK_Strokes_(Unicode_block)"
         }
     ],
     [
@@ -147,10 +103,6 @@
         {
             "name": "CJK Radicals Supplement - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/CJK_Radicals_Supplement"
-        },
-        {
-            "name": "Chinese character description language - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Chinese_character_description_language"
         }
     ],
     [
@@ -173,6 +125,26 @@
     ],
     [
         {
+            "name": "理義字 - Wikipedia",
+            "href": "https://ja.wikipedia.org/wiki/%E7%90%86%E7%BE%A9%E5%AD%97"
+        },
+        {
+            "name": "疊字 - 维基百科，自由的百科全书",
+            "href": "https://zh.wikipedia.org/wiki/%E7%96%8A%E5%AD%97"
+        }
+    ],
+    [
+        {
+            "name": "K'sBookshelf 辞典・用語 漢字林",
+            "href": "http://ksbookshelf.com/DW/Kanjirin/"
+        },
+        {
+            "name": "K'sBookshelf 辞典・用語 漢字林 付録　繰返字（同じ字形が繰り返されてできる漢字）",
+            "href": "http://ksbookshelf.com/DW/Kanjirin/appendix/Kurikaeshiji.html"
+        }
+    ],
+    [
+        {
             "name": "The Unicode Standard, Version 11.0 - Chapter 18: East Asia",
             "href": "https://www.unicode.org/versions/Unicode11.0.0/ch18.pdf"
         },
@@ -183,10 +155,6 @@
         {
             "name": "FAQ - Chinese and Japanese",
             "href": "https://www.unicode.org/faq/han_cjk.html"
-        },
-        {
-            "name": "FAQ - Fonts and Keyboards",
-            "href": "https://www.unicode.org/faq/font_keyboard.html"
         }
     ],
     [
@@ -204,10 +172,6 @@
         }
     ],
     [
-        {
-            "name": "UTS #37: Unicode Ideographic Variation Database",
-            "href": "https://www.unicode.org/reports/tr37/"
-        },
         {
             "name": "UAX #38: Unicode Han Database (Unihan)",
             "href": "https://www.unicode.org/reports/tr38/"
@@ -241,6 +205,16 @@
     ],
     [
         {
+            "name": "Character Tables by Koichi Yasuoka",
+            "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/CJK.html"
+        },
+        {
+            "name": "Variants table for Unicode",
+            "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z"
+        }
+    ],
+    [
+        {
             "name": "Unicode Version 11.0 CJK Unified Ideographs & CJK Compatibility Ideographs (Version 2018-06-05) - ideographs-unicode-11.pdf",
             "href": "https://blogs.adobe.com/CCJKType/files/2018/06/ideographs-unicode-11.pdf"
         }
@@ -253,18 +227,8 @@
     ],
     [
         {
-            "name": "Character Tables by Koichi Yasuoka",
-            "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/CJK.html"
-        },
-        {
-            "name": "Variants table for Unicode",
-            "href": "http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z"
-        }
-    ],
-    [
-        {
-            "name": "Jōyō kanji variants: The curious case of 叱 and [censored] | The Nanbanjin Nikki",
-            "href": "https://namakajiri.net/nikki/joyo-kanji-variants-the-curious-case-of-and-%e5%8f%b1/"
+            "name": "Simplified vs Traditional Chinese in Unicode",
+            "href": "https://r12a.github.io/scripts/chinese/"
         }
     ],
     [
@@ -281,6 +245,36 @@
         {
             "name": "Four-corner kanji search at sljfaq.org",
             "href": "https://kanji.sljfaq.org/four.html"
+        }
+    ],
+    [
+        {
+            "name": "Traditional Chinese Characters",
+            "href": "http://www.zhongwen.com/"
+        },
+        {
+            "name": "Radicals of Chinese Characters",
+            "href": "http://www.zhongwen.com/bushou.htm"
+        }
+    ],
+    [
+        {
+            "name": "Chinese Text Project",
+            "href": "https://ctext.org/"
+        },
+        {
+            "name": "Chinese Text Project Dictionary",
+            "href": "https://ctext.org/dictionary.pl?if=en"
+        }
+    ],
+    [
+        {
+            "name": "教育部異體字字典 - Dictionary of Chinese Character Variants",
+            "href": "http://dict2.variants.moe.edu.tw/"
+        },
+        {
+            "name": "教育部《異體字字典》字形檢索 - Search by Character Shape",
+            "href": "http://dict2.variants.moe.edu.tw/suo.htm"
         }
     ],
     [
@@ -321,14 +315,18 @@
     ],
     [
         {
-            "name": "MainPage - GlyphWiki",
-            "href": "http://en.glyphwiki.org/wiki/GlyphWiki:MainPage"
+            "name": "Hanazono fonts",
+            "href": "http://fonts.jp/hanazono/"
         }
     ],
     [
         {
-            "name": "Hanazono fonts",
-            "href": "http://fonts.jp/hanazono/"
+            "name": "MainPage - GlyphWiki",
+            "href": "http://en.glyphwiki.org/wiki/GlyphWiki:MainPage"
+        },
+        {
+            "name": "グループ:品字様 - GlyphWiki",
+            "href": "http://glyphwiki.org/wiki/Group:%E5%93%81%E5%AD%97%E6%A7%98"
         }
     ]
 ]

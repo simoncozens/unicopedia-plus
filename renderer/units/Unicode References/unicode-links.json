@@ -17,10 +17,6 @@
             "href": "https://en.wikipedia.org/wiki/Unicode_input"
         },
         {
-            "name": "Unicode character property - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Unicode_character_property"
-        },
-        {
             "name": "Combining character - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Combining_character"
         },
@@ -93,6 +89,16 @@
         {
             "name": "Allography - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Allography"
+        }
+    ],
+    [
+        {
+            "name": "Unicode font - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Unicode_font"
+        },
+        {
+            "name": "Open-source Unicode typefaces - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Open-source_Unicode_typefaces"
         }
     ],
     [
@@ -227,38 +233,6 @@
         {
             "name": "JavaScript has a Unicode problem · Mathias Bynens",
             "href": "https://mathiasbynens.be/notes/javascript-unicode"
-        },
-        {
-            "name": "Unicode-aware regular expressions in ES2015 · Mathias Bynens",
-            "href": "https://mathiasbynens.be/notes/es6-unicode-regex"
-        },
-        {
-            "name": "Unicode property escapes in JavaScript regular expressions · Mathias Bynens",
-            "href": "https://mathiasbynens.be/notes/es-unicode-property-escapes"
-        },
-        {
-            "name": "ECMAScript regular expressions are getting better! · Mathias Bynens",
-            "href": "https://mathiasbynens.be/notes/es-regexp-proposals"
-        }
-    ],
-    [
-        {
-            "name": "UTS #18: Unicode Regular Expressions",
-            "href": "https://www.unicode.org/reports/tr18/"
-        },
-        {
-            "name": "UAX #24: Unicode Script Property",
-            "href": "https://www.unicode.org/reports/tr24/"
-        }
-    ],
-    [
-        {
-            "name": "GitHub - mathiasbynens/regexpu-core: regexpu’s core functionality",
-            "href": "https://github.com/mathiasbynens/regexpu-core"
-        },
-        {
-            "name": "regexpu-core/property-escapes.md at master · mathiasbynens/regexpu-core · GitHub",
-            "href": "https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md"
         }
     ]
 ]

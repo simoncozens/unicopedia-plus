@@ -388,6 +388,10 @@ module.exports.start = function (context)
                     }
                 }
             }
+            else
+            {
+                remote.shell.beep ();
+            }
         }
     );
     //
@@ -408,25 +412,30 @@ module.exports.start = function (context)
     //
     const kangxiRadicals = require ('../../lib/unicode/kangxi-radicals.json');
     //
+    const { fromRadical, fromStrokes } = require ('../../lib/unicode/get-rs-strings.js');
+    //
     let lastStrokes = 0;
     let optionGroup = null;
-    for (let radical of kangxiRadicals)
-    {
-        if (lastStrokes !== radical.strokes)
+    kangxiRadicals.forEach
+    (
+        (radical, index) =>
         {
-            if (optionGroup)
+            if (lastStrokes !== radical.strokes)
             {
-                rsRadicalSelect.appendChild (optionGroup);
+                if (optionGroup)
+                {
+                    rsRadicalSelect.appendChild (optionGroup);
+                }
+                optionGroup = document.createElement ('optgroup');
+                optionGroup.label = `${fromStrokes (radical.strokes, true).replace (" ", "\u2002")}`;
+                lastStrokes = radical.strokes;
             }
-            optionGroup = document.createElement ('optgroup');
-            optionGroup.label = `${radical.strokes}\u2002Stroke${radical.strokes > 1 ? 's': ''}`;
-            lastStrokes = radical.strokes;
+            let option = document.createElement ('option');
+            option.textContent = `${fromRadical (index + 1).replace (/^(\S+)\s(\S+)\s/u, "$1\u2002$2\u2002")}`;
+            option.value = index + 1;
+            optionGroup.appendChild (option);
         }
-        let option = document.createElement ('option');
-        option.textContent = `${radical.index}\u2002${radical.radical}\u2002(${radical.name})`;
-        option.value = radical.index;
-        optionGroup.appendChild (option);
-    }
+    );
     rsRadicalSelect.appendChild (optionGroup);
     //
     rsRadicalSelect.value = rsCurrentRadical;
@@ -482,7 +491,7 @@ module.exports.start = function (context)
         let items = [ ];
         for (let strokes = options.minStrokes; strokes <= options.maxStrokes; strokes++)
         {
-            items.push ({ strokes: strokes, characters: [ ] });
+            items.push ({ title: fromStrokes (strokes, true), characters: [ ] });
         }
         let codePoints = unihanData.codePoints;
         let set = options.fullSet ? unihanData.fullSet : unihanData.coreSet;
@@ -547,8 +556,7 @@ module.exports.start = function (context)
                             if (extraSource)
                             {
                                 character.extraSource = extraSource;
-                                character.toolTip = irgSourceValues.map (rsValue => fromRSValue (rsValue, true).join (" +\xA0")).join ("\n")
-
+                                character.toolTip = irgSourceValues.map (rsValue => fromRSValue (rsValue, true).join (" +\xA0")).join ("\n");
                             }
                         }
                         items[residualStrokes - options.minStrokes].characters.push (character);
@@ -594,7 +602,7 @@ module.exports.start = function (context)
             rsSearchInfo.appendChild (infoText);
             if (resultCount > 0)
             {
-                let title = "Radical\u2002" + rsRadicalSelect[rsRadicalSelect.selectedIndex].textContent;
+                let title = fromRadical (rsRadicalSelect.selectedIndex + 1, false, true).replace (/^(\S+)\s(\S+)\s(\S+)\s/u, "$1\u2002$2\u2002$3\u2002");
                 rsSearchData.appendChild (rsDataTable.create (title, items, rsParams));
             }
         }

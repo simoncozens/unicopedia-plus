@@ -108,7 +108,7 @@
     font-size: 72px;
     line-height: 1em;
     width: 1.5em;
-    height: 1.35em;
+    height: 1.5em;
 }
 
 #unihan-inspector-unit .unihan-card .unihan-code-point
@@ -126,7 +126,7 @@
 
 #unihan-inspector-unit .unihan-card .filler
 {
-    margin-top: -0.5em;
+    margin-top: -1.5em;
 }
 
 #unihan-inspector-unit .unihan-card .typeface-widget

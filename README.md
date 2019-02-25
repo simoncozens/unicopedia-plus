@@ -22,6 +22,7 @@ The following utilities are currently available:
     - **Match Character**
     - **List by Block**
 - **Unicode Inspector**
+- **Unicode Normalizer**
 - **Unicode References**
 - **Unihan Data Finder**
     - **Find by Tag Value**
@@ -198,6 +199,25 @@ The following utilities are currently available:
     - [ScriptExtensions.txt](https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt)
 
 <img src="screenshots/unicode-inspector.png" width="1080px" alt="Unicode Inspector screenshot">
+
+## Unicode Normalizer
+
+- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string:
+
+    | Form | Name | Description |
+    | ---- | ---- | ----------- |
+    | NFD | Normalization Form D | Canonical Decomposition |
+    | NFC | Normalization Form C | Canonical Decomposition, followed by Canonical Composition |
+    | NFKD | Normalization Form KD | Compatibility Decomposition |
+    | NFKC | Normalization Form KC | Compatibility Decomposition, followed by Canonical Composition |
+
+- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
+- It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
+- As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
+- In output, the standard Unicode code point format <code>U+212B</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.
+- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u24B6</code> or <code>\u{1F201}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
+
+<img src="screenshots/unicode-normalizer.png" width="1080px" alt="Unicode Normalizer screenshot">
 
 ## Unicode References
 

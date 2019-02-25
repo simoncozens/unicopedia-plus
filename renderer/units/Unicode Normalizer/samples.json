@@ -1,0 +1,62 @@
+[
+    {
+        "label": "Arabic Ligature",
+        "string": "ﷻ"
+    },
+    {
+        "label": "Circled Numbers",
+        "string": "③①年⑫月①③日"
+    },
+    {
+        "label": "CJK Compatibility",
+        "string": "漢漢漢"
+    },
+    {
+        "label": "Different Spaces",
+        "string": "  　"
+    },
+    {
+        "label": "Font Variants",
+        "string": "ℋ ℌ ℍ"
+    },
+    {
+        "label": "Halfwidth Kana",
+        "string": "ｶｰ"
+    },
+    {
+        "label": "Hangul & Jamo",
+        "string": "갆"
+    },
+    {
+        "label": "Hiragana Digraph",
+        "string": "ゟ"
+    },
+    {
+        "label": "Japanese Buttons",
+        "string": "🈁🈯🉐🉑"
+    },
+    {
+        "label": "Multiple Combining Marks",
+        "string": "ḍ̇"
+    },
+    {
+        "label": "Rotated Variants",
+        "string": "︷︸"
+    },
+    {
+        "label": "Singletons",
+        "string": "ÅΩ"
+    },
+    {
+        "label": "Square Hiragana",
+        "string": "🈀"
+    },
+    {
+        "label": "Square Katakana",
+        "string": "㌀"
+    },
+    {
+        "label": "Vulgar Fractions",
+        "string": "¼ ½ ¾"
+    }
+]

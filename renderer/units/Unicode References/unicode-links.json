@@ -59,6 +59,12 @@
     ],
     [
         {
+            "name": "Unicode equivalence - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Unicode_equivalence"
+        }
+    ],
+    [
+        {
             "name": "Character (computing) - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Character_(computing)"
         },
@@ -193,6 +199,12 @@
         {
             "name": "Glossary",
             "href": "https://www.unicode.org/glossary/"
+        }
+    ],
+    [
+        {
+            "name": "NFC FAQ - Macchiato",
+            "href": "http://www.macchiato.com/unicode/nfc-faq"
         }
     ],
     [

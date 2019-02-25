@@ -1,7 +1,7 @@
 {
     "name": "unicopedia-plus",
     "productName": "Unicopedia Plus",
-    "version": "3.0.1",
+    "version": "3.1.0",
     "description": "Set of Unicode, Unihan & emoji utilities.",
     "main": "main.js",
     "scripts": {

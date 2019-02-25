@@ -1,0 +1,93 @@
+<template>
+    <section id="unicode-normalizer-unit">
+        <div class="plain-panel">
+            <div class="actions">
+                <span class="action-group">
+                    <span class="action">
+                        <button class="clear-button" type="button">Clear</button>
+                    </span>
+                    <span class="action">
+                        <button class="pull-down-menu characters-samples" type="button">Samples</button>
+                    </span>
+                </span>
+                <span class="action-group">
+                    <span class="action">
+                        <button class="load-button" type="button">Load...</button>
+                    </span>
+                    <span class="action">
+                        <button class="save-button" type="button">Save...</button>
+                    </span>
+                </span>
+            </div>
+            <div class="input-group">
+                <label>Characters:</label>
+                <input class="characters-input" type="text">
+                <label>Code points:</label>
+                <input class="code-points-input" type="text">
+            </div>
+            <div class="forms-data">
+                <table class="form-data">
+                    <tr><th title="Canonical Decomposition">Normalization Form D (NFD)</th></tr>
+                    <tr><td class="characters-string" data-form="NFD"></td></tr>
+                    <tr><td class="code-points-string"></td></tr>
+                </table>
+                <table class="form-data">
+                    <tr><th title="Canonical Decomposition, followed by Canonical Composition">Normalization Form C (NFC)</th></tr>
+                    <tr><td class="characters-string" data-form="NFC"></td></tr>
+                    <tr><td class="code-points-string"></td></tr>
+                </table>
+                <table class="form-data">
+                    <tr><th title="Compatibility Decomposition">Normalization Form KD (NFKD)</th></tr>
+                    <tr><td class="characters-string" data-form="NFKD"></td></tr>
+                    <tr><td class="code-points-string"></td></tr>
+                </table>
+                <table class="form-data">
+                    <tr><th title="Compatibility Decomposition, followed by Canonical Composition">Normalization Form KC (NFKC)</th></tr>
+                    <tr><td class="characters-string" data-form="NFKC"></td></tr>
+                    <tr><td class="code-points-string"></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="accent-panel">
+            <details class="instructions">
+                <summary>Instructions</summary>
+                <ul>
+                    <li>
+                        The <strong>Unicode Normalizer</strong> utility displays simultaneously the four normalization forms of a given string:
+                        <table class="forms-table">
+                            <tr>
+                                <th>Form</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>NFD</td>
+                                <td>Normalization Form D</td>
+                                <td>Canonical Decomposition</td>
+                            </tr>
+                            <tr>
+                                <td>NFC</td>
+                                <td>Normalization Form C</td>
+                                <td>Canonical Decomposition, followed by<br>Canonical Composition</td>
+                            </tr>
+                            <tr>
+                                <td>NFKD</td>
+                                <td>Normalization Form KD</td>
+                                <td>Compatibility Decomposition</td>
+                            </tr>
+                            <tr>
+                                <td>NFKC</td>
+                                <td>Normalization Form KC</td>
+                                <td>Compatibility Decomposition, followed by<br>Canonical Composition</td>
+                            </tr>
+                        </table>
+                    <li>Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
+                    <li>It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
+                    <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
+                    <li>In output, the standard Unicode code point format <code>U+212B</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
+                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u24B6</code> or <code>\u{1F201}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
+                </ul>
+            </details>
+        </div>
+    </section>
+</template>

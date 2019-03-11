@@ -85,8 +85,8 @@
                         <ul>
                             <li>The <strong>Find by Name</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
-                            <li><em>Fully-qualified</em> (keyboard/palette) emoji are presented in a standard way, while <em>non-fully-qualified</em> (display/process) emoji are shown in a distinctive muted (grayed out) style.</li>
-                            <li>This feature deals with the 3,570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
+                            <li><em>Component</em> and <em>fully-qualified</em> (<em>keyboard/palette</em>) emoji are presented in a standard way, while <em>non-fully-qualified</em> (<em>display/process</em>) emoji are shown in a distinctive muted (grayed out) style.</li>
+                            <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
                             <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
@@ -111,8 +111,8 @@
                         <ul>
                             <li>The <strong>Match Sequence</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, or a regular expression using Unicode properties.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
-                            <li><em>Fully-qualified</em> (keyboard/palette) emoji are presented in a standard way, while <em>non-fully-qualified</em> (display/process) emoji are shown in a distinctive muted (grayed out) style.</li>
-                            <li>This feature deals with the 3,570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
+                            <li><em>Component</em> and <em>fully-qualified</em> (<em>keyboard/palette</em>) emoji are presented in a standard way, while <em>non-fully-qualified</em> (<em>display/process</em>) emoji are shown in a distinctive muted (grayed out) style.</li>
+                            <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
                             <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
@@ -126,6 +126,7 @@
                             <li><code>^\u{1F3F4}</code> or <code>^🏴</code><br>Emoji starting with a black flag</li>
                             <li><code>\u{1F5E8}\uFE0F$</code> or <code>🗨️$</code><br>Emoji ending with a left speech bubble</li>
                             <li><code>^[0-9]\uFE0F\u20E3$</code> or <code>^[0-9]\uFE0F⃣$</code><br>Emoji of keycap digits 0 to 9</li>
+                            <li><code>^\p{Emoji_Component}$</code><br>Emoji which are components, i.e., skin tones and hairstyles</li>
                             <li><code>^\p{Regional_Indicator}\p{Regional_Indicator}$</code> or<br><code>^[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags</li>
                             <li><code>^(\p{Regional_Indicator})\1$</code> or <code>^([\u{1F1E6}-\u{1F1FF}])\1$</code> or <code>^([🇦-🇿])\1$</code><br>Emoji of country flags made of two identical regional indicators</li>
                             <li><code>^(?!\u{1F1EA}\u{1F1FA}|\u{1F1FA}\u{1F1F3})[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^(?!🇪🇺|🇺🇳)[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags, excluding macroregion flags 🇪🇺 and 🇺🇳</li>
@@ -150,8 +151,8 @@
                             <li>Text can by directly typed or pasted from the clipboard into the main input field. Click on the <kbd>Filter</kbd> button to strip out all non-emoji characters.</li>
                             <li>It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
                             <li>As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.</li>
-                            <li><em>Fully-qualified</em> (keyboard/palette) emoji are presented in a standard way, while <em>non-fully-qualified</em> (display/process) emoji are shown in a distinctive muted (grayed out) style.</li>
-                            <li>This feature deals with the 3,570 emoji defined in the <strong>Emoji 11.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/11.0/emoji-test.txt">emoji-test.txt</a> data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.</li>
+                            <li><em>Component</em> and <em>fully-qualified</em> (<em>keyboard/palette</em>) emoji are presented in a standard way, while <em>non-fully-qualified</em> (<em>display/process</em>) emoji are shown in a distinctive muted (grayed out) style.</li>
+                            <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
                         </ul>
                     </details>
                 </div>

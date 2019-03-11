@@ -3,9 +3,9 @@ let start = window.performance.now ();
 const fs = require ('fs');
 const path = require ('path');
 const { app } = require ('electron').remote;
-const { codePoints } = require ('./lib/unicode/parsed-unihan-data.js');
+const { codePoints, fullSet } = require ('./lib/unicode/parsed-unihan-data.js');
 const properties = { };
-for (let codePoint in codePoints)
+for (let codePoint of fullSet)
 {
     let dataProperties = codePoints[codePoint];
     for (let property in dataProperties)

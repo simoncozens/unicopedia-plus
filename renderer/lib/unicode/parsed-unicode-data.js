@@ -126,7 +126,7 @@ for (let line of lines)
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'NameAliases.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let fields = line.split (';');
         let hex = fields[0];

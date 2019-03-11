@@ -20,7 +20,7 @@ function fieldToString (field)
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'NormalizationTest.txt'), { encoding: 'utf8' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         if (line[0] === '@')
         {

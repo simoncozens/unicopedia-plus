@@ -1,7 +1,7 @@
 // Display Emoji Test Pattern Sizes
-const emojiPatterns = require ('emoji-test-patterns');
-for (let name in emojiPatterns)
+const emojiTestPatterns = require ('emoji-test-patterns');
+for (let name in emojiTestPatterns)
 {
-    let pattern = emojiPatterns[name];
+    let pattern = emojiTestPatterns[name];
     $.writeln (`${name}: ${pattern.length}`);
 }

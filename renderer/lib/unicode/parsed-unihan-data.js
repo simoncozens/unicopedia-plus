@@ -272,7 +272,7 @@ const tags =
     {
         "name": "IRG \"G\" Source",
         "category": "IRG Sources",
-        "syntax": "G(4K|BK|CH|CY|FZ|HC|HZ|((BK|CH|CY|DZ|GH|HC|RM|WZ|XC|XH|ZH)-[0-9]{4}\\.[0-9]{2})|HZ-[0-9]{5}\\.[0-9]{2}|(KX-[01][0-9]{3}\\.1?[0-9]{2})|((CYY|FZ|JZ|ZFY|ZJW)-[0-9]{5})|([0135789ES]-[0-9A-F]{4})|(XHZ-[0-9]{3})|(PGLG-[0-9]{4})|(IDC-[0-9]{3})|(K-[0-9A-F]{4})|((OCD|CE)-\\d{3})|(H-\\d{4})|(H-\\d{7})|(LGYJ-\\d{4})|(ZYS-\\d{5})|(Z-\\d{4})|(Z-\\d{7})|(G?F[CZ]-\\d{3,6}))"
+        "syntax": "G4K|G[013578EKS]-[0-9A-F]{4}|G9-[0-9A-F]{4,8}|G(DZ|GH|RM|WZ|XC|XH|ZH)-\\d{4}\\.\\d{2}|G(BK|CH|CY|HC)(-\\d{4}\\.\\d{2})?|GKX-\\d{4}\\.\\d{2,3}|GHZR?-\\d{5}\\.\\d{2}|G(CE|FC|IDC|OCD|XHZ)-\\d{3}|G(H|HF|LGYJ|PGLG)-\\d{4}|G(CYY|JZ|ZFY|ZJW|ZYS)-\\d{5}|GFZ(-\\d{5})?|GGFZ-\\d{6}|G(LK|Z)-\\d{7}"
     },
     "kIRG_HSource":
     {
@@ -296,7 +296,7 @@ const tags =
     {
         "name": "IRG \"K\" Source",
         "category": "IRG Sources",
-        "syntax": "K([0-5]-[0-9A-F]{4}|C-[0-9]{5})"
+        "syntax": "K([0-6]-[0-9A-F]{4}|C-[0-9]{5})"
     },
     "kIRG_MSource":
     {
@@ -308,7 +308,7 @@ const tags =
     {
         "name": "IRG \"T\" Source",
         "category": "IRG Sources",
-        "syntax": "T[1-7B-F]-[0-9A-F]{4}"
+        "syntax": "T[1-7A-F]-[0-9A-F]{4}"
     },
     "kIRG_USource":
     {
@@ -878,7 +878,7 @@ for (let filename of filenames)
     let lines = fs.readFileSync (path.join (__dirname, 'Unihan', filename), { encoding: 'utf8' }).split ('\n');
     for (let line of lines)
     {
-        if ((line) && (line[0] !== '#'))
+        if (line && (line[0] !== '#'))
         {
             let found = line.match (/^(U\+2?[0-9A-F]{4})\s+(\w+)\s+(.*)$/);
             if (found)

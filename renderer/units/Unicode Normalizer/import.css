@@ -106,7 +106,7 @@
 
 #unicode-normalizer-unit .forms-table
 {
-    margin: 0.5em 0;
+    margin: 0.75em 0;
     width: unset;
 }
 
@@ -152,7 +152,7 @@
 
 #unicode-normalizer-unit .instructions li
 {
-    margin: 0.2em 0;
+    margin: 0.25em 0;
 }
 
 #unicode-normalizer-unit .instructions li > ul

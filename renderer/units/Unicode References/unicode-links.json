@@ -145,6 +145,12 @@
     ],
     [
         {
+            "name": "Script Charts",
+            "href": "https://www.unicode.org/charts/script/"
+        }
+    ],
+    [
+        {
             "name": "UTR#17: Unicode Character Encoding Model",
             "href": "https://www.unicode.org/reports/tr17/"
         }
@@ -205,6 +211,12 @@
         {
             "name": "NFC FAQ - Macchiato",
             "href": "http://www.macchiato.com/unicode/nfc-faq"
+        }
+    ],
+    [
+        {
+            "name": "An Introduction to Writing Systems & Unicode",
+            "href": "https://r12a.github.io/scripts/tutorial/"
         }
     ],
     [

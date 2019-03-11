@@ -17,7 +17,7 @@ let radicalsData = { };
 let lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'CJKRadicals.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let fields = line.split (';');
         let radicalNumber = fields[0].trim ();

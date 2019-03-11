@@ -135,8 +135,8 @@
     padding: 0.375em 0.75em;
     color: white;
     background-color: var(--color-error);
-    border-radius: 3px;
-    box-shadow: 0 1px 4px #aaaaaa;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px #aaaaaa;
 }
 
 #unicode-data-finder-unit .icon-checkbox

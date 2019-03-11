@@ -62,7 +62,7 @@ The following utilities are currently available:
 
 ## Regex Properties
 
-- The **Regex Properties** utility displays all the Unicode properties available in this app for regular expressions, used in particular by the **Emoji Data Finder**, **Unicode Data Finder** and **Unihan Data Finder** utilities.
+- The **Regex Properties** utility displays all the **Unicode 12.0** properties available for regular expressions, used in particular in this app by the **Emoji Data Finder**, **Unicode Data Finder** and **Unihan Data Finder** utilities.
 - These properties are suitable to build Unicode-aware regular expressions in JavaScript (ECMAScript 6) using the 'u' flag.
 - Unicode properties fall into four groups, which can be displayed individually using the <kbd>Category</kbd> drop-down menu:
     - **General Category** properties
@@ -88,7 +88,6 @@ The following utilities are currently available:
     - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`
     - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`
     - `\p{Assigned}` is equivalent to `\P{Unassigned}`
-- Information pertaining to this list has been gathered from several sources (see References), and slightly refined through trial and error.
 
 <img src="screenshots/regex-properties.png" width="1080px" alt="Regex Properties screenshot">
 
@@ -98,8 +97,8 @@ The following utilities are currently available:
 
 - The **Find by Name** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
-- *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
-- This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
+- This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
@@ -109,8 +108,8 @@ The following utilities are currently available:
 
 - The **Match Sequence** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, or a regular expression using Unicode properties.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
-- *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
-- This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
+- This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
@@ -122,18 +121,18 @@ The following utilities are currently available:
 - Text can by directly typed or pasted from the clipboard into the main input field. Click on the <kbd>Filter</kbd> button to strip out all non-emoji characters.
 - It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
-- *Fully-qualified* (keyboard/palette) emoji are presented in a standard way, while *non-fully-qualified* (display/process) emoji are shown in a distinctive muted (grayed out) style.
-- This feature deals with the 3,570 emoji defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
+- *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
+- This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
 
 <img src="screenshots/emoji-data-finder-filter-text.png" width="1080px" alt="Emoji Data Finder - Filter Text screenshot">
 
 ## Emoji Picture Book
 
 - The **Emoji Picture Book** utility displays lists of Unicode emoji in a color picture book fashion.
-- Any group of pictures can be displayed by selecting its name in the <kbd>Category</kbd> drop-down menu, among:<br>"Smileys & People", "Animals & Nature", "Food & Drink", "Travel & Places", "Activities", "Objects", "Symbols", "Flags".
+- Any group of pictures can be displayed by selecting its name in the <kbd>Category</kbd> drop-down menu, among:<br>"Smileys & Emotion", "People & Body", "Component", "Animals & Nature", "Food & Drink", "Travel & Places", "Activities", "Objects", "Symbols", "Flags".
 - The size of all emoji pictures (from 32 to 128&nbsp;pixels) can be adjusted by moving the dedicated slider left and right.
-- The groups and subgroups of emoji are those defined in the **Emoji 11.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/11.0/emoji-test.txt) data file; the 12 keycap bases and the 26 singleton Regional Indicator characters are not included.
-- Only the 2789 *fully-qualified* (keyboard/palette) encodings of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
+- The groups and subgroups of emoji are those defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
+- Only the 9 *component* and the 3,010 *fully-qualified* (*keyboard/palette*) encodings of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
 - Emoji failing to be represented as proper color pictures are purely and simply discarded.
 
 <img src="screenshots/emoji-picture-book.png" width="1080px" alt="Emoji Picture Book screenshot">
@@ -152,7 +151,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
-- The search is performed on the 276,955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- The search is performed on the 277,509 assigned characters (or code points) defined in the **Unicode 12.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
@@ -163,7 +162,7 @@ The following utilities are currently available:
 - The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, or a regular expression using Unicode properties.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
-- The search is performed on the 276,955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- The search is performed on the 277,509 assigned characters (or code points) defined in the **Unicode 12.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
@@ -173,7 +172,7 @@ The following utilities are currently available:
 
 - The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.
 - It is possible to choose how many characters are shown one page at a time.
-- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 11.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
+- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 12.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
 - It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.
 - You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.
 
@@ -187,7 +186,7 @@ The following utilities are currently available:
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+0041` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
 - In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u611B` or `\u{1F49C}`. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
-- Information is provided for the 276,955 assigned characters (or code points) defined in the **Unicode 11.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
+- Information is provided for the 277,509 assigned characters (or code points) defined in the **Unicode 12.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Extra information is also obtained from the following data files:
     - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)
     - [DerivedAge.txt](https://www.unicode.org/Public/UNIDATA/DerivedAge.txt)
@@ -202,7 +201,7 @@ The following utilities are currently available:
 
 ## Unicode Normalizer
 
-- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string:
+- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string, as specified in the [Unicode Standard Annex #15](https://www.unicode.org/reports/tr15/):
 
     | Form | Name | Description |
     | ---- | ---- | ----------- |

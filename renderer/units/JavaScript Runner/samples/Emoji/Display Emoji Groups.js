@@ -1,3 +1,3 @@
 // Display Emoji Groups
-let emojiGroups = require ('emoji-test-groups');
-$.write ($.stringify (emojiGroups, null, 4));
+let emojiTestGroups = require ('emoji-test-groups');
+$.write ($.stringify (emojiTestGroups, null, 4));

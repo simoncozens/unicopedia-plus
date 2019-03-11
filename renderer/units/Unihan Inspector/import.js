@@ -38,8 +38,9 @@ module.exports.start = function (context)
     //
     // Unihan character
     let flags = 'u';
-    let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-    let unihanRegex = new RegExp (pattern, flags);
+    let unihanPattern = '(?=\\p{Script=Han})(?=\\p{Other_Letter})';
+    unihanPattern = rewritePattern (unihanPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let unihanRegex = new RegExp (unihanPattern, flags);
     //
     function randomElement (elements)
     {

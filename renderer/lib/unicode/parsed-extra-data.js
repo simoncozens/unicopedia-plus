@@ -13,7 +13,7 @@ let versions = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedAge.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\d+\.\d+)\s+#/);
         if (found)
@@ -29,7 +29,7 @@ let blocks = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'Blocks.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})\.\.([0-9a-fA-F]{4,});\s+(.+)$/);
         if (found)
@@ -45,7 +45,7 @@ let binaryProperties = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'PropList.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
@@ -61,7 +61,7 @@ let coreProperties = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedCoreProperties.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
@@ -77,7 +77,7 @@ let scripts = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'Scripts.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
@@ -93,7 +93,7 @@ let scriptExtensions = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'ScriptExtensions.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+([\w\s]+)\s+#/);
         if (found)
@@ -109,7 +109,7 @@ let equivalentUnifiedIdeographs = [ ];
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EquivalentUnifiedIdeograph.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+([0-9a-fA-F]{4,})\s+#/);
         if (found)

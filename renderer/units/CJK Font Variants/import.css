@@ -104,7 +104,7 @@
 
 #cjk-font-variants-unit .instructions li
 {
-    margin: 0.2em 0;
+    margin: 0.25em 0;
 }
 
 #cjk-font-variants-unit .instructions li > ul
@@ -128,6 +128,46 @@
     user-select: text;
     color: inherit;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#cjk-font-variants-unit .fonts-table
+{
+    margin: 0.75em 0;
+    width: unset;
+}
+
+#cjk-font-variants-unit .fonts-table tr th,
+#cjk-font-variants-unit .fonts-table tr td
+{
+    text-align: left;
+    padding: 0.25em 0.75em;
+    white-space: nowrap;
+}
+
+#cjk-font-variants-unit .fonts-table tr th
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8))
+}
+
+#cjk-font-variants-unit .fonts-table tr td
+{
+    vertical-align: middle;
+}
+
+#cjk-font-variants-unit .fonts-table tr th.code,
+#cjk-font-variants-unit .fonts-table tr td.code
+{
+    text-align: center;
+}
+
+#cjk-font-variants-unit .fonts-table tr:nth-child(even)
+{
+    background-color: white;
+}
+
+#cjk-font-variants-unit .fonts-table tr:nth-child(odd)
+{
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
 }
 
 #cjk-font-variants-unit summary

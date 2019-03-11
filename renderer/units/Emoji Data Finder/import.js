@@ -207,8 +207,20 @@ module.exports.start = function (context)
             let code = getEmojiCodePoints (character);
             codes.textContent = code;
             codesData.appendChild (codes);
-            let toolTip = "STATUS: " + (emojiList[character].toFullyQualified ? "DISPLAY/PROCESS": "KEYBOARD/PALETTE");
-            emojiTable.title = toolTip;
+            let status;
+            if (emojiList[character].isComponent)
+            {
+                status = "COMPONENT";
+            }
+            else if (emojiList[character].toFullyQualified)
+            {
+                status = "DISPLAY/PROCESS";
+            }
+            else
+            {
+                status = "KEYBOARD/PALETTE";
+            }
+            emojiTable.title = `STATUS: ${status}`;
             if (emojiList[character].toFullyQualified)
             {
                 emoji.classList.add ('non-fully-qualified');

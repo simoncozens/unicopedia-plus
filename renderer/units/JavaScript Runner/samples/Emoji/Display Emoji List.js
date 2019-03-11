@@ -1,3 +1,3 @@
 // Display Emoji List
-let emojiList = require ('emoji-test-list');
-$.write ($.stringify (emojiList, null, 4));
+let emojiTestList = require ('emoji-test-list');
+$.write ($.stringify (emojiTestList, null, 4));

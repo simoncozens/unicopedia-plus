@@ -36,6 +36,10 @@
         "string": "🈁🈯🉐🉑"
     },
     {
+        "label": "Katakana Digraph",
+        "string": "ヿ"
+    },
+    {
         "label": "Multiple Combining Marks",
         "string": "ḍ̇"
     },

@@ -425,7 +425,8 @@ module.exports.start = function (context)
     blockParams.root = unit;
     //
     let flags = 'u';
-    let assignedPattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+    let assignedPattern = '\\p{Assigned}';
+    assignedPattern = rewritePattern (assignedPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
     let assignedRegex = new RegExp (assignedPattern, flags);
     //
     const { blocks } = require ('../../lib/unicode/parsed-extra-data.js');

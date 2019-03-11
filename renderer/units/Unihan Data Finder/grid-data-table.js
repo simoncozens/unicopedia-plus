@@ -80,15 +80,16 @@ module.exports.create = function (characters, params, highlightedCharacter)
         table.appendChild (header);
         //
         let flags = 'u';
-        let pattern = rewritePattern ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let regex = new RegExp (pattern, flags);
+        let unihanPattern = '(?=\\p{Script=Han})(?=\\p{Other_Letter})';
+        unihanPattern = rewritePattern (unihanPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+        let unihanRegex = new RegExp (unihanPattern, flags);
         let colCount = hexDigits.length;
         let colIndex = 0;
         let row;
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);
-            let isUnihanCharacter = regex.test (character);
+            let isUnihanCharacter = unihanRegex.test (character);
             if ((colIndex % colCount) === 0)
             {
                 row = document.createElement ('tr');
@@ -330,6 +331,10 @@ module.exports.create = function (characters, params, highlightedCharacter)
     if (highlightedCharacter)
     {
         params.pageIndex = Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize);
+    }
+    else if (( 0 > params.pageIndex) || (params.pageIndex > Math.trunc ((characters.length - 1) / params.pageSize)))
+    {
+        params.pageIndex = 0;
     }
     paginate ();
     //

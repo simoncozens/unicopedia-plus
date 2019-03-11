@@ -8,7 +8,7 @@ let characters = { };
 let lines = fs.readFileSync (path.join (__dirname, 'UniVariants.txt'), { encoding: 'ascii' }).split ('\n');
 for (let line of lines)
 {
-    if ((line) && (line[0] !== '#'))
+    if (line && (line[0] !== '#'))
     {
         let fields = line.split ('\t');
         let character = String.fromCodePoint (parseInt (fields[0], 16));

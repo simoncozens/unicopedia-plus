@@ -79,12 +79,13 @@ module.exports.create = function (characters, params, highlightedCharacter)
         table.appendChild (header);
         //
         let flags = 'u';
-        let pattern = rewritePattern ('\\p{Assigned}', flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let regex = new RegExp (pattern, flags);
+        let assignedPattern = '\\p{Assigned}';
+        assignedPattern = rewritePattern (assignedPattern , flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
+        let assignedRegex = new RegExp (assignedPattern, flags);
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);
-            let isAssignedCharacter = regex.test (character);
+            let isAssignedCharacter = assignedRegex.test (character);
             let row = document.createElement ('tr');
             row.className = 'row';
             if (!isAssignedCharacter)
@@ -353,6 +354,10 @@ module.exports.create = function (characters, params, highlightedCharacter)
     if (highlightedCharacter)
     {
         params.pageIndex = Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize);
+    }
+    else if (( 0 > params.pageIndex) || (params.pageIndex > Math.trunc ((characters.length - 1) / params.pageSize)))
+    {
+        params.pageIndex = 0;
     }
     paginate ();
     //

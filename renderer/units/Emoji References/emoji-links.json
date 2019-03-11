@@ -64,14 +64,16 @@
         },
         {
             "name": "emoji-test.txt",
-            "href": "https://unicode.org/Public/emoji/11.0/emoji-test.txt"
+            "href": "https://unicode.org/Public/emoji/12.0/emoji-test.txt"
         }
     ],
     [
         {
             "name": "emoji-patterns - npm",
             "href": "https://www.npmjs.com/package/emoji-patterns"
-        },
+        }
+    ],
+    [
         {
             "name": "emoji-test-list - npm",
             "href": "https://www.npmjs.com/package/emoji-test-list"

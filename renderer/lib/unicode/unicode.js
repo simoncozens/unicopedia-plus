@@ -19,8 +19,7 @@ const planes =
     { name: "Supplementary Private Use Area-B", first: "100000", last: "10FFFF" }
 ];
 //
-//　https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
-// https://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt
+// https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
 const categories =
 {
     "Lu": "Uppercase Letter",           // an uppercase letter
@@ -208,6 +207,7 @@ const scripts =
     "Dupl": "Duployan",
     "Egyp": "Egyptian Hieroglyphs",
     "Elba": "Elbasan",
+    "Elym": "Elymaic",
     "Ethi": "Ethiopic",
     "Geor": "Georgian",
     "Glag": "Glagolitic",
@@ -266,10 +266,12 @@ const scripts =
     "Mult": "Multani",
     "Mymr": "Myanmar",
     "Nbat": "Nabataean",
+    "Nand": "Nandinagari",
     "Talu": "New Tai Lue",
     "Newa": "Newa",
     "Nkoo": "Nko",
     "Nshu": "Nushu",
+    "Hmnp": "Nyiakeng Puachue Hmong",
     "Ogam": "Ogham",
     "Olck": "Ol Chiki",
     "Hung": "Old Hungarian",
@@ -320,6 +322,7 @@ const scripts =
     "Tirh": "Tirhuta",
     "Ugar": "Ugaritic",
     "Vaii": "Vai",
+    "Wcho": "Wancho",
     "Wara": "Warang Citi",
     "Yiii": "Yi",
     "Zanb": "Zanabazar Square"
@@ -438,7 +441,8 @@ const versionDate =
     "8.0": "June 2015",
     "9.0": "June 2016",
     "10.0": "June 2017",
-    "11.0": "June 2018"
+    "11.0": "June 2018",
+    "12.0": "March 2019"
 };
 //
 function getCharacterData (character)

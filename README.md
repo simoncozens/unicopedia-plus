@@ -33,18 +33,16 @@ The following utilities are currently available:
 
 ## CJK Font Variants
 
-- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in several different typefaces:
-    - Japanese (JP)
-    - Korean (KR)
-    - Simplified Chinese (SC)
-    - Traditional Chinese (TC)
-    - Hong Kong Chinese (HK)
-- The typefaces belong to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
-    - Noto Sans CJK JP Regular
-    - Noto Sans CJK KR Regular
-    - Noto Sans CJK SC Regular
-    - Noto Sans CJK TC Regular
-    - Noto Sans CJK HK Regular
+- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in five different typefaces belonging to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
+
+| Language | Code | Typeface |
+|----------|------|----------|
+| Japanese | JP | Noto Sans CJK JP Regular |
+| Korean | KR | Noto Sans CJK KR Regular |
+| Simplified Chinese | SC | Noto Sans CJK SC Regular |
+| Traditional Chinese | TC | Noto Sans CJK TC Regular |
+| Hong Kong Chinese | HK | Noto Sans CJK HK Regular |
+
 - Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
 - CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
 - It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) or [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data files.

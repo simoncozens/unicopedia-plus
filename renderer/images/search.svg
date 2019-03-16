@@ -1,4 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg">
+    <symbol id="use-decomposition-icon" viewBox="-1 -1 17 17">
+        <path fill-rule="evenodd" fill="inherit" d="
+            M 5,1 L 10,1 L 10,6 L 5,6 Z
+            M 6,5 L 9,5 L 9,2 L 6,2 Z
+            M 7,6 L 8,6 L 8,8 L 7,8 Z
+            M 2,8 L 13,8 L 13,9 L 2,9 Z
+            M 2,9 L 3,9 L 3,11 L 2,11 Z
+            M 7,9 L 8,9 L 8,11 L 7,11 Z
+            M 12,9 L 13,9 L 13,11 L 12,11 Z
+            M 1,11 L 4,11 L 4,14 L 1,14 Z
+            M 2,12 L 3,12 L 3,13 L 2,13 Z
+            M 6,11 L 9,11 L 9,14 L 6,14 Z
+            M 7,12 L 8,12 L 8,13 L 7,13 Z
+            M 11,11 L 14,11 L 14,14 L 11,14 Z
+            M 12,12 L 13,12 L 13,13 L 12,13 Z
+        " />
+    </symbol>
     <symbol id="case-sensitive-icon" viewBox="0 0 16 12">
         <path fill-rule="evenodd" fill="inherit" d="
             M 8.00800037384033,10.1277000904083

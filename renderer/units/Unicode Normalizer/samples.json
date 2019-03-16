@@ -20,6 +20,10 @@
         "string": "ℋ ℌ ℍ"
     },
     {
+        "label": "Fullwidth Punctuation",
+        "string": "、。．，：；"
+    },
+    {
         "label": "Halfwidth Kana",
         "string": "ｶｰ"
     },
@@ -33,7 +37,11 @@
     },
     {
         "label": "Japanese Buttons",
-        "string": "🈁🈯🉐🉑"
+        "string": "🈁 🈯 🉐 🉑"
+    },
+    {
+        "label": "Japanese Era Names",
+        "string": "㋿ ㍻ ㍼ ㍽ ㍾"
     },
     {
         "label": "Katakana Digraph",

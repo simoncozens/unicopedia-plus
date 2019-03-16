@@ -606,7 +606,7 @@ function codePointsToCharacters (codePoints)
     return characters;
 }
 //
-function findCharactersByData (regex, bySymbol)
+function findCharactersByData (regex, bySymbol, useDecomposition)
 {
     let characterList = [ ];
     let codePoints = unicodeData;
@@ -614,10 +614,31 @@ function findCharactersByData (regex, bySymbol)
     {
         if (bySymbol)
         {
-            let character = String.fromCodePoint (parseInt (codePoints[codePoint].code, 16));
-            if (regex.test (character))
+            let found = false;
+            let codePointData = codePoints[codePoint];
+            let character = String.fromCodePoint (parseInt (codePointData.code, 16));
+            if (useDecomposition && codePointData.decomposition)
             {
-                characterList.push (character);
+                let codes = codePointData.decomposition.trim ().split (' ');
+                for (let code of codes)
+                {
+                    if (code[0] !== '<')
+                    {
+                        if (regex.test (String.fromCodePoint (parseInt (code, 16))))
+                        {
+                            characterList.push (character);
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!found)
+            {
+                if (regex.test (character))
+                {
+                    characterList.push (character);
+                }
             }
         }
         else

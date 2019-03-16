@@ -140,6 +140,16 @@
         ]
     },
     {
+        "label": "Punctuation",
+        "items":
+        [
+            {
+                "label": "CJK Punctuation",
+                "string": "、。．，：；"
+            }
+        ]
+    },
+    {
         "label": "Standardized Variants",
         "items":
         [

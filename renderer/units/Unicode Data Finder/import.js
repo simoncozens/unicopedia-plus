@@ -19,6 +19,7 @@ const nameParams = { };
 //
 const characterSearchString = unit.querySelector ('.match-character .search-string');
 const characterSearchMessage = unit.querySelector ('.match-character .search-message');
+const characterUseDecomposition = unit.querySelector ('.match-character .use-decomposition');
 const characterCaseSensitive = unit.querySelector ('.match-character .case-sensitive');
 const characterUseRegex = unit.querySelector ('.match-character .use-regex');
 const characterSearchButton = unit.querySelector ('.match-character .search-button');
@@ -67,6 +68,7 @@ module.exports.start = function (context)
         nameRegexExamples: false,
         //
         characterSearchString: "",
+        characterUseDecomposition: false,
         characterCaseSensitive: false,
         characterUseRegex: false,
         characterPageSize: 8,
@@ -277,6 +279,8 @@ module.exports.start = function (context)
     characterParams.observer = null;
     characterParams.root = unit;
     //
+    characterUseDecomposition.checked = prefs.characterUseDecomposition;
+    //
     characterCaseSensitive.checked = prefs.characterCaseSensitive;
     characterUseRegex.checked = prefs.characterUseRegex;
     //
@@ -386,7 +390,7 @@ module.exports.start = function (context)
                     {
                         clearSearch (characterSearchInfo, characterSearchData);
                         let start = window.performance.now ();
-                        let characters = unicode.findCharactersByData (regex, true);
+                        let characters = unicode.findCharactersByData (regex, true, characterUseDecomposition.checked);
                         let stop = window.performance.now ();
                         let seconds = ((stop - start) / 1000).toFixed (2);
                         let closeButton = document.createElement ('button');
@@ -724,6 +728,7 @@ module.exports.stop = function (context)
         nameRegexExamples: nameRegexExamples.open,
         //
         characterSearchString: characterSearchString.value,
+        characterUseDecomposition: characterUseDecomposition.checked,
         characterCaseSensitive: characterCaseSensitive.checked,
         characterUseRegex: characterUseRegex.checked,
         characterPageSize: characterParams.pageSize,

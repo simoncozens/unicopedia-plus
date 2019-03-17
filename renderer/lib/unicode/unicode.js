@@ -612,12 +612,15 @@ function findCharactersByData (regex, bySymbol, useDecomposition)
     let codePoints = unicodeData;
     for (let codePoint in codePoints)
     {
+        let codePointData = codePoints[codePoint];
+        let character = String.fromCodePoint (parseInt (codePointData.code, 16));
         if (bySymbol)
         {
-            let found = false;
-            let codePointData = codePoints[codePoint];
-            let character = String.fromCodePoint (parseInt (codePointData.code, 16));
-            if (useDecomposition && codePointData.decomposition)
+            if (regex.test (character))
+            {
+                characterList.push (character);
+            }
+            else if (useDecomposition && codePointData.decomposition)
             {
                 let codes = codePointData.decomposition.trim ().split (' ');
                 for (let code of codes)
@@ -627,25 +630,17 @@ function findCharactersByData (regex, bySymbol, useDecomposition)
                         if (regex.test (String.fromCodePoint (parseInt (code, 16))))
                         {
                             characterList.push (character);
-                            found = true;
                             break;
                         }
                     }
                 }
             }
-            if (!found)
-            {
-                if (regex.test (character))
-                {
-                    characterList.push (character);
-                }
-            }
         }
         else
         {
-            if (codePoints[codePoint].name.match (regex) || codePoints[codePoint].alias.match (regex) || (codePoints[codePoint].correction && codePoints[codePoint].correction.match (regex)))
+            if (codePointData.name.match (regex) || codePointData.alias.match (regex) || (codePointData.correction && codePointData.correction.match (regex)))
             {
-                characterList.push (String.fromCodePoint (parseInt (codePoints[codePoint].code, 16)));
+                characterList.push (character);
             }
         }
     }

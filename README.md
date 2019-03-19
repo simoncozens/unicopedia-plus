@@ -104,7 +104,7 @@ The following utilities are currently available:
 
 ### Match Sequence
 
-- The **Match Sequence** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, or a regular expression using Unicode properties.
+- The **Match Sequence** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
@@ -157,9 +157,9 @@ The following utilities are currently available:
 
 ### Match Character
 
-- The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, or a regular expression using Unicode properties.
-- Click on the <kbd>Use Decomposition</kbd> toggle button to extend the search to characters whose decomposition mapping contains a matching element.
+- The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
+- Click on the <kbd>Use Decomposition</kbd> toggle button to extend the search to characters whose *decomposition mapping* matches the query string.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 277,509 assigned characters (or code points) defined in the **Unicode 12.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.

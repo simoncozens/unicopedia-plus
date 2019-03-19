@@ -622,17 +622,11 @@ function findCharactersByData (regex, bySymbol, useDecomposition)
             }
             else if (useDecomposition && codePointData.decomposition)
             {
-                let codes = codePointData.decomposition.trim ().split (' ');
-                for (let code of codes)
+                let codes = codePointData.decomposition.trim ().split (' ').filter (code => (code[0] !== '<'));
+                let decompositionString = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ('');
+                if (decompositionString.match (regex))
                 {
-                    if (code[0] !== '<')
-                    {
-                        if (regex.test (String.fromCodePoint (parseInt (code, 16))))
-                        {
-                            characterList.push (character);
-                            break;
-                        }
-                    }
+                    characterList.push (character);
                 }
             }
         }

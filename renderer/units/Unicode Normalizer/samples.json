@@ -4,12 +4,16 @@
         "string": "ﷻ"
     },
     {
-        "label": "Circled Numbers",
-        "string": "③①年⑫月①③日"
+        "label": "Chinese People",
+        "string": "漢漢漢"
     },
     {
-        "label": "CJK Compatibility",
-        "string": "漢漢漢"
+        "label": "Chinese Turtles",
+        "string": "⿔龜龜龜龜"
+    },
+    {
+        "label": "Circled Numbers",
+        "string": "③①年⑫月①③日"
     },
     {
         "label": "Different Spaces",

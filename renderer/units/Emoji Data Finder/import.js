@@ -17,7 +17,6 @@ const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
 //
 const sequenceSearchString = unit.querySelector ('.match-sequence .search-string');
 const sequenceSearchMessage = unit.querySelector ('.match-sequence .search-message');
-const sequenceWholeWord = unit.querySelector ('.match-sequence .whole-word');
 const sequenceUseRegex = unit.querySelector ('.match-sequence .use-regex');
 const sequenceSearchButton = unit.querySelector ('.match-sequence .search-button');
 const sequenceHitCount = unit.querySelector ('.match-sequence .hit-count');
@@ -53,7 +52,6 @@ module.exports.start = function (context)
         nameRegexExamples: false,
         //
         sequenceSearchString: "",
-        sequenceWholeWord: false,
         sequenceUseRegex: false,
         sequenceInstructions: true,
         sequenceRegexExamples: false,
@@ -371,7 +369,6 @@ module.exports.start = function (context)
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
     //
-    sequenceWholeWord.checked = prefs.sequenceWholeWord;
     sequenceUseRegex.checked = prefs.sequenceUseRegex;
     //
     sequenceSearchString.addEventListener
@@ -467,12 +464,6 @@ module.exports.start = function (context)
                         }
                         //
                         let pattern = (sequenceUseRegex.checked) ? sequence : Array.from (sequence).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        if (sequenceWholeWord.checked)
-                        {
-                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
-                        }
                         const flags = 'ui';
                         pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
                         regex = new RegExp (pattern, flags);
@@ -594,7 +585,6 @@ module.exports.stop = function (context)
         nameRegexExamples: nameRegexExamples.open,
         //
         sequenceSearchString: sequenceSearchString.value,
-        sequenceWholeWord: sequenceWholeWord.checked,
         sequenceUseRegex: sequenceUseRegex.checked,
         sequenceInstructions: sequenceInstructions.open,
         sequenceRegexExamples: sequenceRegexExamples.open,

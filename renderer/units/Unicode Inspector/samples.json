@@ -1,5 +1,49 @@
 [
     {
+        "label": "CJK Numerals",
+        "items":
+        [
+            {
+                "label": "CJK Digits",
+                "string": "〇零一二三四五六七八九"
+            },
+            {
+                "label": "CJK Numbers",
+                "string": "十百千万亿億兆"
+            }
+        ]
+    },
+    {
+        "label": "CJK Unusual",
+        "items":
+        [
+            {
+                "label": "CJK Unusual 1",
+                "string": "𢨋𠄏𠄔𨙨𨛜𧹂𬢆\n或了予邑䣈贙"
+            },
+            {
+                "label": "CJK Unusual 2",
+                "string": "㔖㪲㫇\n㔔㪳㫈"
+            },
+            {
+                "label": "CJK Unusual 3",
+                "string": "𠄷𤕈𮍌\n𡉡𢀓𭍻"
+            },
+            {
+                "label": "CJK Unusual 4",
+                "string": "𠆭𠇇𠍋𠪳𡆢𡦹𡧑𦹗𭁇"
+            },
+            {
+                "label": "CJK Unusual 5",
+                "string": "𠕲𠚖𠚜𠚡\n𠥓𠥧𠥩𠥪𠥫𠥬"
+            },
+            {
+                "label": "CJK Unusual 6",
+                "string": "𬴘𬴜𬴠𬴡𬴢𬴣𬴤𬴥𬴦"
+            }
+        ]
+    },
+    {
         "label": "CJK Variants",
         "items":
         [
@@ -194,36 +238,6 @@
             {
                 "label": "Variation Selectors 3",
                 "string": "⚠︎⚠️㊙︎㊙️🈷︎🈷️"
-            }
-        ]
-    },
-    {
-        "label": "Unusual CJK",
-        "items":
-        [
-            {
-                "label": "Unusual 1",
-                "string": "𢨋𠄏𠄔𨙨𨛜𧹂𬢆\n或了予邑䣈贙"
-            },
-            {
-                "label": "Unusual 2",
-                "string": "㔖㪲㫇\n㔔㪳㫈"
-            },
-            {
-                "label": "Unusual 3",
-                "string": "𠄷𤕈𮍌\n𡉡𢀓𭍻"
-            },
-            {
-                "label": "Unusual 4",
-                "string": "𠆭𠇇𠍋𠪳𡆢𡦹𡧑𦹗𭁇"
-            },
-            {
-                "label": "Unusual 5",
-                "string": "𠕲𠚖𠚜𠚡\n𠥓𠥧𠥩𠥪𠥫𠥬"
-            },
-            {
-                "label": "Unusual 6",
-                "string": "𬴘𬴜𬴠𬴡𬴢𬴣𬴤𬴥𬴦"
             }
         ]
     }

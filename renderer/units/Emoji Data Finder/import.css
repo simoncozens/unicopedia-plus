@@ -258,6 +258,7 @@
     font-size: 72px;
     line-height: 1em;
     padding: 0.2em;
+    white-space: nowrap;
 }
 
 #emoji-data-finder-unit .emoji-table .names-data

@@ -24,6 +24,8 @@ module.exports.start = function (context)
     //
     const unicode = require ('../../lib/unicode/unicode.js');
     //
+    const numericValuesData = require ('../../lib/unicode/parsed-numeric-values-data.js');
+    //
     const defaultPrefs =
     {
         charactersInput: "",
@@ -172,6 +174,7 @@ module.exports.start = function (context)
                 cell.className = 'properties';
                 let name = data.name || "<unassigned>"; // "UNASSIGNED CHARACTER"
                 let numericType = "";
+                let numericValue = "";
                 if (data.numeric)
                 {
                     numericType = "Numeric";
@@ -183,6 +186,10 @@ module.exports.start = function (context)
                             numericType = "Decimal";
                         }
                     }
+                }
+                else
+                {
+                    numericValue = numericValuesData[data.codePoint] || "";
                 }
                 let properties =
                 [
@@ -197,12 +204,13 @@ module.exports.start = function (context)
                     { label: "General\xA0Category", value: data.category },
                     { label: "Combining\xA0Class", value: data.combining },
                     { label: "Bidirectional\xA0Class", value: data.bidi },
-                    { label: "Decomposition", value: data.decomposition },
                     { label: "Mirrored", value: data.mirrored },
-                    { label: numericType, value: data.numeric },
+                    { label: "Decomposition", value: data.decomposition },
                     { label: "Uppercase", value: data.uppercase },
                     { label: "Lowercase", value: data.lowercase },
                     { label: "Titlecase", value: data.titlecase },
+                    { label: numericType, value: data.numeric },
+                    { label: "Numeric\xA0Value", value: numericValue },
                     { label: "Binary\xA0Properties", value: data.binaryProperties },
                     { label: "Core\xA0Properties", value: data.coreProperties },
                     { label: "Equivalent\xA0Unified\xA0Ideograph", value: data.equivalentUnifiedIdeograph }

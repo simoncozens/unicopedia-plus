@@ -32,7 +32,11 @@ module.exports.start = function (context)
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     //
-    const variantsData = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
+    const numericValuesData = require ('../../lib/unicode/parsed-numeric-values-data.js');
+    //
+    const compatibilityVariants = require ('../../lib/unicode/get-cjk-compatibility-variants.js');
+    //
+    const yasuokaVariants = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
     //
     const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
@@ -283,13 +287,17 @@ module.exports.start = function (context)
                 rsValues = rsValues.map (rsValue => fromRSValue (rsValue).join (" +\xA0"));
                 //
                 let definitionValue = tags["kDefinition"];
-                let variants = variantsData[character] || [ ];
-                variants = variants.filter (variant => unihanRegex.test (variant));
+                let numericValue = numericValuesData[codePoint] || "";
+                let compatibility = compatibilityVariants[character] || [ ];
+                let yasuoka = yasuokaVariants[character] || [ ];
+                yasuoka = yasuoka.filter (variant => unihanRegex.test (variant));
                 let unihanFields =
                 [
                     { label: "Radical/Strokes", value: rsValues, class: rsClasses },
                     { label: "Definition", value: definitionValue, class: 'line-clamp' },
-                    { label: "Yasuoka\xA0Variants", value: variants.join (" ") }
+                    { label: "Numeric\xA0Value", value: numericValue },
+                    { label: "Compatibility\xA0Variants", value: compatibility.join (" ") },
+                    { label: "Yasuoka\xA0Variants", value: yasuoka.join (" ") }
                 ];
                 //
                 for (let unihanField of unihanFields)

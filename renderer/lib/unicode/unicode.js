@@ -504,7 +504,7 @@ function getCharacterData (character)
         if ((parseInt (scriptExtension.first, 16) <= num) && (num <= parseInt (scriptExtension.last, 16)))
         {
             let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias]);
-            characterData.scriptExtensions = names.join (", ");
+            characterData.scriptExtensions = names.sort ((a, b) => a.localeCompare (b)).join (", ");
             break;
         }
     }
@@ -518,7 +518,7 @@ function getCharacterData (character)
     }
     if (binaryProperties.length > 0)
     {
-        characterData.binaryProperties = binaryProperties.join (", ");
+        characterData.binaryProperties = binaryProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
     }
     let coreProperties = [ ];
     for (let coreProperty of extraData.coreProperties)
@@ -530,7 +530,7 @@ function getCharacterData (character)
     }
     if (coreProperties.length > 0)
     {
-        characterData.coreProperties = coreProperties.join (", ");
+        characterData.coreProperties = coreProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
     }
     for (let ideograph of extraData.equivalentUnifiedIdeographs)
     {
@@ -606,7 +606,22 @@ function codePointsToCharacters (codePoints)
     return characters;
 }
 //
-function findCharactersByData (regex, bySymbol, useDecomposition)
+function findCharactersByName (regex)
+{
+    let characterList = [ ];
+    let codePoints = unicodeData;
+    for (let codePoint in codePoints)
+    {
+        let codePointData = codePoints[codePoint];
+        if (codePointData.name.match (regex) || codePointData.alias.match (regex) || (codePointData.correction && codePointData.correction.match (regex)))
+        {
+            characterList.push (String.fromCodePoint (parseInt (codePointData.code, 16)));
+        }
+    }
+    return characterList;
+}
+//
+function findCharactersBySymbol (regex, matchDecomposition)
 {
     let characterList = [ ];
     let codePoints = unicodeData;
@@ -614,13 +629,17 @@ function findCharactersByData (regex, bySymbol, useDecomposition)
     {
         let codePointData = codePoints[codePoint];
         let character = String.fromCodePoint (parseInt (codePointData.code, 16));
-        if (bySymbol)
+        if (regex.test (character))
         {
-            if (regex.test (character))
+            characterList.push (character);
+        }
+        else if (matchDecomposition)
+        {
+            if (regex.test (character.normalize ('NFD')) || regex.test (character.normalize ('NFKD')))
             {
                 characterList.push (character);
             }
-            else if (useDecomposition && codePointData.decomposition)
+            else if (codePointData.decomposition)
             {
                 let codes = codePointData.decomposition.trim ().split (' ').filter (code => (code[0] !== '<'));
                 let decompositionString = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ('');
@@ -628,13 +647,6 @@ function findCharactersByData (regex, bySymbol, useDecomposition)
                 {
                     characterList.push (character);
                 }
-            }
-        }
-        else
-        {
-            if (codePointData.name.match (regex) || codePointData.alias.match (regex) || (codePointData.correction && codePointData.correction.match (regex)))
-            {
-                characterList.push (character);
             }
         }
     }
@@ -689,7 +701,8 @@ module.exports =
     getCharactersData,
     charactersToCodePoints,
     codePointsToCharacters,
-    findCharactersByData,
+    findCharactersByName,
+    findCharactersBySymbol,
     getCharacterBasicData
 };
 //

@@ -22,7 +22,7 @@ unihanCompatibilityBlocks.forEach
         for (let index = firstIndex; index <= lastIndex; index++)
         {
             let character = String.fromCodePoint (index);
-            let decomposition = character.normalize ();
+            let decomposition = character.normalize ('NFD');
             if (decomposition !== character)
             {
                 if (!(decomposition in compatibilityVariants))

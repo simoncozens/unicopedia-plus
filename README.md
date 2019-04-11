@@ -169,7 +169,7 @@ The following utilities are currently available:
 
 - The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
-- Click on the <kbd>Use Decomposition</kbd> toggle button to extend the search to characters whose *decomposition mapping* matches the query string.
+- Click on the <kbd>Match Decomposition</kbd> toggle button to extend the search to characters whose *decomposition mapping* matches the query string.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 277,509 assigned characters (or code points) defined in the **Unicode 12.0** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Click on the <kbd>✕</kbd> button to clear all results.
@@ -210,7 +210,7 @@ The following utilities are currently available:
 
 ## Unicode Normalizer
 
-- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string, as specified in the [Unicode Standard Annex #15](https://www.unicode.org/reports/tr15/):
+- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string, as specified in the [UAX #15: Unicode Normalization Forms](https://www.unicode.org/reports/tr15/):
 
     | Form | Name | Description |
     | ---- | ---- | ----------- |

@@ -19,7 +19,7 @@ const nameParams = { };
 //
 const characterSearchString = unit.querySelector ('.match-character .search-string');
 const characterSearchMessage = unit.querySelector ('.match-character .search-message');
-const characterUseDecomposition = unit.querySelector ('.match-character .use-decomposition');
+const characterMatchDecomposition = unit.querySelector ('.match-character .match-decomposition');
 const characterCaseSensitive = unit.querySelector ('.match-character .case-sensitive');
 const characterUseRegex = unit.querySelector ('.match-character .use-regex');
 const characterSearchButton = unit.querySelector ('.match-character .search-button');
@@ -68,7 +68,7 @@ module.exports.start = function (context)
         nameRegexExamples: false,
         //
         characterSearchString: "",
-        characterUseDecomposition: false,
+        characterMatchDecomposition: false,
         characterCaseSensitive: false,
         characterUseRegex: false,
         characterPageSize: 8,
@@ -244,7 +244,7 @@ module.exports.start = function (context)
                     {
                         clearSearch (nameSearchInfo, nameSearchData);
                         let start = window.performance.now ();
-                        let characters = unicode.findCharactersByData (regex, false);
+                        let characters = unicode.findCharactersByName (regex);
                         let stop = window.performance.now ();
                         let seconds = ((stop - start) / 1000).toFixed (2);
                         let closeButton = document.createElement ('button');
@@ -279,7 +279,7 @@ module.exports.start = function (context)
     characterParams.observer = null;
     characterParams.root = unit;
     //
-    characterUseDecomposition.checked = prefs.characterUseDecomposition;
+    characterMatchDecomposition.checked = prefs.characterMatchDecomposition;
     //
     characterCaseSensitive.checked = prefs.characterCaseSensitive;
     characterUseRegex.checked = prefs.characterUseRegex;
@@ -390,7 +390,7 @@ module.exports.start = function (context)
                     {
                         clearSearch (characterSearchInfo, characterSearchData);
                         let start = window.performance.now ();
-                        let characters = unicode.findCharactersByData (regex, true, characterUseDecomposition.checked);
+                        let characters = unicode.findCharactersBySymbol (regex, characterMatchDecomposition.checked);
                         let stop = window.performance.now ();
                         let seconds = ((stop - start) / 1000).toFixed (2);
                         let closeButton = document.createElement ('button');
@@ -728,7 +728,7 @@ module.exports.stop = function (context)
         nameRegexExamples: nameRegexExamples.open,
         //
         characterSearchString: characterSearchString.value,
-        characterUseDecomposition: characterUseDecomposition.checked,
+        characterMatchDecomposition: characterMatchDecomposition.checked,
         characterCaseSensitive: characterCaseSensitive.checked,
         characterUseRegex: characterUseRegex.checked,
         characterPageSize: characterParams.pageSize,

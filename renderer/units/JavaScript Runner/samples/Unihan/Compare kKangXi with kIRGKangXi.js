@@ -10,7 +10,7 @@ set.forEach
         if (kKangXi && kIRGKangXi && (kKangXi !== kIRGKangXi))
         {
             let character = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
-             diffs.push (`${character}\t${codePoint}\t${kKangXi}\t${kIRGKangXi}`);
+            diffs.push (`${character}\t${codePoint}\t${kKangXi}\t${kIRGKangXi}`);
         }
     }
 );

@@ -51,27 +51,27 @@
         [
             {
                 "label": "Unique Glyphs 1",
-                "string": "傑僭割劘匾叟喝塌姿嬴幰"
+                "string": "傑僭割劘匾叟喝塌姿嬴幰廋"
             },
             {
                 "label": "Unique Glyphs 2",
-                "string": "廋扇扉摩溲潛瀛瘦瞎磨窖"
+                "string": "扇扉搨摩榻溲潛瀛瘦瞎磨窖"
             },
             {
                 "label": "Unique Glyphs 3",
-                "string": "竇箭篠簉糙綢纛羸翁翦翩"
+                "string": "竇箭篠簉糙綢纛羸翁翦翩肓"
             },
             {
                 "label": "Unique Glyphs 4",
-                "string": "肓臝艘花裯褐謁譖豁贏轄"
+                "string": "臝艘花裯褐謁譖豁贏轄返迷"
             },
             {
                 "label": "Unique Glyphs 5",
-                "string": "返迷途造週遍遭選遼鄰釁"
+                "string": "途造週遍遭選遼鄰釁閼雕靠"
             },
             {
                 "label": "Unique Glyphs 6",
-                "string": "閼雕靠靡颼飯驎鬣魔麗麟"
+                "string": "靡颼飯驎鬣魔麗麟"
             }
         ]
     },
@@ -107,6 +107,10 @@
         "label": "Miscellaneous",
         "items":
         [
+            {
+                "label": "Japanese Era Names",
+                "string": "㋿㍻㍼㍽㍾"
+            },
             {
                 "label": "Prefectures of Japan",
                 "string": "都道府県"

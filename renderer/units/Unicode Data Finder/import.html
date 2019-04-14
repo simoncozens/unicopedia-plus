@@ -125,6 +125,7 @@
                     </details>
                     <details class="regex-examples">
                         <summary>Regex Examples</summary>
+                        <p><kbd>Match Decomposition</kbd> toggled <strong>OFF</strong>:</p>
                         <ul>
                             <li><code>\s</code><br>Characters considered white space in Unicode by the regular expression engine</li>
                             <li><code>(?!.)[^]</code> or <code>(?!.)[\s\S]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
@@ -142,6 +143,17 @@
                             <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
                             <li><code>(?=\p{Ideographic})(?!\p{Unified_Ideograph})</code> or <code>(?=\p{Ideographic})(?=\P{Unified_Ideograph})</code><br>Characters with the 'Ideographic' binary property, but without the 'Unified_Ideograph' binary property</li>
                             <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
+                        </ul>
+                        <p><kbd>Match Decomposition</kbd> toggled <strong>ON</strong>:</p>
+                        <ul>
+                            <li><code>∫{4}</code><br>Character made of four integrals, i.e., a quadruple integral operator</li>
+                            <li><code>\d\d</code><br>Characters containing two digits (0 to 9)</li>
+                            <li><code>\w/\w</code><br>Characters made of two letters separated by a slash</li>
+                            <li><code>^ホ$</code><br>Characters made of a single katakana letter 'ho'</li>
+                            <li><code>左|右</code><br>Characters containing either 左 (left) or 右 (right)</li>
+                            <li><code>[月火水木金土日]</code><br>Characters containing one ideograph, Japanese shorthand for each of the seven days of the week</li>
+                            <li><code>\(\p{Script=Han}\)</code><br>Characters made of a single parenthesized ideograph</li>
+                            <li><code>\p{Script=Arabic}\s\p{Script=Arabic}</code><br>Characters made of Arabic letters separated by white space, forming intricate Arabic ligatures</li>
                         </ul>
                     </details>
                 </div>

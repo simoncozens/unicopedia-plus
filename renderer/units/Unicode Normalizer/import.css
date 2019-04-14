@@ -67,7 +67,6 @@
 {
     table-layout: fixed;
     margin: 10px 0 4px 0;
-    user-select: text;
 }
 
 #unicode-normalizer-unit table.form-data th
@@ -75,6 +74,7 @@
     text-align: left;
     vertical-align: middle;
     padding: 2px 6px;
+    user-select: text;
 }
 
 #unicode-normalizer-unit table.form-data td
@@ -83,6 +83,7 @@
     vertical-align: middle;
     background-color: white;
     overflow-wrap: break-word;
+    user-select: text;
 }
 
 #unicode-normalizer-unit table.form-data td.characters-string

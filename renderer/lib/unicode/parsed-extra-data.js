@@ -39,7 +39,7 @@ for (let line of lines)
     }
 }
 //
-let binaryProperties = [ ];
+let extendedProperties = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/PropList.txt
 lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'PropList.txt'), { encoding: 'ascii' }).split ('\n');
@@ -50,7 +50,7 @@ for (let line of lines)
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
         {
-            binaryProperties.push ({ first: found[1], last: found[2] || found[1], name: found[3] });
+            extendedProperties.push ({ first: found[1], last: found[2] || found[1], name: found[3] });
         }
     }
 }
@@ -123,7 +123,7 @@ module.exports =
 {
     versions,
     blocks,
-    binaryProperties,
+    extendedProperties,
     coreProperties,
     scripts,
     scriptExtensions,

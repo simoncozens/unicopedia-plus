@@ -155,6 +155,10 @@
         {
             "name": "FAQ - Chinese and Japanese",
             "href": "https://www.unicode.org/faq/han_cjk.html"
+        },
+        {
+            "name": "FAQ - Fonts and Keyboards",
+            "href": "https://www.unicode.org/faq/font_keyboard.html"
         }
     ],
     [

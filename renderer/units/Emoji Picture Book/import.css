@@ -28,9 +28,9 @@
 
 #emoji-picture-book-unit .plain-panel h2
 {
-    user-select: text;
     font-size: 17px;
     font-weight: 600;
+    user-select: text;
 }
 
 #emoji-picture-book-unit .plain-panel .sheet

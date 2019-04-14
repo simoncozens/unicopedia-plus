@@ -203,6 +203,12 @@
     ],
     [
         {
+            "name": "Unicode Utilities: Character Property Index",
+            "href": "https://www.unicode.org/cldr/utility/properties.jsp"
+        }
+    ],
+    [
+        {
             "name": "Glossary",
             "href": "https://www.unicode.org/glossary/"
         }

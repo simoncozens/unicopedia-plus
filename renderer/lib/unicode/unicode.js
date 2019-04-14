@@ -15,66 +15,67 @@ const planes =
     { name: "Tertiary Ideographic Plane (TIP)", first: "30000", last: "3FFFF" },
     // { name: "Unassigned", first: "40000", last: "DFFFF" },
     { name: "Supplementary Special-purpose Plane (SSP)", first: "E0000", last: "EFFFF" },
-    { name: "Supplementary Private Use Area-A", first: "F0000", last: "FFFFF" },
-    { name: "Supplementary Private Use Area-B", first: "100000", last: "10FFFF" }
+    { name: "Supplementary Private Use Area-A (SPUA-A)", first: "F0000", last: "FFFFF" },
+    { name: "Supplementary Private Use Area-B (SPUA-B)", first: "100000", last: "10FFFF" }
 ];
 //
 // https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
 const categories =
 {
-    "Lu": "Uppercase Letter",           // an uppercase letter
-    "Ll": "Lowercase Letter",           // a lowercase letter
-    "Lt": "Titlecase Letter",           // a digraphic character, with first part uppercase
-    "LC": "Cased Letter",               // Lu | Ll | Lt
-    "Lm": "Modifier Letter",            // a modifier letter
-    "Lo": "Other Letter",               // other letters, including syllables and ideographs
+    "Lu": "Uppercase_Letter",           // an uppercase letter
+    "Ll": "Lowercase_Letter",           // a lowercase letter
+    "Lt": "Titlecase_Letter",           // a digraphic character, with first part uppercase
+    "LC": "Cased_Letter",               // Lu | Ll | Lt
+    "Lm": "Modifier_Letter",            // a modifier letter
+    "Lo": "Other_Letter",               // other letters, including syllables and ideographs
     "L": "Letter",                      // Lu | Ll | Lt | Lm | Lo
     //
-    "Mn": "Nonspacing Mark",           // a nonspacing combining mark (zero advance width)
-    "Mc": "Spacing Mark",               // a spacing combining mark (positive advance width)
-    "Me": "Enclosing Mark",             // an enclosing combining mark
+    "Mn": "Nonspacing_Mark",           // a nonspacing combining mark (zero advance width)
+    "Mc": "Spacing_Mark",               // a spacing combining mark (positive advance width)
+    "Me": "Enclosing_Mark",             // an enclosing combining mark
     "M": "Mark",                        // Mn | Mc | Me
     //
-    "Nd": "Decimal Number",             // a decimal digit
-    "Nl": "Letter Number",              // a letterlike numeric character
-    "No": "Other Number",               // a numeric character of other type
+    "Nd": "Decimal_Number",             // a decimal digit
+    "Nl": "Letter_Number",              // a letterlike numeric character
+    "No": "Other_Number",               // a numeric character of other type
     "N": "Number",                      // Nd | Nl | No
     //
-    "Pc": "Connector Punctuation",      // a connecting punctuation mark, like a tie
-    "Pd": "Dash Punctuation",           // a dash or hyphen punctuation mark
-    "Ps": "Open Punctuation",           // an opening punctuation mark (of a pair)
-    "Pe": "Close Punctuation",          // a closing punctuation mark (of a pair)
-    "Pi": "Initial Punctuation",        // an initial quotation mark
-    "Pf": "Final Punctuation",          // a final quotation mark
-    "Po": "Other Punctuation",          // a punctuation mark of other type
+    "Pc": "Connector_Punctuation",      // a connecting punctuation mark, like a tie
+    "Pd": "Dash_Punctuation",           // a dash or hyphen punctuation mark
+    "Ps": "Open_Punctuation",           // an opening punctuation mark (of a pair)
+    "Pe": "Close_Punctuation",          // a closing punctuation mark (of a pair)
+    "Pi": "Initial_Punctuation",        // an initial quotation mark
+    "Pf": "Final_Punctuation",          // a final quotation mark
+    "Po": "Other_Punctuation",          // a punctuation mark of other type
     "P": "Punctuation",                 // Pc | Pd | Ps | Pe | Pi | Pf | Po
     //
-    "Sm": "Math Symbol",                // a symbol of mathematical use
-    "Sc": "Currency Symbol",            // a currency sign
-    "Sk": "Modifier Symbol",            // a non-letterlike modifier symbol
-    "So": "Other Symbol",               // a symbol of other type
+    "Sm": "Math_Symbol",                // a symbol of mathematical use
+    "Sc": "Currency_Symbol",            // a currency sign
+    "Sk": "Modifier_Symbol",            // a non-letterlike modifier symbol
+    "So": "Other_Symbol",               // a symbol of other type
     "S": "Symbol",                      // Sm | Sc | Sk | So
     //
-    "Zs": "Space Separator",            // a space character (of various non-zero widths)
-    "Zl": "Line Separator",             // U+2028 LINE SEPARATOR only
-    "Zp": "Paragraph Separator",        // U+2029 PARAGRAPH SEPARATOR only
+    "Zs": "Space_Separator",            // a space character (of various non-zero widths)
+    "Zl": "Line_Separator",             // U+2028 LINE SEPARATOR only
+    "Zp": "Paragraph_Separator",        // U+2029 PARAGRAPH SEPARATOR only
     "Z": "Separator",                   // Zs | Zl | Zp
     //
     "Cc": "Control",                    // a C0 or C1 control code
     "Cf": "Format",                     // a format control character
     "Cs": "Surrogate",                  // a surrogate code point
-    "Co": "Private Use",                // a private-use character
+    "Co": "Private_Use",                // a private-use character
     "Cn": "Unassigned",                 // a reserved unassigned code point or a noncharacter (no characters in the file have this property)
     "C": "Other"                        // Cc | Cf | Cs | Co | Cn
 };
 //
+// https://unicode.org/reports/tr44/#CCC_Values_Table
 // https://www.unicode.org/Public/UNIDATA/extracted/DerivedCombiningClass.txt
 const combiningClasses =
 {
-    "0": "Not Reordered",           // Spacing and enclosing marks; also many vowel and consonant signs, even if nonspacing
+    "0": "Not_Reordered",           // Spacing and enclosing marks; also many vowel and consonant signs, even if nonspacing
     "1": "Overlay",                 // Marks which overlay a base letter or symbol
     "7": "Nukta",                   // Diacritic nukta marks in Brahmi-derived scripts
-    "8": "Kana Voicing",            // Hiragana/Katakana voicing marks
+    "8": "Kana_Voicing",            // Hiragana/Katakana voicing marks
     "9": "Virama",                  // Viramas
     //
     "10": "CCC10",
@@ -113,54 +114,57 @@ const combiningClasses =
     "130": "CCC130",
     "132": "CCC132",
     //
-    "200": "Attached Below Left",   // Marks attached at the bottom left
-    "202": "Attached Below",        // Marks attached directly below
-    "204": "Attached Below Right",  // Marks attached at the bottom right
-    "208": "Attached Left",         // Marks attached to the left
-    "210": "Attached Right",        // Marks attached to the right
-    "212": "Attached Above Left",   // Marks attached at the top left
-    "214": "Attached Above",        // Marks attached directly above
-    "216": "Attached Above Right",  // Marks attached at the top right
-    "218": "Below Left",            // Distinct marks at the bottom left
+    "200": "Attached_Below_Left",   // Marks attached at the bottom left
+    "202": "Attached_Below",        // Marks attached directly below
+    "204": "Attached_Below_Right",  // Marks attached at the bottom right
+    "208": "Attached_Left",         // Marks attached to the left
+    "210": "Attached_Right",        // Marks attached to the right
+    "212": "Attached_Above_Left",   // Marks attached at the top left
+    "214": "Attached_Above",        // Marks attached directly above
+    "216": "Attached_Above_Right",  // Marks attached at the top right
+    "218": "Below_Left",            // Distinct marks at the bottom left
     "220": "Below",                 // Distinct marks directly below
-    "222": "Below Right",           // Distinct marks at the bottom right
+    "222": "Below_Right",           // Distinct marks at the bottom right
     "224": "Left",                  // Distinct marks to the left
     "226": "Right",                 // Distinct marks to the right
-    "228": "Above Left",            // Distinct marks at the top left
+    "228": "Above_Left",            // Distinct marks at the top left
     "230": "Above",                 // Distinct marks directly above
-    "232": "Above Right",           // Distinct marks at the top right
-    "233": "Double Below",          // Distinct marks subtending two bases
-    "234": "Double Above",          // Distinct marks extending above two bases
-    "240": "Iota Subscript"         // Greek iota subscript only
+    "232": "Above_Right",           // Distinct marks at the top right
+    "233": "Double_Below",          // Distinct marks subtending two bases
+    "234": "Double_Above",          // Distinct marks extending above two bases
+    "240": "Iota_Subscript"         // Greek iota subscript only
 };
 //
+// https://unicode.org/reports/tr44/#BC_Values_Table
 // https://www.unicode.org/Public/UNIDATA/extracted/DerivedBidiClass.txt
 const bidiClasses =
 {
-    "L": "Left-to-Right",               // any strong left-to-right character
-    "LRE": "Left-to-Right Embedding",   // U+202A: the LR embedding control
-    "LRO": "Left-to-Right Override",    // U+202D: the LR override control
-    "R": "Right-to-Left",               // any strong right-to-left (non-Arabic-type) character
-    "AL": "Arabic Letter",              // any strong right-to-left (Arabic-type) character
-    "RLE": "Right-to-Left Embedding",   // U+202B: the RL embedding control
-    "RLO": "Right-to-Left Override",    // U+202E: the RL override control
-    "PDF": "Pop Directional Format",    // U+202C: terminates an embedding or override control
-    "EN": "European Number",            // any ASCII digit or Eastern Arabic-Indic digit
-    "ES": "European Separator",         // plus and minus signs
-    "ET": "European Terminator",        // a terminator in a numeric format context, includes currency signs
-    "AN": "Arabic Number",              // any Arabic-Indic digit
-    "CS": "Common Separator",           // commas, colons, and slashes
-    "NSM": "Nonspacing Mark",           // any nonspacing mark
-    "BN": "Boundary Neutral",           // most format characters, control codes, or noncharacters
-    "B": "Paragraph Separator",         // various newline characters
-    "S": "Segment Separator",           // various segment-related control codes
-    "WS": "White Space",                // spaces
-    "ON": "Other Neutral",              // most other symbols and punctuation marks
+    "L": "Left_To_Right",               // any strong left-to-right character
+    "R": "Right_To_Left",               // any strong right-to-left (non-Arabic-type) character
+    "AL": "Arabic_Letter",              // any strong right-to-left (Arabic-type) character
     //
-    "LRI": "Left-to-Right Isolate",     // U+2066: the LR isolate control
-    "RLI": "Right-to-Left Isolate",     // U+2067: the RL isolate control
-    "FSI": "First Strong Isolate ",     // U+2068: the first strong isolate control
-    "PDI": "Pop Directional Isolate"    // U+2069: terminates an isolate control
+    "EN": "European_Number",            // any ASCII digit or Eastern Arabic-Indic digit
+    "ES": "European_Separator",         // plus and minus signs
+    "ET": "European_Terminator",        // a terminator in a numeric format context, includes currency signs
+    "AN": "Arabic_Number",              // any Arabic-Indic digit
+    "CS": "Common_Separator",           // commas, colons, and slashes
+    "NSM": "Nonspacing_Mark",           // any nonspacing mark
+    "BN": "Boundary_Neutral",           // most format characters, control codes, or noncharacters
+    //
+    "B": "Paragraph_Separator",         // various newline characters
+    "S": "Segment_Separator",           // various segment-related control codes
+    "WS": "White_Space",                // spaces
+    "ON": "Other_Neutral",              // most other symbols and punctuation marks
+    //
+    "LRE": "Left_To_Right_Embedding",   // U+202A: the LR embedding control
+    "LRO": "Left_To_Right_Override",    // U+202D: the LR override control
+    "RLE": "Right_To_Left_Embedding",   // U+202B: the RL embedding control
+    "RLO": "Right_To_Left_Override",    // U+202E: the RL override control
+    "PDF": "Pop_Directional_Format",    // U+202C: terminates an embedding or override control
+    "LRI": "Left_To_Right_Isolate",     // U+2066: the LR isolate control
+    "RLI": "Right_To_Left_Isolate",     // U+2067: the RL isolate control
+    "FSI": "First_Strong_Isolate ",     // U+2068: the first strong isolate control
+    "PDI": "Pop_Directional_Isolate"    // U+2069: terminates an isolate control
 };
 //
 const mirrored =
@@ -174,13 +178,13 @@ const scripts =
 {
     "Adlm": "Adlam",
     "Ahom": "Ahom",
-    "Hluw": "Anatolian Hieroglyphs",
+    "Hluw": "Anatolian_Hieroglyphs",
     "Arab": "Arabic",
     "Armn": "Armenian",
     "Avst": "Avestan",
     "Bali": "Balinese",
     "Bamu": "Bamum",
-    "Bass": "Bassa Vah",
+    "Bass": "Bassa_Vah",
     "Batk": "Batak",
     "Beng": "Bengali",
     "Bhks": "Bhaiksuki",
@@ -189,9 +193,9 @@ const scripts =
     "Brai": "Braille",
     "Bugi": "Buginese",
     "Buhd": "Buhid",
-    "Cans": "Canadian Aboriginal",
+    "Cans": "Canadian_Aboriginal",
     "Cari": "Carian",
-    "Aghb": "Caucasian Albanian",
+    "Aghb": "Caucasian_Albanian",
     "Cakm": "Chakma",
     "Cham": "Cham",
     "Cher": "Cherokee",
@@ -205,7 +209,7 @@ const scripts =
     "Deva": "Devanagari",
     "Dogr": "Dogra",
     "Dupl": "Duployan",
-    "Egyp": "Egyptian Hieroglyphs",
+    "Egyp": "Egyptian_Hieroglyphs",
     "Elba": "Elbasan",
     "Elym": "Elymaic",
     "Ethi": "Ethiopic",
@@ -215,25 +219,25 @@ const scripts =
     "Gran": "Grantha",
     "Grek": "Greek",
     "Gujr": "Gujarati",
-    "Gong": "Gunjala Gondi",
+    "Gong": "Gunjala_Gondi",
     "Guru": "Gurmukhi",
     "Hani": "Han",
     "Hang": "Hangul",
-    "Rohg": "Hanifi Rohingya",
+    "Rohg": "Hanifi_Rohingya",
     "Hano": "Hanunoo",
     "Hatr": "Hatran",
     "Hebr": "Hebrew",
     "Hira": "Hiragana",
-    "Armi": "Imperial Aramaic",
+    "Armi": "Imperial_Aramaic",
     "Zinh": "Inherited",
     "Qaai": "Inherited",    // Alias?
-    "Phli": "Inscriptional Pahlavi",
-    "Prti": "Inscriptional Parthian",
+    "Phli": "Inscriptional_Pahlavi",
+    "Prti": "Inscriptional_Parthian",
     "Java": "Javanese",
     "Kthi": "Kaithi",
     "Knda": "Kannada",
     "Kana": "Katakana",
-    "Kali": "Kayah Li",
+    "Kali": "Kayah_Li",
     "Khar": "Kharoshthi",
     "Khmr": "Khmer",
     "Khoj": "Khojki",
@@ -242,8 +246,8 @@ const scripts =
     "Latn": "Latin",
     "Lepc": "Lepcha",
     "Limb": "Limbu",
-    "Lina": "Linear A",
-    "Linb": "Linear B",
+    "Lina": "Linear_A",
+    "Linb": "Linear_B",
     "Lisu": "Lisu",
     "Lyci": "Lycian",
     "Lydi": "Lydian",
@@ -253,12 +257,12 @@ const scripts =
     "Mand": "Mandaic",
     "Mani": "Manichaean",
     "Marc": "Marchen",
-    "Gonm": "Masaram Gondi",
+    "Gonm": "Masaram_Gondi",
     "Medf": "Medefaidrin",
-    "Mtei": "Meetei Mayek",
-    "Mend": "Mende Kikakui",
-    "Merc": "Meroitic Cursive",
-    "Mero": "Meroitic Hieroglyphs",
+    "Mtei": "Meetei_Mayek",
+    "Mend": "Mende_Kikakui",
+    "Merc": "Meroitic_Cursive",
+    "Mero": "Meroitic_Hieroglyphs",
     "Plrd": "Miao",
     "Modi": "Modi",
     "Mong": "Mongolian",
@@ -267,30 +271,30 @@ const scripts =
     "Mymr": "Myanmar",
     "Nbat": "Nabataean",
     "Nand": "Nandinagari",
-    "Talu": "New Tai Lue",
+    "Talu": "New_Tai_Lue",
     "Newa": "Newa",
     "Nkoo": "Nko",
     "Nshu": "Nushu",
-    "Hmnp": "Nyiakeng Puachue Hmong",
+    "Hmnp": "Nyiakeng_Puachue_Hmong",
     "Ogam": "Ogham",
-    "Olck": "Ol Chiki",
-    "Hung": "Old Hungarian",
-    "Ital": "Old Italic",
-    "Narb": "Old North Arabian",
-    "Perm": "Old Permic",
-    "Xpeo": "Old Persian",
-    "Sogo": "Old Sogdian",
-    "Sarb": "Old South Arabian",
-    "Orkh": "Old Turkic",
+    "Olck": "Ol_Chiki",
+    "Hung": "Old_Hungarian",
+    "Ital": "Old_Italic",
+    "Narb": "Old_North_Arabian",
+    "Perm": "Old_Permic",
+    "Xpeo": "Old_Persian",
+    "Sogo": "Old_Sogdian",
+    "Sarb": "Old_South_Arabian",
+    "Orkh": "Old_Turkic",
     "Orya": "Oriya",
     "Osge": "Osage",
     "Osma": "Osmanya",
-    "Hmng": "Pahawh Hmong",
+    "Hmng": "Pahawh_Hmong",
     "Palm": "Palmyrene",
-    "Pauc": "Pau Cin Hau",
-    "Phag": "Phags-pa",
+    "Pauc": "Pau_Cin_Hau",
+    "Phag": "Phags_Pa",
     "Phnx": "Phoenician",
-    "Phlp": "Psalter Pahlavi",
+    "Phlp": "Psalter_Pahlavi",
     "Rjng": "Rejang",
     "Runr": "Runic",
     "Samr": "Samaritan",
@@ -301,16 +305,16 @@ const scripts =
     "Sgnw": "SignWriting",
     "Sinh": "Sinhala",
     "Sogd": "Sogdian",
-    "Sora": "Sora Sompeng",
+    "Sora": "Sora_Sompeng",
     "Soyo": "Soyombo",
     "Sund": "Sundanese",
-    "Sylo": "Syloti Nagri",
+    "Sylo": "Syloti_Nagri",
     "Syrc": "Syriac",
     "Tglg": "Tagalog",
     "Tagb": "Tagbanwa",
-    "Tale": "Tai Le",
-    "Lana": "Tai Tham",
-    "Tavt": "Tai Viet",
+    "Tale": "Tai_Le",
+    "Lana": "Tai_Tham",
+    "Tavt": "Tai_Viet",
     "Takr": "Takri",
     "Taml": "Tamil",
     "Tang": "Tangut",
@@ -323,9 +327,9 @@ const scripts =
     "Ugar": "Ugaritic",
     "Vaii": "Vai",
     "Wcho": "Wancho",
-    "Wara": "Warang Citi",
+    "Wara": "Warang_Citi",
     "Yiii": "Yi",
-    "Zanb": "Zanabazar Square"
+    "Zanb": "Zanabazar_Square"
 };
 //
 function uniHexify (string)
@@ -442,7 +446,8 @@ const versionDate =
     "9.0": "June 2016",
     "10.0": "June 2017",
     "11.0": "June 2018",
-    "12.0": "March 2019"
+    "12.0": "March 2019",
+    "12.1": "May 2019"
 };
 //
 function getCharacterData (character)
@@ -495,7 +500,7 @@ function getCharacterData (character)
     {
         if ((parseInt (script.first, 16) <= num) && (num <= parseInt (script.last, 16)))
         {
-            characterData.script = script.name.replace (/_/g, " ").replace ("Phags Pa", "Phags-pa");
+            characterData.script = script.name;
             break;
         }
     }
@@ -508,24 +513,24 @@ function getCharacterData (character)
             break;
         }
     }
-    let binaryProperties = [ ];
-    for (let binaryProperty of extraData.binaryProperties)
+    let extendedProperties = [ ];
+    for (let extendedProperty of extraData.extendedProperties)
     {
-        if ((parseInt (binaryProperty.first, 16) <= num) && (num <= parseInt (binaryProperty.last, 16)))
+        if ((parseInt (extendedProperty.first, 16) <= num) && (num <= parseInt (extendedProperty.last, 16)))
         {
-            binaryProperties.push (binaryProperty.name.replace (/_/g, " "));
+            extendedProperties.push (extendedProperty.name);
         }
     }
-    if (binaryProperties.length > 0)
+    if (extendedProperties.length > 0)
     {
-        characterData.binaryProperties = binaryProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
+        characterData.extendedProperties = extendedProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
     }
     let coreProperties = [ ];
     for (let coreProperty of extraData.coreProperties)
     {
         if ((parseInt (coreProperty.first, 16) <= num) && (num <= parseInt (coreProperty.last, 16)))
         {
-            coreProperties.push (coreProperty.name.replace (/_/g, " "));
+            coreProperties.push (coreProperty.name);
         }
     }
     if (coreProperties.length > 0)
@@ -633,20 +638,23 @@ function findCharactersBySymbol (regex, matchDecomposition)
         {
             characterList.push (character);
         }
-        else if (matchDecomposition)
+        else if (matchDecomposition && codePointData.decomposition)
         {
-            if (regex.test (character.normalize ('NFD')) || regex.test (character.normalize ('NFKD')))
+            let codes = codePointData.decomposition.trim ().split (' ').filter (code => (code[0] !== '<'));
+            let decomposition = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ('');
+            let matchStrings =
+            [
+                decomposition,
+                character.normalize ('NFD'),  // decomposition.normalize ('NFD')
+                character.normalize ('NFC'),  // decomposition.normalize ('NFC')
+                character.normalize ('NFKD'), // decomposition.normalize ('NFKD')
+                character.normalize ('NFKC')  // decomposition.normalize ('NFKC')
+            ];
+            matchStrings = matchStrings.filter (string => (string !== character)); // Remove character itself
+            matchStrings = [... new Set (matchStrings)]; // Remove duplicates
+            if (matchStrings.some (string => string.match (regex)))
             {
                 characterList.push (character);
-            }
-            else if (codePointData.decomposition)
-            {
-                let codes = codePointData.decomposition.trim ().split (' ').filter (code => (code[0] !== '<'));
-                let decompositionString = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ('');
-                if (decompositionString.match (regex))
-                {
-                    characterList.push (character);
-                }
             }
         }
     }

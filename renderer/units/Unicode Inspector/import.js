@@ -211,7 +211,7 @@ module.exports.start = function (context)
                     { label: "Titlecase", value: data.titlecase },
                     { label: numericType, value: data.numeric },
                     { label: "Numeric\xA0Value", value: numericValue },
-                    { label: "Binary\xA0Properties", value: data.binaryProperties },
+                    { label: "Extended\xA0Properties", value: data.extendedProperties },
                     { label: "Core\xA0Properties", value: data.coreProperties },
                     { label: "Equivalent\xA0Unified\xA0Ideograph", value: data.equivalentUnifiedIdeograph }
                 ];

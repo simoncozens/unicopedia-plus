@@ -208,7 +208,7 @@ module.exports.start = function (context)
                 { label: "Script\xA0Extensions", value: unicodeData.scriptExtensions },
                 { label: "General\xA0Category", value: unicodeData.category },
                 { label: "Decomposition", value: unicodeData.decomposition },
-                { label: "Binary\xA0Properties", value: unicodeData.binaryProperties },
+                { label: "Extended\xA0Properties", value: unicodeData.extendedProperties },
                 { label: "Equivalent\xA0Unified\xA0Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
             ];
             //

@@ -45,6 +45,10 @@
             "href": "https://www.unicode.org/Public/UNIDATA/PropList.txt"
         },
         {
+            "name": "DerivedCoreProperties.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt"
+        },
+        {
             "name": "PropertyAliases.txt",
             "href": "https://www.unicode.org/Public/UNIDATA/PropertyAliases.txt"
         },

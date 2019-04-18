@@ -200,17 +200,34 @@ module.exports.start = function (context)
             let unicodeData = unicode.getCharacterData (unihanCharacter.textContent);
             let unicodeFields =
             [
-                { label: "Name", value: unicodeData.name },
-                { label: "Age", value: unicodeData.age, title: unicodeData.ageDate },
-                { label: "Plane", value: unicodeData.planeName, title: unicodeData.planeRange },
-                { label: "Block", value: unicodeData.blockName, title: unicodeData.blockRange },
-                { label: "Script", value: unicodeData.script },
-                { label: "Script\xA0Extensions", value: unicodeData.scriptExtensions },
-                { label: "General\xA0Category", value: unicodeData.category },
-                { label: "Decomposition", value: unicodeData.decomposition },
-                { label: "Extended\xA0Properties", value: unicodeData.extendedProperties },
-                { label: "Equivalent\xA0Unified\xA0Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
+                { name: "Name", value: unicodeData.name },
+                { name: "Age", value: unicodeData.age, toolTip: unicodeData.ageDate },
+                { name: "Plane", value: unicodeData.planeName, toolTip: unicodeData.planeRange },
+                { name: "Block", value: unicodeData.blockName, toolTip: unicodeData.blockRange },
+                { name: "Script", value: unicodeData.script },
+                { name: "Script Extensions", value: unicodeData.scriptExtensions },
+                { name: "General Category", value: unicodeData.category },
+                { name: "Decomposition", value: unicodeData.decomposition },
+                { name: "Extended Properties", value: unicodeData.extendedProperties },
+                { name: "Equivalent Unified Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
             ];
+            //
+            function appendText (node, text)
+            {
+                text = text.replace (/ (.)$/, "\u00A0$1");
+                let regex = /\b\w+(-\w+)+\b/;
+                let matches;
+                while (matches = text.match (regex))
+                {
+                    node.appendChild (document.createTextNode (text.slice (0, matches.index)));
+                    let noWrap = document.createElement ('span');
+                    noWrap.style = 'white-space: nowrap;';
+                    noWrap.textContent = matches[0];
+                    node.appendChild (noWrap);
+                    text = text.slice (matches.index + matches[0].length);
+                }
+                node.appendChild (document.createTextNode (text));
+            }
             //
             let unicodeInfo = document.createElement ('div');
             unicodeInfo.className = 'unicode-info';
@@ -219,12 +236,21 @@ module.exports.start = function (context)
                 if (unicodeField.value)
                 {
                     let field = document.createElement ('div');
-                    field.className = 'unicode-field';
-                    if (unicodeField.title)
+                    field.className = 'field';
+                    if (unicodeField.toolTip)
                     {
-                        field.title = unicodeField.title;
+                        field.title = unicodeField.toolTip;
                     }
-                    field.textContent = `${unicodeField.label}: ${unicodeField.value}`;
+                    let name = document.createElement ('span');
+                    name.className = 'name';
+                    name.textContent = unicodeField.name.replace (/ /g, "\xA0");
+                    field.appendChild (name);
+                    field.appendChild (document.createTextNode (": "));
+                    let value = document.createElement ('span');
+                    value.className = 'value';
+                    // appendText (value, unicodeField.value);
+                    value.textContent = unicodeField.value;
+                    field.appendChild (value);
                     unicodeInfo.appendChild (field);
                 }
             }
@@ -291,13 +317,15 @@ module.exports.start = function (context)
                 let compatibility = compatibilityVariants[character] || [ ];
                 let yasuoka = yasuokaVariants[character] || [ ];
                 yasuoka = yasuoka.filter (variant => unihanRegex.test (variant));
+                let iiCoreSet = ("kIICore" in tags) ? "IICore" : "";
                 let unihanFields =
                 [
-                    { label: "Radical/Strokes", value: rsValues, class: rsClasses },
-                    { label: "Definition", value: definitionValue, class: 'line-clamp' },
-                    { label: "Numeric\xA0Value", value: numericValue },
-                    { label: "Compatibility\xA0Variants", value: compatibility.join (" ") },
-                    { label: "Yasuoka\xA0Variants", value: yasuoka.join (" ") }
+                    { name: "Radical/Strokes", value: rsValues, class: rsClasses },
+                    { name: "Definition", value: definitionValue, class: 'line-clamp' },
+                    { name: "Numeric Value", value: numericValue },
+                    { name: "Compatibility Variants", value: compatibility.join (" ") },
+                    { name: "Yasuoka Variants", value: yasuoka.join (" ") },
+                    { name: "Set", value: iiCoreSet }
                 ];
                 //
                 for (let unihanField of unihanFields)
@@ -305,18 +333,20 @@ module.exports.start = function (context)
                     if (unihanField.value)
                     {
                         let field = document.createElement ('div');
-                        field.className = 'unihan-field';
+                        field.className = 'field';
                         if (typeof unihanField.class === 'string')
                         {
                             field.classList.add (unihanField.class);
                         }
                         if (Array.isArray (unihanField.value))
                         {
-                            let labelText = document.createElement ('span');
-                            labelText.textContent = `${unihanField.label}:`;
-                            field.appendChild (labelText);
-                            let lineBreak = document.createElement ('br');
-                            field.appendChild (lineBreak);
+                            let name = document.createElement ('span');
+                            name.className = 'name';
+                            name.textContent = unihanField.name.replace (/ /g, "\xA0");
+                            field.appendChild (name);
+                            field.appendChild (document.createTextNode (": "))
+                            let value = document.createElement ('span');
+                            value.className = 'value';
                             let list = document.createElement ('ul');
                             list.className = 'list';
                             unihanField.value.forEach
@@ -337,28 +367,29 @@ module.exports.start = function (context)
                                     list.appendChild (item);
                                 }
                             );
-                            field.appendChild (list);
+                            value.appendChild (list);
+                            field.appendChild (value);
                         }
                         else
                         {
-                            field.textContent = `${unihanField.label}: ${unihanField.value}`;
+                            let name = document.createElement ('span');
+                            name.className = 'name';
+                            name.textContent = unihanField.name.replace (/ /g, "\xA0");
+                            field.appendChild (name);
+                            field.appendChild (document.createTextNode (": "));
+                            let value = document.createElement ('span');
+                            value.className = 'value';
+                            value.textContent = unihanField.value;
+                            field.appendChild (value);
                         }
                         unihanInfo.appendChild (field);
                     }
-                }
-                //
-                if ("kIICore" in tags)
-                {
-                    let coreField = document.createElement ('div');
-                    coreField.className = 'unihan-field';
-                    coreField.textContent = "Set: IICore";
-                    unihanInfo.appendChild (coreField);
                 }
             }
             else
             {
                 let invalidUnihan = document.createElement ('div');
-                invalidUnihan.className = 'unihan-field invalid-unihan';
+                invalidUnihan.className = 'field invalid-unihan';
                 // "Not a Unihan character"
                 // "Not a valid Unihan character"
                 // "No Unihan character information"

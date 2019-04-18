@@ -118,120 +118,154 @@ module.exports.start = function (context)
         {
             let table = document.createElement ('table');
             table.className = 'data-list';
-            let cell;
-            let header = document.createElement ('tr');
-            cell = document.createElement ('th');
-            cell.className = 'data-header-centered';
-            cell.textContent = "Symbol";    // "Character"
-            header.appendChild (cell);
-            cell = document.createElement ('th');
-            cell.className = 'data-header';
-            cell.textContent = "Codes";
-            header.appendChild (cell);
-            cell = document.createElement ('th');
-            cell.className = 'data-header';
-            cell.textContent = "Properties";
-            header.appendChild (cell);
-            table.appendChild (header);
-            for (let data of dataList)
-            {
-                let row = document.createElement ('tr');
-                cell = document.createElement ('td');
-                cell.className = 'symbol';
-                cell.textContent = data.character;
-                row.appendChild (cell);
-                cell = document.createElement ('td');
-                cell.className = 'codes';
-                let codes =
-                [
-                    { label: "Code\xA0Point", value: data.codePoint },  // "Unicode"
-                    { label: "JavaScript", value: data.javaScript },
-                    { label: "ECMAScript\xA06", value: data.ecmaScript6 },
-                    { label: "URL\xA0Escape", value: data.urlEncoding },
-                    { label: "HTML\xA0Entity", value: data.entity },
-                    null,
-                    { label: "UTF-32", value: data.utf32 },
-                    { label: "UTF-16", value: data.utf16 },
-                    { label: "UTF-8", value: data.utf8 }
-                ];
-                for (let code of codes)
+            dataList.forEach
+            (
+                (data, index) =>
                 {
-                    if (!code)
+                    if (index > 0)
                     {
-                        let lineBreak = document.createElement ('br');
-                        cell.appendChild (lineBreak);
+                        let emptyRow = document.createElement ('tr');
+                        emptyRow.className = 'empty-row';
+                        let emptyCell = document.createElement ('td');
+                        emptyCell.className = 'empty-cell';
+                        emptyCell.setAttribute ('colspan', 3);
+                        emptyRow.appendChild (emptyCell);
+                        table.appendChild (emptyRow);
                     }
-                    else if (code.value)
+                    let row = document.createElement ('tr');
+                    row.className = 'row';
+                    let cell = document.createElement ('td');
+                    cell.className = 'symbol';
+                    cell.textContent = data.character;
+                    row.appendChild (cell);
+                    cell = document.createElement ('td');
+                    cell.className = 'codes';
+                    let codes =
+                    [
+                        { name: "Code Point", value: data.codePoint },
+                        { name: "JavaScript", value: data.javaScript },
+                        { name: "ECMAScript 6", value: data.ecmaScript6 },
+                        { name: "URL Escape", value: data.urlEncoding },
+                        { name: "HTML Entity", value: data.entity },
+                        null,
+                        { name: "UTF-32", value: data.utf32 },
+                        { name: "UTF-16", value: data.utf16 },
+                        { name: "UTF-8", value: data.utf8 }
+                    ];
+                    for (let code of codes)
                     {
-                        let field = document.createElement ('div');
-                        field.className = 'field';
-                        field.textContent = code.label + ": " + code.value;
-                        cell.appendChild (field);
-                    }
-                }
-                row.appendChild (cell);
-                cell = document.createElement ('td');
-                cell.className = 'properties';
-                let name = data.name || "<unassigned>"; // "UNASSIGNED CHARACTER"
-                let numericType = "";
-                let numericValue = "";
-                if (data.numeric)
-                {
-                    numericType = "Numeric";
-                    if (data.digit)
-                    {
-                        numericType = "Digit";
-                        if (data.decimal)
+                        if (!code)
                         {
-                            numericType = "Decimal";
+                            let lineBreak = document.createElement ('br');
+                            cell.appendChild (lineBreak);
+                        }
+                        else if (code.value)
+                        {
+                            let field = document.createElement ('div');
+                            field.className = 'field';
+                            let name = document.createElement ('span');
+                            name.className = 'name';
+                            name.textContent = code.name.replace (/ /g, "\xA0");
+                            field.appendChild (name);
+                            field.appendChild (document.createTextNode (": "));
+                            let value = document.createElement ('span');
+                            value.className = 'value';
+                            value.textContent = code.value.replace (/ /g, "\xA0");
+                            field.appendChild (value);
+                            cell.appendChild (field);
                         }
                     }
-                }
-                else
-                {
-                    numericValue = numericValuesData[data.codePoint] || "";
-                }
-                let properties =
-                [
-                    { label: "Name", value: name },
-                    { label: "Alias", value: data.alias },
-                    { label: "Correction", value: data.correction },
-                    { label: "Age", value: data.age, toolTip: data.ageDate },
-                    { label: "Plane", value: data.planeName, toolTip: data.planeRange },
-                    { label: "Block", value: data.blockName, toolTip: data.blockRange },
-                    { label: "Script", value: data.script },
-                    { label: "Script\xA0Extensions", value: data.scriptExtensions },
-                    { label: "General\xA0Category", value: data.category },
-                    { label: "Combining\xA0Class", value: data.combining },
-                    { label: "Bidirectional\xA0Class", value: data.bidi },
-                    { label: "Mirrored", value: data.mirrored },
-                    { label: "Decomposition", value: data.decomposition },
-                    { label: "Uppercase", value: data.uppercase },
-                    { label: "Lowercase", value: data.lowercase },
-                    { label: "Titlecase", value: data.titlecase },
-                    { label: numericType, value: data.numeric },
-                    { label: "Numeric\xA0Value", value: numericValue },
-                    { label: "Extended\xA0Properties", value: data.extendedProperties },
-                    { label: "Core\xA0Properties", value: data.coreProperties },
-                    { label: "Equivalent\xA0Unified\xA0Ideograph", value: data.equivalentUnifiedIdeograph }
-                ];
-                for (let property of properties)
-                {
-                    if (property.value)
+                    row.appendChild (cell);
+                    cell = document.createElement ('td');
+                    cell.className = 'properties';
+                    let name = data.name || "<unassigned>"; // "UNASSIGNED CHARACTER"
+                    let numericType = "";
+                    let numericValue = "";
+                    if (data.numeric)
                     {
-                        let field = document.createElement ('div');
-                        field.className = 'field';
-                        field.textContent = property.label + ": " + property.value;
-                        if (property.toolTip)
+                        numericType = "Numeric";
+                        if (data.digit)
                         {
-                            field.title = property.toolTip;
+                            numericType = "Digit";
+                            if (data.decimal)
+                            {
+                                numericType = "Decimal";
+                            }
                         }
-                        cell.appendChild (field);
                     }
+                    else
+                    {
+                        numericValue = numericValuesData[data.codePoint] || "";
+                    }
+                    let properties =
+                    [
+                        { name: "Name", value: name },
+                        { name: "Alias", value: data.alias },
+                        { name: "Correction", value: data.correction },
+                        { name: "Age", value: data.age, toolTip: data.ageDate },
+                        { name: "Plane", value: data.planeName, toolTip: data.planeRange },
+                        { name: "Block", value: data.blockName, toolTip: data.blockRange },
+                        { name: "Script", value: data.script },
+                        { name: "Script Extensions", value: data.scriptExtensions },
+                        { name: "General Category", value: data.category },
+                        { name: "Combining Class", value: data.combining },
+                        { name: "Bidirectional Class", value: data.bidi },
+                        { name: "Mirrored", value: data.mirrored },
+                        { name: "Decomposition", value: data.decomposition },
+                        { name: "Uppercase", value: data.uppercase },
+                        { name: "Lowercase", value: data.lowercase },
+                        { name: "Titlecase", value: data.titlecase },
+                        { name: numericType, value: data.numeric },
+                        { name: "Numeric Value", value: numericValue },
+                        { name: "Extended Properties", value: data.extendedProperties },
+                        { name: "Core Properties", value: data.coreProperties },
+                        { name: "Equivalent Unified Ideograph", value: data.equivalentUnifiedIdeograph }
+                    ];
+                    //
+                    function appendText (node, text)
+                    {
+                        text = text.replace (/ (.)$/, "\u00A0$1");
+                        let regex = /\b\w+(-\w+)+\b/;
+                        let matches;
+                        while (matches = text.match (regex))
+                        {
+                            node.appendChild (document.createTextNode (text.slice (0, matches.index)));
+                            let noWrap = document.createElement ('span');
+                            noWrap.style = 'white-space: nowrap;';
+                            noWrap.textContent = matches[0];
+                            node.appendChild (noWrap);
+                            text = text.slice (matches.index + matches[0].length);
+                        }
+                        node.appendChild (document.createTextNode (text));
+                    }
+                    //
+                    for (let property of properties)
+                    {
+                        if (property.value)
+                        {
+                            let field = document.createElement ('div');
+                            field.className = 'field';
+                            if (property.toolTip)
+                            {
+                                field.title = property.toolTip;
+                            }
+                            let name = document.createElement ('span');
+                            name.className = 'name';
+                            name.textContent = property.name.replace (/ /g, "\xA0");
+                            field.appendChild (name);
+                            field.appendChild (document.createTextNode (": "));
+                            let value = document.createElement ('span');
+                            value.className = 'value';
+                            // appendText (value, property.value);
+                            value.textContent = property.value;
+                            field.appendChild (value);
+                            cell.appendChild (field);
+                        }
+                    }
+                    row.appendChild (cell);
+                    table.appendChild (row);
                 }
-                row.appendChild (cell);
-                table.appendChild (row);
-            }
+            );
             charactersDataList.appendChild (table);
         }
     }

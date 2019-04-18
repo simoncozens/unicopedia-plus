@@ -202,13 +202,20 @@
     line-height: 1.333em;
 }
 
-#unihan-inspector-unit .unicode-info .unicode-field,
-#unihan-inspector-unit .unihan-info .unihan-field
+#unihan-inspector-unit .unicode-info .field,
+#unihan-inspector-unit .unihan-info .field
 {
     margin: 0.35em 0;
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field.line-clamp
+#unihan-inspector-unit .unicode-info .field .name,
+#unihan-inspector-unit .unihan-info .field .name
+{
+    font-weight: 600;
+    color: black;
+}
+
+#unihan-inspector-unit .unihan-info .field.line-clamp
 {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -217,29 +224,23 @@
     -webkit-box-orient: vertical;
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field .value
-{
-    /* white-space: nowrap */
-}
-
-#unihan-inspector-unit .unihan-info .unihan-field .list
+#unihan-inspector-unit .unihan-info .field .list
 {
     margin: 0 0 0 -24px;
-    list-style-type: square;
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field .list .item
+#unihan-inspector-unit .unihan-info .field .list .item
 {
     margin: 0.1em 0;
     /* white-space: nowrap */
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field .list .item.irg-source
+#unihan-inspector-unit .unihan-info .field .list .item.irg-source
 {
     list-style-type: disc;
 }
 
-#unihan-inspector-unit .unihan-info .unihan-field .list .item.no-irg-source
+#unihan-inspector-unit .unihan-info .field .list .item.no-irg-source
 {
     color: gray;
     list-style-type: circle;

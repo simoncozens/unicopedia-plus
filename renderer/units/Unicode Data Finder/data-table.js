@@ -152,7 +152,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
             let blockName = document.createElement ('td');
             blockName.className = 'block-name';
             blockName.title = data.blockRange;
-            blockName.innerHTML = data.blockName.replace (/ (.)$/, "\u00A0$1").replace (/(\b\w*-\w*\b)/g, '<span class="no-wrap">$1</span>');
+            blockName.innerHTML = data.blockName.replace (/ (.)$/, "\u00A0$1").replace (/(\b\w+-\w\b)/g, '<span style="white-space: nowrap;">$1</span>');
             row.appendChild (blockName);
             table.appendChild (row);
         }

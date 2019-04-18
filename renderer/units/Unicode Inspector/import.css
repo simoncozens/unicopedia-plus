@@ -67,23 +67,27 @@
     user-select: text;
     background-color: white;
     margin: 0 0 1.25em 0;
+    border-collapse: collapse;
+    border: 1px solid var(--color-border);
 }
 
-#unicode-inspector-unit .data-list .data-header-centered
+#unicode-inspector-unit .data-list .empty-row
 {
-    text-align: center;
-    font-size: 13px;
-    padding: 0.25em 0.5em;
-    font-weight: bold;
-    width: 128px;
+    height: 1.2em;
+    border-left: 1px solid var(--color-bg);
+    border-right: 1px solid var(--color-bg);
 }
 
-#unicode-inspector-unit .data-list .data-header
+#unicode-inspector-unit .data-list .empty-cell
 {
-    text-align: left;
-    font-size: 13px;
-    padding: 0.25em 0.5em;
-    font-weight: bold;
+    background: var(--color-bg);
+    border-left: 1px solid var(--color-bg);
+    border-right: 1px solid var(--color-bg);
+}
+
+#unicode-inspector-unit .data-list .row
+{
+    border: 1px solid var(--color-border);
 }
 
 #unicode-inspector-unit .data-list .symbol
@@ -91,6 +95,7 @@
     font-family: sans-serif;
     font-size: 72px;
     height: 1em;
+    width: 2em;
     min-width: 2em;
     max-width: 2em;
     text-align: center;
@@ -98,6 +103,7 @@
     line-height: 1em;
     padding: 0.2em 0.1em;
     overflow-x: auto;
+    border: 1px solid var(--color-border);
 }
 
 #unicode-inspector-unit .data-list .codes
@@ -114,11 +120,18 @@
     line-height: 1.2em;
     font-family: Monaco, "Noto Mono", monospace;
     padding: 0.25em 0.5em;
+    border: 1px solid var(--color-border);
 }
 
 #unicode-inspector-unit .data-list .field
 {
-    margin: 0.25em 0;
+    margin: 0.3em 0;
+}
+
+#unicode-inspector-unit .data-list .field .name
+{
+    font-weight: 600;
+    color: black;
 }
 
 #unicode-inspector-unit .instructions ul

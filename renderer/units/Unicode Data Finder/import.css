@@ -416,11 +416,6 @@
     hyphens: none;
 }
 
-#unicode-data-finder-unit .search-data .block-name .no-wrap
-{
-    white-space: nowrap;
-}
-
 #unicode-data-finder-unit .instructions ul
 {
     margin: -0.5em 0 1em 0;

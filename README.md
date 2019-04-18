@@ -292,7 +292,7 @@ The following utilities are currently available:
     - *Unihan_Variants.txt*
 - Any Unihan character can be entered in the <kbd>Unihan</kbd> input field either as a character or a code point. Click on the <kbd>Lookup</kbd> button to display the list of Unihan tags.
 - In addition, the utility provides, for each Unihan character:
-    - basic Unicode information: name, age, plane, block, script, script extensions, general category, decomposition, binary properties, equivalent unified ideograph;
+    - basic Unicode information: name, age, plane, block, script, script extensions, general category, decomposition, extended properties, equivalent unified ideograph;
     - basic Unihan information: radical/strokes, definition, numeric value, variant characters, IICore set.
 - Previously looked up Unihan characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.
 - It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.

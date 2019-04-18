@@ -15,8 +15,8 @@ const planes =
     { name: "Tertiary Ideographic Plane (TIP)", first: "30000", last: "3FFFF" },
     // { name: "Unassigned", first: "40000", last: "DFFFF" },
     { name: "Supplementary Special-purpose Plane (SSP)", first: "E0000", last: "EFFFF" },
-    { name: "Supplementary Private Use Area-A (SPUA-A)", first: "F0000", last: "FFFFF" },
-    { name: "Supplementary Private Use Area-B (SPUA-B)", first: "100000", last: "10FFFF" }
+    { name: "Private Use Plane (15)", first: "F0000", last: "FFFFF" },
+    { name: "Private Use Plane (16)", first: "100000", last: "10FFFF" }
 ];
 //
 // https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
@@ -356,7 +356,7 @@ function characterToUtf16Code (character)
         let lowHex = character.charCodeAt (1).toString (16).toUpperCase ();
         highHex = ("000" + highHex).slice (-4);
         lowHex = ("000" + lowHex).slice (-4);
-        utf16Code = `${highHex}\xA0${lowHex}`;
+        utf16Code = `${highHex} ${lowHex}`;
     }
     else
     {
@@ -381,7 +381,7 @@ function characterToUtf8 (character)
 //
 function characterToUtf8Code (character)
 {
-    return characterToUtf8 (character).join ('\xA0');
+    return characterToUtf8 (character).join (' ');
 }
 //
 function characterToUrlEncoding (character)

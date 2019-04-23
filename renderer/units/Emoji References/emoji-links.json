@@ -89,10 +89,6 @@
     ],
     [
         {
-             "name": "Translation Guidelines - CLDR - Unicode Common Locale Data Repository",
-             "href": "http://cldr.unicode.org/translation"
-        },
-        {
             "name": "Country/Region Names - CLDR - Unicode Common Locale Data Repository",
             "href": "http://cldr.unicode.org/translation/country-names"
         },
@@ -105,10 +101,6 @@
         {
             "name": "UTS #35: Unicode LDML: General - 14 Annotations and Labels",
             "href": "https://www.unicode.org/repos/cldr/trunk/specs/ldml/tr35-general.html#Annotations"
-        },
-        {
-            "name": "CLDR 30 Release Note - CLDR - Unicode Common Locale Data Repository",
-            "href": "http://cldr.unicode.org/index/downloads/cldr-30"
         }
     ],
     [

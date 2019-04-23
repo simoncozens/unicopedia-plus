@@ -3,8 +3,31 @@ const deferredSymbols = (process.platform === 'darwin');
 //
 module.exports.create = function (title, items, params)
 {
-    let rsDataTable = document.createElement ('table');
-    rsDataTable.className = 'rs-data-table';
+    let dataTable = document.createElement ('div');
+    //
+    let layoutOptionsGroup = document.createElement ('div');
+    layoutOptionsGroup.className = 'rs-layout-options-group';
+    let compactLabel = document.createElement ('label');
+    let compactCheckbox = document.createElement ('input');
+    compactLabel.appendChild (compactCheckbox);
+    compactLabel.appendChild (document.createTextNode ("\xA0Compact Layout"));
+    compactCheckbox.class = 'compact-checkbox';
+    compactCheckbox.type = 'checkbox';
+    compactCheckbox.checked = params.compactLayout;
+    compactCheckbox.addEventListener
+    (
+        'input',
+        event =>
+        {
+            params.compactLayout = event.target.checked;
+            charactersData.classList.toggle ('compact-layout');
+        }
+    );
+    layoutOptionsGroup.appendChild (compactLabel);
+    dataTable.appendChild (layoutOptionsGroup);
+    //
+    let table = document.createElement ('table');
+    table.className = 'rs-data-table';
     //
     if (deferredSymbols)
     {
@@ -39,19 +62,30 @@ module.exports.create = function (title, items, params)
     titleHeader.className = 'title-header';
     titleHeader.textContent = title;
     titleRow.appendChild (titleHeader);
-    rsDataTable.appendChild (titleRow);
+    table.appendChild (titleRow);
     //
     let charactersRow = document.createElement ('tr');
     charactersRow.className = 'characters-row';
     let charactersData = document.createElement ('td');
     charactersData.className = 'characters-data';
+    if (params.compactLayout)
+    {
+        charactersData.classList.add ('compact-layout');
+    }
     for (let item of items)
     {
         if (item.characters.length > 0)
         {
             let strokesData = document.createElement ('span');
             strokesData.className = 'strokes-data';
-            strokesData.textContent = item.title;
+            let shortTitle = document.createElement ('span');
+            shortTitle.className  = 'short-title';
+            shortTitle.textContent = item.shortTitle;
+            strokesData.appendChild (shortTitle);
+            let longTitle = document.createElement ('span');
+            longTitle.className = 'long-title';
+            longTitle.textContent = item.longTitle;
+            strokesData.appendChild (longTitle);
             charactersData.appendChild (strokesData);
             for (let character of item.characters)
             {
@@ -83,10 +117,11 @@ module.exports.create = function (title, items, params)
                 charactersData.appendChild (characterData);
             }
             charactersRow.appendChild (charactersData);
-            rsDataTable.appendChild (charactersRow);
+            table.appendChild (charactersRow);
         }
     }
+    dataTable.appendChild (table);
     //
-    return rsDataTable;
+    return dataTable;
 }
 //

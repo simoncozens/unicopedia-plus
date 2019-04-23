@@ -83,6 +83,7 @@ module.exports.start = function (context)
         rsExtraSourcesCheckbox: false,
         rsRadicalSelect: "",
         rsStrokesSelect: "",
+        rsCompactLayout: false,
         rsInstructions: true,
         rsRadicalList: false,
         //
@@ -398,6 +399,7 @@ module.exports.start = function (context)
     tagInstructions.open = prefs.tagInstructions;
     tagRegexExamples.open = prefs.tagRegexExamples;
     //
+    rsParams.compactLayout = prefs.rsCompactLayout;
     rsParams.observer = null;
     rsParams.root = unit;
     //
@@ -491,7 +493,7 @@ module.exports.start = function (context)
         let items = [ ];
         for (let strokes = options.minStrokes; strokes <= options.maxStrokes; strokes++)
         {
-            items.push ({ title: fromStrokes (strokes, true), characters: [ ] });
+            items.push ({ shortTitle: fromStrokes (strokes), longTitle: fromStrokes (strokes, true), characters: [ ] });
         }
         let codePoints = unihanData.codePoints;
         let set = options.fullSet ? unihanData.fullSet : unihanData.coreSet;
@@ -626,10 +628,10 @@ module.exports.start = function (context)
     //
     const unihanBlocks = require ('./unihan-blocks.json');
     //
-    const tables = require ('../../lib/tables.js');
+    const keyIndex = require ('../../lib/key-index.js');
     //
-    const nameIndex = tables.buildKeyIndex (unihanBlocks, "name", (a, b) => a.localeCompare (b));
-    const firstIndex = tables.buildKeyIndex (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
+    const nameIndex = keyIndex.build (unihanBlocks, "name", (a, b) => a.localeCompare (b));
+    const firstIndex = keyIndex.build (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
     //
     // Unihan character
     let flags = 'u';
@@ -944,6 +946,7 @@ module.exports.stop = function (context)
         rsExtraSourcesCheckbox: rsExtraSourcesCheckbox.checked,
         rsRadicalSelect: rsCurrentRadical,
         rsStrokesSelect: rsCurrentStrokes,
+        rsCompactLayout: rsParams.compactLayout,
         rsInstructions: rsInstructions.open,
         rsRadicalList: rsRadicalList.open,
         //

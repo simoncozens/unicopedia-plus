@@ -182,10 +182,10 @@ module.exports.start = function (context)
     //
     references.open = prefs.references;
     //
-    const refLinks = require ('./ref-links.json');
+    const cjkLinks = require ('./cjk-links.json');
     const linksList = require ('../../lib/links-list.js');
     //
-    linksList (links, refLinks);
+    linksList (links, cjkLinks);
 };
 //
 module.exports.stop = function (context)

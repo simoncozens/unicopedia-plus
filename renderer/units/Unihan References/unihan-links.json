@@ -9,6 +9,10 @@
             "href": "https://en.wikipedia.org/wiki/Chinese_family_of_scripts"
         },
         {
+            "name": "Han unification - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Han_unification"
+        },
+        {
             "name": "Variant Chinese character - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Variant_Chinese_character"
         },
@@ -23,16 +27,6 @@
         {
             "name": "Four-Corner Method - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Four-Corner_Method"
-        }
-    ],
-    [
-        {
-            "name": "Han unification - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Han_unification"
-        },
-        {
-            "name": "Variant form (Unicode) - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Variant_form_(Unicode)"
         }
     ],
     [
@@ -93,8 +87,8 @@
             "href": "https://en.wikipedia.org/wiki/Radical_(Chinese_characters)"
         },
         {
-            "name": "List of Unicode radicals - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/List_of_Unicode_radicals"
+            "name": "List of radicals in Unicode - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/List_of_radicals_in_Unicode"
         },
         {
             "name": "Kangxi radical - Wikipedia",

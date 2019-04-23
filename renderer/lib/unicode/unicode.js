@@ -453,13 +453,16 @@ const versionDate =
 function getCharacterData (character)
 {
     let characterData = { };
-    characterData.utf32 = characterToUtf32Code (character);
-    characterData.utf16 = characterToUtf16Code (character);
-    characterData.utf8 = characterToUtf8Code (character);
-    characterData.urlEncoding = characterToUrlEncoding (character);
-    characterData.entity = characterToDecimalEntity (character)
-    characterData.javaScript = characterToJavaScriptEscape (character);
-    characterData.ecmaScript6 = characterToEcmaScript6Escape (character);
+    if (!(/^[\uD800-\uDFFF]$/.test (character))) // Or /^\p{Surrogate}$/ (isolated/lone surrogate)
+    {
+        characterData.utf32 = characterToUtf32Code (character);
+        characterData.utf16 = characterToUtf16Code (character);
+        characterData.utf8 = characterToUtf8Code (character);
+        characterData.urlEncoding = characterToUrlEncoding (character);
+        characterData.entity = characterToDecimalEntity (character)
+        characterData.javaScript = characterToJavaScriptEscape (character);
+        characterData.ecmaScript6 = characterToEcmaScript6Escape (character);
+    }
     let num = character.codePointAt (0);
     let hex = num.toString (16).toUpperCase ();
     if (hex.length < 5)

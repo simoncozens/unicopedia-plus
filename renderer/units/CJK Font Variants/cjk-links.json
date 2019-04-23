@@ -103,6 +103,20 @@
     ],
     [
         {
+            "name": "UAX #50: Unicode Vertical Text Layout",
+            "href": "https://www.unicode.org/reports/tr50/"
+        },
+        {
+            "name": "writing-mode - CSS: Cascading Style Sheets | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode"
+        },
+        {
+            "name": "Styling vertical Chinese, Japanese, Korean and Mongolian text",
+            "href": "https://www.w3.org/International/articles/vertical-text/"
+        }
+    ],
+    [
+        {
             "name": "Language tags in HTML and XML",
             "href": "https://www.w3.org/International/articles/language-tags/"
         },
@@ -165,12 +179,6 @@
         {
             "name": "font-variant-east-asian - CSS: Cascading Style Sheets | MDN",
             "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-east-asian"
-        }
-    ],
-    [
-        {
-            "name": "Jōyō kanji variants: The curious case of 叱 and [censored] | The Nanbanjin Nikki",
-            "href": "https://namakajiri.net/nikki/joyo-kanji-variants-the-curious-case-of-and-%e5%8f%b1/"
         }
     ]
 ]

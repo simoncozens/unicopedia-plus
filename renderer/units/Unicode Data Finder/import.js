@@ -452,10 +452,10 @@ module.exports.start = function (context)
         }
     );
     //
-    const tables = require ('../../lib/tables.js');
+    const keyIndex = require ('../../lib/key-index.js');
     //
-    const firstIndex = tables.buildKeyIndex (allBlocks, "firstIndex", (a, b) => a - b);
-    const nameIndex = tables.buildKeyIndex (allBlocks, "name", (a, b) => a.localeCompare (b));
+    const firstIndex = keyIndex.build (allBlocks, "firstIndex", (a, b) => a - b);
+    const nameIndex = keyIndex.build (allBlocks, "name", (a, b) => a.localeCompare (b));
     //
     function displayRangeTable (blockKey, highlightedCharacter)
     {

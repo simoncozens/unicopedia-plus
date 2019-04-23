@@ -420,6 +420,12 @@
     fill: currentColor;
 }
 
+#unihan-data-finder-unit .rs-layout-options-group
+{
+    text-align: right;
+    margin-top: -0.5em; margin-bottom: -0.5em;
+}
+
 #unihan-data-finder-unit .rs-data-table
 {
     margin: 1em 0 0.75em 0;
@@ -447,6 +453,44 @@
     padding: 0.25em 0.75em;
     margin-top: 2px;
     margin-bottom: -2px;
+}
+
+#unihan-data-finder-unit .rs-data-table .strokes-data .long-title
+{
+    display: inline;
+}
+
+#unihan-data-finder-unit .rs-data-table .strokes-data .short-title
+{
+    display: none;
+}
+
+#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-data
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: white;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    /* border-radius: 50%; */
+    padding: 0;
+    margin: 7px 8px;
+    width: 40px;
+    height: 40px;
+}
+
+#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-data .long-title
+{
+    display: none;
+}
+
+#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-data .short-title
+{
+    display: inline;
 }
 
 #unihan-data-finder-unit .rs-data-table .characters-row .characters-data

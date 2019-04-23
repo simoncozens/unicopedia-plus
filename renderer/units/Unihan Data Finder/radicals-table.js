@@ -115,6 +115,8 @@ module.exports.create = function (kangxiRadicals)
             radicalsTable.appendChild (dataRow);
         }
     );
+    let footerRow = headerRow.cloneNode (true);
+    radicalsTable.appendChild (footerRow);
     return radicalsTable;
 }
 //

@@ -174,8 +174,12 @@
                 "string": "👩‍❤️‍👩😍👩‍❤️‍👨😻👨‍❤️‍👨"
             },
             {
-                "label": "Chinese Dragons",
-                "string": "⿓龍龖龘𪚥"
+                "label": "Asian Dragons",
+                "string": "⻰⻯⿓🐲龙竜龍龍🐉龖龘𪚥"
+            },
+            {
+                "label": "Asian Turtles",
+                "string": "⻳⻲⻱⿔🐢龟亀龜龜龜龜"
             },
             {
                 "label": "Arabic Ligature",

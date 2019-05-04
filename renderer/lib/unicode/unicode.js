@@ -332,6 +332,44 @@ const scripts =
     "Zanb": "Zanabazar_Square"
 };
 //
+const eastAsianWidths =
+{
+    "A": "Ambiguous",
+    "F": "Fullwidth",
+    "H": "Halfwidth",
+    // "N": "Neutral", // "Not East Asian"
+    "Na": "Narrow",
+    "W": "Wide"
+}
+//
+// https://en.wikibooks.org/wiki/Unicode/Versions
+// https://www.unicode.org/history/publicationdates.html
+const versionDates =
+{
+    "1.1": "June 1993",
+    "2.0": "July 1996",
+    "2.1": "May 1998",
+    "3.0": "September 1999",
+    "3.1": "March 2001",
+    "3.2": "March 2002",
+    "4.0": "April 2003",
+    "4.1": "March 2005",
+    "5.0": "July 2006",
+    "5.1": "March 2008",
+    "5.2": "October 2009",
+    "6.0": "October 2010",
+    "6.1": "January 2012",
+    "6.2": "September 2012",
+    "6.3": "September 2013",
+    "7.0": "June 2014",
+    "8.0": "June 2015",
+    "9.0": "June 2016",
+    "10.0": "June 2017",
+    "11.0": "June 2018",
+    "12.0": "March 2019",
+    "12.1": "May 2019"
+};
+//
 function uniHexify (string)
 {
     return string.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");
@@ -422,34 +460,6 @@ function characterToEcmaScript6Escape (character)
     return `\\u{${hex}}`;
 }
 //
-// https://en.wikibooks.org/wiki/Unicode/Versions
-// https://www.unicode.org/history/publicationdates.html
-const versionDate =
-{
-    "1.1": "June 1993",
-    "2.0": "July 1996",
-    "2.1": "May 1998",
-    "3.0": "September 1999",
-    "3.1": "March 2001",
-    "3.2": "March 2002",
-    "4.0": "April 2003",
-    "4.1": "March 2005",
-    "5.0": "July 2006",
-    "5.1": "March 2008",
-    "5.2": "October 2009",
-    "6.0": "October 2010",
-    "6.1": "January 2012",
-    "6.2": "September 2012",
-    "6.3": "September 2013",
-    "7.0": "June 2014",
-    "8.0": "June 2015",
-    "9.0": "June 2016",
-    "10.0": "June 2017",
-    "11.0": "June 2018",
-    "12.0": "March 2019",
-    "12.1": "May 2019"
-};
-//
 function getCharacterData (character)
 {
     let characterData = { };
@@ -495,7 +505,7 @@ function getCharacterData (character)
         if ((parseInt (version.first, 16) <= num) && (num <= parseInt (version.last, 16)))
         {
             characterData.age = `Unicode ${version.age}`;
-            characterData.ageDate = versionDate[version.age];
+            characterData.ageDate = versionDates[version.age];
             break;
         }
     }
@@ -540,11 +550,31 @@ function getCharacterData (character)
     {
         characterData.coreProperties = coreProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
     }
+    let emojiProperties = [ ];
+    for (let emojiProperty of extraData.emojiProperties)
+    {
+        if ((parseInt (emojiProperty.first, 16) <= num) && (num <= parseInt (emojiProperty.last, 16)))
+        {
+            emojiProperties.push (emojiProperty.name);
+        }
+    }
+    if (emojiProperties.length > 0)
+    {
+        characterData.emojiProperties = emojiProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
+    }
     for (let ideograph of extraData.equivalentUnifiedIdeographs)
     {
         if ((parseInt (ideograph.first, 16) <= num) && (num <= parseInt (ideograph.last, 16)))
         {
             characterData.equivalentUnifiedIdeograph = uniHexify (ideograph.equivalent);
+            break;
+        }
+    }
+    for (let eastAsianWidth of extraData.eastAsianWidths)
+    {
+        if ((parseInt (eastAsianWidth.first, 16) <= num) && (num <= parseInt (eastAsianWidth.last, 16)))
+        {
+            characterData.eastAsianWidth = eastAsianWidths[eastAsianWidth.width];
             break;
         }
     }
@@ -698,13 +728,31 @@ function getCharacterBasicData (character)
         if ((parseInt (version.first, 16) <= num) && (num <= parseInt (version.last, 16)))
         {
             characterBasicData.age = version.age;
-            characterBasicData.ageDate = versionDate[version.age];
+            characterBasicData.ageDate = versionDates[version.age];
             break;
         }
     }
     return characterBasicData;
 }
 //
+function matchEastAsianWidth (character, widthArray)
+{
+    let match = false;
+    let num = character.codePointAt (0);
+    for (let eastAsianWidth of extraData.eastAsianWidths)
+    {
+        if ((parseInt (eastAsianWidth.first, 16) <= num) && (num <= parseInt (eastAsianWidth.last, 16)))
+        {
+            if (widthArray.includes (eastAsianWidth.width))
+            {
+                match = true;
+                break;
+            }
+        }
+    }
+    return match;
+}
+
 module.exports =
 {
     characterCount,
@@ -714,6 +762,7 @@ module.exports =
     codePointsToCharacters,
     findCharactersByName,
     findCharactersBySymbol,
-    getCharacterBasicData
+    getCharacterBasicData,
+    matchEastAsianWidth
 };
 //

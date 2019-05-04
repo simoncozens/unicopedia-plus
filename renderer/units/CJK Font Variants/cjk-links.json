@@ -13,12 +13,12 @@
             "href": "https://en.wikipedia.org/wiki/Chinese_character_classification"
         },
         {
-            "name": "Variant Chinese character - Wikipedia",
-            "href": "https://en.wikipedia.org/wiki/Variant_Chinese_character"
-        },
-        {
             "name": "Han unification - Wikipedia",
             "href": "https://en.wikipedia.org/wiki/Han_unification"
+        },
+        {
+            "name": "Variant Chinese character - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Variant_Chinese_character"
         },
         {
             "name": "Variant form (Unicode) - Wikipedia",
@@ -89,6 +89,26 @@
     ],
     [
         {
+            "name": "Japanese script reform - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/Japanese_script_reform"
+        }
+    ],
+    [
+        {
+            "name": "JIS X 0208 - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/JIS_X_0208"
+        },
+        {
+            "name": "JIS X 0212 - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/JIS_X_0212"
+        },
+        {
+            "name": "JIS X 0213 - Wikipedia",
+            "href": "https://en.wikipedia.org/wiki/JIS_X_0213"
+        }
+    ],
+    [
+        {
             "name": "Ideographic Variation Database",
             "href": "https://www.unicode.org/ivd/"
         },
@@ -103,12 +123,40 @@
     ],
     [
         {
+            "name": "UAX #11: East Asian Width",
+            "href": "https://www.unicode.org/reports/tr11/"
+        },
+        {
+            "name": "EastAsianWidth.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt"
+        }
+    ],
+    [
+        {
             "name": "UAX #50: Unicode Vertical Text Layout",
             "href": "https://www.unicode.org/reports/tr50/"
         },
         {
+            "name": "Robust Vertical Text Layout - RobustVerticalLayout.pdf",
+            "href": "https://www.unicode.org/notes/tn22/RobustVerticalLayout.pdf"
+        },
+        {
             "name": "writing-mode - CSS: Cascading Style Sheets | MDN",
             "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode"
+        }
+    ],
+    [
+        {
+            "name": "Requirements for Chinese Text Layout",
+            "href": "https://www.w3.org/TR/clreq/"
+        },
+        {
+            "name": "Requirements for Japanese Text Layout",
+            "href": "https://www.w3.org/TR/jlreq/"
+        },
+        {
+            "name": "Requirements for Hangul Text Layout and Typography",
+            "href": "https://www.w3.org/TR/klreq/"
         },
         {
             "name": "Styling vertical Chinese, Japanese, Korean and Mongolian text",
@@ -171,7 +219,7 @@
     ],
     [
         {
-            "name": "SourceHanSansReadMe.pdf",
+            "name": "Source Han Sans - SourceHanSansReadMe.pdf",
             "href": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/SourceHanSansReadMe.pdf"
         }
     ],

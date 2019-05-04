@@ -139,7 +139,7 @@
     ],
     [
         {
-            "name": "The Unicode Standard, Version 12.0 - Chapter 18: East Asia",
+            "name": "The Unicode Standard, Version 12.0 - Chapter 18: East Asia - ch18.pdf",
             "href": "https://www.unicode.org/versions/Unicode12.0.0/ch18.pdf"
         },
         {
@@ -157,16 +157,22 @@
     ],
     [
         {
-            "name": "Guide to Han Radical-Stroke Index",
+            "name": "Guide to Han Radical-Stroke Index - rs.pdf",
             "href": "https://www.unicode.org/charts/rs.pdf"
         },
         {
-            "name": "IICore Radical-Stroke Index",
+            "name": "IICore Radical-Stroke Index - IICoreRSIndex.pdf",
             "href": "https://www.unicode.org/versions/IICoreRSIndex.pdf"
         },
         {
-            "name": "Full Han Radical-Stroke Index",
+            "name": "Full Han Radical-Stroke Index - RSIndex.pdf",
             "href": "https://www.unicode.org/Public/11.0.0/charts/RSIndex.pdf"
+        }
+    ],
+    [
+        {
+            "name": "IRG N2118 (Allowing negative residual strokes in all six kRS* properties of the Unihan Database) for IRG #45; L2/15-317R - 15317r-irg-n2118-neg-res-strokes.pdf",
+            "href": "https://www.unicode.org/L2/L2015/15317r-irg-n2118-neg-res-strokes.pdf"
         }
     ],
     [
@@ -198,7 +204,7 @@
     [
         {
             "name": "Unihan.zip",
-            "href": "https://unicode.org/Public/UNIDATA/Unihan.zip"
+            "href": "https://www.unicode.org/Public/UNIDATA/Unihan.zip"
         }
     ],
     [
@@ -231,7 +237,7 @@
     ],
     [
         {
-            "name": "The Secret Life of Unicode",
+            "name": "The Secret Life of Unicode - The Secret Life of Unicode.pdf",
             "href": "https://www.btetrud.com/Lima/The%20Secret%20Life%20of%20Unicode.pdf"
         }
     ],

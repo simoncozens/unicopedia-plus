@@ -217,9 +217,11 @@ module.exports.start = function (context)
                         { name: "Titlecase", value: data.titlecase },
                         { name: numericType, value: data.numeric },
                         { name: "Numeric Value", value: numericValue },
-                        { name: "Extended Properties", value: data.extendedProperties },
+                        { name: "East Asian Width", value: data.eastAsianWidth },
+                        { name: "Equivalent Unified Ideograph", value: data.equivalentUnifiedIdeograph },
                         { name: "Core Properties", value: data.coreProperties },
-                        { name: "Equivalent Unified Ideograph", value: data.equivalentUnifiedIdeograph }
+                        { name: "Extended Properties", value: data.extendedProperties },
+                        { name: "Emoji Properties", value: data.emojiProperties }
                     ];
                     //
                     function appendText (node, text)

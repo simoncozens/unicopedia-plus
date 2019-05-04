@@ -43,8 +43,8 @@ for (let line of lines)
                 {
                     // "Hangul" in "UTR #15: Unicode Normalization Forms"
                     // https://www.unicode.org/reports/tr15/tr15-33.html#Hangul
-                    // "Conjoining Jamo Behavior" in "The Unicode Standard, Version 10.0 - ch03.pdf" p. 143
-                    // https://www.unicode.org/versions/Unicode10.0.0/ch03.pdf
+                    // "Conjoining Jamo Behavior" in "The Unicode Standard, Version 12.0 - ch03.pdf" p. 144
+                    // https://www.unicode.org/versions/Unicode12.0.0/ch03.pdf
                     let jamoInitials =
                     [
                         "G", "GG", "N", "D", "DD", "R", "M", "B", "BB",

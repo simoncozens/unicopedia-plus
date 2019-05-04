@@ -1,29 +1,41 @@
 [
     {
-        "label": "Chinese Zodiac",
+        "label": "Brackets",
         "items":
         [
             {
-                "label": "Zodiac 1",
-                "string": "鼠牛虎兔龍蛇馬羊猴雞狗豬"
+                "label": "Black Lenticular",
+                "string": "【漢字】"
             },
             {
-                "label": "Zodiac 2",
-                "string": "子丑寅卯辰巳午未申酉戌亥"
+                "label": "Plain Corner",
+                "string": "「画像」"
+            },
+            {
+                "label": "Tortoise Shell",
+                "string": "〔勝〕"
+            },
+            {
+                "label": "White Corner",
+                "string": "『言語』"
+            },
+            {
+                "label": "White Lenticular",
+                "string": "〖北極〗"
             }
         ]
     },
     {
-        "label": "Dragons & Turtles",
+        "label": "Chinese Zodiac",
         "items":
         [
             {
-                "label": "Dragons",
-                "string": "⻰⻯⿓🐲龙竜龍龍🐉龖龘"
+                "label": "Animal Signs",
+                "string": "鼠牛虎兔龍蛇馬羊猴雞狗豬"
             },
             {
-                "label": "Turtles",
-                "string": "⻳⻲⻱⿔🐢龟亀龜龜龜龜"
+                "label": "Terrestrial Branches",
+                "string": "子丑寅卯辰巳午未申酉戌亥"
             }
         ]
     },
@@ -33,11 +45,11 @@
         [
             {
                 "label": "East Asian Variants 1",
-                "string": "剝剥 塡填 頬頰 麴麹"
+                "string": "剝剥塡填頬頰麴麹"
             },
             {
                 "label": "East Asian Variants 2",
-                "string": "匕𠤎 叱𠮟"
+                "string": "匕𠤎叱𠮟"
             },
             {
                 "label": "East Asian Variants 3",
@@ -51,41 +63,47 @@
         [
             {
                 "label": "Unique Glyphs 1",
-                "string": "傑僭割劘匾叟喝塌姿嬴幰廋"
+                "string": "傑僭割劘匾叟喝塌姿嬴幰廋扇扉搨摩榻"
             },
             {
                 "label": "Unique Glyphs 2",
-                "string": "扇扉搨摩榻溲潛瀛瘦瞎磨窖"
+                "string": "溲潛瀛瘦瞎磨窖竇箭篠簉糙綢纛羸翁翦"
             },
             {
                 "label": "Unique Glyphs 3",
-                "string": "竇箭篠簉糙綢纛羸翁翦翩肓"
+                "string": "翩肓臝艘花裯褐謁譖豁贏轄返迷途造週"
             },
             {
                 "label": "Unique Glyphs 4",
-                "string": "臝艘花裯褐謁譖豁贏轄返迷"
-            },
-            {
-                "label": "Unique Glyphs 5",
-                "string": "途造週遍遭選遼鄰釁閼雕靠"
-            },
-            {
-                "label": "Unique Glyphs 6",
-                "string": "靡颼飯驎鬣魔麗麟"
+                "string": "遍遭選遼鄰釁閼雕靠靡颼飯驎鬣魔麗麟"
             }
         ]
     },
     {
-        "label": "Ideographic Variation",
+        "label": "Fullwidth Forms",
+        "items":
+        [
+            {
+                "label": "Fullwidth (ASCII)",
+                "string": "　！＂＃＄％＆＇（）＊＋，－．／０１２３４５６７８９：；＜＝＞？＠ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ［＼］＾＿｀ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ｛｜｝～"
+            },
+            {
+                "label": "Fullwidth (Other)",
+                "string": "｟｠￠￡￢￣￤￥￦"
+            }
+        ]
+    },
+    {
+        "label": "IVD Sequences",
         "items":
         [
             {
                 "label": "Dragon",
-                "string": "龍 龍󠄀 龍󠄁 龍󠄂"
+                "string": "龍󠄀龍󠄁龍󠄂"
             },
             {
                 "label": "Noble",
-                "string": "卿 卿󠄀 卿󠄁 卿󠄂"
+                "string": "卿󠄀卿󠄁卿󠄂"
             }
         ]
     },
@@ -95,11 +113,11 @@
         [
             {
                 "label": "Radical 140 Grass",
-                "string": "艸艹艹艹 芝荘荼華蘭"
+                "string": "艸艹艹艹芝荘荼華蘭"
             },
             {
                 "label": "Radical 162 Walk",
-                "string": "辵辶辶 辺遊遜邊"
+                "string": "辵辶辶辺遊遜邊"
             }
         ]
     },
@@ -112,20 +130,20 @@
                 "string": "㋿㍻㍼㍽㍾"
             },
             {
-                "label": "Prefectures of Japan",
-                "string": "都道府県"
-            },
-            {
-                "label": "Swords & Knives",
-                "string": "剑剣剱劍劍󠄁劎劒劔釖釰釼"
-            },
-            {
                 "label": "Miscellaneous 1",
                 "string": "匯囶圀夜屝属彩曜"
             },
             {
                 "label": "Miscellaneous 2",
                 "string": "滙爲画畵線萬裏"
+            },
+            {
+                "label": "Prefectures of Japan",
+                "string": "都道府県"
+            },
+            {
+                "label": "Swords & Knives",
+                "string": "剑剣剱劍劍󠄁劎劒劔釖釰釼"
             }
         ]
     },
@@ -134,22 +152,26 @@
         "items":
         [
             {
-                "label": "Digits",
-                "string": "零一二三四五六七八九"
+                "label": "Numerals 1",
+                "string": "一二三四五六七八九"
             },
             {
-                "label": "Numbers",
-                "string": "十百千万億兆京"
+                "label": "Numerals 2",
+                "string": "〇零十百千万億兆京"
             }
         ]
     },
     {
-        "label": "Punctuation",
+        "label": "Punctuation Marks",
         "items":
         [
             {
-                "label": "CJK Punctuation",
-                "string": "、。．，：；"
+                "label": "Individual",
+                "string": "、。〃〜〝〞〟〰〽゠・﹅﹆！＂＇，－．／：；？＼＿"
+            },
+            {
+                "label": "Mirrored",
+                "string": "〈〉《》「」『』【】〔〕〖〗〘〙〚〛（）［］｛｝｟｠"
             }
         ]
     },
@@ -159,11 +181,11 @@
         [
             {
                 "label": "Han",
-                "string": "漢 漢︀漢 漢︁漢"
+                "string": "漢漢︀漢漢︁漢"
             },
             {
                 "label": "Lord",
-                "string": "卿 卿︀卿 卿︁卿 卿︂卿"
+                "string": "卿卿︀卿卿︁卿卿︂卿"
             }
         ]
     },
@@ -172,24 +194,12 @@
         "items":
         [
             {
-                "label": "Han Unification 1",
-                "string": "今令免入全具刃化外情才抵"
+                "label": "Han Unification",
+                "string": "今令免入全具刃化外情才抵次海直真神空者草角道雇骨"
             },
             {
-                "label": "Han Unification 2",
-                "string": "次海直真神空者草角道雇骨"
-            },
-            {
-                "label": "Variant Chinese Character 1",
-                "string": "刃令毒骨縣誤船述煙贈"
-            },
-            {
-                "label": "Variant Chinese Character 2",
-                "string": "雪及角條低詩函純賭難"
-            },
-            {
-                "label": "Variant Chinese Character 3",
-                "string": "海喝練灰起英次能窗化"
+                "label": "Variant Chinese Character",
+                "string": "刃令毒骨縣誤船述煙贈雪及角條低詩函純賭難海喝練灰起英次能窗化"
             }
         ]
     }

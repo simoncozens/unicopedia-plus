@@ -8,7 +8,7 @@ const path = require ('path');
 function getAnnotations (dirname, filename)
 {
     let result = { };
-    let xml = fs.readFileSync (path.join (__dirname, 'cldr', dirname, filename), { encoding: 'utf8' });
+    let xml = fs.readFileSync (path.join (__dirname, 'CLDR', dirname, filename), { encoding: 'utf8' });
     let parser = new DOMParser ();
     let doc = parser.parseFromString (xml, "application/xml");
     let annotations = doc.querySelectorAll ('annotations > annotation');

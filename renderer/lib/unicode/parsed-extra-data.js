@@ -71,6 +71,22 @@ for (let line of lines)
     }
 }
 //
+let emojiProperties = [ ];
+//
+// Copy of https://unicode.org/Public/emoji/12.0/emoji-data.txt
+lines = fs.readFileSync (path.join (__dirname, 'emoji', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
+for (let line of lines)
+{
+    if (line && (line[0] !== '#'))
+    {
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s*#/);
+        if (found)
+        {
+            emojiProperties.push ({ first: found[1], last: found[2] || found[1], name: found[3] });
+        }
+    }
+}
+//
 let scripts = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/Scripts.txt
@@ -119,14 +135,32 @@ for (let line of lines)
     }
 }
 //
+let eastAsianWidths = [ ];
+//
+// Copy of https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EastAsianWidth.txt'), { encoding: 'ascii' }).split ('\n');
+for (let line of lines)
+{
+    if (line && (line[0] !== '#'))
+    {
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?;(\w+)\s+#/);
+        if (found)
+        {
+            eastAsianWidths.push ({ first: found[1], last: found[2] || found[1], width: found[3] });
+        }
+    }
+}
+//
 module.exports =
 {
     versions,
     blocks,
     extendedProperties,
     coreProperties,
+    emojiProperties,
     scripts,
     scriptExtensions,
-    equivalentUnifiedIdeographs
+    equivalentUnifiedIdeographs,
+    eastAsianWidths
 };
 //

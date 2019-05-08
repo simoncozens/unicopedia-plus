@@ -111,7 +111,7 @@ module.exports.create = function (title, items, params)
                 }
                 characterData.appendChild (symbol);
                 let codePoint = document.createElement ('span');
-                codePoint.textContent = character.codePoint.replace ("U+", "");
+                codePoint.textContent = character.code;
                 codePoint.className = 'code-point';
                 characterData.appendChild (codePoint );
                 charactersData.appendChild (characterData);

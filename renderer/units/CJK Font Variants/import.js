@@ -128,131 +128,142 @@ module.exports.start = function (context)
         { header: "Hong\xA0Kong Chinese", tag: 'zh-HK', code: "HK" }
     ];
     //
+    const useFooter = true;
+    //
     function createSheet (wideCharacters)
     {
         while (sheet.firstChild)
         {
             sheet.firstChild.remove ();
         }
-        if (writingModeSelect.value === 'vertical')
+        sheet.classList.remove ('horizontal');
+        sheet.classList.remove ('vertical');
+        if (wideCharacters.length > 0)
         {
-            let table = document.createElement ('table');
-            table.className= 'table';
-            let headerRow = document.createElement ('tr');
-            languages.forEach
-            (
-                (language, index) =>
-                {
-                    if (index > 0)
+            if (writingModeSelect.value === 'vertical')
+            {
+                let table = document.createElement ('table');
+                table.className= 'table';
+                let headerRow = document.createElement ('tr');
+                languages.forEach
+                (
+                    (language, index) =>
                     {
-                        let emptyGap = document.createElement ('th');
-                        emptyGap.className = 'empty-gap';
-                        emptyGap.textContent = "\xA0";
-                        headerRow.appendChild (emptyGap);
-                    }
-                    let header = document.createElement ('th');
-                    header.className = 'cjk-title';
-                    header.title = `Code: ${language.code}\nlang="${language.tag}"`;
-                    let span = document.createElement ('span');
-                    span.textContent = language.header;
-                    header.appendChild (span);
-                    headerRow.appendChild (header);
-                }
-            );
-            table.appendChild (headerRow);
-            wideCharacters.forEach
-            (
-                wideCharacter =>
-                {
-                    let dataRow = document.createElement ('tr');
-                    languages.forEach
-                    (
-                        (language, index) =>
+                        if (index > 0)
                         {
-                            if (index > 0)
+                            let emptyGap = document.createElement ('th');
+                            emptyGap.className = 'empty-gap';
+                            emptyGap.textContent = "\xA0";
+                            headerRow.appendChild (emptyGap);
+                        }
+                        let header = document.createElement ('th');
+                        header.className = 'cjk-title';
+                        header.title = `Code: ${language.code}\nlang="${language.tag}"`;
+                        let span = document.createElement ('span');
+                        span.textContent = language.header;
+                        header.appendChild (span);
+                        headerRow.appendChild (header);
+                    }
+                );
+                table.appendChild (headerRow);
+                wideCharacters.forEach
+                (
+                    wideCharacter =>
+                    {
+                        let dataRow = document.createElement ('tr');
+                        languages.forEach
+                        (
+                            (language, index) =>
                             {
-                                let emptyGap = document.createElement ('td');
-                                emptyGap.className = 'empty-gap';
-                                emptyGap.textContent = "\xA0";
-                                dataRow.appendChild (emptyGap);
+                                if (index > 0)
+                                {
+                                    let emptyGap = document.createElement ('td');
+                                    emptyGap.className = 'empty-gap';
+                                    emptyGap.textContent = "\xA0";
+                                    dataRow.appendChild (emptyGap);
+                                }
+                                let data = document.createElement ('td');
+                                data.className = 'cjk-data';
+                                data.lang = language.tag;
+                                data.title = unicode.charactersToCodePoints (wideCharacter);
+                                let span = document.createElement ('span');
+                                span.textContent = wideCharacter;
+                                span.className = 'cjk-char';
+                                data.appendChild (span);
+                                dataRow.appendChild (data);
                             }
-                            let data = document.createElement ('td');
-                            data.className = 'cjk-data';
-                            data.lang = language.tag;
-                            data.title = unicode.charactersToCodePoints (wideCharacter).trim ();
-                            let span = document.createElement ('span');
-                            span.textContent = wideCharacter;
-                            span.className = 'cjk-char';
-                            data.appendChild (span);
-                            dataRow.appendChild (data);
-                        }
-                    );
-                    table.appendChild (dataRow);
-                }
-            );
-            sheet.appendChild (table);
-            sheet.classList.add ('vertical');
-            sheet.classList.remove ('horizontal');
-            sheet.style.display = (wideCharacters.length > 0) ? 'flex' :'none';
-        }
-        else
-        {
-            let table = document.createElement ('table');
-            table.className= 'table';
-            languages.forEach
-            (
-                (language, index) =>
-                {
-                    if (index > 0)
-                    {
-                        let emptyRow = document.createElement ('tr');
-                        emptyRow.className = 'empty-row';
-                        let emptyData = document.createElement ('td');
-                        emptyData.className = 'empty-data';
-                        emptyData.textContent = "\xA0";
-                        emptyRow.appendChild (emptyData);
-                        table.appendChild (emptyRow);
+                        );
+                        table.appendChild (dataRow);
                     }
-                    let dataRow = document.createElement ('tr');
-                    let emptyCol;
-                    emptyCol = document.createElement ('td');
-                    emptyCol.className = 'empty-col';
-                    emptyCol.textContent = "\xA0";
-                    dataRow.appendChild (emptyCol);
-                    let header = document.createElement ('th');
-                    header.className = 'cjk-title';
-                    header.title = `Code: ${language.code}\nlang="${language.tag}"`;
-                    let span = document.createElement ('span');
-                    span.className = 'cjk-lang';
-                    span.textContent = language.header;
-                    header.appendChild (span);
-                    dataRow.appendChild (header);
-                    wideCharacters.forEach
-                    (
-                        wideCharacter =>
-                        {
-                            let data = document.createElement ('td');
-                            data.className = 'cjk-data';
-                            data.lang = language.tag;
-                            data.title = unicode.charactersToCodePoints (wideCharacter).trim ();
-                            let span = document.createElement ('span');
-                            span.textContent = wideCharacter;
-                            span.className = 'cjk-char';
-                            data.appendChild (span);
-                            dataRow.appendChild (data);
-                        }
-                    );
-                    emptyCol = document.createElement ('td');
-                    emptyCol.className = 'empty-col';
-                    emptyCol.textContent = "\xA0";
-                    dataRow.appendChild (emptyCol);
-                    table.appendChild (dataRow);
+                );
+                if (useFooter)
+                {
+                    table.appendChild (headerRow.cloneNode (true));
                 }
-            );
-            sheet.appendChild (table);
-            sheet.classList.add ('horizontal');
-            sheet.classList.remove ('vertical');
-            sheet.style.display = (wideCharacters.length > 0) ? 'block' :'none';
+                sheet.appendChild (table);
+                sheet.classList.add ('vertical');
+            }
+            else
+            {
+                let table = document.createElement ('table');
+                table.className= 'table';
+                languages.forEach
+                (
+                    (language, index) =>
+                    {
+                        if (index > 0)
+                        {
+                            let emptyRow = document.createElement ('tr');
+                            emptyRow.className = 'empty-row';
+                            let emptyData = document.createElement ('td');
+                            emptyData.className = 'empty-data';
+                            emptyData.textContent = "\xA0";
+                            emptyRow.appendChild (emptyData);
+                            table.appendChild (emptyRow);
+                        }
+                        let dataRow = document.createElement ('tr');
+                        let emptyCol;
+                        emptyCol = document.createElement ('td');
+                        emptyCol.className = 'empty-col';
+                        emptyCol.textContent = "\xA0";
+                        dataRow.appendChild (emptyCol);
+                        let header = document.createElement ('th');
+                        header.className = 'cjk-title';
+                        header.title = `Code: ${language.code}\nlang="${language.tag}"`;
+                        let span = document.createElement ('span');
+                        span.className = 'cjk-lang';
+                        span.textContent = language.header;
+                        header.appendChild (span);
+                        dataRow.appendChild (header);
+                        wideCharacters.forEach
+                        (
+                            wideCharacter =>
+                            {
+                                let data = document.createElement ('td');
+                                data.className = 'cjk-data';
+                                data.lang = language.tag;
+                                data.title = unicode.charactersToCodePoints (wideCharacter);
+                                let span = document.createElement ('span');
+                                span.textContent = wideCharacter;
+                                span.className = 'cjk-char';
+                                data.appendChild (span);
+                                dataRow.appendChild (data);
+                            }
+                        );
+                        if (useFooter)
+                        {
+                            dataRow.appendChild (header.cloneNode (true));
+                        }
+                        emptyCol = document.createElement ('td');
+                        emptyCol.className = 'empty-col';
+                        emptyCol.textContent = "\xA0";
+                        dataRow.appendChild (emptyCol);
+                        table.appendChild (dataRow);
+                    }
+                );
+                sheet.appendChild (table);
+                sheet.classList.add ('horizontal');
+            }
         }
     }
     //
@@ -275,7 +286,17 @@ module.exports.start = function (context)
         let state = 'start';
         for (let character of string)
         {
-            if (graphemeBaseRegex.test (character) && unicode.matchEastAsianWidth (character, [ 'F', 'W' ]) && (!emojiRegex.test (character)))
+            if
+            (
+                // Temporary hack until regexpu-core module gets updated to Unicode 12.1!
+                (graphemeBaseRegex.test (character) || (character === "\u32FF"))
+                &&
+                (
+                    unicode.matchEastAsianWidth (character, [ 'F', 'W' ])
+                    ||
+                    (unicode.matchEastAsianWidth (character, [ 'A' ]) && unicode.matchVerticalOrientation (character, [ 'U' ]))
+                )
+            )
             {
                 wideCharacters.push (character);
                 state = 'base';
@@ -339,7 +360,7 @@ module.exports.start = function (context)
         event =>
         {
             let characters = event.target.value;
-            codePointsInput.value = unicode.charactersToCodePoints (characters);
+            codePointsInput.value = unicode.charactersToCodePoints (characters, true);
             createSheet (wideSplit (characters));
         }
     );
@@ -361,7 +382,7 @@ module.exports.start = function (context)
         'blur',
         event =>
         {
-            event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+            event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
         }
     );
     codePointsInput.addEventListener
@@ -372,7 +393,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+                event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
             }
         }
     );

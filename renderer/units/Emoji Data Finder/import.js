@@ -100,7 +100,7 @@ module.exports.start = function (context)
     //
     function getEmojiCodePoints (emoji)
     {
-        return emojiList[emoji].code.split (" ").map (source => { return `U+${source}`; }).join (" ");
+        return emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");
     }
     //
     function getEmojiShortName (emoji)
@@ -322,9 +322,7 @@ module.exports.start = function (context)
                     {
                         function characterToEcmaScriptEscape (character)
                         {
-                            let num = character.codePointAt (0);
-                            let hex = num.toString (16).toUpperCase ();
-                            return `\\u{${hex}}`;
+                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
                         }
                         //
                         let pattern = (nameUseRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
@@ -458,9 +456,7 @@ module.exports.start = function (context)
                     {
                         function characterToEcmaScriptEscape (character)
                         {
-                            let num = character.codePointAt (0);
-                            let hex = num.toString (16).toUpperCase ();
-                            return `\\u{${hex}}`;
+                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
                         }
                         //
                         let pattern = (sequenceUseRegex.checked) ? sequence : Array.from (sequence).map ((char) => characterToEcmaScriptEscape (char)).join ('');

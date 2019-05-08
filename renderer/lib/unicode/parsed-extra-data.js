@@ -151,6 +151,22 @@ for (let line of lines)
     }
 }
 //
+let verticalOrientations = [ ];
+//
+// Copy of https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'VerticalOrientation.txt'), { encoding: 'ascii' }).split ('\n');
+for (let line of lines)
+{
+    if (line && (line[0] !== '#'))
+    {
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
+        if (found)
+        {
+            verticalOrientations.push ({ first: found[1], last: found[2] || found[1], orientation: found[3] });
+        }
+    }
+}
+//
 module.exports =
 {
     versions,
@@ -161,6 +177,7 @@ module.exports =
     scripts,
     scriptExtensions,
     equivalentUnifiedIdeographs,
-    eastAsianWidths
+    eastAsianWidths,
+    verticalOrientations
 };
 //

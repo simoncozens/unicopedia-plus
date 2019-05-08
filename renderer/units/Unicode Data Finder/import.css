@@ -352,6 +352,11 @@
     text-align: center;
 }
 
+#unicode-data-finder-unit .search-data .unassigned .symbol
+{
+    user-select: none;
+}
+
 #unicode-data-finder-unit .search-data .symbol
 {
     font-family: sans-serif;

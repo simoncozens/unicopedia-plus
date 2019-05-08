@@ -332,6 +332,7 @@ const scripts =
     "Zanb": "Zanabazar_Square"
 };
 //
+// https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
 const eastAsianWidths =
 {
     "A": "Ambiguous",
@@ -340,7 +341,16 @@ const eastAsianWidths =
     // "N": "Neutral", // "Not East Asian"
     "Na": "Narrow",
     "W": "Wide"
-}
+};
+//
+// https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
+const verticalOrientations =
+{
+    "U": "Upright", // Upright, the same orientation as in the code charts
+    "R": "Rotated", // Rotated 90 degrees clockwise compared to the code charts
+    "Tu": "Transformed_Upright", // Transformed typographically, with fallback to Upright
+    "Tr": "Transformed_Rotated" // Transformed typographically, with fallback to Rotated
+};
 //
 // https://en.wikibooks.org/wiki/Unicode/Versions
 // https://www.unicode.org/history/publicationdates.html
@@ -377,30 +387,24 @@ function uniHexify (string)
 //
 function characterToUtf32Code (character)
 {
-    let utf32Code = "";
-    let num = character.codePointAt (0);
-    let hex = num.toString (16).toUpperCase ();
-    utf32Code = ("0000000" + hex).slice (-8);
-    return utf32Code;
+    return ("0000000" + character.codePointAt (0).toString (16).toUpperCase ()).slice (-8);
 }
 //
 function characterToUtf16Code (character)
 {
     let utf16Code = "";
-    let num = character.codePointAt (0);
-    if (num > 0xFFFF)
+    let index = character.codePointAt (0);
+    if (index > 0xFFFF)
     {
-        let highHex = character.charCodeAt (0).toString (16).toUpperCase ();
-        let lowHex = character.charCodeAt (1).toString (16).toUpperCase ();
-        highHex = ("000" + highHex).slice (-4);
-        lowHex = ("000" + lowHex).slice (-4);
-        utf16Code = `${highHex} ${lowHex}`;
+        let highCode = character.charCodeAt (0).toString (16).toUpperCase ();
+        let lowCode = character.charCodeAt (1).toString (16).toUpperCase ();
+        highCode = ("000" + highCode).slice (-4);
+        lowCode = ("000" + lowCode).slice (-4);
+        utf16Code = `${highCode} ${lowCode}`;
     }
     else
     {
-        let hex = num.toString (16).toUpperCase ();
-        hex = ("000" + hex).slice (-4);
-        utf16Code = hex;
+        utf16Code = ("000" + index.toString (16).toUpperCase ()).slice (-4);
     }
     return utf16Code;
 }
@@ -424,7 +428,7 @@ function characterToUtf8Code (character)
 //
 function characterToUrlEncoding (character)
 {
-    return characterToUtf8 (character).map (hex => `%${hex}`).join ("");
+    return characterToUtf8 (character).map (code => `%${code}`).join ("");
 }
 //
 function characterToDecimalEntity (character)
@@ -435,29 +439,33 @@ function characterToDecimalEntity (character)
 function characterToJavaScriptEscape (character)
 {
     let escape = "";
-    let num = character.codePointAt (0);
-    if (num > 0xFFFF)
+    let index = character.codePointAt (0);
+    if (index > 0xFFFF)
     {
-        let highHex = character.charCodeAt (0).toString (16).toUpperCase ();
-        let lowHex = character.charCodeAt (1).toString (16).toUpperCase ();
-        highHex = ("000" + highHex).slice (-4);
-        lowHex = ("000" + lowHex).slice (-4);
-        escape = `\\u${highHex}\\u${lowHex}`;
+        let highCode = ("000" + character.charCodeAt (0).toString (16).toUpperCase ()).slice (-4);
+        let lowCode = ("000" + character.charCodeAt (1).toString (16).toUpperCase ()).slice (-4);
+        escape = `\\u${highCode}\\u${lowCode}`;
     }
     else
     {
-        let hex = num.toString (16).toUpperCase ();
-        hex = ("000" + hex).slice (-4);
-        escape = `\\u${hex}`;
+        escape = `\\u${("000" + index.toString (16).toUpperCase ()).slice (-4)}`;
     }
     return escape;
 }
 //
 function characterToEcmaScript6Escape (character)
 {
-    let num = character.codePointAt (0);
-    let hex = num.toString (16).toUpperCase ();
-    return `\\u{${hex}}`;
+    return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
+}
+//
+function characterToCodePoint (character, noPrefix)
+{
+    let code = character.codePointAt (0).toString (16).toUpperCase ();
+    if (code.length < 5)
+    {
+        code = ("000" + code).slice (-4);
+    }
+    return (noPrefix) ? code : `U+${code}`;
 }
 //
 function getCharacterData (character)
@@ -473,18 +481,13 @@ function getCharacterData (character)
         characterData.javaScript = characterToJavaScriptEscape (character);
         characterData.ecmaScript6 = characterToEcmaScript6Escape (character);
     }
-    let num = character.codePointAt (0);
-    let hex = num.toString (16).toUpperCase ();
-    if (hex.length < 5)
-    {
-        hex = ("000" + hex).slice (-4);
-    }
-    let codePoint = `U+${hex}`;
+    let codePoint = characterToCodePoint (character);
     characterData.character = character;
     characterData.codePoint = codePoint;
+    let index = character.codePointAt (0);
     for (let plane of planes)
     {
-        if ((parseInt (plane.first, 16) <= num) && (num <= parseInt (plane.last, 16)))
+        if ((parseInt (plane.first, 16) <= index) && (index <= parseInt (plane.last, 16)))
         {
             characterData.planeName = plane.name;
             characterData.planeRange = uniHexify (plane.first + ".." + plane.last);
@@ -493,7 +496,7 @@ function getCharacterData (character)
     }
     for (let block of extraData.blocks)
     {
-        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+        if ((parseInt (block.first, 16) <= index) && (index <= parseInt (block.last, 16)))
         {
             characterData.blockName = block.name;
             characterData.blockRange = uniHexify (block.first + ".." + block.last);
@@ -502,7 +505,7 @@ function getCharacterData (character)
     }
     for (let version of extraData.versions)
     {
-        if ((parseInt (version.first, 16) <= num) && (num <= parseInt (version.last, 16)))
+        if ((parseInt (version.first, 16) <= index) && (index <= parseInt (version.last, 16)))
         {
             characterData.age = `Unicode ${version.age}`;
             characterData.ageDate = versionDates[version.age];
@@ -511,7 +514,7 @@ function getCharacterData (character)
     }
     for (let script of extraData.scripts)
     {
-        if ((parseInt (script.first, 16) <= num) && (num <= parseInt (script.last, 16)))
+        if ((parseInt (script.first, 16) <= index) && (index <= parseInt (script.last, 16)))
         {
             characterData.script = script.name;
             break;
@@ -519,7 +522,7 @@ function getCharacterData (character)
     }
     for (let scriptExtension of extraData.scriptExtensions)
     {
-        if ((parseInt (scriptExtension.first, 16) <= num) && (num <= parseInt (scriptExtension.last, 16)))
+        if ((parseInt (scriptExtension.first, 16) <= index) && (index <= parseInt (scriptExtension.last, 16)))
         {
             let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias]);
             characterData.scriptExtensions = names.sort ((a, b) => a.localeCompare (b)).join (", ");
@@ -529,7 +532,7 @@ function getCharacterData (character)
     let extendedProperties = [ ];
     for (let extendedProperty of extraData.extendedProperties)
     {
-        if ((parseInt (extendedProperty.first, 16) <= num) && (num <= parseInt (extendedProperty.last, 16)))
+        if ((parseInt (extendedProperty.first, 16) <= index) && (index <= parseInt (extendedProperty.last, 16)))
         {
             extendedProperties.push (extendedProperty.name);
         }
@@ -541,7 +544,7 @@ function getCharacterData (character)
     let coreProperties = [ ];
     for (let coreProperty of extraData.coreProperties)
     {
-        if ((parseInt (coreProperty.first, 16) <= num) && (num <= parseInt (coreProperty.last, 16)))
+        if ((parseInt (coreProperty.first, 16) <= index) && (index <= parseInt (coreProperty.last, 16)))
         {
             coreProperties.push (coreProperty.name);
         }
@@ -553,7 +556,7 @@ function getCharacterData (character)
     let emojiProperties = [ ];
     for (let emojiProperty of extraData.emojiProperties)
     {
-        if ((parseInt (emojiProperty.first, 16) <= num) && (num <= parseInt (emojiProperty.last, 16)))
+        if ((parseInt (emojiProperty.first, 16) <= index) && (index <= parseInt (emojiProperty.last, 16)))
         {
             emojiProperties.push (emojiProperty.name);
         }
@@ -564,7 +567,7 @@ function getCharacterData (character)
     }
     for (let ideograph of extraData.equivalentUnifiedIdeographs)
     {
-        if ((parseInt (ideograph.first, 16) <= num) && (num <= parseInt (ideograph.last, 16)))
+        if ((parseInt (ideograph.first, 16) <= index) && (index <= parseInt (ideograph.last, 16)))
         {
             characterData.equivalentUnifiedIdeograph = uniHexify (ideograph.equivalent);
             break;
@@ -572,9 +575,17 @@ function getCharacterData (character)
     }
     for (let eastAsianWidth of extraData.eastAsianWidths)
     {
-        if ((parseInt (eastAsianWidth.first, 16) <= num) && (num <= parseInt (eastAsianWidth.last, 16)))
+        if ((parseInt (eastAsianWidth.first, 16) <= index) && (index <= parseInt (eastAsianWidth.last, 16)))
         {
             characterData.eastAsianWidth = eastAsianWidths[eastAsianWidth.width];
+            break;
+        }
+    }
+    for (let verticalOrientation of extraData.verticalOrientations)
+    {
+        if ((parseInt (verticalOrientation.first, 16) <= index) && (index <= parseInt (verticalOrientation.last, 16)))
+        {
+            characterData.verticalOrientation = verticalOrientations[verticalOrientation.orientation];
             break;
         }
     }
@@ -611,20 +622,14 @@ function getCharactersData (characters)
     return dataList;
 }
 //
-function charactersToCodePoints (characters)
+function charactersToCodePoints (characters, delimited)
 {
     let codePoints = [ ];
     for (let character of characters)
     {
-        let num = character.codePointAt (0);
-        let hex = num.toString (16).toUpperCase ();
-        if (hex.length < 5)
-        {
-            hex = ("000" + hex).slice (-4);
-        }
-        codePoints.push (`U+${hex} `);
+        codePoints.push (characterToCodePoint (character));
     }
-    return codePoints.join ('');
+    return (delimited) ? codePoints.map (codePoint => codePoint + ' ').join ('') : codePoints.join (' ');
 }
 //
 function codePointsToCharacters (codePoints)
@@ -632,13 +637,13 @@ function codePointsToCharacters (codePoints)
     let characters = "";
     codePoints = codePoints.replace (/\b([0-9a-fA-F]{4,})\b/g, "U+$1");
     const regex = /\\u([0-9a-fA-F]{4})|\\u\{([0-9a-fA-F]{1,})\}|U\+([0-9a-fA-F]{4,})/g;    // Global flag /g *must* be set!
-    let hex;
-    while ((hex = regex.exec (codePoints)))
+    let code;
+    while ((code = regex.exec (codePoints)))
     {
-        let num = parseInt (hex[1] || hex[2] || hex[3], 16);
-        if (num <= 0x10FFFF)
+        let index = parseInt (code[1] || code[2] || code[3], 16);
+        if (index <= 0x10FFFF)
         {
-            characters += String.fromCodePoint (num);
+            characters += String.fromCodePoint (index);
         }
     }
     return characters;
@@ -697,13 +702,7 @@ function findCharactersBySymbol (regex, matchDecomposition)
 function getCharacterBasicData (character)
 {
     let characterBasicData = { };
-    let num = character.codePointAt (0);
-    let hex = num.toString (16).toUpperCase ();
-    if (hex.length < 5)
-    {
-        hex = ("000" + hex).slice (-4);
-    }
-    let codePoint = `U+${hex}`;
+    let codePoint = characterToCodePoint (character);
     characterBasicData.character = character;
     characterBasicData.codePoint = codePoint;
     let codePoints = unicodeData;
@@ -714,9 +713,10 @@ function getCharacterBasicData (character)
         characterBasicData.alias = data.alias;
         characterBasicData.correction = data.correction;
     }
+    let index = character.codePointAt (0);
     for (let block of extraData.blocks)
     {
-        if ((parseInt (block.first, 16) <= num) && (num <= parseInt (block.last, 16)))
+        if ((parseInt (block.first, 16) <= index) && (index <= parseInt (block.last, 16)))
         {
             characterBasicData.blockName = block.name;
             characterBasicData.blockRange = uniHexify (block.first + ".." + block.last);
@@ -725,7 +725,7 @@ function getCharacterBasicData (character)
     }
     for (let version of extraData.versions)
     {
-        if ((parseInt (version.first, 16) <= num) && (num <= parseInt (version.last, 16)))
+        if ((parseInt (version.first, 16) <= index) && (index <= parseInt (version.last, 16)))
         {
             characterBasicData.age = version.age;
             characterBasicData.ageDate = versionDates[version.age];
@@ -738,12 +738,30 @@ function getCharacterBasicData (character)
 function matchEastAsianWidth (character, widthArray)
 {
     let match = false;
-    let num = character.codePointAt (0);
+    let index = character.codePointAt (0);
     for (let eastAsianWidth of extraData.eastAsianWidths)
     {
-        if ((parseInt (eastAsianWidth.first, 16) <= num) && (num <= parseInt (eastAsianWidth.last, 16)))
+        if ((parseInt (eastAsianWidth.first, 16) <= index) && (index <= parseInt (eastAsianWidth.last, 16)))
         {
             if (widthArray.includes (eastAsianWidth.width))
+            {
+                match = true;
+                break;
+            }
+        }
+    }
+    return match;
+}
+
+function matchVerticalOrientation (character, orientationArray)
+{
+    let match = false;
+    let index = character.codePointAt (0);
+    for (let verticalOrientation of extraData.verticalOrientations)
+    {
+        if ((parseInt (verticalOrientation.first, 16) <= index) && (index <= parseInt (verticalOrientation.last, 16)))
+        {
+            if (orientationArray.includes (verticalOrientation.orientation))
             {
                 match = true;
                 break;
@@ -758,11 +776,13 @@ module.exports =
     characterCount,
     getCharacterData,
     getCharactersData,
+    characterToCodePoint,
     charactersToCodePoints,
     codePointsToCharacters,
     findCharactersByName,
     findCharactersBySymbol,
     getCharacterBasicData,
-    matchEastAsianWidth
+    matchEastAsianWidth,
+    matchVerticalOrientation
 };
 //

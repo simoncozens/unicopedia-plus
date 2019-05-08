@@ -85,7 +85,8 @@ module.exports.create = function (characters, params, highlightedCharacter)
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);
-            let isAssignedCharacter = assignedRegex.test (character);
+            // Temporary hack until regexpu-core module gets updated to Unicode 12.1!
+            let isAssignedCharacter = assignedRegex.test (character) || (character === "\u32FF");
             let row = document.createElement ('tr');
             row.className = 'row';
             if (!isAssignedCharacter)

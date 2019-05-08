@@ -564,12 +564,7 @@ module.exports.start = function (context)
         currentUnihanCharacter = character;
         if (character)
         {
-            let hex = character.codePointAt (0).toString (16).toUpperCase ();
-            if (hex.length < 5)
-            {
-                hex = ("000" + hex).slice (-4);
-            }    
-            let codePoint = `U+${hex}`;
+            let codePoint = unicode.characterToCodePoint (character);
             let tags = unihanData.codePoints[codePoint];
             displayCharacterData (character, codePoint, tags);
             displayTags (tags);

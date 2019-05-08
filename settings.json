@@ -23,7 +23,7 @@
     "shortAppName": "App",
     "unitsName": "Utilities",
     "noCategoryName": "Other",
-    "description": "Set of Unicode, Unihan & emoji utilities.",
+    "description": "Developer-oriented set of Unicode, Unihan & emoji utilities.",
     "copyright": "© 2018-2019 Michel MARIANI.",
     "electronApp":
     {

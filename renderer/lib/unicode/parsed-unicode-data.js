@@ -9,8 +9,8 @@ let lines;
 //
 let codePoints = { };
 //
-let first;
-let last;
+let firstIndex;
+let lastIndex;
 let rangeName;
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/UnicodeData.txt
@@ -23,19 +23,19 @@ for (let line of lines)
         let found;
         if (found = fields[1].match (/^<(.+), First>$/))
         {
-            first = parseInt (fields[0], 16);
+            firstIndex = parseInt (fields[0], 16);
             rangeName = found[1];
         }
         else if (found = fields[1].match (/^<(.+), Last>$/))
         {
-            last = parseInt (fields[0], 16);
+            lastIndex = parseInt (fields[0], 16);
             if (rangeName !== found[1]) console.log ("[UnicodeData] rangeName mismatch:", rangeName, found[1]);
-            for (let num = first; num <= last; num++)
+            for (let index = firstIndex; index <= lastIndex; index++)
             {
-                let hex = num.toString (16).toUpperCase ();
-                if (hex.length < 5)
+                let code = index.toString (16).toUpperCase ();
+                if (code.length < 5)
                 {
-                    hex = ("000" + hex).slice (-4);
+                    code = ("000" + code).slice (-4);
                 }
                 let name = "";
                 let decomposition = "";
@@ -43,8 +43,8 @@ for (let line of lines)
                 {
                     // "Hangul" in "UTR #15: Unicode Normalization Forms"
                     // https://www.unicode.org/reports/tr15/tr15-33.html#Hangul
-                    // "Conjoining Jamo Behavior" in "The Unicode Standard, Version 12.0 - ch03.pdf" p. 144
-                    // https://www.unicode.org/versions/Unicode12.0.0/ch03.pdf
+                    // "Conjoining Jamo Behavior" in "The Unicode Standard, Version 12.1 - ch03.pdf" p. 144
+                    // https://www.unicode.org/versions/Unicode12.1.0/ch03.pdf
                     let jamoInitials =
                     [
                         "G", "GG", "N", "D", "DD", "R", "M", "B", "BB",
@@ -62,7 +62,7 @@ for (let line of lines)
                         "LB", "LS", "LT", "LP", "LH", "M", "B", "BS",
                         "S", "SS", "NG", "J", "C", "K", "T", "P", "H"
                     ];
-                    let s = num - first;
+                    let s = index - firstIndex;
                     let n = jamoMedials.length * jamoFinals.length;
                     let t = jamoFinals.length;
                     let i = Math.floor (s / n);
@@ -76,11 +76,11 @@ for (let line of lines)
                 }
                 else
                 {
-                    name = rangeName.toUpperCase () + "-" + hex;
+                    name = rangeName.toUpperCase () + "-" + code;
                 }
-                codePoints[`U+${hex}`] =
+                codePoints[`U+${code}`] =
                 {
-                    code: hex,
+                    code: code,
                     name: name,
                     category: fields[2],
                     combining: fields[3],
@@ -129,12 +129,12 @@ for (let line of lines)
     if (line && (line[0] !== '#'))
     {
         let fields = line.split (';');
-        let hex = fields[0];
+        let code = fields[0];
         let alias = fields[1];
         let type = fields[2];
         if (type === "correction")
         {
-            codePoints[`U+${hex}`].correction = alias;
+            codePoints[`U+${code}`].correction = alias;
         }
     }
 }

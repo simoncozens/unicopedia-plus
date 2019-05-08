@@ -302,12 +302,12 @@ module.exports.start = function (context)
                 if (matchingValues.length > 0)
                 {
                     let character = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
-                    let num = character.codePointAt (0);
+                    let index = character.codePointAt (0);
                     let blockName;
                     let blockRange;
                     for (let block of unihanBlocks)
                     {
-                        if ((block.firstIndex <= num) && (num <= block.lastIndex))
+                        if ((block.firstIndex <= index) && (index <= block.lastIndex))
                         {
                             blockName = block.name;
                             blockRange = block.range;
@@ -346,9 +346,7 @@ module.exports.start = function (context)
                     {
                         function characterToEcmaScriptEscape (character)
                         {
-                            let num = character.codePointAt (0);
-                            let hex = num.toString (16).toUpperCase ();
-                            return `\\u{${hex}}`;
+                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
                         }
                         //
                         let pattern = (tagUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
@@ -547,11 +545,8 @@ module.exports.start = function (context)
                     let residualStrokes = parseInt (tagResidual);
                     if ((options.minStrokes <= residualStrokes) && (residualStrokes <= options.maxStrokes))
                     {
-                        let character =
-                        {
-                            symbol: String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16)),
-                            codePoint: codePoint
-                        };
+                        let code = codePoint.replace ("U+", "");
+                        let character = { symbol: String.fromCodePoint (parseInt (code, 16)), code: code };
                         if (options.extraSources)
                         {
                             let extraSource = !irgSourceValues.includes (rsValue);
@@ -668,10 +663,10 @@ module.exports.start = function (context)
     //
     for (let codePoint of unihanData.coreSet)
     {
-        let num = parseInt (codePoint.replace ("U+", ""), 16);
+        let index = parseInt (codePoint.replace ("U+", ""), 16);
         for (let block of unihanBlocks)
         {
-            if ((block.firstIndex <= num) && (num <= block.lastIndex))
+            if ((block.firstIndex <= index) && (index <= block.lastIndex))
             {
                 block.coreCount++;
                 break;
@@ -830,11 +825,11 @@ module.exports.start = function (context)
                 let character = parseUnihanCharacter (gridSpecimen.value);
                 if (character)
                 {
-                    let num = character.codePointAt (0);
+                    let index = character.codePointAt (0);
                     let blockKey = null;
                     for (let block of unihanBlocks)
                     {
-                        if ((block.firstIndex <= num) && (num <= block.lastIndex))
+                        if ((block.firstIndex <= index) && (index <= block.lastIndex))
                         {
                             blockKey = block.key;
                             break;

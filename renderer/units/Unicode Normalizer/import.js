@@ -112,13 +112,13 @@ module.exports.start = function (context)
         event =>
         {
             let characters = event.target.value;
-            codePointsInput.value = unicode.charactersToCodePoints (characters);
+            codePointsInput.value = unicode.charactersToCodePoints (characters, true);
             for (let index = 0; index < charactersStrings.length; index++)
             {
                 let charactersString = charactersStrings[index];
                 let codePointsString = codePointsStrings[index];
                 charactersString.textContent = characters.normalize (charactersString.dataset.form);
-                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent);
+                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent, true);
             }
         }
     );
@@ -137,7 +137,7 @@ module.exports.start = function (context)
                 let charactersString = charactersStrings[index];
                 let codePointsString = codePointsStrings[index];
                 charactersString.textContent = characters.normalize (charactersString.dataset.form);
-                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent);
+                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent, true);
             }
         }
     );
@@ -146,7 +146,7 @@ module.exports.start = function (context)
         'blur',
         event =>
         {
-            event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+            event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
         }
     );
     codePointsInput.addEventListener
@@ -157,7 +157,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+                event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
             }
         }
     );

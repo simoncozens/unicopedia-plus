@@ -108,6 +108,32 @@
         ]
     },
     {
+        "label": "Japanese",
+        "items":
+        [
+            {
+                "label": "Prefectures of Japan",
+                "string": "都道府県"
+            },
+            {
+                "label": "Square Era Names",
+                "string": "㋿㍻㍼㍽㍾"
+            },
+            {
+                "label": "Square Hiragana",
+                "string": "🈀：ほか"
+            },
+            {
+                "label": "Square Jukogo",
+                "string": "㍿゠株式会社"
+            },
+            {
+                "label": "Square Katakana",
+                "string": "㌀・アパート"
+            }
+        ]
+    },
+    {
         "label": "Kangxi Radicals",
         "items":
         [
@@ -126,8 +152,8 @@
         "items":
         [
             {
-                "label": "Japanese Era Names",
-                "string": "㋿㍻㍼㍽㍾"
+                "label": "Island Variants",
+                "string": "㠀岛島嶋嶌"
             },
             {
                 "label": "Miscellaneous 1",
@@ -136,10 +162,6 @@
             {
                 "label": "Miscellaneous 2",
                 "string": "滙爲画畵線萬裏"
-            },
-            {
-                "label": "Prefectures of Japan",
-                "string": "都道府県"
             },
             {
                 "label": "Swords & Knives",
@@ -172,6 +194,10 @@
             {
                 "label": "Mirrored",
                 "string": "〈〉《》「」『』【】〔〕〖〗〘〙〚〛（）［］｛｝｟｠"
+            },
+            {
+                "label": "Small Forms",
+                "string": "﹐﹑﹒﹔﹕﹖﹗﹘﹙﹚﹛﹜﹝﹞﹨"
             }
         ]
     },
@@ -186,6 +212,10 @@
             {
                 "label": "Lord",
                 "string": "卿卿︀卿卿︁卿卿︂卿"
+            },
+            {
+                "label": "Punctuation",
+                "string": "、︀、︁。︀。︁！︀！︁，︀，︁．︀．︁：︀：︁；︀；︁？︀？︁"
             }
         ]
     },

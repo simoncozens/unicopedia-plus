@@ -221,9 +221,7 @@ module.exports.start = function (context)
                     {
                         function characterToEcmaScriptEscape (character)
                         {
-                            let num = character.codePointAt (0);
-                            let hex = num.toString (16).toUpperCase ();
-                            return `\\u{${hex}}`;
+                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
                         }
                         //
                         let pattern = (nameUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
@@ -371,9 +369,7 @@ module.exports.start = function (context)
                     {
                         function characterToEcmaScriptEscape (character)
                         {
-                            let num = character.codePointAt (0);
-                            let hex = num.toString (16).toUpperCase ();
-                            return `\\u{${hex}}`;
+                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
                         }
                         //
                         let pattern = (characterUseRegex.checked) ?
@@ -470,7 +466,8 @@ module.exports.start = function (context)
         {
             characters.push (String.fromCodePoint (index));
         }
-        let assignedCount = characters.filter (character => assignedRegex.test (character)).length;
+        // Temporary hack until regexpu-core module gets updated to Unicode 12.1!
+        let assignedCount = characters.filter (character => assignedRegex.test (character) || (character === "\u32FF")).length;
         blockSearchInfo.innerHTML = `Assigned characters: <strong>${assignedCount}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
         blockSearchData.appendChild (dataTable.create (characters, blockParams, highlightedCharacter));
     }
@@ -508,10 +505,10 @@ module.exports.start = function (context)
         let blockKey = null;
         if (character)
         {
-            let num = character.codePointAt (0);
+            let index = character.codePointAt (0);
             for (let block of allBlocks)
             {
-                if ((block.firstIndex <= num) && (num <= block.lastIndex))
+                if ((block.firstIndex <= index) && (index <= block.lastIndex))
                 {
                     blockKey = block.key;
                     break;
@@ -629,12 +626,7 @@ module.exports.start = function (context)
                 let blockKey = getBlockKeyfromCharacter (character);
                 if (blockKey)
                 {
-                    let hex = character.codePointAt (0).toString (16).toUpperCase ();
-                    if (hex.length < 5)
-                    {
-                        hex = ("000" + hex).slice (-4);
-                    }
-                    let codePoint = `U+${hex}`;
+                    let codePoint = unicode.characterToCodePoint (character);
                     let indexOfUnihanCharacter = blockSpecimenHistory.indexOf (codePoint);
                     if (indexOfUnihanCharacter !== -1)
                     {

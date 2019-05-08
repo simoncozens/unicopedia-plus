@@ -137,12 +137,22 @@
             "href": "https://www.unicode.org/reports/tr50/"
         },
         {
+            "name": "VerticalOrientation.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt"
+        },
+        {
             "name": "Robust Vertical Text Layout - RobustVerticalLayout.pdf",
             "href": "https://www.unicode.org/notes/tn22/RobustVerticalLayout.pdf"
-        },
+        }
+    ],
+    [
         {
             "name": "writing-mode - CSS: Cascading Style Sheets | MDN",
             "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode"
+        },
+        {
+            "name": "text-orientation - CSS: Cascading Style Sheets | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-orientation"
         }
     ],
     [

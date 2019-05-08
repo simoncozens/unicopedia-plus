@@ -218,6 +218,7 @@ module.exports.start = function (context)
                         { name: numericType, value: data.numeric },
                         { name: "Numeric Value", value: numericValue },
                         { name: "East Asian Width", value: data.eastAsianWidth },
+                        { name: "Vertical Orientation", value: data.verticalOrientation },
                         { name: "Equivalent Unified Ideograph", value: data.equivalentUnifiedIdeograph },
                         { name: "Core Properties", value: data.coreProperties },
                         { name: "Extended Properties", value: data.extendedProperties },
@@ -278,7 +279,7 @@ module.exports.start = function (context)
         event =>
         {
             let characters = event.target.value;
-            codePointsInput.value = unicode.charactersToCodePoints (characters);
+            codePointsInput.value = unicode.charactersToCodePoints (characters, true);
             displayDataList (Array.from (characters), charactersData);
         }
     );
@@ -300,7 +301,7 @@ module.exports.start = function (context)
         'blur',
         event =>
         {
-            event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+            event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
         }
     );
     codePointsInput.addEventListener
@@ -311,7 +312,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                event.target.value = unicode.charactersToCodePoints (charactersInput.value);
+                event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
             }
         }
     );

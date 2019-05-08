@@ -9,11 +9,11 @@ let normalizationTestData = [ ];
 //
 function fieldToString (field)
 {
-    let codePoints = field.trim ().split (' ');
+    let codes = field.trim ().split (' ');
     let string = "";
-    for (let codePoint of codePoints)
+    for (let code of codes)
     {
-        string += String.fromCodePoint (parseInt (codePoint, 16));
+        string += String.fromCodePoint (parseInt (code, 16));
     }
     return string;
 }

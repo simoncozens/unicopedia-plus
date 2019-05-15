@@ -37,9 +37,8 @@ module.exports.start = function (context)
     const { remote } = require ('electron');
     //
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
-    const sampleMenus = require ('../../lib/sample-menus');
-    //
-    const rewritePattern = require ('regexpu-core');
+    const sampleMenus = require ('../../lib/sample-menus.js');
+    const regexUnicode = require ('../../lib/regex-unicode.js');
     //
     const defaultPrefs =
     {
@@ -281,10 +280,7 @@ module.exports.start = function (context)
             {
                 try
                 {
-                    const flags = 'ui';
-                    let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
+                    regexUnicode.build (event.target.value, { useRegex: nameUseRegex.checked });
                 }
                 catch (e)
                 {
@@ -320,21 +316,7 @@ module.exports.start = function (context)
                     let regex = null;
                     try
                     {
-                        function characterToEcmaScriptEscape (character)
-                        {
-                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
-                        }
-                        //
-                        let pattern = (nameUseRegex.checked) ? name : Array.from (name).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        if (nameWholeWord.checked)
-                        {
-                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
-                        }
-                        const flags = 'ui';
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                        regex = new RegExp (pattern, flags);
+                        regex = regexUnicode.build (name, { wholeWord: nameWholeWord.checked, useRegex: nameUseRegex.checked });
                     }
                     catch (e)
                     {
@@ -415,10 +397,7 @@ module.exports.start = function (context)
             {
                 try
                 {
-                    const flags = 'ui';
-                    let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
+                    regexUnicode.build (event.target.value, { useRegex: sequenceUseRegex.checked });
                 }
                 catch (e)
                 {
@@ -454,15 +433,7 @@ module.exports.start = function (context)
                     let regex = null;
                     try
                     {
-                        function characterToEcmaScriptEscape (character)
-                        {
-                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
-                        }
-                        //
-                        let pattern = (sequenceUseRegex.checked) ? sequence : Array.from (sequence).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        const flags = 'ui';
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                        regex = new RegExp (pattern, flags);
+                        regex = regexUnicode.build (sequence, { useRegex: sequenceUseRegex.checked });
                     }
                     catch (e)
                     {

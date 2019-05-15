@@ -22,15 +22,13 @@ let defaultFolderPath;
 module.exports.start = function (context)
 {
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
-    const sampleMenus = require ('../../lib/sample-menus');
+    const sampleMenus = require ('../../lib/sample-menus.js');
     //
     const path = require ('path');
     //
     const fileDialogs = require ('../../lib/file-dialogs.js');
-    //
+    const regexUnicode = require ('../../lib/regex-unicode.js');
     const unicode = require ('../../lib/unicode/unicode.js');
-    //
-    const rewritePattern = require ('regexpu-core');
     //
     const defaultPrefs =
     {
@@ -269,14 +267,10 @@ module.exports.start = function (context)
     //
     function propertyRegex (property)
     {
-        const flags = 'u';
-        let pattern = `\\p{${property}}`;
-        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        return new RegExp (pattern, flags);
+        return regexUnicode.build (`\\p{${property}}`, { useRegex: true });
     }
     //
     const graphemeBaseRegex = propertyRegex ('Grapheme_Base');
-    const emojiRegex = propertyRegex ('Emoji');
     const variationSelectorRegex = propertyRegex ('Variation_Selector');
     const graphemeExtendRegex = propertyRegex ('Grapheme_Extend');
     //

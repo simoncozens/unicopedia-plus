@@ -50,11 +50,10 @@ module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
+    const regexUnicode = require ('../../lib/regex-unicode.js');
     const unicode = require ('../../lib/unicode/unicode.js');
     //
     const dataTable = require ('./data-table.js');
-    //
-    const rewritePattern = require ('regexpu-core');
     //
     const defaultPrefs =
     {
@@ -180,10 +179,7 @@ module.exports.start = function (context)
             {
                 try
                 {
-                    const flags = 'ui';
-                    let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
+                    regexUnicode.build (event.target.value, { useRegex: nameUseRegex.checked });
                 }
                 catch (e)
                 {
@@ -219,21 +215,7 @@ module.exports.start = function (context)
                     let regex = null;
                     try
                     {
-                        function characterToEcmaScriptEscape (character)
-                        {
-                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
-                        }
-                        //
-                        let pattern = (nameUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        if (nameWholeWord.checked)
-                        {
-                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
-                        }
-                        const flags = 'ui';
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                        regex = new RegExp (pattern, flags);
+                        regex = regexUnicode.build (searchString, { wholeWord: nameWholeWord.checked, useRegex: nameUseRegex.checked });
                     }
                     catch (e)
                     {
@@ -328,10 +310,7 @@ module.exports.start = function (context)
             {
                 try
                 {
-                    const flags = characterCaseSensitive.checked ? 'u' : 'ui';
-                    let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
+                    regexUnicode.build (event.target.value, { caseSensitive: characterCaseSensitive.checked, useRegex: characterUseRegex.checked });
                 }
                 catch (e)
                 {
@@ -367,17 +346,7 @@ module.exports.start = function (context)
                     let regex = null;
                     try
                     {
-                        function characterToEcmaScriptEscape (character)
-                        {
-                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
-                        }
-                        //
-                        let pattern = (characterUseRegex.checked) ?
-                            searchString :
-                            Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        const flags = characterCaseSensitive.checked ? 'u' : 'ui';
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                        regex = new RegExp (pattern, flags);
+                        regex = regexUnicode.build (searchString, { caseSensitive: characterCaseSensitive.checked, useRegex: characterUseRegex.checked });
                     }
                     catch (e)
                     {
@@ -424,10 +393,7 @@ module.exports.start = function (context)
     blockParams.observer = null;
     blockParams.root = unit;
     //
-    let flags = 'u';
-    let assignedPattern = '\\p{Assigned}';
-    assignedPattern = rewritePattern (assignedPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-    let assignedRegex = new RegExp (assignedPattern, flags);
+    let assignedRegex = regexUnicode.build ('\\p{Assigned}', { useRegex: true });
     //
     const { blocks } = require ('../../lib/unicode/parsed-extra-data.js');
     //

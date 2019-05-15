@@ -1,7 +1,6 @@
 //
+const regexUnicode = require ('../../lib/regex-unicode.js');
 const unicode = require ('../../lib/unicode/unicode.js');
-//
-const rewritePattern = require ('regexpu-core');
 //
 const deferredSymbols = false;
 //
@@ -53,7 +52,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
                         }
                     );
                 },
-                { root: params.root, rootMargin: '50% 0%' }
+                { root: params.root, rootMargin: '100% 0%' }
             );
         }
         let table = document.createElement ('table');
@@ -79,10 +78,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
         );
         table.appendChild (header);
         //
-        let flags = 'u';
-        let unihanPattern = '(?=\\p{Script=Han})(?=\\p{Other_Letter})';
-        unihanPattern = rewritePattern (unihanPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let unihanRegex = new RegExp (unihanPattern, flags);
+        let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
         let colCount = hexDigits.length;
         let colIndex = 0;
         let row;

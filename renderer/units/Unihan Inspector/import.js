@@ -26,25 +26,16 @@ module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
-    const rewritePattern = require ('regexpu-core');
-    //
+    const regexUnicode = require ('../../lib/regex-unicode.js');
     const unicode = require ('../../lib/unicode/unicode.js');
-    //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
-    //
     const numericValuesData = require ('../../lib/unicode/parsed-numeric-values-data.js');
-    //
     const compatibilityVariants = require ('../../lib/unicode/get-cjk-compatibility-variants.js');
-    //
     const yasuokaVariants = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
-    //
     const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
     // Unihan character
-    let flags = 'u';
-    let unihanPattern = '(?=\\p{Script=Han})(?=\\p{Other_Letter})';
-    unihanPattern = rewritePattern (unihanPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-    let unihanRegex = new RegExp (unihanPattern, flags);
+    let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
     //
     function randomElement (elements)
     {

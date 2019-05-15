@@ -112,6 +112,10 @@
         "items":
         [
             {
+                "label": "Ghost Character",
+                "string": "㌬・パーツ"
+            },
+            {
                 "label": "Prefectures of Japan",
                 "string": "都道府県"
             },
@@ -124,7 +128,7 @@
                 "string": "🈀：ほか"
             },
             {
-                "label": "Square Jukogo",
+                "label": "Square Jukugo",
                 "string": "㍿゠株式会社"
             },
             {

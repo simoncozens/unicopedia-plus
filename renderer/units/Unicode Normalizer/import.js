@@ -17,7 +17,7 @@ let defaultFolderPath;
 module.exports.start = function (context)
 {
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
-    const sampleMenus = require ('../../lib/sample-menus');
+    const sampleMenus = require ('../../lib/sample-menus.js');
     //
     const path = require ('path');
     //

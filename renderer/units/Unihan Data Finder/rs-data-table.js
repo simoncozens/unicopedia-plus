@@ -52,7 +52,7 @@ module.exports.create = function (title, items, params)
                     }
                 );
             },
-            { root: params.root, rootMargin: '100% 0%' }
+            { root: params.root, rootMargin: '200% 0%' }
         );
     }
     //

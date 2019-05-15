@@ -60,8 +60,7 @@ module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
-    const rewritePattern = require ('regexpu-core');
-    //
+    const regexUnicode = require ('../../lib/regex-unicode.js');
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     //
     let unihanCount = unihanData.fullSet.length;
@@ -252,10 +251,7 @@ module.exports.start = function (context)
             {
                 try
                 {
-                    const flags = 'ui';
-                    let pattern = event.target.value;
-                    pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                    let regex = new RegExp (pattern, flags);
+                    regexUnicode.build (event.target.value, { useRegex: tagUseRegex.checked });
                 }
                 catch (e)
                 {
@@ -344,21 +340,7 @@ module.exports.start = function (context)
                     let regex = null;
                     try
                     {
-                        function characterToEcmaScriptEscape (character)
-                        {
-                            return `\\u{${character.codePointAt (0).toString (16).toUpperCase ()}}`;
-                        }
-                        //
-                        let pattern = (tagUseRegex.checked) ? searchString : Array.from (searchString).map ((char) => characterToEcmaScriptEscape (char)).join ('');
-                        if (tagWholeWord.checked)
-                        {
-                            const beforeWordBoundary = '(?<![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            const afterWordBoundary = '(?![\\p{Alphabetic}\\p{Mark}\\p{Decimal_Number}\\p{Connector_Punctuation}\\p{Join_Control}])';
-                            pattern = `${beforeWordBoundary}(${pattern})${afterWordBoundary}`;
-                        }
-                        const flags = 'ui';
-                        pattern = rewritePattern (pattern, flags, { unicodePropertyEscape: true, lookbehind: true, useUnicodeFlag: true });
-                        regex = new RegExp (pattern, flags);
+                        regex = regexUnicode.build (searchString, { wholeWord: tagWholeWord.checked, useRegex: tagUseRegex.checked });
                     }
                     catch (e)
                     {
@@ -629,10 +611,7 @@ module.exports.start = function (context)
     const firstIndex = keyIndex.build (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
     //
     // Unihan character
-    let flags = 'u';
-    let unihanPattern = '(?=\\p{Script=Han})(?=\\p{Other_Letter})';
-    unihanPattern = rewritePattern (unihanPattern, flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-    let unihanRegex = new RegExp (unihanPattern, flags);
+    let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
     //
     let blocks = { };
     //

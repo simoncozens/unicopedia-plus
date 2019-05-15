@@ -199,12 +199,6 @@
     ],
     [
         {
-            "name": "CJK Type Blog | CJK Fonts, Character Sets & Encodings. All CJK. #AllOfTheTime.",
-            "href": "https://blogs.adobe.com/CCJKType/"
-        }
-    ],
-    [
-        {
             "name": "Noto CJK – Google Noto Fonts",
             "href": "https://www.google.com/get/noto/help/cjk/"
         },
@@ -229,8 +223,38 @@
     ],
     [
         {
+            "name": "GitHub - adobe-fonts/source-han-sans: Source Han Sans | 思源黑体 | 思源黑體 | 思源黑體 香港 | 源ノ角ゴシック | 본고딕",
+            "href": "https://github.com/adobe-fonts/source-han-sans"
+        },
+        {
             "name": "Source Han Sans - SourceHanSansReadMe.pdf",
             "href": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/SourceHanSansReadMe.pdf"
+        },
+        {
+            "name": "Character ㌬(U+332C) is being mojibake · Issue #78 · adobe-fonts/source-han-sans · GitHub",
+            "href": "https://github.com/adobe-fonts/source-han-sans/issues/78"
+        }
+    ],
+    [
+        {
+            "name": "CJK Type Blog | CJK Fonts, Character Sets & Encodings. All CJK. #AllOfTheTime.",
+            "href": "https://blogs.adobe.com/CCJKType/"
+        },
+        {
+            "name": "Source Han Sans Version 2.001",
+            "href": "https://blogs.adobe.com/CCJKType/2019/04/source-han-sans-2001.html"
+        },
+        {
+            "name": "Adobe-Japan1-7 Published!",
+            "href": "https://blogs.adobe.com/CCJKType/2019/04/aj17-published.html"
+        },
+        {
+            "name": "A Brief History of Japan’s Era Name Ligatures",
+            "href": "https://blogs.adobe.com/CCJKType/2019/03/era-name-ligature-history.html"
+        },
+        {
+            "name": "“Bahts is [not] parts”",
+            "href": "https://blogs.adobe.com/CCJKType/2016/03/bahts-is-parts.html"
         }
     ],
     [

@@ -1,7 +1,6 @@
 //
+const regexUnicode = require ('../../lib/regex-unicode.js');
 const unicode = require ('../../lib/unicode/unicode.js');
-//
-const rewritePattern = require ('regexpu-core');
 //
 const deferredSymbols = (process.platform === 'darwin');
 //
@@ -52,7 +51,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
                         }
                     );
                 },
-                { root: params.root, rootMargin: '50% 0%' }
+                { root: params.root, rootMargin: '100% 0%' }
             );
         }
         let table = document.createElement ('table');
@@ -78,10 +77,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
         header.appendChild (blockNameHeader);
         table.appendChild (header);
         //
-        let flags = 'u';
-        let assignedPattern = '\\p{Assigned}';
-        assignedPattern = rewritePattern (assignedPattern , flags, { unicodePropertyEscape: true, useUnicodeFlag: true });
-        let assignedRegex = new RegExp (assignedPattern, flags);
+        let assignedRegex = regexUnicode.build ('\\p{Assigned}', { useRegex: true });
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);

@@ -90,6 +90,11 @@ module.exports.start = function (context)
                 'utf8',
                 (text, filePath) =>
                 {
+                    let maxLength = charactersInput.maxLength;
+                    if (text.length > maxLength)
+                    {
+                        text = text.substring (0, maxLength);
+                    }
                     charactersInput.value = text;
                     charactersInput.dispatchEvent (new Event ('input'));
                     defaultFolderPath = path.dirname (filePath);

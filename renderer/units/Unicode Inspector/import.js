@@ -61,7 +61,7 @@ module.exports.start = function (context)
         'click',
         event =>
         {
-            pullDownMenus.popup (event.target.getBoundingClientRect (), charactersMenu);
+            pullDownMenus.popup (event.currentTarget, charactersMenu);
         }
     );
     //
@@ -278,7 +278,7 @@ module.exports.start = function (context)
         'input',
         event =>
         {
-            let characters = event.target.value;
+            let characters = event.currentTarget.value;
             codePointsInput.value = unicode.charactersToCodePoints (characters, true);
             displayDataList (Array.from (characters), charactersData);
         }
@@ -291,7 +291,7 @@ module.exports.start = function (context)
         'input',
         event =>
         {
-            let characters = unicode.codePointsToCharacters (event.target.value);
+            let characters = unicode.codePointsToCharacters (event.currentTarget.value);
             charactersInput.value = characters;
             displayDataList (Array.from (characters), charactersData);
         }
@@ -301,7 +301,7 @@ module.exports.start = function (context)
         'blur',
         event =>
         {
-            event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
+            event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
         }
     );
     codePointsInput.addEventListener
@@ -312,7 +312,7 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                event.target.value = unicode.charactersToCodePoints (charactersInput.value, true);
+                event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
             }
         }
     );

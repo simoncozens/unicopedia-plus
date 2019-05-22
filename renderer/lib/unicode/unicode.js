@@ -664,7 +664,7 @@ function findCharactersByName (regex)
     return characterList;
 }
 //
-function findCharactersBySymbol (regex, matchDecomposition)
+function findCharactersByMatch (regex, matchDecomposition)
 {
     let characterList = [ ];
     let codePoints = unicodeData;
@@ -683,10 +683,14 @@ function findCharactersBySymbol (regex, matchDecomposition)
             let matchStrings =
             [
                 decomposition,
-                character.normalize ('NFD'),  // decomposition.normalize ('NFD')
-                character.normalize ('NFC'),  // decomposition.normalize ('NFC')
-                character.normalize ('NFKD'), // decomposition.normalize ('NFKD')
-                character.normalize ('NFKC')  // decomposition.normalize ('NFKC')
+                decomposition.normalize ('NFC'),
+                decomposition.normalize ('NFD'),
+                decomposition.normalize ('NFKC'),
+                decomposition.normalize ('NFKD'),
+                character.normalize ('NFC'),
+                character.normalize ('NFD'),
+                character.normalize ('NFKC'),
+                character.normalize ('NFKD')
             ];
             matchStrings = matchStrings.filter (string => (string !== character)); // Remove character itself
             matchStrings = [... new Set (matchStrings)]; // Remove duplicates
@@ -780,7 +784,7 @@ module.exports =
     charactersToCodePoints,
     codePointsToCharacters,
     findCharactersByName,
-    findCharactersBySymbol,
+    findCharactersByMatch,
     getCharacterBasicData,
     matchEastAsianWidth,
     matchVerticalOrientation

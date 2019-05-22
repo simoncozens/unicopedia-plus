@@ -131,7 +131,7 @@
 #unicode-inspector-unit .data-list .field .name
 {
     font-weight: 600;
-    color: black;
+    color: var(--color-strongest);
 }
 
 #unicode-inspector-unit .instructions ul

@@ -10,7 +10,9 @@ const nameSearchMessage = unit.querySelector ('.find-by-name .search-message');
 const nameWholeWord = unit.querySelector ('.find-by-name .whole-word');
 const nameUseRegex = unit.querySelector ('.find-by-name .use-regex');
 const nameSearchButton = unit.querySelector ('.find-by-name .search-button');
+const nameResultsButton = unit.querySelector ('.find-by-name .results-button');
 const nameHitCount = unit.querySelector ('.find-by-name .hit-count');
+const nameTotalCount = unit.querySelector ('.find-by-name .total-count');
 const nameEmojiDataList = unit.querySelector ('.find-by-name .emoji-data-list');
 const nameInstructions = unit.querySelector ('.find-by-name .instructions');
 const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
@@ -19,7 +21,9 @@ const sequenceSearchString = unit.querySelector ('.match-sequence .search-string
 const sequenceSearchMessage = unit.querySelector ('.match-sequence .search-message');
 const sequenceUseRegex = unit.querySelector ('.match-sequence .use-regex');
 const sequenceSearchButton = unit.querySelector ('.match-sequence .search-button');
+const sequenceResultsButton = unit.querySelector ('.match-sequence .results-button');
 const sequenceHitCount = unit.querySelector ('.match-sequence .hit-count');
+const sequenceTotalCount = unit.querySelector ('.match-sequence .total-count');
 const sequenceEmojiDataList = unit.querySelector ('.match-sequence .emoji-data-list');
 const sequenceInstructions = unit.querySelector ('.match-sequence .instructions');
 const sequenceRegexExamples = unit.querySelector ('.match-sequence .regex-examples');
@@ -28,14 +32,21 @@ const textClearButton = unit.querySelector ('.filter-text .clear-button');
 const textEmojiSamples = unit.querySelector ('.filter-text .emoji-samples');
 const textFilterButton = unit.querySelector ('.filter-text .filter-button');
 const textInputString = unit.querySelector ('.filter-text .input-string');
+const textResultsButton = unit.querySelector ('.filter-text .results-button');
 const textHitCount = unit.querySelector ('.filter-text .hit-count');
+const textTotalCount = unit.querySelector ('.filter-text .total-count');
 const textEmojiDataList = unit.querySelector ('.filter-text .emoji-data-list');
 const textInstructions = unit.querySelector ('.filter-text .instructions');
+//
+let defaultFolderPath;
 //
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
+    const path = require ('path');
+    //
+    const fileDialogs = require ('../../lib/file-dialogs.js');
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const sampleMenus = require ('../../lib/sample-menus.js');
     const regexUnicode = require ('../../lib/regex-unicode.js');
@@ -56,9 +67,28 @@ module.exports.start = function (context)
         sequenceRegexExamples: false,
         //
         textInputString: "",
-        textInstructions: true
+        textInstructions: true,
+        //
+        defaultFolderPath: context.defaultFolderPath
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    defaultFolderPath = prefs.defaultFolderPath;
+    //
+    function saveResults (string)
+    {
+        fileDialogs.saveTextFile
+        (
+            "Save text file:",
+            [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+            defaultFolderPath,
+            (filePath) =>
+            {
+                defaultFolderPath = path.dirname (filePath);
+                return string;
+            }
+        );
+    }
     //
     function updateTab (tabName)
     {
@@ -89,7 +119,7 @@ module.exports.start = function (context)
     //
     for (let tab of tabs)
     {
-        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
+        tab.addEventListener ('click', (event) => { updateTab (event.currentTarget.parentElement.textContent); });
     }
     //
     const emojiList = require ('emoji-test-list');
@@ -156,21 +186,13 @@ module.exports.start = function (context)
     {
         return string.match (emojiRegex) || [ ];
     }
-     //
-    function clearResults (hitCount, emojiDataList)
+    //
+    function updateDataList (characters, emojiDataList)
     {
-        while (hitCount.firstChild)
-        {
-            hitCount.firstChild.remove ();
-        }
         while (emojiDataList.firstChild)
         {
             emojiDataList.firstChild.remove ();
         }
-    }
-   //
-    function displayDataList (characters, emojiDataList)
-    {
         for (let character of characters)
         {
             let emojiTable = document.createElement ('table');
@@ -251,7 +273,7 @@ module.exports.start = function (context)
         'focusin',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 nameSearchMessage.classList.add ('shown');
             }
@@ -262,7 +284,7 @@ module.exports.start = function (context)
         'focusout',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 nameSearchMessage.classList.remove ('shown');
             }
@@ -273,20 +295,20 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('error');
+            event.currentTarget.classList.remove ('error');
             nameSearchMessage.textContent = "";
             nameSearchMessage.classList.remove ('shown');
             if (nameUseRegex.checked)
             {
                 try
                 {
-                    regexUnicode.build (event.target.value, { useRegex: nameUseRegex.checked });
+                    regexUnicode.build (event.currentTarget.value, { useRegex: nameUseRegex.checked });
                 }
                 catch (e)
                 {
-                    event.target.classList.add ('error');
+                    event.currentTarget.classList.add ('error');
                     nameSearchMessage.textContent = e.message;
-                    if (event.target === document.activeElement)
+                    if (event.currentTarget === document.activeElement)
                     {
                         nameSearchMessage.classList.add ('shown');
                     }
@@ -302,6 +324,15 @@ module.exports.start = function (context)
         'change',
         (event) => nameSearchString.dispatchEvent (new Event ('input'))
     );
+    //
+    function updateNameResults (hitCount, totalCount)
+    {
+        nameHitCount.textContent = hitCount;
+        nameTotalCount.textContent = totalCount;
+        nameResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentEmojiByName = [ ];
     //
     nameSearchButton.addEventListener
     (
@@ -323,19 +354,9 @@ module.exports.start = function (context)
                     }
                     if (regex)
                     {
-                        clearResults (nameHitCount, nameEmojiDataList);
-                        let emojiByName = findEmojiByName (regex);
-                        let closeButton = document.createElement ('button');
-                        closeButton.type = 'button';
-                        closeButton.className = 'close-button';
-                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                        closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearResults (nameHitCount, nameEmojiDataList); });
-                        nameHitCount.appendChild (closeButton);
-                        let infoText = document.createElement ('span');
-                        infoText.innerHTML = `Emoji: <strong>${emojiByName.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
-                        nameHitCount.appendChild (infoText);
-                        displayDataList (emojiByName, nameEmojiDataList);
+                        currentEmojiByName = findEmojiByName (regex);
+                        updateNameResults (currentEmojiByName.length, emojiKeys.length);
+                        updateDataList (currentEmojiByName, nameEmojiDataList);
                     }
                 }
             }
@@ -345,6 +366,51 @@ module.exports.start = function (context)
             }
         }
     );
+    //
+    let nameResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentEmojiByName.length > 0)
+                    {
+                        remote.clipboard.writeText (currentEmojiByName.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentEmojiByName.join (""));
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Clear Results",
+                click: () => 
+                {
+                    currentEmojiByName = [ ];
+                    updateNameResults (currentEmojiByName.length, emojiKeys.length);
+                    updateDataList (currentEmojiByName, nameEmojiDataList);
+                }
+            }
+        ]
+    );
+    //
+    nameResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, nameResultsMenu);
+        }
+    );
+    //
+    updateNameResults (currentEmojiByName.length, emojiKeys.length);
     //
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
@@ -368,7 +434,7 @@ module.exports.start = function (context)
         'focusin',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 sequenceSearchMessage.classList.add ('shown');
             }
@@ -379,7 +445,7 @@ module.exports.start = function (context)
         'focusout',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 sequenceSearchMessage.classList.remove ('shown');
             }
@@ -390,20 +456,20 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('error');
+            event.currentTarget.classList.remove ('error');
             sequenceSearchMessage.textContent = "";
             sequenceSearchMessage.classList.remove ('shown');
             if (sequenceUseRegex.checked)
             {
                 try
                 {
-                    regexUnicode.build (event.target.value, { useRegex: sequenceUseRegex.checked });
+                    regexUnicode.build (event.currentTarget.value, { useRegex: sequenceUseRegex.checked });
                 }
                 catch (e)
                 {
-                    event.target.classList.add ('error');
+                    event.currentTarget.classList.add ('error');
                     sequenceSearchMessage.textContent = e.message;
-                    if (event.target === document.activeElement)
+                    if (event.currentTarget === document.activeElement)
                     {
                         sequenceSearchMessage.classList.add ('shown');
                     }
@@ -419,6 +485,15 @@ module.exports.start = function (context)
         'change',
         (event) => sequenceSearchString.dispatchEvent (new Event ('input'))
     );
+    //
+    function updateSequenceResults (hitCount, totalCount)
+    {
+        sequenceHitCount.textContent = hitCount;
+        sequenceTotalCount.textContent = totalCount;
+        sequenceResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentEmojiBySequence = [ ];
     //
     sequenceSearchButton.addEventListener
     (
@@ -440,19 +515,9 @@ module.exports.start = function (context)
                     }
                     if (regex)
                     {
-                        clearResults (sequenceHitCount, sequenceEmojiDataList);
-                        let emojiBySequence = findEmojiBySequence (regex);
-                        let closeButton = document.createElement ('button');
-                        closeButton.type = 'button';
-                        closeButton.className = 'close-button';
-                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                        closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearResults (sequenceHitCount, sequenceEmojiDataList); });
-                        sequenceHitCount.appendChild (closeButton);
-                        let infoText = document.createElement ('span');
-                        infoText.innerHTML = `Emoji: <strong>${emojiBySequence.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`;
-                        sequenceHitCount.appendChild (infoText);
-                        displayDataList (emojiBySequence, sequenceEmojiDataList);
+                        currentEmojiBySequence = findEmojiBySequence (regex);
+                        updateSequenceResults (currentEmojiBySequence.length, emojiKeys.length);
+                        updateDataList (currentEmojiBySequence, sequenceEmojiDataList);
                     }
                 }
             }
@@ -462,6 +527,51 @@ module.exports.start = function (context)
             }
         }
     );
+    //
+    let sequenceResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentEmojiBySequence.length > 0)
+                    {
+                        remote.clipboard.writeText (currentEmojiBySequence.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentEmojiBySequence.join (""));
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Clear Results",
+                click: () => 
+                {
+                    currentEmojiBySequence = [ ];
+                    updateSequenceResults (currentEmojiBySequence.length, emojiKeys.length);
+                    updateDataList (currentEmojiBySequence, sequenceEmojiDataList);
+                }
+            }
+        ]
+    );
+    //
+    sequenceResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, sequenceResultsMenu);
+        }
+    );
+    //
+    updateSequenceResults (currentEmojiBySequence.length, emojiKeys.length);
     //
     sequenceInstructions.open = prefs.sequenceInstructions;
     sequenceRegexExamples.open = prefs.sequenceRegexExamples;
@@ -494,7 +604,7 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            pullDownMenus.popup (event.target.getBoundingClientRect (), emojiMenu);
+            pullDownMenus.popup (event.currentTarget, emojiMenu);
         }
     );
     //
@@ -508,19 +618,60 @@ module.exports.start = function (context)
         }
     );
     //
+    function updateTextResults (hitCount, totalCount)
+    {
+        textHitCount.textContent = hitCount;
+        textTotalCount.textContent = totalCount;
+        textResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentEmojiByText = [ ];
+    //
     textInputString.addEventListener
     (
         'input',
         (event) =>
         {
-            clearResults (textHitCount, textEmojiDataList);
-            let characters = [...new Set (getEmojiList (event.target.value))];
-            textHitCount.innerHTML = `Emoji: <strong>${characters.length}</strong>&nbsp;/&nbsp;${emojiKeys.length}`
-            displayDataList (characters, textEmojiDataList);
+            currentEmojiByText = [...new Set (getEmojiList (event.currentTarget.value))];
+            updateTextResults (currentEmojiByText.length, emojiKeys.length);
+            updateDataList (currentEmojiByText, textEmojiDataList);
         }
     );
     textInputString.value = prefs.textInputString;
     textInputString.dispatchEvent (new Event ('input'));
+    //
+    let textResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentEmojiByText.length > 0)
+                    {
+                        remote.clipboard.writeText (currentEmojiByText.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentEmojiByText.join (""));
+                }
+            }
+        ]
+    );
+    //
+    textResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, textResultsMenu);
+        }
+    );
     //
     textInstructions.open = prefs.textInstructions;
 };
@@ -557,7 +708,9 @@ module.exports.stop = function (context)
         sequenceRegexExamples: sequenceRegexExamples.open,
         //
         textInputString: textInputString.value,
-        textInstructions: textInstructions.open
+        textInstructions: textInstructions.open,
+        //
+        defaultFolderPath: defaultFolderPath
     };
     context.setPrefs (prefs);
 };

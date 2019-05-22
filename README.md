@@ -100,7 +100,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
-- Click on the <kbd>✕</kbd> button to clear all results.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/emoji-data-finder-find-by-name.png" width="1080px" alt="Emoji Data Finder - Find by Name screenshot">
@@ -111,7 +111,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
 - *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
-- Click on the <kbd>✕</kbd> button to clear all results.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/emoji-data-finder-match-sequence.png" width="1080px" alt="Emoji Data Finder - Match Sequence screenshot">
@@ -124,6 +124,7 @@ The following utilities are currently available:
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
 - *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".
 
 <img src="screenshots/emoji-data-finder-filter-text.png" width="1080px" alt="Emoji Data Finder - Filter Text screenshot">
 
@@ -163,7 +164,7 @@ The following utilities are currently available:
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Click on the <kbd>✕</kbd> button to clear all results.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
@@ -175,7 +176,7 @@ The following utilities are currently available:
 - Click on the <kbd>Match Decomposition</kbd> toggle button to extend the search to characters whose *decomposition mapping* matches the query string.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Click on the <kbd>✕</kbd> button to clear all results.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-match-character.png" width="1080px" alt="Unicode Data Finder - Match Character screenshot">
@@ -187,6 +188,7 @@ The following utilities are currently available:
 - A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 12.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
 - It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.
 - You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".
 
 <img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 
@@ -256,7 +258,7 @@ The following utilities are currently available:
     - *Unihan_RadicalStrokeCounts.txt*
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
-- Click on the <kbd>✕</kbd> button to clear all results.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unihan-data-finder-find-by-tag-value.png" width="1080px" alt="Unihan Data Finder - Find by Tag Value screenshot">
@@ -269,7 +271,7 @@ The following utilities are currently available:
 - Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
 - If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.
 - Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
-- Click on the <kbd>✕</kbd> button to clear all results.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
 - A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.
 
 <img src="screenshots/unihan-data-finder-radical-strokes.png" width="1080px" alt="Unihan Data Finder - Radical/Strokes screenshot">
@@ -281,6 +283,7 @@ The following utilities are currently available:
 - A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.
 - It is also possible to directly enter a Unihan character or code point in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.
 - You can quickly reuse a previously entered Unihan character by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".
 - A list of all the Unihan blocks is available for quick reference.
 
 <img src="screenshots/unihan-data-finder-view-by-grid.png" width="1080px" alt="Unihan Data Finder - View by Grid screenshot">

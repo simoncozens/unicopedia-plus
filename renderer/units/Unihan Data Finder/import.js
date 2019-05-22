@@ -12,7 +12,9 @@ const tagSearchMessage = unit.querySelector ('.find-by-tag-value .search-message
 const tagWholeWord = unit.querySelector ('.find-by-tag-value .whole-word');
 const tagUseRegex = unit.querySelector ('.find-by-tag-value .use-regex');
 const tagSearchButton = unit.querySelector ('.find-by-tag-value .search-button');
-const tagSearchInfo = unit.querySelector ('.find-by-tag-value .search-info');
+const tagResultsButton = unit.querySelector ('.find-by-tag-value .results-button');
+const tagHitCount = unit.querySelector ('.find-by-tag-value .hit-count');
+const tagTotalCount = unit.querySelector ('.find-by-tag-value .total-count');
 const tagSearchData = unit.querySelector ('.find-by-tag-value .search-data');
 const tagInstructions = unit.querySelector ('.find-by-tag-value .instructions');
 const tagRegexExamples = unit.querySelector ('.find-by-tag-value .regex-examples');
@@ -27,7 +29,9 @@ const rsExtraSourcesCheckbox = unit.querySelector ('.radical-strokes .extra-sour
 const rsRadicalSelect = unit.querySelector ('.radical-strokes .radical-select');
 const rsStrokesSelect = unit.querySelector ('.radical-strokes .strokes-select');
 const rsSearchButton = unit.querySelector ('.radical-strokes .search-button');
-const rsSearchInfo = unit.querySelector ('.radical-strokes .search-info');
+const rsResultsButton = unit.querySelector ('.radical-strokes .results-button');
+const rsHitCount = unit.querySelector ('.radical-strokes .hit-count');
+const rsTotalCount = unit.querySelector ('.radical-strokes .total-count');
 const rsSearchData = unit.querySelector ('.radical-strokes .search-data');
 const rsInstructions = unit.querySelector ('.radical-strokes .instructions');
 const rsRadicalList = unit.querySelector ('.radical-strokes .radical-list');
@@ -44,7 +48,9 @@ const gridSpecimen = unit.querySelector ('.view-by-grid .specimen');
 const gridGoButton = unit.querySelector ('.view-by-grid .go-button');
 const gridSelectBlockRange = unit.querySelector ('.view-by-grid .select-block-range');
 const gridSelectBlockName = unit.querySelector ('.view-by-grid .select-block-name');
-const gridSearchInfo = unit.querySelector ('.view-by-grid .search-info');
+const gridResultsButton = unit.querySelector ('.view-by-grid .results-button');
+const gridHitCount = unit.querySelector ('.view-by-grid .hit-count');
+const gridTotalCount = unit.querySelector ('.view-by-grid .total-count');
 const gridSearchData = unit.querySelector ('.view-by-grid .search-data');
 const gridInstructions = unit.querySelector ('.view-by-grid .instructions');
 const gridUnihanBlocks = unit.querySelector ('.view-by-grid .unihan-blocks');
@@ -56,10 +62,16 @@ let gridSpecimenHistory = [ ];
 let gridSpecimenHistoryIndex = -1;
 let gridSpecimenHistorySave = null;
 //
+let defaultFolderPath;
+//
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
+    const path = require ('path');
+    //
+    const fileDialogs = require ('../../lib/file-dialogs.js');
+    const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const regexUnicode = require ('../../lib/regex-unicode.js');
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     //
@@ -91,9 +103,28 @@ module.exports.start = function (context)
         gridPageSize: 128,
         gridPageIndex: 0,
         gridInstructions: true,
-        gridUnihanBlocks: false
+        gridUnihanBlocks: false,
+        //
+        defaultFolderPath: context.defaultFolderPath
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    defaultFolderPath = prefs.defaultFolderPath;
+    //
+    function saveResults (string)
+    {
+        fileDialogs.saveTextFile
+        (
+            "Save text file:",
+            [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+            defaultFolderPath,
+            (filePath) =>
+            {
+                defaultFolderPath = path.dirname (filePath);
+                return string;
+            }
+        );
+    }
     //
     function updateTab (tabName)
     {
@@ -124,15 +155,11 @@ module.exports.start = function (context)
     //
     for (let tab of tabs)
     {
-        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
+        tab.addEventListener ('click', (event) => { updateTab (event.currentTarget.parentElement.textContent); });
     }
     //
-    function clearSearch (info, data)
+    function clearSearch (data)
     {
-        while (info.firstChild)
-        {
-            info.firstChild.remove ();
-        }
         while (data.firstChild)
         {
             data.firstChild.remove ();
@@ -194,12 +221,12 @@ module.exports.start = function (context)
         'input',
         event =>
         {
-            tagShowCategories = event.target.checked;
+            tagShowCategories = event.currentTarget.checked;
             updateTagMenu ();
         }
     );
     //
-    tagSelect.addEventListener ('input', event => { tagCurrentTag = event.target.value; });
+    tagSelect.addEventListener ('input', event => { tagCurrentTag = event.currentTarget.value; });
     updateTagMenu ();
     //
     tagWholeWord.checked = prefs.tagWholeWord;
@@ -222,7 +249,7 @@ module.exports.start = function (context)
         'focusin',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 tagSearchMessage.classList.add ('shown');
             }
@@ -233,7 +260,7 @@ module.exports.start = function (context)
         'focusout',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 tagSearchMessage.classList.remove ('shown');
             }
@@ -244,20 +271,20 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('error');
+            event.currentTarget.classList.remove ('error');
             tagSearchMessage.textContent = "";
             tagSearchMessage.classList.remove ('shown');
             if (tagUseRegex.checked)
             {
                 try
                 {
-                    regexUnicode.build (event.target.value, { useRegex: tagUseRegex.checked });
+                    regexUnicode.build (event.currentTarget.value, { useRegex: tagUseRegex.checked });
                 }
                 catch (e)
                 {
-                    event.target.classList.add ('error');
+                    event.currentTarget.classList.add ('error');
                     tagSearchMessage.textContent = e.message;
-                    if (event.target === document.activeElement)
+                    if (event.currentTarget === document.activeElement)
                     {
                         tagSearchMessage.classList.add ('shown');
                     }
@@ -327,6 +354,15 @@ module.exports.start = function (context)
         return characterInfoList;
     }
     //
+    function updateTagResults (hitCount, totalCount)
+    {
+        tagHitCount.textContent = hitCount;
+        tagTotalCount.textContent = totalCount;
+        tagResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentCharactersByTag = [ ];
+    //
     tagSearchButton.addEventListener
     (
         'click',
@@ -347,21 +383,10 @@ module.exports.start = function (context)
                     }
                     if (regex)
                     {
-                        clearSearch (tagSearchInfo, tagSearchData);
-                        let start = window.performance.now ();
+                        clearSearch (tagSearchData);
                         let characterInfos = findCharactersByTag (regex, tagCurrentTag);
-                        let stop = window.performance.now ();
-                        let seconds = ((stop - start) / 1000).toFixed (2);
-                        let closeButton = document.createElement ('button');
-                        closeButton.type = 'button';
-                        closeButton.className = 'close-button';
-                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                        closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearSearch (tagSearchInfo, tagSearchData); });
-                        tagSearchInfo.appendChild (closeButton);
-                        let infoText = document.createElement ('span');
-                        infoText.innerHTML = `Unihan characters: <strong>${characterInfos.length}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
-                        tagSearchInfo.appendChild (infoText);
+                        currentCharactersByTag = characterInfos.map (info => info.character);
+                        updateTagResults (currentCharactersByTag.length, unihanCount);
                         if (characterInfos.length > 0)
                         {
                             tagSearchData.appendChild (tagDataTable.create (characterInfos, tagParams));
@@ -375,6 +400,51 @@ module.exports.start = function (context)
             }
         }
     );
+    //
+    let tagResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentCharactersByTag.length > 0)
+                    {
+                        remote.clipboard.writeText (currentCharactersByTag.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentCharactersByTag.join (""));
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Clear Results",
+                click: () => 
+                {
+                    clearSearch (tagSearchData);
+                    currentCharactersByTag = [ ];
+                    updateTagResults (currentCharactersByTag.length, unihanCount);
+                }
+            }
+        ]
+    );
+    //
+    tagResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, tagResultsMenu);
+        }
+    );
+    //
+    updateTagResults (currentCharactersByTag.length, unihanCount);
     //
     tagInstructions.open = prefs.tagInstructions;
     tagRegexExamples.open = prefs.tagRegexExamples;
@@ -427,7 +497,7 @@ module.exports.start = function (context)
     }
     rsCurrentRadical = rsRadicalSelect.value;
     //
-    rsRadicalSelect.addEventListener ('input', event => { rsCurrentRadical = event.target.value; });
+    rsRadicalSelect.addEventListener ('input', event => { rsCurrentRadical = event.currentTarget.value; });
     //
     const minStrokes = 0;
     const maxStrokes = 62;  // 𠔻 U+2053B kRSKangXi 12.62
@@ -454,7 +524,7 @@ module.exports.start = function (context)
     }
     rsCurrentStrokes = rsStrokesSelect.value;
     //
-    rsStrokesSelect.addEventListener ('input', event => { rsCurrentStrokes = event.target.value; });
+    rsStrokesSelect.addEventListener ('input', event => { rsCurrentStrokes = event.currentTarget.value; });
     //
     const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
@@ -546,12 +616,21 @@ module.exports.start = function (context)
         return items;
     }
     //
+    function updateRadicalStrokesResults (hitCount, totalCount)
+    {
+        rsHitCount.textContent = hitCount;
+        rsTotalCount.textContent = totalCount;
+        rsResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentCharactersByRadicalStrokes = [ ];
+    //
     rsSearchButton.addEventListener
     (
         'click',
         (event) =>
         {
-            clearSearch (rsSearchInfo, rsSearchData);
+            clearSearch (rsSearchData);
             let findOptions =
             {
                 fullSet: rsFullSetCheckbox.checked,
@@ -560,32 +639,69 @@ module.exports.start = function (context)
                 minStrokes: (rsCurrentStrokes === '*') ? minStrokes : parseInt (rsCurrentStrokes),
                 maxStrokes: (rsCurrentStrokes === '*') ? maxStrokes : parseInt (rsCurrentStrokes)
             };
-            let start = window.performance.now ();
+            let characters = [ ];
             let items = findCharactersByRadicalStrokes (findOptions);
-            let stop = window.performance.now ();
-            let seconds = ((stop - start) / 1000).toFixed (2);
-            let resultCount = 0;
             for (let item of items)
             {
-                resultCount += item.characters.length;
+                for (let character of item.characters)
+                {
+                    characters.push (character.symbol);
+                }
             };
-            let closeButton = document.createElement ('button');
-            closeButton.type = 'button';
-            closeButton.className = 'close-button';
-            closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-            closeButton.title = "Clear results";
-            closeButton.addEventListener ('click', event => { clearSearch (rsSearchInfo, rsSearchData); });
-            rsSearchInfo.appendChild (closeButton);
-            let infoText = document.createElement ('span');
-            infoText.innerHTML = `Unihan characters: <strong>${resultCount}</strong>&nbsp;/&nbsp;${unihanCount} (${seconds}&nbsp;seconds)`;
-            rsSearchInfo.appendChild (infoText);
-            if (resultCount > 0)
+            currentCharactersByRadicalStrokes = characters;
+            updateRadicalStrokesResults (currentCharactersByRadicalStrokes.length, unihanCount);
+            if (characters.length > 0)
             {
                 let title = fromRadical (rsRadicalSelect.selectedIndex + 1, false, true).replace (/^(\S+)\s(\S+)\s(\S+)\s/u, "$1\u2002$2\u2002$3\u2002");
                 rsSearchData.appendChild (rsDataTable.create (title, items, rsParams));
             }
         }
     );
+    //
+    let rsResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentCharactersByRadicalStrokes.length > 0)
+                    {
+                        remote.clipboard.writeText (currentCharactersByRadicalStrokes.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentCharactersByRadicalStrokes.join (""));
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Clear Results",
+                click: () => 
+                {
+                    clearSearch (rsSearchData);
+                    currentCharactersByRadicalStrokes = [ ];
+                    updateRadicalStrokesResults (currentCharactersByRadicalStrokes.length, unihanCount);
+                }
+            }
+        ]
+    );
+    //
+    rsResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, rsResultsMenu);
+        }
+    );
+    //
+    updateRadicalStrokesResults (currentCharactersByRadicalStrokes.length, unihanCount);
     //
     rsInstructions.open = prefs.rsInstructions;
     rsRadicalList.open = prefs.rsRadicalList;
@@ -653,15 +769,31 @@ module.exports.start = function (context)
         }
     }
     //
+    function updateGridResults (hitCount, totalCount)
+    {
+        gridHitCount.textContent = hitCount;
+        gridTotalCount.textContent = totalCount;
+        gridResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let assignedRegex = regexUnicode.build ('\\p{Assigned}', { useRegex: true });
+    //
+    let currentCharactersByGrid = [ ];
+    //
     function displayRangeTable (blockKey, highlightedCharacter)
     {
-        gridSearchInfo.textContent = "";
         while (gridSearchData.firstChild)
         {
             gridSearchData.firstChild.remove ();
         }
         let block = blocks[blockKey];
-        gridSearchInfo.innerHTML = `Unihan characters: <strong>${block.fullCount}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
+        let characters = [ ];
+        for (let index = block.firstIndex; index <= block.lastIndex; index++)
+        {
+            characters.push (String.fromCodePoint (index));
+        }
+        currentCharactersByGrid = characters.filter (character => assignedRegex.test (character));
+        updateGridResults (block.fullCount, block.size);
         gridSearchData.appendChild (gridDataTable.create (block.characters, gridParams, highlightedCharacter));
     }
     //
@@ -720,12 +852,12 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('invalid');
-            if (event.target.value)
+            event.currentTarget.classList.remove ('invalid');
+            if (event.currentTarget.value)
             {
-                if (!parseUnihanCharacter (event.target.value))
+                if (!parseUnihanCharacter (event.currentTarget.value))
                 {
-                    event.target.classList.add ('invalid');
+                    event.currentTarget.classList.add ('invalid');
                 }
             }
         }
@@ -754,7 +886,7 @@ module.exports.start = function (context)
                     event.preventDefault ();
                     if (gridSpecimenHistoryIndex === -1)
                     {
-                        gridSpecimenHistorySave = event.target.value;
+                        gridSpecimenHistorySave = event.currentTarget.value;
                     }
                     gridSpecimenHistoryIndex++;
                     if (gridSpecimenHistoryIndex > (gridSpecimenHistory.length - 1))
@@ -763,8 +895,8 @@ module.exports.start = function (context)
                     }
                     if (gridSpecimenHistoryIndex !== -1)
                     {
-                        event.target.value = gridSpecimenHistory[gridSpecimenHistoryIndex];
-                        event.target.dispatchEvent (new Event ('input'));
+                        event.currentTarget.value = gridSpecimenHistory[gridSpecimenHistoryIndex];
+                        event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
                 else if (event.key === "ArrowDown")
@@ -780,14 +912,14 @@ module.exports.start = function (context)
                     {
                         if (gridSpecimenHistorySave !== null)
                         {
-                            event.target.value = gridSpecimenHistorySave;
-                            event.target.dispatchEvent (new Event ('input'));
+                            event.currentTarget.value = gridSpecimenHistorySave;
+                            event.currentTarget.dispatchEvent (new Event ('input'));
                         }
                     }
                     else
                     {
-                        event.target.value = gridSpecimenHistory[gridSpecimenHistoryIndex];
-                        event.target.dispatchEvent (new Event ('input'));
+                        event.currentTarget.value = gridSpecimenHistory[gridSpecimenHistoryIndex];
+                        event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
             }
@@ -862,9 +994,9 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            gridSelectBlockName.value = event.target.value;
+            gridSelectBlockName.value = event.currentTarget.value;
             gridParams.pageIndex = 0;
-            displayRangeTable (event.target.value);
+            displayRangeTable (event.currentTarget.value);
         }
     );
     //
@@ -873,9 +1005,42 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            gridSelectBlockRange.value = event.target.value;
+            gridSelectBlockRange.value = event.currentTarget.value;
             gridParams.pageIndex = 0;
-            displayRangeTable (event.target.value);
+            displayRangeTable (event.currentTarget.value);
+        }
+    );
+    //
+    let gridResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentCharactersByGrid.length > 0)
+                    {
+                        remote.clipboard.writeText (currentCharactersByGrid.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentCharactersByGrid.join (""));
+                }
+            }
+        ]
+    );
+    //
+    gridResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, gridResultsMenu);
         }
     );
     //
@@ -929,7 +1094,9 @@ module.exports.stop = function (context)
         gridPageSize: gridParams.pageSize,
         gridPageIndex: gridParams.pageIndex,
         gridInstructions: gridInstructions.open,
-        gridUnihanBlocks: gridUnihanBlocks.open
+        gridUnihanBlocks: gridUnihanBlocks.open,
+        //
+        defaultFolderPath: defaultFolderPath
     };
     context.setPrefs (prefs);
 };

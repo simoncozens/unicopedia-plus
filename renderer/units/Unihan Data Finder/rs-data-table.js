@@ -19,7 +19,7 @@ module.exports.create = function (title, items, params)
         'input',
         event =>
         {
-            params.compactLayout = event.target.checked;
+            params.compactLayout = event.currentTarget.checked;
             charactersData.classList.toggle ('compact-layout');
         }
     );

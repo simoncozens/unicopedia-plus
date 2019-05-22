@@ -21,7 +21,7 @@
                         </div>
                         <div class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Unihan tag value...">
+                                <input class="search-string" type="search" maxlength="256" placeholder="Unihan tag value...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -38,7 +38,9 @@
                             </span>
                         </div>
                     </div>
-                    <div class="search-info"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="search-data"></div>
                 </div>
                 <div class="tab-pane radical-strokes">
@@ -61,7 +63,9 @@
                             </span>
                         </div>
                     </div>
-                    <div class="search-info"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="search-data"></div>
                 </div>
                 <div class="tab-pane view-by-grid">
@@ -76,14 +80,16 @@
                                 <select class="select-block-range"></select>
                             </span>
                             <span class="action">
-                                <input class="specimen" type="search" title="Unihan specimen (character or code point)" placeholder="Specimen...">
+                                <input class="specimen" type="search" maxlength="256" title="Unihan specimen (character or code point)" placeholder="Specimen...">
                             </span>
                             <span class="action">
                                 <button class="go-button" type="button">Go</button>
                             </span>
                         </span>
                     </div>
-                    <div class="search-info"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;Block size: <span class="total-count"></span></span>
+                    </div>
                     <div class="search-data"></div>
                 </div>
             </div>
@@ -111,7 +117,7 @@
                                     <li><em>Unihan_Variants.txt</em></li>
                                 </ul>
                             </li>
-                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -158,7 +164,7 @@
                             <li>Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.</li>
                             <li>If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.</li>
                             <li>Selecting <code>All</code> from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.</li>
-                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".</li>
                             <li>A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.</li>
                         </ul>
                     </details>
@@ -178,6 +184,7 @@
                             <li>A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.</li>
                             <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
                             <li>You can quickly reuse a previously entered Unihan character by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".</li>
                             <li>A list of all the Unihan blocks is available for quick reference.</li>
                         </ul>
                     </details>

@@ -62,12 +62,18 @@
 
 #unihan-data-finder-unit .actions
 {
-    margin-bottom: 0.75em;
+    align-items: center;
+    margin-bottom: 0.8em;
+}
+
+#unihan-data-finder-unit .view-by-grid .actions
+{
+    margin-bottom: 0.65em;
 }
 
 #unihan-data-finder-unit .action-group.tag-group
 {
-    margin: 0.6em 0;
+    margin: 0.6em 0 0.5em 0;
     align-items: baseline;
     /* justify-content: space-between; */
 }
@@ -87,7 +93,8 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
+    margin: 0;
     white-space: nowrap;
 }
 
@@ -236,13 +243,46 @@
     margin-right: 1.25em;
 }
 
+#unihan-data-finder-unit .results
+{
+    text-align: left;
+    font-size: small;
+    margin: 0.25em 0 0.8em 0;
+    user-select: text;
+}
+
+#unihan-data-finder-unit .results .results-button
+{
+    padding: 3px 6px;
+    margin-right: 1em;
+    user-select: none;
+}
+
+#unihan-data-finder-unit .results .results-button svg.gear
+{
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+}
+
+#unihan-data-finder-unit .results .results-string
+{
+    line-height: 1em;
+}
+
+#unihan-data-finder-unit .results .results-string .hit-count,
+#unihan-data-finder-unit .view-by-grid .results .results-string .total-count
+{
+    font-weight: bold;
+}
+
 #unihan-data-finder-unit .pagination-bar
 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
-    margin: 1em 0 0 0;
+    margin: 0.8em 0 0 0;
 }
 
 #unihan-data-finder-unit .pagination-bar .pagination-group
@@ -393,37 +433,11 @@
     color: gray;
 }
 
-#unihan-data-finder-unit .search-info
-{
-    text-align: left;
-    font-size: small;
-    margin: 0.5em 0;
-    user-select: text;
-}
-
-#unihan-data-finder-unit .search-info .close-button
-{
-    padding: 0;
-    width: 19px;
-    height: 19px;
-    /* font-weight: normal; */
-    border-radius: 50%;
-    /* border-radius: 0; */
-    margin-right: 0.5em;
-    user-select: none;
-}
-
-#unihan-data-finder-unit .search-info .close-button svg.close-cross
-{
-    width: 9px;
-    height: 9px;
-    fill: currentColor;
-}
-
 #unihan-data-finder-unit .rs-layout-options-group
 {
     text-align: right;
-    margin-top: -0.5em; margin-bottom: -0.5em;
+    margin-top: -1em;
+    margin-bottom: -0.5em;
 }
 
 #unihan-data-finder-unit .rs-data-table
@@ -563,6 +577,7 @@
     padding: 0.2em 0.3em;
     width: 7.5em;
     margin: 0 0.5em 0 1.25em;
+    line-height: 1.2em;
 }
 
 #unihan-data-finder-unit .view-by-grid .specimen.invalid

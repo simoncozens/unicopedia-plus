@@ -10,31 +10,37 @@ const nameSearchMessage = unit.querySelector ('.find-by-name .search-message');
 const nameWholeWord = unit.querySelector ('.find-by-name .whole-word');
 const nameUseRegex = unit.querySelector ('.find-by-name .use-regex');
 const nameSearchButton = unit.querySelector ('.find-by-name .search-button');
-const nameSearchInfo = unit.querySelector ('.find-by-name .search-info');
+const nameResultsButton = unit.querySelector ('.find-by-name .results-button');
+const nameHitCount = unit.querySelector ('.find-by-name .hit-count');
+const nameTotalCount = unit.querySelector ('.find-by-name .total-count');
 const nameSearchData = unit.querySelector ('.find-by-name .search-data');
 const nameInstructions = unit.querySelector ('.find-by-name .instructions');
 const nameRegexExamples = unit.querySelector ('.find-by-name .regex-examples');
 //
 const nameParams = { };
 //
-const characterSearchString = unit.querySelector ('.match-character .search-string');
-const characterSearchMessage = unit.querySelector ('.match-character .search-message');
-const characterMatchDecomposition = unit.querySelector ('.match-character .match-decomposition');
-const characterCaseSensitive = unit.querySelector ('.match-character .case-sensitive');
-const characterUseRegex = unit.querySelector ('.match-character .use-regex');
-const characterSearchButton = unit.querySelector ('.match-character .search-button');
-const characterSearchInfo = unit.querySelector ('.match-character .search-info');
-const characterSearchData = unit.querySelector ('.match-character .search-data');
-const characterInstructions = unit.querySelector ('.match-character .instructions');
-const characterRegexExamples = unit.querySelector ('.match-character .regex-examples');
+const matchSearchString = unit.querySelector ('.match-character .search-string');
+const matchSearchMessage = unit.querySelector ('.match-character .search-message');
+const matchDecomposition = unit.querySelector ('.match-character .match-decomposition');
+const matchCaseSensitive = unit.querySelector ('.match-character .case-sensitive');
+const matchUseRegex = unit.querySelector ('.match-character .use-regex');
+const matchSearchButton = unit.querySelector ('.match-character .search-button');
+const matchResultsButton = unit.querySelector ('.match-character .results-button');
+const matchHitCount = unit.querySelector ('.match-character .hit-count');
+const matchTotalCount = unit.querySelector ('.match-character .total-count');
+const matchSearchData = unit.querySelector ('.match-character .search-data');
+const matchInstructions = unit.querySelector ('.match-character .instructions');
+const matchRegexExamples = unit.querySelector ('.match-character .regex-examples');
 //
-const characterParams = { };
+const matchParams = { };
 //
 const blockSpecimen = unit.querySelector ('.list-by-block .specimen');
 const blockGoButton = unit.querySelector ('.list-by-block .go-button');
 const blockSelectBlockRange = unit.querySelector ('.list-by-block .select-block-range');
 const blockSelectBlockName = unit.querySelector ('.list-by-block .select-block-name');
-const blockSearchInfo = unit.querySelector ('.list-by-block .search-info');
+const blockResultsButton = unit.querySelector ('.list-by-block .results-button');
+const blockHitCount = unit.querySelector ('.list-by-block .hit-count');
+const blockTotalCount = unit.querySelector ('.list-by-block .total-count');
 const blockSearchData = unit.querySelector ('.list-by-block .search-data');
 const blockInstructions = unit.querySelector ('.list-by-block .instructions');
 //
@@ -46,10 +52,16 @@ let blockSpecimenHistory = [ ];
 let blockSpecimenHistoryIndex = -1;
 let blockSpecimenHistorySave = null;
 //
+let defaultFolderPath;
+//
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
+    const path = require ('path');
+    //
+    const fileDialogs = require ('../../lib/file-dialogs.js');
+    const pullDownMenus = require ('../../lib/pull-down-menus.js');
     const regexUnicode = require ('../../lib/regex-unicode.js');
     const unicode = require ('../../lib/unicode/unicode.js');
     //
@@ -66,21 +78,40 @@ module.exports.start = function (context)
         nameInstructions: true,
         nameRegexExamples: false,
         //
-        characterSearchString: "",
-        characterMatchDecomposition: false,
-        characterCaseSensitive: false,
-        characterUseRegex: false,
-        characterPageSize: 8,
-        characterInstructions: true,
-        characterRegexExamples: false,
+        matchSearchString: "",
+        matchDecomposition: false,
+        matchCaseSensitive: false,
+        matchUseRegex: false,
+        matchPageSize: 8,
+        matchInstructions: true,
+        matchRegexExamples: false,
         //
         blockSelectBlockRange: "",
         blockSpecimenHistory: [ ],
         blockPageSize: 8,
         blockPageIndex: 0,
-        blockInstructions: true
+        blockInstructions: true,
+        //
+        defaultFolderPath: context.defaultFolderPath
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    defaultFolderPath = prefs.defaultFolderPath;
+    //
+    function saveResults (string)
+    {
+        fileDialogs.saveTextFile
+        (
+            "Save text file:",
+            [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+            defaultFolderPath,
+            (filePath) =>
+            {
+                defaultFolderPath = path.dirname (filePath);
+                return string;
+            }
+        );
+    }
     //
     function updateTab (tabName)
     {
@@ -111,15 +142,11 @@ module.exports.start = function (context)
     //
     for (let tab of tabs)
     {
-        tab.addEventListener ('click', (event) => { updateTab (event.target.parentElement.textContent); });
+        tab.addEventListener ('click', (event) => { updateTab (event.currentTarget.parentElement.textContent); });
     }
     //
-    function clearSearch (info, data)
+    function clearSearch (data)
     {
-        while (info.firstChild)
-        {
-            info.firstChild.remove ();
-        }
         while (data.firstChild)
         {
             data.firstChild.remove ();
@@ -150,7 +177,7 @@ module.exports.start = function (context)
         'focusin',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 nameSearchMessage.classList.add ('shown');
             }
@@ -161,7 +188,7 @@ module.exports.start = function (context)
         'focusout',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
                 nameSearchMessage.classList.remove ('shown');
             }
@@ -172,20 +199,20 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('error');
+            event.currentTarget.classList.remove ('error');
             nameSearchMessage.textContent = "";
             nameSearchMessage.classList.remove ('shown');
             if (nameUseRegex.checked)
             {
                 try
                 {
-                    regexUnicode.build (event.target.value, { useRegex: nameUseRegex.checked });
+                    regexUnicode.build (event.currentTarget.value, { useRegex: nameUseRegex.checked });
                 }
                 catch (e)
                 {
-                    event.target.classList.add ('error');
+                    event.currentTarget.classList.add ('error');
                     nameSearchMessage.textContent = e.message;
-                    if (event.target === document.activeElement)
+                    if (event.currentTarget === document.activeElement)
                     {
                         nameSearchMessage.classList.add ('shown');
                     }
@@ -201,6 +228,15 @@ module.exports.start = function (context)
         'change',
         (event) => nameSearchString.dispatchEvent (new Event ('input'))
     );
+    //
+    function updateNameResults (hitCount, totalCount)
+    {
+        nameHitCount.textContent = hitCount;
+        nameTotalCount.textContent = totalCount;
+        nameResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentCharactersByName = [ ];
     //
     nameSearchButton.addEventListener
     (
@@ -222,25 +258,13 @@ module.exports.start = function (context)
                     }
                     if (regex)
                     {
-                        clearSearch (nameSearchInfo, nameSearchData);
-                        let start = window.performance.now ();
-                        let characters = unicode.findCharactersByName (regex);
-                        let stop = window.performance.now ();
-                        let seconds = ((stop - start) / 1000).toFixed (2);
-                        let closeButton = document.createElement ('button');
-                        closeButton.type = 'button';
-                        closeButton.className = 'close-button';
-                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                        closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearSearch (nameSearchInfo, nameSearchData); });
-                        nameSearchInfo.appendChild (closeButton);
-                        let infoText = document.createElement ('span');
-                        infoText.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
-                        nameSearchInfo.appendChild (infoText);
-                        if (characters.length > 0)
+                        clearSearch (nameSearchData);
+                        currentCharactersByName = unicode.findCharactersByName (regex);
+                        updateNameResults (currentCharactersByName.length, unicode.characterCount);
+                        if (currentCharactersByName.length > 0)
                         {
                             nameParams.pageIndex = 0;
-                            nameSearchData.appendChild (dataTable.create (characters, nameParams));
+                            nameSearchData.appendChild (dataTable.create (currentCharactersByName, nameParams));
                         }
                     }
                 }
@@ -252,19 +276,64 @@ module.exports.start = function (context)
         }
     );
     //
+    let nameResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentCharactersByName.length > 0)
+                    {
+                        remote.clipboard.writeText (currentCharactersByName.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentCharactersByName.join (""));
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Clear Results",
+                click: () => 
+                {
+                    clearSearch (nameSearchData);
+                    currentCharactersByName = [ ];
+                    updateNameResults (currentCharactersByName.length, unicode.characterCount);
+                }
+            }
+        ]
+    );
+    //
+    nameResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, nameResultsMenu);
+        }
+    );
+    //
+    updateNameResults (currentCharactersByName.length, unicode.characterCount);
+    //
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
     //
-    characterParams.pageSize = prefs.characterPageSize;
-    characterParams.observer = null;
-    characterParams.root = unit;
+    matchParams.pageSize = prefs.matchPageSize;
+    matchParams.observer = null;
+    matchParams.root = unit;
     //
-    characterMatchDecomposition.checked = prefs.characterMatchDecomposition;
+    matchDecomposition.checked = prefs.matchDecomposition;
     //
-    characterCaseSensitive.checked = prefs.characterCaseSensitive;
-    characterUseRegex.checked = prefs.characterUseRegex;
+    matchCaseSensitive.checked = prefs.matchCaseSensitive;
+    matchUseRegex.checked = prefs.matchUseRegex;
     //
-    characterSearchString.addEventListener
+    matchSearchString.addEventListener
     (
         'keypress',
         (event) =>
@@ -272,106 +341,103 @@ module.exports.start = function (context)
             if (event.key === "Enter")
             {
                 event.preventDefault (); // ??
-                characterSearchButton.click ();
+                matchSearchButton.click ();
             }
         }
     );
-    characterSearchString.addEventListener
+    matchSearchString.addEventListener
     (
         'focusin',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
-                characterSearchMessage.classList.add ('shown');
+                matchSearchMessage.classList.add ('shown');
             }
         }
     );
-    characterSearchString.addEventListener
+    matchSearchString.addEventListener
     (
         'focusout',
         (event) =>
         {
-            if (event.target.classList.contains ('error'))
+            if (event.currentTarget.classList.contains ('error'))
             {
-                characterSearchMessage.classList.remove ('shown');
+                matchSearchMessage.classList.remove ('shown');
             }
         }
     );
-    characterSearchString.addEventListener
+    matchSearchString.addEventListener
     (
         'input',
         (event) =>
         {
-            event.target.classList.remove ('error');
-            characterSearchMessage.textContent = "";
-            characterSearchMessage.classList.remove ('shown');
-            if (characterUseRegex.checked)
+            event.currentTarget.classList.remove ('error');
+            matchSearchMessage.textContent = "";
+            matchSearchMessage.classList.remove ('shown');
+            if (matchUseRegex.checked)
             {
                 try
                 {
-                    regexUnicode.build (event.target.value, { caseSensitive: characterCaseSensitive.checked, useRegex: characterUseRegex.checked });
+                    regexUnicode.build (event.currentTarget.value, { caseSensitive: matchCaseSensitive.checked, useRegex: matchUseRegex.checked });
                 }
                 catch (e)
                 {
-                    event.target.classList.add ('error');
-                    characterSearchMessage.textContent = e.message;
-                    if (event.target === document.activeElement)
+                    event.currentTarget.classList.add ('error');
+                    matchSearchMessage.textContent = e.message;
+                    if (event.currentTarget === document.activeElement)
                     {
-                        characterSearchMessage.classList.add ('shown');
+                        matchSearchMessage.classList.add ('shown');
                     }
                 }
             }
         }
     );
-    characterSearchString.value = prefs.characterSearchString;
-    characterSearchString.dispatchEvent (new Event ('input'));
+    matchSearchString.value = prefs.matchSearchString;
+    matchSearchString.dispatchEvent (new Event ('input'));
     //
-    characterUseRegex.addEventListener
+    matchUseRegex.addEventListener
     (
         'change',
-        (event) => characterSearchString.dispatchEvent (new Event ('input'))
+        (event) => matchSearchString.dispatchEvent (new Event ('input'))
     );
     //
-    characterSearchButton.addEventListener
+    function updateMatchResults (hitCount, totalCount)
+    {
+        matchHitCount.textContent = hitCount;
+        matchTotalCount.textContent = totalCount;
+        matchResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let currentCharactersByMatch = [ ];
+    //
+    matchSearchButton.addEventListener
     (
         'click',
         (event) =>
         {
-            if (!characterSearchString.classList.contains ('error'))
+            if (!matchSearchString.classList.contains ('error'))
             {
-                let searchString = characterSearchString.value;
+                let searchString = matchSearchString.value;
                 if (searchString)
                 {
                     let regex = null;
                     try
                     {
-                        regex = regexUnicode.build (searchString, { caseSensitive: characterCaseSensitive.checked, useRegex: characterUseRegex.checked });
+                        regex = regexUnicode.build (searchString, { caseSensitive: matchCaseSensitive.checked, useRegex: matchUseRegex.checked });
                     }
                     catch (e)
                     {
                     }
                     if (regex)
                     {
-                        clearSearch (characterSearchInfo, characterSearchData);
-                        let start = window.performance.now ();
-                        let characters = unicode.findCharactersBySymbol (regex, characterMatchDecomposition.checked);
-                        let stop = window.performance.now ();
-                        let seconds = ((stop - start) / 1000).toFixed (2);
-                        let closeButton = document.createElement ('button');
-                        closeButton.type = 'button';
-                        closeButton.className = 'close-button';
-                        closeButton.innerHTML = '<svg class="close-cross" viewBox="0 0 8 8"><polygon points="1,0 4,3 7,0 8,1 5,4 8,7 7,8 4,5 1,8 0,7 3,4 0,1" /></svg>';
-                        closeButton.title = "Clear results";
-                        closeButton.addEventListener ('click', event => { clearSearch (characterSearchInfo, characterSearchData); });
-                        characterSearchInfo.appendChild (closeButton);
-                        let infoText = document.createElement ('span');
-                        infoText.innerHTML = `Characters: <strong>${characters.length}</strong>&nbsp;/&nbsp;${unicode.characterCount} (${seconds}&nbsp;seconds)`;
-                        characterSearchInfo.appendChild (infoText);
-                        if (characters.length > 0)
+                        clearSearch (matchSearchData);
+                        currentCharactersByMatch = unicode.findCharactersByMatch (regex, matchDecomposition.checked);
+                        updateMatchResults (currentCharactersByMatch.length, unicode.characterCount);
+                        if (currentCharactersByMatch.length > 0)
                         {
-                            characterParams.pageIndex = 0;
-                            characterSearchData.appendChild (dataTable.create (characters, characterParams));
+                            matchParams.pageIndex = 0;
+                            matchSearchData.appendChild (dataTable.create (currentCharactersByMatch, matchParams));
                         }
                     }
                 }
@@ -383,8 +449,53 @@ module.exports.start = function (context)
         }
     );
     //
-    characterInstructions.open = prefs.characterInstructions;
-    characterRegexExamples.open = prefs.characterRegexExamples;
+    let matchResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentCharactersByMatch.length > 0)
+                    {
+                        remote.clipboard.writeText (currentCharactersByMatch.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentCharactersByMatch.join (""));
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Clear Results",
+                click: () => 
+                {
+                    clearSearch (matchSearchData);
+                    currentCharactersByMatch = [ ];
+                    updateMatchResults (currentCharactersByMatch.length, unicode.characterCount);
+                }
+            }
+        ]
+    );
+    //
+    matchResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, matchResultsMenu);
+        }
+    );
+    //
+    updateMatchResults (currentCharactersByMatch.length, unicode.characterCount);
+    //
+    matchInstructions.open = prefs.matchInstructions;
+    matchRegexExamples.open = prefs.matchRegexExamples;
     //
     blockSpecimenHistory = prefs.blockSpecimenHistory;
     //
@@ -392,8 +503,6 @@ module.exports.start = function (context)
     blockParams.pageIndex = prefs.blockPageIndex;
     blockParams.observer = null;
     blockParams.root = unit;
-    //
-    let assignedRegex = regexUnicode.build ('\\p{Assigned}', { useRegex: true });
     //
     const { blocks } = require ('../../lib/unicode/parsed-extra-data.js');
     //
@@ -419,9 +528,19 @@ module.exports.start = function (context)
     const firstIndex = keyIndex.build (allBlocks, "firstIndex", (a, b) => a - b);
     const nameIndex = keyIndex.build (allBlocks, "name", (a, b) => a.localeCompare (b));
     //
+    function updateBlockResults (hitCount, totalCount)
+    {
+        blockHitCount.textContent = hitCount;
+        blockTotalCount.textContent = totalCount;
+        blockResultsButton.disabled = (hitCount <= 0);
+    }
+    //
+    let assignedRegex = regexUnicode.build ('\\p{Assigned}', { useRegex: true });
+    //
+    let currentCharactersByBlock = [ ];
+    //
     function displayRangeTable (blockKey, highlightedCharacter)
     {
-        blockSearchInfo.textContent = "";
         while (blockSearchData.firstChild)
         {
             blockSearchData.firstChild.remove ();
@@ -433,8 +552,8 @@ module.exports.start = function (context)
             characters.push (String.fromCodePoint (index));
         }
         // Temporary hack until regexpu-core module gets updated to Unicode 12.1!
-        let assignedCount = characters.filter (character => assignedRegex.test (character) || (character === "\u32FF")).length;
-        blockSearchInfo.innerHTML = `Assigned characters: <strong>${assignedCount}</strong>&nbsp;/&nbsp;Block size: <strong>${block.size}</strong>`;
+        currentCharactersByBlock = characters.filter (character => assignedRegex.test (character) || (character === "\u32FF"));
+        updateBlockResults (currentCharactersByBlock.length, block.size);
         blockSearchData.appendChild (dataTable.create (characters, blockParams, highlightedCharacter));
     }
     //
@@ -507,12 +626,12 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('invalid');
-            if (event.target.value)
+            event.currentTarget.classList.remove ('invalid');
+            if (event.currentTarget.value)
             {
-                if (!getBlockKeyfromCharacter (parseCharacter (event.target.value)))
+                if (!getBlockKeyfromCharacter (parseCharacter (event.currentTarget.value)))
                 {
-                    event.target.classList.add ('invalid');
+                    event.currentTarget.classList.add ('invalid');
                 }
             }
         }
@@ -541,7 +660,7 @@ module.exports.start = function (context)
                     event.preventDefault ();
                     if (blockSpecimenHistoryIndex === -1)
                     {
-                        blockSpecimenHistorySave = event.target.value;
+                        blockSpecimenHistorySave = event.currentTarget.value;
                     }
                     blockSpecimenHistoryIndex++;
                     if (blockSpecimenHistoryIndex > (blockSpecimenHistory.length - 1))
@@ -550,8 +669,8 @@ module.exports.start = function (context)
                     }
                     if (blockSpecimenHistoryIndex !== -1)
                     {
-                        event.target.value = blockSpecimenHistory[blockSpecimenHistoryIndex];
-                        event.target.dispatchEvent (new Event ('input'));
+                        event.currentTarget.value = blockSpecimenHistory[blockSpecimenHistoryIndex];
+                        event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
                 else if (event.key === "ArrowDown")
@@ -567,14 +686,14 @@ module.exports.start = function (context)
                     {
                         if (blockSpecimenHistorySave !== null)
                         {
-                            event.target.value = blockSpecimenHistorySave;
-                            event.target.dispatchEvent (new Event ('input'));
+                            event.currentTarget.value = blockSpecimenHistorySave;
+                            event.currentTarget.dispatchEvent (new Event ('input'));
                         }
                     }
                     else
                     {
-                        event.target.value = blockSpecimenHistory[blockSpecimenHistoryIndex];
-                        event.target.dispatchEvent (new Event ('input'));
+                        event.currentTarget.value = blockSpecimenHistory[blockSpecimenHistoryIndex];
+                        event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
             }
@@ -638,9 +757,9 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            blockSelectBlockName.value = event.target.value;
+            blockSelectBlockName.value = event.currentTarget.value;
             blockParams.pageIndex = 0;
-            displayRangeTable (event.target.value);
+            displayRangeTable (event.currentTarget.value);
         }
     );
     //
@@ -649,9 +768,42 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            blockSelectBlockRange.value = event.target.value;
+            blockSelectBlockRange.value = event.currentTarget.value;
             blockParams.pageIndex = 0;
-            displayRangeTable (event.target.value);
+            displayRangeTable (event.currentTarget.value);
+        }
+    );
+    //
+    let blockResultsMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Copy Results", // "Copy Results as String"
+                click: () => 
+                {
+                    if (currentCharactersByBlock.length > 0)
+                    {
+                        remote.clipboard.writeText (currentCharactersByBlock.join (""));
+                    }
+                }
+            },
+            {
+                label: "Save Results...", // "Save Results to File"
+                click: () => 
+                {
+                    saveResults (currentCharactersByBlock.join (""));
+                }
+            }
+        ]
+    );
+    //
+    blockResultsButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            pullDownMenus.popup (event.currentTarget, blockResultsMenu);
         }
     );
     //
@@ -685,19 +837,21 @@ module.exports.stop = function (context)
         nameInstructions: nameInstructions.open,
         nameRegexExamples: nameRegexExamples.open,
         //
-        characterSearchString: characterSearchString.value,
-        characterMatchDecomposition: characterMatchDecomposition.checked,
-        characterCaseSensitive: characterCaseSensitive.checked,
-        characterUseRegex: characterUseRegex.checked,
-        characterPageSize: characterParams.pageSize,
-        characterInstructions: characterInstructions.open,
-        characterRegexExamples: characterRegexExamples.open,
+        matchSearchString: matchSearchString.value,
+        matchDecomposition: matchDecomposition.checked,
+        matchCaseSensitive: matchCaseSensitive.checked,
+        matchUseRegex: matchUseRegex.checked,
+        matchPageSize: matchParams.pageSize,
+        matchInstructions: matchInstructions.open,
+        matchRegexExamples: matchRegexExamples.open,
         //
         blockSelectBlockRange: blockSelectBlockRange.value,
         blockSpecimenHistory: blockSpecimenHistory,
         blockPageSize: blockParams.pageSize,
         blockPageIndex: blockParams.pageIndex,
-        blockInstructions: blockInstructions.open
+        blockInstructions: blockInstructions.open,
+        //
+        defaultFolderPath: defaultFolderPath
     };
     context.setPrefs (prefs);
 };

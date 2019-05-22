@@ -65,7 +65,7 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
     margin: 0 0 0.25em 0;
     white-space: nowrap;
 }
@@ -183,36 +183,37 @@
     margin-right: 0.5em;
 }
 
-#unicode-data-finder-unit .search-info
+#unicode-data-finder-unit .results
 {
     text-align: left;
     font-size: small;
-    margin: 0.5em 0;
+    margin: 0.25em 0 0.8em 0;
     user-select: text;
 }
 
-#unicode-data-finder-unit .search-info .close-button
+#unicode-data-finder-unit .results .results-button
 {
-    padding: 0;
-    width: 19px;
-    height: 19px;
-    /* font-weight: normal; */
-    border-radius: 50%;
-    /* border-radius: 0; */
-    margin-right: 0.5em;
+    padding: 3px 6px;
+    margin-right: 1em;
     user-select: none;
 }
 
-#unicode-data-finder-unit .search-info .close-button svg.close-cross
+#unicode-data-finder-unit .results .results-button svg.gear
 {
-    width: 9px;
-    height: 9px;
-    fill: currentColor;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
 }
 
-#unicode-data-finder-unit .list-by-block .search-info
+#unicode-data-finder-unit .results .results-string
 {
-    margin: 0 0 -0.35em 0;
+    line-height: 1em;
+}
+
+#unicode-data-finder-unit .results .results-string .hit-count,
+#unicode-data-finder-unit .list-by-block .results .results-string .total-count
+{
+    font-weight: bold;
 }
 
 #unicode-data-finder-unit .action-group-no-flex .action-no-flex *
@@ -229,6 +230,7 @@
     padding: 0.2em 0.3em;
     width: 7.5em;
     margin: 0 0.25em 0 1.25em;
+    line-height: 1.2em;
 }
 
 #unicode-data-finder-unit .list-by-block .specimen.invalid
@@ -243,7 +245,7 @@
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
-    margin: 1em 0 0 0;
+    margin: 0.75em 0 0 0;
 }
 
 #unicode-data-finder-unit .pagination-bar .pagination-group
@@ -296,7 +298,7 @@
 #unicode-data-finder-unit .search-data .data-table
 {
     user-select: text;
-    margin: 0.75em 0;
+    margin: 0.8em 0;
 }
 
 #unicode-data-finder-unit .search-data .symbol-header,

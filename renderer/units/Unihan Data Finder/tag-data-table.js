@@ -191,17 +191,17 @@ module.exports.create = function (characterInfos, params)
         'input',
         (event) =>
         {
-            if (event.target.value !== "")
+            if (event.currentTarget.value !== "")
             {
-                if (event.target.value < 1)
+                if (event.currentTarget.value < 1)
                 {
-                    event.target.value = 1;
+                    event.currentTarget.value = 1;
                 }
-                else if (event.target.value > pages.length)
+                else if (event.currentTarget.value > pages.length)
                 {
-                    event.target.value = pages.length;
+                    event.currentTarget.value = pages.length;
                 }
-                pageIndex = event.target.value - 1;
+                pageIndex = event.currentTarget.value - 1;
                 updateDataPage (dataPage);
             }
         }
@@ -211,9 +211,9 @@ module.exports.create = function (characterInfos, params)
         'blur',
         (event) =>
         {
-            if (event.target.value === "")
+            if (event.currentTarget.value === "")
             {
-                event.target.value = pageIndex + 1;
+                event.currentTarget.value = pageIndex + 1;
             }
         }
     );
@@ -301,7 +301,7 @@ module.exports.create = function (characterInfos, params)
         'input',
         (event) =>
         {
-            params.pageSize = parseInt (event.target.value);
+            params.pageSize = parseInt (event.currentTarget.value);
             //
             // Paginate
             pages = [ ];

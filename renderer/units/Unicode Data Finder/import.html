@@ -11,7 +11,7 @@
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Character name or alias...">
+                                <input class="search-string" type="search" maxlength="256" placeholder="Character name or alias...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -28,14 +28,16 @@
                             </span>
                         </span>
                     </div>
-                    <div class="search-info"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="search-data"></div>
                 </div>
                 <div class="tab-pane match-character">
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Character(s)...">
+                                <input class="search-string" type="search" maxlength="256" placeholder="Character(s)...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -56,7 +58,9 @@
                             </span>
                         </span>
                     </div>
-                    <div class="search-info"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="search-data"></div>
                 </div>
                 <div class="tab-pane list-by-block">
@@ -66,7 +70,7 @@
                                 <select class="select-block-range"></select>
                             </span>
                             <span class="action-no-flex">
-                                <input class="specimen" type="search" title="Unicode specimen (code point or character)" placeholder="Specimen...">
+                                <input class="specimen" type="search" maxlength="256" title="Unicode specimen (code point or character)" placeholder="Specimen...">
                             </span>
                             <span class="action">
                                 <button class="go-button" type="button">Go</button>
@@ -77,7 +81,9 @@
                             </span>
                         </span>
                     </div>
-                    <div class="search-info"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Assigned characters: <span class="hit-count"></span>&nbsp;/&nbsp;Block size: <span class="total-count"></span></span>
+                    </div>
                     <div class="search-data"></div>
                 </div>
             </div>
@@ -93,7 +99,7 @@
                             <li>When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark <code>※</code>.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
-                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -119,7 +125,7 @@
                             <li>Click on the <kbd><svg style="width: 15px; height: 15px; vertical-align: text-top;"><use href="/images/search.svg#match-decomposition-icon"></use></svg></kbd> (<em>Match Decomposition</em>) toggle button to extend the search to characters whose <em>decomposition mapping</em> matches the query string.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
-                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -152,6 +158,7 @@
                             <li><code>^ホ$</code><br>Characters made of a single katakana letter 'ho'</li>
                             <li><code>左|右</code><br>Characters containing either 左 (left) or 右 (right)</li>
                             <li><code>[月火水木金土日]</code><br>Characters containing one ideograph, Japanese shorthand for each of the seven days of the week</li>
+                            <li><code>〔\p{Script=Han}〕</code><br>Characters made of a single bracketed ideograph</li>
                             <li><code>\(\p{Script=Han}\)</code><br>Characters made of a single parenthesized ideograph</li>
                             <li><code>\p{Script=Arabic}\s\p{Script=Arabic}</code><br>Characters made of Arabic letters separated by white space, forming intricate Arabic ligatures</li>
                         </ul>
@@ -168,6 +175,7 @@
                             <li>A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
                             <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.</li>
                             <li>You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".</li>
                         </ul>
                     </details>
                 </div>

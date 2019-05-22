@@ -75,8 +75,8 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    margin: 0.25em 0 0.3em 0;
+    /* align-items: center; */
+    margin: 0.25em 0 0.1em 0;
     white-space: nowrap;
 }
 
@@ -109,6 +109,7 @@
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
     padding: 0.25em 0.5em;
+    margin-bottom: 0.4em;
 }
 
 #emoji-data-finder-unit .search-string.error
@@ -205,43 +206,43 @@
     overscroll-behavior: contain;
 }
 
-#emoji-data-finder-unit .filter-text .hit-count
-{
-    margin: 0.25em 0;
-}
-
-#emoji-data-finder-unit .hit-count
+#emoji-data-finder-unit .results
 {
     text-align: left;
     font-size: small;
-    margin: 0.5em 0;
+    margin: 0.25em 0 0.8em 0;
     user-select: text;
 }
 
-#emoji-data-finder-unit .hit-count .close-button
+#emoji-data-finder-unit .results .results-button
 {
-    padding: 0;
-    width: 19px;
-    height: 19px;
-    /* font-weight: normal; */
-    border-radius: 50%;
-    /* border-radius: 0; */
-    margin-right: 0.5em;
+    padding: 3px 6px;
+    margin-right: 1em;
     user-select: none;
 }
 
-#emoji-data-finder-unit .hit-count .close-button svg.close-cross
+#emoji-data-finder-unit .results .results-button svg.gear
 {
-    width: 9px;
-    height: 9px;
-    fill: currentColor;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+}
+
+#emoji-data-finder-unit .results .results-string
+{
+    line-height: 1em;
+}
+
+#emoji-data-finder-unit .results .results-string .hit-count
+{
+    font-weight: bold;
 }
 
 #emoji-data-finder-unit .emoji-table
 {
     user-select: text;
     background-color: white;
-    margin: 1em 0 0.75em 0;
+    margin: 0.8em 0 0.8em 0;
 }
 
 #emoji-data-finder-unit .emoji-table .emoji-data

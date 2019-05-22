@@ -212,7 +212,7 @@
 #unihan-inspector-unit .unihan-info .field .name
 {
     font-weight: 600;
-    color: black;
+    color: var(--color-strongest);
 }
 
 #unihan-inspector-unit .unihan-info .field.line-clamp
@@ -317,6 +317,8 @@
 #unihan-inspector-unit .tags-data .tags-list .tag
 {
     white-space: nowrap;
+    font-weight: 600;
+    color: var(--color-strongest);
 }
 
 #unihan-inspector-unit .tags-data .tags-list .value

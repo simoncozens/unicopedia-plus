@@ -11,7 +11,7 @@
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Emoji name or keyword...">
+                                <input class="search-string" type="search" maxlength="256" placeholder="Emoji name or keyword...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -28,14 +28,16 @@
                             </span>
                         </span>
                     </div>
-                    <div class="hit-count"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="emoji-data-list"></div>
                 </div>
                 <div class="tab-pane match-sequence">
                     <div class="actions">
                         <span class="action-group search-group">
                             <span class="action search-wrap">
-                                <input class="search-string" type="search" placeholder="Character sequence...">
+                                <input class="search-string" type="search" maxlength="256" placeholder="Character sequence...">
                                 <span class="search-message"></span>
                             </span>
                             <span class="action">
@@ -52,7 +54,9 @@
                             </span>
                         </span>
                     </div>
-                    <div class="hit-count"></div>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="emoji-data-list"></div>
                 </div>
                 <div class="tab-pane filter-text">
@@ -71,8 +75,10 @@
                             </span>
                         </span>
                     </div>
-                    <textarea class="input-string"></textarea>
-                    <div class="hit-count"></div>
+                    <textarea class="input-string" maxlength="16384"></textarea>
+                    <div class="results">
+                        <button class="pull-down-menu results-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    </div>
                     <div class="emoji-data-list"></div>
                 </div>
             </div>
@@ -87,7 +93,7 @@
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
                             <li><em>Component</em> and <em>fully-qualified</em> (<em>keyboard/palette</em>) emoji are presented in a standard way, while <em>non-fully-qualified</em> (<em>display/process</em>) emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -113,7 +119,7 @@
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
                             <li><em>Component</em> and <em>fully-qualified</em> (<em>keyboard/palette</em>) emoji are presented in a standard way, while <em>non-fully-qualified</em> (<em>display/process</em>) emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>Click on the <kbd>✕</kbd> button to clear all results.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".</li>
                             <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                         </ul>
                     </details>
@@ -154,6 +160,7 @@
                             <li>As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.</li>
                             <li><em>Component</em> and <em>fully-qualified</em> (<em>keyboard/palette</em>) emoji are presented in a standard way, while <em>non-fully-qualified</em> (<em>display/process</em>) emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".</li>
                         </ul>
                     </details>
                 </div>

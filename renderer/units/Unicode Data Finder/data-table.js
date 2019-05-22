@@ -211,17 +211,17 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'input',
         (event) =>
         {
-            if (event.target.value !== "")
+            if (event.currentTarget.value !== "")
             {
-                if (event.target.value < 1)
+                if (event.currentTarget.value < 1)
                 {
-                    event.target.value = 1;
+                    event.currentTarget.value = 1;
                 }
-                else if (event.target.value > pages.length)
+                else if (event.currentTarget.value > pages.length)
                 {
-                    event.target.value = pages.length;
+                    event.currentTarget.value = pages.length;
                 }
-                params.pageIndex = event.target.value - 1;
+                params.pageIndex = event.currentTarget.value - 1;
                 updateDataPage (dataPage);
             }
         }
@@ -231,9 +231,9 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'blur',
         (event) =>
         {
-            if (event.target.value === "")
+            if (event.currentTarget.value === "")
             {
-                event.target.value = params.pageIndex + 1;
+                event.currentTarget.value = params.pageIndex + 1;
             }
         }
     );
@@ -336,7 +336,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
         'input',
         (event) =>
         {
-            params.pageSize = parseInt (event.target.value);
+            params.pageSize = parseInt (event.currentTarget.value);
             params.pageIndex = (highlightedCharacter) ? Math.trunc (characters.indexOf (highlightedCharacter) / params.pageSize) : 0;
             paginate ();
         }

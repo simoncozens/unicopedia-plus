@@ -524,7 +524,7 @@ module.exports.start = function (context)
                     'input',
                     event =>
                     {
-                        showCategories = event.target.checked;
+                        showCategories = event.currentTarget.checked;
                         while (tagsWrapper.firstChild)
                         {
                             tagsWrapper.firstChild.remove ();
@@ -591,12 +591,12 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            event.target.classList.remove ('invalid');
-            if (event.target.value)
+            event.currentTarget.classList.remove ('invalid');
+            if (event.currentTarget.value)
             {
-                if (!parseUnihanCharacter (event.target.value))
+                if (!parseUnihanCharacter (event.currentTarget.value))
                 {
-                    event.target.classList.add ('invalid');
+                    event.currentTarget.classList.add ('invalid');
                 }
             }
         }
@@ -625,7 +625,7 @@ module.exports.start = function (context)
                     event.preventDefault ();
                     if (unihanHistoryIndex === -1)
                     {
-                        unihanHistorySave = event.target.value;
+                        unihanHistorySave = event.currentTarget.value;
                     }
                     unihanHistoryIndex++;
                     if (unihanHistoryIndex > (unihanHistory.length - 1))
@@ -634,8 +634,8 @@ module.exports.start = function (context)
                     }
                     if (unihanHistoryIndex !== -1)
                     {
-                        event.target.value = unihanHistory[unihanHistoryIndex];
-                        event.target.dispatchEvent (new Event ('input'));
+                        event.currentTarget.value = unihanHistory[unihanHistoryIndex];
+                        event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
                 else if (event.key === "ArrowDown")
@@ -651,14 +651,14 @@ module.exports.start = function (context)
                     {
                         if (unihanHistorySave !== null)
                         {
-                            event.target.value = unihanHistorySave;
-                            event.target.dispatchEvent (new Event ('input'));
+                            event.currentTarget.value = unihanHistorySave;
+                            event.currentTarget.dispatchEvent (new Event ('input'));
                         }
                     }
                     else
                     {
-                        event.target.value = unihanHistory[unihanHistoryIndex];
-                        event.target.dispatchEvent (new Event ('input'));
+                        event.currentTarget.value = unihanHistory[unihanHistoryIndex];
+                        event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
             }

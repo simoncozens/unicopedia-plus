@@ -111,7 +111,7 @@ module.exports.start = function (context)
     sizeRange.value = Math.log2 (prefs.fontSize);
     //
     setFontSize (Math.pow (2, sizeRange.value));
-    sizeRange.addEventListener ('input', (event) => { setFontSize (Math.pow (2, event.target.value)); });
+    sizeRange.addEventListener ('input', (event) => { setFontSize (Math.pow (2, event.currentTarget.value)); });
     if (wheelSupport)
     {
         sizeRange.addEventListener
@@ -120,10 +120,10 @@ module.exports.start = function (context)
             (event) =>
             {
                 event.preventDefault ();
-                let fontSize = Math.round (Math.pow (2, event.target.value) + Math.sign (event.deltaX));
+                let fontSize = Math.round (Math.pow (2, event.currentTarget.value) + Math.sign (event.deltaX));
                 if ((fontSize >= minFontSize) && (fontSize <= maxFontSize))
                 {
-                    event.target.value = Math.log2 (fontSize);
+                    event.currentTarget.value = Math.log2 (fontSize);
                     setFontSize (fontSize);
                 }
             }
@@ -234,7 +234,7 @@ module.exports.start = function (context)
             updateGroup (selectGroup.value);
         }
     );
-    selectGroup.addEventListener ('input', (event) => { updateGroup (event.target.value); });
+    selectGroup.addEventListener ('input', (event) => { updateGroup (event.currentTarget.value); });
     //
     instructions.open = prefs.instructions;
 };

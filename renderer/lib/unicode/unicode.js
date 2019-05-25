@@ -693,7 +693,7 @@ function findCharactersByMatch (regex, matchDecomposition)
                 character.normalize ('NFKD')
             ];
             matchStrings = matchStrings.filter (string => (string !== character)); // Remove character itself
-            matchStrings = [... new Set (matchStrings)]; // Remove duplicates
+            matchStrings = [...new Set (matchStrings)]; // Remove duplicates
             if (matchStrings.some (string => string.match (regex)))
             {
                 characterList.push (character);

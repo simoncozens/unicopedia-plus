@@ -5,16 +5,16 @@
             M 10 7.25 A 2.75 2.75 0 0 1 10 12.75 A 2.75 2.75 0 0 1 10 7.25 Z
         " />
         <g transform="rotate(0 10 10)">
-            <rect x="8" y="0" width="4" height="5" rx="1" ry="1" />
-            <rect x="15" y="8" width="5" height="4" rx="1" ry="1" />
-            <rect x="8" y="15" width="4" height="5" rx="1" ry="1" />
-            <rect x="0" y="8" width="5" height="4" rx="1" ry="1" />
+            <rect x="8" y="0" width="4" height="5" rx="1.25" ry="1.25" />
+            <rect x="15" y="8" width="5" height="4" rx="1.25" ry="1.25" />
+            <rect x="8" y="15" width="4" height="5" rx="1.25" ry="1.25" />
+            <rect x="0" y="8" width="5" height="4" rx="1.25" ry="1.25" />
         </g>
         <g transform="rotate(45 10 10)">
-            <rect x="8" y="0" width="4" height="5" rx="1" ry="1" />
-            <rect x="15" y="8" width="5" height="4" rx="1" ry="1" />
-            <rect x="8" y="15" width="4" height="5" rx="1" ry="1" />
-            <rect x="0" y="8" width="5" height="4" rx="1" ry="1" />
+            <rect x="8" y="0" width="4" height="5" rx="1.25" ry="1.25" />
+            <rect x="15" y="8" width="5" height="4" rx="1.25" ry="1.25" />
+            <rect x="8" y="15" width="4" height="5" rx="1.25" ry="1.25" />
+            <rect x="0" y="8" width="5" height="4" rx="1.25" ry="1.25" />
         </g>
     </symbol>
 </svg>

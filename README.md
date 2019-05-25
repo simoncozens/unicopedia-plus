@@ -98,10 +98,14 @@ The following utilities are currently available:
 
 - The **Find by Name** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
-- *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
+- The 9 *component* (5 *skin-tone* and 4 *hair-style*) emoji and the 3,010 *fully-qualified* (**RGI**) emoji are presented in a standard way, while the 817 *non-fully-qualified* emoji are shown in a distinctive muted (grayed out) style.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
 - Various examples of regular expressions are provided for quick copy-and-paste.
+- Note: **RGI** stands for *Recommended for General Interchange*.
 
 <img src="screenshots/emoji-data-finder-find-by-name.png" width="1080px" alt="Emoji Data Finder - Find by Name screenshot">
 
@@ -109,22 +113,33 @@ The following utilities are currently available:
 
 - The **Match Sequence** feature of the **Emoji Data Finder** utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.
-- *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
+- The 9 *component* (5 *skin-tone* and 4 *hair-style*) emoji and the 3,010 *fully-qualified* (**RGI**) emoji are presented in a standard way, while the 817 *non-fully-qualified* emoji are shown in a distinctive muted (grayed out) style.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
 - Various examples of regular expressions are provided for quick copy-and-paste.
+- Note: **RGI** stands for *Recommended for General Interchange*.
 
 <img src="screenshots/emoji-data-finder-match-sequence.png" width="1080px" alt="Emoji Data Finder - Match Sequence screenshot">
 
 ### Filter Text
 
 - The **Filter Text** feature of the **Emoji Data Finder** utility displays in real time a list of basic data (symbol, short name, keywords, code points) of all the Unicode emoji contained in a text string.
-- Text can by directly typed or pasted from the clipboard into the main input field. Click on the <kbd>Filter</kbd> button to strip out all non-emoji characters.
+- Text can by directly typed or pasted from the clipboard into the main input field.
 - It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.
-- *Component* and *fully-qualified* (*keyboard/palette*) emoji are presented in a standard way, while *non-fully-qualified* (*display/process*) emoji are shown in a distinctive muted (grayed out) style.
+- Use the <kbd>Filter&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Discard Non-Emoji` [strip out non-emoji characters]
+    - `Upgrade to RGI Emoji` [restore incomplete emoji to their **RGI** form]
+    - `Remove Duplicate Emoji` [delete emoji duplicates]
 - This feature deals with the 3,836 emoji defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".
+- The 9 *component* (5 *skin-tone* and 4 *hair-style*) emoji and the 3,010 *fully-qualified* (**RGI**) emoji are presented in a standard way, while the 817 *non-fully-qualified* emoji are shown in a distinctive muted (grayed out) style.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+- Note: **RGI** stands for *Recommended for General Interchange*.
 
 <img src="screenshots/emoji-data-finder-filter-text.png" width="1080px" alt="Emoji Data Finder - Filter Text screenshot">
 
@@ -144,8 +159,9 @@ The following utilities are currently available:
     - **Flags**
 - The size of all emoji pictures (from 32 to 128&nbsp;pixels) can be adjusted by moving the dedicated slider left and right.
 - The groups and subgroups of emoji are those defined in the **Emoji 12.0** version of the [emoji-test.txt](https://www.unicode.org/Public/emoji/12.0/emoji-test.txt) data file.
-- Only the 9 *component* and the 3,010 *fully-qualified* (*keyboard/palette*) encodings of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
+- Only the 9 *component* emoji and the 3,010 *fully-qualified* (**RGI**) forms of the emoji are used unless they cannot be displayed properly, depending on the emoji support level of the operating system.
 - Emoji failing to be represented as proper color pictures are purely and simply discarded.
+- Note: **RGI** stands for *Recommended for General Interchange*.
 
 <img src="screenshots/emoji-picture-book.png" width="1080px" alt="Emoji Picture Book screenshot">
 
@@ -164,7 +180,10 @@ The following utilities are currently available:
 - When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-find-by-name.png" width="1080px" alt="Unicode Data Finder - Find by Name screenshot">
@@ -176,7 +195,10 @@ The following utilities are currently available:
 - Click on the <kbd>Match Decomposition</kbd> toggle button to extend the search to characters whose *decomposition mapping* matches the query string.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unicode-data-finder-match-character.png" width="1080px" alt="Unicode Data Finder - Match Character screenshot">
@@ -188,7 +210,9 @@ The following utilities are currently available:
 - A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 12.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
 - It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.
 - You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
 
 <img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 
@@ -229,8 +253,8 @@ The following utilities are currently available:
 - Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
 - It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
-- In output, the standard Unicode code point format <code>U+212B</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.
-- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u24B6</code> or <code>\u{1F201}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
+- In output, the standard Unicode code point format `U+212B` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
+- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u24B6` or `\u{1F201}`. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
 
 <img src="screenshots/unicode-normalizer.png" width="1080px" alt="Unicode Normalizer screenshot">
 
@@ -258,7 +282,10 @@ The following utilities are currently available:
     - *Unihan_RadicalStrokeCounts.txt*
     - *Unihan_Readings.txt*
     - *Unihan_Variants.txt*
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
 - Various examples of regular expressions are provided for quick copy-and-paste.
 
 <img src="screenshots/unihan-data-finder-find-by-tag-value.png" width="1080px" alt="Unihan Data Finder - Find by Tag Value screenshot">
@@ -271,7 +298,10 @@ The following utilities are currently available:
 - Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
 - If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.
 - Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results", "Save Results...", "Clear Results".
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
 - A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.
 
 <img src="screenshots/unihan-data-finder-radical-strokes.png" width="1080px" alt="Unihan Data Finder - Radical/Strokes screenshot">
@@ -283,7 +313,9 @@ The following utilities are currently available:
 - A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.
 - It is also possible to directly enter a Unihan character or code point in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.
 - You can quickly reuse a previously entered Unihan character by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.
-- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among: "Copy Results" or "Save Results...".
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
 - A list of all the Unihan blocks is available for quick reference.
 
 <img src="screenshots/unihan-data-finder-view-by-grid.png" width="1080px" alt="Unihan Data Finder - View by Grid screenshot">

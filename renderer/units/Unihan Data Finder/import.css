@@ -679,7 +679,6 @@
 
 #unihan-data-finder-unit .instructions code
 {
-    user-select: text;
     color: inherit;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
 }

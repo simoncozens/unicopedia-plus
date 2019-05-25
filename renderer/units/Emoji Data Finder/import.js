@@ -179,14 +179,6 @@ module.exports.start = function (context)
         return emojiBySequence;
     }
     //
-    const emojiPattern = require ('emoji-test-patterns')["Emoji_Test_All"];
-    const emojiRegex = new RegExp (emojiPattern, 'gu');
-    //
-    function getEmojiList (string)
-    {
-        return string.match (emojiRegex) || [ ];
-    }
-    //
     function updateDataList (characters, emojiDataList)
     {
         while (emojiDataList.firstChild)
@@ -229,17 +221,17 @@ module.exports.start = function (context)
             let status;
             if (emojiList[character].isComponent)
             {
-                status = "COMPONENT";
+                status = "component";
             }
             else if (emojiList[character].toFullyQualified)
             {
-                status = "DISPLAY/PROCESS";
+                status = "non-fully-qualified (display/process)";
             }
             else
             {
-                status = "KEYBOARD/PALETTE";
+                status = "fully-qualified (keyboard/palette)";
             }
-            emojiTable.title = `STATUS: ${status}`;
+            emojiTable.title = `Status: ${status}`;
             if (emojiList[character].toFullyQualified)
             {
                 emoji.classList.add ('non-fully-qualified');
@@ -576,6 +568,9 @@ module.exports.start = function (context)
     sequenceInstructions.open = prefs.sequenceInstructions;
     sequenceRegexExamples.open = prefs.sequenceRegexExamples;
     //
+    const emojiPattern = require ('emoji-test-patterns')["Emoji_Test_All"];
+    const emojiRegex = new RegExp (emojiPattern, 'gu');
+    //
     textClearButton.addEventListener
     (
         'click',
@@ -608,13 +603,65 @@ module.exports.start = function (context)
         }
     );
     //
+    let textFilterMenu =
+    remote.Menu.buildFromTemplate
+    (
+        [
+            {
+                label: "Discard Non-Emoji", // "Strip Out Non-Emoji"
+                click: () => 
+                {
+                    textInputString.value = (textInputString.value.match (emojiRegex) || [ ]).join ("");
+                    textInputString.dispatchEvent (new Event ('input'));
+                }
+            },
+            {
+                label: "Upgrade to RGI Emoji", // "Promote to RGI Emoji", "Restore Incomplete Emoji"
+                click: () => 
+                {
+                    textInputString.value = textInputString.value.replace
+                    (
+                        emojiRegex,
+                        match => emojiList[match].toFullyQualified || match
+                    );
+                    textInputString.dispatchEvent (new Event ('input'));
+                }
+            },
+            {
+                label: "Remove Duplicate Emoji",
+                click: () => 
+                {
+                    let uniqueEmoji = { };
+                    textInputString.value = textInputString.value.replace
+                    (
+                        emojiRegex,
+                        match =>
+                        {
+                            let result;
+                            if (match in uniqueEmoji)
+                            {
+                                result = "";
+                            }
+                            else
+                            {
+                                uniqueEmoji[match] = true;
+                                result = match;
+                            }
+                            return result;
+                        }
+                    );
+                    textInputString.dispatchEvent (new Event ('input'));
+                }
+            }
+        ]
+    );
+    //
     textFilterButton.addEventListener
     (
         'click',
         (event) =>
         {
-            textInputString.value = getEmojiList (textInputString.value).join ("");
-            textInputString.dispatchEvent (new Event ('input'));
+            pullDownMenus.popup (event.currentTarget, textFilterMenu);
         }
     );
     //
@@ -632,7 +679,8 @@ module.exports.start = function (context)
         'input',
         (event) =>
         {
-            currentEmojiByText = [...new Set (getEmojiList (event.currentTarget.value))];
+            textFilterButton.disabled = !(event.currentTarget.value.length > 0);
+            currentEmojiByText = event.currentTarget.value.match (emojiRegex) || [ ];
             updateTextResults (currentEmojiByText.length, emojiKeys.length);
             updateDataList (currentEmojiByText, textEmojiDataList);
         }

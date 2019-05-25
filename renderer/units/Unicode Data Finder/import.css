@@ -446,7 +446,6 @@
 
 #unicode-data-finder-unit .instructions code
 {
-    user-select: text;
     color: inherit;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
 }
@@ -469,6 +468,11 @@
 #unicode-data-finder-unit .regex-examples li > ul
 {
     margin: 0.5em 0;
+}
+
+#unicode-data-finder-unit .instructions li > ul
+{
+    margin: 0 0 0.25em 0;
 }
 
 #unicode-data-finder-unit .regex-examples kbd

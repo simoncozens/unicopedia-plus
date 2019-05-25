@@ -206,6 +206,19 @@
     overscroll-behavior: contain;
 }
 
+#emoji-data-finder-unit .filter-button
+{
+    padding: 3px 6px;
+    user-select: none;
+}
+
+#emoji-data-finder-unit .filter-button svg.gear
+{
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+}
+
 #emoji-data-finder-unit .results
 {
     text-align: left;
@@ -321,6 +334,17 @@
 #emoji-data-finder-unit .instructions li
 {
     margin: 0.25em 0;
+}
+
+#emoji-data-finder-unit .instructions li > ul
+{
+    margin: 0 0 0.25em 0;
+}
+
+#emoji-data-finder-unit .instructions code
+{
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
 }
 
 #emoji-data-finder-unit .instructions kbd

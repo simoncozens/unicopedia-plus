@@ -116,7 +116,7 @@ module.exports.start = function (context)
         fileDialogs.saveTextFile
         (
             "Save text file:",
-            [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+            [ { name: "Text (*.txt)", extensions: [ 'txt' ] } ],
             defaultFolderPath,
             (filePath) =>
             {
@@ -573,10 +573,10 @@ module.exports.start = function (context)
                         if (rsTag === "kRSAdobe_Japan1_6")
                         {
                             let parsed = rsTagValue.match (/^([CV])\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
-                            if (parsed[1] === 'C')
+                            if (parsed[1] === "C")
                             {
-                                let [ index, strokes, residual ] = parsed[2].split ('.');
-                                rsValues.push ([ index, residual ].join ('.'));
+                                let [ index, strokes, residual ] = parsed[2].split (".");
+                                rsValues.push ([ index, residual ].join ("."));
                             }
                         }
                         else
@@ -591,7 +591,7 @@ module.exports.start = function (context)
             irgSourceValues = [...new Set (irgSourceValues.map (rsValue => rsValue.replace ("'", "").replace (/\.-\d+/, ".0")))];
             for (let rsValue of rsValues)
             {
-                let [ tagRadical, tagResidual ] = rsValue.split ('.');
+                let [ tagRadical, tagResidual ] = rsValue.split (".");
                 if (parseInt (tagRadical) === options.radical)
                 {
                     let residualStrokes = parseInt (tagResidual);

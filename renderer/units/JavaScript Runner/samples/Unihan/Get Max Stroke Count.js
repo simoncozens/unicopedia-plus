@@ -35,15 +35,15 @@ for (let codePoint in codePoints)
                         let parsed = rsTagValue.match (/^[CV]\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
                         if (parsed)
                         {
-                            let [ index, strokes, residual ] = parsed[1].split ('.');
-                            rsValue = [ index, residual ].join ('.');
+                            let [ index, strokes, residual ] = parsed[1].split (".");
+                            rsValue = [ index, residual ].join (".");
                         }
                     }
                     else
                     {
                         rsValue = rsTagValue;
                     }
-                    let [ index, residual ] = rsValue.split ('.');
+                    let [ index, residual ] = rsValue.split (".");
                     let residualStrokes = Math.max (parseInt (residual), 0);
                     if (residualStrokes > maxStrokes)
                     {

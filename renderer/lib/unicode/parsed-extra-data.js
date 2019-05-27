@@ -10,10 +10,10 @@ let lines;
 let versions = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/DerivedAge.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedAge.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedAge.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\d+\.\d+)\s+#/);
         if (found)
@@ -26,10 +26,10 @@ for (let line of lines)
 let blocks = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/Blocks.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'Blocks.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'Blocks.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})\.\.([0-9a-fA-F]{4,});\s+(.+)$/);
         if (found)
@@ -42,10 +42,10 @@ for (let line of lines)
 let extendedProperties = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/PropList.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'PropList.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'PropList.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
@@ -58,10 +58,10 @@ for (let line of lines)
 let coreProperties = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedCoreProperties.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'DerivedCoreProperties.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
@@ -74,10 +74,10 @@ for (let line of lines)
 let emojiProperties = [ ];
 //
 // Copy of https://unicode.org/Public/emoji/12.0/emoji-data.txt
-lines = fs.readFileSync (path.join (__dirname, 'emoji', 'emoji-data.txt'), { encoding: 'utf8' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'emoji', 'emoji-data.txt'), { encoding: 'utf8' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s*#/);
         if (found)
@@ -90,10 +90,10 @@ for (let line of lines)
 let scripts = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/Scripts.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'Scripts.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'Scripts.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)
@@ -106,10 +106,10 @@ for (let line of lines)
 let scriptExtensions = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'ScriptExtensions.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'ScriptExtensions.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+([\w\s]+)\s+#/);
         if (found)
@@ -122,10 +122,10 @@ for (let line of lines)
 let equivalentUnifiedIdeographs = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EquivalentUnifiedIdeograph.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EquivalentUnifiedIdeograph.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+([0-9a-fA-F]{4,})\s+#/);
         if (found)
@@ -138,10 +138,10 @@ for (let line of lines)
 let eastAsianWidths = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EastAsianWidth.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'EastAsianWidth.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?;(\w+)\s+#/);
         if (found)
@@ -154,10 +154,10 @@ for (let line of lines)
 let verticalOrientations = [ ];
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'VerticalOrientation.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'VerticalOrientation.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
         let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
         if (found)

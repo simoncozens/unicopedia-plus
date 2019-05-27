@@ -2,7 +2,7 @@
 const emojiTestList = require ('emoji-test-list');
 const emojiTestPatterns = require ('emoji-test-patterns');
 const allEmojiRegex = new RegExp (emojiTestPatterns["Emoji_Test_All"], 'gu');
-let allMatches = Object.keys (emojiTestList).join (' ').match (allEmojiRegex);
+let allMatches = Object.keys (emojiTestList).join (" ").match (allEmojiRegex);
 $.writeln ("Emoji_Test_All:", allMatches.length);
 const componentEmojiRegex = new RegExp ('^' + emojiTestPatterns["Emoji_Test_Component"] + '$', 'u');
 let matches = allMatches.filter (match => componentEmojiRegex.test (match));

@@ -138,7 +138,7 @@ module.exports.start = function (context)
             fileDialogs.saveTextFile
             (
                 "Save JavaScript file:",
-                [ { name: 'JavaScript (*.js)', extensions: [ 'js' ] } ],
+                [ { name: "JavaScript (*.js)", extensions: [ 'js' ] } ],
                 defaultFolderPath,
                 (filePath) =>
                 {

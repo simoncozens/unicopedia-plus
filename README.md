@@ -175,10 +175,11 @@ The following utilities are currently available:
 
 ### Find by Name
 
-- The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of matching Unicode characters searched by name (or alias name), including through regular expressions.
+- The **Find by Name** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name/aliases, block) of matching Unicode characters searched by name or alias, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
-- When available, name aliases are also displayed (in smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
 - It is possible to choose how many characters are shown one page at a time.
+- When available, name aliases are displayed (in italics and smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
+- All names and aliases are obtained from the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) and [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt) data files.</li>
 - The search is performed on the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
     - `Copy Results` [copy the results as string to the clipboard]
@@ -190,7 +191,7 @@ The following utilities are currently available:
 
 ### Match Character
 
-- The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name, block) of Unicode characters matching a character, including through regular expressions.
+- The **Match Character** feature of the **Unicode Data Finder** utility displays a list of basic data (symbol, code point, name/aliases, block) of Unicode characters matching a character, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - Click on the <kbd>Match Decomposition</kbd> toggle button to extend the search to characters whose *decomposition mapping* matches the query string.
 - It is possible to choose how many characters are shown one page at a time.
@@ -205,7 +206,7 @@ The following utilities are currently available:
 
 ### List by Block
 
-- The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name, block) of Unicode characters belonging to the same block range.
+- The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name/aliases, block) of Unicode characters belonging to the same block range.
 - It is possible to choose how many characters are shown one page at a time.
 - A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 12.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
 - It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.

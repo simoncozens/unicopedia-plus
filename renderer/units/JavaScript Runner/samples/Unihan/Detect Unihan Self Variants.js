@@ -23,7 +23,7 @@ for (let codePoint in codePoints)
             }
             for (let variant of variants)
             {
-                variant = variant.split ('<')[0];
+                variant = variant.split ("<")[0];
                 if (variant === codePoint)
                 {
                     if (!(codePoint in selfVariants))

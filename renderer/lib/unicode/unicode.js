@@ -423,7 +423,7 @@ function characterToUtf8 (character)
 //
 function characterToUtf8Code (character)
 {
-    return characterToUtf8 (character).join (' ');
+    return characterToUtf8 (character).join (" ");
 }
 //
 function characterToUrlEncoding (character)
@@ -525,7 +525,7 @@ function getCharacterData (character)
         if ((parseInt (scriptExtension.first, 16) <= index) && (index <= parseInt (scriptExtension.last, 16)))
         {
             let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias]);
-            characterData.scriptExtensions = names.sort ((a, b) => a.localeCompare (b)).join (", ");
+            characterData.scriptExtensions = names.sort ((a, b) => a.localeCompare (b));
             break;
         }
     }
@@ -539,7 +539,7 @@ function getCharacterData (character)
     }
     if (extendedProperties.length > 0)
     {
-        characterData.extendedProperties = extendedProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
+        characterData.extendedProperties = extendedProperties.sort ((a, b) => a.localeCompare (b));
     }
     let coreProperties = [ ];
     for (let coreProperty of extraData.coreProperties)
@@ -551,7 +551,7 @@ function getCharacterData (character)
     }
     if (coreProperties.length > 0)
     {
-        characterData.coreProperties = coreProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
+        characterData.coreProperties = coreProperties.sort ((a, b) => a.localeCompare (b));
     }
     let emojiProperties = [ ];
     for (let emojiProperty of extraData.emojiProperties)
@@ -563,7 +563,7 @@ function getCharacterData (character)
     }
     if (emojiProperties.length > 0)
     {
-        characterData.emojiProperties = emojiProperties.sort ((a, b) => a.localeCompare (b)).join (", ");
+        characterData.emojiProperties = emojiProperties.sort ((a, b) => a.localeCompare (b));
     }
     for (let ideograph of extraData.equivalentUnifiedIdeographs)
     {
@@ -594,6 +594,12 @@ function getCharacterData (character)
     {
         let data = codePoints[codePoint];
         characterData.name = data.name;
+        characterData.alias = data.alias;
+        characterData.alternate = data.alternate;
+        characterData.control = data.control;
+        characterData.figment = data.figment;
+        characterData.abbreviation = data.abbreviation;
+        characterData.correction = data.correction;
         characterData.category = categories[data.category];
         characterData.combining = combiningClasses[data.combining];
         characterData.bidi = bidiClasses[data.bidi];
@@ -602,12 +608,10 @@ function getCharacterData (character)
         characterData.digit = data.digit;
         characterData.numeric = data.numeric;
         characterData.mirrored = mirrored[data.mirrored];
-        characterData.alias = data.alias;
         characterData.comment = data.comment;
         characterData.uppercase = uniHexify (data.uppercase);
         characterData.lowercase = uniHexify (data.lowercase);
         characterData.titlecase = uniHexify (data.titlecase);
-        characterData.correction = data.correction;
     }
     return characterData;
 }
@@ -629,7 +633,7 @@ function charactersToCodePoints (characters, delimited)
     {
         codePoints.push (characterToCodePoint (character));
     }
-    return (delimited) ? codePoints.map (codePoint => codePoint + ' ').join ('') : codePoints.join (' ');
+    return (delimited) ? codePoints.map (codePoint => codePoint + " ").join ("") : codePoints.join (" ");
 }
 //
 function codePointsToCharacters (codePoints)
@@ -655,10 +659,29 @@ function findCharactersByName (regex)
     let codePoints = unicodeData;
     for (let codePoint in codePoints)
     {
-        let codePointData = codePoints[codePoint];
-        if (codePointData.name.match (regex) || codePointData.alias.match (regex) || (codePointData.correction && codePointData.correction.match (regex)))
+        let data = codePoints[codePoint];
+        let names = [ ];
+        for (let name of [ data.name, data.alias, data.alternate, data.control, data.figment, data.abbreviation, data.correction ])
         {
-            characterList.push (String.fromCodePoint (parseInt (codePointData.code, 16)));
+            if (name)
+            {
+                if (Array.isArray (name))
+                {
+                    names = names.concat (name);
+                }
+                else
+                {
+                    names.push (name);
+                }
+            }
+        }
+        for (let name of names)
+        {
+            if (name.match (regex))
+            {
+                characterList.push (String.fromCodePoint (parseInt (data.code, 16)));
+                break;
+            }
         }
     }
     return characterList;
@@ -670,16 +693,16 @@ function findCharactersByMatch (regex, matchDecomposition)
     let codePoints = unicodeData;
     for (let codePoint in codePoints)
     {
-        let codePointData = codePoints[codePoint];
-        let character = String.fromCodePoint (parseInt (codePointData.code, 16));
+        let data = codePoints[codePoint];
+        let character = String.fromCodePoint (parseInt (data.code, 16));
         if (regex.test (character))
         {
             characterList.push (character);
         }
-        else if (matchDecomposition && codePointData.decomposition)
+        else if (matchDecomposition && data.decomposition)
         {
-            let codes = codePointData.decomposition.trim ().split (' ').filter (code => (code[0] !== '<'));
-            let decomposition = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ('');
+            let codes = data.decomposition.trim ().split (" ").filter (code => (code[0] !== "<"));
+            let decomposition = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ("");
             let matchStrings =
             [
                 decomposition,
@@ -715,6 +738,10 @@ function getCharacterBasicData (character)
         let data = codePoints[codePoint];
         characterBasicData.name = data.name;
         characterBasicData.alias = data.alias;
+        characterBasicData.alternate = data.alternate;
+        characterBasicData.control = data.control;
+        characterBasicData.figment = data.figment;
+        characterBasicData.abbreviation = data.abbreviation;
         characterBasicData.correction = data.correction;
     }
     let index = character.codePointAt (0);

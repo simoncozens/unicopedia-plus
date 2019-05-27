@@ -28,12 +28,12 @@ function fromRadical (index, simplified, verbose)
 //
 function fromStrokes (strokes, verbose)
 {
-    return `${strokes}`+ (verbose ? ' Stroke' + `${strokes > 1 ? 's': ''}` : ``);
+    return `${strokes}`+ (verbose ? " Stroke" + `${strokes > 1 ? "s": ""}` : ``);
 };
 //
 function fromRSValue (rsValue, verbose)
 {
-    let [ index, residual ] = rsValue.split ('.');
+    let [ index, residual ] = rsValue.split (".");
     let result =
     [
         `${fromRadical (parseInt (index), index.match (/'$/), verbose)}`,

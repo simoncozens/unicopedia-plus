@@ -21,7 +21,7 @@ function getFlagISOString (emoji)
         if (tagFlagFound)
         {
             let letters = Array.from (tagFlagFound[2]).map ((tag) => String.fromCodePoint (tag.codePointAt (0) - 0xE0000));
-            isoString = `${letters.join ('').toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}`;
+            isoString = `${letters.join ("").toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}`;
         }
     }
     return isoString;
@@ -56,7 +56,7 @@ function getAnnotations (dirname, filename)
         }
         else
         {
-            result[character].keywords = annotation.textContent.split ('|').map ((keyword) => { return keyword.trim (); });
+            result[character].keywords = annotation.textContent.split ("|").map ((keyword) => { return keyword.trim (); });
         }
     }
     return result;

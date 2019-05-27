@@ -100,7 +100,7 @@ module.exports.start = function (context)
             fileDialogs.saveTextFile
             (
                 "Save text file:",
-                [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+                [ { name: "Text (*.txt)", extensions: [ 'txt' ] } ],
                 defaultFolderPath,
                 (filePath) =>
                 {

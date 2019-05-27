@@ -14,12 +14,12 @@ let lastIndex;
 let rangeName;
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/UnicodeData.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'UnicodeData.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'UnicodeData.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
     if (line)
     {
-        let fields = line.split (';');
+        let fields = line.split (";");
         let found;
         if (found = fields[1].match (/^<(.+), First>$/))
         {
@@ -123,18 +123,27 @@ for (let line of lines)
 }
 //
 // Copy of https://www.unicode.org/Public/UNIDATA/NameAliases.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'NameAliases.txt'), { encoding: 'ascii' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'NameAliases.txt'), { encoding: 'ascii' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
-        let fields = line.split (';');
+        let fields = line.split (";");
         let code = fields[0];
         let alias = fields[1];
         let type = fields[2];
-        if (type === "correction")
+        let data = codePoints[`U+${code}`];
+        if (type in data)
         {
-            codePoints[`U+${code}`].correction = alias;
+            if (!Array.isArray (data[type]))
+            {
+                data[type] = [ data[type] ];
+            }
+            data[type].push (alias);
+        }
+        else
+        {
+            data[type] = alias;
         }
     }
 }

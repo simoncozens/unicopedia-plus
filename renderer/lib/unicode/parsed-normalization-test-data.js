@@ -9,7 +9,7 @@ let normalizationTestData = [ ];
 //
 function fieldToString (field)
 {
-    let codes = field.trim ().split (' ');
+    let codes = field.trim ().split (" ");
     let string = "";
     for (let code of codes)
     {
@@ -18,19 +18,19 @@ function fieldToString (field)
     return string;
 }
 // Copy of https://www.unicode.org/Public/UNIDATA/NormalizationTest.txt
-lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'NormalizationTest.txt'), { encoding: 'utf8' }).split ('\n');
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'NormalizationTest.txt'), { encoding: 'utf8' }).split ("\n");
 for (let line of lines)
 {
-    if (line && (line[0] !== '#'))
+    if (line && (line[0] !== "#"))
     {
-        if (line[0] === '@')
+        if (line[0] === "@")
         {
             let found = line.match (/@Part(\d+)/);
             currentData = normalizationTestData[parseInt (found[1])] = { };
         }
         else
         {
-            let fields = line.split (';');
+            let fields = line.split (";");
             let source = fieldToString (fields[0]);
             let nfc = fieldToString (fields[1]);
             let nfd = fieldToString (fields[2]);

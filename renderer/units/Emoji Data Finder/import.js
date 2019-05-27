@@ -80,7 +80,7 @@ module.exports.start = function (context)
         fileDialogs.saveTextFile
         (
             "Save text file:",
-            [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+            [ { name: "Text (*.txt)", extensions: [ 'txt' ] } ],
             defaultFolderPath,
             (filePath) =>
             {
@@ -628,7 +628,7 @@ module.exports.start = function (context)
                 }
             },
             {
-                label: "Remove Duplicate Emoji",
+                label: "Remove Duplicate Emoji", // "Delete Emoji Duplicates"
                 click: () => 
                 {
                     let uniqueEmoji = { };

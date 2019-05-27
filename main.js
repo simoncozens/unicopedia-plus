@@ -136,7 +136,7 @@ else
             [ "CPU Model", os.cpus ()[0].model ],
             [ "CPU Speed (MHz)", os.cpus ()[0].speed ]
         ];
-        let systemInfo = infos.map (info => (Array.isArray (info) ? `${info[0]}: ${info[1]}` : info) + '\n').join ('');
+        let systemInfo = infos.map (info => (Array.isArray (info) ? `${info[0]}: ${info[1]}` : info) + "\n").join ("");
         clipboard.writeText (systemInfo);
     }
     //

@@ -366,6 +366,7 @@
     vertical-align: middle;
     font-size: 36px;
     line-height: 1.2em;
+    height: 1.6em;
     min-width: 2.5em;
     max-width: 2.5em;
     padding: 0.2em 0.1em;
@@ -386,24 +387,19 @@
 {
     text-align: left;
     vertical-align: middle;
-    padding: 0.5em;
-}
-
-#unicode-data-finder-unit .search-data .names .name,
-#unicode-data-finder-unit .search-data .names .alias,
-#unicode-data-finder-unit .search-data .names .correction
-{
-    margin: 0.2em 0;
+    padding: 0.25em 0.5em;
 }
 
 #unicode-data-finder-unit .search-data .names .name
 {
+    margin: 0.2em 0;
     line-height: 1em;
 }
 
 #unicode-data-finder-unit .search-data .names .alias,
 #unicode-data-finder-unit .search-data .names .correction
 {
+    margin: 0.2em 0;
     font-size: 0.85em;
     font-style: italic;
     line-height: 1em;

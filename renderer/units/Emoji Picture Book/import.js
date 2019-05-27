@@ -83,7 +83,7 @@ module.exports.start = function (context)
             if (tagFlagFound)
             {
                 let letters = Array.from (tagFlagFound[2]).map ((tag) => String.fromCodePoint (tag.codePointAt (0) - 0xE0000));
-                toolTip += ` [${letters.join ('').toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}]`;
+                toolTip += ` [${letters.join ("").toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}]`;
             }
         }
         toolTip += "\n" + emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");

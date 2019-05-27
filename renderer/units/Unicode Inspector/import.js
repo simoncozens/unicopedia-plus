@@ -101,7 +101,7 @@ module.exports.start = function (context)
             fileDialogs.saveTextFile
             (
                 "Save text file:",
-                [ { name: 'Text (*.txt)', extensions: [ 'txt' ] } ],
+                [ { name: "Text (*.txt)", extensions: [ 'txt' ] } ],
                 defaultFolderPath,
                 (filePath) =>
                 {
@@ -206,6 +206,10 @@ module.exports.start = function (context)
                     [
                         { name: "Name", value: name },
                         { name: "Alias", value: data.alias },
+                        { name: "Alternate", value: data.alternate },
+                        { name: "Control", value: data.control },
+                        { name: "Figment", value: data.figment },
+                        { name: "Abbreviation", value: data.abbreviation },
                         { name: "Correction", value: data.correction },
                         { name: "Age", value: data.age, toolTip: data.ageDate },
                         { name: "Plane", value: data.planeName, toolTip: data.planeRange },
@@ -230,23 +234,6 @@ module.exports.start = function (context)
                         { name: "Emoji Properties", value: data.emojiProperties }
                     ];
                     //
-                    function appendText (node, text)
-                    {
-                        text = text.replace (/ (.)$/, "\u00A0$1");
-                        let regex = /\b\w+(-\w+)+\b/;
-                        let matches;
-                        while (matches = text.match (regex))
-                        {
-                            node.appendChild (document.createTextNode (text.slice (0, matches.index)));
-                            let noWrap = document.createElement ('span');
-                            noWrap.style = 'white-space: nowrap;';
-                            noWrap.textContent = matches[0];
-                            node.appendChild (noWrap);
-                            text = text.slice (matches.index + matches[0].length);
-                        }
-                        node.appendChild (document.createTextNode (text));
-                    }
-                    //
                     for (let property of properties)
                     {
                         if (property.value)
@@ -264,8 +251,7 @@ module.exports.start = function (context)
                             field.appendChild (document.createTextNode (": "));
                             let value = document.createElement ('span');
                             value.className = 'value';
-                            // appendText (value, property.value);
-                            value.textContent = property.value;
+                            value.textContent = Array.isArray (property.value) ? property.value.join (", ") : property.value;
                             field.appendChild (value);
                             cell.appendChild (field);
                         }

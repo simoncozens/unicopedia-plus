@@ -203,23 +203,6 @@ module.exports.start = function (context)
                 { name: "Equivalent Unified Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
             ];
             //
-            function appendText (node, text)
-            {
-                text = text.replace (/ (.)$/, "\u00A0$1");
-                let regex = /\b\w+(-\w+)+\b/;
-                let matches;
-                while (matches = text.match (regex))
-                {
-                    node.appendChild (document.createTextNode (text.slice (0, matches.index)));
-                    let noWrap = document.createElement ('span');
-                    noWrap.style = 'white-space: nowrap;';
-                    noWrap.textContent = matches[0];
-                    node.appendChild (noWrap);
-                    text = text.slice (matches.index + matches[0].length);
-                }
-                node.appendChild (document.createTextNode (text));
-            }
-            //
             let unicodeInfo = document.createElement ('div');
             unicodeInfo.className = 'unicode-info';
             for (let unicodeField of unicodeFields)
@@ -239,8 +222,7 @@ module.exports.start = function (context)
                     field.appendChild (document.createTextNode (": "));
                     let value = document.createElement ('span');
                     value.className = 'value';
-                    // appendText (value, unicodeField.value);
-                    value.textContent = unicodeField.value;
+                    value.textContent = Array.isArray (unicodeField.value) ? unicodeField.value.join (", ") : unicodeField.value;
                     field.appendChild (value);
                     unicodeInfo.appendChild (field);
                 }
@@ -282,10 +264,10 @@ module.exports.start = function (context)
                             if (rsTag === "kRSAdobe_Japan1_6")
                             {
                                 let parsed = rsTagValue.match (/^([CV])\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
-                                if (parsed[1] === 'C')
+                                if (parsed[1] === "C")
                                 {
-                                    let [ index, strokes, residual ] = parsed[2].split ('.');
-                                    rsValues.push ([ index, residual ].join ('.'));
+                                    let [ index, strokes, residual ] = parsed[2].split (".");
+                                    rsValues.push ([ index, residual ].join ("."));
                                 }
                             }
                             else

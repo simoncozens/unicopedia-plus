@@ -69,7 +69,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
         header.appendChild (codePointHeader);
         let nameHeader = document.createElement ('th');
         nameHeader.className = 'name-header';
-        nameHeader.textContent = "Name";
+        nameHeader.textContent = "Name\xA0/\xA0Aliases";
         header.appendChild (nameHeader);
         let blockNameHeader = document.createElement ('th');
         blockNameHeader.className = 'block-name-header';
@@ -130,20 +130,55 @@ module.exports.create = function (characters, params, highlightedCharacter)
             name.className = 'name';
             name.textContent = data.name || "<unassigned>";
             names.appendChild (name);
-            if (data.alias)
+            let aliases = [ ];
+            for (let alias of [ data.alias, data.alternate, data.control, data.figment ])
+            {
+                if (alias)
+                {
+                    if (Array.isArray (alias))
+                    {
+                        aliases = aliases.concat (alias);
+                    }
+                    else
+                    {
+                        aliases.push (alias);
+                    }
+                }
+            }
+            aliases = [... new Set (aliases)]; // Remove duplicates
+            let aliasesString = aliases.join (", ");
+            let abbrevations = [ ];
+            if (data.abbreviation)
+            {
+                if (Array.isArray (data.abbreviation))
+                {
+                    abbrevations = abbrevations.concat (data.abbreviation);
+                }
+                else
+                {
+                    abbrevations.push (data.abbreviation);
+                }
+            }
+            let abbrevationsString = abbrevations.join (", ");
+            if (aliasesString || abbrevationsString)
             {
                 let alias = document.createElement ('div');
                 alias.className = 'alias';
-                alias.textContent = data.alias;
+                alias.textContent = aliasesString;
+                if (aliasesString && abbrevationsString)
+                {
+                    alias.textContent += "; ";
+                }
+                alias.textContent += abbrevationsString;
                 names.appendChild (alias);
             }
             if (data.correction)
             {
-                let alias = document.createElement ('div');
-                alias.className = 'correction';
-                alias.textContent = data.correction;
-                alias.title = "CORRECTION";
-                names.appendChild (alias);
+                let correction = document.createElement ('div');
+                correction.className = 'correction';
+                correction.textContent = data.correction;
+                correction.title = "Name Correction";
+                names.appendChild (correction);
             }
             row.appendChild (names);
             let blockName = document.createElement ('td');

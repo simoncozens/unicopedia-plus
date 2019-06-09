@@ -178,6 +178,10 @@
                 "string": "♠♥♣♦\n♤♡♧♢"
             },
             {
+                "label": "Chess Pieces",
+                "string": "♔♕♖♗♘♙\n♚♛♜♝♞♟"
+            },
+            {
                 "label": "Japanese Era Names",
                 "string": "㋿㍻㍼㍽㍾"
             },

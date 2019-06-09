@@ -165,9 +165,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 nameSearchButton.click ();
             }
         }
@@ -338,9 +338,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 matchSearchButton.click ();
             }
         }
@@ -525,8 +525,8 @@ module.exports.start = function (context)
     //
     const keyIndex = require ('../../lib/key-index.js');
     //
-    const firstIndex = keyIndex.build (allBlocks, "firstIndex", (a, b) => a - b);
-    const nameIndex = keyIndex.build (allBlocks, "name", (a, b) => a.localeCompare (b));
+    const firstIndex = keyIndex.build (allBlocks, 'firstIndex', (a, b) => a - b);
+    const nameIndex = keyIndex.build (allBlocks, 'name', (a, b) => a.localeCompare (b));
     //
     function updateBlockResults (hitCount, totalCount)
     {
@@ -641,9 +641,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 blockGoButton.click ();
             }
         }
@@ -655,7 +655,7 @@ module.exports.start = function (context)
         {
             if (event.altKey)
             {
-                if (event.key === "ArrowUp")
+                if (event.key === 'ArrowUp')
                 {
                     event.preventDefault ();
                     if (blockSpecimenHistoryIndex === -1)
@@ -673,7 +673,7 @@ module.exports.start = function (context)
                         event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
-                else if (event.key === "ArrowDown")
+                else if (event.key === 'ArrowDown')
                 {
                     event.preventDefault ();
                     blockSpecimenHistoryIndex--;

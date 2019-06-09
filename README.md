@@ -45,6 +45,7 @@ The following utilities are currently available:
 
 - Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
 - Font variants of the CJK characters can be visualized either vertically or horizontally. Use the <kbd>Writing Mode</kbd> drop-down menu to toggle between the two modes.
+- Holding down the mouse button on top on any character frame displays momentarily the same glyph for all language flavors. This is especially useful to quickly spot the differences between glyph variations.
 - CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
 - It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) or [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data files.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
@@ -232,6 +233,7 @@ The following utilities are currently available:
     - [DerivedCoreProperties.txt](https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt)
     - [EastAsianWidth.txt](https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt)
     - [EquivalentUnifiedIdeograph.txt](https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt)
+    - [LineBreak.txt](https://www.unicode.org/Public/UNIDATA/LineBreak.txt)
     - [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt)
     - [PropList.txt](https://www.unicode.org/Public/UNIDATA/PropList.txt)
     - [Scripts.txt](https://www.unicode.org/Public/UNIDATA/Scripts.txt)

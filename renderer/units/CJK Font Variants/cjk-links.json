@@ -259,6 +259,12 @@
     ],
     [
         {
+            "name": "Source Han Serif",
+            "href": "https://source.typekit.com/source-han-serif/"
+        }
+    ],
+    [
+        {
             "name": "font-variant-east-asian - CSS: Cascading Style Sheets | MDN",
             "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-east-asian"
         }

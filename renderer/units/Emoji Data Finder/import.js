@@ -129,7 +129,7 @@ module.exports.start = function (context)
     //
     function getEmojiCodePoints (emoji)
     {
-        return emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");
+        return "<" + emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&").split (" ").join (", ") + ">";
     }
     //
     function getEmojiShortName (emoji)
@@ -215,8 +215,7 @@ module.exports.start = function (context)
             codesData.className = 'codes-data';
             let codes = document.createElement ('div');
             codes.className = 'codes';
-            let code = getEmojiCodePoints (character);
-            codes.textContent = code;
+            codes.textContent = getEmojiCodePoints (character);
             codesData.appendChild (codes);
             let status;
             if (emojiList[character].isComponent)
@@ -253,9 +252,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault ();    // ??
+                event.preventDefault ();
                 nameSearchButton.click ();
             }
         }
@@ -414,9 +413,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault ();    // ??
+                event.preventDefault ();
                 sequenceSearchButton.click ();
             }
         }

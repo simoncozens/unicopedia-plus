@@ -130,6 +130,16 @@
         }
     ],
     [
+         {
+            "name": "UAX #34: Unicode Named Character Sequences",
+            "href": "https://www.unicode.org/reports/tr34/"
+        },
+        {
+            "name": "NamedSequences.txt",
+            "href": "https://unicode.org/Public/UNIDATA/NamedSequences.txt"
+        }
+    ],
+    [
         {
             "name": "The Unicode Standard, Version 12.1 - Chapter 3: Conformance - ch03.pdf",
             "href": "https://www.unicode.org/versions/Unicode12.1.0/ch03.pdf"
@@ -171,6 +181,24 @@
         {
             "name": "NamesList.txt",
             "href": "https://www.unicode.org/Public/UNIDATA/NamesList.txt"
+        }
+    ],
+    [
+        {
+            "name": "UAX #29: Unicode Text Segmentation",
+            "href": "https://www.unicode.org/reports/tr29/"
+        },
+        {
+            "name": "Grapheme Break Chart",
+            "href": "https://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakTest.html"
+        },
+        {
+            "name": "GraphemeBreakProperty.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakProperty.txt"
+        },
+        {
+            "name": "GraphemeBreakTest.txt",
+            "href": "https://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakTest.txt"
         }
     ],
     [

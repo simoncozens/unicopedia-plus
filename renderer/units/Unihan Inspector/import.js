@@ -588,9 +588,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 lookupButton.click ();
             }
         }
@@ -602,7 +602,7 @@ module.exports.start = function (context)
         {
             if (event.altKey)
             {
-                if (event.key === "ArrowUp")
+                if (event.key === 'ArrowUp')
                 {
                     event.preventDefault ();
                     if (unihanHistoryIndex === -1)
@@ -620,7 +620,7 @@ module.exports.start = function (context)
                         event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
-                else if (event.key === "ArrowDown")
+                else if (event.key === 'ArrowDown')
                 {
                     event.preventDefault ();
                     unihanHistoryIndex--;

@@ -226,6 +226,7 @@ module.exports.start = function (context)
                         { name: "Titlecase", value: data.titlecase },
                         { name: numericType, value: data.numeric },
                         { name: "Numeric Value", value: numericValue },
+                        { name: "Line Break", value: data.lineBreak },
                         { name: "East Asian Width", value: data.eastAsianWidth },
                         { name: "Vertical Orientation", value: data.verticalOrientation },
                         { name: "Equivalent Unified Ideograph", value: data.equivalentUnifiedIdeograph },
@@ -289,7 +290,7 @@ module.exports.start = function (context)
     );
     codePointsInput.addEventListener
     (
-        'blur',
+        'change',
         event =>
         {
             event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
@@ -300,9 +301,9 @@ module.exports.start = function (context)
         'keypress',
         event =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
             }
         }

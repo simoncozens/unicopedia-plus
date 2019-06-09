@@ -237,9 +237,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 tagSearchButton.click ();
             }
         }
@@ -723,8 +723,8 @@ module.exports.start = function (context)
     //
     const keyIndex = require ('../../lib/key-index.js');
     //
-    const nameIndex = keyIndex.build (unihanBlocks, "name", (a, b) => a.localeCompare (b));
-    const firstIndex = keyIndex.build (unihanBlocks, "first", (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
+    const nameIndex = keyIndex.build (unihanBlocks, 'name', (a, b) => a.localeCompare (b));
+    const firstIndex = keyIndex.build (unihanBlocks, 'first', (a, b) =>  parseInt (a, 16) - parseInt (b, 16));
     //
     // Unihan character
     let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
@@ -867,9 +867,9 @@ module.exports.start = function (context)
         'keypress',
         (event) =>
         {
-            if (event.key === "Enter")
+            if (event.key === 'Enter')
             {
-                event.preventDefault (); // ??
+                event.preventDefault ();
                 gridGoButton.click ();
             }
         }
@@ -881,7 +881,7 @@ module.exports.start = function (context)
         {
             if (event.altKey)
             {
-                if (event.key === "ArrowUp")
+                if (event.key === 'ArrowUp')
                 {
                     event.preventDefault ();
                     if (gridSpecimenHistoryIndex === -1)
@@ -899,7 +899,7 @@ module.exports.start = function (context)
                         event.currentTarget.dispatchEvent (new Event ('input'));
                     }
                 }
-                else if (event.key === "ArrowDown")
+                else if (event.key === 'ArrowDown')
                 {
                     event.preventDefault ();
                     gridSpecimenHistoryIndex--;

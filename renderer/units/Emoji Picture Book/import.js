@@ -69,13 +69,13 @@ module.exports.start = function (context)
     //
     function getEmojiToolTip (emoji)
     {
-        let toolTip = emojiList[emoji].name.toUpperCase ();
+        let emojiName = emojiList[emoji].name.toUpperCase ();
         let flagFound = emoji.match (flagEmojiRegex);
         if (flagFound)
         {
             let firstLetter = String.fromCodePoint (flagFound[1].codePointAt (0) - "🇦".codePointAt (0) + "A".codePointAt (0));
             let secondLetter = String.fromCodePoint (flagFound[2].codePointAt (0) - "🇦".codePointAt (0) + "A".codePointAt (0));
-            toolTip += ` [${firstLetter}${secondLetter}]`;
+            emojiName += ` [${firstLetter}${secondLetter}]`;
         }
         else
         {
@@ -83,11 +83,11 @@ module.exports.start = function (context)
             if (tagFlagFound)
             {
                 let letters = Array.from (tagFlagFound[2]).map ((tag) => String.fromCodePoint (tag.codePointAt (0) - 0xE0000));
-                toolTip += ` [${letters.join ("").toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}]`;
+                emojiName += ` [${letters.join ("").toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}]`;
             }
         }
-        toolTip += "\n" + emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");
-        return toolTip;
+        // U+034F COMBINING GRAPHEME JOINER
+        return emojiName + "\n<" + emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\u034F\+$&").split (" ").join (", ") + ">";
     }
     //
     const defaultPrefs =

@@ -133,6 +133,106 @@ module.exports.start = function (context)
     //
     const useFooter = true;
     //
+    function getTooltip (wideCharacter)
+    {
+        let tooltip = [ ];
+        for (let character of wideCharacter)
+        {
+            let data = unicode.getCharacterBasicData (character);
+            tooltip.push (`${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${data.name}`); // U+034F COMBINING GRAPHEME JOINER
+        }
+        return "<" + tooltip.join (",\n") + ">";
+    }
+    //
+    const blendingEffect = 'none'; // 'none', 'normal', 'multiply', 'difference'
+    //
+    let currentElement = null;
+    //
+    function showDifferences (event)
+    {
+        event.preventDefault ();
+        currentElement = event.currentTarget;
+        let languageVariants = sheet.querySelectorAll (`.cjk-data[data-index="${currentElement.dataset.index}"]`);
+        for (let languageVariant of languageVariants)
+        {
+            let base = languageVariant.querySelector ('.cjk-data-base');
+            switch (blendingEffect)
+            {
+                case 'none':
+                    base.classList.add ('hidden');
+                    break;
+                case 'normal':
+                    base.style.color = 'var(--color-base)';
+                    break;
+                case 'multiply':
+                    base.style.color = 'var(--color-base)';
+                    break;
+                case 'difference':
+                    base.style.color = 'black';
+                    break;
+            }
+            let overlay = languageVariant.querySelector ('.cjk-data-overlay');
+            overlay.lang = currentElement.lang;
+            switch (blendingEffect)
+            {
+                case 'none':
+                    break;
+                case 'normal':
+                    overlay.style.color = 'var(--color-overlay)';
+                    overlay.style.mixBlendMode = 'normal';
+                    break;
+                case 'multiply':
+                    overlay.style.color = 'var(--color-overlay)';
+                    overlay.style.mixBlendMode = 'multiply';
+                    break;
+                case 'difference':
+                    overlay.style.color = 'var(--color-overlay)';
+                    overlay.style.mixBlendMode = 'difference';
+                    break;
+            }
+            overlay.classList.remove ('hidden');
+        }
+    }
+    //
+    function hideDifferences (event)
+    {
+        if (currentElement)
+        {
+            let languageVariants = sheet.querySelectorAll (`.cjk-data[data-index="${currentElement.dataset.index}"]`);
+            for (let languageVariant of languageVariants)
+            {
+                let base = languageVariant.querySelector ('.cjk-data-base');
+                switch (blendingEffect)
+                {
+                    case 'none':
+                        base.classList.remove ('hidden');
+                        break;
+                    case 'normal':
+                    case 'multiply':
+                    case 'difference':
+                        base.style = null;
+                        break;
+                }
+                let overlay = languageVariant.querySelector ('.cjk-data-overlay');
+                switch (blendingEffect)
+                {
+                    case 'none':
+                        break;
+                    case 'normal':
+                    case 'multiply':
+                    case 'difference':
+                        overlay.style = null;
+                        break;
+                }
+                overlay.classList.add ('hidden');
+            }
+        }
+        else
+        {
+            currentElement = null;
+        }
+    }
+    //
     function createSheet (wideCharacters)
     {
         while (sheet.firstChild)
@@ -145,6 +245,7 @@ module.exports.start = function (context)
         {
             if (writingModeSelect.value === 'vertical')
             {
+                // Vertical writing mode
                 let table = document.createElement ('table');
                 table.className= 'table';
                 let headerRow = document.createElement ('tr');
@@ -171,14 +272,14 @@ module.exports.start = function (context)
                 table.appendChild (headerRow);
                 wideCharacters.forEach
                 (
-                    wideCharacter =>
+                    (wideCharacter, wideCharacterIndex) =>
                     {
                         let dataRow = document.createElement ('tr');
                         languages.forEach
                         (
-                            (language, index) =>
+                            (language, languageIndex) =>
                             {
-                                if (index > 0)
+                                if (languageIndex > 0)
                                 {
                                     let emptyGap = document.createElement ('td');
                                     emptyGap.className = 'empty-gap';
@@ -187,12 +288,26 @@ module.exports.start = function (context)
                                 }
                                 let data = document.createElement ('td');
                                 data.className = 'cjk-data';
+                                data.title = getTooltip (wideCharacter);
                                 data.lang = language.tag;
-                                data.title = unicode.charactersToCodePoints (wideCharacter);
-                                let span = document.createElement ('span');
-                                span.textContent = wideCharacter;
-                                span.className = 'cjk-char';
-                                data.appendChild (span);
+                                data.dataset.index = wideCharacterIndex;
+                                data.addEventListener ('mousedown', showDifferences);
+                                document.addEventListener ('mouseup', hideDifferences);
+                                let base = document.createElement ('div');
+                                base.className = 'cjk-data-base';
+                                let baseChar = document.createElement ('span');
+                                baseChar.className = 'cjk-char';
+                                baseChar.textContent = wideCharacter;
+                                base.appendChild (baseChar)
+                                data.appendChild (base);
+                                let overlay = document.createElement ('div');
+                                overlay.className = 'cjk-data-overlay';
+                                overlay.classList.add ('hidden');
+                                let overlayChar = document.createElement ('span');
+                                overlayChar.className = 'cjk-char';
+                                overlayChar.textContent = wideCharacter;
+                                overlay.appendChild (overlayChar)
+                                data.appendChild (overlay);
                                 dataRow.appendChild (data);
                             }
                         );
@@ -208,13 +323,14 @@ module.exports.start = function (context)
             }
             else
             {
+                // Horizontal writing mode
                 let table = document.createElement ('table');
                 table.className= 'table';
                 languages.forEach
                 (
-                    (language, index) =>
+                    (language, languageIndex) =>
                     {
-                        if (index > 0)
+                        if (languageIndex > 0)
                         {
                             let emptyRow = document.createElement ('tr');
                             emptyRow.className = 'empty-row';
@@ -240,16 +356,30 @@ module.exports.start = function (context)
                         dataRow.appendChild (header);
                         wideCharacters.forEach
                         (
-                            wideCharacter =>
+                            (wideCharacter, wideCharacterIndex) =>
                             {
                                 let data = document.createElement ('td');
                                 data.className = 'cjk-data';
+                                data.title = getTooltip (wideCharacter);
                                 data.lang = language.tag;
-                                data.title = unicode.charactersToCodePoints (wideCharacter);
-                                let span = document.createElement ('span');
-                                span.textContent = wideCharacter;
-                                span.className = 'cjk-char';
-                                data.appendChild (span);
+                                data.dataset.index = wideCharacterIndex;
+                                data.addEventListener ('mousedown', showDifferences);
+                                document.addEventListener ('mouseup', hideDifferences);
+                                let base = document.createElement ('div');
+                                base.className = 'cjk-data-base';
+                                let baseChar = document.createElement ('span');
+                                baseChar.className = 'cjk-char';
+                                baseChar.textContent = wideCharacter;
+                                base.appendChild (baseChar)
+                                data.appendChild (base);
+                                let overlay = document.createElement ('div');
+                                overlay.className = 'cjk-data-overlay';
+                                overlay.classList.add ('hidden');
+                                let overlayChar = document.createElement ('span');
+                                overlayChar.className = 'cjk-char';
+                                overlayChar.textContent = wideCharacter;
+                                overlay.appendChild (overlayChar)
+                                data.appendChild (overlay);
                                 dataRow.appendChild (data);
                             }
                         );
@@ -270,57 +400,47 @@ module.exports.start = function (context)
         }
     }
     //
+    let iterator = Intl.v8BreakIterator ([ ], { type: 'character' } );
+    //
+    function segmentText (text)
+    {
+        let graphemes = [ ];
+        iterator.adoptText (text);
+        let pos = iterator.first ();
+        while (pos !== -1)
+        {
+            let nextPos = iterator.next ();
+            if (nextPos === -1) break;
+            graphemes.push (text.slice (pos, nextPos));
+            pos = nextPos;
+        }
+        return graphemes;
+    }
+    //
     function propertyRegex (property)
     {
         return regexUnicode.build (`\\p{${property}}`, { useRegex: true });
     }
     //
-    const graphemeBaseRegex = propertyRegex ('Grapheme_Base');
-    const variationSelectorRegex = propertyRegex ('Variation_Selector');
-    const graphemeExtendRegex = propertyRegex ('Grapheme_Extend');
+    const emojiRegex = propertyRegex ('Emoji');
+    //
+    function isWideGrapheme (grapheme)
+    {
+        let character = (Array.from (grapheme))[0];
+        let isWide =
+        (!emojiRegex.test (character))
+        &&
+        (
+            unicode.matchEastAsianWidth (character, [ 'F', 'W' ])
+            ||
+            (unicode.matchEastAsianWidth (character, [ 'A' ]) && unicode.matchVerticalOrientation (character, [ 'U', 'Tu' ]))
+        );
+        return isWide;
+    }
     //
     function wideSplit (string)
     {
-        let wideCharacters = [ ];
-        let state = 'start';
-        for (let character of string)
-        {
-            if
-            (
-                // Temporary hack until regexpu-core module gets updated to Unicode 12.1!
-                (graphemeBaseRegex.test (character) || (character === "\u32FF"))
-                &&
-                (
-                    unicode.matchEastAsianWidth (character, [ 'F', 'W' ])
-                    ||
-                    (unicode.matchEastAsianWidth (character, [ 'A' ]) && unicode.matchVerticalOrientation (character, [ 'U' ]))
-                )
-            )
-            {
-                wideCharacters.push (character);
-                state = 'base';
-            }
-            else if (variationSelectorRegex.test (character) && unicode.matchEastAsianWidth (character, [ 'A' ]))
-            {
-                if (state === 'base')
-                {
-                    wideCharacters[wideCharacters.length - 1] += character;
-                    state = 'variation';
-                }
-            }
-            else if (graphemeExtendRegex.test (character) && unicode.matchEastAsianWidth (character, [ 'F', 'W' ]))
-            {
-                if ((state === 'base') || (state === 'variation') || (state === 'extended'))
-                {
-                    wideCharacters[wideCharacters.length - 1] += character;
-                    state = 'extended';
-                }
-            }
-            else
-            {
-                state = 'start';
-            }
-        }
+        let wideCharacters = segmentText (string).filter (isWideGrapheme);
         return wideCharacters;
     }
     //
@@ -378,25 +498,13 @@ module.exports.start = function (context)
     );
     codePointsInput.addEventListener
     (
-        'blur',
+        'change',
         event =>
         {
             event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
         }
     );
-    codePointsInput.addEventListener
-    (
-        'keypress',
-        event =>
-        {
-            if (event.key === "Enter")
-            {
-                event.preventDefault (); // ??
-                event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
-            }
-        }
-    );
-    //
+   //
     instructions.open = prefs.instructions;
     //
     references.open = prefs.references;

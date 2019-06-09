@@ -8,8 +8,12 @@
                 "string": "【漢字】"
             },
             {
+                "label": "Double Angle",
+                "string": "《画像》"
+            },
+            {
                 "label": "Plain Corner",
-                "string": "「画像」"
+                "string": "「令和」"
             },
             {
                 "label": "Tortoise Shell",
@@ -112,6 +116,14 @@
         "items":
         [
             {
+                "label": "Decomposed Hiragana",
+                "string": "ひらがな"
+            },
+            {
+                "label": "Decomposed Katakana",
+                "string": "ピカドン"
+            },
+            {
                 "label": "Ghost Character",
                 "string": "㌬・パーツ"
             },
@@ -148,6 +160,16 @@
             {
                 "label": "Radical 162 Walk",
                 "string": "辵辶辶辺遊遜邊"
+            }
+        ]
+    },
+    {
+        "label": "Korean",
+        "items":
+        [
+            {
+                "label": "Hangul Syllables",
+                "string": "간간간"
             }
         ]
     },

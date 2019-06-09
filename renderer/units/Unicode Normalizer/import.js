@@ -123,7 +123,7 @@ module.exports.start = function (context)
                 let charactersString = charactersStrings[index];
                 let codePointsString = codePointsStrings[index];
                 charactersString.textContent = characters.normalize (charactersString.dataset.form);
-                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent, true);
+                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent);
             }
         }
     );
@@ -142,28 +142,16 @@ module.exports.start = function (context)
                 let charactersString = charactersStrings[index];
                 let codePointsString = codePointsStrings[index];
                 charactersString.textContent = characters.normalize (charactersString.dataset.form);
-                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent, true);
+                codePointsString.textContent = unicode.charactersToCodePoints (charactersString.textContent);
             }
         }
     );
     codePointsInput.addEventListener
     (
-        'blur',
+        'change',
         event =>
         {
             event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
-        }
-    );
-    codePointsInput.addEventListener
-    (
-        'keypress',
-        event =>
-        {
-            if (event.key === "Enter")
-            {
-                event.preventDefault (); // ??
-                event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
-            }
         }
     );
     //

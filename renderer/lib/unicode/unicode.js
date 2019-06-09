@@ -352,6 +352,54 @@ const verticalOrientations =
     "Tr": "Transformed_Rotated" // Transformed typographically, with fallback to Rotated
 };
 //
+// https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
+const lineBreaks =
+{
+    "AI": "Ambiguous",
+    "AL": "Alphabetic",
+    "B2": "Break_Both",
+    "BA": "Break_After",
+    "BB": "Break_Before",
+    "BK": "Mandatory_Break",
+    "CB": "Contingent_Break",
+    "CJ": "Conditional_Japanese_Starter",
+    "CL": "Close_Punctuation",
+    "CM": "Combining_Mark",
+    "CP": "Close_Parenthesis",
+    "CR": "Carriage_Return",
+    "EB": "E_Base",
+    "EM": "E_Modifier",
+    "EX": "Exclamation",
+    "GL": "Glue",
+    "H2": "H2",
+    "H3": "H3",
+    "HL": "Hebrew_Letter",
+    "HY": "Hyphen",
+    "ID": "Ideographic",
+    "IN": "Inseparable",
+    "IS": "Infix_Numeric",
+    "JL": "JL",
+    "JT": "JT",
+    "JV": "JV",
+    "LF": "Line_Feed",
+    "NL": "Next_Line",
+    "NS": "Nonstarter",
+    "NU": "Numeric",
+    "OP": "Open_Punctuation",
+    "PO": "Postfix_Numeric",
+    "PR": "Prefix_Numeric",
+    "QU": "Quotation",
+    "RI": "Regional_Indicator",
+    "SA": "Complex_Context",
+    "SG": "Surrogate",
+    "SP": "Space",
+    "SY": "Break_Symbols",
+    "WJ": "Word_Joiner",
+    "XX": "Unknown",
+    "ZW": "ZWSpace",
+    "ZWJ": "ZWJ"
+};
+//
 // https://en.wikibooks.org/wiki/Unicode/Versions
 // https://www.unicode.org/history/publicationdates.html
 const versionDates =
@@ -586,6 +634,14 @@ function getCharacterData (character)
         if ((parseInt (verticalOrientation.first, 16) <= index) && (index <= parseInt (verticalOrientation.last, 16)))
         {
             characterData.verticalOrientation = verticalOrientations[verticalOrientation.orientation];
+            break;
+        }
+    }
+    for (let lineBreak of extraData.lineBreaks)
+    {
+        if ((parseInt (lineBreak.first, 16) <= index) && (index <= parseInt (lineBreak.last, 16)))
+        {
+            characterData.lineBreak = lineBreaks[lineBreak.property];
             break;
         }
     }

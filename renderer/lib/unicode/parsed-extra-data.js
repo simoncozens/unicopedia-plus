@@ -167,6 +167,22 @@ for (let line of lines)
     }
 }
 //
+let lineBreaks = [ ];
+//
+// Copy of https://www.unicode.org/Public/UNIDATA/LineBreak.txt
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'LineBreak.txt'), { encoding: 'ascii' }).split ("\n");
+for (let line of lines)
+{
+    if (line && (line[0] !== "#"))
+    {
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?;(\w+)\s+#/);
+        if (found)
+        {
+            lineBreaks.push ({ first: found[1], last: found[2] || found[1], property: found[3] });
+        }
+    }
+}
+//
 module.exports =
 {
     versions,
@@ -178,6 +194,7 @@ module.exports =
     scriptExtensions,
     equivalentUnifiedIdeographs,
     eastAsianWidths,
-    verticalOrientations
+    verticalOrientations,
+    lineBreaks
 };
 //

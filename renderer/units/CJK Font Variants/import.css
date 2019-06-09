@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+#cjk-font-variants-unit
+{
+    --color-frame: hsl(196, 100%, 50%);
+    --color-background: hsl(196, 100%, 99%);
+    --color-base: hsl(16, 100%, 50%);
+    --color-overlay: hsl(196, 100%, 50%);
+}
+
 #cjk-font-variants-unit .actions
 {
     padding: 0;
@@ -55,62 +63,34 @@
     padding: 4px 6px;
 }
 
-#cjk-font-variants-unit .cjk-data:lang(ja)
+#cjk-font-variants-unit .cjk-data-base:lang(ja),
+#cjk-font-variants-unit .cjk-data-overlay:lang(ja)
 {
     font-family: "Sans CJK JP", "NotDef";
 }
 
-#cjk-font-variants-unit .cjk-data:lang(ko)
+#cjk-font-variants-unit .cjk-data-base:lang(ko),
+#cjk-font-variants-unit .cjk-data-overlay:lang(ko)
 {
     font-family: "Sans CJK KR", "NotDef";
 }
 
-#cjk-font-variants-unit .cjk-data:lang(zh-Hans)
+#cjk-font-variants-unit .cjk-data-base:lang(zh-Hans),
+#cjk-font-variants-unit .cjk-data-overlay:lang(zh-Hans)
 {
     font-family: "Sans CJK SC", "NotDef";
 }
 
-#cjk-font-variants-unit .cjk-data:lang(zh-Hant)
+#cjk-font-variants-unit .cjk-data-base:lang(zh-Hant),
+#cjk-font-variants-unit .cjk-data-overlay:lang(zh-Hant)
 {
     font-family: "Sans CJK TC", "NotDef";
 }
 
-#cjk-font-variants-unit .cjk-data:lang(zh-HK)
+#cjk-font-variants-unit .cjk-data-base:lang(zh-HK),
+#cjk-font-variants-unit .cjk-data-overlay:lang(zh-HK)
 {
     font-family: "Sans CJK HK", "NotDef";
-}
-
-#cjk-font-variants-unit
-{
-    /* --color-frame: rgb(59, 153, 252); */
-    /* --color-frame: rgb(229, 151, 0); */
-    --color-frame: hsl(200, 100%, 67%);
-    /* --color-frame: hsl(0, 0%, 80%); */
-}
-
-#cjk-font-variants-unit .sheet
-{
-    display: none;
-}
-
-#cjk-font-variants-unit .sheet.horizontal 
-{
-    display: block;
-    margin: 1em 0 0 0;
-    background-color: white;
-    border: 1px solid var(--color-frame);
-    overflow-x: scroll;
-}
-
-#cjk-font-variants-unit .sheet.vertical
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1em 0 0 0;
-    text-align: center;
-    background-color: white;
-    border: 1px solid var(--color-frame);
 }
 
 #cjk-font-variants-unit .sheet table,
@@ -123,21 +103,24 @@
     background-color: white;
 }
 
+#cjk-font-variants-unit .sheet.horizontal 
+{
+    display: block;
+    margin: 1em 0 0 0;
+    background-color: white;
+    border: 1px solid var(--color-frame);
+    overflow-x: scroll;
+}
+
 #cjk-font-variants-unit .sheet.horizontal .table
 {
     margin: 1.25em auto;
     width: unset;
 }
 
-#cjk-font-variants-unit .sheet.vertical .table
-{
-    margin: 1.25em;
-    width: unset;
-}
-
 #cjk-font-variants-unit .sheet.horizontal .table .cjk-title
 {
-    /* background-color: var(--color-bg); */
+    background-color: var(--color-background);
     border: 1px solid var(--color-frame);
     color: var(--color);
     text-align: center;
@@ -170,6 +153,7 @@
 
 #cjk-font-variants-unit .sheet.horizontal .table .cjk-data
 {
+    position: relative;
     border: 1px solid var(--color-frame);
     color: var(--color);
     font-size: 72px;
@@ -178,25 +162,56 @@
     height: 1.1em;
     min-height: 1.1em;
     line-height: 1em;
-    text-align: center;
     /* overflow: hidden; */
     /* user-select: text; */
 }
 
-#cjk-font-variants-unit .sheet.horizontal .table .cjk-data .cjk-char
+#cjk-font-variants-unit .sheet.horizontal .table .cjk-data-base,
+#cjk-font-variants-unit .sheet.horizontal .table .cjk-data-overlay
 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     writing-mode: horizontal-tb;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#cjk-font-variants-unit .sheet.horizontal .table .cjk-data-base.hidden,
+#cjk-font-variants-unit .sheet.horizontal .table .cjk-data-overlay.hidden
+{
+    visibility: hidden;
+}
+
+#cjk-font-variants-unit .sheet.vertical
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0 0 0;
+    text-align: center;
+    background-color: white;
+    border: 1px solid var(--color-frame);
+}
+
+#cjk-font-variants-unit .sheet.vertical .table
+{
+    margin: 1.25em;
+    width: unset;
 }
 
 #cjk-font-variants-unit .sheet.vertical .table .cjk-title
 {
-    /* background-color: var(--color-bg); */
+    background-color: var(--color-background);
     border: 1px solid var(--color-frame);
     color: var(--color);
     text-align: center;
     vertical-align: middle;
     font-size: 12.5px;
-    max-width: 0;
+    width: 80px;
+    min-width: 80px;
     height: 79px;
     min-height: 79px;
     line-height: 1.25em;
@@ -206,6 +221,7 @@
 
 #cjk-font-variants-unit .sheet.vertical .table .cjk-data
 {
+    position: relative;
     border: 1px solid var(--color-frame);
     color: var(--color);
     font-size: 72px;
@@ -213,17 +229,29 @@
     min-width: 1.1em;
     height: 1.1em;
     min-height: 1.1em;
-    line-height: 0;
-    padding: 0;
-    text-align: center;
-    vertical-align: middle;
+    line-height: 1em;
     /* overflow: hidden; */
     /* user-select: text; */
 }
 
-#cjk-font-variants-unit .sheet.vertical .table .cjk-data .cjk-char
+#cjk-font-variants-unit .sheet.vertical .table .cjk-data-base,
+#cjk-font-variants-unit .sheet.vertical .table .cjk-data-overlay
 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cjk-font-variants-unit .sheet.vertical .table .cjk-data-base.hidden,
+#cjk-font-variants-unit .sheet.vertical .table .cjk-data-overlay.hidden
+{
+    visibility: hidden;
 }
 
 #cjk-font-variants-unit .sheet.vertical .table .empty-gap

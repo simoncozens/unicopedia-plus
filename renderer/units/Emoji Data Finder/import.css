@@ -12,7 +12,7 @@
     justify-content: center;
     /* text-align: center; */
     white-space: nowrap;
-    margin: -2em 0 1.25em 0;
+    margin: -2em 0 1.5em 0;
 }
 
 #emoji-data-finder-unit .tab-bar .tab-label .tab-radio
@@ -60,6 +60,16 @@
     box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
+#emoji-data-finder-unit .action-group
+{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    margin: 0 0 0.5em 0;
+    white-space: nowrap;
+}
+
 #emoji-data-finder-unit .actions
 {
     padding: 0;
@@ -70,30 +80,21 @@
     margin: 0.25em 0;
 }
 
-#emoji-data-finder-unit .action-group
+#emoji-data-finder-unit .filter-text .action-group + .action-group,
+#emoji-data-finder-unit .filter-text .action + .action
 {
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; */
-    margin: 0.25em 0 0.1em 0;
-    white-space: nowrap;
-}
-
-#emoji-data-finder-unit .action + .action,
-#emoji-data-finder-unit .action-group + .action-group
-{
-    margin-left: 1em;
+    margin-left: 0.75em;
 }
 
 #emoji-data-finder-unit .search-group
 {
     flex-grow: 1;
+    margin-right: -0.5em;
 }
 
-#emoji-data-finder-unit .search-group .action + .action
+#emoji-data-finder-unit .search-group .action
 {
-    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 #emoji-data-finder-unit .search-wrap
@@ -109,7 +110,6 @@
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
     padding: 0.25em 0.5em;
-    margin-bottom: 0.4em;
 }
 
 #emoji-data-finder-unit .search-string.error
@@ -149,6 +149,7 @@
     background-color: var(--color-error);
     border-radius: 4px;
     box-shadow: 0 2px 8px #aaaaaa;
+    z-index: 1;
 }
 
 #emoji-data-finder-unit .icon-checkbox
@@ -198,7 +199,7 @@
     padding: 0 0.2em;
     width: 100%;
     tab-size : 4;
-    margin: 0.25em 0 0.125em 0;
+    margin: 0.125em 0;
     line-height: 48px;
     resize: vertical;
     overflow-y: scroll;

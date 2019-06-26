@@ -27,7 +27,6 @@ module.exports.start = function (context)
     const path = require ('path');
     //
     const fileDialogs = require ('../../lib/file-dialogs.js');
-    const regexUnicode = require ('../../lib/regex-unicode.js');
     const unicode = require ('../../lib/unicode/unicode.js');
     //
     const defaultPrefs =
@@ -43,6 +42,22 @@ module.exports.start = function (context)
     //
     let headStyle = document.createElement ('style');
     document.head.appendChild (headStyle);
+    //
+    const defaultFontSize = 72;
+    //
+    const cjkBlankFont = `${defaultFontSize}px "Sans CJK JP", "Blank"`;
+    //
+    let canvas = document.createElement ('canvas');
+    canvas.width = defaultFontSize;
+    canvas.height = defaultFontSize;
+    let ctx = canvas.getContext ('2d');
+    ctx.font = cjkBlankFont;
+    //
+    function isProperlyRendered (string)
+    {
+        let witdh = Math.round (ctx.measureText (string).width);
+        return (witdh > 0) && (witdh <= ctx.canvas.width);
+    }
     //
     clearButton.addEventListener
     (
@@ -417,24 +432,21 @@ module.exports.start = function (context)
         return graphemes;
     }
     //
-    function propertyRegex (property)
-    {
-        return regexUnicode.build (`\\p{${property}}`, { useRegex: true });
-    }
-    //
-    const emojiRegex = propertyRegex ('Emoji');
-    //
     function isWideGrapheme (grapheme)
     {
-        let character = (Array.from (grapheme))[0];
-        let isWide =
-        (!emojiRegex.test (character))
-        &&
-        (
-            unicode.matchEastAsianWidth (character, [ 'F', 'W' ])
-            ||
-            (unicode.matchEastAsianWidth (character, [ 'A' ]) && unicode.matchVerticalOrientation (character, [ 'U', 'Tu' ]))
-        );
+        let isWide = false;
+        if (isProperlyRendered (grapheme))
+        {
+            let character = (Array.from (grapheme))[0];
+            isWide =
+                unicode.matchEastAsianWidth (character, [ 'F', 'W' ])
+                ||
+                (
+                    unicode.matchEastAsianWidth (character, [ 'A' ])
+                    &&
+                    unicode.matchVerticalOrientation (character, [ 'U', 'Tu' ])
+                );
+        }
         return isWide;
     }
     //

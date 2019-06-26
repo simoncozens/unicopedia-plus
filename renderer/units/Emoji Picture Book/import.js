@@ -19,22 +19,27 @@ module.exports.start = function (context)
     //
     const colorEmojiNotDefFont = `${defaultFontSize}px "Apple Color Emoji", "Noto Color Emoji", "Segoe Color Emoji", "NotDef"`;
     const colorEmojiBlankFont = `${defaultFontSize}px "Apple Color Emoji", "Noto Color Emoji", "Segoe Color Emoji", "Blank"`;
-    const fallbackFontFaces = `${defaultFontSize}px "NotDef", "Blank"`;
     //
     let canvas = document.createElement ('canvas');
     canvas.width = defaultFontSize * fontAdjustmentFactor;
     canvas.height = defaultFontSize * fontAdjustmentFactor;
     let ctx = canvas.getContext ('2d');
     //
-    function getEmojiWidth (emoji, font)
+    function isFontSupported (emoji)
     {
-        ctx.font = font;
-        return Math.round (ctx.measureText (emoji).width);
+        ctx.font = colorEmojiBlankFont;
+        return Math.round (ctx.measureText (emoji).width) > 0;
     }
     //
-    function getEmojiDataString (emoji, font)
+    function isProperlyRendered (emoji)
     {
-        ctx.font = font;
+        ctx.font = colorEmojiNotDefFont;
+        return Math.round (ctx.measureText (emoji).width) <= ctx.canvas.width;
+    }
+    //
+    function getEmojiDataString (emoji)
+    {
+        ctx.font = colorEmojiBlankFont;
         ctx.clearRect (0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.fillText (emoji, 0, defaultFontSize);
         let imageWidth = Math.round (ctx.measureText (emoji).width) || ctx.canvas.width;
@@ -47,12 +52,12 @@ module.exports.start = function (context)
     function isProperEmoji (emoji)
     {
         let isProper = false;
-        if ((getEmojiWidth (emoji, colorEmojiBlankFont) > 0) && (getEmojiWidth (emoji, colorEmojiNotDefFont) <= ctx.canvas.width))
+        if (isFontSupported (emoji) && isProperlyRendered (emoji))
         {
             let foundTagFlagEmoji = emoji.match (tagFlagEmojiRegex);
             if (foundTagFlagEmoji)
             {
-                if (getEmojiDataString (emoji, colorEmojiBlankFont) !== getEmojiDataString (foundTagFlagEmoji[1], colorEmojiBlankFont))
+                if (getEmojiDataString (emoji) !== getEmojiDataString (foundTagFlagEmoji[1]))
                 {
                     isProper = true;
                 }
@@ -226,14 +231,10 @@ module.exports.start = function (context)
     {
         selectGroup.selectedIndex = 0;
     }
-    document.fonts.load (fallbackFontFaces).then
-    (
-        () =>
-        {
-            getProperEmojis ();
-            updateGroup (selectGroup.value);
-        }
-    );
+    //
+    getProperEmojis ();
+    updateGroup (selectGroup.value);
+    //
     selectGroup.addEventListener ('input', (event) => { updateGroup (event.currentTarget.value); });
     //
     instructions.open = prefs.instructions;

@@ -78,6 +78,33 @@ module.exports.start = function (context)
     //
     currentTypefaceDefault = prefs.typefaceDefault;
     //
+    function getVariants (character, variantTags)
+    {
+        let variants = [ ];
+        let codePoint = unicode.characterToCodePoint (character);
+        let tags = unihanData.codePoints[codePoint];
+        for (let variantTag of variantTags)
+        {
+            if (variantTag in tags)
+            {
+                let variantArray = tags[variantTag];
+                if (!Array.isArray (variantArray))
+                {
+                    variantArray = [ variantArray]
+                }
+                for (let variant of variantArray)
+                {
+                    variant = variant.split ("<")[0];
+                    if (variant !== codePoint)  // Discard self variants (consistent with Yasuoka)
+                    {
+                        variants.push (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
+                    }
+                }
+            }
+        }
+        return [... new Set (variants)]; // Get rid of possible duplicates...
+    }
+    //
     function displayData (character)
     {
         function displayCharacterData (character, codePoint, tags)
@@ -287,7 +314,14 @@ module.exports.start = function (context)
                 //
                 let definitionValue = tags["kDefinition"];
                 let numericValue = numericValuesData[codePoint] || "";
+                let decomposition = unicodeData.decomposition;
+                let unified = decomposition ? String.fromCodePoint (parseInt (decomposition.replace ("U+", ""), 16)) : "";
                 let compatibility = compatibilityVariants[character] || [ ];
+                let semantic = getVariants (character, [ 'kSemanticVariant' ]);
+                let specialized = getVariants (character, [ 'kSpecializedSemanticVariant' ]);
+                let shape = getVariants (character, [ 'kZVariant' ]);
+                let simplified = getVariants (character, [ 'kSimplifiedVariant' ]);
+                let traditional = getVariants (character, [ 'kTraditionalVariant' ]);
                 let yasuoka = yasuokaVariants[character] || [ ];
                 yasuoka = yasuoka.filter (variant => unihanRegex.test (variant));
                 let iiCoreSet = ("kIICore" in tags) ? "IICore" : "";
@@ -296,9 +330,15 @@ module.exports.start = function (context)
                     { name: "Radical/Strokes", value: rsValues, class: rsClasses },
                     { name: "Definition", value: definitionValue, class: 'line-clamp' },
                     { name: "Numeric Value", value: numericValue },
+                    { name: "Set", value: iiCoreSet },
+                    { name: "Unified Variant", value: unified },
                     { name: "Compatibility Variants", value: compatibility.join (" ") },
-                    { name: "Yasuoka Variants", value: yasuoka.join (" ") },
-                    { name: "Set", value: iiCoreSet }
+                    { name: "Semantic Variants", value: semantic.join (" ") },
+                    { name: "Specialized Variants", value: specialized.join (" ") },
+                    { name: "Shape Variants", value: shape.join (" ") },
+                    { name: "Simplified Variants", value: simplified.join (" ") },
+                    { name: "Traditional Variants", value: traditional.join (" ") },
+                    { name: "Yasuoka Variants", value: yasuoka.join (" ") }
                 ];
                 //
                 for (let unihanField of unihanFields)

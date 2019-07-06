@@ -342,7 +342,7 @@ The following utilities are currently available:
 - It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
 - The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through several different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese), `HK` (Hong Kong Chinese). Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
-- Variant characters, whenever they exist, are listed under several classes in the basic Unihan information panel, excluding the looked up character itself:
+- Variant characters, if any, are listed under several classes in the basic Unihan information panel, excluding the looked up character itself:
     - `Unified Variant`: decomposition of the looked up character.
     - `Compatibility Variants`: characters whose decomposition is the looked up character.
     - `Semantic Variants`: characters listed under the *kSemanticVariant* Unihan tag.

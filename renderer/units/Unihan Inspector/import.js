@@ -34,8 +34,20 @@ module.exports.start = function (context)
     const yasuokaVariants = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
     const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
-    // Unihan character
+    // Unihan characters
     let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
+    //
+    // Han script characters:
+    // - CJK radicals
+    // - KangXi radicals
+    // - Ideographic iteration mark
+    // - Ideographic number zero
+    // - Hangzhou numerals
+    // - Vertical ideographic iteration mark
+    // - Unihan characters
+    let hanRegex = regexUnicode.build ('\\p{Script=Han}', { useRegex: true });
+    //
+    let filterRegex = unihanRegex;
     //
     function randomElement (elements)
     {
@@ -78,31 +90,28 @@ module.exports.start = function (context)
     //
     currentTypefaceDefault = prefs.typefaceDefault;
     //
-    function getVariants (character, variantTags)
+    function getVariants (character, variantTag)
     {
         let variants = [ ];
         let codePoint = unicode.characterToCodePoint (character);
         let tags = unihanData.codePoints[codePoint];
-        for (let variantTag of variantTags)
+        if (variantTag in tags)
         {
-            if (variantTag in tags)
+            let variantArray = tags[variantTag];
+            if (!Array.isArray (variantArray))
             {
-                let variantArray = tags[variantTag];
-                if (!Array.isArray (variantArray))
+                variantArray = [ variantArray]
+            }
+            for (let variant of variantArray)
+            {
+                variant = variant.split ("<")[0];
+                if (variant !== codePoint)  // Discard self variants (consistent with Yasuoka)
                 {
-                    variantArray = [ variantArray]
-                }
-                for (let variant of variantArray)
-                {
-                    variant = variant.split ("<")[0];
-                    if (variant !== codePoint)  // Discard self variants (consistent with Yasuoka)
-                    {
-                        variants.push (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
-                    }
+                    variants.push (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
                 }
             }
         }
-        return [... new Set (variants)]; // Get rid of possible duplicates...
+        return variants;
     }
     //
     function displayData (character)
@@ -314,16 +323,19 @@ module.exports.start = function (context)
                 //
                 let definitionValue = tags["kDefinition"];
                 let numericValue = numericValuesData[codePoint] || "";
-                let decomposition = unicodeData.decomposition;
-                let unified = decomposition ? String.fromCodePoint (parseInt (decomposition.replace ("U+", ""), 16)) : "";
+                let unified = [ ];
+                if (unicodeData.decomposition)
+                {
+                     unified.push (String.fromCodePoint (parseInt (unicodeData.decomposition.replace ("U+", ""), 16)));
+                }
                 let compatibility = compatibilityVariants[character] || [ ];
-                let semantic = getVariants (character, [ 'kSemanticVariant' ]);
-                let specialized = getVariants (character, [ 'kSpecializedSemanticVariant' ]);
-                let shape = getVariants (character, [ 'kZVariant' ]);
-                let simplified = getVariants (character, [ 'kSimplifiedVariant' ]);
-                let traditional = getVariants (character, [ 'kTraditionalVariant' ]);
+                let semantic = getVariants (character, 'kSemanticVariant');
+                let specialized = getVariants (character, 'kSpecializedSemanticVariant');
+                let shape = getVariants (character, 'kZVariant');
+                let simplified = getVariants (character, 'kSimplifiedVariant');
+                let traditional = getVariants (character, 'kTraditionalVariant');
                 let yasuoka = yasuokaVariants[character] || [ ];
-                yasuoka = yasuoka.filter (variant => unihanRegex.test (variant));
+                yasuoka = yasuoka.filter (variant => filterRegex.test (variant));
                 let iiCoreSet = ("kIICore" in tags) ? "IICore" : "";
                 let unihanFields =
                 [
@@ -331,14 +343,14 @@ module.exports.start = function (context)
                     { name: "Definition", value: definitionValue, class: 'line-clamp' },
                     { name: "Numeric Value", value: numericValue },
                     { name: "Set", value: iiCoreSet },
-                    { name: "Unified Variant", value: unified },
-                    { name: "Compatibility Variants", value: compatibility.join (" ") },
-                    { name: "Semantic Variants", value: semantic.join (" ") },
-                    { name: "Specialized Variants", value: specialized.join (" ") },
-                    { name: "Shape Variants", value: shape.join (" ") },
-                    { name: "Simplified Variants", value: simplified.join (" ") },
-                    { name: "Traditional Variants", value: traditional.join (" ") },
-                    { name: "Yasuoka Variants", value: yasuoka.join (" ") }
+                    { name: "Unified Variant", value: unified, separator: " " },
+                    { name: "Compatibility Variants", value: compatibility, separator: " " },
+                    { name: "Semantic Variants", value: semantic, separator: " " },
+                    { name: "Specialized Variants", value: specialized, separator: " " },
+                    { name: "Shape Variants", value: shape, separator: " " },
+                    { name: "Simplified Variants", value: simplified, separator: " " },
+                    { name: "Traditional Variants", value: traditional, separator: " " },
+                    { name: "Yasuoka Variants", value: yasuoka, separator: " " }
                 ];
                 //
                 for (let unihanField of unihanFields)
@@ -353,35 +365,58 @@ module.exports.start = function (context)
                         }
                         if (Array.isArray (unihanField.value))
                         {
-                            let name = document.createElement ('span');
-                            name.className = 'name';
-                            name.textContent = unihanField.name.replace (/ /g, "\xA0");
-                            field.appendChild (name);
-                            field.appendChild (document.createTextNode (": "))
-                            let value = document.createElement ('span');
-                            value.className = 'value';
-                            let list = document.createElement ('ul');
-                            list.className = 'list';
-                            unihanField.value.forEach
-                            (
-                                (element, index) =>
+                            if (unihanField.value.length > 0)
+                            {
+                                let name = document.createElement ('span');
+                                name.className = 'name';
+                                name.textContent = unihanField.name.replace (/ /g, "\xA0");
+                                field.appendChild (name);
+                                field.appendChild (document.createTextNode (": "));
+                                let value = document.createElement ('span');
+                                value.className = 'value';
+                                if (unihanField.separator)
                                 {
-                                    let item = document.createElement ('li');
-                                    item.className = 'item';
-                                    if (Array.isArray (unihanField.class))
-                                    {
-                                        let itemClass = unihanField.class[index];
-                                        if (itemClass)
+                                    unihanField.value.forEach
+                                    (
+                                        (element, index) =>
                                         {
-                                            item.classList.add (itemClass);
+                                            if (index > 0)
+                                            {
+                                                value.appendChild (document.createTextNode (unihanField.separator))
+                                            }
+                                            let span = document.createElement ('span');
+                                            span.textContent = element;
+                                            span.title = unicode.characterToCodePoint (element);
+                                            value.appendChild (span);
                                         }
-                                    }
-                                    item.textContent = element;
-                                    list.appendChild (item);
+                                    );
                                 }
-                            );
-                            value.appendChild (list);
-                            field.appendChild (value);
+                                else
+                                {
+                                    let list = document.createElement ('ul');
+                                    list.className = 'list';
+                                    unihanField.value.forEach
+                                    (
+                                        (element, index) =>
+                                        {
+                                            let item = document.createElement ('li');
+                                            item.className = 'item';
+                                            if (Array.isArray (unihanField.class))
+                                            {
+                                                let itemClass = unihanField.class[index];
+                                                if (itemClass)
+                                                {
+                                                    item.classList.add (itemClass);
+                                                }
+                                            }
+                                            item.textContent = element;
+                                            list.appendChild (item);
+                                        }
+                                    );
+                                    value.appendChild (list);
+                                }
+                                field.appendChild (value);
+                            }
                         }
                         else
                         {
@@ -600,7 +635,7 @@ module.exports.start = function (context)
             {
                 character = String.fromCodePoint (parseInt (match[2], 16));
             }
-            if (!unihanRegex.test (character))
+            if (!filterRegex.test (character))
             {
                 character = "";
             }

@@ -129,6 +129,18 @@
     ],
     [
         {
+            "name": "z-variant - Wiktionary",
+            "href": "https://en.wiktionary.org/wiki/z-variant"
+        }
+    ],
+    [
+        {
+            "name": "Unihan Ad Hoc Report on Variant Changes - 19186-unihan-ad-hoc-rept.pdf",
+            "href": "https://www.unicode.org/L2/L2019/19186-unihan-ad-hoc-rept.pdf"
+        }
+    ],
+    [
+        {
             "name": "K'sBookshelf 辞典・用語 漢字林",
             "href": "http://ksbookshelf.com/DW/Kanjirin/"
         },

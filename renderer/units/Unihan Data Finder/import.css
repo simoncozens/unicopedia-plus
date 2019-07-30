@@ -244,6 +244,11 @@
     margin-right: 1.25em;
 }
 
+#unihan-data-finder-unit .radical-strokes .rs-2-group .action label
+{
+    vertical-align: middle;
+}
+
 #unihan-data-finder-unit .results
 {
     text-align: left;
@@ -748,9 +753,15 @@
     font-size: inherit;
     text-align: left;
     font-weight: 600;
-    padding: 0.25em 3.25em;
+    padding: 0.25em 1.65em;
     color: var(--color-accent);
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
+}
+
+#unihan-data-finder-unit .radicals-table td.data-strokes::before
+{
+    content: "◎\A0\A0";
+    font-size: 1.05em;
 }
 
 #unihan-data-finder-unit .radicals-table th.header-index,
@@ -773,12 +784,6 @@
 
 #unihan-data-finder-unit .radicals-table th.header-variants,
 #unihan-data-finder-unit .radicals-table td.data-variants
-{
-    text-align: center;
-}
-
-#unihan-data-finder-unit .radicals-table th.header-simplified,
-#unihan-data-finder-unit .radicals-table td.data-simplified
 {
     text-align: center;
 }

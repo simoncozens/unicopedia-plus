@@ -148,6 +148,7 @@ module.exports.start = function (context)
                     let codes =
                     [
                         { name: "Code Point", value: data.codePoint },
+                        null,
                         { name: "JavaScript", value: data.javaScript },
                         { name: "ECMAScript 6", value: data.ecmaScript6 },
                         { name: "URL Escape", value: data.urlEncoding },
@@ -241,10 +242,6 @@ module.exports.start = function (context)
                         {
                             let field = document.createElement ('div');
                             field.className = 'field';
-                            if (property.toolTip)
-                            {
-                                field.title = property.toolTip;
-                            }
                             let name = document.createElement ('span');
                             name.className = 'name';
                             name.textContent = property.name.replace (/ /g, "\xA0");
@@ -253,6 +250,10 @@ module.exports.start = function (context)
                             let value = document.createElement ('span');
                             value.className = 'value';
                             value.textContent = Array.isArray (property.value) ? property.value.join (", ") : property.value;
+                            if (property.toolTip)
+                            {
+                                value.title = property.toolTip;
+                            }
                             field.appendChild (value);
                             cell.appendChild (field);
                         }

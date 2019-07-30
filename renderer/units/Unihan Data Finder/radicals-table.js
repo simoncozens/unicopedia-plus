@@ -1,7 +1,14 @@
 //
 module.exports.create = function (kangxiRadicals)
 {
-    const { fromStrokes } = require ('../../lib/unicode/get-rs-strings.js');
+    const { fromRadicalStrokes } = require ('../../lib/unicode/get-rs-strings.js');
+    const { getCharacterBasicData } = require ('../../lib/unicode/unicode.js');
+    //
+    function getTooltip (radical)
+    {
+        let data = getCharacterBasicData (radical);
+        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${data.name}`; // U+034F COMBINING GRAPHEME JOINER
+    }
     //
     let radicalsTable = document.createElement ('table');
     radicalsTable.className = 'radicals-table';
@@ -24,15 +31,15 @@ module.exports.create = function (kangxiRadicals)
     headerVariants.textContent = "CJK\xA0Variants";
     headerRow.appendChild (headerVariants);
     let headerSimplified = document.createElement ('th');
-    headerSimplified.className = 'header-simplified';
+    headerSimplified.className = 'header-variants';
     headerSimplified.textContent = "Simplified";
     headerRow.appendChild (headerSimplified);
     let headerChineseSimplified = document.createElement ('th');
-    headerChineseSimplified.className = 'header-simplified';
+    headerChineseSimplified.className = 'header-variants';
     headerChineseSimplified.textContent = "C-Simplified";
     headerRow.appendChild (headerChineseSimplified);
     let headerJapaneseSimplified = document.createElement ('th');
-    headerJapaneseSimplified.className = 'header-simplified';
+    headerJapaneseSimplified.className = 'header-variants';
     headerJapaneseSimplified.textContent = "J-Simplified";
     headerRow.appendChild (headerJapaneseSimplified);
     radicalsTable.appendChild (headerRow);
@@ -49,7 +56,7 @@ module.exports.create = function (kangxiRadicals)
                 let dataStrokes = document.createElement ('td');
                 dataStrokes.className = 'data-strokes';
                 dataStrokes.colSpan = 7;
-                dataStrokes.textContent = fromStrokes (radical.strokes, true);
+                dataStrokes.textContent = fromRadicalStrokes (radical.strokes, true);
                 strokesRow.appendChild (dataStrokes);
                 radicalsTable.appendChild (strokesRow);
                 lastStrokes = radical.strokes;
@@ -65,53 +72,61 @@ module.exports.create = function (kangxiRadicals)
             let dataRadical = document.createElement ('td');
             dataRadical.className = 'data-radical';
             dataRadical.textContent = radical.radical;
+            dataRadical.title = getTooltip (radical.radical);
             dataRow.appendChild (dataRadical);
             let dataName = document.createElement ('td');
             dataName.className = 'data-name';
             dataName.textContent = radical.name;
             dataRow.appendChild (dataName);
-            let variants = [ ];
-            let simplified = [ ];
-            let chineseSimplified = [ ];
-            let japaneseSimplified = [ ];
+            let radicalVariants =
+            {
+                cjkVariants: [ ],
+                simplified: [ ],
+                chineseSimplified: [ ],
+                japaneseSimplified: [ ]
+            };
             if ("cjk" in radical)
             {
                 for (let cjk of radical["cjk"])
                 {
                     if (cjk.name.match (/c-simplified/i))
                     {
-                        chineseSimplified.push (cjk.radical);
+                        radicalVariants.chineseSimplified.push (cjk.radical);
                     }
                     else if (cjk.name.match (/j-simplified/i))
                     {
-                        japaneseSimplified.push (cjk.radical);
+                        radicalVariants.japaneseSimplified.push (cjk.radical);
                     }
                     else if (cjk.name.match (/simplified/i))
                     {
-                        simplified.push (cjk.radical);
+                        radicalVariants.simplified.push (cjk.radical);
                     }
                     else
                     {
-                        variants.push (cjk.radical);
+                        radicalVariants.cjkVariants.push (cjk.radical);
                     }
                 }
             }
-            let dataVariants = document.createElement ('td');
-            dataVariants.className = 'data-variants';
-            dataVariants.textContent = variants.join ("\xA0");
-            dataRow.appendChild (dataVariants);
-            let dataSimplified = document.createElement ('td');
-            dataSimplified.className = 'data-simplified';
-            dataSimplified.textContent = simplified.join ("\xA0");
-            dataRow.appendChild (dataSimplified);
-            let dataChineseSimplified = document.createElement ('td');
-            dataChineseSimplified.className = 'data-simplified';
-            dataChineseSimplified.textContent = chineseSimplified.join ("\xA0");
-            dataRow.appendChild (dataChineseSimplified);
-            let dataJapaneseSimplified = document.createElement ('td');
-            dataJapaneseSimplified.className = 'data-simplified';
-            dataJapaneseSimplified.textContent = japaneseSimplified.join ("\xA0");
-            dataRow.appendChild (dataJapaneseSimplified);
+            for (let radicalVariant in radicalVariants)
+            {
+                let dataVariants = document.createElement ('td');
+                dataVariants.className = 'data-variants';
+                radicalVariants[radicalVariant].forEach
+                (
+                    (variant, index) =>
+                    {
+                        if (index > 0)
+                        {
+                            dataVariants.appendChild (document.createTextNode ("\xA0"));
+                        }
+                        let dataVariant = document.createElement ('span');
+                        dataVariant.textContent = variant;
+                        dataVariant.title = getTooltip (variant);
+                        dataVariants.appendChild (dataVariant);
+                    }
+                );
+                dataRow.appendChild (dataVariants);
+            }
             radicalsTable.appendChild (dataRow);
         }
     );

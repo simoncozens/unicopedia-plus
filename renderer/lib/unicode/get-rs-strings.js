@@ -42,10 +42,16 @@ function fromRSValue (rsValue, verbose)
     return result;
 };
 //
+function fromRadicalStrokes (strokes, verbose)
+{
+    return `${strokes}-Stroke` + (verbose ? " Radicals" : "");
+};
+//
 module.exports =
 {
     fromRadical,
     fromStrokes,
-    fromRSValue
+    fromRSValue,
+    fromRadicalStrokes
 };
 //

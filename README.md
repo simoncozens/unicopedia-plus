@@ -89,7 +89,7 @@ The following utilities are currently available:
 - Notes:
     - `\p{Any}` is equivalent to `[\u{0}-\u{10FFFF}]`
     - `\p{ASCII}` is equivalent to `[\u{0}-\u{7F}]`
-    - `\p{Assigned}` is equivalent to `\P{Unassigned}`
+    - `\p{Assigned}` is equivalent to `\P{Unassigned}` or `\P{General_Category=Unassigned}`
 
 <img src="screenshots/regex-properties.png" width="1080px" alt="Regex Properties screenshot">
 

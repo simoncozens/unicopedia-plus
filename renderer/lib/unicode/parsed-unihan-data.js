@@ -188,14 +188,14 @@ const tags =
     },
     "kHanYu":
     {
-        "name": "Hanyu Da Zidian",
+        "name": "Hanyu Da Zidian (HDZ)",
         "category": "Dictionary Indices",
         "delimiter": " ",
         "syntax": "[1-8][0-9]{4}\\.[0-3][0-9][0-3]"
     },
     "kHanyuPinlu":
     {
-        "name": "Hanyu Pinlu",
+        "name": "Xiandai Hanyu Pinlu Cidian",
         "category": "Readings",
         "delimiter": " ",
         "syntax": "[a-z\\u{300}-\\u{302}\\u{304}\\u{308}\\u{30C}]+\\([0-9]+\\)"
@@ -263,7 +263,7 @@ const tags =
     },
     "kIRGKangXi":
     {
-        "name": "IRG Kang Xi",
+        "name": "IRG KangXi",
         "category": "Dictionary Indices",
         "delimiter": " ",
         "syntax": "[01][0-9]{3}\\.[0-7][0-9][01]"
@@ -380,7 +380,7 @@ const tags =
     },
     "kKangXi":
     {
-        "name": "Kang Xi",
+        "name": "KangXi",
         "category": "Dictionary Indices",
         "delimiter": " ",
         "syntax": "[0-9]{4}\\.[0-9]{2}[01]"
@@ -498,7 +498,7 @@ const tags =
     },
     "kPhonetic":
     {
-        "name": "Phonetic",
+        "name": "Phonetic Index (Ten Thousand Characters: An Analytic Dictionary)",
         "category": "Dictionary-like Data",
         "delimiter": " ",
         "syntax": "[1-9][0-9]{0,3}[A-D]?\\*?"
@@ -531,7 +531,7 @@ const tags =
     },
     "kRSKangXi":
     {
-        "name": "Kang Xi Radical-Stroke Count",
+        "name": "KangXi Radical-Stroke Count",
         "category": "Radical-Stroke Counts",
         "delimiter": " ",   // ??
         "syntax": "[1-9][0-9]{0,2}\\.-?[0-9]{1,2}"

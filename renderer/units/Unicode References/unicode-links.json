@@ -245,6 +245,10 @@
     ],
     [
         {
+            "name": "Globalization Gotchas - Macchiato",
+            "href": "http://www.macchiato.com/unicode/globalization-gotchas"
+        },
+        {
             "name": "NFC FAQ - Macchiato",
             "href": "http://www.macchiato.com/unicode/nfc-faq"
         }

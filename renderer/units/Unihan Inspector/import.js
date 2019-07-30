@@ -247,10 +247,6 @@ module.exports.start = function (context)
                 {
                     let field = document.createElement ('div');
                     field.className = 'field';
-                    if (unicodeField.toolTip)
-                    {
-                        field.title = unicodeField.toolTip;
-                    }
                     let name = document.createElement ('span');
                     name.className = 'name';
                     name.textContent = unicodeField.name.replace (/ /g, "\xA0");
@@ -259,6 +255,10 @@ module.exports.start = function (context)
                     let value = document.createElement ('span');
                     value.className = 'value';
                     value.textContent = Array.isArray (unicodeField.value) ? unicodeField.value.join (", ") : unicodeField.value;
+                    if (unicodeField.toolTip)
+                    {
+                        value.title = unicodeField.toolTip;
+                    }
                     field.appendChild (value);
                     unicodeInfo.appendChild (field);
                 }
@@ -382,9 +382,10 @@ module.exports.start = function (context)
                                         {
                                             if (index > 0)
                                             {
-                                                value.appendChild (document.createTextNode (unihanField.separator))
+                                                value.appendChild (document.createTextNode (unihanField.separator));
                                             }
                                             let span = document.createElement ('span');
+                                            span.className = 'unihan-character';
                                             span.textContent = element;
                                             span.title = unicode.characterToCodePoint (element);
                                             value.appendChild (span);
@@ -491,11 +492,8 @@ module.exports.start = function (context)
                                     let tagRow = document.createElement ('tr');
                                     let tagCell = document.createElement ('td');
                                     tagCell.className = 'tag';
-                                    if (unihanData.tags[tag])
-                                    {
-                                        tagCell.title = unihanData.tags[tag].name;
-                                    }
                                     tagCell.textContent = tag;
+                                    tagCell.title = unihanData.tags[tag].name;
                                     tagRow.appendChild (tagCell);
                                     let valueCell = document.createElement ('td');
                                     valueCell.className = 'value';
@@ -533,6 +531,7 @@ module.exports.start = function (context)
                         let tagCell = document.createElement ('td');
                         tagCell.className = 'tag';
                         tagCell.textContent = tag;
+                        tagCell.title = unihanData.tags[tag].name;
                         tagRow.appendChild (tagCell);
                         let valueCell = document.createElement ('td');
                         valueCell.className = 'value';

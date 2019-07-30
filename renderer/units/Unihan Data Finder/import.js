@@ -191,6 +191,7 @@ module.exports.start = function (context)
                 {
                     let option = document.createElement ('option');
                     option.textContent = tag;
+                    option.title = unihanData.tags[tag].name;
                     optionGroup.appendChild (option);
                 }
                 tagSelect.appendChild (optionGroup);
@@ -203,6 +204,7 @@ module.exports.start = function (context)
             {
                 let option = document.createElement ('option');
                 option.textContent = tag;
+                option.title = unihanData.tags[tag].name;
                 tagSelect.appendChild (option);
             }
         }
@@ -464,7 +466,7 @@ module.exports.start = function (context)
     //
     const kangxiRadicals = require ('../../lib/unicode/kangxi-radicals.json');
     //
-    const { fromRadical, fromStrokes } = require ('../../lib/unicode/get-rs-strings.js');
+    const { fromRadical, fromStrokes, fromRadicalStrokes } = require ('../../lib/unicode/get-rs-strings.js');
     //
     let lastStrokes = 0;
     let optionGroup = null;
@@ -479,7 +481,7 @@ module.exports.start = function (context)
                     rsRadicalSelect.appendChild (optionGroup);
                 }
                 optionGroup = document.createElement ('optgroup');
-                optionGroup.label = `${fromStrokes (radical.strokes, true).replace (" ", "\u2002")}`;
+                optionGroup.label = `◎\xA0\xA0${fromRadicalStrokes (radical.strokes, true).replace (" ", "\u2002")}`;
                 lastStrokes = radical.strokes;
             }
             let option = document.createElement ('option');

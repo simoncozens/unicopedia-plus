@@ -200,10 +200,6 @@
         "items":
         [
             {
-                "label": "Society / Shrine",
-                "string": "㈳㊓㍿社社"
-            },
-            {
                 "label": "Island Variants",
                 "string": "㠀岛島嶋嶌"
             },
@@ -214,6 +210,10 @@
             {
                 "label": "Miscellaneous 2",
                 "string": "滙爲画畵線萬裏"
+            },
+            {
+                "label": "Society / Shrine",
+                "string": "㈳㊓㍿社社"
             },
             {
                 "label": "Swords & Knives",

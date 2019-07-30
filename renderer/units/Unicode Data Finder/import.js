@@ -551,8 +551,7 @@ module.exports.start = function (context)
         {
             characters.push (String.fromCodePoint (index));
         }
-        // Temporary hack until regexpu-core module gets updated to Unicode 12.1!
-        currentCharactersByBlock = characters.filter (character => assignedRegex.test (character) || (character === "\u32FF"));
+        currentCharactersByBlock = characters.filter (character => assignedRegex.test (character));
         updateBlockResults (currentCharactersByBlock.length, block.size);
         blockSearchData.appendChild (dataTable.create (characters, blockParams, highlightedCharacter));
     }

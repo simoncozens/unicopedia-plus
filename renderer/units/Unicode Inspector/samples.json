@@ -78,12 +78,12 @@
         "items":
         [
             {
-                "label": "Skin Tone Modifiers",
-                "string": "🏻🏼🏽🏾🏿\n👳🏻👳🏼👳🏽👳🏾👳🏿"
-            },
-            {
                 "label": "Combinations",
                 "string": "*️⃣\n👁‍🗨"
+            },
+            {
+                "label": "Skin Tone Modifiers",
+                "string": "🏻🏼🏽🏾🏿\n👳🏻👳🏼👳🏽👳🏾👳🏿"
             }
         ]
     },
@@ -106,18 +106,6 @@
             {
                 "label": "Superscript Digits",
                 "string": "¹²³⁴⁵⁶⁷⁸⁹⁰"
-            },
-            {
-                "label": "Capital Roman Numerals",
-                "string": "ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫⅬⅭⅮⅯ"
-            },
-            {
-                "label": "Small Roman Numerals",
-                "string": "ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅺⅻⅼⅽⅾⅿ"
-            },
-            {
-                "label": "Counting Rod Numerals",
-                "string": "𝍠𝍡𝍢𝍣𝍤𝍥𝍦𝍧𝍨𝍩𝍪𝍫𝍬𝍭𝍮𝍯𝍰𝍱"
             }
         ]
     },
@@ -126,12 +114,12 @@
         "items":
         [
             {
-                "label": "National Flags",
-                "string": "🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸"
-            },
-            {
                 "label": "Macroregion Flags",
                 "string": "🇪🇺🇺🇳"
+            },
+            {
+                "label": "National Flags",
+                "string": "🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸"
             },
             {
                 "label": "Subdivision Flags",
@@ -158,32 +146,12 @@
         "items":
         [
             {
+                "label": "Arabic Ligature",
+                "string": "﷽"
+            },
+            {
                 "label": "Ascending Blocks",
                 "string": "AaĀā❤愛爱애💜"
-            },
-            {
-                "label": "Basic Hearts",
-                "string": "❣️❤️💔💙💚💛💜💟"
-            },
-            {
-                "label": "Fancy Hearts",
-                "string": "💓💕💖💗💘💝💞"
-            },
-            {
-                "label": "Inset Hearts",
-                "string": "👩‍❤️‍👩😍👩‍❤️‍👨😻👨‍❤️‍👨"
-            },
-            {
-                "label": "Playing Card Suits",
-                "string": "♠♥♣♦\n♤♡♧♢"
-            },
-            {
-                "label": "Chess Pieces",
-                "string": "♔♕♖♗♘♙\n♚♛♜♝♞♟"
-            },
-            {
-                "label": "Japanese Era Names",
-                "string": "㋿㍻㍼㍽㍾"
             },
             {
                 "label": "Asian Dragons",
@@ -194,16 +162,40 @@
                 "string": "⻳⻲⻱⿔🐢龟亀龜龜龜龜"
             },
             {
-                "label": "Various Spaces",
-                "string": "           ​  　﻿"
+                "label": "Basic Hearts",
+                "string": "❣️❤️💔💙💚💛💜💟"
             },
             {
-                "label": "Arabic Ligature",
-                "string": "﷽"
+                "label": "Chess Pieces",
+                "string": "♔♕♖♗♘♙\n♚♛♜♝♞♟"
+            },
+            {
+                "label": "Counting Rods",
+                "string": "𝍠𝍡𝍢𝍣𝍤𝍥𝍦𝍧𝍨𝍩𝍪𝍫𝍬𝍭𝍮𝍯𝍰𝍱"
+            },
+            {
+                "label": "Fancy Hearts",
+                "string": "💓💕💖💗💘💝💞"
+            },
+            {
+                "label": "Inset Hearts",
+                "string": "👩‍❤️‍👩😍👩‍❤️‍👨😻👨‍❤️‍👨"
             },
             {
                 "label": "iOS Killer Character",
                 "string": "జ్ఞ‌ా"
+            },
+            {
+                "label": "Japanese Era Names",
+                "string": "㋿㍻㍼㍽㍾"
+            },
+            {
+                "label": "Playing Card Suits",
+                "string": "♠♥♣♦\n♤♡♧♢"
+            },
+            {
+                "label": "Various Spaces",
+                "string": "           ​  　﻿"
             }
         ]
     },
@@ -212,12 +204,12 @@
         "items":
         [
             {
-                "label": "Family",
-                "string": "👪⬌👨‍👩‍👦"
-            },
-            {
                 "label": "Couple",
                 "string": "💑⬌👩‍❤️‍👨"
+            },
+            {
+                "label": "Family",
+                "string": "👪⬌👨‍👩‍👦"
             },
             {
                 "label": "Kiss",
@@ -258,6 +250,20 @@
             {
                 "label": "Variation Selectors 3",
                 "string": "⚠︎⚠️㊙︎㊙️🈷︎🈷️"
+            }
+        ]
+    },
+    {
+        "label": "Roman Numerals",
+        "items":
+        [
+            {
+                "label": "Capital Roman Numerals",
+                "string": "ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫⅬⅭⅮⅯ"
+            },
+            {
+                "label": "Small Roman Numerals",
+                "string": "ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅺⅻⅼⅽⅾⅿ"
             }
         ]
     }

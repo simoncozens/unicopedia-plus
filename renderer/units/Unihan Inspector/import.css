@@ -246,6 +246,11 @@
     list-style-type: circle;
 }
 
+#unihan-inspector-unit .unihan-info .field .unihan-character
+{
+    /* font-size: 24px; */
+}
+
 #unihan-inspector-unit .tags-data
 {
     margin: 1em 0 0.75em 0;
@@ -300,7 +305,7 @@
 
 #unihan-inspector-unit .tags-data .tags-list .category-row .category-name::before
 {
-    content: "◎\A0\A0";
+    content: "◎\A0";
     font-size: 1.05em;
 }
 

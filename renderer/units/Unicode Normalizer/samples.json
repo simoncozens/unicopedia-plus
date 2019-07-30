@@ -1,90 +1,186 @@
 [
     {
-        "label": "Arabic Ligature",
-        "string": "ﷻ"
+        "label": "All Different Forms",
+        "items":
+        [
+            {
+                "label": "Different Forms 1",
+                "string": "ϓ"
+            },
+            {
+                "label": "Different Forms 2",
+                "string": "ϔ"
+            },
+            {
+                "label": "Different Forms 3",
+                "string": "ẛ"
+            }
+        ]
     },
     {
-        "label": "Chinese People",
-        "string": "漢漢漢"
+        "label": "CJK Variants",
+        "items":
+        [
+            {
+                "label": "Chinese People",
+                "string": "漢漢漢"
+            },
+            {
+                "label": "Chinese Turtles",
+                "string": "⿔龜龜龜龜"
+            }
+        ]
     },
     {
-        "label": "Chinese Turtles",
-        "string": "⿔龜龜龜龜"
+        "label": "Expansion Factors",
+        "items":
+        [
+            {
+                "label": "NFC 1 (3X)",
+                "string": "𝅘𝅥𝅮"
+            },
+            {
+                "label": "NFC 2 (3X)",
+                "string": "שּׁ"
+            },
+            {
+                "label": "NFD 1 (3X)",
+                "string": "ΐ"
+            },
+            {
+                "label": "NFD 2 (3X)",
+                "string": "ᾉ"
+            },
+            {
+                "label": "NFD 3 (4X)",
+                "string": "ᾂ"
+            },
+            {
+                "label": "NFD 4 (4X)",
+                "string": "ᾯ"
+            },
+            {
+                "label": "NFKC 1 (3X)",
+                "string": "℻"
+            },
+            {
+                "label": "NFKC 2 (4X)",
+                "string": "㍿"
+            },
+            {
+                "label": "NFKC 3 (6X)",
+                "string": "㌖"
+            },
+            {
+                "label": "NFKC 4 (8X)",
+                "string": "ﷻ"
+            },
+            {
+                "label": "NFKC 5 (18X)",
+                "string": "ﷺ"
+            },
+            {
+                "label": "NFKD 1 (6X)",
+                "string": "㌓"
+            },
+            {
+                "label": "NFKD 2 (6X)",
+                "string": "㍖"
+            }
+        ]
     },
     {
-        "label": "Circled Numbers",
-        "string": "③①年⑫月①③日"
+        "label": "Japanese",
+        "items":
+        [
+            {
+                "label": "Emoji Buttons",
+                "string": "🈁 🈂️ 🈯 🉐 🉑"
+            },
+            {
+                "label": "Era Names",
+                "string": "㋿ ㍻ ㍼ ㍽ ㍾"
+            },
+            {
+                "label": "Halfwidth Kana",
+                "string": "ｶｰ"
+            },
+            {
+                "label": "Hiragana Digraph",
+                "string": "ゟ"
+            },
+            {
+                "label": "Katakana Digraph",
+                "string": "ヿ"
+            },
+            {
+                "label": "Square Hiragana",
+                "string": "🈀"
+            },
+            {
+                "label": "Square Jukugo",
+                "string": "㍿"
+            },
+            {
+                "label": "Square Katakana",
+                "string": "㌀"
+            }
+        ]
     },
     {
-        "label": "Different Spaces",
-        "string": "  　"
+        "label": "Korean",
+        "items":
+        [
+            {
+                "label": "Hangul & Jamo",
+                "string": "간가ᄀ"
+            }
+        ]
     },
     {
-        "label": "Font Variations",
-        "string": "ℋ ℌ ℍ 𝐇 𝐻 𝑯 𝓗 𝕳 𝖧 𝗛 𝘏 𝙃 𝙷"
-    },
-    {
-        "label": "Fullwidth Punctuation",
-        "string": "、。．，：；"
-    },
-    {
-        "label": "Halfwidth Kana",
-        "string": "ｶｰ"
-    },
-    {
-        "label": "Hangul & Jamo",
-        "string": "간가ᄀ"
-    },
-    {
-        "label": "Hiragana Digraph",
-        "string": "ゟ"
-    },
-    {
-        "label": "Japanese Buttons",
-        "string": "🈁 🈂️ 🈯 🉐 🉑"
-    },
-    {
-        "label": "Japanese Era Names",
-        "string": "㋿ ㍻ ㍼ ㍽ ㍾"
-    },
-    {
-        "label": "Katakana Digraph",
-        "string": "ヿ"
-    },
-    {
-        "label": "Multiple Combining Marks",
-        "string": "ḍ̇"
-    },
-    {
-        "label": "Number Ten",
-        "string": "⅒ ⑩ ⑽ ⒑ ㋉ ㍢ ㏩"
-    },
-    {
-        "label": "Rotated Variants",
-        "string": "︷︸"
-    },
-    {
-        "label": "Singletons",
-        "string": "ÅΩ"
-    },
-    {
-        "label": "Square Hiragana",
-        "string": "🈀"
-    },
-    {
-        "label": "Square Jukugo",
-        "string": "㍿"
-    },
-    {
-        "label": "Square Katakana",
-        "string": "㌀"
-    },
-    {
-        "label": "Strange Font Coding",
-        "string": "𝓢𝓽𝓻𝓪𝓷𝓰𝓮 𝓕𝓸𝓷𝓽 𝓒𝓸𝓭𝓲𝓷𝓰"
-    },
-    {
-        "label": "Vulgar Fractions",
-        "string": "¼ ½ ¾"
+        "label": "Miscellaneous",
+        "items":
+        [
+            {
+                "label": "Circled Numbers",
+                "string": "③①年⑫月①③日"
+            },
+            {
+                "label": "Different Spaces",
+                "string": "  　"
+            },
+            {
+                "label": "Font Variations",
+                "string": "ℋ ℌ ℍ 𝐇 𝐻 𝑯 𝓗 𝕳 𝖧 𝗛 𝘏 𝙃 𝙷"
+            },
+            {
+                "label": "Fullwidth Punctuation",
+                "string": "．，：；"
+            },
+            {
+                "label": "Multiple Combining Marks",
+                "string": "ḍ̇"
+            },
+            {
+                "label": "Number Ten",
+                "string": "⅒ ⑩ ⑽ ⒑ ㋉ ㍢ ㏩"
+            },
+            {
+                "label": "Rotated Variants",
+                "string": "︷︸"
+            },
+            {
+                "label": "Singletons",
+                "string": "ÅΩ"
+            },
+            {
+                "label": "Strange Font Coding",
+                "string": "𝓢𝓽𝓻𝓪𝓷𝓰𝓮 𝓕𝓸𝓷𝓽 𝓒𝓸𝓭𝓲𝓷𝓰"
+            },
+            {
+                "label": "Vulgar Fractions",
+                "string": "¼ ½ ¾"
+            }
+        ]
     }
 ]

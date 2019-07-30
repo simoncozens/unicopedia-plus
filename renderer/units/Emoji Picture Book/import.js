@@ -108,6 +108,7 @@ module.exports.start = function (context)
     //
     function setFontSize (fontSize)
     {
+        sizeRange.title = `Font size: ${Math.round (fontSize)}px`;
         headStyle.textContent = `#${unitId} .plain-panel .sheet { font-size: ${fontSize}px; }`;
     }
     //

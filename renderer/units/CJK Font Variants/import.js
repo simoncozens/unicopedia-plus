@@ -415,22 +415,9 @@ module.exports.start = function (context)
         }
     }
     //
-    let iterator = Intl.v8BreakIterator ([ ], { type: 'character' } );
+    const GraphemeSplitter = require ('grapheme-splitter');
     //
-    function segmentText (text)
-    {
-        let graphemes = [ ];
-        iterator.adoptText (text);
-        let pos = iterator.first ();
-        while (pos !== -1)
-        {
-            let nextPos = iterator.next ();
-            if (nextPos === -1) break;
-            graphemes.push (text.slice (pos, nextPos));
-            pos = nextPos;
-        }
-        return graphemes;
-    }
+    var splitter = new GraphemeSplitter ();
     //
     function isWideGrapheme (grapheme)
     {
@@ -452,7 +439,7 @@ module.exports.start = function (context)
     //
     function wideSplit (string)
     {
-        let wideCharacters = segmentText (string).filter (isWideGrapheme);
+        let wideCharacters = splitter.splitGraphemes (string).filter (isWideGrapheme);
         return wideCharacters;
     }
     //

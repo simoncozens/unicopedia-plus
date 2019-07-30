@@ -111,8 +111,8 @@
                             <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property value equal to 'Katakana'</li>
                             <li><code>^pet$</code><br>Emoji whose keyword is "pet"</li>
                             <li><code>(.)\1\1</code><br>Emoji whose keywords contain three identical characters in a row</li>
-                            <li><code>(?=.*flag)(?=.*island$)</code><br>Emoji whose name contains "flag" and ends with "island"</li>
-                            <li><code>^(dog|panda|rabbit|unicorn)$</code><br>Emoji whose name or keyword is "dog" or "panda" or "rabbit" or "unicorn"</li>
+                            <li><code>(?=.*flag)(?=.*island\b)</code><br>Emoji whose name contains both "flag" and "island" (but not "islands")</li>
+                            <li><code>^(koala|panda|rabbit|unicorn)$</code><br>Emoji whose name or keyword is "koala" or "panda" or "rabbit" or "unicorn"</li>
                         </ul>
                     </details>
                 </div>

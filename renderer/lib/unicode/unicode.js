@@ -696,11 +696,11 @@ function codePointsToCharacters (codePoints)
 {
     let characters = "";
     codePoints = codePoints.replace (/\b([0-9a-fA-F]{4,})\b/g, "U+$1");
-    const regex = /\\u([0-9a-fA-F]{4})|\\u\{([0-9a-fA-F]{1,})\}|U\+([0-9a-fA-F]{4,})/g;    // Global flag /g *must* be set!
+    const regex = /\\u([0-9a-fA-F]{4})|\\u\{([0-9a-fA-F]{1,})\}|U\+([0-9a-fA-F]{4,})|0x([0-9a-fA-F]{1,})/g;    // Global flag /g *must* be set!
     let code;
     while ((code = regex.exec (codePoints)))
     {
-        let index = parseInt (code[1] || code[2] || code[3], 16);
+        let index = parseInt (code[1] || code[2] || code[3] || code[4], 16);
         if (index <= 0x10FFFF)
         {
             characters += String.fromCodePoint (index);

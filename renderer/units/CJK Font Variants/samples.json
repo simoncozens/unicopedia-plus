@@ -130,6 +130,10 @@
             {
                 "label": "Noble",
                 "string": "卿󠄀卿󠄁卿󠄂"
+            },
+            {
+                "label": "Quick",
+                "string": "迅󠄀迅󠄁迅󠄂"
             }
         ]
     },
@@ -148,6 +152,10 @@
             {
                 "label": "Ghost Character",
                 "string": "㌬・パーツ"
+            },
+            {
+                "label": "Hiragana Digraph",
+                "string": "ゟ＝より"
             },
             {
                 "label": "Prefectures of Japan",
@@ -189,6 +197,10 @@
         "label": "Korean",
         "items":
         [
+            {
+                "label": "Hangul Letters",
+                "string": "ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣㅥㅦㅧㅨㅩㅪㅫㅬㅭㅮㅯㅰㅱㅲㅳㅴㅵㅶㅷㅸㅹㅺㅻㅼㅽㅾㅿㆀㆁㆂㆃㆄㆅㆆㆇㆈㆉㆊㆋㆌㆍㆎ"
+            },
             {
                 "label": "Hangul Syllables",
                 "string": "간간간"

@@ -65,12 +65,12 @@
     font-family: "Sans CJK SC", "NotDef";
 }
 
-#unihan-inspector-unit .unihan-character:lang(zh-Hant)
+#unihan-inspector-unit .unihan-character:lang(zh-Hant-TW)
 {
     font-family: "Sans CJK TC", "NotDef";
 }
 
-#unihan-inspector-unit .unihan-character:lang(zh-HK)
+#unihan-inspector-unit .unihan-character:lang(zh-Hant-HK)
 {
     font-family: "Sans CJK HK", "NotDef";
 }

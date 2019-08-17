@@ -75,10 +75,10 @@ module.exports.start = function (context)
     const languages =
     {
         "ja": { label: "JP", title: "Japanese typeface" },
-        "ko":  { label: "KR", title: "Korean typeface" },
+        "ko": { label: "KR", title: "Korean typeface" },
         "zh-Hans": { label: "SC", title: "Simplified Chinese typeface" },
-        "zh-Hant": { label: "TC", title: "Traditional Chinese typeface" },
-        "zh-HK": { label: "HK", title: "Hong Kong Chinese typeface" }
+        "zh-Hant-TW": { label: "TC", title: "Traditional Chinese (Taiwan) typeface" },
+        "zh-Hant-HK": { label: "HK", title: "Traditional Chinese (Hong Kong) typeface" }
     };
     const languageKeys = Object.keys (languages);
     //
@@ -343,6 +343,7 @@ module.exports.start = function (context)
                     { name: "Definition", value: definitionValue, class: 'line-clamp' },
                     { name: "Numeric Value", value: numericValue },
                     { name: "Set", value: iiCoreSet },
+                    // null,
                     { name: "Unified Variant", value: unified, separator: " " },
                     { name: "Compatibility Variants", value: compatibility, separator: " " },
                     { name: "Semantic Variants", value: semantic, separator: " " },
@@ -355,7 +356,12 @@ module.exports.start = function (context)
                 //
                 for (let unihanField of unihanFields)
                 {
-                    if (unihanField.value)
+                    if (!unihanField)
+                    {
+                        let lineBreak = document.createElement ('br');
+                        unihanInfo.appendChild (lineBreak);
+                    }
+                    else if (unihanField.value)
                     {
                         let field = document.createElement ('div');
                         field.className = 'field';

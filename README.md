@@ -40,8 +40,8 @@ The following utilities are currently available:
 | Japanese | JP | Noto Sans CJK JP Regular |
 | Korean | KR | Noto Sans CJK KR Regular |
 | Simplified Chinese | SC | Noto Sans CJK SC Regular |
-| Traditional Chinese | TC | Noto Sans CJK TC Regular |
-| Hong Kong Chinese | HK | Noto Sans CJK HK Regular |
+| Traditional Chinese (Taiwan) | TC | Noto Sans CJK TC Regular |
+| Traditional Chinese (Hong Kong) | HK | Noto Sans CJK HK Regular |
 
 - Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
 - Font variants of the CJK characters can be visualized either vertically or horizontally. Use the <kbd>Writing Mode</kbd> drop-down menu to toggle between the two modes.
@@ -340,17 +340,24 @@ The following utilities are currently available:
     - basic Unihan information: radical/strokes, definition, numeric value, IICore set, variant characters.
 - Previously looked up Unihan characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.
 - It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
-- The currently looked up Unihan character is displayed at a large scale, followed by its code point; click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through several different CJK typefaces, among: `JP` (Japanese), `KR` (Korean), `SC` (Simplified Chinese), `TC` (Traditional Chinese), `HK` (Hong Kong Chinese). Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
+- The currently looked up Unihan character is displayed at a large scale, followed by its code point.
+- Click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through five different CJK typefaces, among:
+    - `JP`: Japanese
+    - `KR`: Korean
+    - `SC`: Simplified Chinese
+    - `TC`: Traditional Chinese (Taiwan)
+    - `HK`: Traditional Chinese (Hong Kong)
+- Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
 - Variant characters, if any, are listed under several classes in the basic Unihan information panel, excluding the looked up character itself:
-    - `Unified Variant`: decomposition of the looked up character.
-    - `Compatibility Variants`: characters whose decomposition is the looked up character.
-    - `Semantic Variants`: characters listed under the *kSemanticVariant* Unihan tag.
-    - `Specialized Variants`: characters listed under the *kSpecializedSemanticVariant* Unihan tag.
-    - `Shape Variants` characters listed under the *kZVariant* Unihan tag.
-    - `Simplified Variants`: characters listed under the *kSimplifiedVariant* Unihan tag.
-    - `Traditional Variants`: characters listed under the *kTraditionalVariant* Unihan tag.
-    - `Yasuoka Variants`: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>.
+    - `Unified Variant`: decomposition of the looked up character
+    - `Compatibility Variants`: characters whose decomposition is the looked up character
+    - `Semantic Variants`: characters listed under the *kSemanticVariant* Unihan tag
+    - `Specialized Variants`: characters listed under the *kSpecializedSemanticVariant* Unihan tag
+    - `Shape Variants` characters listed under the *kZVariant* Unihan tag
+    - `Simplified Variants`: characters listed under the *kSimplifiedVariant* Unihan tag
+    - `Traditional Variants`: characters listed under the *kTraditionalVariant* Unihan tag
+    - `Yasuoka Variants`: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>
 - Notes:
     - The top Radical/Strokes fields are displaying data obtained from the only informative IRG Source: *kRSUnicode*, while the bottom ones (in grayed-out style, if any) make use of the provisional sources: *kRSKangXi*, *kRSJapanese*, *kRSKanWa*, *kRSKorean* and *kRSAdobe_Japan1_6*.
     - IICore (*International Ideographs Core*) represents a set of 9,810 important Unihan characters in everyday use throughout East Asia; it has been developed by the IRG.

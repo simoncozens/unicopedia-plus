@@ -81,14 +81,14 @@
     font-family: "Sans CJK SC", "NotDef";
 }
 
-#cjk-font-variants-unit .cjk-data-base:lang(zh-Hant),
-#cjk-font-variants-unit .cjk-data-overlay:lang(zh-Hant)
+#cjk-font-variants-unit .cjk-data-base:lang(zh-Hant-TW),
+#cjk-font-variants-unit .cjk-data-overlay:lang(zh-Hant-TW)
 {
     font-family: "Sans CJK TC", "NotDef";
 }
 
-#cjk-font-variants-unit .cjk-data-base:lang(zh-HK),
-#cjk-font-variants-unit .cjk-data-overlay:lang(zh-HK)
+#cjk-font-variants-unit .cjk-data-base:lang(zh-Hant-HK),
+#cjk-font-variants-unit .cjk-data-overlay:lang(zh-Hant-HK)
 {
     font-family: "Sans CJK HK", "NotDef";
 }

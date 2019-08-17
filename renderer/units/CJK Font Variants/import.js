@@ -139,11 +139,11 @@ module.exports.start = function (context)
     //
     const languages =
     [
-        { header: "Japanese", tag: 'ja', code: "JP" },
-        { header: "Korean", tag: 'ko', code: "KR" },
-        { header: "Simplified Chinese", tag: 'zh-Hans', code: "SC" },
-        { header: "Traditional Chinese", tag: 'zh-Hant', code: "TC" },
-        { header: "Hong\xA0Kong Chinese", tag: 'zh-HK', code: "HK" }
+        { name: "Japanese", tag: 'ja', code: "JP" },
+        { name: "Korean", tag: 'ko', code: "KR" },
+        { name: "Simplified Chinese", tag: 'zh-Hans', code: "SC" },
+        { name: "Traditional Chinese (TW)", tag: 'zh-Hant-TW', code: "TC" },
+        { name: "Traditional Chinese (HK)", tag: 'zh-Hant-HK', code: "HK" }
     ];
     //
     const useFooter = true;
@@ -279,7 +279,7 @@ module.exports.start = function (context)
                         header.className = 'cjk-title';
                         header.title = `Code: ${language.code}\nlang="${language.tag}"`;
                         let span = document.createElement ('span');
-                        span.textContent = language.header;
+                        span.textContent = language.name;
                         header.appendChild (span);
                         headerRow.appendChild (header);
                     }
@@ -366,7 +366,7 @@ module.exports.start = function (context)
                         header.title = `Code: ${language.code}\nlang="${language.tag}"`;
                         let span = document.createElement ('span');
                         span.className = 'cjk-lang';
-                        span.textContent = language.header;
+                        span.textContent = language.name;
                         header.appendChild (span);
                         dataRow.appendChild (header);
                         wideCharacters.forEach

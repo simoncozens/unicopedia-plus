@@ -45,7 +45,8 @@ module.exports.start = function (context)
     //
     const defaultFontSize = 72;
     //
-    const cjkBlankFont = `${defaultFontSize}px "Sans CJK JP", "Blank"`;
+    const cjkBlankFont = `${defaultFontSize}px "Sans CJK JP", "Sans CJK KR", "Sans CJK SC", "Sans CJK TC", "Sans CJK HK", "Blank"`;
+    // const cjkBlankFont = `${defaultFontSize}px "Sans CJK JP", "Sans CJK KR", "Sans CJK SC", "Sans CJK TC", "Sans CJK HK", "Sans CJK MO", "Blank"`;
     //
     let canvas = document.createElement ('canvas');
     canvas.width = defaultFontSize;
@@ -139,11 +140,12 @@ module.exports.start = function (context)
     //
     const languages =
     [
-        { name: "Japanese", tag: 'ja', code: "JP" },
-        { name: "Korean", tag: 'ko', code: "KR" },
-        { name: "Simplified Chinese", tag: 'zh-Hans', code: "SC" },
-        { name: "Traditional Chinese (TW)", tag: 'zh-Hant-TW', code: "TC" },
-        { name: "Traditional Chinese (HK)", tag: 'zh-Hant-HK', code: "HK" }
+        { title: "Japanese", name: "Japanese", tag: 'ja', code: "JP" },
+        { title: "Korean", name: "Korean", tag: 'ko', code: "KR" },
+        { title: "Simplified Chinese", name: "Simplified Chinese", tag: 'zh-Hans', code: "SC" },
+        { title: "Traditional Chinese (TW)", name: "Traditional Chinese (Taiwan)", tag: 'zh-Hant-TW', code: "TC" },
+        { title: "Traditional Chinese (HK)", name: "Traditional Chinese (Hong Kong)", tag: 'zh-Hant-HK', code: "HK" },
+        // { title: "Traditional Chinese (MO)", name: "Traditional Chinese (Macao)", tag: 'zh-Hant-MO', code: "MO" }
     ];
     //
     const useFooter = true;
@@ -277,9 +279,9 @@ module.exports.start = function (context)
                         }
                         let header = document.createElement ('th');
                         header.className = 'cjk-title';
-                        header.title = `Code: ${language.code}\nlang="${language.tag}"`;
+                        header.title = `Name: ${language.name}\nCode: ${language.code}\nlang="${language.tag}"`;
                         let span = document.createElement ('span');
-                        span.textContent = language.name;
+                        span.textContent = language.title;
                         header.appendChild (span);
                         headerRow.appendChild (header);
                     }
@@ -363,10 +365,10 @@ module.exports.start = function (context)
                         dataRow.appendChild (emptyCol);
                         let header = document.createElement ('th');
                         header.className = 'cjk-title';
-                        header.title = `Code: ${language.code}\nlang="${language.tag}"`;
+                        header.title = `Name: ${language.name}\nCode: ${language.code}\nlang="${language.tag}"`;
                         let span = document.createElement ('span');
                         span.className = 'cjk-lang';
-                        span.textContent = language.name;
+                        span.textContent = language.title;
                         header.appendChild (span);
                         dataRow.appendChild (header);
                         wideCharacters.forEach
@@ -483,7 +485,13 @@ module.exports.start = function (context)
         }
     );
     charactersInput.value = prefs.charactersInput;
-    charactersInput.dispatchEvent (new Event ('input'));
+    document.fonts.load (cjkBlankFont).then
+    (
+        () =>
+        {
+            charactersInput.dispatchEvent (new Event ('input'));
+        }
+    );
     //
     codePointsInput.addEventListener
     (

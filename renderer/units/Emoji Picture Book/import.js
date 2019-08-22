@@ -19,6 +19,7 @@ module.exports.start = function (context)
     //
     const colorEmojiNotDefFont = `${defaultFontSize}px "Apple Color Emoji", "Noto Color Emoji", "Segoe Color Emoji", "NotDef"`;
     const colorEmojiBlankFont = `${defaultFontSize}px "Apple Color Emoji", "Noto Color Emoji", "Segoe Color Emoji", "Blank"`;
+    const fallbackFontFaces = `${defaultFontSize}px "NotDef", "Blank"`;
     //
     let canvas = document.createElement ('canvas');
     canvas.width = defaultFontSize * fontAdjustmentFactor;
@@ -232,9 +233,14 @@ module.exports.start = function (context)
     {
         selectGroup.selectedIndex = 0;
     }
-    //
-    getProperEmojis ();
-    updateGroup (selectGroup.value);
+    document.fonts.load (fallbackFontFaces).then
+    (
+        () =>
+        {
+            getProperEmojis ();
+            updateGroup (selectGroup.value);
+        }
+    );
     //
     selectGroup.addEventListener ('input', (event) => { updateGroup (event.currentTarget.value); });
     //

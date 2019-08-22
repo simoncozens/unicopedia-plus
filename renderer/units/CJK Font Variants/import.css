@@ -92,7 +92,13 @@
 {
     font-family: "Sans CJK HK", "NotDef";
 }
-
+/*
+#cjk-font-variants-unit .cjk-data-base:lang(zh-Hant-MO),
+#cjk-font-variants-unit .cjk-data-overlay:lang(zh-Hant-MO)
+{
+    font-family: "Sans CJK MO", "NotDef";
+}
+*/
 #cjk-font-variants-unit .sheet table,
 #cjk-font-variants-unit .sheet tr,
 #cjk-font-variants-unit .sheet th,

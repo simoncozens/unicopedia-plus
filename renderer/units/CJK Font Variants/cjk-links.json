@@ -199,12 +199,16 @@
     ],
     [
         {
+            "name": "Guidelines for Using Noto – Google Noto Fonts",
+            "href": "https://www.google.com/get/noto/help/guidelines/"
+        },
+        {
             "name": "Noto CJK – Google Noto Fonts",
             "href": "https://www.google.com/get/noto/help/cjk/"
         },
         {
-            "name": "Guidelines for Using Noto – Google Noto Fonts",
-            "href": "https://www.google.com/get/noto/help/guidelines/"
+            "name": "GitHub - googlefonts/noto-cjk: Noto CJK fonts",
+            "href": "https://github.com/googlefonts/noto-cjk"
         }
     ],
     [

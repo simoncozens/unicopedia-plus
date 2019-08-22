@@ -78,7 +78,8 @@ module.exports.start = function (context)
         "ko": { label: "KR", title: "Korean typeface" },
         "zh-Hans": { label: "SC", title: "Simplified Chinese typeface" },
         "zh-Hant-TW": { label: "TC", title: "Traditional Chinese (Taiwan) typeface" },
-        "zh-Hant-HK": { label: "HK", title: "Traditional Chinese (Hong Kong) typeface" }
+        "zh-Hant-HK": { label: "HK", title: "Traditional Chinese (Hong Kong) typeface" },
+        // "zh-Hant-MO": { label: "MO", title: "Traditional Chinese (Macao) typeface" }
     };
     const languageKeys = Object.keys (languages);
     //

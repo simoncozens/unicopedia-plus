@@ -29,7 +29,13 @@
     font-family: "Sans CJK HK";
     src: url("cjk-fonts/NotoSansCJKhk-Regular.otf") format("opentype");
 }
-
+/*
+@font-face
+{
+    font-family: "Sans CJK MO";
+    src: url("cjk-fonts/NotoSansCJKmo-Regular.otf") format("opentype");
+}
+*/
 @font-face
 {
     font-family: "NotDef";

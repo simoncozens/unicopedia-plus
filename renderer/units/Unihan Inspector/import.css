@@ -74,7 +74,12 @@
 {
     font-family: "Sans CJK HK", "NotDef";
 }
-
+/*
+#unihan-inspector-unit .unihan-character:lang(zh-Hant-MO)
+{
+    font-family: "Sans CJK MO", "NotDef";
+}
+*/
 #unihan-inspector-unit .character-data
 {
     display: flex;

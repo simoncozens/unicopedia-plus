@@ -53,11 +53,15 @@
             },
             {
                 "label": "East Asian Variants 2",
-                "string": "匕𠤎叱𠮟"
+                "string": "兆謎遡餅餌輩邉"
             },
             {
                 "label": "East Asian Variants 3",
-                "string": "兆謎遡餅餌輩邉"
+                "string": "⿔龜龜龜龜"
+            },
+            {
+                "label": "East Asian Variants 4",
+                "string": "匕𠤎叱𠮟"
             }
         ]
     },
@@ -123,6 +127,10 @@
         "label": "IVD Sequences",
         "items":
         [
+            {
+                "label": "Crossroads",
+                "string": "辻󠄀辻󠄁"
+            },
             {
                 "label": "Dragon",
                 "string": "龍󠄀龍󠄁龍󠄂"

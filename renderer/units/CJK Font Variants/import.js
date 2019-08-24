@@ -163,62 +163,98 @@ module.exports.start = function (context)
     //
     const blendingEffect = 'none'; // 'none', 'normal', 'multiply', 'difference'
     //
-    let currentElement = null;
+    let currentDiffElement = null;
+    let currentAlternateDiff;
     //
     function showDifferences (event)
     {
         event.preventDefault ();
-        currentElement = event.currentTarget;
-        let languageVariants = sheet.querySelectorAll (`.cjk-data[data-index="${currentElement.dataset.index}"]`);
-        for (let languageVariant of languageVariants)
+        let diffElement = event.currentTarget;
+        let alternateDiff = event.shiftKey;
+        let variants;
+        if (alternateDiff)
         {
-            let base = languageVariant.querySelector ('.cjk-data-base');
-            switch (blendingEffect)
+            variants = sheet.querySelectorAll (`.cjk-data[lang="${diffElement.lang}"]`);
+        }
+        else
+        {
+            variants = sheet.querySelectorAll (`.cjk-data[data-index="${diffElement.dataset.index}"]`);
+        }
+        if (variants.length > 1) // Diff needs at least two elements to compare
+        {
+            for (let variant of variants)
             {
-                case 'none':
-                    base.classList.add ('hidden');
-                    break;
-                case 'normal':
-                    base.style.color = 'var(--color-base)';
-                    break;
-                case 'multiply':
-                    base.style.color = 'var(--color-base)';
-                    break;
-                case 'difference':
-                    base.style.color = 'black';
-                    break;
+                let base = variant.querySelector ('.cjk-data-base');
+                switch (blendingEffect)
+                {
+                    case 'none':
+                        base.classList.add ('hidden');
+                        break;
+                    case 'normal':
+                        base.style.color = 'var(--color-base)';
+                        break;
+                    case 'multiply':
+                        base.style.color = 'var(--color-base)';
+                        break;
+                    case 'difference':
+                        base.style.color = 'black';
+                        break;
+                }
+                let overlay = variant.querySelector ('.cjk-data-overlay');
+                if (alternateDiff)
+                {
+                    overlay.lang = variant.lang;
+                    overlay.firstChild.textContent = diffElement.querySelector ('.cjk-data-base').firstChild.textContent;
+                }
+                else
+                {
+                    overlay.lang = diffElement.lang;
+                }
+                switch (blendingEffect)
+                {
+                    case 'none':
+                        break;
+                    case 'normal':
+                        overlay.style.color = 'var(--color-overlay)';
+                        overlay.style.mixBlendMode = 'normal';
+                        break;
+                    case 'multiply':
+                        overlay.style.color = 'var(--color-overlay)';
+                        overlay.style.mixBlendMode = 'multiply';
+                        break;
+                    case 'difference':
+                        overlay.style.color = 'var(--color-overlay)';
+                        overlay.style.mixBlendMode = 'difference';
+                        break;
+                }
+                overlay.classList.remove ('hidden');
             }
-            let overlay = languageVariant.querySelector ('.cjk-data-overlay');
-            overlay.lang = currentElement.lang;
-            switch (blendingEffect)
-            {
-                case 'none':
-                    break;
-                case 'normal':
-                    overlay.style.color = 'var(--color-overlay)';
-                    overlay.style.mixBlendMode = 'normal';
-                    break;
-                case 'multiply':
-                    overlay.style.color = 'var(--color-overlay)';
-                    overlay.style.mixBlendMode = 'multiply';
-                    break;
-                case 'difference':
-                    overlay.style.color = 'var(--color-overlay)';
-                    overlay.style.mixBlendMode = 'difference';
-                    break;
-            }
-            overlay.classList.remove ('hidden');
+            currentDiffElement = diffElement;
+            currentAlternateDiff = alternateDiff;
+        }
+        else
+        {
+            currentDiffElement = null;
         }
     }
     //
     function hideDifferences (event)
     {
-        if (currentElement)
+        if (currentDiffElement)
         {
-            let languageVariants = sheet.querySelectorAll (`.cjk-data[data-index="${currentElement.dataset.index}"]`);
-            for (let languageVariant of languageVariants)
+            event.preventDefault ();
+            let variants;
+            if (currentAlternateDiff)
             {
-                let base = languageVariant.querySelector ('.cjk-data-base');
+                variants = sheet.querySelectorAll (`.cjk-data[lang="${currentDiffElement.lang}"]`);
+            }
+            else
+            {
+                variants = sheet.querySelectorAll (`.cjk-data[data-index="${currentDiffElement.dataset.index}"]`);
+            }
+            for (let variant of variants)
+            {
+                let base = variant.querySelector ('.cjk-data-base');
                 switch (blendingEffect)
                 {
                     case 'none':
@@ -230,7 +266,15 @@ module.exports.start = function (context)
                         base.style = null;
                         break;
                 }
-                let overlay = languageVariant.querySelector ('.cjk-data-overlay');
+                let overlay = variant.querySelector ('.cjk-data-overlay');
+                if (currentAlternateDiff)
+                {
+                    overlay.firstChild.textContent = base.firstChild.textContent;
+                }
+                else
+                {
+                    overlay.lang = base.lang;
+                }
                 switch (blendingEffect)
                 {
                     case 'none':
@@ -243,10 +287,7 @@ module.exports.start = function (context)
                 }
                 overlay.classList.add ('hidden');
             }
-        }
-        else
-        {
-            currentElement = null;
+            currentDiffElement = null;
         }
     }
     //
@@ -309,7 +350,7 @@ module.exports.start = function (context)
                                 data.lang = language.tag;
                                 data.dataset.index = wideCharacterIndex;
                                 data.addEventListener ('mousedown', showDifferences);
-                                document.addEventListener ('mouseup', hideDifferences);
+                                document.addEventListener ('mouseup', hideDifferences); // document, not data!
                                 let base = document.createElement ('div');
                                 base.className = 'cjk-data-base';
                                 let baseChar = document.createElement ('span');

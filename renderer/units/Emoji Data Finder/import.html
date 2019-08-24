@@ -110,7 +110,12 @@
                             <li><code>\p{Ideographic}</code><br>Emoji whose keywords contain one character with the 'Ideographic' binary property</li>
                             <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property value equal to 'Katakana'</li>
                             <li><code>^pet$</code><br>Emoji whose keyword is "pet"</li>
+                            <li><code>[!?]</code><br>Emoji whose keywords contain either "!" or "?"</li>
+                            <li><code>\d{4}</code><br>Emoji whose keywords contain four digits in a row</li>
                             <li><code>(.)\1\1</code><br>Emoji whose keywords contain three identical characters in a row</li>
+                            <li><code>^[+-]1$</code><br>Emoji whose keyword is either "+1" (thumbs up) or "-1" (thumbs down)</li>
+                            <li><code>^\p{Math_Symbol}$</code><br>Emoji whose keyword is a single mathematical symbol (+ − × ÷)</li>
+                            <li><code>\p{Other_Symbol}</code><br>Emoji whose keyword contain one character belonging to the 'Other_Symbol' category: a check mark ("✓"), for instance</li>
                             <li><code>(?=.*flag)(?=.*island\b)</code><br>Emoji whose name contains both "flag" and "island" (but not "islands")</li>
                             <li><code>^(koala|panda|rabbit|unicorn)$</code><br>Emoji whose name or keyword is "koala" or "panda" or "rabbit" or "unicorn"</li>
                         </ul>

@@ -35,17 +35,17 @@ The following utilities are currently available:
 
 - The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in five different typefaces belonging to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
 
-| Language | Code | Typeface |
-|----------|------|----------|
-| Japanese | JP | Noto Sans CJK JP Regular |
-| Korean | KR | Noto Sans CJK KR Regular |
-| Simplified Chinese | SC | Noto Sans CJK SC Regular |
-| Traditional Chinese (Taiwan) | TC | Noto Sans CJK TC Regular |
-| Traditional Chinese (Hong Kong) | HK | Noto Sans CJK HK Regular |
+| Language | Tag | Code | Typeface |
+|----------|-----|------|----------|
+| Japanese | ja | JP | Noto Sans CJK JP Regular |
+| Korean | ko | KR | Noto Sans CJK KR Regular |
+| Simplified Chinese | zh-Hans | SC | Noto Sans CJK SC Regular |
+| Traditional Chinese (Taiwan) | zh-Hant-TW | TC | Noto Sans CJK TC Regular |
+| Traditional Chinese (Hong Kong) | zh-Hant-HK | HK | Noto Sans CJK HK Regular |
 
 - Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
 - Font variants of the CJK characters can be visualized either vertically or horizontally. Use the <kbd>Writing Mode</kbd> drop-down menu to toggle between the two modes.
-- Holding down the mouse button on top on any character frame displays momentarily the same glyph for all language flavors. This is especially useful to quickly spot the differences between glyph variations.
+- Clicking inside any character frame displays momentarily the same glyph for all language flavors, while shift-clicking applies to all characters of the string in a given language flavor. This is especially useful to quickly spot the differences between glyph variations.
 - CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
 - It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) or [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data files.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
@@ -347,7 +347,7 @@ The following utilities are currently available:
     - `SC`: Simplified Chinese
     - `TC`: Traditional Chinese (Taiwan)
     - `HK`: Traditional Chinese (Hong Kong)
-- Double-click on the two-letter language tag to toggle between these five CJK typefaces and the system default typeface.
+- Double-click on the two-letter language code to toggle between these five CJK typefaces and the system default typeface.
 - Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories.
 - Variant characters, if any, are listed under several classes in the basic Unihan information panel, excluding the looked up character itself:
     - `Unified Variant`: decomposition of the looked up character

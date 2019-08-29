@@ -36,7 +36,8 @@ module.exports.start = function (context)
     //
     // Unihan characters
     let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
-    //
+    // Unihan characters and radicals
+    let unihanAndRadicalsRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})|\\p{Radical}', { useRegex: true });
     // Han script characters:
     // - CJK radicals
     // - KangXi radicals
@@ -47,7 +48,68 @@ module.exports.start = function (context)
     // - Unihan characters
     let hanRegex = regexUnicode.build ('\\p{Script=Han}', { useRegex: true });
     //
-    let filterRegex = unihanRegex;
+    let filterRegex = unihanAndRadicalsRegex;
+    //
+    function appendTextWithLinks (node, text)
+    {
+        const regex = /(\bU\+[0-9a-fA-F]{4,5}\b)|(\p{Script=Han})/gu;
+        let matches;
+        let lastEndIndex = 0;
+        while (matches = regex.exec (text))
+        {
+            node.appendChild (document.createTextNode (text.slice (lastEndIndex, matches.index)));
+            lastEndIndex = matches.index + matches[0].length;
+            let codePoint;
+            let char;
+            let link;
+            if (matches[1])
+            {
+                codePoint = matches[1];
+                char = String.fromCodePoint (parseInt (codePoint.replace ("U+", "") , 16));
+                if (filterRegex.test (char))
+                {
+                    link = document.createElement ('span');
+                    link.className = 'unihan-character-link';
+                    if (char != currentUnihanCharacter)
+                    {
+                        link.classList.add ('clickable');
+                        link.addEventListener ('click', (event) => updateUnihanData (char));
+                    }
+                    link.textContent = codePoint;
+                    link.title = char;
+                    node.appendChild (link);
+                }
+                else
+                {
+                    node.appendChild (document.createTextNode (text.slice (matches.index, matches.index + matches[1].length)));
+                }
+            }
+            else if (matches[2])
+            {
+                char = matches[2];
+                if (filterRegex.test (char))
+                {
+                    codePoint = unicode.characterToCodePoint (char);
+                    link = document.createElement ('span');
+                    link.className = 'unihan-character-link';
+                    if (char != currentUnihanCharacter)
+                    {
+                        link.classList.add ('clickable');
+                        link.addEventListener ('click', (event) => updateUnihanData (char));
+                    }
+                    link.textContent = char;
+                    link.title = codePoint;
+                    node.appendChild (link);
+                }
+                else
+                {
+                    node.appendChild (document.createTextNode (text.slice (matches.index, matches.index + matches[2].length)));
+                }
+            }
+        }
+        node.appendChild (document.createTextNode (text.slice (lastEndIndex, text.length)));
+        node.normalize ();
+    }
     //
     function randomElement (elements)
     {
@@ -106,10 +168,7 @@ module.exports.start = function (context)
             for (let variant of variantArray)
             {
                 variant = variant.split ("<")[0];
-                if (variant !== codePoint)  // Discard self variants (consistent with Yasuoka)
-                {
-                    variants.push (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
-                }
+                variants.push (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
             }
         }
         return variants;
@@ -226,6 +285,19 @@ module.exports.start = function (context)
             typefaceNext.addEventListener ('click', event => { updateTypeface (false); });
             //
             let unicodeData = unicode.getCharacterData (unihanCharacter.textContent);
+            let numericType = "";
+            if (unicodeData.numeric)
+            {
+                numericType = "Numeric";
+                if (unicodeData.digit)
+                {
+                    numericType = "Digit";
+                    if (unicodeData.decimal)
+                    {
+                        numericType = "Decimal";
+                    }
+                }
+            }
             let unicodeFields =
             [
                 { name: "Name", value: unicodeData.name },
@@ -235,9 +307,10 @@ module.exports.start = function (context)
                 { name: "Script", value: unicodeData.script },
                 { name: "Script Extensions", value: unicodeData.scriptExtensions },
                 { name: "General Category", value: unicodeData.category },
-                { name: "Decomposition", value: unicodeData.decomposition },
                 { name: "Extended Properties", value: unicodeData.extendedProperties },
-                { name: "Equivalent Unified Ideograph", value: unicodeData.equivalentUnifiedIdeograph }
+                { name: "Decomposition", value: unicodeData.decomposition },
+                { name: "Equivalent Unified Ideograph", value: unicodeData.equivalentUnifiedIdeograph },
+                { name: numericType, value: unicodeData.numeric }
             ];
             //
             let unicodeInfo = document.createElement ('div');
@@ -255,10 +328,15 @@ module.exports.start = function (context)
                     field.appendChild (document.createTextNode (": "));
                     let value = document.createElement ('span');
                     value.className = 'value';
-                    value.textContent = Array.isArray (unicodeField.value) ? unicodeField.value.join (", ") : unicodeField.value;
+                    let text = Array.isArray (unicodeField.value) ? unicodeField.value.join (", ") : unicodeField.value;
                     if (unicodeField.toolTip)
                     {
+                        value.textContent = text;
                         value.title = unicodeField.toolTip;
+                    }
+                    else
+                    {
+                        appendTextWithLinks (value, text);
                     }
                     field.appendChild (value);
                     unicodeInfo.appendChild (field);
@@ -269,6 +347,7 @@ module.exports.start = function (context)
             unihanInfo.className = 'unihan-info';
             if (tags)
             {
+                let iiCoreSet = ("kIICore" in tags) ? "IICore" : "Full";
                 let rsValues = [ ];
                 let rsClasses = [ ];
                 let rsIRGCount = 0;
@@ -337,22 +416,21 @@ module.exports.start = function (context)
                 let traditional = getVariants (character, 'kTraditionalVariant');
                 let yasuoka = yasuokaVariants[character] || [ ];
                 yasuoka = yasuoka.filter (variant => filterRegex.test (variant));
-                let iiCoreSet = ("kIICore" in tags) ? "IICore" : "";
                 let unihanFields =
                 [
+                    { name: "Set", value: iiCoreSet },
                     { name: "Radical/Strokes", value: rsValues, class: rsClasses },
                     { name: "Definition", value: definitionValue, class: 'line-clamp' },
                     { name: "Numeric Value", value: numericValue },
-                    { name: "Set", value: iiCoreSet },
                     // null,
-                    { name: "Unified Variant", value: unified, separator: " " },
-                    { name: "Compatibility Variants", value: compatibility, separator: " " },
-                    { name: "Semantic Variants", value: semantic, separator: " " },
-                    { name: "Specialized Variants", value: specialized, separator: " " },
-                    { name: "Shape Variants", value: shape, separator: " " },
-                    { name: "Simplified Variants", value: simplified, separator: " " },
-                    { name: "Traditional Variants", value: traditional, separator: " " },
-                    { name: "Yasuoka Variants", value: yasuoka, separator: " " }
+                    { name: "Unified Variant", value: unified.join (" ") },
+                    { name: "Compatibility Variants", value: compatibility.join (" ") },
+                    { name: "Semantic Variants", value: semantic.join (" ") },
+                    { name: "Specialized Variants", value: specialized.join (" ") },
+                    { name: "Shape Variants", value: shape.join (" ") },
+                    { name: "Simplified Variants", value: simplified.join (" ") },
+                    { name: "Traditional Variants", value: traditional.join (" ") },
+                    { name: "Yasuoka Variants", value: yasuoka.join (" ") }
                 ];
                 //
                 for (let unihanField of unihanFields)
@@ -381,48 +459,27 @@ module.exports.start = function (context)
                                 field.appendChild (document.createTextNode (": "));
                                 let value = document.createElement ('span');
                                 value.className = 'value';
-                                if (unihanField.separator)
-                                {
-                                    unihanField.value.forEach
-                                    (
-                                        (element, index) =>
+                                let list = document.createElement ('ul');
+                                list.className = 'list';
+                                unihanField.value.forEach
+                                (
+                                    (element, index) =>
+                                    {
+                                        let item = document.createElement ('li');
+                                        item.className = 'item';
+                                        if (Array.isArray (unihanField.class))
                                         {
-                                            if (index > 0)
+                                            let itemClass = unihanField.class[index];
+                                            if (itemClass)
                                             {
-                                                value.appendChild (document.createTextNode (unihanField.separator));
+                                                item.classList.add (itemClass);
                                             }
-                                            let span = document.createElement ('span');
-                                            span.className = 'unihan-character';
-                                            span.textContent = element;
-                                            span.title = unicode.characterToCodePoint (element);
-                                            value.appendChild (span);
                                         }
-                                    );
-                                }
-                                else
-                                {
-                                    let list = document.createElement ('ul');
-                                    list.className = 'list';
-                                    unihanField.value.forEach
-                                    (
-                                        (element, index) =>
-                                        {
-                                            let item = document.createElement ('li');
-                                            item.className = 'item';
-                                            if (Array.isArray (unihanField.class))
-                                            {
-                                                let itemClass = unihanField.class[index];
-                                                if (itemClass)
-                                                {
-                                                    item.classList.add (itemClass);
-                                                }
-                                            }
-                                            item.textContent = element;
-                                            list.appendChild (item);
-                                        }
-                                    );
-                                    value.appendChild (list);
-                                }
+                                        appendTextWithLinks (item, element);
+                                        list.appendChild (item);
+                                    }
+                                );
+                                value.appendChild (list);
                                 field.appendChild (value);
                             }
                         }
@@ -435,7 +492,7 @@ module.exports.start = function (context)
                             field.appendChild (document.createTextNode (": "));
                             let value = document.createElement ('span');
                             value.className = 'value';
-                            value.textContent = unihanField.value;
+                            appendTextWithLinks (value, unihanField.value);
                             field.appendChild (value);
                         }
                         unihanInfo.appendChild (field);
@@ -512,14 +569,14 @@ module.exports.start = function (context)
                                         {
                                             let item = document.createElement ('li');
                                             item.className = 'item';
-                                            item.textContent = element;
+                                            appendTextWithLinks (item, element);
                                             list.appendChild (item);
                                         }
                                         valueCell.appendChild (list);
                                     }
                                     else
                                     {
-                                        valueCell.textContent = value;
+                                        appendTextWithLinks (valueCell, value);
                                     }
                                     tagRow.appendChild (valueCell);
                                     tagsList.appendChild (tagRow);
@@ -550,14 +607,14 @@ module.exports.start = function (context)
                             {
                                 let item = document.createElement ('li');
                                 item.className = 'item';
-                                item.textContent = element;
+                                appendTextWithLinks (item, element);
                                 list.appendChild (item);
                             }
                             valueCell.appendChild (list);
                         }
                         else
                         {
-                            valueCell.textContent = value;
+                            appendTextWithLinks (valueCell, value);
                         }
                         tagRow.appendChild (valueCell);
                         tagsList.appendChild (tagRow);
@@ -733,6 +790,7 @@ module.exports.start = function (context)
         unihanInput.value = "";
         unihanInput.dispatchEvent (new Event ('input'));
         displayData (character);
+        unit.scrollTop = 0;
     }
     //
     lookupButton.addEventListener

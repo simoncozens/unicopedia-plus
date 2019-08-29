@@ -220,14 +220,14 @@
     color: var(--color-strongest);
 }
 
-#unihan-inspector-unit .unihan-info .field.line-clamp
+/* #unihan-inspector-unit .unihan-info .field.line-clamp
 {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-}
+} */
 
 #unihan-inspector-unit .unihan-info .field .list
 {
@@ -251,9 +251,20 @@
     list-style-type: circle;
 }
 
-#unihan-inspector-unit .unihan-info .field .unihan-character
+#unihan-inspector-unit span.unihan-character-link
 {
-    /* font-size: 24px; */
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 1px 2px;
+    margin: auto -1px;
+}
+
+#unihan-inspector-unit span.unihan-character-link.clickable:hover
+{
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
+    cursor: pointer;
 }
 
 #unihan-inspector-unit .tags-data

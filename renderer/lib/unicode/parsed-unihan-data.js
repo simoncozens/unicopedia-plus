@@ -880,7 +880,7 @@ for (let filename of filenames)
     {
         if (line && (line[0] !== "#"))
         {
-            let found = line.match (/^(U\+2?[0-9A-F]{4})\s+(\w+)\s+(.*)$/);
+            let found = line.match (/^(U\+2?[0-9A-F]{4})\t(\w+)\t(.+)$/);
             if (found)
             {
                 if (!(found[1] in codePoints))

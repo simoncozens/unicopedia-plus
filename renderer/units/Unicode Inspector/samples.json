@@ -23,11 +23,11 @@
             },
             {
                 "label": "CJK Unusual 2",
-                "string": "㔖㪲㫇\n㔔㪳㫈"
+                "string": "㔔㪳㫈\n㔖㪲㫇"
             },
             {
                 "label": "CJK Unusual 3",
-                "string": "𠄷𤕈𮍌\n𡉡𢀓𭍻"
+                "string": "𠄷𤕈𠕲𮍌𡉡𢀓𭍻"
             },
             {
                 "label": "CJK Unusual 4",
@@ -35,7 +35,7 @@
             },
             {
                 "label": "CJK Unusual 5",
-                "string": "𠕲𠚖𠚜𠚡\n𠥓𠥧𠥩𠥪𠥫𠥬"
+                "string": "𠚖𠚜𠚡𠥓𠥧𠥩𠥪𠥫𠥬"
             },
             {
                 "label": "CJK Unusual 6",

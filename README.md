@@ -365,6 +365,8 @@ The following utilities are currently available:
 
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
 
+<img src="screenshots/unihan-inspector-radical.png" width="1080px" alt="Unihan Inspector (Radical) screenshot">
+
 ## Unihan References
 
 - The **Unihan References** utility provides a list of reference links to Unihan-related web pages.

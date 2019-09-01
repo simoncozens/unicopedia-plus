@@ -115,6 +115,7 @@ else
             "",
             "-- Framework --",
             "",
+            [ "System Version", process.getSystemVersion () ],
             [ "Platform", process.platform ],
             [ "Architecture", process.arch ],
             [ "Default App", process.defaultApp || false ],

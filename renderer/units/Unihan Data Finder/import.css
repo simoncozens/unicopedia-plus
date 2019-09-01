@@ -498,7 +498,7 @@
     border: 2px solid var(--color-accent);
     /* border-radius: 50%; */
     padding: 0;
-    margin: 7px 8px;
+    margin: 8px;
     width: 40px;
     height: 40px;
 }
@@ -525,7 +525,6 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    font-family: Monaco, "Noto Mono", monospace;
     margin: 8px 4px;
     width: 48px;
 }
@@ -552,6 +551,7 @@
 
 #unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .code-point
 {
+    font-family: Monaco, "Noto Mono", monospace;
     text-align: center;
     font-size: 12px;
     font-weight: bold;

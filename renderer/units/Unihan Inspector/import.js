@@ -32,7 +32,8 @@ module.exports.start = function (context)
     const numericValuesData = require ('../../lib/unicode/parsed-numeric-values-data.js');
     const compatibilityVariants = require ('../../lib/unicode/get-cjk-compatibility-variants.js');
     const yasuokaVariants = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
-    const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
+    const kangxiRadicals = require ('../../lib/unicode/kangxi-radicals.json');
+    const { fromRadical, fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
     //
     // Unihan characters
     let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
@@ -53,62 +54,82 @@ module.exports.start = function (context)
     function appendTextWithLinks (node, text)
     {
         const regex = /(\bU\+[0-9a-fA-F]{4,5}\b)|(\p{Script=Han})/gu;
-        let matches;
-        let lastEndIndex = 0;
-        while (matches = regex.exec (text))
+        let matches = text.matchAll (regex);
+        let clickables = [ ];
+        for (let match of matches)
         {
-            node.appendChild (document.createTextNode (text.slice (lastEndIndex, matches.index)));
-            lastEndIndex = matches.index + matches[0].length;
+            let matched = match[0];
+            let index = match.index;
+            let lastIndex = index + matched.length;
             let codePoint;
             let char;
-            let link;
-            if (matches[1])
+            if (match[1])
             {
-                codePoint = matches[1];
+                codePoint = matched.toUpperCase ();
                 char = String.fromCodePoint (parseInt (codePoint.replace ("U+", "") , 16));
                 if (filterRegex.test (char))
                 {
-                    link = document.createElement ('span');
-                    link.className = 'unihan-character-link';
-                    if (char != currentUnihanCharacter)
-                    {
-                        link.classList.add ('clickable');
-                        link.addEventListener ('click', (event) => updateUnihanData (char));
-                    }
-                    link.textContent = codePoint;
-                    link.title = char;
-                    node.appendChild (link);
-                }
-                else
-                {
-                    node.appendChild (document.createTextNode (text.slice (matches.index, matches.index + matches[1].length)));
+                    clickables.push ({ type: 'code-point', matched, index, lastIndex, codePoint, char });
                 }
             }
-            else if (matches[2])
+            else if (match[2])
             {
-                char = matches[2];
+                char = matched;
+                codePoint = unicode.characterToCodePoint (char);
                 if (filterRegex.test (char))
                 {
-                    codePoint = unicode.characterToCodePoint (char);
-                    link = document.createElement ('span');
-                    link.className = 'unihan-character-link';
-                    if (char != currentUnihanCharacter)
-                    {
-                        link.classList.add ('clickable');
-                        link.addEventListener ('click', (event) => updateUnihanData (char));
-                    }
-                    link.textContent = char;
-                    link.title = codePoint;
-                    node.appendChild (link);
-                }
-                else
-                {
-                    node.appendChild (document.createTextNode (text.slice (matches.index, matches.index + matches[2].length)));
+                    clickables.push ({ type: 'char', matched, index, lastIndex, codePoint, char });
                 }
             }
         }
-        node.appendChild (document.createTextNode (text.slice (lastEndIndex, text.length)));
-        node.normalize ();
+        for (let index = clickables.length - 2; index >= 0; index--)
+        {
+            let current = clickables[index];
+            let next = clickables[index + 1];
+            if ((current.char === next.char) && (current.type !== next.type) && (text.slice (current.lastIndex, next.index) === " "))
+            {
+                // Merge into current
+                current.type = 'combo';
+                current.matched = `${current.matched} ${next.matched}`;
+                current.index = current.index;
+                current.lastIndex = next.lastIndex;
+                // Remove next
+                clickables.splice (index + 1, 1);
+            }
+        }
+        function onLinkClick (event)
+        {
+            updateUnihanData (event.currentTarget.dataset.char);
+        }
+        let lastIndex = 0;
+        for (clickable of clickables)
+        {
+            node.appendChild (document.createTextNode (text.slice (lastIndex, clickable.index)));
+            lastIndex = clickable.lastIndex;
+            link = document.createElement ('span');
+            link.className = 'unihan-character-link';
+            if (clickable.char != currentUnihanCharacter)
+            {
+                link.classList.add ('clickable');
+                link.dataset.char = clickable.char;
+                link.addEventListener ('click', onLinkClick);
+            }
+            link.textContent = clickable.matched;
+            if (clickable.type === 'code-point')
+            {
+                link.title = clickable.char;
+            }
+            else if (clickable.type === 'char')
+            {
+                link.title = clickable.codePoint;
+            }
+            else if (clickable.type === 'combo')
+            {
+                // No tooltip...
+            }
+            node.appendChild (link);
+        }
+        node.appendChild (document.createTextNode (text.slice (lastIndex, text.length)));
     }
     //
     function randomElement (elements)
@@ -493,6 +514,133 @@ module.exports.start = function (context)
                             let value = document.createElement ('span');
                             value.className = 'value';
                             appendTextWithLinks (value, unihanField.value);
+                            field.appendChild (value);
+                        }
+                        unihanInfo.appendChild (field);
+                    }
+                }
+            }
+            else if (/\p{Radical}/u.test (character))
+            {
+                let radicalIndex = -1;
+                for (let kangxiIndex = 0; kangxiIndex < kangxiRadicals.length; kangxiIndex++)
+                {
+                    let kangxiRadical = kangxiRadicals[kangxiIndex];
+                    if (kangxiRadical.radical === character)
+                    {
+                        radicalIndex = kangxiIndex;
+                        break;
+                    }
+                    else if ("cjk" in kangxiRadical)
+                    {
+                        let ckjRadicals = kangxiRadical.cjk;
+                        for (let cjkIndex = 0; cjkIndex < ckjRadicals.length; cjkIndex++)
+                        {
+                            let cjkRadical = ckjRadicals[cjkIndex];
+                            if (cjkRadical.radical === character)
+                            {
+                                radicalIndex = kangxiIndex;
+                                break;
+                            }
+                        }
+                    }
+                }
+                let kangXiRadical = "";
+                let unified = "";
+                let cjkRadicals = [ ];
+                let cjkClasses = [ ];
+                if (radicalIndex >= 0)
+                {
+                    kangXiRadical = fromRadical (radicalIndex + 1);
+                    let kangxiRadical = kangxiRadicals[radicalIndex];
+                    unified = kangxiRadical.unified;
+                    if ("cjk" in kangxiRadical)
+                    {
+                        let ckjRadicals = kangxiRadical.cjk;
+                        for (let cjkIndex = 0; cjkIndex < ckjRadicals.length; cjkIndex++)
+                        {
+                            let cjkRadical = ckjRadicals[cjkIndex];
+                            cjkRadicals.push (`${radicalIndex + 1} ${cjkRadical.radical} (${cjkRadical.name})`);
+                            if (cjkRadical.radical === character)
+                            {
+                                cjkClasses.push ('cjk-radical-current');
+                                unified = cjkRadical.unified;
+                            }
+                            else
+                            {
+                                cjkClasses.push ('cjk-radical');
+                            }
+                        }
+                    }
+                }
+                //
+                let radicalFields =
+                [
+                    { name: "KangXi Radical", value: kangXiRadical },
+                    { name: "CJK Radicals", value: cjkRadicals, class: cjkClasses },
+                    { name: "Equivalent Unified Ideograph", value: unified }
+                ];
+                //
+                for (let radicalField of radicalFields)
+                {
+                    if (!radicalField)
+                    {
+                        let lineBreak = document.createElement ('br');
+                        radicalInfo.appendChild (lineBreak);
+                    }
+                    else if (radicalField.value)
+                    {
+                        let field = document.createElement ('div');
+                        field.className = 'field';
+                        if (typeof radicalField.class === 'string')
+                        {
+                            field.classList.add (radicalField.class);
+                        }
+                        if (Array.isArray (radicalField.value))
+                        {
+                            if (radicalField.value.length > 0)
+                            {
+                                let name = document.createElement ('span');
+                                name.className = 'name';
+                                name.textContent = radicalField.name.replace (/ /g, "\xA0");
+                                field.appendChild (name);
+                                field.appendChild (document.createTextNode (": "));
+                                let value = document.createElement ('span');
+                                value.className = 'value';
+                                let list = document.createElement ('ul');
+                                list.className = 'list';
+                                radicalField.value.forEach
+                                (
+                                    (element, index) =>
+                                    {
+                                        let item = document.createElement ('li');
+                                        item.className = 'item';
+                                        if (Array.isArray (radicalField.class))
+                                        {
+                                            let itemClass = radicalField.class[index];
+                                            if (itemClass)
+                                            {
+                                                item.classList.add (itemClass);
+                                            }
+                                        }
+                                        appendTextWithLinks (item, element);
+                                        list.appendChild (item);
+                                    }
+                                );
+                                value.appendChild (list);
+                                field.appendChild (value);
+                            }
+                        }
+                        else
+                        {
+                            let name = document.createElement ('span');
+                            name.className = 'name';
+                            name.textContent = radicalField.name.replace (/ /g, "\xA0");
+                            field.appendChild (name);
+                            field.appendChild (document.createTextNode (": "));
+                            let value = document.createElement ('span');
+                            value.className = 'value';
+                            appendTextWithLinks (value, radicalField.value);
                             field.appendChild (value);
                         }
                         unihanInfo.appendChild (field);

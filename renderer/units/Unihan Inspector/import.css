@@ -240,12 +240,14 @@
     /* white-space: nowrap */
 }
 
-#unihan-inspector-unit .unihan-info .field .list .item.irg-source
+#unihan-inspector-unit .unihan-info .field .list .item.irg-source,
+#unihan-inspector-unit .unihan-info .field .list .item.cjk-radical-current
 {
     list-style-type: disc;
 }
 
-#unihan-inspector-unit .unihan-info .field .list .item.no-irg-source
+#unihan-inspector-unit .unihan-info .field .list .item.no-irg-source,
+#unihan-inspector-unit .unihan-info .field .list .item.cjk-radical
 {
     color: gray;
     list-style-type: circle;
@@ -255,8 +257,9 @@
 {
     border: 1px solid transparent;
     border-radius: 2px;
-    padding: 1px 2px;
+    padding: 0 1px;
     margin: auto -1px;
+    white-space: nowrap;
 }
 
 #unihan-inspector-unit span.unihan-character-link.clickable:hover
@@ -265,6 +268,7 @@
     border: 1px solid var(--color-accent);
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
     cursor: pointer;
+    user-select: none;
 }
 
 #unihan-inspector-unit .tags-data
@@ -331,7 +335,7 @@
     font-size: 13px;
     background-color: white;
     text-align: left;
-    line-height: 1.2em;
+    line-height: 1.25em;
     padding: 0.4em 0.8em;
 }
 

@@ -88,7 +88,7 @@ module.exports.start = function (context)
             let tagFlagFound = emoji.match (tagFlagEmojiRegex);
             if (tagFlagFound)
             {
-                let letters = Array.from (tagFlagFound[2]).map ((tag) => String.fromCodePoint (tag.codePointAt (0) - 0xE0000));
+                let letters = Array.from (tagFlagFound[2], (tag) => String.fromCodePoint (tag.codePointAt (0) - 0xE0000));
                 emojiName += ` [${letters.join ("").toUpperCase ().replace (/^(..)(...)$/, "$1-$2")}]`;
             }
         }

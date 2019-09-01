@@ -12,7 +12,7 @@ module.exports.build = function (pattern, options)
     }
     if (!options.useRegex)
     {
-         pattern = Array.from (pattern).map ((char) => `\\u{${char.codePointAt (0).toString (16)}}`).join ('');
+         pattern = Array.from (pattern, (char) => `\\u{${char.codePointAt (0).toString (16)}}`).join ('');
     }
     if (options.wholeWord)
     {

@@ -1,16 +1,16 @@
 {
     "name": "unicopedia-plus",
     "productName": "Unicopedia Plus",
-    "version": "5.8.0",
+    "version": "5.8.1",
     "description": "Developer-oriented set of Unicode, Unihan & emoji utilities.",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build-darwin": "electron-packager . --asar=true --out=build --platform=darwin --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.icns --overwrite",
-        "build-linux": "electron-packager . --asar=true --out=build --platform=linux --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.png --overwrite",
-        "build-mas": "electron-packager . --asar=true --out=build --platform=mas --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.icns --overwrite",
-        "build-win32": "electron-packager . --asar=true --out=build --platform=win32 --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.ico --overwrite",
-        "build-all": "electron-packager . --asar=true --out=build --platform=all --ignore=/~.* --ignore=^/screenshots --icon=icons/icon --overwrite"
+        "build-darwin": "electron-packager . --asar --out=build --platform=darwin --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.icns --overwrite",
+        "build-linux": "electron-packager . --asar --out=build --platform=linux --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.png --overwrite",
+        "build-mas": "electron-packager . --asar --out=build --platform=mas --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.icns --overwrite",
+        "build-win32": "electron-packager . --asar --out=build --platform=win32 --ignore=/~.* --ignore=^/screenshots --icon=icons/icon.ico --overwrite",
+        "build-all": "electron-packager . --asar --out=build --platform=all --ignore=/~.* --ignore=^/screenshots --icon=icons/icon --overwrite"
     },
     "keywords": [
         "app",

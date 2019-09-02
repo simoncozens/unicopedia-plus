@@ -220,6 +220,10 @@
         "items":
         [
             {
+                "label": "Doors",
+                "string": "⼾戶户戸"
+            },
+            {
                 "label": "Island Variants",
                 "string": "㠀岛島嶋嶌"
             },

@@ -35,7 +35,7 @@
 
 #unihan-inspector-unit .unihan-input
 {
-    font-size: inherit;
+    font-size: 16px;
     background: white;
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
@@ -120,7 +120,7 @@
 {
     display: inline-block;
     font-family: Monaco, "Noto Mono", monospace;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: bold;
     margin-bottom: 1em;
     border: 1px solid var(--color-border);
@@ -180,7 +180,7 @@
 #unihan-inspector-unit .unihan-info
 {
     font-family: Monaco, "Noto Mono", monospace;
-    font-size: 13px;
+    font-size: 13.5px;
     line-height: 1.25em;
     user-select: text;
     background: white;
@@ -220,15 +220,6 @@
     color: var(--color-strongest);
 }
 
-/* #unihan-inspector-unit .unihan-info .field.line-clamp
-{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-} */
-
 #unihan-inspector-unit .unihan-info .field .list
 {
     margin: 0 0 0 -24px;
@@ -241,13 +232,15 @@
 }
 
 #unihan-inspector-unit .unihan-info .field .list .item.irg-source,
-#unihan-inspector-unit .unihan-info .field .list .item.cjk-radical-current
+#unihan-inspector-unit .unihan-info .field .list .item.cjk-radical-current,
+#unihan-inspector-unit .unihan-info .field .value.kangxi-radical-current
 {
     list-style-type: disc;
 }
 
 #unihan-inspector-unit .unihan-info .field .list .item.no-irg-source,
-#unihan-inspector-unit .unihan-info .field .list .item.cjk-radical
+#unihan-inspector-unit .unihan-info .field .list .item.cjk-radical,
+#unihan-inspector-unit .unihan-info .field .value.kangxi-radical
 {
     color: gray;
     list-style-type: circle;
@@ -260,6 +253,11 @@
     padding: 0 1px;
     margin: auto -1px;
     white-space: nowrap;
+}
+
+#unihan-inspector-unit span.unihan-character-link:hover
+{
+    border: 1px dotted var(--color);
 }
 
 #unihan-inspector-unit span.unihan-character-link.clickable:hover
@@ -279,7 +277,7 @@
 #unihan-inspector-unit .tags-data .tags-list
 {
     font-family: Monaco, "Noto Mono", monospace;
-    font-size: 1em;
+    font-size: 13.5px;
     user-select: text;
     margin: 0.75em 0;
 }
@@ -305,7 +303,7 @@
 {
     text-align: left;
     font-family: system-ui, sans-serif;
-    font-size: 13px;
+    font-size: 1em;
     font-weight: bold;
     line-height: 1em;
     padding: 0.5em 0.75em;
@@ -332,7 +330,7 @@
 #unihan-inspector-unit .tags-data .tags-list .tag,
 #unihan-inspector-unit .tags-data .tags-list .value
 {
-    font-size: 13px;
+    font-size: 13.5px;
     background-color: white;
     text-align: left;
     line-height: 1.25em;

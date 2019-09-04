@@ -107,6 +107,13 @@
     margin: 1.2em 0;
 }
 
+#unihan-inspector-unit .unihan-radical-tag 
+{
+    margin: 0.75em 0.5em -0.5em 0.5em;
+    /* color: var(--color-accent); */
+    font-style: italic;
+}
+
 #unihan-inspector-unit .unihan-card .unihan-character
 {
     display: inline-block;

@@ -338,9 +338,10 @@ The following utilities are currently available:
 - In addition, the utility provides, for each Unihan character:
     - basic Unicode information: name, age, plane, block, script, script extensions, general category, extended properties, decomposition, equivalent unified ideograph, numeric value;
     - basic Unihan information: set (IICore or full), radical/strokes, definition, numeric value, variant characters.
-- Previously looked up Unihan characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.
+- Basic radical information can also be obtained for the 214 KangXi radicals and their 115 associated CJK radicals.
+- Previously looked up characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.
 - It is also possible to lookup a randomly selected Unihan character by clicking on the <kbd>Random</kbd> button; use the <kbd>Full Set</kbd> checkbox to perform the draw on the full set of 88,889 Unihan characters, or restrict it to the IICore set of 9,810 CJK unified ideographs in common usage.
-- The currently looked up Unihan character is displayed at a large scale, followed by its code point.
+- The currently looked up character is displayed at a large scale, followed by its code point.
 - Click on <kbd>◀</kbd> or <kbd>▶</kbd> to step through five different CJK typefaces, among:
     - `JP`: Japanese
     - `KR`: Korean
@@ -362,6 +363,7 @@ The following utilities are currently available:
     - The top Radical/Strokes fields are displaying data obtained from the only informative IRG Source: *kRSUnicode*, while the bottom ones (in grayed-out style, if any) make use of the provisional sources: *kRSKangXi*, *kRSJapanese*, *kRSKanWa*, *kRSKorean* and *kRSAdobe_Japan1_6*.
     - IICore (*International Ideographs Core*) represents a set of 9,810 important Unihan characters in everyday use throughout East Asia; it has been developed by the IRG.
     - IRG stands for *Ideographic Rapporteur Group*, a committee advising the Unicode Consortium about Asian language characters.
+    - Radicals do *not* belong to the Unihan character set; they are allowed to be looked up here merely as a convenience, since they are closely related, and because their appearance is similar, or even identical, to their equivalent unified ideograph.</li>
 
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
 

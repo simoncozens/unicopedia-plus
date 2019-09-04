@@ -376,6 +376,15 @@ module.exports.start = function (context)
             typefacePrevious.addEventListener ('click', event => { updateTypeface (true); });
             typefaceNext.addEventListener ('click', event => { updateTypeface (false); });
             //
+            if (radicalRegex.test (character))
+            {
+                let unihanRadicalTag = document.createElement ('div');
+                unihanRadicalTag.className = 'unihan-radical-tag';
+                // "Radical", "[Radical]", "(Radical)", "<Radical>", "＊Radical＊", "*Radical*", "•Radical•"
+                unihanRadicalTag.textContent = "Radical";
+                unihanWrapper.appendChild (unihanRadicalTag);
+            }
+            //
             let unicodeData = unicode.getCharacterData (unihanCharacter.textContent);
             let numericType = "";
             if (unicodeData.numeric)
@@ -591,7 +600,7 @@ module.exports.start = function (context)
                 else
                 {
                     // Only one case: ⺀ U+2E80 CJK RADICAL REPEAT
-                    kangXiRadical = "";
+                    kangXiRadical = "<unknown>";   // "？", "?", "??", "<unknown>"
                 }
                 //
                 let radicalFields =

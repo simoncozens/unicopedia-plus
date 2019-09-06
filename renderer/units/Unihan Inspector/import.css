@@ -109,7 +109,7 @@
 
 #unihan-inspector-unit .unihan-radical-tag 
 {
-    margin: 0.75em 0.5em -0.5em 0.5em;
+    margin: 0.25em 0.5em 0 0.5em;
     /* color: var(--color-accent); */
     font-style: italic;
 }
@@ -149,8 +149,10 @@
     background-color: var(--color-accent);
     align-items: center;
     font-size: 12px;
-    padding: 1px 2px;
+    line-height: 12px;
+    padding: 1px 3px 2px 3px;
     border-radius: 4px;
+    margin-bottom: 0.5em;
 }
 
 #unihan-inspector-unit .unihan-card .typeface-widget.default
@@ -161,7 +163,7 @@
 #unihan-inspector-unit .unihan-card .typeface-previous,
 #unihan-inspector-unit .unihan-card .typeface-next
 {
-    padding: 1px 4px;
+    padding: 4px;
 }
 
 #unihan-inspector-unit .unihan-card .default .typeface-previous,
@@ -170,12 +172,21 @@
     visibility: hidden;
 }
 
+#unihan-inspector-unit .unihan-card .typeface-previous svg.previous-icon,
+#unihan-inspector-unit .unihan-card .typeface-next svg.next-icon
+{
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+    fill: currentColor;
+}
+
 #unihan-inspector-unit .unihan-card .typeface-tag
 {
     text-align: center;
     font-weight: 600;
     width: 24px;
-    padding: 1px 0;
+    padding: 4px 0;
 }
 
 #unihan-inspector-unit .full-set-label

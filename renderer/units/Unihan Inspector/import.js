@@ -96,6 +96,12 @@ module.exports.start = function (context)
     const radicalRegex = new RegExp (radicalPattern, 'u');
     const filterRegex = new RegExp (filterPattern, 'u');
     //
+    function getTooltip (char)
+    {
+        let data = unicode.getCharacterBasicData (char);
+        // return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${char}\xA0${data.name}`; // U+034F COMBINING GRAPHEME JOINER
+        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${char}`; // U+034F COMBINING GRAPHEME JOINER
+    }
     function onLinkClick (event)
     {
         updateUnihanData (event.currentTarget.dataset.char);
@@ -159,18 +165,7 @@ module.exports.start = function (context)
                 link.addEventListener ('click', onLinkClick);
             }
             link.textContent = clickable.matched;
-            if (clickable.type === 'code-point')
-            {
-                link.title = clickable.char;
-            }
-            else if (clickable.type === 'char')
-            {
-                link.title = clickable.codePoint;
-            }
-            else if (clickable.type === 'combo')
-            {
-                // No tooltip...
-            }
+            link.title = getTooltip (clickable.char);
             node.appendChild (link);
         }
         node.appendChild (document.createTextNode (text.slice (lastIndex, text.length)));
@@ -305,14 +300,14 @@ module.exports.start = function (context)
             typefaceWidget.className = 'typeface-widget';
             let typefacePrevious = document.createElement ('span');
             typefacePrevious.className = 'typeface-previous';
-            typefacePrevious.textContent = "◀";
+            typefacePrevious.innerHTML = '<svg class="previous-icon" viewBox="0 0 10 10"><polygon points="9,0 1,5 9,10"></polygon></svg>'
             typefaceWidget.appendChild (typefacePrevious);
             let typefaceTag = document.createElement ('span');
             typefaceTag.className = 'typeface-tag';
             typefaceWidget.appendChild (typefaceTag);
             let typefaceNext = document.createElement ('span');
             typefaceNext.className = 'typeface-next';
-            typefaceNext.textContent = "▶";
+            typefaceNext.innerHTML = '<svg class="next-icon" viewBox="0 0 10 10"><polygon points="1,0 9,5 1,10"></polygon></svg>'
             typefaceWidget.appendChild (typefaceNext);
             unihanWrapper.appendChild (typefaceWidget);
             //

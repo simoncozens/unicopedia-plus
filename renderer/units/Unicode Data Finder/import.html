@@ -129,7 +129,7 @@
                         <ul>
                             <li>The <strong>Match Character</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name/aliases, block) of Unicode characters matching a character, including through regular expressions.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>Click on the <kbd><svg style="width: 15px; height: 15px; vertical-align: text-top;"><use href="/images/search.svg#match-decomposition-icon"></use></svg></kbd> (<em>Match Decomposition</em>) toggle button to extend the search to characters whose <em>decomposition mapping</em> matches the query string.</li>
+                            <li>Click on the <kbd><svg style="width: 15px; height: 15px; vertical-align: text-bottom;"><use href="/images/search.svg#match-decomposition-icon"></use></svg></kbd> (<em>Match Decomposition</em>) toggle button to extend the search to characters whose <em>decomposition mapping</em> matches the query string.</li>
                             <li>It is possible to choose how many characters are shown one page at a time.</li>
                             <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
                             <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
@@ -144,7 +144,7 @@
                     </details>
                     <details class="regex-examples">
                         <summary>Regex Examples</summary>
-                        <p><kbd>Match Decomposition</kbd> toggled <strong>OFF</strong>:</p>
+                        <p><span class="match-decomposition off"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></span> (<em>Match Decomposition</em>) toggled <strong>off</strong>:</p>
                         <ul>
                             <li><code>\s</code><br>Characters considered white space in Unicode by the regular expression engine</li>
                             <li><code>(?!.)[^]</code> or <code>(?!.)[\s\S]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
@@ -163,7 +163,7 @@
                             <li><code>(?=\p{Ideographic})(?!\p{Unified_Ideograph})</code> or <code>(?=\p{Ideographic})(?=\P{Unified_Ideograph})</code><br>Characters with the 'Ideographic' binary property, but without the 'Unified_Ideograph' binary property</li>
                             <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
                         </ul>
-                        <p><kbd>Match Decomposition</kbd> toggled <strong>ON</strong>:</p>
+                        <p><span class="match-decomposition on"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></span> (<em>Match Decomposition</em>) toggled <strong>on</strong>:</p>
                         <ul>
                             <li><code>∫{4}</code><br>Character made of four integrals, i.e., a quadruple integral operator</li>
                             <li><code>\d\d</code><br>Characters containing two digits (0 to 9)</li>

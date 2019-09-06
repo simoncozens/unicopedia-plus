@@ -7,7 +7,8 @@ module.exports.create = function (kangxiRadicals)
     function getTooltip (radical)
     {
         let data = getCharacterBasicData (radical);
-        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${data.name}`; // U+034F COMBINING GRAPHEME JOINER
+        // return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${data.name}`; // U+034F COMBINING GRAPHEME JOINER
+        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${radical}\xA0${data.name}`; // U+034F COMBINING GRAPHEME JOINER
     }
     //
     let radicalsTable = document.createElement ('table');

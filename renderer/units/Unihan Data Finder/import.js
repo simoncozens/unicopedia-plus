@@ -319,12 +319,9 @@ module.exports.start = function (context)
                 let matchingValues = [ ];
                 for (let value of values)
                 {
-                    if (value.match (regex))
-                    {
-                        matchingValues.push (value);
-                    }
+                    matchingValues.push (value.match (regex) !== null);
                 }
-                if (matchingValues.length > 0)
+                if (matchingValues.includes (true))
                 {
                     let character = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
                     let index = character.codePointAt (0);
@@ -345,7 +342,8 @@ module.exports.start = function (context)
                             character: character,
                             codePoint: codePoint,
                             tag: tag,
-                            value: ((matchingValues.length > 1) ? matchingValues : matchingValues[0]),
+                            value: ((values.length > 1) ? values : values[0]),
+                            matching: ((matchingValues.length > 1) ? matchingValues : matchingValues[0]),
                             blockName: blockName,
                             blockRange: blockRange
                         }

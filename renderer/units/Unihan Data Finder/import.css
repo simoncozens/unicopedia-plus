@@ -416,12 +416,18 @@
 #unihan-data-finder-unit .search-data .data-table .data-value .list
 {
     margin: 0;
-    list-style-type: square;
+    list-style-type: disc;
 }
 
 #unihan-data-finder-unit .search-data .data-table .data-value .item
 {
     margin: 0.1em 0 0.1em -24px;
+}
+
+#unihan-data-finder-unit .search-data .data-table .data-value .item.no-match
+{
+    color: gray;
+    list-style-type: circle;
 }
 
 #unihan-data-finder-unit .search-data .data-table .data-block

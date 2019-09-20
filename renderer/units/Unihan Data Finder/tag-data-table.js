@@ -71,7 +71,7 @@ module.exports.create = function (characterInfos, params)
         headerRow.appendChild (headerTag);
         let headerValue = document.createElement ('th');
         headerValue.className = 'header-value';
-        headerValue.textContent = "Value";
+        headerValue.textContent = "Value(s)";
         headerRow.appendChild (headerValue);
         let headerBlock = document.createElement ('th');
         headerBlock.className = 'header-block';
@@ -107,15 +107,20 @@ module.exports.create = function (characterInfos, params)
             let dataValue = document.createElement ('td');
             dataValue.className = 'data-value';
             let value = characterInfo.value;
+            let matching = characterInfo.matching;
             if (Array.isArray (value))
             {
                 let list = document.createElement ('ul');
                 list.className = 'list';
-                for (let element of value)
+                for (let index = 0; index < value.length; index++)
                 {
                     let item = document.createElement ('li');
                     item.className = 'item';
-                    item.textContent = element;
+                    if (!matching[index])
+                    {
+                        item.classList.add ('no-match');
+                    }
+                    item.textContent = value[index];
                     list.appendChild (item);
                 }
                 dataValue.appendChild (list);

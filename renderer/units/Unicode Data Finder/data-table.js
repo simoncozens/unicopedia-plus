@@ -144,7 +144,7 @@ module.exports.create = function (characters, params, highlightedCharacter)
                     }
                 }
             }
-            aliases = [... new Set (aliases)]; // Remove duplicates
+            aliases = [...new Set (aliases)]; // Remove duplicates
             let aliasesString = aliases.join (", ");
             let abbrevations = [ ];
             if (data.abbreviation)

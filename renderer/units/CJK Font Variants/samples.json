@@ -166,6 +166,10 @@
                 "string": "ゟ＝より"
             },
             {
+                "label": "Hiragana Named Sequences",
+                "string": "か゚き゚く゚け゚こ゚"
+            },
+            {
                 "label": "Prefectures of Japan",
                 "string": "都道府県"
             },

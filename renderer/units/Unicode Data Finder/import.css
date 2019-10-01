@@ -312,6 +312,7 @@
     font-size: 13px;
     line-height: 1em;
     padding: 0.5em;
+    user-select: none;
 }
 
 #unicode-data-finder-unit .search-data .symbol-header

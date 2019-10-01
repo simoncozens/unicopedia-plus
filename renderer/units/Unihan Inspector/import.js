@@ -99,8 +99,7 @@ module.exports.start = function (context)
     function getTooltip (char)
     {
         let data = unicode.getCharacterBasicData (char);
-        // return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${char}\xA0${data.name}`; // U+034F COMBINING GRAPHEME JOINER
-        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${char}`; // U+034F COMBINING GRAPHEME JOINER
+        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${char}` + (radicalRegex.test (char) ? " (Radical)" : ""); // U+034F COMBINING GRAPHEME JOINER
     }
     function onLinkClick (event)
     {
@@ -376,7 +375,7 @@ module.exports.start = function (context)
                 let unihanRadicalTag = document.createElement ('div');
                 unihanRadicalTag.className = 'unihan-radical-tag';
                 // "Radical", "[Radical]", "(Radical)", "<Radical>", "＊Radical＊", "*Radical*", "•Radical•"
-                unihanRadicalTag.textContent = "Radical";
+                unihanRadicalTag.textContent = "(Radical)";
                 unihanWrapper.appendChild (unihanRadicalTag);
             }
             //

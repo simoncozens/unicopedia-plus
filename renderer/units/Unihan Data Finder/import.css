@@ -354,6 +354,7 @@
     font-size: 13px;
     line-height: 1em;
     padding: 0.5em;
+    user-select: none;
 }
 
 #unihan-data-finder-unit .search-data .data-table .header-symbol

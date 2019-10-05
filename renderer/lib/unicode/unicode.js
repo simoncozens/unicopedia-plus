@@ -1,7 +1,4 @@
 //
-const fs = require ('fs');
-const path = require ('path');
-//
 const unicodeData = require ('./parsed-unicode-data.js');
 const extraData = require ('./parsed-extra-data.js');
 //

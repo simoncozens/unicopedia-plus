@@ -103,7 +103,7 @@
             },
             {
                 "label": "Halfwidth Kana",
-                "string": "ｶｰ"
+                "string": "ｺﾝﾊﾟｸﾄ･ｶｰ"
             },
             {
                 "label": "Hiragana Digraph",
@@ -141,6 +141,10 @@
         "label": "Miscellaneous",
         "items":
         [
+            {
+                "label": "Canonical Equivalents",
+                "string": "ợợợợợ"
+            },
             {
                 "label": "Circled Numbers",
                 "string": "③①年⑫月①③日"

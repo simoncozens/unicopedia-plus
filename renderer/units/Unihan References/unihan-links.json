@@ -141,16 +141,6 @@
     ],
     [
         {
-            "name": "K'sBookshelf 辞典・用語 漢字林",
-            "href": "http://ksbookshelf.com/DW/Kanjirin/"
-        },
-        {
-            "name": "K'sBookshelf 辞典・用語 漢字林 付録　繰返字（同じ字形が繰り返されてできる漢字）",
-            "href": "http://ksbookshelf.com/DW/Kanjirin/appendix/Kurikaeshiji.html"
-        }
-    ],
-    [
-        {
             "name": "The Unicode Standard, Version 12.1 - Chapter 18: East Asia - ch18.pdf",
             "href": "https://www.unicode.org/versions/Unicode12.1.0/ch18.pdf"
         },
@@ -301,8 +291,22 @@
     ],
     [
         {
+            "name": "K'sBookshelf 辞典・用語 漢字林",
+            "href": "http://ksbookshelf.com/DW/Kanjirin/"
+        },
+        {
+            "name": "K'sBookshelf 辞典・用語 漢字林 付録　繰返字（同じ字形が繰り返されてできる漢字）",
+            "href": "http://ksbookshelf.com/DW/Kanjirin/appendix/Kurikaeshiji.html"
+        }
+    ],
+    [
+        {
             "name": "The EDICT Dictionary File",
             "href": "https://www.edrdg.org/jmdict/edict.html"
+        },
+        {
+            "name": "KANJIDIC Project - EDRDG Wiki",
+            "href": "https://www.edrdg.org/wiki/index.php/KANJIDIC_Project"
         },
         {
             "name": "RADKFILE/KRADFILE",
@@ -326,7 +330,31 @@
         },
         {
             "name": "Tangorin Japanese Dictionary",
-            "href": "http://www.tangorin.com/"
+            "href": "https://tangorin.com/"
+        },
+        {
+            "name": "漢字ペディア",
+            "href": "https://www.kanjipedia.jp/"
+        }
+    ],
+    [
+        {
+            "name": "常用漢字チェッカー | 常用漢字情報サイト",
+            "href": "https://joyokanji.info/"
+        },
+        {
+            "name": "常 用 漢 字 表 - joyokanjihyo_20101130.pdf",
+            "href": "http://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/pdf/joyokanjihyo_20101130.pdf"
+        }
+    ],
+    [
+        {
+            "name": "IPAexフォント/IPAフォント | IPAフォントのダウンロードサイトです",
+            "href": "https://ipafont.ipa.go.jp/"
+        },
+        {
+            "name": "ダウンロード(Download) | IPAexフォント/IPAフォント",
+            "href": "https://ipafont.ipa.go.jp/node17"
         }
     ],
     [

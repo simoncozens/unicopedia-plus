@@ -227,7 +227,15 @@ module.exports.start = function (context)
                     field.appendChild (document.createTextNode (": "));
                     let value = document.createElement ('span');
                     value.className = 'value';
-                    appendTextWithLinks (value, fieldItem.value);
+                    if (fieldItem.toolTip)
+                    {
+                        value.textContent = fieldItem.value;
+                        value.title = fieldItem.toolTip;
+                    }
+                    else
+                    {
+                        appendTextWithLinks (value, fieldItem.value);
+                    }
                     if (typeof fieldItem.class === 'string')
                     {
                         value.classList.add (fieldItem.class);
@@ -237,6 +245,23 @@ module.exports.start = function (context)
                 node.appendChild (field);
             }
         }
+    }
+    //
+    function getIICoreTooltip (valueString)
+    {
+        const sources =
+        {
+            "G": "China",       // "CN"
+            "H": "Hong Kong",   // "HK"
+            "J": "Japan",       // "JP"
+            "K": "South Korea", // "KR"
+            "M": "Macao",       // "MO"
+            "P": "North Korea", // "KP"
+            "T": "Taiwan"       // "TW"
+        };
+        // let sourceArray = valueString.match (/[GHJKMPT]/g).map (source => `${source} (${sources[source]})`).sort ();
+        let sourceArray = valueString.match (/[GHJKMPT]/g).map (source => sources[source]).sort ();
+        return `Priority:\xA0${valueString.match (/[ABC]/)[0]}\nSource:\xA0${sourceArray.join (", ")}`;
     }
     //
     function displayData (character)
@@ -443,6 +468,7 @@ module.exports.start = function (context)
             if (tags)
             {
                 let iiCoreSet = ("kIICore" in tags) ? "IICore" : "Full";
+                let iiCoreSetToolTip = ("kIICore" in tags) ? getIICoreTooltip (tags["kIICore"]) : "";
                 let rsValues = [ ];
                 let rsClasses = [ ];
                 let rsIRGCount = 0;
@@ -513,7 +539,7 @@ module.exports.start = function (context)
                 yasuoka = yasuoka.filter (variant => filterRegex.test (variant));
                 let unihanFields =
                 [
-                    { name: "Set", value: iiCoreSet },
+                    { name: "Set", value: iiCoreSet, toolTip: iiCoreSetToolTip },
                     { name: "Radical/Strokes", value: rsValues, class: rsClasses },
                     { name: "Definition", value: definitionValue },
                     { name: "Numeric Value", value: numericValue },

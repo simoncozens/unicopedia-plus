@@ -1,0 +1,74 @@
+[
+    {
+        "label": "Latin",
+        "items":
+        [
+            {
+                "label": "Capital Letters",
+                "string": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            },
+            {
+                "label": "Small Letters",
+                "string": "abcdefghijklmnopqrstuvwxyz"
+            },
+            {
+                "label": "Remarkable Foldings 1",
+                "string": "KkK Ssſ ÅåÅ"
+            },
+            {
+                "label": "Remarkable Foldings 2",
+                "string": "ẞ Straße"
+            },
+            {
+                "label": "Composed Letters",
+                "string": "éçàÉÇÀ"
+            },
+            {
+                "label": "Decomposed Letters",
+                "string": "éçàÉÇÀ"
+            }
+        ]
+    },
+    {
+        "label": "Cyrillic",
+        "items":
+        [
+            {
+                "label": "Capital Letters",
+                "string": "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+            },
+            {
+                "label": "Small Letters",
+                "string": "абвгдежзийклмнопрстуфхцчшщъыьэюя"
+            }
+        ]
+    },
+    {
+        "label": "Greek",
+        "items":
+        [
+            {
+                "label": "Capital Letters",
+                "string": "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ"
+            },
+            {
+                "label": "Small Letters",
+                "string": "αβγδεζηθικλμνξοπρστυφχψω"
+            }
+        ]
+    },
+    {
+        "label": "Deseret",
+        "items":
+        [
+            {
+                "label": "Capital Letters",
+                "string": "𐐀𐐁𐐂𐐃𐐄𐐅𐐆𐐇𐐈𐐉𐐊𐐋𐐌𐐍𐐎𐐏𐐐𐐑𐐒𐐓𐐔𐐕𐐖𐐗𐐘𐐙𐐚𐐛𐐜𐐝𐐞𐐟𐐠𐐡𐐢𐐣𐐤𐐥𐐦𐐧"
+            },
+            {
+                "label": "Small Letters",
+                "string": "𐐨𐐩𐐪𐐫𐐬𐐭𐐮𐐯𐐰𐐱𐐲𐐳𐐴𐐵𐐶𐐷𐐸𐐹𐐺𐐻𐐼𐐽𐐾𐐿𐑀𐑁𐑂𐑃𐑄𐑅𐑆𐑇𐑈𐑉𐑊𐑋𐑌𐑍𐑎𐑏"
+            }
+        ]
+    }
+]

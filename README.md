@@ -21,6 +21,7 @@ The following utilities are currently available:
     - **Find by Name**
     - **Match Character**
     - **List by Block**
+- **Unicode Foldings**
 - **Unicode Inspector**
 - **Unicode Normalizer**
 - **Unicode References**
@@ -218,6 +219,18 @@ The following utilities are currently available:
 
 <img src="screenshots/unicode-data-finder-list-by-block.png" width="1080px" alt="Unicode Data Finder - List by Block screenshot">
 
+## Unicode Foldings
+
+- The **Unicode Foldings** utility displays simultaneously the uppercase and lowercase foldings of a given string, making use of the JavaScript string functions [toLocaleUpperCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase) and [toLocaleLowerCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase).
+- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
+- It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
+- As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
+- In output, the standard Unicode code point format `U+00DF` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
+- In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as `\u212B` or `\u{10400}`. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.
+- Note: *folding* is an operation that maps similar characters to a common target, such as uppercasing or lowercasing a string. Folding operations are most often used to temporarily ignore certain distinctions between characters.
+
+<img src="screenshots/unicode-foldings.png" width="1080px" alt="Unicode Foldings screenshot">
+
 ## Unicode Inspector
 
 - The **Unicode Inspector** utility displays code point information in real time for each Unicode character of a text string.
@@ -244,7 +257,7 @@ The following utilities are currently available:
 
 ## Unicode Normalizer
 
-- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string, as specified in the [UAX #15: Unicode Normalization Forms](https://www.unicode.org/reports/tr15/):
+- The **Unicode Normalizer** utility displays simultaneously the four normalization forms of a given string, making use of the JavaScript string function [normalize](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize), as specified in the [UAX #15: Unicode Normalization Forms](https://www.unicode.org/reports/tr15/):
 
     | Form | Name | Description |
     | ---- | ---- | ----------- |

@@ -20,10 +20,8 @@
                 </span>
             </div>
             <div class="input-group">
-                <label>Characters:</label>
-                <input class="characters-input" type="text" maxlength="256">
-                <label>Code points:</label>
-                <input class="code-points-input" type="text" maxlength="2048">
+                <label>Characters:<input class="characters-input" type="text" maxlength="256"></label>
+                <label>Code points:<input class="code-points-input" type="text" maxlength="2048"></label>
             </div>
             <div class="forms-data">
                 <table class="form-data">
@@ -53,7 +51,7 @@
                 <summary>Instructions</summary>
                 <ul>
                     <li>
-                        The <strong>Unicode Normalizer</strong> utility displays simultaneously the four normalization forms of a given string, as specified in the <a title="https://www.unicode.org/reports/tr15/" href="https://www.unicode.org/reports/tr15/">UAX #15: Unicode Normalization Forms</a>:
+                        The <strong>Unicode Normalizer</strong> utility displays simultaneously the four normalization forms of a given string, making use of the JavaScript string function <a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize">normalize</a>, as specified in the <a title="https://www.unicode.org/reports/tr15/" href="https://www.unicode.org/reports/tr15/">UAX #15: Unicode Normalization Forms</a>:
                         <table class="forms-table">
                             <tr>
                                 <th>Form</th>

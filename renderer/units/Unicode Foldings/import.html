@@ -1,0 +1,54 @@
+<template>
+    <section id="unicode-foldings-unit">
+        <div class="plain-panel">
+            <div class="actions">
+                <span class="action-group">
+                    <span class="action">
+                        <button class="clear-button" type="button">Clear</button>
+                    </span>
+                    <span class="action">
+                        <button class="pull-down-menu characters-samples" type="button">Samples</button>
+                    </span>
+                </span>
+                <span class="action-group">
+                    <span class="action">
+                        <button class="load-button" type="button">Load...</button>
+                    </span>
+                    <span class="action">
+                        <button class="save-button" type="button">Save...</button>
+                    </span>
+                </span>
+            </div>
+            <div class="input-group">
+                <label>Characters:<input class="characters-input" type="text" maxlength="256"></label>
+                <label>Code points:<input class="code-points-input" type="text" maxlength="2048"></label>
+            </div>
+            <div class="cases-data">
+                <table class="case-data">
+                    <tr><th>Uppercase</th></tr>
+                    <tr><td class="characters-string" data-case="uppercase"></td></tr>
+                    <tr><td class="code-points-string"></td></tr>
+                </table>
+                <table class="case-data">
+                    <tr><th>Lowercase</th></tr>
+                    <tr><td class="characters-string" data-case="lowercase"></td></tr>
+                    <tr><td class="code-points-string"></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="accent-panel">
+            <details class="instructions">
+                <summary>Instructions</summary>
+                <ul>
+                    <li>The <strong>Unicode Foldings</strong> utility displays simultaneously the uppercase and lowercase foldings of a given string, making use of the JavaScript string functions <a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase">toLocaleUpperCase</a> and <a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase">toLocaleLowerCase</a>.</li>
+                    <li>Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
+                    <li>It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
+                    <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
+                    <li>In output, the standard Unicode code point format <code>U+00DF</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
+                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u212B</code> or <code>\u{10400}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
+                    <li>Note: <em>folding</em> is an operation that maps similar characters to a common target, such as uppercasing or lowercasing a string. Folding operations are most often used to temporarily ignore certain distinctions between characters.</li>
+                </ul>
+            </details>
+        </div>
+    </section>
+</template>

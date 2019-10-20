@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-#unicode-normalizer-unit .actions
+#unicode-foldings-unit .actions
 {
     padding: 0;
     display: flex;
@@ -10,13 +10,13 @@
     margin: 0.5em 0;
 }
 
-#unicode-normalizer-unit .actions.right
+#unicode-foldings-unit .actions.right
 {
     justify-content: flex-end;
     margin-bottom: -0.5em;
 }
 
-#unicode-normalizer-unit .action-group
+#unicode-foldings-unit .action-group
 {
     padding: 0;
     display: flex;
@@ -24,26 +24,26 @@
     align-items: center;
 }
 
-#unicode-normalizer-unit .action-group + .action-group,
-#unicode-normalizer-unit .action + .action
+#unicode-foldings-unit .action-group + .action-group,
+#unicode-foldings-unit .action + .action
 {
     margin-left: 0.75em;
 }
 
-#unicode-normalizer-unit .input-group
+#unicode-foldings-unit .input-group
 {
     margin-bottom: 0.5em;
 }
 
-#unicode-normalizer-unit .characters-input,
-#unicode-normalizer-unit .code-points-input
+#unicode-foldings-unit .characters-input,
+#unicode-foldings-unit .code-points-input
 {
     line-height: 1.333em;
     width: 100%;
     margin: 0;
 }
 
-#unicode-normalizer-unit .characters-input
+#unicode-foldings-unit .characters-input
 {
     font-family: sans-serif;
     font-size: 24px;
@@ -52,25 +52,25 @@
     margin-bottom: 0.2em;
 }
 
-#unicode-normalizer-unit .code-points-input
+#unicode-foldings-unit .code-points-input
 {
     font-family: Monaco, "Noto Mono", monospace;
     font-size: 14px;
     padding: 4px 5px;
 }
 
-#unicode-normalizer-unit .forms-data
+#unicode-foldings-unit .cases-data
 {
     margin-top: 16px;
 }
 
-#unicode-normalizer-unit table.form-data
+#unicode-foldings-unit table.case-data
 {
     table-layout: fixed;
     margin: 10px 0 4px 0;
 }
 
-#unicode-normalizer-unit table.form-data th
+#unicode-foldings-unit table.case-data th
 {
     text-align: left;
     vertical-align: middle;
@@ -78,7 +78,7 @@
     /* user-select: text; */
 }
 
-#unicode-normalizer-unit table.form-data td
+#unicode-foldings-unit table.case-data td
 {
     text-align: left;
     vertical-align: middle;
@@ -87,7 +87,7 @@
     user-select: text;
 }
 
-#unicode-normalizer-unit table.form-data td.characters-string
+#unicode-foldings-unit table.case-data td.characters-string
 {
     font-family: sans-serif;
     font-size: 24px;
@@ -98,7 +98,7 @@
     overflow: auto;
 }
 
-#unicode-normalizer-unit table.form-data td.code-points-string
+#unicode-foldings-unit table.case-data td.code-points-string
 {
     font-family: Monaco, "Noto Mono", monospace;
     font-size: 14px;
@@ -107,63 +107,27 @@
     height: 28px;
 }
 
-#unicode-normalizer-unit .forms-table
-{
-    margin: 0.75em 0;
-    width: unset;
-}
-
-#unicode-normalizer-unit .forms-table tr th,
-#unicode-normalizer-unit .forms-table tr td
-{
-    text-align: left;
-    padding: 0.25em 0.75em;
-    white-space: nowrap;
-}
-
-#unicode-normalizer-unit .forms-table tr th
-{
-    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8))
-}
-
-#unicode-normalizer-unit .forms-table tr td
-{
-    vertical-align: middle;
-    line-height: 1.25em;
-    height: 2.5em;
-}
-
-#unicode-normalizer-unit .forms-table tr:nth-child(even)
-{
-    background-color: white;
-}
-
-#unicode-normalizer-unit .forms-table tr:nth-child(odd)
-{
-    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
-}
-
-#unicode-normalizer-unit .plain-panel
+#unicode-foldings-unit .plain-panel
 {
     padding-bottom: 1.25em;
 }
 
-#unicode-normalizer-unit .instructions ul
+#unicode-foldings-unit .instructions ul
 {
     margin: -0.5em 0 1em 0;
 }
 
-#unicode-normalizer-unit .instructions li
+#unicode-foldings-unit .instructions li
 {
     margin: 0.25em 0;
 }
 
-#unicode-normalizer-unit .instructions li > ul
+#unicode-foldings-unit .instructions li > ul
 {
     margin: 0 0 0.25em 0;
 }
 
-#unicode-normalizer-unit .instructions kbd
+#unicode-foldings-unit .instructions kbd
 {
     color: inherit;
     font-family: inherit;
@@ -174,14 +138,14 @@
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
 }
 
-#unicode-normalizer-unit .instructions code
+#unicode-foldings-unit .instructions code
 {
     user-select: text;
     color: inherit;
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
 }
 
-#unicode-normalizer-unit summary
+#unicode-foldings-unit summary
 {
     font-weight: bold;
     margin: 1.2em 0 1em 0;

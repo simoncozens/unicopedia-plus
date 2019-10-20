@@ -88,6 +88,24 @@
         ]
     },
     {
+        "label": "Confusables",
+        "items":
+        [
+            {
+                "label": "Confusables 1",
+                "string": "AΑcс;;"
+            },
+            {
+                "label": "Confusables 2",
+                "string": "PΡР"
+            },
+            {
+                "label": "Confusables 3",
+                "string": "ij ĳ"
+            }
+        ]
+    },
+    {
         "label": "Digits & Numbers",
         "items":
         [
@@ -150,6 +168,10 @@
                 "string": "﷽"
             },
             {
+                "label": "Arabic Shaping",
+                "string": "ه ههه"
+            },
+            {
                 "label": "Ascending Blocks",
                 "string": "AaĀā❤愛爱애💜"
             },
@@ -170,16 +192,16 @@
                 "string": "♔♕♖♗♘♙\n♚♛♜♝♞♟"
             },
             {
-                "label": "Confusables",
-                "string": "AΑcс;;"
-            },
-            {
                 "label": "Counting Rods",
                 "string": "𝍠𝍡𝍢𝍣𝍤𝍥𝍦𝍧𝍨𝍩𝍪𝍫𝍬𝍭𝍮𝍯𝍰𝍱"
             },
             {
                 "label": "Fancy Hearts",
                 "string": "💓💕💖💗💘💝💞"
+            },
+            {
+                "label": "Hindi Word for Unicode",
+                "string": "यूनिकोड"
             },
             {
                 "label": "Inset Hearts",

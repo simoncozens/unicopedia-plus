@@ -86,5 +86,43 @@
             "name": "regexpu-core/property-escapes.md at master · mathiasbynens/regexpu-core · GitHub",
             "href": "https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md"
         }
+    ],
+    [
+        {
+            "name": "Regular Expressions - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions"
+        },
+        {
+            "name": "RegExp - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp"
+        },
+        {
+            "name": "RegExp.prototype.test() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test"
+        },
+        {
+            "name": "RegExp.prototype.exec() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec"
+        },
+        {
+            "name": "String.prototype.search() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search"
+        },
+        {
+            "name": "String.prototype.match() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"
+        },
+        {
+            "name": "String.prototype.matchAll() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll"
+        },
+        {
+            "name": "String.prototype.split() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"
+        },
+        {
+            "name": "String.prototype.replace() - JavaScript | MDN",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"
+        }
     ]
 ]

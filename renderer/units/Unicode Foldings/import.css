@@ -59,7 +59,7 @@
     padding: 4px 5px;
 }
 
-#unicode-foldings-unit .cases-data
+#unicode-foldings-unit .options
 {
     margin-top: 16px;
 }
@@ -67,14 +67,14 @@
 #unicode-foldings-unit table.case-data
 {
     table-layout: fixed;
-    margin: 10px 0 4px 0;
+    margin: 16px 0 4px 0;
 }
 
 #unicode-foldings-unit table.case-data th
 {
     text-align: left;
     vertical-align: middle;
-    padding: 2px 6px;
+    padding: 4px 6px;
     /* user-select: text; */
 }
 
@@ -96,6 +96,7 @@
     padding: 2px 6px;
     height: 37px;
     overflow: auto;
+    vertical-align: bottom;
 }
 
 #unicode-foldings-unit table.case-data td.code-points-string

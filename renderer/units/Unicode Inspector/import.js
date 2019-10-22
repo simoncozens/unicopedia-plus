@@ -225,6 +225,7 @@ module.exports.start = function (context)
                         { name: "Uppercase", value: data.uppercase },
                         { name: "Lowercase", value: data.lowercase },
                         { name: "Titlecase", value: data.titlecase },
+                        { name: "Case Foldings", value: data.foldings },
                         { name: numericType, value: data.numeric },
                         { name: "Numeric Value", value: numericValue },
                         { name: "Line Break", value: data.lineBreak },

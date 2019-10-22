@@ -312,5 +312,19 @@
                 "string": "刃令毒骨縣誤船述煙贈雪及角條低詩函純賭難海喝練灰起英次能窗化"
             }
         ]
+    },
+    {
+        "label": "Zhuyin Fuhao (Bopomofo)",
+        "items":
+        [
+            {
+                "label": "Basic Bopomofo",
+                "string": "ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㄪㄫㄬㄭㄮㄯ"
+            },
+            {
+                "label": "Additional Bopomofo",
+                "string": "ㆠㆡㆢㆣㆤㆥㆦㆧㆨㆩㆪㆫㆬㆭㆮㆯㆰㆱㆲㆳㆴㆵㆶㆷㆸㆹㆺ"
+            }
+        ]
     }
 ]

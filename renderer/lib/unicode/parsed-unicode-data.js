@@ -148,5 +148,32 @@ for (let line of lines)
     }
 }
 //
+let foldingStatus =
+{
+    "C": "<common>",
+    "F": "<full>",
+    "S": "<simple>",
+    "T": "<special>"
+};
+//
+// Copy of https://www.unicode.org/Public/UNIDATA/CaseFolding.txt
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'CaseFolding.txt'), { encoding: 'ascii' }).split ("\n");
+for (let line of lines)
+{
+    if (line && (line[0] !== "#"))
+    {
+        let fields = line.split (";");
+        let code = fields[0].trim ();
+        let status = fields[1].trim ();
+        let mapping = fields[2].trim ();
+        let data = codePoints[`U+${code}`];
+        if (!("foldings" in data))
+        {
+            data.foldings = [ ];
+        }
+        data.foldings.push (`${foldingStatus[status]} ${mapping}`);
+    }
+}
+//
 module.exports = codePoints;
 //

@@ -665,6 +665,7 @@ function getCharacterData (character)
         characterData.uppercase = uniHexify (data.uppercase);
         characterData.lowercase = uniHexify (data.lowercase);
         characterData.titlecase = uniHexify (data.titlecase);
+        characterData.foldings =  data.foldings && data.foldings.map (folding => uniHexify (folding));
     }
     return characterData;
 }

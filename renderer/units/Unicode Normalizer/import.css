@@ -96,6 +96,7 @@
     padding: 2px 6px;
     height: 37px;
     overflow: auto;
+    vertical-align: bottom;
 }
 
 #unicode-normalizer-unit table.form-data td.code-points-string

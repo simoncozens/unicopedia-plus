@@ -221,7 +221,7 @@ The following utilities are currently available:
 
 ## Unicode Foldings
 
-- The **Unicode Foldings** utility displays simultaneously the uppercase and lowercase foldings of a given string, making use of the JavaScript string functions [toLocaleUpperCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase) and [toLocaleLowerCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase).
+- The **Unicode Foldings** utility displays simultaneously the uppercase and lowercase foldings of a given string, making use of the JavaScript string functions [toUpperCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) and [toLowerCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase), or [toLocaleUpperCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase) and [toLocaleLowerCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase) when a specific locale is selected from the <kbd>Locale</kbd> drop-down menu.
 - Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
 - It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
@@ -242,6 +242,7 @@ The following utilities are currently available:
 - Information is provided for the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Extra information is also obtained from the following data files:
     - [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt)
+    - [CaseFolding.txt](https://www.unicode.org/Public/UNIDATA/CaseFolding.txt)
     - [DerivedAge.txt](https://www.unicode.org/Public/UNIDATA/DerivedAge.txt)
     - [DerivedCoreProperties.txt](https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt)
     - [EastAsianWidth.txt](https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt)
@@ -252,6 +253,7 @@ The following utilities are currently available:
     - [Scripts.txt](https://www.unicode.org/Public/UNIDATA/Scripts.txt)
     - [ScriptExtensions.txt](https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt)
     - [VerticalOrientation.txt](https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt)
+    - [emoji-data.txt](https://www.unicode.org/Public/emoji/12.0/emoji-data.txt)
 
 <img src="screenshots/unicode-inspector.png" width="1080px" alt="Unicode Inspector screenshot">
 

@@ -134,12 +134,14 @@ module.exports.start = function (context)
     //
     function getEmojiShortName (emoji)
     {
-        return cldrAnnotations[emoji.replace (/\uFE0F/g, "")].shortName;
+        emoji = emoji.replace (/\uFE0F/g, "");
+        return (emoji in cldrAnnotations) ? cldrAnnotations[emoji].shortName : emojiList[emoji].name;
     }
     //
     function getEmojiKeywords (emoji)
     {
-        return cldrAnnotations[emoji.replace (/\uFE0F/g, "")].keywords;
+        emoji = emoji.replace (/\uFE0F/g, "");
+        return (emoji in cldrAnnotations) ? cldrAnnotations[emoji].keywords : [ ];
     }
     //
     function findEmojiByName (regex)
@@ -178,6 +180,18 @@ module.exports.start = function (context)
         }
         return emojiBySequence;
     }
+    //
+    const versionDates =
+    {
+        "1.0": "August 2015",
+        "2.0": "November 2015",
+        "3.0": "June 2016",
+        "4.0": "November 2016",
+        "5.0": "May 2017",
+        "11.0": "June 2018",
+        "12.0": "March 2019",
+        "12.1": "October 2019"
+    };
     //
     function updateDataList (characters, emojiDataList)
     {
@@ -220,17 +234,18 @@ module.exports.start = function (context)
             let status;
             if (emojiList[character].isComponent)
             {
-                status = "component";
+                status = "Component";
             }
             else if (emojiList[character].toFullyQualified)
             {
-                status = "non-fully-qualified (display/process)";
+                status = "Non Fully Qualified (Display/Process)";
             }
             else
             {
-                status = "fully-qualified (keyboard/palette)";
+                status = "Fully Qualified (Keyboard/Palette)";
             }
-            emojiTable.title = `Status: ${status}`;
+            let age = emojiList[character].age;
+            emojiTable.title = `Age: Emoji ${age} (${versionDates[age]})\nStatus: ${status}`;
             if (emojiList[character].toFullyQualified)
             {
                 emoji.classList.add ('non-fully-qualified');

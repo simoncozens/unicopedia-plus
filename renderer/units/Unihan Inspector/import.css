@@ -189,9 +189,9 @@
     padding: 4px 0;
 }
 
-#unihan-inspector-unit .full-set-label
+#unihan-inspector-unit .random-button
 {
-    margin-left: 0.75em;
+    margin-right: 0.75em;
 }
 
 #unihan-inspector-unit .unicode-info,

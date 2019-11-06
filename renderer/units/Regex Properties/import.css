@@ -9,10 +9,15 @@
     margin: 0.5em 0 1.5em;
 }
 
+#regex-properties-unit .interface .option-group
+{
+    display: flex;
+}
+
 #regex-properties-unit .interface .option-group .option
 {
     white-space: nowrap;
-    margin-left: 1em;
+    margin-left: 1.5em;
 }
 
 #regex-properties-unit .property-list

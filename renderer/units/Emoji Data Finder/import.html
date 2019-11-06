@@ -91,8 +91,8 @@
                         <ul>
                             <li>The <strong>Find by Name</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
-                            <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,010 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 817 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
+                            <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
                                 <ul>
                                     <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
@@ -129,8 +129,8 @@
                         <ul>
                             <li>The <strong>Match Sequence</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, including through regular expressions.</li>
                             <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
-                            <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,010 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 817 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
+                            <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
                                 <ul>
                                     <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
@@ -166,6 +166,7 @@
                             <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (<em>non-fully-qualified</em>)</li>
                             <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}\uFE0F$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (<em>fully-qualified</em>)</li>
                             <li><code>^[\u0000-\uFFFF]$</code><br>Emoji made of a single code point belonging to the BMP (Basic Multilingual Plane)</li>
+                            <li><code>^......(..)?$</code> or <code>^(.{6}|.{8})$</code><br>Emoji made of exactly six or eight code points</li>
                         </ul>
                     </details>
                 </div>
@@ -186,8 +187,8 @@
                                     <li><code>Remove Duplicate Emoji</code> [delete emoji duplicates]</li>
                                 </ul>
                             </li>
-                            <li>This feature deals with the 3,836 emoji defined in the <strong>Emoji 12.0</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.0/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,010 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 817 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
+                            <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
                             <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
                                 <ul>
                                     <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>

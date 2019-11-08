@@ -23,22 +23,26 @@
             },
             {
                 "label": "CJK Unusual 2",
-                "string": "㔔㪳㫈\n㔖㪲㫇"
+                "string": "止𣥒𣥗𣥠 正𣥄 臣臦𦣩"
             },
             {
                 "label": "CJK Unusual 3",
-                "string": "㐃𠄷𤕈𦮙𠕲𮍌𡉡𢀓𭍻"
+                "string": "㔔㪳㫈\n㔖㪲㫇"
             },
             {
                 "label": "CJK Unusual 4",
-                "string": "𠆭𠇇𠍋𠪳𡆢𡦹𡧑𦹗𭁇"
+                "string": "㐃𠄷𤕈𦮙𠕲𮍌𡉡𢀓𭍻"
             },
             {
                 "label": "CJK Unusual 5",
-                "string": "𠚖𠚜𠚡𠥓𠥧𠥩𠥪𠥫𠥬"
+                "string": "𠆭𠇇𠍋𠪳𡆢𡦹𡧑𦹗𭁇"
             },
             {
                 "label": "CJK Unusual 6",
+                "string": "𠚖𠚜𠚡𠥓𠥧𠥩𠥪𠥫𠥬"
+            },
+            {
+                "label": "CJK Unusual 7",
                 "string": "𬴘𬴜𬴠𬴡𬴢𬴣𬴤𬴥𬴦"
             }
         ]

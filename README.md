@@ -210,7 +210,7 @@ The following utilities are currently available:
 
 - The **List by Block** feature of the **Unicode Data Finder** utility displays in real time a list of basic data (symbol, code point, name/aliases, block) of Unicode characters belonging to the same block range.
 - It is possible to choose how many characters are shown one page at a time.
-- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 12.0** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
+- A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the **Unicode 12.1** version of the [Blocks.txt](https://www.unicode.org/Public/UNIDATA/Blocks.txt) data file.
 - It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.
 - You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.
 - Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
@@ -253,7 +253,7 @@ The following utilities are currently available:
     - [Scripts.txt](https://www.unicode.org/Public/UNIDATA/Scripts.txt)
     - [ScriptExtensions.txt](https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt)
     - [VerticalOrientation.txt](https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt)
-    - [emoji-data.txt](https://www.unicode.org/Public/emoji/12.0/emoji-data.txt)
+    - [emoji-data.txt](https://www.unicode.org/Public/emoji/12.1/emoji-data.txt)
 
 <img src="screenshots/unicode-inspector.png" width="1080px" alt="Unicode Inspector screenshot">
 

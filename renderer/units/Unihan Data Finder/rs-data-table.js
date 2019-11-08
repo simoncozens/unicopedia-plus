@@ -72,10 +72,18 @@ module.exports.create = function (title, items, params)
     {
         charactersData.classList.add ('compact-layout');
     }
+    let separator = false;
     for (let item of items)
     {
         if (item.characters.length > 0)
         {
+            if (separator)
+            {
+                let strokesSeparator = document.createElement ('div');
+                strokesSeparator.className = 'strokes-separator';
+                charactersData.appendChild (strokesSeparator);
+            }
+            separator = true;
             let strokesData = document.createElement ('span');
             strokesData.className = 'strokes-data';
             let shortTitle = document.createElement ('span');

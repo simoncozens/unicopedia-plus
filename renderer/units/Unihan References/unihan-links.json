@@ -291,6 +291,12 @@
     ],
     [
         {
+            "name": "康熙字典全文檢索網上版",
+            "href": "http://www.kangxizidian.com/search/"
+        }
+    ],
+    [
+        {
             "name": "K'sBookshelf 辞典・用語 漢字林",
             "href": "http://ksbookshelf.com/DW/Kanjirin/"
         },

@@ -73,7 +73,7 @@ for (let line of lines)
 //
 let emojiProperties = [ ];
 //
-// Copy of https://unicode.org/Public/emoji/12.0/emoji-data.txt
+// Copy of https://unicode.org/Public/emoji/12.1/emoji-data.txt
 lines = fs.readFileSync (path.join (__dirname, 'emoji', 'emoji-data.txt'), { encoding: 'utf8' }).split ("\n");
 for (let line of lines)
 {

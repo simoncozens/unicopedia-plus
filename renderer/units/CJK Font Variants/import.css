@@ -4,8 +4,8 @@
 {
     --color-frame: hsl(196, 100%, 50%);
     --color-background: hsl(196, 100%, 99%);
-    --color-base: hsl(16, 100%, 50%);
-    --color-overlay: hsl(196, 100%, 50%);
+    --color-base: hsla(10, 100%, 50%, 0.666);
+    --color-overlay: hsla(190, 100%, 50%, 0.666);
 }
 
 #cjk-font-variants-unit .actions

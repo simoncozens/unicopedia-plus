@@ -18,10 +18,6 @@
         "items":
         [
             {
-                "label": "CJKV Flags",
-                "string": "🇨🇳🇭🇰🇯🇵🇰🇵🇰🇷🇲🇴🇸🇬🇹🇼🇻🇳"
-            },
-            {
                 "label": "Family Groupings",
                 "string": "👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨"
             },
@@ -32,6 +28,10 @@
             {
                 "label": "Lorem Ipsum",
                 "string": "Lorem ipsum 🚂 dolor sit amet, 🌈 consectetur 🦄 adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            },
+            {
+                "label": "Pan-CJKV Flags",
+                "string": "🇨🇳🇭🇰🇯🇵🇰🇵🇰🇷🇲🇴🇲🇾🇸🇬🇹🇼🇻🇳"
             },
             {
                 "label": "Playing Card Suits",

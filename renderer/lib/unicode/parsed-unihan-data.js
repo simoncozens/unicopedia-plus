@@ -36,14 +36,14 @@ const tags =
     {
         "name": "CCCII (Chinese Character Code for Information Interchange)",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9A-F]{6}"
     },
     "kCheungBauer":
     {
         "name": "Cheung-Bauer",
         "category": "Dictionary-like Data",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{3}\\/[0-9]{2};[A-Z]*;[a-z1-6\\[\\]\\/,]+"
     },
     "kCheungBauerIndex":
@@ -75,7 +75,7 @@ const tags =
     "kCompatibilityVariant":
     {
         "name": "Compatibility Variant",
-        "category": "Variants", // "IRG Sources" ??
+        "category": "Variants", // "IRG Sources"
         "syntax": "U\\+2?[0-9A-F]{4}"
     },
     "kCowles":
@@ -217,7 +217,7 @@ const tags =
     {
         "name": "HK Glyph",
         "category": "Dictionary-like Data",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{4}"
     },
     "kHKSCS":
@@ -235,9 +235,9 @@ const tags =
     },
     "kIICore":
     {
-        "name": "IICore",
+        "name": "IICore (International Ideographs Core)",
         "category": "IRG Sources",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[ABC][GHJKMPT]{1,7}"
     },
     "kIRGDaeJaweon":
@@ -270,55 +270,55 @@ const tags =
     },
     "kIRG_GSource":
     {
-        "name": "IRG \"G\" Source",
+        "name": "IRG Source: China",
         "category": "IRG Sources",
         "syntax": "G4K|G[013578EKS]-[0-9A-F]{4}|G9-[0-9A-F]{4,8}|G(DZ|GH|RM|WZ|XC|XH|ZH)-\\d{4}\\.\\d{2}|G(BK|CH|CY|HC)(-\\d{4}\\.\\d{2})?|GKX-\\d{4}\\.\\d{2,3}|GHZR?-\\d{5}\\.\\d{2}|G(CE|FC|IDC|OCD|XHZ)-\\d{3}|G(H|HF|LGYJ|PGLG)-\\d{4}|G(CYY|JZ|ZFY|ZJW|ZYS)-\\d{5}|GFZ(-\\d{5})?|GGFZ-\\d{6}|G(LK|Z)-\\d{7}"
     },
     "kIRG_HSource":
     {
-        "name": "IRG \"H\" Source",
+        "name": "IRG Source: Hong Kong",
         "category": "IRG Sources",
         "syntax": "H(-[0-9A-F]{4,5}|(B[012]|D)-[0-9A-F]{4})"
     },
     "kIRG_JSource":
     {
-        "name": "IRG \"J\" Source",
+        "name": "IRG Source: Japan",
         "category": "IRG Sources",
         "syntax": "J1?((([0134AK]|A[34]|3A|ARIB|MJ)-[0-9A-F]{4,6})|(H-(((IB|JT|[0-9]{2})[0-9A-F]{4}S?))))"
     },
     "kIRG_KPSource":
     {
-        "name": "IRG \"KP\" Source",
+        "name": "IRG Source: North Korea",
         "category": "IRG Sources",
         "syntax": "KP[01]-[0-9A-F]{4}"
     },
     "kIRG_KSource":
     {
-        "name": "IRG \"K\" Source",
+        "name": "IRG Source: South Korea",
         "category": "IRG Sources",
         "syntax": "K([0-6]-[0-9A-F]{4}|C-[0-9]{5})"
     },
     "kIRG_MSource":
     {
-        "name": "IRG \"M\" Source",
+        "name": "IRG Source: Macao",
         "category": "IRG Sources",
         "syntax": "MAC-[0-9]{5}"
     },
     "kIRG_TSource":
     {
-        "name": "IRG \"T\" Source",
+        "name": "IRG Source: Taiwan",
         "category": "IRG Sources",
         "syntax": "T[1-7A-F]-[0-9A-F]{4}"
     },
     "kIRG_USource":
     {
-        "name": "IRG \"U\" Source",
+        "name": "IRG Source: Unicode",
         "category": "IRG Sources",
         "syntax": "U(TC|CI|K|SAT)-[0-9]{5}"
     },
     "kIRG_VSource":
     {
-        "name": "IRG \"V\" Source",
+        "name": "IRG Source: Vietnam",
         "category": "IRG Sources",
         "syntax": "V[0-4U]-[02]?[0-9A-F]{4}"
     },
@@ -403,42 +403,42 @@ const tags =
     {
         "name": "Korean Education Hanja",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "20[0-9]{2}"
     },
     "kKoreanName":
     {
         "name": "Korean Name",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "(20[0-9]{2})(:U\\+2?[0-9A-F]{4})*"
     },
     "kKPS0":
     {
         "name": "KPS 9566-97",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9A-F]{4}"
     },
     "kKPS1":
     {
         "name": "KPS 10721-2000",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9A-F]{4}"
     },
     "kKSC0":
     {
         "name": "KS X 1001:1992 (KS C 5601-1989)",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{4}"
     },
     "kKSC1":
     {
         "name": "KS X 1002:1991 (KS C 5657-1991)",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{4}"
     },
     "kLau":
@@ -452,7 +452,7 @@ const tags =
     {
         "name": "Mainland Telegraph",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{4}"
     },
     "kMandarin":
@@ -466,7 +466,7 @@ const tags =
     {
         "name": "Matthews",
         "category": "Dictionary Indices",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[1-9][0-9]{0,3}(a|\\.5)?"
     },
     "kMeyerWempe":
@@ -480,7 +480,7 @@ const tags =
     {
         "name": "Morohashi",
         "category": "Dictionary Indices",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{5}'?"
     },
     "kNelson":
@@ -526,34 +526,34 @@ const tags =
     {
         "name": "Japanese Radical-Stroke Count",
         "category": "Radical-Stroke Counts",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[1-9][0-9]{0,2}\\.[0-9]{1,2}"
     },
     "kRSKangXi":
     {
         "name": "KangXi Radical-Stroke Count",
         "category": "Radical-Stroke Counts",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[1-9][0-9]{0,2}\\.-?[0-9]{1,2}"
     },
     "kRSKanWa":
     {
         "name": "Morohashi Radical-Stroke Count",
         "category": "Radical-Stroke Counts",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[1-9][0-9]{0,2}\\.[0-9]{1,2}"
     },
     "kRSKorean":
     {
         "name": "Korean Radical-Stroke Count",
         "category": "Radical-Stroke Counts",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[1-9][0-9]{0,2}\\.[0-9]{1,2}"
     },
     "kRSUnicode":
     {
         "name": "Unicode Radical-Stroke Count",
-        "category": "Radical-Stroke Counts",    // "IRG Sources" ??
+        "category": "Radical-Stroke Counts",    // "IRG Sources"
         "delimiter": " ",
         "syntax": "[1-9][0-9]{0,2}'?\\.-?[0-9]{1,2}"
     },
@@ -589,7 +589,7 @@ const tags =
     {
         "name": "Taiwan Telegraph",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{4}"
     },
     "kTang":
@@ -603,7 +603,7 @@ const tags =
     {
         "name": "TGH (Tōngyòng Guīfàn Hànzìbiǎo)",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "20[0-9]{2}:[1-9][0-9]{0,3}"
     },
     "kTotalStrokes":
@@ -631,7 +631,7 @@ const tags =
     {
         "name": "Xerox",
         "category": "Other Mappings",
-        "delimiter": " ",   // ??
+        "delimiter": " ",
         "syntax": "[0-9]{3}:[0-9]{3}"
     },
     "kXHC1983":
@@ -643,7 +643,7 @@ const tags =
     },
     "kZVariant":
     {
-        "name": "Z-Variant",
+        "name": "Z-Variant (Shape Variant)",
         "category": "Variants",
         "delimiter": " ",
         "syntax": "U\\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?"

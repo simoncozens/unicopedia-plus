@@ -161,80 +161,69 @@ module.exports.start = function (context)
         return "<" + tooltip.join (",\n") + ">";
     }
     //
-    const blendingEffect = 'none'; // 'none', 'normal', 'multiply', 'difference'
+    let diffEffect = 'none'; // 'none', 'overlay'
     //
     let currentDiffElement = null;
     let currentAlternateDiff;
     //
     function showDifferences (event)
     {
-        event.preventDefault ();
-        let diffElement = event.currentTarget;
-        let alternateDiff = event.shiftKey;
-        let variants;
-        if (alternateDiff)
+        if (!event.button)
         {
-            variants = sheet.querySelectorAll (`.cjk-data[lang="${diffElement.lang}"]`);
-        }
-        else
-        {
-            variants = sheet.querySelectorAll (`.cjk-data[data-index="${diffElement.dataset.index}"]`);
-        }
-        if (variants.length > 1) // Diff needs at least two elements to compare
-        {
-            for (let variant of variants)
+            event.preventDefault ();
+            let diffElement = event.currentTarget;
+            let alternateDiff = event.shiftKey;
+            diffEffect = event.getModifierState ('CapsLock') ? 'overlay' : 'none';
+            let variants;
+            if (alternateDiff)
             {
-                let base = variant.querySelector ('.cjk-data-base');
-                switch (blendingEffect)
-                {
-                    case 'none':
-                        base.classList.add ('hidden');
-                        break;
-                    case 'normal':
-                        base.style.color = 'var(--color-base)';
-                        break;
-                    case 'multiply':
-                        base.style.color = 'var(--color-base)';
-                        break;
-                    case 'difference':
-                        base.style.color = 'black';
-                        break;
-                }
-                let overlay = variant.querySelector ('.cjk-data-overlay');
-                if (alternateDiff)
-                {
-                    overlay.lang = variant.lang;
-                    overlay.firstChild.textContent = diffElement.querySelector ('.cjk-data-base').firstChild.textContent;
-                }
-                else
-                {
-                    overlay.lang = diffElement.lang;
-                }
-                switch (blendingEffect)
-                {
-                    case 'none':
-                        break;
-                    case 'normal':
-                        overlay.style.color = 'var(--color-overlay)';
-                        overlay.style.mixBlendMode = 'normal';
-                        break;
-                    case 'multiply':
-                        overlay.style.color = 'var(--color-overlay)';
-                        overlay.style.mixBlendMode = 'multiply';
-                        break;
-                    case 'difference':
-                        overlay.style.color = 'var(--color-overlay)';
-                        overlay.style.mixBlendMode = 'difference';
-                        break;
-                }
-                overlay.classList.remove ('hidden');
+                variants = sheet.querySelectorAll (`.cjk-data[lang="${diffElement.lang}"]`);
             }
-            currentDiffElement = diffElement;
-            currentAlternateDiff = alternateDiff;
-        }
-        else
-        {
-            currentDiffElement = null;
+            else
+            {
+                variants = sheet.querySelectorAll (`.cjk-data[data-index="${diffElement.dataset.index}"]`);
+            }
+            if (variants.length > 1) // Diff needs at least two elements to compare
+            {
+                for (let variant of variants)
+                {
+                    let base = variant.querySelector ('.cjk-data-base');
+                    switch (diffEffect)
+                    {
+                        case 'none':
+                            base.classList.add ('hidden');
+                            break;
+                        case 'overlay':
+                            base.style.color = 'var(--color-base)';
+                            break;
+                    }
+                    let overlay = variant.querySelector ('.cjk-data-overlay');
+                    if (alternateDiff)
+                    {
+                        overlay.lang = variant.lang;
+                        overlay.firstChild.textContent = diffElement.querySelector ('.cjk-data-base').firstChild.textContent;
+                    }
+                    else
+                    {
+                        overlay.lang = diffElement.lang;
+                    }
+                    switch (diffEffect)
+                    {
+                        case 'none':
+                            break;
+                        case 'overlay':
+                            overlay.style.color = 'var(--color-overlay)';
+                            break;
+                    }
+                    overlay.classList.remove ('hidden');
+                }
+                currentDiffElement = diffElement;
+                currentAlternateDiff = alternateDiff;
+            }
+            else
+            {
+                currentDiffElement = null;
+            }
         }
     }
     //
@@ -255,14 +244,12 @@ module.exports.start = function (context)
             for (let variant of variants)
             {
                 let base = variant.querySelector ('.cjk-data-base');
-                switch (blendingEffect)
+                switch (diffEffect)
                 {
                     case 'none':
                         base.classList.remove ('hidden');
                         break;
-                    case 'normal':
-                    case 'multiply':
-                    case 'difference':
+                    case 'overlay':
                         base.style = null;
                         break;
                 }
@@ -275,18 +262,17 @@ module.exports.start = function (context)
                 {
                     overlay.lang = base.lang;
                 }
-                switch (blendingEffect)
+                switch (diffEffect)
                 {
                     case 'none':
                         break;
-                    case 'normal':
-                    case 'multiply':
-                    case 'difference':
+                    case 'overlay':
                         overlay.style = null;
                         break;
                 }
                 overlay.classList.add ('hidden');
             }
+            diffEffect = 'none';
             currentDiffElement = null;
         }
     }

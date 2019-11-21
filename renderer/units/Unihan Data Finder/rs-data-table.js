@@ -26,8 +26,8 @@ module.exports.create = function (title, items, params)
     layoutOptionsGroup.appendChild (compactLabel);
     dataTable.appendChild (layoutOptionsGroup);
     //
-    let table = document.createElement ('table');
-    table.className = 'rs-data-table';
+    let chart = document.createElement ('div');
+    chart.className = 'rs-data-chart';
     //
     if (deferredSymbols)
     {
@@ -56,17 +56,12 @@ module.exports.create = function (title, items, params)
         );
     }
     //
-    let titleRow = document.createElement ('tr');
-    titleRow.className = 'title-row';
-    let titleHeader = document.createElement ('th');
+    let titleHeader = document.createElement ('div');
     titleHeader.className = 'title-header';
     titleHeader.textContent = title;
-    titleRow.appendChild (titleHeader);
-    table.appendChild (titleRow);
+    chart.appendChild (titleHeader);
     //
-    let charactersRow = document.createElement ('tr');
-    charactersRow.className = 'characters-row';
-    let charactersData = document.createElement ('td');
+    let charactersData = document.createElement ('div');
     charactersData.className = 'characters-data';
     if (params.compactLayout)
     {
@@ -124,11 +119,10 @@ module.exports.create = function (title, items, params)
                 characterData.appendChild (codePoint );
                 charactersData.appendChild (characterData);
             }
-            charactersRow.appendChild (charactersData);
-            table.appendChild (charactersRow);
+            chart.appendChild (charactersData);
         }
     }
-    dataTable.appendChild (table);
+    dataTable.appendChild (chart);
     //
     return dataTable;
 }

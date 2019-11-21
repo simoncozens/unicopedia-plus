@@ -23,7 +23,7 @@
             },
             {
                 "label": "CJK Unusual 2",
-                "string": "止𣥒𣥗𣥠 正𣥄 臣臦𦣩"
+                "string": "止𣥕𣥗𣥒𣥖𣥠 正𣥄 臣臦𦣦𦣩"
             },
             {
                 "label": "CJK Unusual 3",
@@ -39,11 +39,11 @@
             },
             {
                 "label": "CJK Unusual 6",
-                "string": "𠚖𠚜𠚡𠥓𠥧𠥩𠥪𠥫𠥬"
+                "string": "𠚖𠚜𠚡𠥓𠥧𠥩𠥪𠥫𠥬\n𧀍"
             },
             {
                 "label": "CJK Unusual 7",
-                "string": "𬴘𬴜𬴠𬴡𬴢𬴣𬴤𬴥𬴦"
+                "string": "𫨣𫲒𬆻𬴘𬴜𬴠𬴡𬴢𬴣𬴤𬴥𬴦"
             }
         ]
     },

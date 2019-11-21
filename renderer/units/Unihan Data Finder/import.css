@@ -453,56 +453,60 @@
     margin-bottom: -0.5em;
 }
 
-#unihan-data-finder-unit .rs-data-table
+#unihan-data-finder-unit .rs-data-chart
 {
     margin: 1em 0 0.75em 0;
     user-select: text;
+    border: 1px solid var(--color-border);
 }
 
-#unihan-data-finder-unit .rs-data-table .title-header
+#unihan-data-finder-unit .rs-data-chart .title-header
 {
     text-align: center;
     font-family: "Sans CJK TC";
     font-size: 19px;
-    line-height: 1.2em;
+    line-height: 1.5em;
     font-weight: normal;
-    padding: 0.4em;
+    padding: 0.2em 0.4em;
+    vertical-align: middle;
+    background-color: hsla(0, 0%, 50%, 0.06);
 }
 
-#unihan-data-finder-unit .rs-data-table .strokes-data
+#unihan-data-finder-unit .rs-data-chart .strokes-data
 {
     display: block;
     text-align: left;
     font-size: 16px;
+    line-height: 1em;
     font-weight: 600;
     background-color: white;
     color: var(--color-accent);
     padding: 0.25em 0.75em;
 }
 
-#unihan-data-finder-unit .rs-data-table .strokes-data .long-title
+#unihan-data-finder-unit .rs-data-chart .strokes-data .long-title
 {
     display: inline;
 }
 
-#unihan-data-finder-unit .rs-data-table .strokes-data .short-title
+#unihan-data-finder-unit .rs-data-chart .strokes-data .short-title
 {
     display: none;
 }
 
-#unihan-data-finder-unit .rs-data-table .strokes-separator
+#unihan-data-finder-unit .rs-data-chart .strokes-separator
 {
     margin: 0.75em 0;
     border: none;
     border-bottom: 1px solid var(--color-border);
 }
 
-#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-separator
+#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-separator
 {
     display: none;
 }
 
-#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-data
+#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-data
 {
     display: inline-flex;
     align-items: center;
@@ -520,24 +524,26 @@
     height: 40px;
 }
 
-#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-data .long-title
+#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-data .long-title
 {
     display: none;
 }
 
-#unihan-data-finder-unit .rs-data-table .compact-layout .strokes-data .short-title
+#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-data .short-title
 {
     display: inline;
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data
+#unihan-data-finder-unit .rs-data-chart .characters-data
 {
+    display: block;
     background-color: white;
     text-align: left;
     padding: 1em;
+    border-top: 1px solid var(--color-border);
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data
+#unihan-data-finder-unit .rs-data-chart .characters-data .character-data
 {
     display: inline-flex;
     flex-direction: column;
@@ -546,7 +552,7 @@
     width: 48px;
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .symbol
+#unihan-data-finder-unit .rs-data-chart .characters-data .character-data .symbol
 {
     font-size: 36px;
     text-align: center;
@@ -555,18 +561,18 @@
     border: 1px solid transparent;
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .symbol.deferred
+#unihan-data-finder-unit .rs-data-chart .characters-data .character-data .symbol.deferred
 {
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data.extra-source .symbol
+#unihan-data-finder-unit .rs-data-chart .characters-data .character-data.extra-source .symbol
 {
     color: gray;
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data .code-point
+#unihan-data-finder-unit .rs-data-chart .characters-data .character-data .code-point
 {
     font-family: Monaco, "Noto Mono", monospace;
     text-align: center;
@@ -579,7 +585,7 @@
     background-color: var(--color-bg);
 }
 
-#unihan-data-finder-unit .rs-data-table .characters-row .characters-data .character-data.extra-source .code-point
+#unihan-data-finder-unit .rs-data-chart .characters-data .character-data.extra-source .code-point
 {
     color: gray;
     background-color: white;

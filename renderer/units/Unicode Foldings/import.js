@@ -226,6 +226,7 @@ module.exports.start = function (context)
     option = document.createElement ('option');
     option.textContent = `Default (${locales[defaultLocale] || defaultLocale})`;
     option.value = "";
+    option.title = `'${defaultLocale}'`;
     localeSelect.appendChild (option);
     option = document.createElement ('option');
     option.textContent = "―";
@@ -236,6 +237,7 @@ module.exports.start = function (context)
         let option = document.createElement ('option');
         option.textContent = locales[locale];
         option.value = locale;
+        option.title = `'${locale}'`;
         localeSelect.appendChild (option);
     }
     //
@@ -327,6 +329,32 @@ module.exports.start = function (context)
         }
     );
     //
+    useLocaleCheckbox.checked = prefs.useLocaleCheckbox;
+    useLocaleCheckbox.addEventListener
+    (
+        'input',
+        event =>
+        {
+            localeSelect.disabled = !event.currentTarget.checked;
+            charactersInput.dispatchEvent (new Event ('input'));
+        }
+    );
+    //
+    localeSelect.value = prefs.localeSelect;
+    if (localeSelect.selectedIndex < 0) // -1: no element is selected
+    {
+        localeSelect.selectedIndex = 0;
+    }
+    localeSelect.disabled = !useLocaleCheckbox.checked;
+    localeSelect.addEventListener
+    (
+        'input',
+        event =>
+        {
+            charactersInput.dispatchEvent (new Event ('input'));
+        }
+    );
+    //
     charactersInput.addEventListener
     (
         'input',
@@ -368,32 +396,6 @@ module.exports.start = function (context)
         event =>
         {
             event.currentTarget.value = unicode.charactersToCodePoints (charactersInput.value, true);
-        }
-    );
-    //
-    useLocaleCheckbox.checked = prefs.useLocaleCheckbox;
-    useLocaleCheckbox.addEventListener
-    (
-        'input',
-        event =>
-        {
-            localeSelect.disabled = !event.currentTarget.checked;
-            charactersInput.dispatchEvent (new Event ('input'));
-        }
-    );
-    //
-    localeSelect.value = prefs.localeSelect;
-    if (localeSelect.selectedIndex < 0) // -1: no element is selected
-    {
-        localeSelect.selectedIndex = 0;
-    }
-    localeSelect.disabled = !useLocaleCheckbox.checked;
-    localeSelect.addEventListener
-    (
-        'input',
-        event =>
-        {
-            charactersInput.dispatchEvent (new Event ('input'));
         }
     );
     //

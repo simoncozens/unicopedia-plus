@@ -432,7 +432,7 @@ function uniHexify (string)
 //
 function characterToUtf32Code (character)
 {
-    return ("0000000" + character.codePointAt (0).toString (16).toUpperCase ()).slice (-8);
+    return character.codePointAt (0).toString (16).toUpperCase ().padStart (8, "0");
 }
 //
 function characterToUtf16Code (character)
@@ -441,27 +441,24 @@ function characterToUtf16Code (character)
     let index = character.codePointAt (0);
     if (index > 0xFFFF)
     {
-        let highCode = character.charCodeAt (0).toString (16).toUpperCase ();
-        let lowCode = character.charCodeAt (1).toString (16).toUpperCase ();
-        highCode = ("000" + highCode).slice (-4);
-        lowCode = ("000" + lowCode).slice (-4);
+        let highCode = character.charCodeAt (0).toString (16).toUpperCase ().padStart (4, "0");
+        let lowCode = character.charCodeAt (1).toString (16).toUpperCase ().padStart (4, "0");
         utf16Code = `${highCode} ${lowCode}`;
     }
     else
     {
-        utf16Code = ("000" + index.toString (16).toUpperCase ()).slice (-4);
+        utf16Code = index.toString (16).toUpperCase ().padStart (4, "0");
     }
     return utf16Code;
 }
 //
-// https://kev.inburke.com/kevin/node-js-string-encoding/
 function characterToUtf8 (character)
 {
     let utf8 = [ ];
     let buffer = Buffer.from (character, 'utf8');
     for (let byte of buffer)
     {
-        utf8.push (("00" + byte.toString (16).toUpperCase ()).slice (-2));
+        utf8.push (byte.toString (16).toUpperCase ().padStart (2, "0"));
     }
     return utf8;
 }
@@ -487,13 +484,13 @@ function characterToJavaScriptEscape (character)
     let index = character.codePointAt (0);
     if (index > 0xFFFF)
     {
-        let highCode = ("000" + character.charCodeAt (0).toString (16).toUpperCase ()).slice (-4);
-        let lowCode = ("000" + character.charCodeAt (1).toString (16).toUpperCase ()).slice (-4);
+        let highCode = character.charCodeAt (0).toString (16).toUpperCase ().padStart (4, "0");
+        let lowCode = character.charCodeAt (1).toString (16).toUpperCase ().padStart (4, "0");
         escape = `\\u${highCode}\\u${lowCode}`;
     }
     else
     {
-        escape = `\\u${("000" + index.toString (16).toUpperCase ()).slice (-4)}`;
+        escape = `\\u${index.toString (16).toUpperCase ().padStart (4, "0")}`;
     }
     return escape;
 }
@@ -505,11 +502,7 @@ function characterToEcmaScript6Escape (character)
 //
 function characterToCodePoint (character, noPrefix)
 {
-    let code = character.codePointAt (0).toString (16).toUpperCase ();
-    if (code.length < 5)
-    {
-        code = ("000" + code).slice (-4);
-    }
+    let code = character.codePointAt (0).toString (16).toUpperCase ().padStart (4, "0");
     return (noPrefix) ? code : `U+${code}`;
 }
 //

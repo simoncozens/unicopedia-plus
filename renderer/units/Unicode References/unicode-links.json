@@ -298,5 +298,11 @@
             "name": "JavaScript has a Unicode problem · Mathias Bynens",
             "href": "https://mathiasbynens.be/notes/javascript-unicode"
         }
+    ],
+    [
+        {
+            "name": "It’s not wrong that \"🤦🏼‍♂️\".length == 7",
+            "href": "https://hsivonen.fi/string-length/"
+        }
     ]
 ]

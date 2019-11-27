@@ -119,10 +119,12 @@
     ],
     [
         {
+            "lang": "ja",
             "name": "理義字 - Wikipedia",
             "href": "https://ja.wikipedia.org/wiki/%E7%90%86%E7%BE%A9%E5%AD%97"
         },
         {
+            "lang": "zh",
             "name": "疊字 - 维基百科，自由的百科全书",
             "href": "https://zh.wikipedia.org/wiki/%E7%96%8A%E5%AD%97"
         }
@@ -275,10 +277,12 @@
     ],
     [
         {
+            "lang": "zh-Hant",
             "name": "教育部異體字字典 - Dictionary of Chinese Character Variants",
             "href": "http://dict2.variants.moe.edu.tw/"
         },
         {
+            "lang": "zh-Hant",
             "name": "教育部《異體字字典》字形檢索 - Search by Character Shape",
             "href": "http://dict2.variants.moe.edu.tw/suo.htm"
         }
@@ -291,20 +295,24 @@
     ],
     [
         {
+            "lang": "zh-Hans",
             "name": "康熙字典扫描版_康熙字典原图扫描版",
             "href": "http://www.guoxuedashi.com/kangxi/saomiao/"
         },
         {
+            "lang": "zh-Hant",
             "name": "康熙字典全文檢索網上版",
             "href": "http://www.kangxizidian.com/search/"
         }
     ],
     [
         {
+            "lang": "ja",
             "name": "K'sBookshelf 辞典・用語 漢字林",
             "href": "http://ksbookshelf.com/DW/Kanjirin/"
         },
         {
+            "lang": "ja",
             "name": "K'sBookshelf 辞典・用語 漢字林 付録　繰返字（同じ字形が繰り返されてできる漢字）",
             "href": "http://ksbookshelf.com/DW/Kanjirin/appendix/Kurikaeshiji.html"
         }
@@ -343,26 +351,38 @@
             "href": "https://tangorin.com/"
         },
         {
+            "lang": "ja",
             "name": "漢字ペディア",
             "href": "https://www.kanjipedia.jp/"
         }
     ],
     [
         {
+            "lang": "ja",
             "name": "常用漢字チェッカー | 常用漢字情報サイト",
             "href": "https://joyokanji.info/"
         },
         {
+            "lang": "ja",
             "name": "常 用 漢 字 表 - joyokanjihyo_20101130.pdf",
             "href": "http://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/pdf/joyokanjihyo_20101130.pdf"
         }
     ],
     [
         {
+            "lang": "ja",
+            "name": "MJ文字情報検索システム | 独立行政法人 情報処理推進機構 - IPA - Kanji Search",
+            "href": "https://mojikiban.ipa.go.jp/search/home"
+        }
+    ],
+    [
+        {
+            "lang": "ja",
             "name": "IPAexフォント/IPAフォント | IPAフォントのダウンロードサイトです",
             "href": "https://ipafont.ipa.go.jp/"
         },
         {
+            "lang": "ja",
             "name": "ダウンロード(Download) | IPAexフォント/IPAフォント",
             "href": "https://ipafont.ipa.go.jp/node17"
         }
@@ -379,6 +399,7 @@
             "href": "http://en.glyphwiki.org/wiki/GlyphWiki:MainPage"
         },
         {
+            "lang": "ja",
             "name": "グループ:品字様 - GlyphWiki",
             "href": "http://glyphwiki.org/wiki/Group:%E5%93%81%E5%AD%97%E6%A7%98"
         }

@@ -19,11 +19,7 @@ for (let line of lines)
             let numericString = found[4];
             for (let index = firstIndex; index <= lastIndex; index++)
             {
-                let code = index.toString (16).toUpperCase ();
-                if (code.length < 5)
-                {
-                    code = ("000" + code).slice (-4);
-                }
+                let code = index.toString (16).toUpperCase ().padStart (4, "0");
                 characters[`U+${code}`] = numericString;
             }
         }

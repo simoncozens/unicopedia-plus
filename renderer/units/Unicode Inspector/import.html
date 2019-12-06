@@ -1,61 +1,59 @@
-<template>
-    <section id="unicode-inspector-unit">
-        <div class="plain-panel">
-            <div class="actions">
-                <span class="action-group">
-                    <span class="action">
-                        <button class="characters-clear" type="button">Clear</button>
-                    </span>
-                    <span class="action">
-                        <button class="pull-down-menu characters-samples" type="button">Samples</button>
-                    </span>
+<section id="unicode-inspector-unit">
+    <div class="plain-panel">
+        <div class="actions">
+            <span class="action-group">
+                <span class="action">
+                    <button class="characters-clear" type="button">Clear</button>
                 </span>
-                <span class="action-group">
-                    <span class="action">
-                        <button class="load-button" type="button">Load...</button>
-                    </span>
-                    <span class="action">
-                        <button class="save-button" type="button">Save...</button>
-                    </span>
+                <span class="action">
+                    <button class="pull-down-menu characters-samples" type="button">Samples</button>
                 </span>
-            </div>
-            <div class="input-group">
-                <label>Characters:<textarea class="characters-input" maxlength="256"></textarea></label>
-                <label>Code Points:<textarea class="code-points-input" maxlength="2048"></textarea></label>
-            </div>
-            <div class="characters-data"></div>
+            </span>
+            <span class="action-group">
+                <span class="action">
+                    <button class="load-button" type="button">Load...</button>
+                </span>
+                <span class="action">
+                    <button class="save-button" type="button">Save...</button>
+                </span>
+            </span>
         </div>
-        <div class="accent-panel">
-            <details class="instructions">
-                <summary>Instructions</summary>
-                <ul>
-                    <li>The <strong>Unicode Inspector</strong> utility displays code point information in real time for each Unicode character of a text string.</li>
-                    <li>Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
-                    <li>It is also possible to input predefined sets of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
-                    <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
-                    <li>In output, the standard Unicode code point format <code>U+0041</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
-                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u611B</code> or <code>\u{1F49C}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
-                    <li>Information is provided for the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
-                    <li>
-                        Extra information is also obtained from the following data files:
-                        <ul>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/CaseFolding.txt" href="https://www.unicode.org/Public/UNIDATA/CaseFolding.txt">CaseFolding.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/DerivedAge.txt" href="https://www.unicode.org/Public/UNIDATA/DerivedAge.txt">DerivedAge.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt" href="https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt" href="https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt">EastAsianWidth.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt" href="https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt">EquivalentUnifiedIdeograph.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/LineBreak.txt" href="https://www.unicode.org/Public/UNIDATA/LineBreak.txt">LineBreak.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/NameAliases.txt" href="https://www.unicode.org/Public/UNIDATA/NameAliases.txt">NameAliases.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/PropList.txt" href="https://www.unicode.org/Public/UNIDATA/PropList.txt">PropList.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/Scripts.txt" href="https://www.unicode.org/Public/UNIDATA/Scripts.txt">Scripts.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt" href="https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt">ScriptExtensions.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt" href="https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt">VerticalOrientation.txt</a></li>
-                            <li><a title="https://www.unicode.org/Public/emoji/12.1/emoji-data.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-data.txt">emoji-data.txt</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </details>
+        <div class="input-group">
+            <label>Characters:<textarea class="characters-input" maxlength="256"></textarea></label>
+            <label>Code Points:<textarea class="code-points-input" maxlength="2048"></textarea></label>
         </div>
-    </section>
-</template>
+        <div class="characters-data"></div>
+    </div>
+    <div class="accent-panel">
+        <details class="instructions">
+            <summary>Instructions</summary>
+            <ul>
+                <li>The <strong>Unicode Inspector</strong> utility displays code point information in real time for each Unicode character of a text string.</li>
+                <li>Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
+                <li>It is also possible to input predefined sets of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
+                <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
+                <li>In output, the standard Unicode code point format <code>U+0041</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
+                <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u611B</code> or <code>\u{1F49C}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
+                <li>Information is provided for the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                <li>
+                    Extra information is also obtained from the following data files:
+                    <ul>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/CaseFolding.txt" href="https://www.unicode.org/Public/UNIDATA/CaseFolding.txt">CaseFolding.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/DerivedAge.txt" href="https://www.unicode.org/Public/UNIDATA/DerivedAge.txt">DerivedAge.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt" href="https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt" href="https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt">EastAsianWidth.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt" href="https://www.unicode.org/Public/UNIDATA/EquivalentUnifiedIdeograph.txt">EquivalentUnifiedIdeograph.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/LineBreak.txt" href="https://www.unicode.org/Public/UNIDATA/LineBreak.txt">LineBreak.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/NameAliases.txt" href="https://www.unicode.org/Public/UNIDATA/NameAliases.txt">NameAliases.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/PropList.txt" href="https://www.unicode.org/Public/UNIDATA/PropList.txt">PropList.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/Scripts.txt" href="https://www.unicode.org/Public/UNIDATA/Scripts.txt">Scripts.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt" href="https://www.unicode.org/Public/UNIDATA/ScriptExtensions.txt">ScriptExtensions.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt" href="https://www.unicode.org/Public/UNIDATA/VerticalOrientation.txt">VerticalOrientation.txt</a></li>
+                        <li><a title="https://www.unicode.org/Public/emoji/12.1/emoji-data.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-data.txt">emoji-data.txt</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </details>
+    </div>
+</section>

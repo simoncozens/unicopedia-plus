@@ -1,205 +1,203 @@
-<template>
-    <section id="emoji-data-finder-unit">
-        <div class="plain-panel">
-            <div class="tab-bar">
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Sequence</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Filter Text</span></label>
+<section id="emoji-data-finder-unit">
+    <div class="plain-panel">
+        <div class="tab-bar">
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Sequence</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Filter Text</span></label>
+        </div>
+        <div class="tab-panes">
+            <div class="tab-pane find-by-name">
+                <div class="actions">
+                    <span class="action-group search-group">
+                        <span class="action search-wrap">
+                            <input class="search-string" type="search" maxlength="256" placeholder="Emoji name or keyword...">
+                            <span class="search-message"></span>
+                        </span>
+                        <span class="action">
+                            <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <button class="search-button" type="button">Search</button>
+                        </span>
+                    </span>
+                </div>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                </div>
+                <div class="emoji-data-list"></div>
             </div>
-            <div class="tab-panes">
-                <div class="tab-pane find-by-name">
-                    <div class="actions">
-                        <span class="action-group search-group">
-                            <span class="action search-wrap">
-                                <input class="search-string" type="search" maxlength="256" placeholder="Emoji name or keyword...">
-                                <span class="search-message"></span>
-                            </span>
-                            <span class="action">
-                                <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <button class="search-button" type="button">Search</button>
-                            </span>
+            <div class="tab-pane match-sequence">
+                <div class="actions">
+                    <span class="action-group search-group">
+                        <span class="action search-wrap">
+                            <input class="search-string" type="search" maxlength="256" placeholder="Character sequence...">
+                            <span class="search-message"></span>
                         </span>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="emoji-data-list"></div>
+                        <span class="action">
+                            <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Whole Word (disabled)"><input class="whole-word icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <button class="search-button" type="button">Search</button>
+                        </span>
+                    </span>
                 </div>
-                <div class="tab-pane match-sequence">
-                    <div class="actions">
-                        <span class="action-group search-group">
-                            <span class="action search-wrap">
-                                <input class="search-string" type="search" maxlength="256" placeholder="Character sequence...">
-                                <span class="search-message"></span>
-                            </span>
-                            <span class="action">
-                                <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Whole Word (disabled)"><input class="whole-word icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <button class="search-button" type="button">Search</button>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="emoji-data-list"></div>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
                 </div>
-                <div class="tab-pane filter-text">
-                    <div class="actions">
-                        <span class="action-group">
-                            <span class="action">
-                                <button class="clear-button" type="button">Clear</button>
-                            </span>
-                            <span class="action">
-                                <button class="pull-down-menu emoji-samples" type="button">Samples</button>
-                            </span>
+                <div class="emoji-data-list"></div>
+            </div>
+            <div class="tab-pane filter-text">
+                <div class="actions">
+                    <span class="action-group">
+                        <span class="action">
+                            <button class="clear-button" type="button">Clear</button>
                         </span>
-                        <span class="action-group">
-                            <span class="action">
-                                <button class="pull-down-menu filter-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg>&nbsp;&nbsp;Filter</button>
-                            </span>
+                        <span class="action">
+                            <button class="pull-down-menu emoji-samples" type="button">Samples</button>
                         </span>
-                    </div>
-                    <textarea class="input-string" maxlength="16384"></textarea>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="emoji-data-list"></div>
+                    </span>
+                    <span class="action-group">
+                        <span class="action">
+                            <button class="pull-down-menu filter-button" type="button"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg>&nbsp;&nbsp;Filter</button>
+                        </span>
+                    </span>
                 </div>
+                <textarea class="input-string" maxlength="16384"></textarea>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Emoji: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                </div>
+                <div class="emoji-data-list"></div>
             </div>
         </div>
-        <div class="tab-infos">
-            <div class="tab-info find-by-name">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Find by Name</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.</li>
-                            <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
-                            <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                    <li><code>Clear Results</code> [clear the current list of results]</li>
-                                </ul>
-                            </li>
-                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
-                            <li>Note: <strong>RGI</strong> stands for <em>Recommended for General Interchange</em>.</li>
-                        </ul>
-                    </details>
-                    <details class="regex-examples">
-                        <summary>Regex Examples</summary>
-                        <ul>
-                            <li><code>\p{Ideographic}</code><br>Emoji whose keywords contain one character with the 'Ideographic' binary property</li>
-                            <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property value equal to 'Katakana'</li>
-                            <li><code>^pet$</code><br>Emoji whose keyword is "pet"</li>
-                            <li><code>[!?]</code><br>Emoji whose keywords contain either "!" or "?"</li>
-                            <li><code>\d{4}</code><br>Emoji whose keywords contain four digits in a row</li>
-                            <li><code>(.)\1\1</code><br>Emoji whose keywords contain three identical characters in a row</li>
-                            <li><code>^[+-]1$</code><br>Emoji whose keyword is either "+1" (thumbs up) or "-1" (thumbs down)</li>
-                            <li><code>^\p{Math_Symbol}$</code><br>Emoji whose keyword is a single mathematical symbol (+ − × ÷)</li>
-                            <li><code>\p{Other_Symbol}</code><br>Emoji whose keyword contain one character belonging to the 'Other_Symbol' category: a check mark ("✓"), for instance</li>
-                            <li><code>(?=.*flag)(?=.*island\b)</code><br>Emoji whose name contains both "flag" and "island" (but not "islands")</li>
-                            <li><code>^(koala|panda|rabbit|unicorn)$</code><br>Emoji whose name or keyword is "koala" or "panda" or "rabbit" or "unicorn"</li>
-                        </ul>
-                    </details>
-                </div>
-            </div>
-            <div class="tab-info match-sequence">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Match Sequence</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, including through regular expressions.</li>
-                            <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
-                            <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                    <li><code>Clear Results</code> [clear the current list of results]</li>
-                                </ul>
-                            </li>
-                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
-                            <li>Note: <strong>RGI</strong> stands for <em>Recommended for General Interchange</em>.</li>
-                        </ul>
-                    </details>
-                    <details class="regex-examples">
-                        <summary>Regex Examples</summary>
-                        <ul>
-                            <li><code>\u{1F91D}</code> or <code>🤝</code><br>Emoji containing a handshake</li>
-                            <li><code>\u{1F48B}</code> or <code>💋</code><br>Emoji containing a kiss mark</li>
-                            <li><code>\u2764\uFE0F</code> or <code>❤️</code><br>Emoji containing a red heart</li>
-                            <li><code>^\u{1F3F3}\uFE0F</code> or <code>^🏳️</code><br>Emoji starting with a white flag</li>
-                            <li><code>^\u{1F3F4}</code> or <code>^🏴</code><br>Emoji starting with a black flag</li>
-                            <li><code>\u{1F5E8}\uFE0F$</code> or <code>🗨️$</code><br>Emoji ending with a left speech bubble</li>
-                            <li><code>^[0-9]\uFE0F\u20E3$</code> or <code>^[0-9]\uFE0F⃣$</code><br>Emoji of keycap digits 0 to 9</li>
-                            <li><code>^\p{Emoji_Component}$</code><br>Emoji which are components, i.e., skin tones and hairstyles</li>
-                            <li><code>^\p{Regional_Indicator}\p{Regional_Indicator}$</code> or<br><code>^[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags</li>
-                            <li><code>^(\p{Regional_Indicator})\1$</code> or <code>^([\u{1F1E6}-\u{1F1FF}])\1$</code> or <code>^([🇦-🇿])\1$</code><br>Emoji of country flags made of two identical regional indicators</li>
-                            <li><code>^(?!\u{1F1EA}\u{1F1FA}|\u{1F1FA}\u{1F1F3})[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^(?!🇪🇺|🇺🇳)[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags, excluding macroregion flags 🇪🇺 and 🇺🇳</li>
-                            <li><code>^\u{1F3F4}[\u{E0030}-\u{E0039}\u{E0061}-\u{E007A}]+\u{E007F}$</code> or<br><code>^🏴[\u{E0030}-\u{E0039}\u{E0061}-\u{E007A}]+\u{E007F}$</code><br>Emoji of subdivision flags</li>
-                            <li><code>^\u{1F468}\u200D\u{1F469}\u200D\u{1F467}</code> or <code>^👨\u200D👩\u200D👧</code> or <code>^👨‍👩‍👧</code><br>Emoji starting with: 'family: man, woman, girl'</li>
-                            <li><code>^\p{Emoji_Modifier_Base}\u{1F3FB}</code> or <code>^\p{Emoji_Modifier_Base}🏻</code><br>Emoji with a light skin tone</li>
-                            <li><code>^\p{Emoji_Modifier_Base}\p{Emoji_Modifier}</code> or <code>^\p{Emoji_Modifier_Base}[🏻-🏿]</code><br>Emoji with a skin tone variant</li>
-                            <li><code>^[👍👎]\p{Emoji_Modifier}$</code> or <code>^[👍👎][🏻-🏿]$</code> or <code>^[👍👎].$</code><br>Emoji of thumbs (up and down) with a skin tone variant</li>
-                            <li><code>^(?!\p{Emoji_Presentation})\p{Emoji}$</code><br>Emoji with the 'Emoji' property, but without the 'Emoji_Presentation' property (<em>non-fully-qualified</em>)</li>
-                            <li><code>^(?!\p{Emoji_Presentation})\p{Emoji}\uFE0F$</code><br>Emoji with the 'Emoji' property, but without the 'Emoji_Presentation' property (<em>fully-qualified</em>)</li>
-                            <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (<em>non-fully-qualified</em>)</li>
-                            <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}\uFE0F$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (<em>fully-qualified</em>)</li>
-                            <li><code>^[\u0000-\uFFFF]$</code><br>Emoji made of a single code point belonging to the BMP (Basic Multilingual Plane)</li>
-                            <li><code>^......(..)?$</code> or <code>^(.{6}|.{8})$</code><br>Emoji made of exactly six or eight code points</li>
-                        </ul>
-                    </details>
-                </div>
-            </div>
-            <div class="tab-info filter-text">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Filter Text</strong> feature of the <strong>Emoji Data Finder</strong> utility displays in real time a list of basic data (symbol, short name, keywords, code points) of all the Unicode emoji contained in a text string.</li>
-                            <li>Text can by directly typed or pasted from the clipboard into the main input field.</li>
-                            <li>It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
-                            <li>As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.</li>
-                            <li>Use the <kbd>Filter&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Discard Non-Emoji</code> [strip out non-emoji characters]</li>
-                                    <li><code>Upgrade to RGI Emoji</code> [restore incomplete emoji to their <strong>RGI</strong> form]</li>
-                                    <li><code>Remove Duplicate Emoji</code> [delete emoji duplicates]</li>
-                                </ul>
-                            </li>
-                            <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
-                            <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                </ul>
-                            </li>
-                            <li>Note: <strong>RGI</strong> stands for <em>Recommended for General Interchange</em>.</li>
-                        </ul>
-                    </details>
-                </div>
+    </div>
+    <div class="tab-infos">
+        <div class="tab-info find-by-name">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Find by Name</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of matching Unicode emoji searched by name or keyword, including through regular expressions.</li>
+                        <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
+                        <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                        <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                                <li><code>Clear Results</code> [clear the current list of results]</li>
+                            </ul>
+                        </li>
+                        <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
+                        <li>Note: <strong>RGI</strong> stands for <em>Recommended for General Interchange</em>.</li>
+                    </ul>
+                </details>
+                <details class="regex-examples">
+                    <summary>Regex Examples</summary>
+                    <ul>
+                        <li><code>\p{Ideographic}</code><br>Emoji whose keywords contain one character with the 'Ideographic' binary property</li>
+                        <li><code>\p{Script=Katakana}</code><br>Emoji whose keywords contain one character with the 'Script' property value equal to 'Katakana'</li>
+                        <li><code>^pet$</code><br>Emoji whose keyword is "pet"</li>
+                        <li><code>[!?]</code><br>Emoji whose keywords contain either "!" or "?"</li>
+                        <li><code>\d{4}</code><br>Emoji whose keywords contain four digits in a row</li>
+                        <li><code>(.)\1\1</code><br>Emoji whose keywords contain three identical characters in a row</li>
+                        <li><code>^[+-]1$</code><br>Emoji whose keyword is either "+1" (thumbs up) or "-1" (thumbs down)</li>
+                        <li><code>^\p{Math_Symbol}$</code><br>Emoji whose keyword is a single mathematical symbol (+ − × ÷)</li>
+                        <li><code>\p{Other_Symbol}</code><br>Emoji whose keyword contain one character belonging to the 'Other_Symbol' category: a check mark ("✓"), for instance</li>
+                        <li><code>(?=.*flag)(?=.*island\b)</code><br>Emoji whose name contains both "flag" and "island" (but not "islands")</li>
+                        <li><code>^(koala|panda|rabbit|unicorn)$</code><br>Emoji whose name or keyword is "koala" or "panda" or "rabbit" or "unicorn"</li>
+                    </ul>
+                </details>
             </div>
         </div>
-    </section>
-</template>
+        <div class="tab-info match-sequence">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Match Sequence</strong> feature of the <strong>Emoji Data Finder</strong> utility displays a list of basic data (symbol, short name, keywords, code points) of Unicode emoji matching a character sequence, including through regular expressions.</li>
+                        <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any.</li>
+                        <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                        <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                                <li><code>Clear Results</code> [clear the current list of results]</li>
+                            </ul>
+                        </li>
+                        <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
+                        <li>Note: <strong>RGI</strong> stands for <em>Recommended for General Interchange</em>.</li>
+                    </ul>
+                </details>
+                <details class="regex-examples">
+                    <summary>Regex Examples</summary>
+                    <ul>
+                        <li><code>\u{1F91D}</code> or <code>🤝</code><br>Emoji containing a handshake</li>
+                        <li><code>\u{1F48B}</code> or <code>💋</code><br>Emoji containing a kiss mark</li>
+                        <li><code>\u2764\uFE0F</code> or <code>❤️</code><br>Emoji containing a red heart</li>
+                        <li><code>^\u{1F3F3}\uFE0F</code> or <code>^🏳️</code><br>Emoji starting with a white flag</li>
+                        <li><code>^\u{1F3F4}</code> or <code>^🏴</code><br>Emoji starting with a black flag</li>
+                        <li><code>\u{1F5E8}\uFE0F$</code> or <code>🗨️$</code><br>Emoji ending with a left speech bubble</li>
+                        <li><code>^[0-9]\uFE0F\u20E3$</code> or <code>^[0-9]\uFE0F⃣$</code><br>Emoji of keycap digits 0 to 9</li>
+                        <li><code>^\p{Emoji_Component}$</code><br>Emoji which are components, i.e., skin tones and hairstyles</li>
+                        <li><code>^\p{Regional_Indicator}\p{Regional_Indicator}$</code> or<br><code>^[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags</li>
+                        <li><code>^(\p{Regional_Indicator})\1$</code> or <code>^([\u{1F1E6}-\u{1F1FF}])\1$</code> or <code>^([🇦-🇿])\1$</code><br>Emoji of country flags made of two identical regional indicators</li>
+                        <li><code>^(?!\u{1F1EA}\u{1F1FA}|\u{1F1FA}\u{1F1F3})[\u{1F1E6}-\u{1F1FF}][\u{1F1E6}-\u{1F1FF}]$</code> or <code>^(?!🇪🇺|🇺🇳)[🇦-🇿][🇦-🇿]$</code><br>Emoji of country flags, excluding macroregion flags 🇪🇺 and 🇺🇳</li>
+                        <li><code>^\u{1F3F4}[\u{E0030}-\u{E0039}\u{E0061}-\u{E007A}]+\u{E007F}$</code> or<br><code>^🏴[\u{E0030}-\u{E0039}\u{E0061}-\u{E007A}]+\u{E007F}$</code><br>Emoji of subdivision flags</li>
+                        <li><code>^\u{1F468}\u200D\u{1F469}\u200D\u{1F467}</code> or <code>^👨\u200D👩\u200D👧</code> or <code>^👨‍👩‍👧</code><br>Emoji starting with: 'family: man, woman, girl'</li>
+                        <li><code>^\p{Emoji_Modifier_Base}\u{1F3FB}</code> or <code>^\p{Emoji_Modifier_Base}🏻</code><br>Emoji with a light skin tone</li>
+                        <li><code>^\p{Emoji_Modifier_Base}\p{Emoji_Modifier}</code> or <code>^\p{Emoji_Modifier_Base}[🏻-🏿]</code><br>Emoji with a skin tone variant</li>
+                        <li><code>^[👍👎]\p{Emoji_Modifier}$</code> or <code>^[👍👎][🏻-🏿]$</code> or <code>^[👍👎].$</code><br>Emoji of thumbs (up and down) with a skin tone variant</li>
+                        <li><code>^(?!\p{Emoji_Presentation})\p{Emoji}$</code><br>Emoji with the 'Emoji' property, but without the 'Emoji_Presentation' property (<em>non-fully-qualified</em>)</li>
+                        <li><code>^(?!\p{Emoji_Presentation})\p{Emoji}\uFE0F$</code><br>Emoji with the 'Emoji' property, but without the 'Emoji_Presentation' property (<em>fully-qualified</em>)</li>
+                        <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (<em>non-fully-qualified</em>)</li>
+                        <li><code>^(?!\p{Emoji_Presentation})\p{Emoji_Modifier_Base}\uFE0F$</code><br>Emoji with the 'Emoji_Modifier_Base' property, but without the 'Emoji_Presentation' property (<em>fully-qualified</em>)</li>
+                        <li><code>^[\u0000-\uFFFF]$</code><br>Emoji made of a single code point belonging to the BMP (Basic Multilingual Plane)</li>
+                        <li><code>^......(..)?$</code> or <code>^(.{6}|.{8})$</code><br>Emoji made of exactly six or eight code points</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+        <div class="tab-info filter-text">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Filter Text</strong> feature of the <strong>Emoji Data Finder</strong> utility displays in real time a list of basic data (symbol, short name, keywords, code points) of all the Unicode emoji contained in a text string.</li>
+                        <li>Text can by directly typed or pasted from the clipboard into the main input field.</li>
+                        <li>It is also possible to input predefined sets of emoji selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.</li>
+                        <li>As a convenience, the input field can be emptied using the <kbd>Clear</kbd> button.</li>
+                        <li>Use the <kbd>Filter&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Discard Non-Emoji</code> [strip out non-emoji characters]</li>
+                                <li><code>Upgrade to RGI Emoji</code> [restore incomplete emoji to their <strong>RGI</strong> form]</li>
+                                <li><code>Remove Duplicate Emoji</code> [delete emoji duplicates]</li>
+                            </ul>
+                        </li>
+                        <li>This feature deals with the 4,022 emoji defined in the <strong>Emoji 12.1</strong> version of the <a title="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt" href="https://www.unicode.org/Public/emoji/12.1/emoji-test.txt">emoji-test.txt</a> data file.</li>
+                        <li>The 9 <em>component</em> (5 <em>skin-tone</em> and <em>4 hair-style</em>) emoji and the 3,178 <em>fully-qualified</em> (<strong>RGI</strong>) emoji are presented in a standard way, while the 835 <em>non-fully-qualified</em> emoji are shown in a distinctive muted (grayed out) style.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                            </ul>
+                        </li>
+                        <li>Note: <strong>RGI</strong> stands for <em>Recommended for General Interchange</em>.</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>

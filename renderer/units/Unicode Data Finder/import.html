@@ -1,205 +1,203 @@
-<template>
-    <section id="unicode-data-finder-unit">
-        <div class="plain-panel">
-            <div class="tab-bar">
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Character</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>List by Block</span></label>
-            </div>
-            <div class="tab-panes">
-                <div class="tab-pane find-by-name">
-                    <div class="actions">
-                        <span class="action-group search-group">
-                            <span class="action search-wrap">
-                                <input class="search-string" type="search" maxlength="256" placeholder="Character name or alias...">
-                                <span class="search-message"></span>
-                            </span>
-                            <span class="action">
-                                <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <button class="search-button" type="button">Search</button>
-                            </span>
+<section id="unicode-data-finder-unit">
+    <div class="plain-panel">
+        <div class="tab-bar">
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Name</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Character</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>List by Block</span></label>
+        </div>
+        <div class="tab-panes">
+            <div class="tab-pane find-by-name">
+                <div class="actions">
+                    <span class="action-group search-group">
+                        <span class="action search-wrap">
+                            <input class="search-string" type="search" maxlength="256" placeholder="Character name or alias...">
+                            <span class="search-message"></span>
                         </span>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="search-data"></div>
-                </div>
-                <div class="tab-pane match-character">
-                    <div class="actions">
-                        <span class="action-group search-group">
-                            <span class="action search-wrap">
-                                <input class="search-string" type="search" maxlength="256" placeholder="Character(s)...">
-                                <span class="search-message"></span>
-                            </span>
-                            <span class="action">
-                                <label title="Match Decomposition"><input class="match-decomposition icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></label>
-                            </span>
-                            <span class="action">|</span>
-                            <span class="action">
-                                <label title="Case Sensitive"><input class="case-sensitive icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Whole Word (disabled)"><input class="whole-word icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <button class="search-button" type="button">Search</button>
-                            </span>
+                        <span class="action">
+                            <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
                         </span>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="search-data"></div>
-                </div>
-                <div class="tab-pane list-by-block">
-                    <div class="actions-no-flex">
-                        <span class="action-group-no-flex">
-                            <span class="action-no-flex">
-                                <select class="select-block-range"></select>
-                            </span>
-                            <span class="action-no-flex">
-                                <input class="specimen" type="search" maxlength="256" title="Unicode specimen (code point or character)" placeholder="Specimen...">
-                            </span>
-                            <span class="action">
-                                <button class="go-button" type="button">Go</button>
-                            </span>
-                            <br>
-                            <span class="action-no-flex">
-                                <select class="select-block-name"></select>
-                            </span>
+                        <span class="action">
+                            <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
                         </span>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Assigned characters: <span class="hit-count"></span>&nbsp;/&nbsp;Block size: <span class="total-count"></span></span>
-                    </div>
-                    <div class="search-data"></div>
+                        <span class="action">
+                            <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <button class="search-button" type="button">Search</button>
+                        </span>
+                    </span>
                 </div>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                </div>
+                <div class="search-data"></div>
             </div>
-       </div>
-        <div class="tab-infos">
-            <div class="tab-info find-by-name">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Find by Name</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name/aliases, block) of matching Unicode characters searched by name or alias, including through regular expressions.</li>
-                            <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>When available, name aliases are displayed (in italics and smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark <code>※</code>.</li>
-                            <li>All names and aliases are obtained from the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> and <a title="https://www.unicode.org/Public/UNIDATA/NameAliases.txt" href="https://www.unicode.org/Public/UNIDATA/NameAliases.txt">NameAliases.txt</a> data files.</li>
-                            <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                    <li><code>Clear Results</code> [clear the current list of results]</li>
-                                </ul>
-                            </li>
-                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
-                        </ul>
-                    </details>
-                    <details class="regex-examples">
-                        <summary>Regex Examples</summary>
-                        <ul>
-                            <li><code>^(cjk|kangxi) radical</code><br>Characters whose name starts with either "cjk radical" or "kangxi radical"</li>
-                            <li><code>^(?=.*hiragana)(?=.*katakana)</code><br>Characters whose name contains both "hiragana" and "katakana"</li>
-                            <li><code>^(?=.*katakana)(?=.*\ba\b)</code><br>Characters whose name contains both "katakana" and whole-word "a"</li>
-                            <li><code>^(?=.*bamboo)(?!.*radical)</code><br>Characters whose name contains "bamboo" but not "radical"</li>
-                            <li><code>\b\w+boat\b</code><br>Characters whose name contains words ending with "boat", but are not "boat"</li>
-                        </ul>
-                    </details>
+            <div class="tab-pane match-character">
+                <div class="actions">
+                    <span class="action-group search-group">
+                        <span class="action search-wrap">
+                            <input class="search-string" type="search" maxlength="256" placeholder="Character(s)...">
+                            <span class="search-message"></span>
+                        </span>
+                        <span class="action">
+                            <label title="Match Decomposition"><input class="match-decomposition icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></label>
+                        </span>
+                        <span class="action">|</span>
+                        <span class="action">
+                            <label title="Case Sensitive"><input class="case-sensitive icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Whole Word (disabled)"><input class="whole-word icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <button class="search-button" type="button">Search</button>
+                        </span>
+                    </span>
                 </div>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                </div>
+                <div class="search-data"></div>
             </div>
-            <div class="tab-info match-character">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Match Character</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name/aliases, block) of Unicode characters matching a character, including through regular expressions.</li>
-                            <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>Click on the <kbd><svg style="width: 15px; height: 15px; vertical-align: text-bottom;"><use href="/images/search.svg#match-decomposition-icon"></use></svg></kbd> (<em>Match Decomposition</em>) toggle button to extend the search to characters whose <em>decomposition mapping</em> matches the query string.</li>
-                            <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                    <li><code>Clear Results</code> [clear the current list of results]</li>
-                                </ul>
-                            </li>
-                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
-                        </ul>
-                    </details>
-                    <details class="regex-examples">
-                        <summary>Regex Examples</summary>
-                        <p><span class="match-decomposition off"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></span> (<em>Match Decomposition</em>) toggled <strong>off</strong>:</p>
-                        <ul>
-                            <li><code>\s</code><br>Characters considered white space in Unicode by the regular expression engine</li>
-                            <li><code>(?!.)[^]</code> or <code>(?!.)[\s\S]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
-                            <li><code>\p{Private_Use}</code><br>Characters with the 'General_Category' property equal to 'Private_Use'</li>
-                            <li><code>\P{Private_Use}</code> or <code>[^\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Private_Use'</li>
-                            <li><code>[\p{Open_Punctuation}\p{Close_Punctuation}]</code> or <code>\p{Open_Punctuation}|\p{Close_Punctuation}</code><br>Characters with the 'General_Category' property equal to 'Open_Punctuation' or 'Close_Punctuation'</li>
-                            <li><code>\p{White_Space}</code><br>Characters with the 'White_Space' binary property</li>
-                            <li><code>\p{Radical}</code><br>Characters with the 'Radical' binary property</li>
-                            <li><code>\p{Hex_Digit}</code><br>Characters with the 'Hex_Digit' binary property</li>
-                            <li><code>\p{Regional_Indicator}</code><br>Characters with the 'Regional_Indicator' binary property</li>
-                            <li><code>\p{Emoji_Modifier}</code><br>Characters with the 'Emoji_Modifier' binary property</li>
-                            <li><code>\p{Script=Hiragana}</code><br>Characters with the 'Script' property equal to 'Hiragana'</li>
-                            <li><code>(?=\p{Script=Han})(?=\p{Other_Letter})</code><br>Characters belonging to the Unihan set, i.e., with the 'Script' property equal to 'Han' and the 'General_Category' property equal to 'Other_Letter'</li>
-                            <li><code>(?=\p{Script=Latin})(?=\p{Number})</code><br>Characters with the 'Script' property equal to 'Latin' and the 'General_Category' property equal to 'Number'</li>
-                            <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
-                            <li><code>(?=\p{Ideographic})(?!\p{Unified_Ideograph})</code> or <code>(?=\p{Ideographic})(?=\P{Unified_Ideograph})</code><br>Characters with the 'Ideographic' binary property, but without the 'Unified_Ideograph' binary property</li>
-                            <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
-                        </ul>
-                        <p><span class="match-decomposition on"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></span> (<em>Match Decomposition</em>) toggled <strong>on</strong>:</p>
-                        <ul>
-                            <li><code>∫{4}</code><br>Character made of four integrals, i.e., a quadruple integral operator</li>
-                            <li><code>\d\d</code><br>Characters containing two digits (0 to 9)</li>
-                            <li><code>\w/\w</code><br>Characters made of two letters separated by a slash</li>
-                            <li><code>f[fil]</code><br>Characters which are latin small ligatures starting wih 'f'</li>
-                            <li><code>^ホ$</code><br>Characters made of a single katakana letter 'ho'</li>
-                            <li><code>上|下</code><br>Characters containing either 上 (up, top, high) or 下 (down, bottom, low)</li>
-                            <li><code>左|中|右</code><br>Characters containing 左 (left), 中 (middle) or 右 (right)</li>
-                            <li><code>[月火水木金土日]</code><br>Characters containing one ideograph, Japanese shorthand for each of the seven days of the week</li>
-                            <li><code>〔\p{Script=Han}〕</code><br>Characters made of a single bracketed ideograph</li>
-                            <li><code>\(\p{Script=Han}\)</code><br>Characters made of a single parenthesized ideograph</li>
-                            <li><code>\p{Script=Arabic}\s\p{Script=Arabic}</code><br>Characters made of Arabic letters separated by white space, forming intricate Arabic ligatures</li>
-                        </ul>
-                    </details>
+            <div class="tab-pane list-by-block">
+                <div class="actions-no-flex">
+                    <span class="action-group-no-flex">
+                        <span class="action-no-flex">
+                            <select class="select-block-range"></select>
+                        </span>
+                        <span class="action-no-flex">
+                            <input class="specimen" type="search" maxlength="256" title="Unicode specimen (code point or character)" placeholder="Specimen...">
+                        </span>
+                        <span class="action">
+                            <button class="go-button" type="button">Go</button>
+                        </span>
+                        <br>
+                        <span class="action-no-flex">
+                            <select class="select-block-name"></select>
+                        </span>
+                    </span>
                 </div>
-            </div>
-            <div class="tab-info list-by-block">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>List by Block</strong> feature of the <strong>Unicode Data Finder</strong> utility displays in real time a list of basic data (symbol, code point, name/aliases, block) of Unicode characters belonging to the same block range.</li>
-                            <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
-                            <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.</li>
-                            <li>You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </details>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Assigned characters: <span class="hit-count"></span>&nbsp;/&nbsp;Block size: <span class="total-count"></span></span>
                 </div>
+                <div class="search-data"></div>
             </div>
         </div>
-    </section>
-</template>
+    </div>
+    <div class="tab-infos">
+        <div class="tab-info find-by-name">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Find by Name</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name/aliases, block) of matching Unicode characters searched by name or alias, including through regular expressions.</li>
+                        <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
+                        <li>It is possible to choose how many characters are shown one page at a time.</li>
+                        <li>When available, name aliases are displayed (in italics and smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark <code>※</code>.</li>
+                        <li>All names and aliases are obtained from the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> and <a title="https://www.unicode.org/Public/UNIDATA/NameAliases.txt" href="https://www.unicode.org/Public/UNIDATA/NameAliases.txt">NameAliases.txt</a> data files.</li>
+                        <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                                <li><code>Clear Results</code> [clear the current list of results]</li>
+                            </ul>
+                        </li>
+                        <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
+                    </ul>
+                </details>
+                <details class="regex-examples">
+                    <summary>Regex Examples</summary>
+                    <ul>
+                        <li><code>^(cjk|kangxi) radical</code><br>Characters whose name starts with either "cjk radical" or "kangxi radical"</li>
+                        <li><code>^(?=.*hiragana)(?=.*katakana)</code><br>Characters whose name contains both "hiragana" and "katakana"</li>
+                        <li><code>^(?=.*katakana)(?=.*\ba\b)</code><br>Characters whose name contains both "katakana" and whole-word "a"</li>
+                        <li><code>^(?=.*bamboo)(?!.*radical)</code><br>Characters whose name contains "bamboo" but not "radical"</li>
+                        <li><code>\b\w+boat\b</code><br>Characters whose name contains words ending with "boat", but are not "boat"</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+        <div class="tab-info match-character">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Match Character</strong> feature of the <strong>Unicode Data Finder</strong> utility displays a list of basic data (symbol, code point, name/aliases, block) of Unicode characters matching a character, including through regular expressions.</li>
+                        <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
+                        <li>Click on the <kbd><svg style="width: 15px; height: 15px; vertical-align: text-bottom;"><use href="/images/search.svg#match-decomposition-icon"></use></svg></kbd> (<em>Match Decomposition</em>) toggle button to extend the search to characters whose <em>decomposition mapping</em> matches the query string.</li>
+                        <li>It is possible to choose how many characters are shown one page at a time.</li>
+                        <li>The search is performed on the 277,510 assigned characters (or code points) defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt" href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> data file.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                                <li><code>Clear Results</code> [clear the current list of results]</li>
+                            </ul>
+                        </li>
+                        <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
+                    </ul>
+                </details>
+                <details class="regex-examples">
+                    <summary>Regex Examples</summary>
+                    <p><span class="match-decomposition off"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></span> (<em>Match Decomposition</em>) toggled <strong>off</strong>:</p>
+                    <ul>
+                        <li><code>\s</code><br>Characters considered white space in Unicode by the regular expression engine</li>
+                        <li><code>(?!.)[^]</code> or <code>(?!.)[\s\S]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
+                        <li><code>\p{Private_Use}</code><br>Characters with the 'General_Category' property equal to 'Private_Use'</li>
+                        <li><code>\P{Private_Use}</code> or <code>[^\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Private_Use'</li>
+                        <li><code>[\p{Open_Punctuation}\p{Close_Punctuation}]</code> or <code>\p{Open_Punctuation}|\p{Close_Punctuation}</code><br>Characters with the 'General_Category' property equal to 'Open_Punctuation' or 'Close_Punctuation'</li>
+                        <li><code>\p{White_Space}</code><br>Characters with the 'White_Space' binary property</li>
+                        <li><code>\p{Radical}</code><br>Characters with the 'Radical' binary property</li>
+                        <li><code>\p{Hex_Digit}</code><br>Characters with the 'Hex_Digit' binary property</li>
+                        <li><code>\p{Regional_Indicator}</code><br>Characters with the 'Regional_Indicator' binary property</li>
+                        <li><code>\p{Emoji_Modifier}</code><br>Characters with the 'Emoji_Modifier' binary property</li>
+                        <li><code>\p{Script=Hiragana}</code><br>Characters with the 'Script' property equal to 'Hiragana'</li>
+                        <li><code>(?=\p{Script=Han})(?=\p{Other_Letter})</code><br>Characters belonging to the Unihan set, i.e., with the 'Script' property equal to 'Han' and the 'General_Category' property equal to 'Other_Letter'</li>
+                        <li><code>(?=\p{Script=Latin})(?=\p{Number})</code><br>Characters with the 'Script' property equal to 'Latin' and the 'General_Category' property equal to 'Number'</li>
+                        <li><code>(?=\p{Emoji_Modifier_Base})(?!\p{Emoji_Presentation})</code> or <code>(?=\p{Emoji_Modifier_Base})(?=\P{Emoji_Presentation})</code><br>Characters with the 'Emoji_Modifier_Base' binary property, but without the 'Emoji_Presentation' binary property</li>
+                        <li><code>(?=\p{Ideographic})(?!\p{Unified_Ideograph})</code> or <code>(?=\p{Ideographic})(?=\P{Unified_Ideograph})</code><br>Characters with the 'Ideographic' binary property, but without the 'Unified_Ideograph' binary property</li>
+                        <li><code>(?=\p{Script_Extensions=Han})(?!\p{Script=Han})</code>or <code>(?=\p{Script_Extensions=Han})(?=\P{Script=Han})</code><br>Characters with the 'Script_Extensions' property equal to 'Han', but without the 'Script' property equal to 'Han'</li>
+                    </ul>
+                    <p><span class="match-decomposition on"><svg><use href="/images/search.svg#match-decomposition-icon"></use></svg></span> (<em>Match Decomposition</em>) toggled <strong>on</strong>:</p>
+                    <ul>
+                        <li><code>∫{4}</code><br>Character made of four integrals, i.e., a quadruple integral operator</li>
+                        <li><code>\d\d</code><br>Characters containing two digits (0 to 9)</li>
+                        <li><code>\w/\w</code><br>Characters made of two letters separated by a slash</li>
+                        <li><code>f[fil]</code><br>Characters which are latin small ligatures starting wih 'f'</li>
+                        <li><code>^ホ$</code><br>Characters made of a single katakana letter 'ho'</li>
+                        <li><code>上|下</code><br>Characters containing either 上 (up, top, high) or 下 (down, bottom, low)</li>
+                        <li><code>左|中|右</code><br>Characters containing 左 (left), 中 (middle) or 右 (right)</li>
+                        <li><code>[月火水木金土日]</code><br>Characters containing one ideograph, Japanese shorthand for each of the seven days of the week</li>
+                        <li><code>〔\p{Script=Han}〕</code><br>Characters made of a single bracketed ideograph</li>
+                        <li><code>\(\p{Script=Han}\)</code><br>Characters made of a single parenthesized ideograph</li>
+                        <li><code>\p{Script=Arabic}\s\p{Script=Arabic}</code><br>Characters made of Arabic letters separated by white space, forming intricate Arabic ligatures</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+        <div class="tab-info list-by-block">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>List by Block</strong> feature of the <strong>Unicode Data Finder</strong> utility displays in real time a list of basic data (symbol, code point, name/aliases, block) of Unicode characters belonging to the same block range.</li>
+                        <li>It is possible to choose how many characters are shown one page at a time.</li>
+                        <li>A block can be selected either by <kbd>Block Range</kbd> or by <kbd>Block Name</kbd>, as defined in the <strong>Unicode 12.1</strong> version of the <a title="https://www.unicode.org/Public/UNIDATA/Blocks.txt" href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Blocks.txt</a> data file.</li>
+                        <li>It is also possible to directly enter a code point (or character) in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the code point, scroll its basic data into view, and highlight its hexadecimal code value.</li>
+                        <li>You can quickly reuse a previously entered code point by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>

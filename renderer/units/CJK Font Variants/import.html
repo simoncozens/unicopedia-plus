@@ -1,88 +1,86 @@
-<template>
-    <section id="cjk-font-variants-unit">
-        <div class="plain-panel">
-            <div class="actions">
-                <span class="action-group">
-                    <span class="action">
-                        <button class="clear-button" type="button">Clear</button>
-                    </span>
-                    <span class="action">
-                        <button class="pull-down-menu characters-samples" type="button">Samples</button>
-                    </span>
+<section id="cjk-font-variants-unit">
+    <div class="plain-panel">
+        <div class="actions">
+            <span class="action-group">
+                <span class="action">
+                    <button class="clear-button" type="button">Clear</button>
                 </span>
-                <span class="action-group">
-                    <span class="action">
-                        <button class="load-button" type="button">Load...</button>
-                    </span>
-                    <span class="action">
-                        <button class="save-button" type="button">Save...</button>
-                    </span>
+                <span class="action">
+                    <button class="pull-down-menu characters-samples" type="button">Samples</button>
                 </span>
-            </div>
-            <div class="input-group">
-                <input class="characters-input" type="text" maxlength="256" placeholder="CJK characters...">
-                <input class="code-points-input" type="text" maxlength="2048" placeholder="CJK code points...">
-            </div>
-            <div class="actions interface">
-                <span class="action-group">
-                    <span class="action">
-                        <label>Writing Mode:
-                            <select class="writing-mode-select">
-                                <option value="horizontal">Horizontal</option>
-                                <option value="vertical">Vertical</option>
-                            </select>
-                        </label>
-                    </span>
+            </span>
+            <span class="action-group">
+                <span class="action">
+                    <button class="load-button" type="button">Load...</button>
                 </span>
-                <span class="action-group">
-                    <span class="action">
-                        <label>East Asian Variant:
-                            <select class="east-asian-select">
-                                <option value="normal">Normal</option>
-                                <option value="jis78">JIS X 0208:1978</option>
-                                <option value="jis83">JIS X 0208:1983</option>
-                                <option value="jis90">JIS X 0208:1990</option>
-                                <option value="jis04">JIS X 0213:2004</option>
-                                <option value="simplified">Simplified Chinese</option>
-                                <option value="traditional">Traditional Chinese</option>
-                            </select>
-                        </label>
-                    </span>
+                <span class="action">
+                    <button class="save-button" type="button">Save...</button>
                 </span>
-            </div>
-            <div class="sheet"></div>
-       </div>
-        <div class="accent-panel">
-            <details class="instructions">
-                <summary>Instructions</summary>
-                <ul>
-                    <li>
-                        The <strong>CJK Font Variants</strong> utility displays simultaneously any string of CJK 
-                        (Chinese/Japanese/Korean) characters in five different typefaces belonging to the open-source set of 
-                        <a title="https://www.google.com/get/noto/help/cjk/" href="https://www.google.com/get/noto/help/cjk/">Google Noto CJK Fonts</a>:
-                        <table class="fonts-table">
-                            <tr><th>Language</th><th>Tag</th><th class="code">Code</th><th>Typeface</th></tr>
-                            <tr><td>Japanese</td><td>ja</td><td class="code">JP</td><td>Noto Sans CJK JP Regular</td></tr>
-                            <tr><td>Korean</td><td>ko</td><td class="code">KR</td><td>Noto Sans CJK KR Regular</td></tr>
-                            <tr><td>Simplified Chinese</td><td>zh-Hans</td><td class="code">SC</td><td>Noto Sans CJK SC Regular</td></tr>
-                            <tr><td>Traditional Chinese (Taiwan)</td><td>zh-Hant-TW</td><td class="code">TC</td><td>Noto Sans CJK TC Regular</td></tr>
-                            <tr><td>Traditional Chinese (Hong Kong)</td><td>zh-Hant-HK</td><td class="code">HK</td><td>Noto Sans CJK HK Regular</td></tr>
-                        </table>
-                    </li>
-                    <li>Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.</li>
-                    <li>Font variants of the CJK characters can be visualized either vertically or horizontally. Use the <kbd>Writing Mode</kbd> drop-down menu to toggle between the two modes.</li>
-                    <li>Clicking inside any character frame displays momentarily the same glyph for all language flavors, while shift-clicking applies to all characters of the string in a given language flavor. This is especially useful to quickly spot the differences between glyph variations. If the <kbd>⇪ Caps Lock</kbd> key is turned on as well, the differences are shown in contrasting colors instead.</li>
-                    <li>CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
-                    <li>It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the <a title="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt" href="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt">StandardizedVariants.txt</a> or <a title="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt" href="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt">IVD_Sequences.txt</a> data files.</li>
-                    <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
-                    <li>In output, the standard Unicode code point format <code>U+7ADC</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
-                    <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u9F8D</code> or <code>\u{20B9F}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
-                </ul>
-            </details>
-            <details class="references">
-                <summary>References</summary>
-                <div class="links"></div>
-            </details>
+            </span>
         </div>
-    </section>
-</template>
+        <div class="input-group">
+            <input class="characters-input" type="text" maxlength="256" placeholder="CJK characters...">
+            <input class="code-points-input" type="text" maxlength="2048" placeholder="CJK code points...">
+        </div>
+        <div class="actions interface">
+            <span class="action-group">
+                <span class="action">
+                    <label>Writing Mode:
+                        <select class="writing-mode-select">
+                            <option value="horizontal">Horizontal</option>
+                            <option value="vertical">Vertical</option>
+                        </select>
+                    </label>
+                </span>
+            </span>
+            <span class="action-group">
+                <span class="action">
+                    <label>East Asian Variant:
+                        <select class="east-asian-select">
+                            <option value="normal">Normal</option>
+                            <option value="jis78">JIS X 0208:1978</option>
+                            <option value="jis83">JIS X 0208:1983</option>
+                            <option value="jis90">JIS X 0208:1990</option>
+                            <option value="jis04">JIS X 0213:2004</option>
+                            <option value="simplified">Simplified Chinese</option>
+                            <option value="traditional">Traditional Chinese</option>
+                        </select>
+                    </label>
+                </span>
+            </span>
+        </div>
+        <div class="sheet"></div>
+    </div>
+    <div class="accent-panel">
+        <details class="instructions">
+            <summary>Instructions</summary>
+            <ul>
+                <li>
+                    The <strong>CJK Font Variants</strong> utility displays simultaneously any string of CJK 
+                    (Chinese/Japanese/Korean) characters in five different typefaces belonging to the open-source set of 
+                    <a title="https://www.google.com/get/noto/help/cjk/" href="https://www.google.com/get/noto/help/cjk/">Google Noto CJK Fonts</a>:
+                    <table class="fonts-table">
+                        <tr><th>Language</th><th>Tag</th><th class="code">Code</th><th>Typeface</th></tr>
+                        <tr><td>Japanese</td><td>ja</td><td class="code">JP</td><td>Noto Sans CJK JP Regular</td></tr>
+                        <tr><td>Korean</td><td>ko</td><td class="code">KR</td><td>Noto Sans CJK KR Regular</td></tr>
+                        <tr><td>Simplified Chinese</td><td>zh-Hans</td><td class="code">SC</td><td>Noto Sans CJK SC Regular</td></tr>
+                        <tr><td>Traditional Chinese (Taiwan)</td><td>zh-Hant-TW</td><td class="code">TC</td><td>Noto Sans CJK TC Regular</td></tr>
+                        <tr><td>Traditional Chinese (Hong Kong)</td><td>zh-Hant-HK</td><td class="code">HK</td><td>Noto Sans CJK HK Regular</td></tr>
+                    </table>
+                </li>
+                <li>Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.</li>
+                <li>Font variants of the CJK characters can be visualized either vertically or horizontally. Use the <kbd>Writing Mode</kbd> drop-down menu to toggle between the two modes.</li>
+                <li>Clicking inside any character frame displays momentarily the same glyph for all language flavors, while shift-clicking applies to all characters of the string in a given language flavor. This is especially useful to quickly spot the differences between glyph variations. If the <kbd>⇪ Caps Lock</kbd> key is turned on as well, the differences are shown in contrasting colors instead.</li>
+                <li>CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.</li>
+                <li>It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the <a title="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt" href="https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt">StandardizedVariants.txt</a> or <a title="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt" href="https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt">IVD_Sequences.txt</a> data files.</li>
+                <li>As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.</li>
+                <li>In output, the standard Unicode code point format <code>U+7ADC</code> is used, i.e. "U+" directly followed by 4 or 5 hex digits.</li>
+                <li>In input, more hexadecimal formats are allowed, including Unicode escape sequences, such as <code>\u9F8D</code> or <code>\u{20B9F}</code>. Moving out of the field or typing the Enter key converts all valid codes to standard Unicode code point format.</li>
+            </ul>
+        </details>
+        <details class="references">
+            <summary>References</summary>
+            <div class="links"></div>
+        </details>
+    </div>
+</section>

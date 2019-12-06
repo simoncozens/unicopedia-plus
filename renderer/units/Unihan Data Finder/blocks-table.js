@@ -5,10 +5,10 @@ module.exports.create = function (unihanBlocks)
     blocksTable.className = 'blocks-table';
     let headerRow = document.createElement ('tr');
     headerRow.className = 'header-row';
-    let nameHeader = document.createElement ('th');
-    nameHeader.className = 'name-header';
-    nameHeader.textContent = "Name";
-    headerRow.appendChild (nameHeader);
+    let blockHeader = document.createElement ('th');
+    blockHeader.className = 'block-header';
+    blockHeader.textContent = "Block";
+    headerRow.appendChild (blockHeader);
     let rangeHeader = document.createElement ('th');
     rangeHeader.className = 'range-header';
     rangeHeader.textContent = "Range";

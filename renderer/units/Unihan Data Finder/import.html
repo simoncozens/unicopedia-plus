@@ -1,220 +1,218 @@
-<template>
-    <section id="unihan-data-finder-unit">
-        <div class="plain-panel">
-            <div class="tab-bar">
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Tag Value</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>Radical/Strokes</span></label>
-                <label class="tab-label"><input class="tab-radio" type="radio"><span>View by Grid</span></label>
-            </div>
-            <div class="tab-panes">
-                <div class="tab-pane find-by-tag-value">
-                    <div class="actions">
-                        <div class="action-group tag-group">
-                            <span class="action">
-                                <select class="tag-select" title="Unihan tag"></select>
-                            </span>
-                            <span class="checkbox-group">
-                                <span class="action">
-                                    <label class="checkbox"><input class="categories-checkbox" type="checkbox">&nbsp;Categories</label>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="action-group search-group">
-                            <span class="action search-wrap">
-                                <input class="search-string" type="search" maxlength="256" placeholder="Unihan tag value...">
-                                <span class="search-message"></span>
-                            </span>
-                            <span class="action">
-                                <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
-                            </span>
-                            <span class="action">
-                                <button class="search-button" type="button">Search</button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="search-data"></div>
-                </div>
-                <div class="tab-pane radical-strokes">
-                    <div class="actions">
-                        <div class="action-group rs-2-group">
-                            <span class="action">
-                                <label class="checkbox" title="If checked, the search is performed on the Unihan full set; if unchecked, it is limited to the IICore set of CJK unified ideographs in common usage"><input class="full-set-checkbox" type="checkbox">&nbsp;Unihan Full Set</label>
-                            </span>
-                            <span class="action">
-                                <label class="checkbox" title="If checked, the search uses all radical/strokes source tags; if unchecked, it only uses the IRG-defined source tag common to all Unihan characters"><input class="extra-sources-checkbox" type="checkbox">&nbsp;Allow Extra Sources</label>
-                            </span>
-                        </div>
-                        <div class="action-group rs-group">
-                            <span class="action">
-                                <label>Radical:&nbsp;<select class="radical-select" title="KangXi radical"></select></label>
-                                <label>+&nbsp;Strokes:&nbsp;<select class="strokes-select" title="Additional stroke count"></select></label>
-                            </span>
-                            <span class="action">
-                                <button class="search-button" type="button">Search</button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
-                    </div>
-                    <div class="search-data"></div>
-                </div>
-                <div class="tab-pane view-by-grid">
-                    <div class="actions">
-                        <span class="action-group">
-                            <span class="action">
-                                <select class="select-block-name"></select>
-                            </span>
+<section id="unihan-data-finder-unit">
+    <div class="plain-panel">
+        <div class="tab-bar">
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Tag Value</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Radical/Strokes</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>View by Grid</span></label>
+        </div>
+        <div class="tab-panes">
+            <div class="tab-pane find-by-tag-value">
+                <div class="actions">
+                    <div class="action-group tag-group">
+                        <span class="action">
+                            <select class="tag-select" title="Unihan tag"></select>
                         </span>
-                        <span class="action-group">
+                        <span class="checkbox-group">
                             <span class="action">
-                                <select class="select-block-range"></select>
-                            </span>
-                            <span class="action">
-                                <input class="specimen" type="search" maxlength="256" title="Unihan specimen (character or code point)" placeholder="Specimen...">
-                            </span>
-                            <span class="action">
-                                <button class="go-button" type="button">Go</button>
+                                <label class="checkbox"><input class="categories-checkbox" type="checkbox">&nbsp;Categories</label>
                             </span>
                         </span>
                     </div>
-                    <div class="results">
-                        <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;Block size: <span class="total-count"></span></span>
+                    <div class="action-group search-group">
+                        <span class="action search-wrap">
+                            <input class="search-string" type="search" maxlength="256" placeholder="Unihan tag value...">
+                            <span class="search-message"></span>
+                        </span>
+                        <span class="action">
+                            <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Whole Word"><input class="whole-word icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <button class="search-button" type="button">Search</button>
+                        </span>
                     </div>
-                    <div class="search-data"></div>
                 </div>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                </div>
+                <div class="search-data"></div>
             </div>
-       </div>
-        <div class="tab-infos">
-            <div class="tab-info find-by-tag-value">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Find by Tag Value</strong> feature of the <strong>Unihan Data Finder</strong> utility displays a list of basic data (symbol, code point, Unihan tag, value, block) of matching Unihan characters searched by tag value, including through regular expressions.</li>
-                            <li>Use the <kbd>Unihan Tag</kbd> drop-down menu to select the tag you wish to search value by.</li>
-                            <li>Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories in the drop-down menu.</li>
-                            <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
-                            <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>The search is performed on the 88,889 Unihan characters (or code points) defined in the set of data files contained in the <a title="https://www.unicode.org/Public/UNIDATA/Unihan.zip" href="https://www.unicode.org/Public/UNIDATA/Unihan.zip">Unihan.zip</a> archive file:
-                                <ul>
-                                    <li><em>Unihan_DictionaryIndices.txt</em></li>
-                                    <li><em>Unihan_DictionaryLikeData.txt</em></li>
-                                    <li><em>Unihan_IRGSources.txt</em></li>
-                                    <li><em>Unihan_NumericValues.txt</em></li>
-                                    <li><em>Unihan_OtherMappings.txt</em></li>
-                                    <li><em>Unihan_RadicalStrokeCounts.txt</em></li>
-                                    <li><em>Unihan_Readings.txt</em></li>
-                                    <li><em>Unihan_Variants.txt</em></li>
-                                </ul>
-                            </li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                    <li><code>Clear Results</code> [clear the current list of results]</li>
-                                </ul>
-                            </li>
-                            <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
-                        </ul>
-                    </details>
-                    <details class="regex-examples">
-                        <summary>Regex Examples</summary>
-                        <p><kbd>kDefinition</kbd></p>
-                        <ul>
-                            <li><code>\bp[io]ng\b</code><br>Unihan characters whose 'kDefinition' tag value contains the word "ping" or "pong"</li>
-                            <li><code>(?=.*black)(?=.*white)</code><br>Unihan characters whose 'kDefinition' tag value contains both "black" and "white"</li>
-                            <li><code>'(fe)?male' principle</code><br>Unihan characters whose 'kDefinition' tag value contains either "'male' principle" or "'female' principle"</li>
-                            <li><code>\p{Script=Han}{4}</code><br>Unihan characters whose 'kDefinition' tag value contains four successive characters with the 'Script' property equal to 'Han'</li>
-                        </ul>
-                        <p><kbd>kIICore</kbd></p>
-                        <ul>
-                            <li><code>.</code> or <code>[^]</code> or <code>[\s\S]</code><br>Unihan characters whose 'kIICore' tag value is not empty, i.e., which belong to the IICore set of 9,810 CJK unified ideographs in common usage</li>
-                        </ul>
-                        <p><kbd>kJapaneseKun</kbd></p>
-                        <ul>
-                            <li><code>^(kita|higashi|minami|nishi)$</code><br>Unihan characters whose 'kJapaneseKun' tag value is "kita" or "higashi" or "minami" or "nishi", i.e., the four cardinal directions: North, East, South, West</li>
-                        </ul>
-                        <p><kbd>kJapaneseOn</kbd></p>
-                        <ul>
-                            <li><code>^(ichi|itsu)$</code><br>Unihan characters whose 'kJapaneseOn' tag value is either "ichi" or "itsu"</li>
-                        </ul>
-                        <p><kbd>kPrimaryNumeric</kbd></p>
-                        <ul>
-                            <li><code>10*</code><br>Unihan characters whose 'kPrimaryNumeric' tag value is a power of 10</li>
-                        </ul>
-                        <p><kbd>kRSUnicode</kbd></p>
-                        <ul>
-                            <li><code>^90'?\.0</code><br>Unihan characters whose 'kRSUnicode' tag value corresponds to a KangXi or CJK radical #90 (Half Tree Trunk) plus 0 strokes</li>
-                        </ul>
-                        <p><kbd>kTotalStrokes</kbd></p>
-                        <ul>
-                            <li><code>[4-9]\d</code><br>Unihan characters whose 'kTotalStrokes' tag value corresponds to a total stroke count of 40 or more</li>
-                        </ul>
-                    </details>
+            <div class="tab-pane radical-strokes">
+                <div class="actions">
+                    <div class="action-group rs-2-group">
+                        <span class="action">
+                            <label class="checkbox" title="If checked, the search is performed on the Unihan full set; if unchecked, it is limited to the IICore set of CJK unified ideographs in common usage"><input class="full-set-checkbox" type="checkbox">&nbsp;Unihan Full Set</label>
+                        </span>
+                        <span class="action">
+                            <label class="checkbox" title="If checked, the search uses all radical/strokes source tags; if unchecked, it only uses the IRG-defined source tag common to all Unihan characters"><input class="extra-sources-checkbox" type="checkbox">&nbsp;Allow Extra Sources</label>
+                        </span>
+                    </div>
+                    <div class="action-group rs-group">
+                        <span class="action">
+                            <label title="KangXi radical">Radical:&nbsp;<select class="radical-select"></select></label>
+                            <label title="Additional stroke count">+&nbsp;Strokes:&nbsp;<select class="strokes-select"></select></label>
+                        </span>
+                        <span class="action">
+                            <button class="search-button" type="button">Search</button>
+                        </span>
+                    </div>
                 </div>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                </div>
+                <div class="search-data"></div>
             </div>
-            <div class="tab-info radical-strokes">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>Radical/Strokes</strong> feature of the <strong>Unihan Data Finder</strong> utility displays all the Unihan characters searched by KangXi radical and additional stroke count.</li>
-                            <li>Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.</li>
-                            <li>Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.</li>
-                            <li>Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.</li>
-                            <li>If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.</li>
-                            <li>Selecting <code>All</code> from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                    <li><code>Clear Results</code> [clear the current list of results]</li>
-                                </ul>
-                            </li>
-                            <li>A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.</li>
-                        </ul>
-                    </details>
-                    <details class="radical-list">
-                        <summary>KangXi Radical List</summary>
-                        <div class="radicals"></div>
-                    </details>
+            <div class="tab-pane view-by-grid">
+                <div class="actions">
+                    <span class="action-group">
+                        <span class="action">
+                            <select class="select-block-name"></select>
+                        </span>
+                    </span>
+                    <span class="action-group">
+                        <span class="action">
+                            <select class="select-block-range"></select>
+                        </span>
+                        <span class="action">
+                            <input class="specimen" type="search" maxlength="256" title="Unihan specimen (character or code point)" placeholder="Specimen...">
+                        </span>
+                        <span class="action">
+                            <button class="go-button" type="button">Go</button>
+                        </span>
+                    </span>
                 </div>
-            </div>
-            <div class="tab-info view-by-grid">
-                <div class="accent-panel">
-                    <details class="instructions">
-                        <summary>Instructions</summary>
-                        <ul>
-                            <li>The <strong>View by Grid</strong> feature of the <strong>Unihan Data Finder</strong> utility displays in real time a grid view of the blocks containing the 88,889 Unihan characters.</li>
-                            <li>It is possible to choose how many characters are shown one page at a time.</li>
-                            <li>A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.</li>
-                            <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
-                            <li>You can quickly reuse a previously entered Unihan character by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
-                            <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
-                                <ul>
-                                    <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
-                                    <li><code>Save Results..</code> [save the results as string to a text file]</li>
-                                </ul>
-                            </li>
-                            <li>A list of all the Unihan blocks is available for quick reference.</li>
-                        </ul>
-                    </details>
-                    <details class="unihan-blocks">
-                        <summary>Unihan Blocks</summary>
-                        <div class="blocks"></div>
-                    </details>
+                <div class="results">
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;Block size: <span class="total-count"></span></span>
                 </div>
+                <div class="search-data"></div>
             </div>
         </div>
-    </section>
-</template>
+    </div>
+    <div class="tab-infos">
+        <div class="tab-info find-by-tag-value">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Find by Tag Value</strong> feature of the <strong>Unihan Data Finder</strong> utility displays a list of basic data (symbol, code point, Unihan tag, value, block) of matching Unihan characters searched by tag value, including through regular expressions.</li>
+                        <li>Use the <kbd>Unihan Tag</kbd> drop-down menu to select the tag you wish to search value by.</li>
+                        <li>Use the <kbd>Categories</kbd> checkbox to toggle between: all Unihan tags ordered alphabetically, or grouped by categories in the drop-down menu.</li>
+                        <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
+                        <li>It is possible to choose how many characters are shown one page at a time.</li>
+                        <li>The search is performed on the 88,889 Unihan characters (or code points) defined in the set of data files contained in the <a title="https://www.unicode.org/Public/UNIDATA/Unihan.zip" href="https://www.unicode.org/Public/UNIDATA/Unihan.zip">Unihan.zip</a> archive file:
+                            <ul>
+                                <li><em>Unihan_DictionaryIndices.txt</em></li>
+                                <li><em>Unihan_DictionaryLikeData.txt</em></li>
+                                <li><em>Unihan_IRGSources.txt</em></li>
+                                <li><em>Unihan_NumericValues.txt</em></li>
+                                <li><em>Unihan_OtherMappings.txt</em></li>
+                                <li><em>Unihan_RadicalStrokeCounts.txt</em></li>
+                                <li><em>Unihan_Readings.txt</em></li>
+                                <li><em>Unihan_Variants.txt</em></li>
+                            </ul>
+                        </li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                                <li><code>Clear Results</code> [clear the current list of results]</li>
+                            </ul>
+                        </li>
+                        <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
+                    </ul>
+                </details>
+                <details class="regex-examples">
+                    <summary>Regex Examples</summary>
+                    <p><kbd>kDefinition</kbd></p>
+                    <ul>
+                        <li><code>\bp[io]ng\b</code><br>Unihan characters whose 'kDefinition' tag value contains the word "ping" or "pong"</li>
+                        <li><code>(?=.*black)(?=.*white)</code><br>Unihan characters whose 'kDefinition' tag value contains both "black" and "white"</li>
+                        <li><code>'(fe)?male' principle</code><br>Unihan characters whose 'kDefinition' tag value contains either "'male' principle" or "'female' principle"</li>
+                        <li><code>\p{Script=Han}{4}</code><br>Unihan characters whose 'kDefinition' tag value contains four successive characters with the 'Script' property equal to 'Han'</li>
+                    </ul>
+                    <p><kbd>kIICore</kbd></p>
+                    <ul>
+                        <li><code>.</code> or <code>[^]</code> or <code>[\s\S]</code><br>Unihan characters whose 'kIICore' tag value is not empty, i.e., which belong to the IICore set of 9,810 CJK unified ideographs in common usage</li>
+                    </ul>
+                    <p><kbd>kJapaneseKun</kbd></p>
+                    <ul>
+                        <li><code>^(kita|higashi|minami|nishi)$</code><br>Unihan characters whose 'kJapaneseKun' tag value is "kita" or "higashi" or "minami" or "nishi", i.e., the four cardinal directions: North, East, South, West</li>
+                    </ul>
+                    <p><kbd>kJapaneseOn</kbd></p>
+                    <ul>
+                        <li><code>^(ichi|itsu)$</code><br>Unihan characters whose 'kJapaneseOn' tag value is either "ichi" or "itsu"</li>
+                    </ul>
+                    <p><kbd>kPrimaryNumeric</kbd></p>
+                    <ul>
+                        <li><code>10*</code><br>Unihan characters whose 'kPrimaryNumeric' tag value is a power of 10</li>
+                    </ul>
+                    <p><kbd>kRSUnicode</kbd></p>
+                    <ul>
+                        <li><code>^90'?\.0</code><br>Unihan characters whose 'kRSUnicode' tag value corresponds to a KangXi or CJK radical #90 (Half Tree Trunk) plus 0 strokes</li>
+                    </ul>
+                    <p><kbd>kTotalStrokes</kbd></p>
+                    <ul>
+                        <li><code>[4-9]\d</code><br>Unihan characters whose 'kTotalStrokes' tag value corresponds to a total stroke count of 40 or more</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+        <div class="tab-info radical-strokes">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>Radical/Strokes</strong> feature of the <strong>Unihan Data Finder</strong> utility displays all the Unihan characters searched by KangXi radical and additional stroke count.</li>
+                        <li>Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.</li>
+                        <li>Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.</li>
+                        <li>Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.</li>
+                        <li>If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.</li>
+                        <li>Selecting <code>All</code> from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                                <li><code>Clear Results</code> [clear the current list of results]</li>
+                            </ul>
+                        </li>
+                        <li>A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.</li>
+                    </ul>
+                </details>
+                <details class="radical-list">
+                    <summary>KangXi Radical List</summary>
+                    <div class="radicals"></div>
+                </details>
+            </div>
+        </div>
+        <div class="tab-info view-by-grid">
+            <div class="accent-panel">
+                <details class="instructions">
+                    <summary>Instructions</summary>
+                    <ul>
+                        <li>The <strong>View by Grid</strong> feature of the <strong>Unihan Data Finder</strong> utility displays in real time a grid view of the blocks containing the 88,889 Unihan characters.</li>
+                        <li>It is possible to choose how many characters are shown one page at a time.</li>
+                        <li>A block can be selected either by <kbd>Block Name</kbd> or by <kbd>Block Range</kbd>.</li>
+                        <li>It is also possible to directly enter a Unihan character or code point in the <kbd>Specimen</kbd> field, then click on the <kbd>Go</kbd> button to automatically select the block containing the character, scroll it into view, and highlight it.</li>
+                        <li>You can quickly reuse a previously entered Unihan character by using the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate up and down through the history stack in the <kbd>Specimen</kbd> field.</li>
+                        <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+                            <ul>
+                                <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
+                                <li><code>Save Results..</code> [save the results as string to a text file]</li>
+                            </ul>
+                        </li>
+                        <li>A list of all the Unihan blocks is available for quick reference.</li>
+                    </ul>
+                </details>
+                <details class="unihan-blocks">
+                    <summary>Unihan Blocks</summary>
+                    <div class="blocks"></div>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>

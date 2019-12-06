@@ -81,6 +81,7 @@ module.exports.create = function (title, items, params)
             separator = true;
             let strokesData = document.createElement ('span');
             strokesData.className = 'strokes-data';
+            strokesData.title = `Count: ${item.characters.length}`;
             let shortTitle = document.createElement ('span');
             shortTitle.className  = 'short-title';
             shortTitle.textContent = item.shortTitle;

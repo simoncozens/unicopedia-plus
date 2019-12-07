@@ -88,6 +88,27 @@ module.exports.create = function (characters, params, highlightedCharacter)
             {
                 row.classList.add ('unassigned');
             }
+            else
+            {
+                let tooltip = [ ];
+                if (data.age)
+                {
+                    tooltip.push (`Age: Unicode ${data.age} (${data.ageDate})`);
+                }
+                if (data.script)
+                {
+                    tooltip.push (`Script: ${data.script}`);
+                }
+                if (data.scriptExtensions)
+                {
+                    tooltip.push (`Script Extensions: ${data.scriptExtensions.join (", ")}`);
+                }
+                if (data.category)
+                {
+                    tooltip.push (`General Category: ${data.category}`);
+                }
+                row.title = tooltip.join ("\n");
+            }
             let symbol = document.createElement ('td');
             symbol.className = 'symbol';
             if (isAssignedCharacter)

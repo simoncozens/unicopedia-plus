@@ -545,7 +545,7 @@ function getCharacterData (character)
     {
         if ((parseInt (version.first, 16) <= index) && (index <= parseInt (version.last, 16)))
         {
-            characterData.age = `Unicode ${version.age}`;
+            characterData.age = version.age;
             characterData.ageDate = versionDates[version.age];
             break;
         }
@@ -790,6 +790,7 @@ function getCharacterBasicData (character)
         characterBasicData.figment = data.figment;
         characterBasicData.abbreviation = data.abbreviation;
         characterBasicData.correction = data.correction;
+        characterBasicData.category = categories[data.category];
     }
     let index = character.codePointAt (0);
     for (let block of extraData.blocks)
@@ -807,6 +808,23 @@ function getCharacterBasicData (character)
         {
             characterBasicData.age = version.age;
             characterBasicData.ageDate = versionDates[version.age];
+            break;
+        }
+    }
+    for (let script of extraData.scripts)
+    {
+        if ((parseInt (script.first, 16) <= index) && (index <= parseInt (script.last, 16)))
+        {
+            characterBasicData.script = script.name;
+            break;
+        }
+    }
+    for (let scriptExtension of extraData.scriptExtensions)
+    {
+        if ((parseInt (scriptExtension.first, 16) <= index) && (index <= parseInt (scriptExtension.last, 16)))
+        {
+            let names = scriptExtension.aliases.split (" ").map (alias => scripts[alias]);
+            characterBasicData.scriptExtensions = names.sort ((a, b) => a.localeCompare (b));
             break;
         }
     }

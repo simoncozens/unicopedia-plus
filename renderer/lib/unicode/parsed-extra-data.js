@@ -15,7 +15,7 @@ for (let line of lines)
 {
     if (line && (line[0] !== "#"))
     {
-        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\d+\.\d+)\s+#/);
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s*;\s*(\d+\.\d+)\s*#/);
         if (found)
         {
             versions.push ({ first: found[1], last: found[2] || found[1], age: found[3] });

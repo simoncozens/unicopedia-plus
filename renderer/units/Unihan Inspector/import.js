@@ -26,7 +26,6 @@ module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
-    const regexUnicode = require ('../../lib/regex-unicode.js');
     const unicode = require ('../../lib/unicode/unicode.js');
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
     const numericValuesData = require ('../../lib/unicode/parsed-numeric-values-data.js');
@@ -93,8 +92,11 @@ module.exports.start = function (context)
     //
     const filterPattern = unihanOrRadicalPattern;
     //
+    const unifiedPattern = '\\p{Unified_Ideograph}';
+    //
     const radicalRegex = new RegExp (radicalPattern, 'u');
     const filterRegex = new RegExp (filterPattern, 'u');
+    const unifiedRegex = new RegExp (unifiedPattern, 'u');
     //
     function getTooltip (char)
     {
@@ -405,6 +407,7 @@ module.exports.start = function (context)
             }
             //
             let unicodeData = unicode.getCharacterData (unihanCharacter.textContent);
+            let age = `Unicode ${unicodeData.age} (${unicodeData.ageDate})`;
             let numericType = "";
             if (unicodeData.numeric)
             {
@@ -421,7 +424,7 @@ module.exports.start = function (context)
             let unicodeFields =
             [
                 { name: "Name", value: unicodeData.name },
-                { name: "Age", value: unicodeData.age, toolTip: unicodeData.ageDate },
+                { name: "Age", value: age },
                 { name: "Plane", value: unicodeData.planeName, toolTip: unicodeData.planeRange },
                 { name: "Block", value: unicodeData.blockName, toolTip: unicodeData.blockRange },
                 { name: "Script", value: unicodeData.script },
@@ -469,6 +472,7 @@ module.exports.start = function (context)
             {
                 let iiCoreSet = ("kIICore" in tags) ? "IICore" : "Full";
                 let iiCoreSetToolTip = ("kIICore" in tags) ? getIICoreTooltip (tags["kIICore"]) : "";
+                let status = unifiedRegex.test (character) ? "Unified Ideograph" : "Compatibility Ideograph";
                 let rsValues = [ ];
                 let rsClasses = [ ];
                 let rsIRGCount = 0;
@@ -540,6 +544,7 @@ module.exports.start = function (context)
                 let unihanFields =
                 [
                     { name: "Set", value: iiCoreSet, toolTip: iiCoreSetToolTip },
+                    { name: "Status", value: status },
                     { name: "Radical/Strokes", value: rsValues, class: rsClasses },
                     { name: "Definition", value: definitionValue },
                     { name: "Numeric Value", value: numericValue },

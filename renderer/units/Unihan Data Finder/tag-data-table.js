@@ -1,6 +1,9 @@
 //
 const deferredSymbols = (process.platform === 'darwin');
 //
+const regexUnicode = require ('../../lib/regex-unicode.js');
+const unicode = require ('../../lib/unicode/unicode.js');
+//
 module.exports.create = function (characterInfos, params)
 {
     function updateDataPage (dataPage)
@@ -79,10 +82,15 @@ module.exports.create = function (characterInfos, params)
         headerRow.appendChild (headerBlock);
         table.appendChild (headerRow);
         //
+        let unifiedRegex = regexUnicode.build ('\\p{Unified_Ideograph}', { useRegex: true });
+        //
         for (let characterInfo of characterInfos)
         {
+            let data = unicode.getCharacterBasicData (characterInfo.character);
             let dataRow = document.createElement ('tr');
             dataRow.className = 'data-row';
+            let status = unifiedRegex.test (characterInfo.character) ? "Unified Ideograph" : "Compatibility Ideograph";
+            dataRow.title = `Age: Unicode ${data.age} (${data.ageDate})\nStatus: ${status}`;
             let dataSymbol = document.createElement ('td');
             dataSymbol.className = 'data-symbol';
             if (deferredSymbols)
@@ -132,8 +140,8 @@ module.exports.create = function (characterInfos, params)
             dataRow.appendChild (dataValue);
             let dataBlock = document.createElement ('td');
             dataBlock.className = 'data-block';
-            dataBlock.title = characterInfo.blockRange;
-            dataBlock.textContent = characterInfo.blockName.replace (/ (.)$/, "\u00A0$1");
+            dataBlock.title = data.blockRange;
+            dataBlock.textContent = data.blockName.replace (/ (.)$/, "\u00A0$1");
             dataRow.appendChild (dataBlock);
             table.appendChild (dataRow);
         }

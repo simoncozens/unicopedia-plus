@@ -185,6 +185,7 @@ module.exports.start = function (context)
                     cell = document.createElement ('td');
                     cell.className = 'properties';
                     let name = data.name || "<unassigned>"; // "UNASSIGNED CHARACTER"
+                    let age = `Unicode ${data.age} (${data.ageDate})`;
                     let numericType = "";
                     let numericValue = "";
                     if (data.numeric)
@@ -212,7 +213,7 @@ module.exports.start = function (context)
                         { name: "Figment", value: data.figment },
                         { name: "Abbreviation", value: data.abbreviation },
                         { name: "Correction", value: data.correction },
-                        { name: "Age", value: data.age, toolTip: data.ageDate },
+                        { name: "Age", value: age },
                         { name: "Plane", value: data.planeName, toolTip: data.planeRange },
                         { name: "Block", value: data.blockName, toolTip: data.blockRange },
                         { name: "Script", value: data.script },

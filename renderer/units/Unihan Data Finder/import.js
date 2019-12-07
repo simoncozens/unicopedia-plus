@@ -324,18 +324,6 @@ module.exports.start = function (context)
                 if (matchingValues.includes (true))
                 {
                     let character = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
-                    let index = character.codePointAt (0);
-                    let blockName;
-                    let blockRange;
-                    for (let block of unihanBlocks)
-                    {
-                        if ((block.firstIndex <= index) && (index <= block.lastIndex))
-                        {
-                            blockName = block.name;
-                            blockRange = block.range;
-                            break;
-                        }
-                    }
                     characterInfoList.push
                     (
                         {
@@ -343,9 +331,7 @@ module.exports.start = function (context)
                             codePoint: codePoint,
                             tag: tag,
                             value: ((values.length > 1) ? values : values[0]),
-                            matching: ((matchingValues.length > 1) ? matchingValues : matchingValues[0]),
-                            blockName: blockName,
-                            blockRange: blockRange
+                            matching: ((matchingValues.length > 1) ? matchingValues : matchingValues[0])
                         }
                     );
                 }

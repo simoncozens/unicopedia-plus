@@ -79,13 +79,13 @@ module.exports.create = function (characters, params, highlightedCharacter)
         table.appendChild (header);
         //
         let unihanRegex = regexUnicode.build ('(?=\\p{Script=Han})(?=\\p{Other_Letter})', { useRegex: true });
+        let unifiedRegex = regexUnicode.build ('\\p{Unified_Ideograph}', { useRegex: true });
         let colCount = hexDigits.length;
         let colIndex = 0;
         let row;
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);
-            let isUnihanCharacter = unihanRegex.test (character);
             if ((colIndex % colCount) === 0)
             {
                 row = document.createElement ('tr');
@@ -100,8 +100,10 @@ module.exports.create = function (characters, params, highlightedCharacter)
             symbolCell.className = 'symbol-cell';
             let symbol = document.createElement ('span');
             symbol.className = 'symbol';
-            if (isUnihanCharacter)
+            if (unihanRegex.test (character))
             {
+                let status = unifiedRegex.test (character) ? "Unified Ideograph" : "Compatibility Ideograph";
+                symbolCell.title = `Code Point: ${data.codePoint}\nAge: Unicode ${data.age} (${data.ageDate})\nStatus: ${status}`;
                 if (deferredSymbols)
                 {
                     symbol.textContent = "\u3000";  // Ideographic space
@@ -113,7 +115,6 @@ module.exports.create = function (characters, params, highlightedCharacter)
                 {
                     symbol.textContent = data.character;
                 }
-                symbol.title = `Code Point: ${data.codePoint}\nAge: ${data.age} (${data.ageDate})`;
                 if (character === highlightedCharacter)
                 {
                     symbol.classList.add ('highlighted');

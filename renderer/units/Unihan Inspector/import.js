@@ -407,7 +407,7 @@ module.exports.start = function (context)
             }
             //
             let unicodeData = unicode.getCharacterData (unihanCharacter.textContent);
-            let age = `Unicode ${unicodeData.age} (${unicodeData.ageDate})`;
+            let age = unicodeData.age && `Unicode ${unicodeData.age} (${unicodeData.ageDate})`;
             let numericType = "";
             if (unicodeData.numeric)
             {

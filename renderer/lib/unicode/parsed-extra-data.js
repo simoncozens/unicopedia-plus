@@ -47,7 +47,7 @@ for (let line of lines)
 {
     if (line && (line[0] !== "#"))
     {
-        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s+;\s+(\w+)\s+#/);
+        let found = line.match (/^([0-9a-fA-F]{4,})(?:\.\.([0-9a-fA-F]{4,}))?\s*;\s+(\w+)\s+#/);
         if (found)
         {
             extendedProperties.push ({ first: found[1], last: found[2] || found[1], name: found[3] });

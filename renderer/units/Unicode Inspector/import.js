@@ -185,7 +185,7 @@ module.exports.start = function (context)
                     cell = document.createElement ('td');
                     cell.className = 'properties';
                     let name = data.name || "<unassigned>"; // "UNASSIGNED CHARACTER"
-                    let age = `Unicode ${data.age} (${data.ageDate})`;
+                    let age = data.age && `Unicode ${data.age} (${data.ageDate})`;
                     let numericType = "";
                     let numericValue = "";
                     if (data.numeric)

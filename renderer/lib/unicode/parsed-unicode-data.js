@@ -4,21 +4,21 @@
 /*
 Table 4-8. Name Derivation Rule Prefix Strings
 ----------------------------------------------------------------
-Range				Rule		Prefix String
+Range               Rule        Prefix String
 ----------------------------------------------------------------
 AC00..D7A3          NR1         “HANGUL SYLLABLE”
-3400..4DB5			NR2			“CJK UNIFIED IDEOGRAPH-”
-4E00..9FEA			NR2			“CJK UNIFIED IDEOGRAPH-”
-20000..2A6D6		NR2			“CJK UNIFIED IDEOGRAPH-”
-2A700..2B734		NR2			“CJK UNIFIED IDEOGRAPH-”
-2B740..2B81D		NR2			“CJK UNIFIED IDEOGRAPH-”
-2B820..2CEA1		NR2			“CJK UNIFIED IDEOGRAPH-”
-2CEB0..2EBE0		NR2			“CJK UNIFIED IDEOGRAPH-”
-17000..187EC		NR2			“TANGUT IDEOGRAPH-”
-1B170..1B2FB		NR2			“NUSHU CHARACTER-”
-F900..FA6D*			NR2			“CJK COMPATIBILITY IDEOGRAPH-”
-FA70..FAD9          NR2			“CJK COMPATIBILITY IDEOGRAPH-”
-2F800..2FA1D		NR2     	“CJK COMPATIBILITY IDEOGRAPH-”
+3400..4DB5          NR2         “CJK UNIFIED IDEOGRAPH-”
+4E00..9FEA          NR2         “CJK UNIFIED IDEOGRAPH-”
+20000..2A6D6        NR2         “CJK UNIFIED IDEOGRAPH-”
+2A700..2B734        NR2         “CJK UNIFIED IDEOGRAPH-”
+2B740..2B81D        NR2         “CJK UNIFIED IDEOGRAPH-”
+2B820..2CEA1        NR2         “CJK UNIFIED IDEOGRAPH-”
+2CEB0..2EBE0        NR2         “CJK UNIFIED IDEOGRAPH-”
+17000..187EC        NR2         “TANGUT IDEOGRAPH-”
+1B170..1B2FB        NR2         “NUSHU CHARACTER-”
+F900..FA6D*         NR2         “CJK COMPATIBILITY IDEOGRAPH-”
+FA70..FAD9          NR2         “CJK COMPATIBILITY IDEOGRAPH-”
+2F800..2FA1D        NR2         “CJK COMPATIBILITY IDEOGRAPH-”
 ----------------------------------------------------------------
 */
 //

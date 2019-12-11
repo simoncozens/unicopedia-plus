@@ -203,8 +203,15 @@ module.exports.create = function (characters, params, highlightedCharacter)
             row.appendChild (names);
             let blockName = document.createElement ('td');
             blockName.className = 'block-name';
-            blockName.title = data.blockRange;
-            blockName.innerHTML = data.blockName.replace (/ (.)$/, "\u00A0$1").replace (/(\b\w+-\w\b)/g, '<span style="white-space: nowrap;">$1</span>');
+            if (data.blockName)
+            {
+                blockName.title = data.blockRange;
+                blockName.innerHTML = data.blockName.replace (/ (.)$/, "\u00A0$1").replace (/(\b\w+-\w\b)/g, '<span style="white-space: nowrap;">$1</span>');
+            }
+            else
+            {
+                blockName.textContent = "<none>";   // "<no block>"
+            }
             row.appendChild (blockName);
             table.appendChild (row);
         }

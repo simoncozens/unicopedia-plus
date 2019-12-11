@@ -220,8 +220,20 @@
                 "string": "㋿㍻㍼㍽㍾"
             },
             {
+                "label": "Ornaments",
+                "string": "༺﴾※﴿༻"
+            },
+            {
                 "label": "Playing Card Suits",
                 "string": "♠♥♣♦\n♤♡♧♢"
+            },
+            {
+                "label": "Rounded Symbols",
+                "string": "🉠🉡🉢🉣🉤🉥"
+            },
+            {
+                "label": "Twelve Macrons",
+                "string": "\nā̄̄̄̄̄̄̄̄̄̄̄"
             },
             {
                 "label": "Various Spaces",
@@ -294,6 +306,32 @@
             {
                 "label": "Small Roman Numerals",
                 "string": "ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅺⅻⅼⅽⅾⅿ"
+            }
+        ]
+    },
+    {
+        "label": "Unassigned Characters",
+        "items":
+        [
+            {
+                "label": "Default Ignorable",
+                "string": "\u2065\uFFF0\uFFF8\uDB40\uDC00\uDB40\uDC02\uDB40\uDC1F\uDB40\uDC80\uDB40\uDCFF\uDB40\uDDF0\uDB43\uDFFF"
+            },
+            {
+                "label": "Inside Block",
+                "string": "\u0530\u18F6\u20C0\u2427\u2B74\u4DB6\uD83C\uDC2C\uD83E\uDC0C"
+            },
+            {
+                "label": "No Block",
+                "string": "\uD880\uDC00\uDB40\uDC80\uDB40\uDDF0\uDB43\uDFFF\uDB44\uDC00"
+            },
+            {
+                "label": "No Plane",
+                "string": "\uD8C0\uDC00\uD900\uDC00\uD940\uDC00\uD980\uDC00\uD9C0\uDC00\uDA00\uDC00\uDA40\uDC00\uDA80\uDC00\uDAC0\uDC00\uDB00\uDC00"
+            },
+            {
+                "label": "Non-Character",
+                "string": "\uFDD0\uFDEF\uFFFE\uFFFF\uD83F\uDFFE\uD83F\uDFFF\uD87F\uDFFE\uD87F\uDFFF\uD8BF\uDFFE\uD8BF\uDFFF\uD8FF\uDFFE\uD8FF\uDFFF\uD93F\uDFFE\uD93F\uDFFF\uD97F\uDFFE\uD97F\uDFFF\uD9BF\uDFFE\uD9BF\uDFFF\uD9FF\uDFFE\uD9FF\uDFFF\uDA3F\uDFFE\uDA3F\uDFFF\uDA7F\uDFFE\uDA7F\uDFFF\uDABF\uDFFE\uDABF\uDFFF\uDAFF\uDFFE\uDAFF\uDFFF\uDB3F\uDFFE\uDB3F\uDFFF\uDB7F\uDFFE\uDB7F\uDFFF\uDBBF\uDFFE\uDBBF\uDFFF\uDBFF\uDFFE\uDBFF\uDFFF"
             }
         ]
     }

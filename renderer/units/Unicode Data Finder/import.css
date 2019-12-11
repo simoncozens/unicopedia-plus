@@ -339,7 +339,7 @@
     background-color: white;
 }
 
-#unicode-data-finder-unit .list-by-block  .search-data .row.unassigned
+#unicode-data-finder-unit .search-data .row.unassigned
 {
     background-image: url("crosshatch-1-1-h-flip.svg");
     background-size: 8px;

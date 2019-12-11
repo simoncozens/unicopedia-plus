@@ -149,7 +149,7 @@
                         <li><code>(?!.)[^]</code> or <code>(?!.)[\s\S]</code><br>Characters considered line terminators in Unicode by the regular expression engine</li>
                         <li><code>\p{Private_Use}</code><br>Characters with the 'General_Category' property equal to 'Private_Use'</li>
                         <li><code>\P{Private_Use}</code> or <code>[^\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Private_Use'</li>
-                        <li><code>(?=\P{Control})(?=\P{Surrogate})(?=\P{Private_Use})</code><br>Characters without the 'General_Category' property equal to 'Control', 'Surrogate' or 'Private_Use', i.e., the total of 137,929 Unicode characters defined in <a href="https://unicode.org/versions/Unicode12.1.0/">Unicode 12.1</a>.</li>
+                        <li><code>(?=\P{Control})(?=\P{Surrogate})(?=\P{Private_Use})</code> or <code>[^\p{Control}\p{Surrogate}\p{Private_Use}]</code><br>Characters without the 'General_Category' property equal to 'Control', 'Surrogate' or 'Private_Use', i.e., the total of 137,929 Unicode characters defined in <a href="https://unicode.org/versions/Unicode12.1.0/">Unicode 12.1</a>.</li>
                         <li><code>[\p{Open_Punctuation}\p{Close_Punctuation}]</code> or <code>\p{Open_Punctuation}|\p{Close_Punctuation}</code><br>Characters with the 'General_Category' property equal to 'Open_Punctuation' or 'Close_Punctuation'</li>
                         <li><code>\p{White_Space}</code><br>Characters with the 'White_Space' binary property</li>
                         <li><code>\p{Radical}</code><br>Characters with the 'Radical' binary property</li>

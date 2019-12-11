@@ -746,7 +746,7 @@ function findCharactersByMatch (regex, matchDecomposition)
         {
             characterList.push (character);
         }
-        else if (matchDecomposition && data.decomposition)
+        else if (matchDecomposition && data && data.decomposition)
         {
             let codes = data.decomposition.trim ().split (" ").filter (code => (code[0] !== "<"));
             let decomposition = codes.map (code => String.fromCodePoint (parseInt (code, 16))).join ("");

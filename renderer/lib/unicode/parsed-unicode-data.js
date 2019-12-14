@@ -22,7 +22,8 @@ FA70..FAD9          NR2         “CJK COMPATIBILITY IDEOGRAPH-”
 ----------------------------------------------------------------
 */
 //
-const useNameDerivationRules = true;
+// Note: names could have also been obtained more directly by using the relevant data file:
+// https://www.unicode.org/Public/UNIDATA/extracted/DerivedName.txt
 //
 const fs = require ('fs');
 const path = require ('path');
@@ -97,9 +98,18 @@ for (let line of lines)
                 }
                 else
                 {
-                    if (useNameDerivationRules && /\p{Unified_Ideograph}/u.test (String.fromCodePoint (index)))
+                    let character = String.fromCodePoint (index);
+                    if (/\p{Unified_Ideograph}/u.test (character))
                     {
                         name = "CJK UNIFIED IDEOGRAPH-" + code;
+                    }
+                    else if (/\p{Private_Use}/u.test (character))
+                    {
+                        name = "PRIVATE USE-" + code;
+                    }
+                    else if (/\p{Surrogate}/u.test (character))
+                    {
+                        name = "SURROGATE-" + code;
                     }
                     else
                     {

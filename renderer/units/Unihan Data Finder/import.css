@@ -494,6 +494,11 @@
     display: none;
 }
 
+#unihan-data-finder-unit .rs-data-chart .no-break
+{
+    user-select: none;
+}
+
 #unihan-data-finder-unit .rs-data-chart .strokes-separator
 {
     margin: 0.75em 0;
@@ -512,7 +517,7 @@
     align-items: center;
     justify-content: center;
     vertical-align: top;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     background-color: white;
     color: var(--color-accent);

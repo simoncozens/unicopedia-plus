@@ -91,6 +91,10 @@ module.exports.create = function (title, items, params)
             longTitle.textContent = item.longTitle;
             strokesData.appendChild (longTitle);
             charactersData.appendChild (strokesData);
+            let noBreak = document.createElement ('span');
+            noBreak.className = 'no-break';
+            noBreak.appendChild (document.createTextNode ("\u200D")); // &zwj;
+            charactersData.appendChild (noBreak);
             for (let character of item.characters)
             {
                 let characterData = document.createElement ('span');

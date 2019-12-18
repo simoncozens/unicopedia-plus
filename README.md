@@ -27,9 +27,10 @@ The following utilities are currently available:
 - **Unicode References**
 - **Unihan Data Finder**
     - **Find by Tag Value**
-    - **Radical/Strokes**
+    - **Match Character**
     - **View by Grid**
 - **Unihan Inspector**
+- **Unihan Radical-Strokes**
 - **Unihan References**
 
 ## CJK Font Variants
@@ -308,21 +309,20 @@ The following utilities are currently available:
 
 <img src="screenshots/unihan-data-finder-find-by-tag-value.png" width="1080px" alt="Unihan Data Finder - Find by Tag Value screenshot">
 
-### Radical/Strokes
+### Match Character
 
-- The **Radical/Strokes** feature of the **Unihan Data Finder** utility displays all the Unihan characters searched by KangXi radical and additional stroke count.
-- Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.
-- Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.
-- Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
-- If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.
-- Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
+- The **Match Character** feature of the **Unihan Data Finder** utility displays a list of basic data (symbol, code point, age, ideograph status, block) of matching Unihan characters, including through regular expressions.
+- After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
+- Click on the <kbd>Match Variants</kbd> toggle button to extend the search to characters whose *variants* match the query string.
+- It is possible to choose how many characters are shown one page at a time.
+- The search is performed on the set of 88,889 Unihan characters defined in **Unicode 12.1**.
 - Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
     - `Copy Results` [copy the results as string to the clipboard]
     - `Save Results...` [save the results as string to a text file]
     - `Clear Results` [clear the current list of results]
-- A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.
+- Various examples of regular expressions are provided for quick copy-and-paste.
 
-<img src="screenshots/unihan-data-finder-radical-strokes.png" width="1080px" alt="Unihan Data Finder - Radical/Strokes screenshot">
+<img src="screenshots/unihan-data-finder-match-character.png" width="1080px" alt="Unihan Data Finder - Match Character screenshot">
 
 ### View by Grid
 
@@ -383,6 +383,22 @@ The following utilities are currently available:
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
 
 <img src="screenshots/unihan-inspector-radical.png" width="1080px" alt="Unihan Inspector (Radical) screenshot">
+
+## Unihan Radical-Strokes
+
+- The **Unihan Radical-Strokes** utility displays all the Unihan characters searched by KangXi radical and additional stroke count.
+- Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.
+- Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.
+- Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
+- If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.
+- Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
+- Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
+    - `Copy Results` [copy the results as string to the clipboard]
+    - `Save Results...` [save the results as string to a text file]
+    - `Clear Results` [clear the current list of results]
+- A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.
+
+<img src="screenshots/unihan-radical-strokes.png" width="1080px" alt="Unihan Radical-Strokes screenshot">
 
 ## Unihan References
 

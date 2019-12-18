@@ -291,6 +291,13 @@ module.exports.start = function (context)
                 return variants;
             }
             //
+            function getYasuokaVariants (character)
+            {
+                let codePoint = unicode.characterToCodePoint (character);
+                let variants = yasuokaVariants[codePoint] || [ ];
+                return variants.map (variant => String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
+            }
+            //
             let characterData = document.createElement ('div');
             characterData.className = 'character-data';
             //
@@ -539,8 +546,7 @@ module.exports.start = function (context)
                 let shape = getVariants (character, 'kZVariant');
                 let simplified = getVariants (character, 'kSimplifiedVariant');
                 let traditional = getVariants (character, 'kTraditionalVariant');
-                let yasuoka = yasuokaVariants[character] || [ ];
-                yasuoka = yasuoka.filter (variant => filterRegex.test (variant));
+                let yasuoka = getYasuokaVariants (character).filter (variant => filterRegex.test (variant));
                 let unihanFields =
                 [
                     { name: "Set", value: iiCoreSet, toolTip: iiCoreSetToolTip },

@@ -123,7 +123,8 @@ module.exports.start = function (context)
     }
     //
     const emojiList = require ('emoji-test-list');
-    const emojiKeys = Object.keys (emojiList).sort ().reverse ();
+    //
+    const emojiCount = Object.keys (emojiList).length;
     //
     const cldrAnnotations = require ('../../lib/unicode/get-cldr-annotations.js') ("en.xml");
     //
@@ -361,7 +362,7 @@ module.exports.start = function (context)
                     if (regex)
                     {
                         currentEmojiByName = findEmojiByName (regex);
-                        updateNameResults (currentEmojiByName.length, emojiKeys.length);
+                        updateNameResults (currentEmojiByName.length, emojiCount);
                         updateDataList (currentEmojiByName, nameEmojiDataList);
                     }
                 }
@@ -400,7 +401,7 @@ module.exports.start = function (context)
                 click: () => 
                 {
                     currentEmojiByName = [ ];
-                    updateNameResults (currentEmojiByName.length, emojiKeys.length);
+                    updateNameResults (currentEmojiByName.length, emojiCount);
                     updateDataList (currentEmojiByName, nameEmojiDataList);
                 }
             }
@@ -416,7 +417,7 @@ module.exports.start = function (context)
         }
     );
     //
-    updateNameResults (currentEmojiByName.length, emojiKeys.length);
+    updateNameResults (currentEmojiByName.length, emojiCount);
     //
     nameInstructions.open = prefs.nameInstructions;
     nameRegexExamples.open = prefs.nameRegexExamples;
@@ -522,7 +523,7 @@ module.exports.start = function (context)
                     if (regex)
                     {
                         currentEmojiBySequence = findEmojiBySequence (regex);
-                        updateSequenceResults (currentEmojiBySequence.length, emojiKeys.length);
+                        updateSequenceResults (currentEmojiBySequence.length, emojiCount);
                         updateDataList (currentEmojiBySequence, sequenceEmojiDataList);
                     }
                 }
@@ -561,7 +562,7 @@ module.exports.start = function (context)
                 click: () => 
                 {
                     currentEmojiBySequence = [ ];
-                    updateSequenceResults (currentEmojiBySequence.length, emojiKeys.length);
+                    updateSequenceResults (currentEmojiBySequence.length, emojiCount);
                     updateDataList (currentEmojiBySequence, sequenceEmojiDataList);
                 }
             }
@@ -577,7 +578,7 @@ module.exports.start = function (context)
         }
     );
     //
-    updateSequenceResults (currentEmojiBySequence.length, emojiKeys.length);
+    updateSequenceResults (currentEmojiBySequence.length, emojiCount);
     //
     sequenceInstructions.open = prefs.sequenceInstructions;
     sequenceRegexExamples.open = prefs.sequenceRegexExamples;
@@ -695,7 +696,7 @@ module.exports.start = function (context)
         {
             textFilterButton.disabled = !(event.currentTarget.value.length > 0);
             currentEmojiByText = event.currentTarget.value.match (emojiRegex) || [ ];
-            updateTextResults (currentEmojiByText.length, emojiKeys.length);
+            updateTextResults (currentEmojiByText.length, emojiCount);
             updateDataList (currentEmojiByText, textEmojiDataList);
         }
     );

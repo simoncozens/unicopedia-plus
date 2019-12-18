@@ -1,4 +1,4 @@
 {
     "category": "Unihan",
-    "description": "Basic data of Unihan characters searched by property (tag) value, or by radical/strokes"
+    "description": "Basic data of Unihan characters searched by tag value or by character, or viewed by grid"
 }

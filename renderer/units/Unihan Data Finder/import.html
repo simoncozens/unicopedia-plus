@@ -2,7 +2,7 @@
     <div class="plain-panel">
         <div class="tab-bar">
             <label class="tab-label"><input class="tab-radio" type="radio"><span>Find by Tag Value</span></label>
-            <label class="tab-label"><input class="tab-radio" type="radio"><span>Radical/Strokes</span></label>
+            <label class="tab-label"><input class="tab-radio" type="radio"><span>Match Character</span></label>
             <label class="tab-label"><input class="tab-radio" type="radio"><span>View by Grid</span></label>
         </div>
         <div class="tab-panes">
@@ -42,28 +42,33 @@
                 </div>
                 <div class="search-data"></div>
             </div>
-            <div class="tab-pane radical-strokes">
+            <div class="tab-pane match-character">
                 <div class="actions">
-                    <div class="action-group rs-2-group">
-                        <span class="action">
-                            <label class="checkbox" title="If checked, the search is performed on the Unihan full set; if unchecked, it is limited to the IICore set of CJK unified ideographs in common usage"><input class="full-set-checkbox" type="checkbox">&nbsp;Unihan Full Set</label>
+                    <span class="action-group search-group">
+                        <span class="action search-wrap">
+                            <input class="search-string" type="search" maxlength="256" placeholder="Character...">
+                            <span class="search-message"></span>
                         </span>
                         <span class="action">
-                            <label class="checkbox" title="If checked, the search uses all radical/strokes source tags; if unchecked, it only uses the IRG-defined source tag common to all Unihan characters"><input class="extra-sources-checkbox" type="checkbox">&nbsp;Allow Extra Sources</label>
+                            <label title="Match Variants"><input class="match-variants icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#match-variants-icon"></use></svg></label>
                         </span>
-                    </div>
-                    <div class="action-group rs-group">
+                        <span class="action">|</span>
                         <span class="action">
-                            <label title="KangXi radical">Radical:&nbsp;<select class="radical-select"></select></label>
-                            <label title="Additional stroke count">+&nbsp;Strokes:&nbsp;<select class="strokes-select"></select></label>
+                            <label title="Case Sensitive (disabled)"><input class="case-sensitive icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#case-sensitive-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Whole Word (disabled)"><input class="whole-word icon-checkbox" type="checkbox" disabled><svg><use href="/images/search.svg#whole-word-icon"></use></svg></label>
+                        </span>
+                        <span class="action">
+                            <label title="Regular Expression"><input class="use-regex icon-checkbox" type="checkbox"><svg><use href="/images/search.svg#use-regex-icon"></use></svg></label>
                         </span>
                         <span class="action">
                             <button class="search-button" type="button">Search</button>
                         </span>
-                    </div>
+                    </span>
                 </div>
                 <div class="results">
-                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Unihan characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
+                    <button class="pull-down-menu results-button" type="button" title="Results"><svg class="gear"><use href="/images/actions.svg#gear"></use></svg></button><span class="results-string">Characters: <span class="hit-count"></span>&nbsp;/&nbsp;<span class="total-count"></span></span>
                 </div>
                 <div class="search-data"></div>
             </div>
@@ -162,17 +167,16 @@
                 </details>
             </div>
         </div>
-        <div class="tab-info radical-strokes">
+        <div class="tab-info match-character">
             <div class="accent-panel">
                 <details class="instructions">
                     <summary>Instructions</summary>
                     <ul>
-                        <li>The <strong>Radical/Strokes</strong> feature of the <strong>Unihan Data Finder</strong> utility displays all the Unihan characters searched by KangXi radical and additional stroke count.</li>
-                        <li>Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.</li>
-                        <li>Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.</li>
-                        <li>Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.</li>
-                        <li>If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.</li>
-                        <li>Selecting <code>All</code> from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.</li>
+                        <li>The <strong>Match Character</strong> feature of the <strong>Unihan Data Finder</strong> utility displays a list of basic data (symbol, code point, age, ideograph status, block) of matching Unihan characters, including through regular expressions.</li>
+                        <li>After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.</li>
+                        <li>Click on the <kbd><svg style="width: 15px; height: 15px; vertical-align: text-bottom; stroke: var(--color);"><use href="/images/search.svg#match-variants-icon"></use></svg></kbd> (<em>Match Variants</em>) toggle button to extend the search to characters whose <em>variants</em> match the query string.</li>
+                        <li>It is possible to choose how many characters are shown one page at a time.</li>
+                        <li>The search is performed on the set of 88,889 Unihan characters defined in <strong>Unicode 12.1</strong>.</li>
                         <li>Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
                             <ul>
                                 <li><code>Copy Results</code> [copy the results as string to the clipboard]</li>
@@ -180,12 +184,20 @@
                                 <li><code>Clear Results</code> [clear the current list of results]</li>
                             </ul>
                         </li>
-                        <li>A complete list of the 214 KangXi radicals is available for reference, showing also CJK variants as well as simplified forms.</li>
+                        <li>Various examples of regular expressions are provided for quick copy-and-paste.</li>
                     </ul>
                 </details>
-                <details class="radical-list">
-                    <summary>KangXi Radical List</summary>
-                    <div class="radicals"></div>
+                <details class="regex-examples">
+                    <summary>Regex Examples</summary>
+                    <p><span class="match-variants off"><svg><use href="/images/search.svg#match-variants-icon"></use></svg></span> (<em>Match Variants</em>) toggled <strong>off</strong>:</p>
+                    <ul>
+                        <li><code>\p{Unified_Ideograph}</code><br>Unihan characters with the 'unified ideograph' status</li>
+                        <li><code>[^\p{Unified_Ideograph}]</code><br>Unihan characters with the 'compatibility ideograph' status</li>
+                        <li><code>(?=[\uF900-\uFAFF])\p{Unified_Ideograph}</code><br>Unihan characters belonging the the 'CJK Compatibility Ideographs' block, but with the 'unified ideograph' status</li>
+                    </ul>
+                    <!-- <p><span class="match-variants on"><svg><use href="/images/search.svg#match-variants-icon"></use></svg></span> (<em>Match Variants</em>) toggled <strong>on</strong>:</p>
+                    <ul>
+                    </ul> -->
                 </details>
             </div>
         </div>

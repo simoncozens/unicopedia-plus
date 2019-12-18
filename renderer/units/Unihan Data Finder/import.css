@@ -65,7 +65,7 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
     margin: 0 0 0.5em 0;
     white-space: nowrap;
 }
@@ -79,6 +79,27 @@
 #unihan-data-finder-unit .view-by-grid .actions
 {
     margin-bottom: 0.65em;
+}
+
+#unihan-data-finder-unit .match-character .actions
+{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.25em 0;
+}
+
+#unihan-data-finder-unit .match-character .search-group
+{
+    flex-grow: 1;
+    margin-right: -0.5em;
+}
+
+#unicode-data-finder-unit .match-character .search-group .action
+{
+    margin-right: 0.5em;
 }
 
 #unihan-data-finder-unit .action-group.tag-group
@@ -112,12 +133,6 @@
 #unihan-data-finder-unit .tag-select
 {
     width: 240px;
-}
-
-#unihan-data-finder-unit .radical-select,
-#unihan-data-finder-unit .strokes-select
-{
-    font-family: "Sans CJK TC";
 }
 
 #unihan-data-finder-unit .search-wrap
@@ -171,21 +186,21 @@
     color: white;
     background-color: var(--color-error);
     border-radius: 4px;
-    box-shadow: 0 2px 8px #aaaaaa;
+    box-shadow: 0 2px 8px #AAAAAA;
     z-index: 1;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group
+#unihan-data-finder-unit .search-group
 {
     margin-right: -0.5em;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox
+#unihan-data-finder-unit .search-group .icon-checkbox
 {
     display: none;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox + svg
+#unihan-data-finder-unit .search-group .icon-checkbox + svg
 {
     font-size: 1.7em;
     line-height: 1em;
@@ -198,20 +213,23 @@
     border: 1px solid var(--color-accent);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
     color: var(--color-accent);
+    stroke: var(--color-accent);
     fill: var(--color-accent);
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox:checked + svg
+#unihan-data-finder-unit .search-group .icon-checkbox:checked + svg
 {
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0.15));
     box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
     color: white;
+    stroke: white;
     fill: white;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group .icon-checkbox:disabled + svg
+#unihan-data-finder-unit .search-group .icon-checkbox:disabled + svg
 {
     color: gray;
+    stroke: gray;
     fill: gray;
     border: gray 1px solid;
     background-color: white;
@@ -219,34 +237,9 @@
     pointer-events: none;
 }
 
-#unihan-data-finder-unit .find-by-tag-value .search-group .action
+#unihan-data-finder-unit .search-group .action
 {
     margin-right: 0.5em;
-}
-
-#unihan-data-finder-unit .rs-group
-{
-    margin-right: -0.5em;
-}
-
-#unihan-data-finder-unit .rs-group .action
-{
-    margin-right: 1.25em;
-}
-
-#unihan-data-finder-unit .radical-strokes .rs-2-group
-{
-    margin: -0.25em -0.5em 0.5em 0;
-}
-
-#unihan-data-finder-unit .radical-strokes .rs-2-group .action
-{
-    margin-right: 1.5em;
-}
-
-#unihan-data-finder-unit .radical-strokes .rs-2-group .action label
-{
-    vertical-align: middle;
 }
 
 #unihan-data-finder-unit .results
@@ -288,7 +281,7 @@
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
-    margin: 0.8em 0 0 0;
+    margin: 0.75em 0 0 0;
 }
 
 #unihan-data-finder-unit .pagination-bar .pagination-group
@@ -441,160 +434,105 @@
     hyphens: none;
 }
 
-#unihan-data-finder-unit .radical-strokes .rs-group label.disabled
+#unihan-data-finder-unit .match-character .search-data .data-table
 {
-    color: gray;
-}
-
-#unihan-data-finder-unit .rs-layout-options-group
-{
-    text-align: right;
-    margin-top: -1em;
-    margin-bottom: -0.5em;
-}
-
-#unihan-data-finder-unit .rs-data-chart
-{
-    margin: 1em 0 0.75em 0;
     user-select: text;
-    border: 1px solid var(--color-border);
+    margin: 0.8em 0;
 }
 
-#unihan-data-finder-unit .rs-data-chart .title-header
+#unihan-data-finder-unit .match-character .search-data .symbol-header,
+#unihan-data-finder-unit .match-character .search-data .code-point-header,
+#unihan-data-finder-unit .match-character .search-data .age-header,
+#unihan-data-finder-unit .match-character .search-data .status-header,
+#unihan-data-finder-unit .match-character .search-data .block-name-header
 {
-    text-align: center;
-    font-family: "Sans CJK TC";
-    font-size: 19px;
-    line-height: 1.5em;
-    font-weight: normal;
-    padding: 0.2em 0.4em;
-    vertical-align: middle;
-    background-color: hsla(0, 0%, 50%, 0.06);
-}
-
-#unihan-data-finder-unit .rs-data-chart .strokes-data
-{
-    display: block;
     text-align: left;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 1em;
-    font-weight: 600;
-    background-color: white;
-    color: var(--color-accent);
-    padding: 0.25em 0.75em;
-}
-
-#unihan-data-finder-unit .rs-data-chart .strokes-data .long-title
-{
-    display: inline;
-}
-
-#unihan-data-finder-unit .rs-data-chart .strokes-data .short-title
-{
-    display: none;
-}
-
-#unihan-data-finder-unit .rs-data-chart .no-break
-{
+    padding: 0.5em;
     user-select: none;
 }
 
-#unihan-data-finder-unit .rs-data-chart .strokes-separator
+#unihan-data-finder-unit .match-character .search-data .symbol-header
 {
-    margin: 0.75em 0;
-    border: none;
-    border-bottom: 1px solid var(--color-border);
+    width: 90px;
 }
 
-#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-separator
+#unihan-data-finder-unit .match-character .search-data .code-point-header
 {
-    display: none;
+    width: 6em;
 }
 
-#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-data
+#unihan-data-finder-unit .match-character .search-data .age-header
 {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: top;
-    font-size: 22px;
-    font-weight: 600;
+}
+
+#unihan-data-finder-unit .match-character .search-data .status-header
+{
+}
+
+#unihan-data-finder-unit .match-character .search-data .block-name-header
+{
+    width: 14em;
+}
+
+#unihan-data-finder-unit .match-character .search-data .row
+{
     background-color: white;
-    color: var(--color-accent);
-    border: 2px solid var(--color-accent);
-    /* border-radius: 50%; */
-    padding: 0;
-    margin: 8px;
-    width: 40px;
-    height: 40px;
 }
 
-#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-data .long-title
+#unihan-data-finder-unit .match-character .search-data .symbol-header
 {
-    display: none;
-}
-
-#unihan-data-finder-unit .rs-data-chart .compact-layout .strokes-data .short-title
-{
-    display: inline;
-}
-
-#unihan-data-finder-unit .rs-data-chart .characters-data
-{
-    display: block;
-    background-color: white;
-    text-align: left;
-    padding: 1em;
-    border-top: 1px solid var(--color-border);
-}
-
-#unihan-data-finder-unit .rs-data-chart .characters-data .character-data
-{
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 8px 4px;
-    width: 48px;
-}
-
-#unihan-data-finder-unit .rs-data-chart .characters-data .character-data .symbol
-{
-    font-size: 36px;
     text-align: center;
-    line-height: 1em;
-    margin-bottom: 4px;
-    border: 1px solid transparent;
 }
 
-#unihan-data-finder-unit .rs-data-chart .characters-data .character-data .symbol.deferred
+#unihan-data-finder-unit .match-character .search-data .symbol
 {
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-border);
+    font-family: sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 36px;
+    line-height: 1.2em;
+    height: 1.6em;
+    min-width: 2.5em;
+    max-width: 2.5em;
+    padding: 0.2em 0.1em;
+    overflow-x: overlay;
+    overscroll-behavior: contain;
 }
 
-#unihan-data-finder-unit .rs-data-chart .characters-data .character-data.extra-source .symbol
-{
-    color: gray;
-}
-
-#unihan-data-finder-unit .rs-data-chart .characters-data .character-data .code-point
+#unihan-data-finder-unit .match-character .search-data .code-point
 {
     font-family: Monaco, "Noto Mono", monospace;
-    text-align: center;
-    font-size: 12px;
-    font-weight: bold;
+    text-align: left;
     line-height: 1em;
-    padding: 3px 3px 2px 3px;
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    background-color: var(--color-bg);
+    vertical-align: middle;
+    padding: 0.5em;
 }
 
-#unihan-data-finder-unit .rs-data-chart .characters-data .character-data.extra-source .code-point
+#unihan-data-finder-unit .match-character .search-data .age
 {
-    color: gray;
-    background-color: white;
-    border: 1px dotted gray;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.25em 0.5em;
+    line-height: 1em;
+}
+
+#unihan-data-finder-unit .match-character .search-data .status
+{
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.25em 0.5em;
+    line-height: 1em;
+}
+
+#unihan-data-finder-unit .match-character .search-data .block-name
+{
+    text-align: left;
+    line-height: 1em;
+    vertical-align: middle;
+    padding: 0.5em;
+    hyphens: none;
 }
 
 #unihan-data-finder-unit .view-by-grid .action-group
@@ -744,76 +682,37 @@
     background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
 }
 
-#unihan-data-finder-unit .radicals-table
+#unihan-data-finder-unit .regex-examples .match-variants
 {
-    margin-bottom: 1.25em;
-    user-select: text;
-    width: unset;
+    padding: 2px 2px 6px 2px;
+    vertical-align: baseline;
 }
 
-#unihan-data-finder-unit .radicals-table th
+#unihan-data-finder-unit .regex-examples .match-variants svg
 {
-    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
-    white-space: nowrap;
-    padding: 0.25em 0.5em;
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
 }
 
-#unihan-data-finder-unit .radicals-table tr.even
+#unihan-data-finder-unit .regex-examples .match-variants.off
 {
-    background-color: white;
-}
-
-#unihan-data-finder-unit .radicals-table tr.odd
-{
-    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
-}
-
-#unihan-data-finder-unit .radicals-table td
-{
-    font-family: "Sans CJK TC";
-    font-size: 14px;
-    padding: 0.25em 0.5em;
-}
-
-#unihan-data-finder-unit .radicals-table td.data-strokes
-{
-    font-family: inherit;
-    font-size: inherit;
-    text-align: left;
-    font-weight: 600;
-    padding: 0.25em 1.65em;
+    background: white;
+    border: 1px solid var(--color-accent);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
     color: var(--color-accent);
-    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9));
+    stroke: var(--color-accent);
+    fill: var(--color-accent);
 }
 
-#unihan-data-finder-unit .radicals-table td.data-strokes::before
+#unihan-data-finder-unit .regex-examples .match-variants.on
 {
-    content: "◎\A0\A0";
-    font-size: 1.05em;
-}
-
-#unihan-data-finder-unit .radicals-table th.header-index,
-#unihan-data-finder-unit .radicals-table td.data-index
-{
-    text-align: right;
-}
-
-#unihan-data-finder-unit .radicals-table th.header-radical,
-#unihan-data-finder-unit .radicals-table td.data-kangxi
-{
-    text-align: center;
-}
-
-#unihan-data-finder-unit .radicals-table th.header-name,
-#unihan-data-finder-unit .radicals-table td.data-name
-{
-    text-align: left;
-}
-
-#unihan-data-finder-unit .radicals-table th.header-variants,
-#unihan-data-finder-unit .radicals-table td.data-variants
-{
-    text-align: center;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0.15));
+    border: 1px solid var(--color-accent);
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
+    color: white;
+    stroke: white;
+    fill: white;
 }
 
 #unihan-data-finder-unit .unihan-blocks table.blocks-table

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg">
     <symbol id="match-decomposition-icon" viewBox="-1 -1 17 17">
-        <path fill-rule="evenodd" fill="inherit" d="
+        <path fill-rule="evenodd" fill="inherit" stroke-width="0" d="
             M 5,1 L 10,1 L 10,6 L 5,6 Z
             M 6,5 L 9,5 L 9,2 L 6,2 Z
             M 7,6 L 8,6 L 8,8 L 7,8 Z
@@ -16,8 +16,21 @@
             M 12,12 L 13,12 L 13,13 L 12,13 Z
         " />
     </symbol>
+    <symbol id="match-variants-icon" viewBox="0 0 16 16">
+        <line x1="8" y1="8" x2="14" y2="5" stroke="inherit" stroke-width="1" />
+        <line x1="14" y1="5" x2="10" y2="3" stroke="inherit" stroke-width="1" />
+        <line x1="14" y1="5" x2="14" y2="9" stroke="inherit" stroke-width="1" />
+
+        <line x1="8" y1="8" x2="2" y2="5" stroke="inherit" stroke-width="1" />
+        <line x1="2" y1="5" x2="2" y2="9" stroke="inherit" stroke-width="1" />
+        <line x1="2" y1="5" x2="6" y2="3" stroke="inherit" stroke-width="1" />
+
+        <line x1="8" y1="8" x2="8" y2="14" stroke="inherit" stroke-width="1" />
+        <line x1="8" y1="14" x2="12" y2="12" stroke="inherit" stroke-width="1" />
+        <line x1="8" y1="14" x2="4" y2="12" stroke="inherit" stroke-width="1" />
+    </symbol>
     <symbol id="case-sensitive-icon" viewBox="0 0 16 12">
-        <path fill-rule="evenodd" fill="inherit" d="
+        <path fill-rule="evenodd" fill="inherit" stroke-width="0" d="
             M 8.00800037384033,10.1277000904083
             C 8.00800037384033,10.1277000904083 7.11740016937256,7.77810001373291 7.11740016937256,7.77810001373291
             C 7.11740016937256,7.77810001373291 3.55539989471436,7.77810001373291 3.55539989471436,7.77810001373291
@@ -92,7 +105,7 @@
         " />
     </symbol>
     <symbol id="whole-word-icon" viewBox="0 0 18 14">
-        <path fill-rule="evenodd" fill="inherit" d="
+        <path fill-rule="evenodd" fill="inherit" stroke-width="0" d="
             M 14.0470998287201,3.00440037250519
             C 14.0470998287201,3.00440037250519 15.0471003055573,3.00440037250519 15.0471003055573,3.00440037250519
             C 15.0471003055573,3.00440037250519 15.0471003055573,11.004399895668 15.0471003055573,11.004399895668
@@ -172,7 +185,7 @@
         " />
     </symbol>
     <symbol id="use-regex-icon" viewBox="-0.6 -0.7 13.2 15.4">
-        <path fill-rule="evenodd" fill="inherit" d="
+        <path fill-rule="evenodd" fill="inherit" stroke-width="0" d="
             M 10.650399684906,5.51810026168823
             C 10.650399684906,5.51810026168823 7.87890028953552,5.78030002117157 7.87890028953552,5.78030002117157
             C 7.87890028953552,5.78030002117157 9.96479988098145,7.56840002536774 9.96479988098145,7.56840002536774

@@ -24,25 +24,20 @@ const tagParams = { };
 let tagCurrentTag;
 let tagShowCategories;
 //
-const rsFullSetCheckbox = unit.querySelector ('.radical-strokes .full-set-checkbox');
-const rsExtraSourcesCheckbox = unit.querySelector ('.radical-strokes .extra-sources-checkbox');
-const rsRadicalSelect = unit.querySelector ('.radical-strokes .radical-select');
-const rsStrokesSelect = unit.querySelector ('.radical-strokes .strokes-select');
-const rsSearchButton = unit.querySelector ('.radical-strokes .search-button');
-const rsResultsButton = unit.querySelector ('.radical-strokes .results-button');
-const rsHitCount = unit.querySelector ('.radical-strokes .hit-count');
-const rsTotalCount = unit.querySelector ('.radical-strokes .total-count');
-const rsSearchData = unit.querySelector ('.radical-strokes .search-data');
-const rsInstructions = unit.querySelector ('.radical-strokes .instructions');
-const rsRadicalList = unit.querySelector ('.radical-strokes .radical-list');
-const rsRadicals = unit.querySelector ('.radical-strokes .radicals');
+const matchSearchString = unit.querySelector ('.match-character .search-string');
+const matchSearchMessage = unit.querySelector ('.match-character .search-message');
+const matchVariants = unit.querySelector ('.match-character .match-variants');
+const matchCaseSensitive = unit.querySelector ('.match-character .case-sensitive');
+const matchUseRegex = unit.querySelector ('.match-character .use-regex');
+const matchSearchButton = unit.querySelector ('.match-character .search-button');
+const matchResultsButton = unit.querySelector ('.match-character .results-button');
+const matchHitCount = unit.querySelector ('.match-character .hit-count');
+const matchTotalCount = unit.querySelector ('.match-character .total-count');
+const matchSearchData = unit.querySelector ('.match-character .search-data');
+const matchInstructions = unit.querySelector ('.match-character .instructions');
+const matchRegexExamples = unit.querySelector ('.match-character .regex-examples');
 //
-const rsParams = { };
-//
-let rsCurrentRadical;
-let rsCurrentStrokes;
-//
-const gridParams = { };
+const matchParams = { };
 //
 const gridSpecimen = unit.querySelector ('.view-by-grid .specimen');
 const gridGoButton = unit.querySelector ('.view-by-grid .go-button');
@@ -55,6 +50,8 @@ const gridSearchData = unit.querySelector ('.view-by-grid .search-data');
 const gridInstructions = unit.querySelector ('.view-by-grid .instructions');
 const gridUnihanBlocks = unit.querySelector ('.view-by-grid .unihan-blocks');
 const gridBlocks = unit.querySelector ('.view-by-grid .blocks');
+//
+const gridParams = { };
 //
 const gridSpecimenHistorySize = 256;   // 0: unlimited
 //
@@ -90,13 +87,13 @@ module.exports.start = function (context)
         tagInstructions: true,
         tagRegexExamples: false,
         //
-        rsFullSetCheckbox: false,
-        rsExtraSourcesCheckbox: false,
-        rsRadicalSelect: "",
-        rsStrokesSelect: "",
-        rsCompactLayout: false,
-        rsInstructions: true,
-        rsRadicalList: false,
+        matchSearchString: "",
+        matchVariants: false,
+        matchCaseSensitive: false,
+        matchUseRegex: false,
+        matchPageSize: 8,
+        matchInstructions: true,
+        matchRegexExamples: false,
         //
         gridSelectBlockRange: "4E00-9FFF",  // CJK Unified Ideographs
         gridSpecimenHistory: [ ],
@@ -166,14 +163,14 @@ module.exports.start = function (context)
         }
     }
     //
+    const tagDataTable = require ('./tag-data-table.js');
+    //
     tagParams.pageSize = prefs.tagPageSize;
     tagParams.observer = null;
     tagParams.root = unit;
     //
     tagCurrentTag = prefs.tagSelect;
     tagShowCategories = prefs.tagShowCategories;
-    //
-    const tagDataTable = require ('./tag-data-table.js');
     //
     function updateTagMenu ()
     {
@@ -435,216 +432,226 @@ module.exports.start = function (context)
     tagInstructions.open = prefs.tagInstructions;
     tagRegexExamples.open = prefs.tagRegexExamples;
     //
-    rsParams.compactLayout = prefs.rsCompactLayout;
-    rsParams.observer = null;
-    rsParams.root = unit;
+    const matchDataTable = require ('./match-data-table.js');
     //
-    const rsDataTable = require ('./rs-data-table.js');
+    const yasuokaVariants = require ('../../lib/unicode/parsed-yasuoka-variants-data.js');
     //
-    rsFullSetCheckbox.checked = prefs.rsFullSetCheckbox;
+    matchParams.pageSize = prefs.matchPageSize;
+    matchParams.observer = null;
+    matchParams.root = unit;
     //
-    rsExtraSourcesCheckbox.checked = prefs.rsExtraSourcesCheckbox;
+    matchVariants.checked = prefs.matchVariants;
     //
-    rsCurrentRadical = prefs.rsRadicalSelect;
-    rsCurrentStrokes = prefs.rsStrokesSelect;
+    matchCaseSensitive.checked = prefs.matchCaseSensitive;
+    matchUseRegex.checked = prefs.matchUseRegex;
     //
-    const kangxiRadicals = require ('../../lib/unicode/kangxi-radicals.json');
-    //
-    const { fromRadical, fromStrokes, fromRadicalStrokes } = require ('../../lib/unicode/get-rs-strings.js');
-    //
-    let lastStrokes = 0;
-    let optionGroup = null;
-    kangxiRadicals.forEach
+    matchSearchString.addEventListener
     (
-        (radical, index) =>
+        'keypress',
+        (event) =>
         {
-            if (lastStrokes !== radical.strokes)
+            if (event.key === 'Enter')
             {
-                if (optionGroup)
-                {
-                    rsRadicalSelect.appendChild (optionGroup);
-                }
-                optionGroup = document.createElement ('optgroup');
-                optionGroup.label = `◎\xA0\xA0${fromRadicalStrokes (radical.strokes, true).replace (" ", "\u2002")}`;
-                lastStrokes = radical.strokes;
+                event.preventDefault ();
+                matchSearchButton.click ();
             }
-            let option = document.createElement ('option');
-            option.textContent = `${fromRadical (index + 1).replace (/^(\S+)\s(\S+)\s/u, "$1\u2002$2\u2002")}`;
-            option.value = index + 1;
-            optionGroup.appendChild (option);
         }
     );
-    rsRadicalSelect.appendChild (optionGroup);
+    matchSearchString.addEventListener
+    (
+        'focusin',
+        (event) =>
+        {
+            if (event.currentTarget.classList.contains ('error'))
+            {
+                matchSearchMessage.classList.add ('shown');
+            }
+        }
+    );
+    matchSearchString.addEventListener
+    (
+        'focusout',
+        (event) =>
+        {
+            if (event.currentTarget.classList.contains ('error'))
+            {
+                matchSearchMessage.classList.remove ('shown');
+            }
+        }
+    );
+    matchSearchString.addEventListener
+    (
+        'input',
+        (event) =>
+        {
+            event.currentTarget.classList.remove ('error');
+            matchSearchMessage.textContent = "";
+            matchSearchMessage.classList.remove ('shown');
+            if (matchUseRegex.checked)
+            {
+                try
+                {
+                    regexUnicode.build (event.currentTarget.value, { caseSensitive: matchCaseSensitive.checked, useRegex: matchUseRegex.checked });
+                }
+                catch (e)
+                {
+                    event.currentTarget.classList.add ('error');
+                    matchSearchMessage.textContent = e.message;
+                    if (event.currentTarget === document.activeElement)
+                    {
+                        matchSearchMessage.classList.add ('shown');
+                    }
+                }
+            }
+        }
+    );
+    matchSearchString.value = prefs.matchSearchString;
+    matchSearchString.dispatchEvent (new Event ('input'));
     //
-    rsRadicalSelect.value = rsCurrentRadical;
-    if (rsRadicalSelect.selectedIndex < 0) // -1: no element is selected
-    {
-        rsRadicalSelect.selectedIndex = 0;
-    }
-    rsCurrentRadical = rsRadicalSelect.value;
+    matchUseRegex.addEventListener
+    (
+        'change',
+        (event) => matchSearchString.dispatchEvent (new Event ('input'))
+    );
     //
-    rsRadicalSelect.addEventListener ('input', event => { rsCurrentRadical = event.currentTarget.value; });
-    //
-    const minStrokes = 0;
-    const maxStrokes = 62;  // 𠔻 U+2053B kRSKangXi 12.62
-    //
-    let allOption = document.createElement ('option');
-    allOption.textContent = "All";
-    allOption.value = '*';
-    rsStrokesSelect.appendChild (allOption);
-    let separatorOption = document.createElement ('option');
-    separatorOption.textContent = "\u2015";   // Horizontal bar
-    separatorOption.disabled = true;
-    rsStrokesSelect.appendChild (separatorOption);
-    for (let strokesIndex = minStrokes; strokesIndex <= maxStrokes; strokesIndex++)
-    {
-        let option = document.createElement ('option');
-        option.textContent = strokesIndex;
-        rsStrokesSelect.appendChild (option);
-    }
-    //
-    rsStrokesSelect.value = rsCurrentStrokes;
-    if (rsStrokesSelect.selectedIndex < 0) // -1: no element is selected
-    {
-        rsStrokesSelect.selectedIndex = 0;
-    }
-    rsCurrentStrokes = rsStrokesSelect.value;
-    //
-    rsStrokesSelect.addEventListener ('input', event => { rsCurrentStrokes = event.currentTarget.value; });
-    //
-    const { fromRSValue } = require ('../../lib/unicode/get-rs-strings.js');
-    //
-    const rsTags =
+    let variantTags =
     [
-        "kRSUnicode",   // Must be first
-        "kRSKangXi",
-        "kRSJapanese",
-        "kRSKanWa",
-        "kRSKorean",
-        "kRSAdobe_Japan1_6"
+        'kCompatibilityVariant',
+        'kSemanticVariant',
+        'kSimplifiedVariant',
+        'kSpecializedSemanticVariant',
+        'kTraditionalVariant',
+        'kZVariant'
     ];
     //
-    function findCharactersByRadicalStrokes (options)
+    function getVariants (codePoint)
     {
-        let items = [ ];
-        for (let strokes = options.minStrokes; strokes <= options.maxStrokes; strokes++)
+        let variantCodePoints = [ ];
+        let codePointData = unihanData.codePoints[codePoint];
+        // Unicode Variants
+        for (let variantTag of variantTags)
         {
-            items.push ({ shortTitle: fromStrokes (strokes), longTitle: fromStrokes (strokes, true), characters: [ ] });
-        }
-        let codePoints = unihanData.codePoints;
-        let set = options.fullSet ? unihanData.fullSet : unihanData.coreSet;
-        for (let codePoint of set)
-        {
-            let rsValues = [ ];
-            let irgSourceValues = null;
-            for (let rsTag of rsTags)
+            if (variantTag in codePointData)
             {
-                let rsTagValues = codePoints[codePoint][rsTag];
-                if (rsTagValues)
+                let variants = codePointData[variantTag];
+                if (!Array.isArray (variants))
                 {
-                    if (!Array.isArray (rsTagValues))
-                    {
-                        rsTagValues = [ rsTagValues ];
-                    }
-                    if (rsTag == "kRSUnicode")
-                    {
-                        irgSourceValues = [...rsTagValues];
-                    }
-                    else if (!options.extraSources)
-                    {
-                        break;
-                    }
-                    for (let rsTagValue of rsTagValues)
-                    {
-                        if (rsTag === "kRSAdobe_Japan1_6")
-                        {
-                            let parsed = rsTagValue.match (/^([CV])\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
-                            if (parsed[1] === "C")
-                            {
-                                let [ index, strokes, residual ] = parsed[2].split (".");
-                                rsValues.push ([ index, residual ].join ("."));
-                            }
-                        }
-                        else
-                        {
-                            rsValues.push (rsTagValue);
-                        }
-                    }
+                    variants = [ variants ];
                 }
-            }
-            // Remove duplicates
-            rsValues = [...new Set (rsValues.map (rsValue => rsValue.replace ("'", "").replace (/\.-\d+/, ".0")))];
-            irgSourceValues = [...new Set (irgSourceValues.map (rsValue => rsValue.replace ("'", "").replace (/\.-\d+/, ".0")))];
-            for (let rsValue of rsValues)
-            {
-                let [ tagRadical, tagResidual ] = rsValue.split (".");
-                if (parseInt (tagRadical) === options.radical)
+                for (let variant of variants)
                 {
-                    let residualStrokes = parseInt (tagResidual);
-                    if ((options.minStrokes <= residualStrokes) && (residualStrokes <= options.maxStrokes))
+                    variant = variant.split ("<")[0];
+                    if (!variantCodePoints.includes (variant))
                     {
-                        let code = codePoint.replace ("U+", "");
-                        let character = { symbol: String.fromCodePoint (parseInt (code, 16)), code: code };
-                        if (options.extraSources)
-                        {
-                            let extraSource = !irgSourceValues.includes (rsValue);
-                            if (extraSource)
-                            {
-                                character.extraSource = extraSource;
-                                character.toolTip = irgSourceValues.map (rsValue => fromRSValue (rsValue, true).join (" +\xA0")).join ("\n");
-                            }
-                        }
-                        items[residualStrokes - options.minStrokes].characters.push (character);
+                        variantCodePoints.push (variant);
                     }
                 }
             }
         }
-        return items;
+        // Yasuoka Variants
+        let variants = yasuokaVariants[codePoint] || [ ];
+        for (let variant of variants)
+        {
+            if (variant in unihanData.codePoints)
+            {
+                if (!variantCodePoints.includes (variant))
+                {
+                    variantCodePoints.push (variant);
+                }
+            }
+        }
+        return variantCodePoints;
     }
     //
-    function updateRadicalStrokesResults (hitCount, totalCount)
+    function findCharactersByMatch (regex, matchVariants)
     {
-        rsHitCount.textContent = hitCount;
-        rsTotalCount.textContent = totalCount;
-        rsResultsButton.disabled = (hitCount <= 0);
+        let characterList = [ ];
+        for (let codePoint of unihanData.fullSet)
+        {
+            let character = String.fromCodePoint (parseInt (codePoint.replace ("U+", ""), 16));
+            if (regex.test (character))
+            {
+                characterList.push (character);
+                if (matchVariants)
+                {
+                    let variants = getVariants (codePoint);
+                    for (let variant of variants)
+                    {
+                        let variantCharacter = String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16));
+                        if (!characterList.includes (variantCharacter))
+                        {
+                            characterList.push (variantCharacter);
+                        }
+                    }
+                }
+            }
+            else if (matchVariants)
+            {
+                let variants = getVariants (codePoint);
+                for (let variant of variants)
+                {
+                    let variantCharacter = String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16));
+                    if (regex.test (variantCharacter))
+                    {
+                        if (!characterList.includes (character))
+                        {
+                            characterList.push (character);
+                        }
+                    }
+                }
+            }
+        }
+        return characterList.sort ((a, b) => a.codePointAt (0) - b.codePointAt (0));
     }
     //
-    let currentCharactersByRadicalStrokes = [ ];
+    function updateMatchResults (hitCount, totalCount)
+    {
+        matchHitCount.textContent = hitCount;
+        matchTotalCount.textContent = totalCount;
+        matchResultsButton.disabled = (hitCount <= 0);
+    }
     //
-    rsSearchButton.addEventListener
+    let currentCharactersByMatch = [ ];
+    //
+    matchSearchButton.addEventListener
     (
         'click',
         (event) =>
         {
-            clearSearch (rsSearchData);
-            let findOptions =
+            if (!matchSearchString.classList.contains ('error'))
             {
-                fullSet: rsFullSetCheckbox.checked,
-                extraSources: rsExtraSourcesCheckbox.checked,
-                radical: parseInt (rsCurrentRadical),
-                minStrokes: (rsCurrentStrokes === '*') ? minStrokes : parseInt (rsCurrentStrokes),
-                maxStrokes: (rsCurrentStrokes === '*') ? maxStrokes : parseInt (rsCurrentStrokes)
-            };
-            let characters = [ ];
-            let items = findCharactersByRadicalStrokes (findOptions);
-            for (let item of items)
-            {
-                for (let character of item.characters)
+                let searchString = matchSearchString.value;
+                if (searchString)
                 {
-                    characters.push (character.symbol);
+                    let regex = null;
+                    try
+                    {
+                        regex = regexUnicode.build (searchString, { caseSensitive: matchCaseSensitive.checked, useRegex: matchUseRegex.checked });
+                    }
+                    catch (e)
+                    {
+                    }
+                    if (regex)
+                    {
+                        clearSearch (matchSearchData);
+                        currentCharactersByMatch = findCharactersByMatch (regex, matchVariants.checked);
+                        updateMatchResults (currentCharactersByMatch.length, unihanCount);
+                        if (currentCharactersByMatch.length > 0)
+                        {
+                            matchParams.pageIndex = 0;
+                            matchSearchData.appendChild (matchDataTable.create (currentCharactersByMatch, matchParams));
+                        }
+                    }
                 }
-            };
-            currentCharactersByRadicalStrokes = characters;
-            updateRadicalStrokesResults (currentCharactersByRadicalStrokes.length, unihanCount);
-            if (characters.length > 0)
+            }
+            else
             {
-                let title = fromRadical (rsRadicalSelect.selectedIndex + 1, false, true).replace (/^(\S+)\s(\S+)\s(\S+)\s/u, "$1\u2002$2\u2002$3\u2002");
-                rsSearchData.appendChild (rsDataTable.create (title, items, rsParams));
+                remote.shell.beep ();
             }
         }
     );
     //
-    let rsResultsMenu =
+    let matchResultsMenu =
     remote.Menu.buildFromTemplate
     (
         [
@@ -652,9 +659,9 @@ module.exports.start = function (context)
                 label: "Copy Results", // "Copy Results as String"
                 click: () => 
                 {
-                    if (currentCharactersByRadicalStrokes.length > 0)
+                    if (currentCharactersByMatch.length > 0)
                     {
-                        remote.clipboard.writeText (currentCharactersByRadicalStrokes.join (""));
+                        remote.clipboard.writeText (currentCharactersByMatch.join (""));
                     }
                 }
             },
@@ -662,7 +669,7 @@ module.exports.start = function (context)
                 label: "Save Results...", // "Save Results to File"
                 click: () => 
                 {
-                    saveResults (currentCharactersByRadicalStrokes.join (""));
+                    saveResults (currentCharactersByMatch.join (""));
                 }
             },
             { type: 'separator' },
@@ -670,31 +677,29 @@ module.exports.start = function (context)
                 label: "Clear Results",
                 click: () => 
                 {
-                    clearSearch (rsSearchData);
-                    currentCharactersByRadicalStrokes = [ ];
-                    updateRadicalStrokesResults (currentCharactersByRadicalStrokes.length, unihanCount);
+                    clearSearch (matchSearchData);
+                    currentCharactersByMatch = [ ];
+                    updateMatchResults (currentCharactersByMatch.length, unihanCount);
                 }
             }
         ]
     );
     //
-    rsResultsButton.addEventListener
+    matchResultsButton.addEventListener
     (
         'click',
         (event) =>
         {
-            pullDownMenus.popup (event.currentTarget, rsResultsMenu);
+            pullDownMenus.popup (event.currentTarget, matchResultsMenu);
         }
     );
     //
-    updateRadicalStrokesResults (currentCharactersByRadicalStrokes.length, unihanCount);
+    updateMatchResults (currentCharactersByMatch.length, unihanCount);
     //
-    rsInstructions.open = prefs.rsInstructions;
-    rsRadicalList.open = prefs.rsRadicalList;
+    matchInstructions.open = prefs.matchInstructions;
+    matchRegexExamples.open = prefs.matchRegexExamples;
     //
-    let radicalsTable = require ('./radicals-table.js');
-    //
-    rsRadicals.appendChild (radicalsTable.create (kangxiRadicals));
+    const gridDataTable = require ('./grid-data-table.js');
     //
     gridSpecimenHistory = prefs.gridSpecimenHistory;
     //
@@ -702,8 +707,6 @@ module.exports.start = function (context)
     gridParams.pageIndex = prefs.gridPageIndex;
     gridParams.observer = null;
     gridParams.root = unit;
-    //
-    const gridDataTable = require ('./grid-data-table.js');
     //
     const unihanBlocks = require ('./unihan-blocks.json');
     //
@@ -1067,13 +1070,13 @@ module.exports.stop = function (context)
         tagInstructions: tagInstructions.open,
         tagRegexExamples: tagRegexExamples.open,
         //
-        rsFullSetCheckbox: rsFullSetCheckbox.checked,
-        rsExtraSourcesCheckbox: rsExtraSourcesCheckbox.checked,
-        rsRadicalSelect: rsCurrentRadical,
-        rsStrokesSelect: rsCurrentStrokes,
-        rsCompactLayout: rsParams.compactLayout,
-        rsInstructions: rsInstructions.open,
-        rsRadicalList: rsRadicalList.open,
+        matchSearchString: matchSearchString.value,
+        matchVariants: matchVariants.checked,
+        matchCaseSensitive: matchCaseSensitive.checked,
+        matchUseRegex: matchUseRegex.checked,
+        matchPageSize: matchParams.pageSize,
+        matchInstructions: matchInstructions.open,
+        matchRegexExamples: matchRegexExamples.open,
         //
         gridSelectBlockRange: gridSelectBlockRange.value,
         gridSpecimenHistory: gridSpecimenHistory,

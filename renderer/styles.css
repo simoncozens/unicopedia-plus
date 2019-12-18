@@ -326,7 +326,7 @@ kbd
 .sidebar .nav-button.is-selected
 {
     background-color: var(--color-accent);
-    color: #fff;
+    color: white;
 }
 
 .sidebar .footer

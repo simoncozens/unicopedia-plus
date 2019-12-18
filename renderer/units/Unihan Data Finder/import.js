@@ -577,11 +577,7 @@ module.exports.start = function (context)
                     let variants = getVariants (codePoint);
                     for (let variant of variants)
                     {
-                        let variantCharacter = String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16));
-                        if (!characterList.includes (variantCharacter))
-                        {
-                            characterList.push (variantCharacter);
-                        }
+                        characterList.push (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16)));
                     }
                 }
             }
@@ -593,15 +589,12 @@ module.exports.start = function (context)
                     let variantCharacter = String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16));
                     if (regex.test (variantCharacter))
                     {
-                        if (!characterList.includes (character))
-                        {
-                            characterList.push (character);
-                        }
+                        characterList.push (character);
                     }
                 }
             }
         }
-        return characterList.sort ((a, b) => a.codePointAt (0) - b.codePointAt (0));
+        return [...new Set (characterList)].sort ((a, b) => a.codePointAt (0) - b.codePointAt (0));
     }
     //
     function updateMatchResults (hitCount, totalCount)

@@ -48,7 +48,7 @@ The following utilities are currently available:
 - Additionally, it is possible to specify a set of logographic glyph variants for display by using the <kbd>East Asian Variant</kbd> drop-down menu.
 - Font variants of the CJK characters can be visualized either vertically or horizontally. Use the <kbd>Writing Mode</kbd> drop-down menu to toggle between the two modes.
 - Clicking inside any character frame displays momentarily the same glyph for all language flavors, while shift-clicking applies to all characters of the string in a given language flavor. This is especially useful to quickly spot the differences between glyph variations. If the <kbd>⇪ Caps Lock</kbd> key is turned on as well, the differences are shown in contrasting colors instead.
-- CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
+- CJK characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code points" input field.
 - It is also possible to input predefined strings of CJK characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu; some of them make use of the information found in the [StandardizedVariants.txt](https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt) or [IVD_Sequences.txt](https://www.unicode.org/ivd/data/2017-12-12/IVD_Sequences.txt) data files.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+7ADC` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
@@ -223,7 +223,7 @@ The following utilities are currently available:
 ## Unicode Foldings
 
 - The **Unicode Foldings** utility displays simultaneously the uppercase and lowercase foldings of a given string, making use of the JavaScript string functions [toUpperCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) and [toLowerCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase), or [toLocaleUpperCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase) and [toLocaleLowerCase](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase) when a specific locale is selected from the <kbd>Locale</kbd> drop-down menu.
-- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
+- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code points" input field.
 - It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+00DF` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
@@ -235,7 +235,7 @@ The following utilities are currently available:
 ## Unicode Inspector
 
 - The **Unicode Inspector** utility displays code point information in real time for each Unicode character of a text string.
-- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
+- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code points" input field.
 - It is also possible to input predefined sets of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+0041` is used, i.e. "U+" directly followed by 4 or 5 hex digits.
@@ -269,7 +269,7 @@ The following utilities are currently available:
     | NFKC | Normalization Form KC | Compatibility Decomposition, followed by Canonical Composition |
     | NFKD | Normalization Form KD | Compatibility Decomposition |
 
-- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code Points" input field.
+- Characters can be entered either directly in the "Characters" input field, or using a series of code points in hexadecimal format in the "Code points" input field.
 - It is also possible to input predefined strings of characters selected from the <kbd>Samples&nbsp;▾</kbd> pop-up menu.
 - As a convenience, the input fields can be emptied using the <kbd>Clear</kbd> button.
 - In output, the standard Unicode code point format `U+212B` is used, i.e. "U+" directly followed by 4 or 5 hex digits.

@@ -586,8 +586,7 @@ module.exports.start = function (context)
                 let variants = getVariants (codePoint);
                 for (let variant of variants)
                 {
-                    let variantCharacter = String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16));
-                    if (regex.test (variantCharacter))
+                    if (regex.test (String.fromCodePoint (parseInt (variant.replace ("U+", ""), 16))))
                     {
                         characterList.push (character);
                     }

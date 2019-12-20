@@ -334,14 +334,16 @@
 #unihan-data-finder-unit .search-data .data-table
 {
     user-select: text;
-    margin: 0.75em 0;
+    margin: 0.8em 0;
 }
 
-#unihan-data-finder-unit .search-data .header-symbol,
-#unihan-data-finder-unit .search-data .header-code-point,
-#unihan-data-finder-unit .search-data .header-tag,
-#unihan-data-finder-unit .search-data .header-value,
-#unihan-data-finder-unit .search-data .header-block
+#unihan-data-finder-unit .search-data .symbol-header,
+#unihan-data-finder-unit .search-data .code-point-header,
+#unihan-data-finder-unit .search-data .tag-header,
+#unihan-data-finder-unit .search-data .value-header,
+#unihan-data-finder-unit .search-data .age-header,
+#unihan-data-finder-unit .search-data .status-header,
+#unihan-data-finder-unit .search-data .block-name-header
 {
     text-align: left;
     font-size: 13px;
@@ -350,46 +352,56 @@
     user-select: none;
 }
 
-#unihan-data-finder-unit .search-data .data-table .header-symbol
+#unihan-data-finder-unit .search-data .symbol-header
 {
     width: 5em;
     text-align: center;
 }
 
-#unihan-data-finder-unit .search-data .header-code-point
-{
-    width: 6em;
-}
-#unihan-data-finder-unit .search-data .header-tag
+#unihan-data-finder-unit .search-data .code-point-header
 {
     width: 6em;
 }
 
-#unihan-data-finder-unit .search-data .data-table .header-value
+#unihan-data-finder-unit .search-data .tag-header
+{
+    width: 6em;
+}
+
+#unihan-data-finder-unit .search-data .value-header
 {
 }
 
-#unihan-data-finder-unit .search-data .data-table .header-block
+#unihan-data-finder-unit .search-data .age-header
+{
+}
+
+#unihan-data-finder-unit .search-data .status-header
+{
+}
+
+#unihan-data-finder-unit .search-data .block-name-header
 {
     width: 13em;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-row
+#unihan-data-finder-unit .search-data .data-row
 {
+    text-align: left;
     vertical-align: middle;
     background-color: white;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-symbol
+#unihan-data-finder-unit .search-data .symbol-data
 {
     text-align: center;
     font-size: 36px;
     padding: 0.5em 0;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-code-point,
-#unihan-data-finder-unit .search-data .data-table .data-tag,
-#unihan-data-finder-unit .search-data .data-table .data-value
+#unihan-data-finder-unit .search-data .code-point-data,
+#unihan-data-finder-unit .search-data .tag-data,
+#unihan-data-finder-unit .search-data .value-data
 {
     font-family: Monaco, "Noto Mono", monospace;
     text-align: left;
@@ -397,141 +409,40 @@
     padding: 0.25em 0.5em;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-tag
-{
-}
-
-#unihan-data-finder-unit .search-data .data-table .data-tag,
-#unihan-data-finder-unit .search-data .data-table .data-value
+#unihan-data-finder-unit .search-data .tag-data,
+#unihan-data-finder-unit .search-data .value-data
 {
     line-height: 1.2em;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-value .list
+#unihan-data-finder-unit .search-data .value-data .list
 {
     margin: 0;
     list-style-type: disc;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-value .item
+#unihan-data-finder-unit .search-data .value-data .item
 {
     margin: 0.1em 0 0.1em -24px;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-value .item.no-match
+#unihan-data-finder-unit .search-data .value-data .item.no-match
 {
     color: gray;
     list-style-type: circle;
 }
 
-#unihan-data-finder-unit .search-data .data-table .data-block
+#unihan-data-finder-unit .search-data .age-data,
+#unihan-data-finder-unit .search-data .status-data,
+#unihan-data-finder-unit .search-data .block-name-data
 {
     text-align: left;
-    font-size: 13px;
     line-height: 1em;
-    vertical-align: middle;
-    padding: 0.5em;
-    hyphens: none;
-}
-
-#unihan-data-finder-unit .match-character .search-data .data-table
-{
-    user-select: text;
-    margin: 0.8em 0;
-}
-
-#unihan-data-finder-unit .match-character .search-data .symbol-header,
-#unihan-data-finder-unit .match-character .search-data .code-point-header,
-#unihan-data-finder-unit .match-character .search-data .age-header,
-#unihan-data-finder-unit .match-character .search-data .status-header,
-#unihan-data-finder-unit .match-character .search-data .block-name-header
-{
-    text-align: left;
-    font-size: 13px;
-    line-height: 1em;
-    padding: 0.5em;
-    user-select: none;
-}
-
-#unihan-data-finder-unit .match-character .search-data .symbol-header
-{
-    width: 90px;
-}
-
-#unihan-data-finder-unit .match-character .search-data .code-point-header
-{
-    width: 6em;
-}
-
-#unihan-data-finder-unit .match-character .search-data .age-header
-{
-}
-
-#unihan-data-finder-unit .match-character .search-data .status-header
-{
-}
-
-#unihan-data-finder-unit .match-character .search-data .block-name-header
-{
-    width: 14em;
-}
-
-#unihan-data-finder-unit .match-character .search-data .row
-{
-    background-color: white;
-}
-
-#unihan-data-finder-unit .match-character .search-data .symbol-header
-{
-    text-align: center;
-}
-
-#unihan-data-finder-unit .match-character .search-data .symbol
-{
-    font-family: sans-serif;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 36px;
-    line-height: 1.2em;
-    height: 1.6em;
-    min-width: 2.5em;
-    max-width: 2.5em;
-    padding: 0.2em 0.1em;
-    overflow-x: overlay;
-    overscroll-behavior: contain;
-}
-
-#unihan-data-finder-unit .match-character .search-data .code-point
-{
-    font-family: Monaco, "Noto Mono", monospace;
-    text-align: left;
-    line-height: 1em;
-    vertical-align: middle;
     padding: 0.5em;
 }
 
-#unihan-data-finder-unit .match-character .search-data .age
+#unihan-data-finder-unit .search-data .block-name-data
 {
-    text-align: left;
-    vertical-align: middle;
-    padding: 0.25em 0.5em;
-    line-height: 1em;
-}
-
-#unihan-data-finder-unit .match-character .search-data .status
-{
-    text-align: left;
-    vertical-align: middle;
-    padding: 0.25em 0.5em;
-    line-height: 1em;
-}
-
-#unihan-data-finder-unit .match-character .search-data .block-name
-{
-    text-align: left;
-    line-height: 1em;
-    vertical-align: middle;
-    padding: 0.5em;
     hyphens: none;
 }
 

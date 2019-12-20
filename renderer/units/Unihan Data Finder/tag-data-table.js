@@ -60,26 +60,26 @@ module.exports.create = function (characterInfos, params)
         //
         let headerRow = document.createElement ('tr');
         headerRow.className = 'header-row';
-        let headerSymbol = document.createElement ('th');
-        headerSymbol.className = 'header-symbol';
-        headerSymbol.textContent = "Symbol";
-        headerRow.appendChild (headerSymbol);
-        let headerCodePoint = document.createElement ('th');
-        headerCodePoint.className = 'header-code-point';
-        headerCodePoint.textContent = "Code\xA0Point";
-        headerRow.appendChild (headerCodePoint);
-        let headerTag = document.createElement ('th');
-        headerTag.className = 'header-tag';
-        headerTag.textContent = "Unihan\xA0Tag";
-        headerRow.appendChild (headerTag);
-        let headerValue = document.createElement ('th');
-        headerValue.className = 'header-value';
-        headerValue.textContent = "Value(s)";
-        headerRow.appendChild (headerValue);
-        let headerBlock = document.createElement ('th');
-        headerBlock.className = 'header-block';
-        headerBlock.textContent = "Block";
-        headerRow.appendChild (headerBlock);
+        let symbolHeader = document.createElement ('th');
+        symbolHeader.className = 'symbol-header';
+        symbolHeader.textContent = "Symbol";
+        headerRow.appendChild (symbolHeader);
+        let codePointHeader = document.createElement ('th');
+        codePointHeader.className = 'code-point-header';
+        codePointHeader.textContent = "Code\xA0Point";
+        headerRow.appendChild (codePointHeader);
+        let tagHeader = document.createElement ('th');
+        tagHeader.className = 'tag-header';
+        tagHeader.textContent = "Unihan\xA0Tag";
+        headerRow.appendChild (tagHeader);
+        let valueHeader = document.createElement ('th');
+        valueHeader.className = 'value-header';
+        valueHeader.textContent = "Value(s)";
+        headerRow.appendChild (valueHeader);
+        let blockNameHeader = document.createElement ('th');
+        blockNameHeader.className = 'block-name-header';
+        blockNameHeader.textContent = "Block";
+        headerRow.appendChild (blockNameHeader);
         table.appendChild (headerRow);
         //
         let unifiedRegex = regexUnicode.build ('\\p{Unified_Ideograph}', { useRegex: true });
@@ -91,29 +91,29 @@ module.exports.create = function (characterInfos, params)
             dataRow.className = 'data-row';
             let status = unifiedRegex.test (characterInfo.character) ? "Unified Ideograph" : "Compatibility Ideograph";
             dataRow.title = `Age: Unicode ${data.age} (${data.ageDate})\nStatus: ${status}`;
-            let dataSymbol = document.createElement ('td');
-            dataSymbol.className = 'data-symbol';
+            let symbolData = document.createElement ('td');
+            symbolData.className = 'symbol-data';
             if (deferredSymbols)
             {
-                dataSymbol.textContent = "\u3000";  // Ideographic space
-                dataSymbol.dataset.character = characterInfo.character;
-                params.observer.observe (dataSymbol);
+                symbolData.textContent = "\u3000";  // Ideographic space
+                symbolData.dataset.character = characterInfo.character;
+                params.observer.observe (symbolData);
             }
             else
             {
-                dataSymbol.textContent = characterInfo.character;
+                symbolData.textContent = characterInfo.character;
             }
-            dataRow.appendChild (dataSymbol);
-            let dataCodePoint = document.createElement ('td');
-            dataCodePoint.className = 'data-code-point';
-            dataCodePoint.textContent = characterInfo.codePoint;
-            dataRow.appendChild (dataCodePoint);
-            let dataTag = document.createElement ('td');
-            dataTag.className = 'data-tag';
-            dataTag.textContent = characterInfo.tag;
-            dataRow.appendChild (dataTag);
-            let dataValue = document.createElement ('td');
-            dataValue.className = 'data-value';
+            dataRow.appendChild (symbolData);
+            let codePointData = document.createElement ('td');
+            codePointData.className = 'code-point-data';
+            codePointData.textContent = characterInfo.codePoint;
+            dataRow.appendChild (codePointData);
+            let tagData = document.createElement ('td');
+            tagData.className = 'tag-data';
+            tagData.textContent = characterInfo.tag;
+            dataRow.appendChild (tagData);
+            let valueData = document.createElement ('td');
+            valueData.className = 'value-data';
             let value = characterInfo.value;
             let matching = characterInfo.matching;
             if (Array.isArray (value))
@@ -131,18 +131,18 @@ module.exports.create = function (characterInfos, params)
                     item.textContent = value[index];
                     list.appendChild (item);
                 }
-                dataValue.appendChild (list);
+                valueData.appendChild (list);
             }
             else
             {
-                dataValue.textContent = value;
+                valueData.textContent = value;
             }
-            dataRow.appendChild (dataValue);
-            let dataBlock = document.createElement ('td');
-            dataBlock.className = 'data-block';
-            dataBlock.title = data.blockRange;
-            dataBlock.textContent = data.blockName.replace (/ (.)$/, "\u00A0$1");
-            dataRow.appendChild (dataBlock);
+            dataRow.appendChild (valueData);
+            let blockNameData = document.createElement ('td');
+            blockNameData.className = 'block-name-data';
+            blockNameData.title = data.blockRange;
+            blockNameData.textContent = data.blockName.replace (/ (.)$/, "\u00A0$1");
+            dataRow.appendChild (blockNameData);
             table.appendChild (dataRow);
         }
         //

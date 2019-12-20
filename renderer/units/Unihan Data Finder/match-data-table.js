@@ -57,76 +57,76 @@ module.exports.create = function (characters, params)
         let table = document.createElement ('table');
         table.className = 'data-table';
         //
-        let header = document.createElement ('tr');
-        header.className = 'header';
+        let headerRow = document.createElement ('tr');
+        headerRow.className = 'header-row';
         let symbolHeader = document.createElement ('th');
         symbolHeader.className = 'symbol-header';
         symbolHeader.textContent = "Symbol";
-        header.appendChild (symbolHeader);
+        headerRow.appendChild (symbolHeader);
         let codePointHeader = document.createElement ('th');
         codePointHeader.className = 'code-point-header';
         codePointHeader.textContent = "Code\xA0Point";
-        header.appendChild (codePointHeader);
+        headerRow.appendChild (codePointHeader);
         let ageHeader = document.createElement ('th');
         ageHeader.className = 'age-header';
         ageHeader.textContent = "Age";
-        header.appendChild (ageHeader);
+        headerRow.appendChild (ageHeader);
         let statusHeader = document.createElement ('th');
         statusHeader.className = 'status-header';
         statusHeader.textContent = "Status";
-        header.appendChild (statusHeader);
+        headerRow.appendChild (statusHeader);
         let blockNameHeader = document.createElement ('th');
         blockNameHeader.className = 'block-name-header';
         blockNameHeader.textContent = "Block";
-        header.appendChild (blockNameHeader);
-        table.appendChild (header);
+        headerRow.appendChild (blockNameHeader);
+        table.appendChild (headerRow);
         //
         for (let character of characters)
         {
             let data = unicode.getCharacterBasicData (character);
-            let row = document.createElement ('tr');
-            row.className = 'row';
-            let symbol = document.createElement ('td');
-            symbol.className = 'symbol';
+            let dataRow = document.createElement ('tr');
+            dataRow.className = 'data-row';
+            let symbolData = document.createElement ('td');
+            symbolData.className = 'symbol-data';
             if (deferredSymbols)
             {
-                symbol.textContent = "\xA0";
-                symbol.dataset.character = data.character;
-                params.observer.observe (symbol);
+                symbolData.textContent = "\xA0";
+                symbolData.dataset.character = data.character;
+                params.observer.observe (symbolData);
             }
             else
             {
-                symbol.textContent = data.character;
+                symbolData.textContent = data.character;
             }
-            row.appendChild (symbol);
-            let codePoint = document.createElement ('td');
-            codePoint.className = 'code-point';
-            codePoint.textContent = data.codePoint;
-            row.appendChild (codePoint);
-            let age = document.createElement ('td');
-            age.className = 'age';
-            // age.appendChild (document.createTextNode (`Unicode\xA0${data.age}`));
-            // age.appendChild (document.createElement ('br'));
-            // age.appendChild (document.createTextNode (`(${data.ageDate.replace (" ", "\xA0")})`));
-            age.textContent = `Unicode\xA0${data.age} (${data.ageDate.replace (" ", "\xA0")})`;
-            row.appendChild (age);
-            let status = document.createElement ('td');
-            status.className = 'status';
-            status.textContent = /\p{Unified_Ideograph}/u.test (character) ? "Unified Ideograph" : "Compatibility Ideograph";
-            row.appendChild (status);
-            let blockName = document.createElement ('td');
-            blockName.className = 'block-name';
+            dataRow.appendChild (symbolData);
+            let codePointData = document.createElement ('td');
+            codePointData.className = 'code-point-data';
+            codePointData.textContent = data.codePoint;
+            dataRow.appendChild (codePointData);
+            let ageData = document.createElement ('td');
+            ageData.className = 'age-data';
+            // ageData.appendChild (document.createTextNode (`Unicode\xA0${data.age}`));
+            // ageData.appendChild (document.createElement ('br'));
+            // ageData.appendChild (document.createTextNode (`(${data.ageDate.replace (" ", "\xA0")})`));
+            ageData.textContent = `Unicode\xA0${data.age} (${data.ageDate.replace (" ", "\xA0")})`;
+            dataRow.appendChild (ageData);
+            let statusData = document.createElement ('td');
+            statusData.className = 'status-data';
+            statusData.textContent = /\p{Unified_Ideograph}/u.test (character) ? "Unified Ideograph" : "Compatibility Ideograph";
+            dataRow.appendChild (statusData);
+            let blockNameData = document.createElement ('td');
+            blockNameData.className = 'block-name-data';
             if (data.blockName)
             {
-                blockName.title = data.blockRange;
-                blockName.innerHTML = data.blockName.replace (/ (.)$/, "\u00A0$1").replace (/(\b\w+-\w\b)/g, '<span style="white-space: nowrap;">$1</span>');
+                blockNameData.title = data.blockRange;
+                blockNameData.innerHTML = data.blockName.replace (/ (.)$/, "\u00A0$1").replace (/(\b\w+-\w\b)/g, '<span style="white-space: nowrap;">$1</span>');
             }
             else
             {
-                blockName.textContent = "<none>";   // "<no block>"
+                blockNameData.textContent = "<none>";   // "<no block>"
             }
-            row.appendChild (blockName);
-            table.appendChild (row);
+            dataRow.appendChild (blockNameData);
+            table.appendChild (dataRow);
         }
         //
         dataPage.appendChild (table);

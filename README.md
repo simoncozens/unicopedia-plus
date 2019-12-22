@@ -314,6 +314,7 @@ The following utilities are currently available:
 - The **Match Character** feature of the **Unihan Data Finder** utility displays a list of basic data (symbol, code point, age, ideograph status, block) of matching Unihan characters, including through regular expressions.
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - Click on the <kbd>Match Variants</kbd> toggle button to extend the search to characters whose *variants* match the query string.
+- Unihan variants, if any, are displayed in a distinctive muted (grayed out) style.
 - It is possible to choose how many characters are shown one page at a time.
 - The search is performed on the set of 88,889 Unihan characters defined in **Unicode 12.1**.
 - Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:

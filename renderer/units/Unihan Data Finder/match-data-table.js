@@ -4,7 +4,7 @@ const unicode = require ('../../lib/unicode/unicode.js');
 //
 const deferredSymbols = (process.platform === 'darwin');
 //
-module.exports.create = function (characters, params)
+module.exports.create = function (characters, regex, params)
 {
     function updateDataPage (dataPage)
     {
@@ -86,6 +86,10 @@ module.exports.create = function (characters, params)
             let data = unicode.getCharacterBasicData (character);
             let dataRow = document.createElement ('tr');
             dataRow.className = 'data-row';
+            if (regex && (!regex.test (character)))
+            {
+                dataRow.classList.add ('variant');
+            }
             let symbolData = document.createElement ('td');
             symbolData.className = 'symbol-data';
             if (deferredSymbols)

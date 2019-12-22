@@ -631,7 +631,7 @@ module.exports.start = function (context)
                         if (currentCharactersByMatch.length > 0)
                         {
                             matchParams.pageIndex = 0;
-                            matchSearchData.appendChild (matchDataTable.create (currentCharactersByMatch, matchParams));
+                            matchSearchData.appendChild (matchDataTable.create (currentCharactersByMatch, matchVariants.checked ? regex : null, matchParams));
                         }
                     }
                 }

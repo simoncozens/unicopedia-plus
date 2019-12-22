@@ -150,6 +150,12 @@
     padding: 0.25em 0.5em;
 }
 
+#unihan-data-finder-unit .match-character .search-string
+{
+    font-size: 16px;
+    padding: 3px 7px;
+}
+
 #unihan-data-finder-unit .search-string.error
 {
     color: var(--color-error);
@@ -382,7 +388,7 @@
 
 #unihan-data-finder-unit .search-data .block-name-header
 {
-    width: 13em;
+    width: 14em;
 }
 
 #unihan-data-finder-unit .search-data .data-row
@@ -390,6 +396,11 @@
     text-align: left;
     vertical-align: middle;
     background-color: white;
+}
+
+#unihan-data-finder-unit .search-data .data-row.variant
+{
+    color: gray;
 }
 
 #unihan-data-finder-unit .search-data .symbol-data
@@ -457,7 +468,7 @@
     background: white;
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
-    padding: 0.2em 0.3em;
+    padding: 2px 4px;
     width: 7.5em;
     margin: 0 0.5em 0 1.25em;
     line-height: 1.2em;

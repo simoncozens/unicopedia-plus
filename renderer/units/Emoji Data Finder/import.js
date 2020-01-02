@@ -182,13 +182,16 @@ module.exports.start = function (context)
         return emojiBySequence;
     }
     //
+    // https://unicode.org/emoji/charts/emoji-versions.html
+    // http://www.unicode.org/reports/tr51/#Versioning
+    // https://unicode.org/Public/emoji/
     const versionDates =
     {
         "1.0": "August 2015",
         "2.0": "November 2015",
         "3.0": "June 2016",
         "4.0": "November 2016",
-        "5.0": "May 2017",
+        "5.0": "June 2017",
         "11.0": "June 2018",
         "12.0": "March 2019",
         "12.1": "October 2019"

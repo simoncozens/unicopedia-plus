@@ -435,4 +435,4 @@ You can [download the latest release](https://github.com/tonton-pixel/unicopedia
 
 The MIT License (MIT).
 
-Copyright © 2018-2019 Michel MARIANI.
+Copyright © 2018-2020 Michel MARIANI.

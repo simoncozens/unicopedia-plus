@@ -98,10 +98,10 @@ module.exports.start = function (context)
     const filterRegex = new RegExp (filterPattern, 'u');
     const unifiedRegex = new RegExp (unifiedPattern, 'u');
     //
-    function getTooltip (char)
+    function getTooltip (character)
     {
-        let data = unicode.getCharacterBasicData (char);
-        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${char}` + (radicalRegex.test (char) ? " (Radical)" : ""); // U+034F COMBINING GRAPHEME JOINER
+        let data = unicode.getCharacterBasicData (character);
+        return `${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${character}` + (radicalRegex.test (character) ? " (Radical)" : ""); // U+034F COMBINING GRAPHEME JOINER
     }
     function onLinkClick (event)
     {
@@ -559,7 +559,7 @@ module.exports.start = function (context)
                     { name: "Compatibility Variants", value: compatibility.join (" ") },
                     { name: "Semantic Variants", value: semantic.join (" ") },
                     { name: "Specialized Variants", value: specialized.join (" ") },
-                    { name: "Shape Variants", value: shape.join (" ") },
+                    { name: "Shape (Z-) Variants", value: shape.join (" ") },
                     { name: "Simplified Variants", value: simplified.join (" ") },
                     { name: "Traditional Variants", value: traditional.join (" ") },
                     { name: "Yasuoka Variants", value: yasuoka.join (" ") }

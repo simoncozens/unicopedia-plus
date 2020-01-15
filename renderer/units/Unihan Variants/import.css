@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+#unihan-variants-unit .plain-panel
+{
+    padding-bottom: 0.75em;
+}
+
+#unihan-variants-unit .interface
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0.5em 0 0.75em 0;
+}
+
+#unihan-variants-unit .option-group
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+#unihan-variants-unit .option-group + .option-group
+{
+    margin-left: 1em;
+}
+
+#unihan-variants-unit .option + .option
+{
+    margin-left: 1.5em;
+}
+
+#unihan-variants-unit .unihan-input
+{
+    font-size: 16px;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25em;
+    padding: 0.2em 0.3em;
+    width: 7.5em;
+    margin-right: 0.5em;
+}
+
+#unihan-variants-unit .unihan-input.invalid
+{
+    color: var(--color-error);
+    outline-color: var(--color-error);
+}
+
+#unihan-variants-unit .checkbox:last-of-type
+{
+    margin-left: 1.5em;
+}
+
+#unihan-variants-unit .linear-wrapper
+{
+    display: flex;
+    align-items: center;
+    margin: 1.25em 0;
+}
+
+#unihan-variants-unit .linear-character,
+#unihan-variants-unit .linear-variants
+{
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    height: 48px;
+    font-size: 36px;
+    line-height: 1em;
+    background-color: white;
+    border: 1px solid var(--color-border);
+    user-select: text;
+    padding: 0 6px;
+}
+
+#unihan-variants-unit .linear-character
+{
+    min-width: 48px;
+    width: 48px;
+}
+
+#unihan-variants-unit .linear-variants
+{
+    width: 100%;
+    margin-left: 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#unihan-variants-unit .graph-rendering
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    padding: 0.5em 0 0.25em 0;
+    min-height: calc(12 * 1.2em);
+    background-color: white;
+    border: 1px solid var(--color-border);
+    overflow-x: scroll;
+    margin: 0.75em 0;
+}
+
+#unihan-variants-unit .graph-container
+{
+    min-width: 0;
+}
+
+#unihan-variants-unit .graph-container svg g.node:first-of-type a
+{
+    cursor: default;
+}
+
+#unihan-variants-unit .instructions ul
+{
+    margin: -0.5em 0 1em 0;
+}
+
+#unihan-variants-unit .instructions li
+{
+    margin: 0.25em 0;
+}
+
+#unihan-variants-unit .instructions li > ul
+{
+    margin: 0 0 0.25em 0;
+}
+
+#unihan-variants-unit .instructions kbd
+{
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0.333em 1px;
+    border: 1px solid gray;
+    border-radius: 0.2em;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.95));
+}
+
+#unihan-variants-unit .instructions code
+{
+    color: inherit;
+    background: var(--color-accent) linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
+}
+
+#unihan-variants-unit summary
+{
+    font-weight: bold;
+    margin: 1.2em 0 1em 0;
+}

@@ -1,0 +1,44 @@
+<section id="unihan-variants-unit">
+    <div class="plain-panel">
+        <div class="interface">
+            <span class="option-group">
+                <input class="unihan-input" type="search" maxlength="256" title="Unihan character or code point" placeholder="Unihan...">
+                <button class="lookup-button" type="button">Lookup</button>
+            </span>
+            <span class="option-group">
+                <label class="checkbox" title="If checked, Yasuoka variants are also included; if unchecked, only the standard Unihan variants are listed"><input class="extra-variants-checkbox" type="checkbox">&nbsp;Extra Variants</label>
+                <label class="checkbox" title="If checked, detailed relations are displayed, making use of a directed labeled graph; if unchecked, a basic undirected graph is used instead"><input class="detailed-relations-checkbox" type="checkbox">&nbsp;Detailed Relations</label>
+            </span>
+        </div>
+        <div class="linear-wrapper">
+            <div class="linear-character"></div>
+            <div class="linear-variants"></div>
+        </div>
+        <div class="graph-rendering">
+            <div class="graph-container"></div>
+        </div>
+    </div>
+    <div class="accent-panel">
+        <details class="instructions">
+            <summary>Instructions</summary>
+            <ul>
+                <li>The <strong>Unihan Variants</strong> utility displays all the variants of a given Unihan character.</li>
+                <li>Any Unihan character can be entered in the <kbd>Unihan</kbd> input field either as a character or a code point. Click on the <kbd>Lookup</kbd> button to display the variants.</li>
+                <li>Previously looked up characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.</li>
+                <li>Click the <kbd>Extra Variants</kbd> checkbox to include the Yasuoka variants as well; otherwise, only the standard Unihan variants are listed.</li>
+                <li>Click the <kbd>Detailed Relations</kbd> checkbox to make use of a directed labeled graph to display variant relations; otherwise, a basic undirected graph is used instead.</li>
+                <li>The different variant relations are indicated using the following labels:
+                    <ul>
+                        <li><code>Unified</code>: characters listed under the <em>kCompatibilityVariant</em> Unihan tag</li>
+                        <li><code>Semantic</code>: characters listed under the <em>kSemanticVariant</em> Unihan tag</li>
+                        <li><code>Specialized</code>: characters listed under the <em>kSpecializedSemanticVariant</em> Unihan tag</li>
+                        <li><code>Shape</code>: characters listed under the <em>kZVariant</em> Unihan tag</li>
+                        <li><code>Simplified</code>: characters listed under the <em>kSimplifiedVariant</em> Unihan tag</li>
+                        <li><code>Traditional</code>: characters listed under the <em>kTraditionalVariant</em> Unihan tag</li>
+                        <li><code>Yasuoka</code>: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </details>
+    </div>
+</section>

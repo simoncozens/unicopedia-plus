@@ -32,6 +32,7 @@ The following utilities are currently available:
 - **Unihan Inspector**
 - **Unihan Radical-Strokes**
 - **Unihan References**
+- **Unihan Variants**
 
 ## CJK Font Variants
 
@@ -182,7 +183,7 @@ The following utilities are currently available:
 - After entering a query, click on the <kbd>Search</kbd> button to display a list of all relevant matches, if any, ordered by code point value.
 - It is possible to choose how many characters are shown one page at a time.
 - When available, name aliases are displayed (in italics and smaller typeface) after the unique and immutable Unicode name. A correction alias is indicated by a leading reference mark `※`.
-- All names and aliases are obtained from the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) and [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt) data files.</li>
+- All names and aliases are obtained from the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) and [NameAliases.txt](https://www.unicode.org/Public/UNIDATA/NameAliases.txt) data files.
 - The search is performed on the 277,510 assigned characters (or code points) defined in the **Unicode 12.1** version of the [UnicodeData.txt](https://www.unicode.org/Public/UNIDATA/UnicodeData.txt) data file.
 - Use the <kbd>Results&nbsp;▾</kbd> pop-up menu to perform an action among:
     - `Copy Results` [copy the results as string to the clipboard]
@@ -371,7 +372,7 @@ The following utilities are currently available:
     - `Compatibility Variants`: characters whose decomposition is the looked up character
     - `Semantic Variants`: characters listed under the *kSemanticVariant* Unihan tag
     - `Specialized Variants`: characters listed under the *kSpecializedSemanticVariant* Unihan tag
-    - `Shape Variants` characters listed under the *kZVariant* Unihan tag
+    - `Shape (Z-) Variants` characters listed under the *kZVariant* Unihan tag
     - `Simplified Variants`: characters listed under the *kSimplifiedVariant* Unihan tag
     - `Traditional Variants`: characters listed under the *kTraditionalVariant* Unihan tag
     - `Yasuoka Variants`: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>
@@ -379,7 +380,7 @@ The following utilities are currently available:
     - The top Radical/Strokes fields are displaying data obtained from the only informative IRG Source: *kRSUnicode*, while the bottom ones (in grayed-out style, if any) make use of the provisional sources: *kRSKangXi*, *kRSJapanese*, *kRSKanWa*, *kRSKorean* and *kRSAdobe_Japan1_6*.
     - IICore (*International Ideographs Core*) represents a set of 9,810 important Unihan characters in everyday use throughout East Asia; it has been developed by the IRG.
     - IRG stands for *Ideographic Rapporteur Group*, a committee advising the Unicode Consortium about Asian language characters.
-    - Radicals do *not* belong to the Unihan character set; they are allowed to be looked up here merely as a convenience, since they are closely related, and because their appearance is similar, or even identical, to their equivalent unified ideograph.</li>
+    - Radicals do *not* belong to the Unihan character set; they are allowed to be looked up here merely as a convenience, since they are closely related, and because their appearance is similar, or even identical, to their equivalent unified ideograph.
 
 <img src="screenshots/unihan-inspector.png" width="1080px" alt="Unihan Inspector screenshot">
 
@@ -389,7 +390,7 @@ The following utilities are currently available:
 
 - The **Unihan Radical-Strokes** utility displays all the Unihan characters searched by KangXi radical and additional stroke count.
 - Use the <kbd>Unihan Full Set</kbd> checkbox to perform the search on the full set of 88,889 Unihan characters, or limit it to the IICore set of 9,810 CJK unified ideographs in common usage.
-- Use the <kbd>Allow Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.
+- Use the <kbd>Extra Sources</kbd> checkbox to extend the search to all radical/strokes source tags, or use only the IRG-defined source tag common to all Unihan characters.
 - Use the <kbd>Radical</kbd> and <kbd>Strokes</kbd> drop-down menus to select the KangXi radical and the additional stroke count of the Unihan characters you are looking for, then click on the <kbd>Search</kbd> button.
 - If the number of additional strokes is negative, 0 is used instead. For example, the Unihan character 王 gets listed under 'Radical 96 ⽟ (Jade)' + '0 Stroke', although its additional stroke count is -1.
 - Selecting `All` from the <kbd>Strokes</kbd> menu lets you display all the Unihan characters sharing the same KangXi radical, sorted by additional stroke count.
@@ -406,6 +407,26 @@ The following utilities are currently available:
 - The **Unihan References** utility provides a list of reference links to Unihan-related web pages.
 
 <img src="screenshots/unihan-references.png" width="1080px" alt="Unihan References screenshot">
+
+## Unihan Variants
+
+- The **Unihan Variants** utility displays all the variants of a given Unihan character.
+- Any Unihan character can be entered in the <kbd>Unihan</kbd> input field either as a character or a code point. Click on the <kbd>Lookup</kbd> button to display the variants.
+- Previously looked up characters are kept in a history stack; use the <kbd>Alt</kbd>+<kbd>↑</kbd> and <kbd>Alt</kbd>+<kbd>↓</kbd> keyboard shortcuts to navigate through them up and down inside the input field.
+- Click the <kbd>Extra Variants</kbd> checkbox to include the Yasuoka variants as well; otherwise, only the standard Unihan variants are listed.
+- Click the <kbd>Detailed Relations</kbd> checkbox to make use of a directed labeled graph to display variant relations; otherwise, a basic undirected graph is used instead.
+- The different variant relations are indicated using the following labels:
+    - `Unified`: characters listed under the *kCompatibilityVariant* Unihan tag
+    - `Semantic`: characters listed under the *kSemanticVariant* Unihan tag
+    - `Specialized`: characters listed under the *kSpecializedSemanticVariant* Unihan tag
+    - `Shape`: characters listed under the *kZVariant* Unihan tag
+    - `Simplified`: characters listed under the *kSimplifiedVariant* Unihan tag
+    - `Traditional`: characters listed under the *kTraditionalVariant* Unihan tag
+    - `Yasuoka`: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>
+
+<img src="screenshots/unihan-variants.png" width="1080px" alt="Unihan Variants screenshot">
+
+<img src="screenshots/unihan-variants-detailed.png" width="1080px" alt="Unihan Variants (Detailed) screenshot">
 
 ## Building
 

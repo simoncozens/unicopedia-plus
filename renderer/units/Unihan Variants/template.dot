@@ -1,0 +1,25 @@
+{{graph}} ""
+{
+    graph
+    [
+        rankdir = {{rankdir}}
+    ]
+    node
+    [
+        shape = circle
+        style = filled
+        fillcolor = white
+        fixedsize = true
+        width = 0.75
+        fontname = "system-ui, sans-serif"
+        fontsize = 36
+        fontcolor = black
+    ]
+    edge
+    [
+        fontsize = 10
+        fontname = "system-ui, sans-serif"
+        arrowsize = 0.75
+    ]
+    {{data}}
+}

@@ -643,7 +643,7 @@ const tags =
     },
     "kZVariant":
     {
-        "name": "Z-Variant (Shape Variant)",
+        "name": "Shape (Z-) Variant",
         "category": "Variants",
         "delimiter": " ",
         "syntax": "U\\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?"

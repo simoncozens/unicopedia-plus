@@ -14,6 +14,11 @@
             <div class="linear-character"></div>
             <div class="linear-variants"></div>
         </div>
+        <div class="options">
+            <span class="action">
+                <button class="save-svg-button" type="button">Save...</button>
+            </span>
+        </div>
         <div class="graph-rendering">
             <div class="graph-container"></div>
         </div>
@@ -29,13 +34,21 @@
                 <li>Click the <kbd>Detailed Relations</kbd> checkbox to make use of a directed labeled graph to display variant relations; otherwise, a basic undirected graph is used instead.</li>
                 <li>The different variant relations are indicated using the following labels:
                     <ul>
-                        <li><code>Unified</code>: characters listed under the <em>kCompatibilityVariant</em> Unihan tag</li>
                         <li><code>Semantic</code>: characters listed under the <em>kSemanticVariant</em> Unihan tag</li>
-                        <li><code>Specialized</code>: characters listed under the <em>kSpecializedSemanticVariant</em> Unihan tag</li>
                         <li><code>Shape</code>: characters listed under the <em>kZVariant</em> Unihan tag</li>
                         <li><code>Simplified</code>: characters listed under the <em>kSimplifiedVariant</em> Unihan tag</li>
+                        <li><code>Specialized</code>: characters listed under the <em>kSpecializedSemanticVariant</em> Unihan tag</li>
                         <li><code>Traditional</code>: characters listed under the <em>kTraditionalVariant</em> Unihan tag</li>
+                        <li><code>Unified</code>: characters listed under the <em>kCompatibilityVariant</em> Unihan tag</li>
                         <li><code>Yasuoka</code>: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a></li>
+                    </ul>
+                </li>
+                <li>Click the <kbd>Save...</kbd> button to save the current graph as a SVG file.</li>
+                <li>Notes:
+                    <ul>
+                        <li>Hovering over any circle of the graph displays a tooltip with basic additional information about its Unihan character: code point, age, ideograph status.</li>
+                        <li>The currently looked up Unihan character appears in a bolder circle, and it is possible to "navigate" to another variant by clicking on its circled node.</li>
+                        <li>In order to avoid visual clutter, any relation between two Unihan characters obtained from the Yasuoka variants is not displayed if another "standard" one already exists.</li>
                     </ul>
                 </li>
             </ul>

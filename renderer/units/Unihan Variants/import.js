@@ -7,6 +7,7 @@ const extraVariantsCheckbox = unit.querySelector ('.extra-variants-checkbox');
 const detailedRelationsCheckbox = unit.querySelector ('.detailed-relations-checkbox');
 const linearCharacter = unit.querySelector ('.linear-character');
 const linearVariants = unit.querySelector ('.linear-variants');
+const saveSVGButton = unit.querySelector ('.save-svg-button');
 const graphContainer = unit.querySelector ('.graph-container');
 //
 const instructions = unit.querySelector ('.instructions');
@@ -19,12 +20,16 @@ let unihanHistorySave = null;
 //
 let currentUnihanCharacter;
 //
+let defaultFolderPath;
+//
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
     const fs = require ('fs');
     const path = require ('path');
+    //
+    const fileDialogs = require ('../../lib/file-dialogs.js');
     //
     // https://github.com/mdaines/viz.js/wiki/Usage
     // https://github.com/mdaines/viz.js/wiki/Caveats
@@ -46,6 +51,7 @@ module.exports.start = function (context)
         unihanCharacter: "",
         extraVariantsCheckbox: false,
         detailedRelationsCheckbox: false,
+        defaultFolderPath: context.defaultFolderPath,
         instructions: true
     };
     let prefs = context.getPrefs (defaultPrefs);
@@ -245,8 +251,12 @@ module.exports.start = function (context)
         'kYasuokaVariant': " Yasuoka "
     };
     //
+    let svgResult;
+    //
     function displayData (character)
     {
+        svgResult = "";
+        saveSVGButton.disabled = true;
         // linearCharacter.textContent = "";
         while (linearCharacter.firstChild)
         {
@@ -380,7 +390,15 @@ module.exports.start = function (context)
                     .replace ('{{data}}', data),
                     { engine: 'dot', format: 'svg' }
                 )
-                .then (result => { graphContainer.innerHTML = result; });
+                .then
+                (
+                    result =>
+                    {
+                        svgResult = result;
+                        graphContainer.innerHTML = svgResult;
+                        saveSVGButton.disabled = false;
+                    }
+                );
             }
             catch (e)
             {
@@ -449,6 +467,27 @@ module.exports.start = function (context)
     currentUnihanCharacter = prefs.unihanCharacter;
     updateUnihanData (currentUnihanCharacter);
     //
+    defaultFolderPath = prefs.defaultFolderPath;
+    //
+    saveSVGButton.addEventListener
+    (
+        'click',
+        (event) =>
+        {
+            fileDialogs.saveTextFile
+            (
+                "Save SVG file:",
+                [ { name: "SVG File (*.svg)", extensions: [ 'svg' ] } ],
+                path.join (defaultFolderPath, `${currentUnihanCharacter}-Variants.svg`),
+                (filePath) =>
+                {
+                    defaultFolderPath = path.dirname (filePath);
+                    return svgResult;
+                }
+            );
+        }
+    );
+    //
     instructions.open = prefs.instructions;
 };
 //
@@ -460,6 +499,7 @@ module.exports.stop = function (context)
         unihanCharacter: currentUnihanCharacter,
         extraVariantsCheckbox: extraVariantsCheckbox.checked,
         detailedRelationsCheckbox: detailedRelationsCheckbox.checked,
+        defaultFolderPath: defaultFolderPath,
         instructions: instructions.open
     };
     context.setPrefs (prefs);

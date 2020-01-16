@@ -416,13 +416,18 @@ The following utilities are currently available:
 - Click the <kbd>Extra Variants</kbd> checkbox to include the Yasuoka variants as well; otherwise, only the standard Unihan variants are listed.
 - Click the <kbd>Detailed Relations</kbd> checkbox to make use of a directed labeled graph to display variant relations; otherwise, a basic undirected graph is used instead.
 - The different variant relations are indicated using the following labels:
-    - `Unified`: characters listed under the *kCompatibilityVariant* Unihan tag
     - `Semantic`: characters listed under the *kSemanticVariant* Unihan tag
-    - `Specialized`: characters listed under the *kSpecializedSemanticVariant* Unihan tag
     - `Shape`: characters listed under the *kZVariant* Unihan tag
     - `Simplified`: characters listed under the *kSimplifiedVariant* Unihan tag
+    - `Specialized`: characters listed under the *kSpecializedSemanticVariant* Unihan tag
     - `Traditional`: characters listed under the *kTraditionalVariant* Unihan tag
+    - `Unified`: characters listed under the *kCompatibilityVariant* Unihan tag
     - `Yasuoka`: characters drawn from the "Variants table for Unicode" data file <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/ftp/CJKtable/UniVariants.Z">UniVariants.txt</a> provided by Prof. <a title="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/" href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/">Kōichi Yasuoka</a>
+- Click the <kbd>Save...</kbd> button to save the current graph as a SVG file.
+- Notes:
+    - Hovering over any circle of the graph displays a tooltip with basic additional information about its Unihan character: code point, age, ideograph status.
+    - The currently looked up Unihan character appears in a bolder circle, and it is possible to "navigate" to another variant by clicking on its circled node.
+    - In order to avoid visual clutter, any relation between two Unihan characters obtained from the Yasuoka variants is not displayed if another "standard" one already exists.
 
 <img src="screenshots/unihan-variants.png" width="1080px" alt="Unihan Variants screenshot">
 

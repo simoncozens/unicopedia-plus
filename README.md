@@ -36,7 +36,7 @@ The following utilities are currently available:
 
 ## CJK Font Variants
 
-- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in five different typefaces belonging to the open-source set of [Google Noto CJK Fonts](https://www.google.com/get/noto/help/cjk/):
+- The **CJK Font Variants** utility displays simultaneously any string of CJK (Chinese/Japanese/Korean) characters in five different typefaces belonging to the open-source set of [Google Noto CJK Fonts](https://github.com/googlefonts/noto-cjk):
 
 | Language | Tag | Code | Typeface |
 |----------|-----|------|----------|

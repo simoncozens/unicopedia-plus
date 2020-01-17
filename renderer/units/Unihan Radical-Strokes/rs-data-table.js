@@ -102,8 +102,8 @@ module.exports.create = function (title, items, params)
                 if (character.extraSource)
                 {
                     characterData.classList.add ('extra-source');
-                    characterData.title = character.toolTip;
                 }
+                characterData.title = character.toolTip;
                 let symbol = document.createElement ('span');
                 symbol.className = 'symbol';
                 if (deferredSymbols)

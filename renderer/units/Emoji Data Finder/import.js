@@ -51,6 +51,8 @@ module.exports.start = function (context)
     const sampleMenus = require ('../../lib/sample-menus.js');
     const regexUnicode = require ('../../lib/regex-unicode.js');
     //
+    const unicode = require ('../../lib/unicode/unicode.js');
+    //
     const defaultPrefs =
     {
         tabName: "",
@@ -128,6 +130,17 @@ module.exports.start = function (context)
     //
     const cldrAnnotations = require ('../../lib/unicode/get-cldr-annotations.js') ("en.xml");
     //
+    function getTooltip (emoji)
+    {
+        let tooltip = [ ];
+        for (let character of emoji)
+        {
+            let data = unicode.getCharacterBasicData (character);
+            tooltip.push (`${data.codePoint.replace (/U\+/, "U\u034F\+")}\xA0${data.name}`); // U+034F COMBINING GRAPHEME JOINER
+        }
+        return "<" + tooltip.join (",\n") + ">";
+    }
+    //
     function getEmojiCodePoints (emoji)
     {
         return "<" + emojiList[emoji].code.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&").split (" ").join (", ") + ">";
@@ -187,6 +200,7 @@ module.exports.start = function (context)
     // https://unicode.org/Public/emoji/
     const versionDates =
     {
+        "0.0": "Date Unknown",
         "1.0": "August 2015",
         "2.0": "November 2015",
         "3.0": "June 2016",
@@ -234,6 +248,7 @@ module.exports.start = function (context)
             let codes = document.createElement ('div');
             codes.className = 'codes';
             codes.textContent = getEmojiCodePoints (character);
+            codes.title = getTooltip (character);
             codesData.appendChild (codes);
             let status;
             if (emojiList[character].isComponent)

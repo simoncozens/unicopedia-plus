@@ -135,6 +135,53 @@ module.exports.start = function (context)
         "kRSAdobe_Japan1_6"
     ];
     //
+    function getFullRSTooltip (codePoint, verbose)
+    {
+        let tags = unihanData.codePoints[codePoint];
+        //
+        let rsValues = [ ];
+        let rsIRGCount = 0;
+        //
+        for (let rsTag of rsTags)
+        {
+            let rsTagValues = tags[rsTag];
+            if (rsTagValues)
+            {
+                if (!Array.isArray (rsTagValues))
+                {
+                    rsTagValues = [ rsTagValues ];
+                }
+                if (rsTag === "kRSUnicode")
+                {
+                    rsIRGCount = rsTagValues.length;
+                }
+                for (let rsTagValue of rsTagValues)
+                {
+                    if (rsTag === "kRSAdobe_Japan1_6")
+                    {
+                        let parsed = rsTagValue.match (/^([CV])\+[0-9]{1,5}\+([1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2})$/);
+                        if (parsed[1] === "C")
+                        {
+                            let [ index, strokes, residual ] = parsed[2].split (".");
+                            rsValues.push ([ index, residual ].join ("."));
+                        }
+                    }
+                    else
+                    {
+                        rsValues.push (rsTagValue);
+                    }
+                }
+            }
+        }
+        //
+        // Remove duplicates
+        rsValues = [...new Set (rsValues)];
+        //
+        rsValues = rsValues.map ((rsValue, index) => ((index < rsIRGCount) ? "●\xA0\xA0" : "○\xA0\xA0") + fromRSValue (rsValue, verbose).join (" +\xA0"));
+        //
+        return rsValues.join ("\n");
+    }
+    //
     function findCharactersByRadicalStrokes (options)
     {
         let items = [ ];
@@ -202,9 +249,9 @@ module.exports.start = function (context)
                             if (extraSource)
                             {
                                 character.extraSource = extraSource;
-                                character.toolTip = irgSourceValues.map (rsValue => fromRSValue (rsValue, true).join (" +\xA0")).join ("\n");
                             }
                         }
+                        character.toolTip = getFullRSTooltip (codePoint);
                         items[residualStrokes - options.minStrokes].characters.push (character);
                     }
                 }

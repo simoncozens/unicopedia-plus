@@ -2,6 +2,7 @@
 {
     graph
     [
+        layout = dot
         rankdir = {{rankdir}}
     ]
     node
@@ -21,5 +22,5 @@
         fontname = "system-ui, sans-serif"
         arrowsize = 0.75
     ]
-    {{data}}
+{{data}}
 }

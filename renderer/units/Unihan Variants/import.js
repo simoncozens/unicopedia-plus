@@ -251,10 +251,12 @@ module.exports.start = function (context)
         'kYasuokaVariant': " Yasuoka "
     };
     //
+    let dotString;
     let svgResult;
     //
     function displayData (character)
     {
+        dotString = "";
         svgResult = "";
         saveSVGButton.disabled = true;
         // linearCharacter.textContent = "";
@@ -326,8 +328,9 @@ module.exports.start = function (context)
             }
             try
             {
-                let data = `${character} [ style = bold, tooltip = ${JSON.stringify (getTooltip (character))} ];`;
-                data += variants.map (variant => `${variant} [ tooltip = ${JSON.stringify (getTooltip (variant))} ];`).join ("");
+                let data = "";
+                data += `    "${character}" [ tooltip = ${JSON.stringify (getTooltip (character))}, style = bold ]`;
+                data += variants.map (variant => `\n    "${variant}" [ tooltip = ${JSON.stringify (getTooltip (variant))} ]`).join ("");
                 if (detailedRelationsCheckbox.checked)
                 {
                     let toCharacters = { };
@@ -361,7 +364,7 @@ module.exports.start = function (context)
                         {
                             if ((tag !== 'kYasuokaVariant') || (tags.length === 1))
                             {
-                                data += `${character} -> ${toCharacter} [ label = ${JSON.stringify (shortLabels[tag])} ];`;
+                                data += `\n    "${character}" -> "${toCharacter}" [ label = ${JSON.stringify (shortLabels[tag])} ]`;
                             }
                         }
                     }
@@ -372,24 +375,23 @@ module.exports.start = function (context)
                         {
                             if ((tag !== 'kYasuokaVariant') || (tags.length === 1))
                             {
-                                data += `${fromCharacter} -> ${character} [ label = ${JSON.stringify (shortLabels[tag])} ];`;
+                                data += `\n    "${fromCharacter}" -> "${character}" [ label = ${JSON.stringify (shortLabels[tag])} ]`;
                             }
                         }
                     }
                 }
                 else
                 {
-                    data += variants.map (variant => `${character} -- ${variant};`).join ("");
+                    data += variants.map (variant => `\n    "${character}" -- "${variant}"`).join ("");
                 }
                 // console.log (data);
-                viz.renderString
-                (
+                dotString =
                     dotTemplate
                     .replace ('{{graph}}', detailedRelationsCheckbox.checked ? 'digraph' : 'graph')
                     .replace ('{{rankdir}}', detailedRelationsCheckbox.checked ? 'LR' : 'TB')
-                    .replace ('{{data}}', data),
-                    { engine: 'dot', format: 'svg' }
-                )
+                    .replace ('{{data}}', data);
+                // console.log (dotString);
+                viz.renderString (dotString, { engine: 'dot', format: 'svg' })
                 .then
                 (
                     result =>
@@ -474,17 +476,35 @@ module.exports.start = function (context)
         'click',
         (event) =>
         {
-            fileDialogs.saveTextFile
-            (
-                "Save SVG file:",
-                [ { name: "SVG File (*.svg)", extensions: [ 'svg' ] } ],
-                path.join (defaultFolderPath, `${currentUnihanCharacter}-Variants.svg`),
-                (filePath) =>
-                {
-                    defaultFolderPath = path.dirname (filePath);
-                    return svgResult;
-                }
-            );
+            let dotFormat = event.altKey || event.shiftKey;
+            if (dotFormat)
+            {
+                fileDialogs.saveTextFile
+                (
+                    "Save DOT file:",
+                    [ { name: "DOT File (*.dot)", extensions: [ 'dot' ] } ],
+                    path.join (defaultFolderPath, `${currentUnihanCharacter}-Variants.dot`),
+                    (filePath) =>
+                    {
+                        defaultFolderPath = path.dirname (filePath);
+                        return dotString;
+                    }
+                );
+            }
+            else
+            {
+                fileDialogs.saveTextFile
+                (
+                    "Save SVG file:",
+                    [ { name: "SVG File (*.svg)", extensions: [ 'svg' ] } ],
+                    path.join (defaultFolderPath, `${currentUnihanCharacter}-Variants.svg`),
+                    (filePath) =>
+                    {
+                        defaultFolderPath = path.dirname (filePath);
+                        return svgResult;
+                    }
+                );
+            }
         }
     );
     //

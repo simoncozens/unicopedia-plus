@@ -172,7 +172,7 @@ module.exports.start = function (context)
         {
             event.preventDefault ();
             let diffElement = event.currentTarget;
-            let alternateDiff = event.shiftKey;
+            let alternateDiff = event.altKey || event.shiftKey;
             diffEffect = event.getModifierState ('CapsLock') ? 'overlay' : 'none';
             let variants;
             if (alternateDiff)

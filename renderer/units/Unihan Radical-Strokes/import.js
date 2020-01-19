@@ -19,10 +19,15 @@ const rsParams = { };
 let rsCurrentRadical;
 let rsCurrentStrokes;
 //
+let defaultFolderPath;
+//
 module.exports.start = function (context)
 {
     const { remote } = require ('electron');
     //
+    const path = require ('path');
+    //
+    const fileDialogs = require ('../../lib/file-dialogs.js');
     const pullDownMenus = require ('../../lib/pull-down-menus.js');
     //
     const unihanData = require ('../../lib/unicode/parsed-unihan-data.js');
@@ -40,9 +45,28 @@ module.exports.start = function (context)
         rsStrokesSelect: "",
         rsCompactLayout: false,
         rsInstructions: true,
-        rsRadicalList: false
+        rsRadicalList: false,
+        //
+        defaultFolderPath: context.defaultFolderPath
     };
     let prefs = context.getPrefs (defaultPrefs);
+    //
+    defaultFolderPath = prefs.defaultFolderPath;
+    //
+    function saveResults (string)
+    {
+        fileDialogs.saveTextFile
+        (
+            "Save text file:",
+            [ { name: "Text (*.txt)", extensions: [ 'txt' ] } ],
+            defaultFolderPath,
+            (filePath) =>
+            {
+                defaultFolderPath = path.dirname (filePath);
+                return string;
+            }
+        );
+    }
     //
     function clearSearch (data)
     {
@@ -365,7 +389,9 @@ module.exports.stop = function (context)
         rsStrokesSelect: rsCurrentStrokes,
         rsCompactLayout: rsParams.compactLayout,
         rsInstructions: rsInstructions.open,
-        rsRadicalList: rsRadicalList.open
+        rsRadicalList: rsRadicalList.open,
+        //
+        defaultFolderPath: defaultFolderPath
     };
     context.setPrefs (prefs);
 };

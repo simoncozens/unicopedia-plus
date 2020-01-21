@@ -235,7 +235,9 @@ module.exports.start = function (context)
                         { name: "Equivalent Unified Ideograph", value: data.equivalentUnifiedIdeograph },
                         { name: "Core Properties", value: data.coreProperties },
                         { name: "Extended Properties", value: data.extendedProperties },
-                        { name: "Emoji Properties", value: data.emojiProperties }
+                        { name: "Emoji Properties", value: data.emojiProperties },
+                        { name: "Joining Type", value: data.arabicJoiningType },
+                        { name: "Joining Group", value: data.arabicJoiningGroup }
                     ];
                     //
                     for (let property of properties)

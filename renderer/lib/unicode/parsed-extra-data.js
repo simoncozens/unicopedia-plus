@@ -183,6 +183,22 @@ for (let line of lines)
     }
 }
 //
+let arabicShaping = { };
+//
+// Copy of https://www.unicode.org/Public/UNIDATA/ArabicShaping.txt
+lines = fs.readFileSync (path.join (__dirname, 'UNIDATA', 'ArabicShaping.txt'), { encoding: 'ascii' }).split ("\n");
+for (let line of lines)
+{
+    if (line && (line[0] !== "#"))
+    {
+        let found = line.match (/^([0-9a-fA-F]{4,});[\w\s]+;\s+(\w);\s+([\w\s]+)/);
+        if (found)
+        {
+            arabicShaping[parseInt(found[1],16)] = { joiningType: found[2], joiningGroup: found[3]}
+        }
+    }
+}
+//
 module.exports =
 {
     versions,
@@ -195,6 +211,7 @@ module.exports =
     equivalentUnifiedIdeographs,
     eastAsianWidths,
     verticalOrientations,
-    lineBreaks
+    lineBreaks,
+    arabicShaping
 };
 //

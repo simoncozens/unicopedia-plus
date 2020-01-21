@@ -425,6 +425,17 @@ const versionDates =
     "12.1": "May 2019"
 };
 //
+// https://www.unicode.org/Public/UNIDATA/ArabicShaping.txt
+const joiningTypes =
+{
+    "R": "Right-Joining",
+    "L": "Left-Joining",
+    "D": "Dual-Joining",
+    "C": "Join-Causing",
+    "U": "Non-Joining",
+    "T": "Transparent"
+};
+//
 function uniHexify (string)
 {
     return string.replace (/\b([0-9a-fA-F]{4,})\b/g, "U\+$&");
@@ -634,6 +645,11 @@ function getCharacterData (character)
             characterData.lineBreak = lineBreaks[lineBreak.property];
             break;
         }
+    }
+    if (index in extraData.arabicShaping) {
+        characterData.arabicJoiningType = joiningTypes[extraData.arabicShaping[index].joiningType];
+        characterData.arabicJoiningGroup = extraData.arabicShaping[index].joiningGroup;
+
     }
     let codePoints = unicodeData;
     if (codePoint in codePoints)

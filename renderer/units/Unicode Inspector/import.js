@@ -237,7 +237,9 @@ module.exports.start = function (context)
                         { name: "Extended Properties", value: data.extendedProperties },
                         { name: "Emoji Properties", value: data.emojiProperties },
                         { name: "Joining Type", value: data.arabicJoiningType },
-                        { name: "Joining Group", value: data.arabicJoiningGroup }
+                        { name: "Joining Group", value: data.arabicJoiningGroup },
+                        { name: "Indic Positional Category", value: data.indicPositionalCategory },
+                        { name: "Indic Syllabic Category", value: data.indicSyllabicCategory }
                     ];
                     //
                     for (let property of properties)

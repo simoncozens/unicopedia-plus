@@ -649,7 +649,22 @@ function getCharacterData (character)
     if (index in extraData.arabicShaping) {
         characterData.arabicJoiningType = joiningTypes[extraData.arabicShaping[index].joiningType];
         characterData.arabicJoiningGroup = extraData.arabicShaping[index].joiningGroup;
-
+    }
+    for (let indicPositionalCategory of extraData.indicPositionalCategories)
+    {
+        if ((parseInt (indicPositionalCategory.first, 16) <= index) && (index <= parseInt (indicPositionalCategory.last, 16)))
+        {
+            characterData.indicPositionalCategory = indicPositionalCategory.property;
+            break;
+        }
+    }
+    for (let indicSyllabicCategory of extraData.indicSyllabicCategories)
+    {
+        if ((parseInt (indicSyllabicCategory.first, 16) <= index) && (index <= parseInt (indicSyllabicCategory.last, 16)))
+        {
+            characterData.indicSyllabicCategory = indicSyllabicCategory.property;
+            break;
+        }
     }
     let codePoints = unicodeData;
     if (codePoint in codePoints)
